@@ -9,6 +9,8 @@ INST_DIR?=		${INSTALL} -d
 
 ##################################################
 
+PROJECTNAME=		mk-configure
+
 VERSION=		0.4.0
 
 BIRTHDATE=		2009-02-21
