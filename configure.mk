@@ -28,14 +28,20 @@ CACHE_DIR=${.OBJDIR}
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
-HAVE.${h:S|/|_|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ../mk-configure/mk-configure_check_header ${h}
+HAVE.${h:S|/|_|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} mk-configure_check_header ${h}
 CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
 .endfor
 
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCS}
-HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ../mk-configure/mk-configure_check_func ${f:S/|/ /g}
+HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} mk-configure_check_func ${f:S/|/ /g}
 CFLAGS+=	-DHAVE.${f:S|-l||g:S| |_|g:S/|/_/g}=${HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}}
+.endfor
+
+# checking for sizeof(xxx)
+.for t in ${MKC_CHECK_SIZEOF}
+SIZEOF.${t:S| |_|g:S|*|P|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} mk-configure_check_sizeof '${t}' '${defined(MKC_CHECK_SIZEOF.${t}):?${MKC_CHECK_SIZEOF.${t}}:""}'
+CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g}}
 .endfor
 
 # error check
