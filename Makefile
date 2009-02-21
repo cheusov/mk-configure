@@ -5,6 +5,8 @@ BINDIR?=${PREFIX}/bin
 MKFILESDIR?=${PREFIX}/share/mk
 EXECSDIR?=${PREFIX}/libexec/mkc
 
+INST_DIR?=		${INSTALL} -d
+
 ##################################################
 
 VERSION=		0.4.0
@@ -30,9 +32,21 @@ all: configure.mk
 
 ##################################################
 
-.PHONY: clean-local
 clean: clean-local
+
+.PHONY: clean-local
 clean-local:
 	rm -f configure.mk
+
+# unfortunately bsd.prog.mk doesn't create
+# the destinations dirs at installation stage :-(
+install: install-local
+
+.PHONY: install-local
+install-local:
+	${INST_DIR} ${DESTDIR}${MKFILESDIR}
+	${INST_DIR} ${DESTDIR}${EXECSDIR}
+
+##################################################
 
 .include <bsd.prog.mk>

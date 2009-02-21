@@ -1,0 +1,4 @@
+Mk script written for BSD make for replacing GNU autoconf.
+Sample of usage in README.install file.
+
+NOTE: This script is currently in very early stage of development.
