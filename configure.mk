@@ -34,7 +34,7 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
 
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCS}
-HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ../mk-configure/mk-configure_check_funcs ${f:S/|/ /g}
+HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ../mk-configure/mk-configure_check_func ${f:S/|/ /g}
 CFLAGS+=	-DHAVE.${f:S|-l||g:S| |_|g:S/|/_/g}=${HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}}
 .endfor
 

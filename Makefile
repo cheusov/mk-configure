@@ -10,8 +10,8 @@ VERSION=		0.0.1alpha1
 
 BIRTHDATE=		2009-02-20
 
-SCRIPTS=		mk-configure_check_funcs \
-			mk-configure_check_headers
+SCRIPTS=		mk-configure_check_func \
+			mk-configure_check_header
 FILES=			configure.mk
 FILESDIR=		${MKFILESDIR}
 
