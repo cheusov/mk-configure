@@ -13,11 +13,11 @@ VERSION=		0.4.0
 
 BIRTHDATE=		2009-02-21
 
-FILES+=			mkc_check_func mkc_check_header mkc_check_sizeof
-FILES+=			configure.mk
+SCRIPTS=		mkc_check_func mkc_check_header mkc_check_sizeof
+SCRIPTSDIR=		${EXECSDIR}
 
-FILESDIR=		${EXECSDIR}
-FILESDIR_configure.mk=	${MKFILESDIR}
+FILES=			configure.mk
+FILESDIR=		${MKFILESDIR}
 
 ##################################################
 
@@ -40,10 +40,10 @@ clean-local:
 
 # unfortunately bsd.prog.mk doesn't create
 # the destinations dirs at installation stage :-(
-install: install-local
+#install: install-local
 
-.PHONY: install-local
-install-local:
+.PHONY: install-dirs
+install-dirs:
 	${INST_DIR} ${DESTDIR}${MKFILESDIR}
 	${INST_DIR} ${DESTDIR}${EXECSDIR}
 
