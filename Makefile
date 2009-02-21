@@ -15,7 +15,7 @@ FILES+=			mkc_check_func mkc_check_header mkc_check_sizeof
 FILES+=			configure.mk
 
 FILESDIR=		${EXECSDIR}
-FILESDIR.configure.mk=	${MKFILESDIR}
+FILESDIR_configure.mk=	${MKFILESDIR}
 
 ##################################################
 
