@@ -11,7 +11,7 @@ INST_DIR?=		${INSTALL} -d
 
 VERSION=		0.4.0
 
-BIRTHDATE=		2009-02-20
+BIRTHDATE=		2009-02-21
 
 FILES+=			mkc_check_func mkc_check_header mkc_check_sizeof
 FILES+=			configure.mk
