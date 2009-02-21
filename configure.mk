@@ -40,7 +40,7 @@ CFLAGS+=	-DHAVE.${f:S|-l||g:S| |_|g:S/|/_/g}=${HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
-SIZEOF.${t:S| |_|g:S|*|P|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} mk-configure_check_sizeof '${t}' '${defined(MKC_CHECK_SIZEOF.${t}):?${MKC_CHECK_SIZEOF.${t}}:""}'
+SIZEOF.${t:S| |_|g:S|*|P|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} mk-configure_check_sizeof '${t}' '${defined(MKC_CHECK_SIZEOF_INCLS.${t}):?${MKC_CHECK_SIZEOF_INCLS.${t}}:}'
 CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g}}
 .endfor
 

@@ -40,7 +40,10 @@ if test -f "$cache"; then
 else
     ret=failed
     for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
-	cat > "$tmpc" <<EOF
+	for f in $2; do
+	    echo "#include <$f>"
+	done > "$tmpc"
+	cat >> "$tmpc" <<EOF
 int main ()
 {
    char a [sizeof ($type)-${sz}];
