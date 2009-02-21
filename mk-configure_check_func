@@ -44,7 +44,7 @@ printf '%s' "checking for function ${funcname}${libs_msg}..." 1>&2
 
 if test -f "$cache"; then
     printf ' (cached) ' 1>&2
-    ret="$(cat $cache)"
+    ret=$(cat "$cache")
 else
     cat > "$tmpc" <<EOF
 int main ()
@@ -54,7 +54,7 @@ int main ()
 }
 EOF
 
-    if "$CC" -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD "$@" 2>${tmperr}; then
+    if "$CC" -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD "$@" 2>"$tmperr"; then
 	echo 1 > "$cache"
 	ret=1
     else

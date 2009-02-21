@@ -35,7 +35,7 @@ printf '%s' "checking for header $1..." 1>&2
 
 if test -f "$cache"; then
     printf ' (cached) ' 1>&2
-    ret="$(cat $cache)"
+    ret=$(cat "$cache")
 else
     cat > "$tmpc" <<EOF
 #include <$1>
@@ -45,7 +45,7 @@ int main ()
 }
 EOF
 
-    if "$CC" -c -o ${tmpo} ${tmpc} 2>${tmperr}; then
+    if "$CC" -c -o "${tmpo}" "${tmpc}" 2>"${tmperr}"; then
 	echo 1 > "$cache"
 	ret=1
     else
