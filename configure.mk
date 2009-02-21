@@ -37,3 +37,12 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
 HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ../mk-configure/mk-configure_check_funcs ${f:S/|/ /g}
 CFLAGS+=	-DHAVE.${f:S|-l||g:S| |_|g:S/|/_/g}=${HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}}
 .endfor
+
+# error check
+all : ${.OBJDIR}/.error-check
+${.OBJDIR}/.error-check:
+	@if test -z ${ERR_MSG}; then \
+		touch $@; return 0; \
+	else \
+		echo ${ERR_MSG}; return 1; \
+	fi
