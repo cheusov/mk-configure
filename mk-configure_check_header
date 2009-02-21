@@ -26,10 +26,10 @@
 
 pathpart="$(echo $1 | tr /. __)"
 
-tmpc=$CACHE_DIR/_ac_headers_${pathpart}.c
-tmpo=$CACHE_DIR/_ac_headers_${pathpart}.o
-tmperr=$CACHE_DIR/_ac_headers_${pathpart}.err
-cache=$CACHE_DIR/_ac_headers_${pathpart}.res
+tmpc=$CACHE_DIR/_mkc_headers_${pathpart}.c
+tmpo=$CACHE_DIR/_mkc_headers_${pathpart}.o
+tmperr=$CACHE_DIR/_mkc_headers_${pathpart}.err
+cache=$CACHE_DIR/_mkc_headers_${pathpart}.res
 
 printf '%s' "checking for header $1..." 1>&2
 

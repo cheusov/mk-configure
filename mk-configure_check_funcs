@@ -31,10 +31,10 @@ pathpart="$(echo $* | tr '/. ' ___)"
 funcname=$1
 shift
 
-tmpc=$CACHE_DIR/_ac_funcs_${pathpart}.c
-tmpexe=$CACHE_DIR/_ac_funcs_${pathpart}.exe
-tmperr=$CACHE_DIR/_ac_funcs_${pathpart}.err
-cache=$CACHE_DIR/_ac_funcs_${pathpart}.res
+tmpc=$CACHE_DIR/_mkc_funcs_${pathpart}.c
+tmpexe=$CACHE_DIR/_mkc_funcs_${pathpart}.exe
+tmperr=$CACHE_DIR/_mkc_funcs_${pathpart}.err
+cache=$CACHE_DIR/_mkc_funcs_${pathpart}.res
 
 if test $# -gt 0; then
     libs_msg=" ($*)"
