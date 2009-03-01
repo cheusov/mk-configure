@@ -36,6 +36,7 @@ MKC_CHECK_SIZEOF+=	size_t:string.h
 
 MKC_CHECK_SIZEOF+=	off_t:sys/types.h
 
+.include <bsd.own.mk>
 .include "configure.mk"
 
 .if !${HAVE_HEADER.sys.time_h}
