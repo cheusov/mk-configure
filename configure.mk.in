@@ -53,19 +53,19 @@ SIZEOF.${t:S| |_|g:S|*|P|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_sizeof
 CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g}}
 .endfor
 
-# checking for defines
+# checking for declared #define
 .for d in ${MKC_DEFINES}
 HAVE_DEFINE.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl define ${d:S/:/ /g}
 CFLAGS+=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=${HAVE_DEFINE.${d:S/./_/g:S/:/./g}}
 .endfor
 
-# checking for variables
+# checking for declared variables
 .for d in ${MKC_VARS}
 HAVE_VAR.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl var ${d:S/:/ /g}
 CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 .endfor
 
-# checking for functions
+# checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_FUNCS${n}}
 HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl func${n} ${d:S/:/ /g}
