@@ -32,11 +32,9 @@ MKC_CHECK_SIZEOF+=	long
 MKC_CHECK_SIZEOF+=	long-long # - means space
 MKC_CHECK_SIZEOF+=	void*
 
-MKC_CHECK_SIZEOF+=	size_t
-MKC_CHECK_SIZEOF_INCS.size_t = string.h
+MKC_CHECK_SIZEOF+=	size_t:string.h
 
-MKC_CHECK_SIZEOF+=	off_t
-MKC_CHECK_SIZEOF_INCS.off_t = sys/types.h
+MKC_CHECK_SIZEOF+=	off_t:sys/types.h
 
 .include "configure.mk"
 

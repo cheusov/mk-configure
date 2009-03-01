@@ -49,8 +49,8 @@ HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
-SIZEOF.${t:S| |_|g:S|*|P|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_sizeof '${t}' '${defined(MKC_CHECK_SIZEOF_INCS.${t}):?${MKC_CHECK_SIZEOF_INCS.${t}}:}'
-CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g}}
+SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_sizeof ${t:S/:/ /g}
+CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}}
 .endfor
 
 # checking for declared #define
