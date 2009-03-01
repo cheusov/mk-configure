@@ -14,6 +14,7 @@ MKC_CHECK_FUNCLIBS+=	dlopen:dl
 MKC_CHECK_FUNCLIBS+=	gethostbyname:nsl
 MKC_CHECK_FUNCLIBS+=	nanosleep:rt
 MKC_CHECK_FUNCLIBS+=	ftime:compat
+FUNCLIBS_NOAUTO.ftime.compat = 1
 MKC_CHECK_FUNCLIBS+=	gettimeofday
 MKC_CHECK_FUNCLIBS+=	kvm_read:kvm
 
