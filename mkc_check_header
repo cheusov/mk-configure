@@ -47,7 +47,8 @@ int main ()
 }
 EOF
 
-    if "$CC" -c -o "${tmpo}" "${tmpc}" 2>"${tmperr}"; then
+    if "$CC" -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+    then
 	echo 1 > "$cache"
 	ret=1
     else
