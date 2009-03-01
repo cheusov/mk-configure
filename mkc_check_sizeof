@@ -36,10 +36,10 @@ tmperr=$CACHE_DIR/_mkc_sizeof_${pathpart}.err
 cache=$CACHE_DIR/_mkc_sizeof_${pathpart}.res
 
 if test -f "$cache"; then
-    cached=1
+    cached=' (cached) '
     ret=$(cat "$cache")
 else
-    cached=0
+    cached=''
     ret=failed
     for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
 	for f in $2; do
@@ -67,10 +67,7 @@ printme (){
     fi
 }
 
-printme '%s' "checking for sizeof $type..." 1>&2
-if test $cached = _1; then
-    printme ' (cached) ' 1>&2
-fi
+printme '%s' "checking for sizeof ${type}...${cached}" 1>&2
 printme "$ret\n" 1>&2
 
 echo $ret
