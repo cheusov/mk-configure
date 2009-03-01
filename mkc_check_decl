@@ -1,0 +1,180 @@
+#!/bin/sh
+
+# Copyright (c) 2009, Aleksey Cheusov <vle@gmx.net>
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
+# ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+
+# usage: mkc_check_decl <define|var|func[0-6]|type|struct> <what?> [includes...]
+# usage: mkc_check_decl <define|var|func[0-6]|type|struct> <what?> [includes...]
+
+set -e
+
+LC_ALL=C
+export LC_ALL
+
+pathpart=`echo $* | tr '/. ' ___`
+
+decltype=`echo $1 | sed 's/[0-9]//g'`
+argscnt=`echo $1 | sed 's/[^0-9]//g'`
+shift
+
+declwhat=$1
+shift
+
+MKC_CACHEDIR=${MKC_CACHEDIR:=.}
+CC=${CC:=cc}
+
+tmpc=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.c
+tmpo=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.o
+tmperr=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.err
+cache=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.res
+
+get_includes (){
+    for i in "$@"; do
+	echo "#include <$i>"
+    done
+}
+
+get_code_define (){
+    declwhat=$1
+    shift
+
+    get_includes "$@"
+
+    cat <<EOF
+#if defined($declwhat)
+int main ()
+{
+   return 0;
+}
+#else
+.error "$1 is not a define"
+#endif
+EOF
+}
+
+get_code_var (){
+    declwhat=$1
+    shift
+
+    get_includes "$@"
+
+    cat <<EOF
+int main ()
+{
+   return sizeof (($declwhat));
+}
+EOF
+}
+
+get_code_type (){
+    declwhat=$1
+    shift
+
+    get_includes "$@"
+
+    cat <<EOF
+int main ()
+{
+   return sizeof ($declwhat);
+}
+EOF
+}
+
+get_code_func (){
+    N=$1
+    shift
+
+    declwhat=$1
+    shift
+
+    get_includes "$@"
+
+    cat <<EOF
+void func (void)
+{
+   ${declwhat} (
+EOF
+
+    awk -v N="$N" '
+BEGIN {
+   for (i=0; i < N; ++i){
+      if (i)
+         printf ","
+      printf "0"
+   }
+}
+'
+
+    printf ');\n}\n'
+}
+
+for i in "$@"; do
+    incs_msg="$incs_msg $i"
+done
+
+if test -n "$incs_msg"; then
+    incs_msg=" ($incs_msg )"
+fi
+
+if test -f "_$cache"; then
+    cached=' (cached)'
+    ret=`cat "$cache"`
+else
+    cached=''
+
+    # preparations
+    eval get_code_${decltype} $argscnt $declwhat "$@" > "$tmpc"
+
+    # test itself
+    if "$CC" -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
+    then
+	echo 1 > "$cache"
+	ret=1
+    else
+	echo 0 > "$cache"
+	ret=0
+    fi
+fi
+
+# clean-ups
+rm -f "$tmpo"
+if test "$MKC_DELETE_TMPFILES" = 1; then
+    rm -f "$tmpc" "$tmperr"
+fi
+
+printme (){
+    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+	printf "$@"
+    fi
+}
+
+printme '%s' "checking for $decltype ${declwhat}${incs_msg}...${cached} " 1>&2
+
+if test "$ret" -eq 1; then
+    printme 'yes\n' 1>&2
+else
+    printme 'no\n' 1>&2
+fi
+
+echo $ret
