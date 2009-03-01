@@ -24,6 +24,13 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+# usage: mkc_check_header <header.h>
+
+set -e
+
+LC_ALL=C
+export LC_ALL
+
 pathpart=`echo $1 | tr /. __`
 
 MKC_CACHEDIR=${MKC_CACHEDIR:=.}
