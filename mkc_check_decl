@@ -144,7 +144,7 @@ if test -n "$incs_msg"; then
     incs_msg=" ($incs_msg )"
 fi
 
-if test -f "_$cache"; then
+if test -f "$cache"; then
     cached=' (cached)'
     ret=`cat "$cache"`
 else
