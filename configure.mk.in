@@ -38,13 +38,13 @@ mkc.environ=MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHO
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
-HAVE.${h:S|/|_|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_header ${h}
-CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
+HAVE_HEADER.${h:S|.|_|g:S|/|.|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_header ${h}
+CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 .endfor
 
 # checking for functions in libraries
-.for f in ${MKC_CHECK_FUNCS}
-HAVE.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
+.for f in ${MKC_CHECK_FUNCLIBS}
+HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
 .endfor
 
 # checking for sizeof(xxx)

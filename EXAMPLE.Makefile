@@ -5,17 +5,17 @@ MKC_CHECK_HEADERS+=	stdint.h
 MKC_CHECK_HEADERS+=	zlib.h
 MKC_CHECK_HEADERS+=	Judy.h
 
-MKC_CHECK_FUNCS+=	accept
-MKC_CHECK_FUNCS+=	accept:socket
-MKC_CHECK_FUNCS+=	crypt:crypt
-MKC_CHECK_FUNCS+=	strlcat
-MKC_CHECK_FUNCS+=	strlcpy
-MKC_CHECK_FUNCS+=	dlopen
-MKC_CHECK_FUNCS+=	dlopen:dl
-MKC_CHECK_FUNCS+=	gethostbyname
-MKC_CHECK_FUNCS+=	gethostbyname:nsl
-MKC_CHECK_FUNCS+=	nanosleep
-MKC_CHECK_FUNCS+=	nanosleep:rt
+MKC_CHECK_FUNCLIBS+=	accept
+MKC_CHECK_FUNCLIBS+=	accept:socket
+MKC_CHECK_FUNCLIBS+=	crypt:crypt
+MKC_CHECK_FUNCLIBS+=	strlcat
+MKC_CHECK_FUNCLIBS+=	strlcpy
+MKC_CHECK_FUNCLIBS+=	dlopen
+MKC_CHECK_FUNCLIBS+=	dlopen:dl
+MKC_CHECK_FUNCLIBS+=	gethostbyname
+MKC_CHECK_FUNCLIBS+=	gethostbyname:nsl
+MKC_CHECK_FUNCLIBS+=	nanosleep
+MKC_CHECK_FUNCLIBS+=	nanosleep:rt
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
@@ -40,47 +40,51 @@ MKC_CHECK_SIZEOF_INCS.off_t = sys/types.h
 
 .include "configure.mk"
 
-.if !${HAVE.zlib.h}
+.if !${HAVE_HEADER.sys.time_h}
+ERR_MSG+= "Really?"
+.endif
+
+.if !${HAVE_HEADER.zlib_h}
 ERR_MSG+= "zlib.h not found, install it!"
 .endif
 
-.if !${HAVE.Judy.h}
+.if !${HAVE_HEADER.Judy_h}
 ERR_MSG+= "Judy.h not found, install it!"
 .endif
 
-.if !${HAVE.strlcpy}
+.if !${HAVE_FUNCLIB.strlcpy}
 SRCS+= strlcpy.c
 .endif
 
-.if !${HAVE.strlcat}
+.if !${HAVE_FUNCLIB.strlcat}
 SRCS+= strlcat.c
 .endif
 
-.if ${HAVE.nanosleep.rt} && !${HAVE.nanosleep}
+.if ${HAVE_FUNCLIB.nanosleep.rt} && !${HAVE_FUNCLIB.nanosleep}
 LDADD+= -lrt
 .endif
 
-.if ${HAVE.crypt.crypt}
+.if ${HAVE_FUNCLIB.crypt.crypt}
 LDADD+= -lcrypt
 .endif
 
-.if ${HAVE.gethostbyname}
-.elif ${HAVE.gethostbyname.nsl}
+.if ${HAVE_FUNCLIB.gethostbyname}
+.elif ${HAVE_FUNCLIB.gethostbyname.nsl}
 LDADD+= -lnsl
 .else
 ERR_MSG+= "Not UNIX :-P"
 .endif
 
-.if ${HAVE.dlopen}
-.elif ${HAVE.dlopen.dl}
+.if ${HAVE_FUNCLIB.dlopen}
+.elif ${HAVE_FUNCLIB.dlopen.dl}
 LDADD+= -ldl
 .else
 SRCS+= dlopen.c
 CFLAGS+= -DMY_OWN_DLOPEN
 .endif
 
-.if ${HAVE.accept}
-.elif ${HAVE.accept.socket}
+.if ${HAVE_FUNCLIB.accept}
+.elif ${HAVE_FUNCLIB.accept.socket}
 LDADD+= -lsocket
 .else
 ERR_MSG+= "Not UNIX :-P"
