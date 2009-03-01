@@ -57,6 +57,12 @@ HAVE_DEFINE.${d:S/./_/g:S/:/./g}!=	env MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES
 CFLAGS+=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=${HAVE_DEFINE.${d:S/./_/g:S/:/./g}}
 .endfor
 
+# checking for variables
+.for d in ${MKC_VARS}
+HAVE_VAR.${d:S/./_/g:S/:/./g}!=	env MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} CPPFLAGS=${CPPFLAGS} CFLAGS=${CFLAGS} MKC_CACHEDIR=${MKC_CACHEDIR} ${MKC_EXECDIR}/mkc_check_decl var ${d:S/:/ /g}
+CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
+.endfor
+
 # error check
 all : ${.OBJDIR}/.error-check
 ${.OBJDIR}/.error-check:

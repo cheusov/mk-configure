@@ -20,6 +20,8 @@ MKC_FUNCS+=	nanosleep:rt
 MKC_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_DEFINES+=	O_DIRECT:fcntl.h
 
+MKC_VARS+=	sys_errlist:errno.h
+
 MKC_SIZEOF+=	float
 MKC_SIZEOF+=	double
 MKC_SIZEOF+=	short
