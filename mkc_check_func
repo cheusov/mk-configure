@@ -31,13 +31,13 @@ pathpart="$(echo $* | tr '/. ' ___)"
 funcname=$1
 shift
 
-CACHE_DIR=${CACHE_DIR:=.}
+MKC_CACHEDIR=${MKC_CACHEDIR:=.}
 CC=${CC:=cc}
 
-tmpc=$CACHE_DIR/_mkc_funcs_${pathpart}.c
-tmpexe=$CACHE_DIR/_mkc_funcs_${pathpart}.exe
-tmperr=$CACHE_DIR/_mkc_funcs_${pathpart}.err
-cache=$CACHE_DIR/_mkc_funcs_${pathpart}.res
+tmpc=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.c
+tmpexe=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.exe
+tmperr=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.err
+cache=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.res
 
 if test $# -gt 0; then
     libs_msg=" ($*)"
@@ -66,7 +66,7 @@ EOF
 fi
 
 printme (){
-    if test "_$MKC_SHOW_CACHED" = _1 || test "_$cached" = _0; then
+    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
 	printf "$@"
     fi
 }
