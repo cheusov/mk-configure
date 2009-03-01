@@ -22,6 +22,8 @@ MKC_DEFINES+=	O_DIRECT:fcntl.h
 
 MKC_VARS+=	sys_errlist:errno.h
 
+MKC_FUNCS1+=	strerror:string.h
+
 MKC_SIZEOF+=	float
 MKC_SIZEOF+=	double
 MKC_SIZEOF+=	short
