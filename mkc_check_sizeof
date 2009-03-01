@@ -43,7 +43,7 @@ tmperr=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.res
 
 if test -f "$cache"; then
-    cached=' (cached) '
+    cached=' (cached)'
     ret=`cat "$cache"`
 else
     cached=''
@@ -80,6 +80,6 @@ printme (){
     fi
 }
 
-printme '%s\n' "checking for sizeof ${type}...${cached}${ret}" 1>&2
+printme '%s\n' "checking for sizeof ${type}...${cached} ${ret}" 1>&2
 
 echo $ret
