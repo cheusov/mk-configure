@@ -15,6 +15,7 @@ MKC_CHECK_FUNCLIBS+=	gethostbyname:nsl
 MKC_CHECK_FUNCLIBS+=	nanosleep:rt
 MKC_CHECK_FUNCLIBS+=	ftime:compat
 MKC_CHECK_FUNCLIBS+=	gettimeofday
+MKC_CHECK_FUNCLIBS+=	kvm_read:kvm
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
