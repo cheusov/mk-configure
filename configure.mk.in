@@ -76,8 +76,8 @@ CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:
 # error check
 all : ${.OBJDIR}/.error-check
 ${.OBJDIR}/.error-check:
-	@if test -z ${ERR_MSG}; then \
+	@if test -z ${MKC_ERR_MSG}; then \
 		touch $@; return 0; \
 	else \
-		echo ${ERR_MSG}; return 1; \
+		echo ${MKC_ERR_MSG}; return 1; \
 	fi

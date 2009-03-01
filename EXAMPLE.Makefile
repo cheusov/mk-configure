@@ -39,15 +39,15 @@ MKC_CHECK_SIZEOF+=	off_t:sys/types.h
 .include "configure.mk"
 
 .if !${HAVE_HEADER.sys.time_h}
-ERR_MSG+= "Really?"
+MKC_ERR_MSG+= "Really?"
 .endif
 
 .if !${HAVE_HEADER.zlib_h}
-ERR_MSG+= "zlib.h not found, install it!"
+MKC_ERR_MSG+= "zlib.h not found, install it!"
 .endif
 
 .if !${HAVE_HEADER.Judy_h}
-ERR_MSG+= "Judy.h not found, install it!"
+MKC_ERR_MSG+= "Judy.h not found, install it!"
 .endif
 
 .if !${HAVE_FUNCLIB.strlcpy}
@@ -70,7 +70,7 @@ LDADD+= -lcrypt
 .elif ${HAVE_FUNCLIB.gethostbyname.nsl}
 LDADD+= -lnsl
 .else
-ERR_MSG+= "Not UNIX :-P"
+MKC_ERR_MSG+= "Not UNIX :-P"
 .endif
 
 .if ${HAVE_FUNCLIB.dlopen}
@@ -85,7 +85,7 @@ CFLAGS+= -DMY_OWN_DLOPEN
 .elif ${HAVE_FUNCLIB.accept.socket}
 LDADD+= -lsocket
 .else
-ERR_MSG+= "Not UNIX :-P"
+MKC_ERR_MSG+= "Not UNIX :-P"
 .endif
 
 # your real code here
