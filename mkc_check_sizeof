@@ -27,6 +27,9 @@
 type="$(echo $1 | tr ' -' '  ')"
 pathpart="$(echo $type | tr '*' 'P')"
 
+CACHE_DIR=${CACHE_DIR:=.}
+CC=${CC:=cc}
+
 tmpc=$CACHE_DIR/_mkc_sizeof_${pathpart}.c
 tmpo=$CACHE_DIR/_mkc_sizeof_${pathpart}.o
 tmperr=$CACHE_DIR/_mkc_sizeof_${pathpart}.err

@@ -31,6 +31,9 @@ pathpart="$(echo $* | tr '/. ' ___)"
 funcname=$1
 shift
 
+CACHE_DIR=${CACHE_DIR:=.}
+CC=${CC:=cc}
+
 tmpc=$CACHE_DIR/_mkc_funcs_${pathpart}.c
 tmpexe=$CACHE_DIR/_mkc_funcs_${pathpart}.exe
 tmperr=$CACHE_DIR/_mkc_funcs_${pathpart}.err
