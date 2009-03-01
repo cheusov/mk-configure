@@ -26,7 +26,7 @@
 
 export LC_ALL=C
 
-pathpart="$(echo $* | tr '/. ' ___)"
+pathpart=`echo $* | tr '/. ' ___`
 
 funcname=$1
 shift
@@ -45,7 +45,7 @@ fi
 
 if test -f "$cache"; then
     cached=' (cached) '
-    ret=$(cat "$cache")
+    ret=`cat "$cache"`
 else
     cached=''
 

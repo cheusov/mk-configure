@@ -24,8 +24,8 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-type="$(echo $1 | tr ' -' '  ')"
-pathpart="$(echo $type | tr '*' 'P')"
+type=`echo $1 | tr ' -' '  '`
+pathpart=`echo $type | tr '*' 'P'`
 
 MKC_CACHEDIR=${MKC_CACHEDIR:=.}
 CC=${CC:=cc}
@@ -37,7 +37,7 @@ cache=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.res
 
 if test -f "$cache"; then
     cached=' (cached) '
-    ret=$(cat "$cache")
+    ret=`cat "$cache"`
 else
     cached=''
     ret=failed
