@@ -45,9 +45,9 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
 HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:C/:.*//1}
-#.if ${HAVE_FUNCLIB.${f:S/:/./g}} #&& !HAVE_FUNCLIB.${f:C/:.*//1}
-#LDADD+=-l${f:C/^.*://1}
-#.endif
+.if ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
+LDADD+=-l${f:C/^.*://1}
+.endif
 .endif
 .endfor
 

@@ -59,34 +59,12 @@ SRCS+= strlcpy.c
 SRCS+= strlcat.c
 .endif
 
-.if ${HAVE_FUNCLIB.nanosleep.rt} && !${HAVE_FUNCLIB.nanosleep}
-LDADD+= -lrt
-.endif
-
-.if ${HAVE_FUNCLIB.crypt.crypt}
-LDADD+= -lcrypt
-.endif
-
-.if ${HAVE_FUNCLIB.gethostbyname}
-.elif ${HAVE_FUNCLIB.gethostbyname.nsl}
-LDADD+= -lnsl
-.else
-MKC_ERR_MSG+= "Not UNIX :-P"
-.endif
-
 .if ${HAVE_FUNCLIB.dlopen}
 .elif ${HAVE_FUNCLIB.dlopen.dl}
 LDADD+= -ldl
 .else
 SRCS+= dlopen.c
 CFLAGS+= -DMY_OWN_DLOPEN
-.endif
-
-.if ${HAVE_FUNCLIB.accept}
-.elif ${HAVE_FUNCLIB.accept.socket}
-LDADD+= -lsocket
-.else
-MKC_ERR_MSG+= "Not UNIX :-P"
 .endif
 
 # your real code here
