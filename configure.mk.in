@@ -43,6 +43,9 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS}
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
+.if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
+HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:C/:.*//1}
+.endif
 .endfor
 
 # checking for sizeof(xxx)

@@ -5,17 +5,16 @@ MKC_CHECK_HEADERS+=	stdint.h
 MKC_CHECK_HEADERS+=	zlib.h
 MKC_CHECK_HEADERS+=	Judy.h
 
-MKC_CHECK_FUNCLIBS+=	accept
 MKC_CHECK_FUNCLIBS+=	accept:socket
 MKC_CHECK_FUNCLIBS+=	crypt:crypt
 MKC_CHECK_FUNCLIBS+=	strlcat
 MKC_CHECK_FUNCLIBS+=	strlcpy
 MKC_CHECK_FUNCLIBS+=	dlopen
 MKC_CHECK_FUNCLIBS+=	dlopen:dl
-MKC_CHECK_FUNCLIBS+=	gethostbyname
 MKC_CHECK_FUNCLIBS+=	gethostbyname:nsl
-MKC_CHECK_FUNCLIBS+=	nanosleep
 MKC_CHECK_FUNCLIBS+=	nanosleep:rt
+MKC_CHECK_FUNCLIBS+=	ftime:compat
+MKC_CHECK_FUNCLIBS+=	gettimeofday
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
