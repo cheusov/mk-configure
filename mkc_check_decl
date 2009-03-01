@@ -55,10 +55,11 @@ get_includes (){
     done
 }
 
-get_code_define (){
-    declwhat=$1
-    shift
+compile (){
+    "$CC" -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
+}
 
+is_define (){
     get_includes "$@"
 
     cat <<EOF
@@ -68,29 +69,28 @@ int main ()
    return 0;
 }
 #else
-.error "$1 is not a define"
+.error "$declwhat is not a define"
 #endif
 EOF
+
+    #
+    compile
 }
 
-get_code_var (){
-    declwhat=$1
-    shift
-
+is_var (){
     get_includes "$@"
 
     cat <<EOF
 int main ()
 {
-   return sizeof (($declwhat));
+   return sizeof (($declwhat)) && (&$declwhat != 0);
 }
 EOF
+    #
+    compile
 }
 
-get_code_type (){
-    declwhat=$1
-    shift
-
+try_type (){
     get_includes "$@"
 
     cat <<EOF
@@ -99,15 +99,18 @@ int main ()
    return sizeof ($declwhat);
 }
 EOF
+
+    #
+    compile
 }
 
-get_code_func (){
-    N=$1
-    shift
+is_type (){
+    try_type "$@" || return 1
+    is_var && return 1
+    return 0
+}
 
-    declwhat=$1
-    shift
-
+is_func (){
     get_includes "$@"
 
     cat <<EOF
@@ -116,7 +119,7 @@ void func (void)
    ${declwhat} (
 EOF
 
-    awk -v N="$N" '
+    awk -v N="$argscnt" '
 BEGIN {
    for (i=0; i < N; ++i){
       if (i)
@@ -127,6 +130,9 @@ BEGIN {
 '
 
     printf ');\n}\n'
+
+    #
+    compile
 }
 
 for i in "$@"; do
@@ -144,10 +150,9 @@ else
     cached=''
 
     # preparations
-    eval get_code_${decltype} $argscnt $declwhat "$@" > "$tmpc"
 
     # test itself
-    if "$CC" -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
+    if eval is_${decltype} "$@" > "$tmpc"
     then
 	echo 1 > "$cache"
 	ret=1
