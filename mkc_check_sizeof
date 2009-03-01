@@ -67,7 +67,6 @@ printme (){
     fi
 }
 
-printme '%s' "checking for sizeof ${type}...${cached}" 1>&2
-printme "$ret\n" 1>&2
+printme '%s\n' "checking for sizeof ${type}...${cached}${ret}" 1>&2
 
 echo $ret

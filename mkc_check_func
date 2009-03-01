@@ -44,10 +44,10 @@ if test $# -gt 0; then
 fi
 
 if test -f "$cache"; then
-    cached=1
+    cached=' (cached) '
     ret=$(cat "$cache")
 else
-    cached=0
+    cached=''
     cat > "$tmpc" <<EOF
 int main ()
 {
@@ -71,10 +71,7 @@ printme (){
     fi
 }
 
-printme '%s' "checking for function ${funcname}${libs_msg}..." 1>&2
-if test $cached = _1; then
-    printme ' (cached) ' 1>&2
-fi
+printme '%s' "checking for function ${funcname}${libs_msg}...${cached}" 1>&2
 
 if test "$ret" -eq 1; then
     printme 'yes\n' 1>&2
