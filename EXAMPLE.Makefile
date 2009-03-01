@@ -6,16 +6,16 @@ MKC_HEADERS+=	zlib.h
 MKC_HEADERS+=	Judy.h
 
 MKC_FUNCS+=	accept
-MKC_FUNCS+=	accept|-lsocket
-MKC_FUNCS+=	crypt|-lcrypt
+MKC_FUNCS+=	accept:socket
+MKC_FUNCS+=	crypt:crypt
 MKC_FUNCS+=	strlcat
 MKC_FUNCS+=	strlcpy
 MKC_FUNCS+=	dlopen
-MKC_FUNCS+=	dlopen|-ldl
+MKC_FUNCS+=	dlopen:dl
 MKC_FUNCS+=	gethostbyname
-MKC_FUNCS+=	gethostbyname|-lnsl
+MKC_FUNCS+=	gethostbyname:nsl
 MKC_FUNCS+=	nanosleep
-MKC_FUNCS+=	nanosleep|-lrt
+MKC_FUNCS+=	nanosleep:rt
 
 MKC_SIZEOF+=	float
 MKC_SIZEOF+=	double
@@ -49,23 +49,23 @@ SRCS+= strlcpy.c
 SRCS+= strlcat.c
 .endif
 
-.if !${HAVE.nanosleep} && ${HAVE.nanosleep_rt}
+.if ${HAVE.nanosleep.rt} && !${HAVE.nanosleep}
 LDADD+= -lrt
 .endif
 
-.if ${HAVE.crypt_crypt}
+.if ${HAVE.crypt.crypt}
 LDADD+= -lcrypt
 .endif
 
 .if ${HAVE.gethostbyname}
-.elif ${HAVE.gethostbyname_nsl}
+.elif ${HAVE.gethostbyname.nsl}
 LDADD+= -lnsl
 .else
 ERR_MSG+= "Not UNIX :-P"
 .endif
 
 .if ${HAVE.dlopen}
-.elif ${HAVE.dlopen_dl}
+.elif ${HAVE.dlopen.dl}
 LDADD+= -ldl
 .else
 SRCS+= dlopen.c
@@ -73,7 +73,7 @@ CFLAGS+= -DMY_OWN_DLOPEN
 .endif
 
 .if ${HAVE.accept}
-.elif ${HAVE.accept_socket}
+.elif ${HAVE.accept.socket}
 LDADD+= -lsocket
 .else
 ERR_MSG+= "Not UNIX :-P"

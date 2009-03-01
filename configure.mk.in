@@ -42,7 +42,7 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
 
 # checking for functions in libraries
 .for f in ${MKC_FUNCS}
-HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} MKC_CACHEDIR=${MKC_CACHEDIR} ${MKC_EXECDIR}/mkc_check_func ${f:S/|/ /g}
+HAVE.${f:S/:/./g}!=	env MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} MKC_CACHEDIR=${MKC_CACHEDIR} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
 .endfor
 
 # checking for sizeof(xxx)

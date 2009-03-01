@@ -44,8 +44,13 @@ tmpexe=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.exe
 tmperr=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.res
 
-if test $# -gt 0; then
-    libs_msg=" ($*)"
+for i in "$@"; do
+    LDADD="$LDADD -l$i"
+    libs_msg="$libs_msg -l$i"
+done
+
+if test -n "$libs_msg"; then
+    libs_msg=" ($libs_msg )"
 fi
 
 if test -f "$cache"; then
