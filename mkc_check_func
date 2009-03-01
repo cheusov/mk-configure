@@ -48,6 +48,8 @@ if test -f "$cache"; then
     ret=$(cat "$cache")
 else
     cached=''
+
+    # preparations
     cat > "$tmpc" <<EOF
 int main ()
 {
@@ -56,6 +58,7 @@ int main ()
 }
 EOF
 
+    # test itself
     if "$CC" -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD "$@" 2>"$tmperr"; then
 	echo 1 > "$cache"
 	ret=1
@@ -63,6 +66,12 @@ EOF
 	echo 0 > "$cache"
 	ret=0
     fi
+fi
+
+# clean-ups
+rm -f "$tmpexe"
+if test "$MKC_DELETE_TMPFILES" = 1; then
+    rm -f "$tmpc" "$tmperr"
 fi
 
 printme (){

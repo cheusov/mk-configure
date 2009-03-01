@@ -61,6 +61,12 @@ EOF
     done
 fi
 
+# clean-ups
+rm -f "$tmpo"
+if test "$MKC_DELETE_TMPFILES" = 1; then
+    rm -f "$tmpc" "$tmperr"
+fi
+
 printme (){
     if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
 	printf "$@"
