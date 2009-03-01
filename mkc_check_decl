@@ -24,11 +24,14 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# usage: mkc_check_decl <define|var|func[0-6]|type|struct> <what?> [includes...]
-# usage: mkc_check_decl <define|var|func[0-6]|type|struct> <what?> [includes...]
+# usage: mkc_check_decl <define|var|func[0-9]|type|struct> <what?> [includes...]
 
 set -e
 
+MKC_CACHEDIR=${MKC_CACHEDIR:=.}
+CC=${CC:=cc}
+
+####################
 LC_ALL=C
 export LC_ALL
 
@@ -41,14 +44,12 @@ shift
 declwhat=$1
 shift
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
-
 tmpc=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.c
 tmpo=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.res
 
+####################
 get_includes (){
     for i in "$@"; do
 	echo "#include <$i>"
@@ -60,9 +61,9 @@ compile (){
 }
 
 is_define (){
-    get_includes "$@"
+    get_includes "$@" > "$tmpc"
 
-    cat <<EOF
+    cat >> "$tmpc" <<EOF
 #if defined($declwhat)
 int main ()
 {
@@ -78,9 +79,9 @@ EOF
 }
 
 is_var (){
-    get_includes "$@"
+    get_includes "$@" > "$tmpc"
 
-    cat <<EOF
+    cat >> "$tmpc" <<EOF
 int main ()
 {
    return sizeof (($declwhat)) && (&$declwhat != 0);
@@ -91,9 +92,9 @@ EOF
 }
 
 try_type (){
-    get_includes "$@"
+    get_includes "$@" > "$tmpc"
 
-    cat <<EOF
+    cat >> "$tmpc" <<EOF
 int main ()
 {
    return sizeof ($declwhat);
@@ -106,14 +107,14 @@ EOF
 
 is_type (){
     try_type "$@" || return 1
-    is_var && return 1
+    is_var "$@" && return 1
     return 0
 }
 
 is_func (){
-    get_includes "$@"
+    get_includes "$@" > "$tmpc"
 
-    cat <<EOF
+    cat >> "$tmpc" <<EOF
 void func (void)
 {
    ${declwhat} (
@@ -127,9 +128,9 @@ BEGIN {
       printf "0"
    }
 }
-'
+' >> "$tmpc"
 
-    printf ');\n}\n'
+    printf ');\n}\n' >> "$tmpc"
 
     #
     compile
@@ -149,10 +150,8 @@ if test -f "_$cache"; then
 else
     cached=''
 
-    # preparations
-
     # test itself
-    if eval is_${decltype} "$@" > "$tmpc"
+    if eval is_${decltype} "$@"
     then
 	echo 1 > "$cache"
 	ret=1
