@@ -1,42 +1,42 @@
-MKC_HEADERS+=	strings.h
-MKC_HEADERS+=	sys/time.h
-MKC_HEADERS+=	inttypes.h
-MKC_HEADERS+=	stdint.h
-MKC_HEADERS+=	zlib.h
-MKC_HEADERS+=	Judy.h
+MKC_CHECK_HEADERS+=	strings.h
+MKC_CHECK_HEADERS+=	sys/time.h
+MKC_CHECK_HEADERS+=	inttypes.h
+MKC_CHECK_HEADERS+=	stdint.h
+MKC_CHECK_HEADERS+=	zlib.h
+MKC_CHECK_HEADERS+=	Judy.h
 
-MKC_FUNCS+=	accept
-MKC_FUNCS+=	accept:socket
-MKC_FUNCS+=	crypt:crypt
-MKC_FUNCS+=	strlcat
-MKC_FUNCS+=	strlcpy
-MKC_FUNCS+=	dlopen
-MKC_FUNCS+=	dlopen:dl
-MKC_FUNCS+=	gethostbyname
-MKC_FUNCS+=	gethostbyname:nsl
-MKC_FUNCS+=	nanosleep
-MKC_FUNCS+=	nanosleep:rt
+MKC_CHECK_FUNCS+=	accept
+MKC_CHECK_FUNCS+=	accept:socket
+MKC_CHECK_FUNCS+=	crypt:crypt
+MKC_CHECK_FUNCS+=	strlcat
+MKC_CHECK_FUNCS+=	strlcpy
+MKC_CHECK_FUNCS+=	dlopen
+MKC_CHECK_FUNCS+=	dlopen:dl
+MKC_CHECK_FUNCS+=	gethostbyname
+MKC_CHECK_FUNCS+=	gethostbyname:nsl
+MKC_CHECK_FUNCS+=	nanosleep
+MKC_CHECK_FUNCS+=	nanosleep:rt
 
-MKC_DEFINES+=	RTLD_LAZY:dlfcn.h
-MKC_DEFINES+=	O_DIRECT:fcntl.h
+MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
+MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
 
-MKC_VARS+=	sys_errlist:errno.h
+MKC_CHECK_VARS+=	sys_errlist:errno.h
 
-MKC_FUNCS1+=	strerror:string.h
+MKC_CHECK_FUNCS1+=	strerror:string.h
 
-MKC_SIZEOF+=	float
-MKC_SIZEOF+=	double
-MKC_SIZEOF+=	short
-MKC_SIZEOF+=	int
-MKC_SIZEOF+=	long
-MKC_SIZEOF+=	long-long # - means space
-MKC_SIZEOF+=	void*
+MKC_CHECK_SIZEOF+=	float
+MKC_CHECK_SIZEOF+=	double
+MKC_CHECK_SIZEOF+=	short
+MKC_CHECK_SIZEOF+=	int
+MKC_CHECK_SIZEOF+=	long
+MKC_CHECK_SIZEOF+=	long-long # - means space
+MKC_CHECK_SIZEOF+=	void*
 
-MKC_SIZEOF+=	size_t
-MKC_SIZEOF_INCS.size_t = string.h
+MKC_CHECK_SIZEOF+=	size_t
+MKC_CHECK_SIZEOF_INCS.size_t = string.h
 
-MKC_SIZEOF+=	off_t
-MKC_SIZEOF_INCS.off_t = sys/types.h
+MKC_CHECK_SIZEOF+=	off_t
+MKC_CHECK_SIZEOF_INCS.off_t = sys/types.h
 
 .include "configure.mk"
 
