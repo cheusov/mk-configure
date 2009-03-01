@@ -18,6 +18,7 @@ MKC_FUNCS+=	nanosleep
 MKC_FUNCS+=	nanosleep:rt
 
 MKC_DEFINES+=	RTLD_LAZY:dlfcn.h
+MKC_DEFINES+=	O_DIRECT:fcntl.h
 
 MKC_SIZEOF+=	float
 MKC_SIZEOF+=	double
