@@ -22,27 +22,32 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+# system variables
 MKC_VERSION=@@version@@
 MKC_EXECDIR?=@@execsdir@@
 
+# use defined variables
+MKC_SHOW_CACHED?=1 # set it to `0' to hide "...(cached)..." lines
+
+#
 .include <bsd.own.mk>
 
 CACHE_DIR=${.OBJDIR}
 
 # checking for headers
 .for h in ${MKC_HEADERS}
-HAVE.${h:S|/|_|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_header ${h}
+HAVE.${h:S|/|_|g}!=	env MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_header ${h}
 CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE.${h:S|/|_|g}}
 .endfor
 
 # checking for functions in libraries
 .for f in ${MKC_FUNCS}
-HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_func ${f:S/|/ /g}
+HAVE.${f:S|-l||g:S| |_|g:S/|/_/g}!=	env MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_func ${f:S/|/ /g}
 .endfor
 
 # checking for sizeof(xxx)
 .for t in ${MKC_SIZEOF}
-SIZEOF.${t:S| |_|g:S|*|P|g}!=	env CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_sizeof '${t}' '${defined(MKC_SIZEOF_INCS.${t}):?${MKC_SIZEOF_INCS.${t}}:}'
+SIZEOF.${t:S| |_|g:S|*|P|g}!=	env MKC_SHOW_CACHED=${MKC_SHOW_CACHED} CC=${CC} LDFLAGS=${LDFLAGS} LDADD=${LDADD} CACHE_DIR=${CACHE_DIR} ${MKC_EXECDIR}/mkc_check_sizeof '${t}' '${defined(MKC_SIZEOF_INCS.${t}):?${MKC_SIZEOF_INCS.${t}}:}'
 CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g}}
 .endfor
 
