@@ -47,6 +47,15 @@ MKC_ERR_MSG+= "Really?"
 MKC_ERR_MSG+= "zlib.h not found, install it!"
 .endif
 
+.if ${HAVE_FUNCLIB.gettimeofday}
+CFLAGS+=	-DUSE_GETTIMEOFDAY
+.elif ${HAVE_FUNCLIB.ftime}
+CFLAGS+=	-DUSE_FTIME
+.elif ${HAVE_FUNCLIB.ftime.compat}
+CFLAGS+=	-DUSE_FTIME
+LDADD+=		-lcompat
+.endif
+
 .if !${HAVE_FUNCLIB.strlcpy}
 SRCS+= strlcpy.c
 .endif
