@@ -4,18 +4,26 @@
              written for bmake (NetBSD make).
 
 -------------------------------------------------------------------------
+
+"mk-configure" is currently in alpha stage of development now.
+API is not stable yet!
+
+-------------------------------------------------------------------------
 Installation:
 
-   make PREFIX=/usr/local
-   make install-dirs
-   make install
+   bsdmake PREFIX=/usr/local
+   bsdmake install-dirs
+   bsdmake install
 
-"make" here is (Any)BSD make.
+"bsdmake" here is Net/Free/Open/DragonFly BSD make.
 
 -------------------------------------------------------------------------
 bmake sources are available from here:
+
+http://www.crufty.net/help/sjg/bmake.html
+ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
   
-There you can also download portable MK scripts (mk-files) for it.
+There you can also find portable MK scripts (mk-files).
 
 -------------------------------------------------------------------------
 Sample: see EXAMPLE.Makefile file.
@@ -29,4 +37,5 @@ NOTE: mk-configure is in "beta" stage of development now,
 
 -------------------------------------------------------------------------
 Send your suggestions, bug reports etc. to Aleksey Cheusov <vle@gmx.net>
+
 -------------------------------------------------------------------------

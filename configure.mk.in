@@ -177,7 +177,7 @@
 #       projects can save lots of time/energy wasted on unnecessary
 #       rechecking. Idea: to use hash from options passed to compiler
 #       for calculating the cache directory
-#       ( remove -Wxxx etc. + sort + uniq + ... + crc32/md5/...).
+#       ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
 #
 # MKC_SHOW_CACHED
 #        Set it to 0 when working with mk-configure-based Makefile
