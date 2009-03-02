@@ -1,4 +1,7 @@
-The same functionality but for bourne shell, e.g.
+1) 
+   The same functionality but for bourne shell, e.g.
+
+   configure:
    MKC_CONFIG_MK=mkc_config.mk
    MKC_CONFIG_H=mkc_config.h
 
@@ -10,6 +13,12 @@ The same functionality but for bourne shell, e.g.
       func1:lib1
       func2
       func3:lib3'
-
+   #<...>
    . mkc_configure
-   mkc_run
+   mkc_run # generating mkc_config.h and mkc_config.mk
+
+2) Adapt/test shell scripts for stupid/ancient Solaris' /bin/sh
+3) MKC_REQD - user settable variable for specifing minimal required
+   version of mk-configure
+4) Adapt/test for pmake (old NetBSD make) already packaged for several
+   Linux distros
