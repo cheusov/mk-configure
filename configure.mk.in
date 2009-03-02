@@ -38,6 +38,10 @@ mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFL
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
+#MKC_CHECK_HEADERS     ?=
+#MKC_CHECK_SIZEOF      ?=
+#MKC_CHECK_DEFINES     ?=
+#MKC_CHECK_VARS        ?=
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
