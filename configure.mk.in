@@ -68,6 +68,11 @@
 #        HAVE_FUNCLIB.crypt.crypt  = 1
 #        LDADD += -lcrypt
 #
+# MKC_SOURCE_FUNCLIBS
+#       The same as MKC_CHECK_FUNCLIBS, but if <function> is absent both in
+#       the specified <library> and in libc, function.c is added to
+#       SRCS unless MKC_NOAUTO=1.
+#
 # MKC_CHECK_DEFINES
 #       List of define:header to be checked. <header> part is optional.
 #       
@@ -147,17 +152,40 @@
 #
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
+#
+# MKC_NOAUTO
+#       See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
+#
 # MKC_COMMON_HEADERS
 #       List of header files always #include'd to the test .c files
 #       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
-#       The defauklt value is an empty list.
+#       The default value is an empty list.
 #   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
 #       MKC_CHECK_SIZEOF += offs_t size_t ssize_t
+#
 # MKC_COMMON_DEFINES
 #       List of defines always passed to compiler
 #       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
+#       By default list is empty.
 #   Ex: MKC_COMMON_DEFINES += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 # Linux
 #       MKC_COMMON_DEFINES += -D_ALL_SOURCE # Interix
+# 
+# MKC_CACHEDIR
+#       Directory where intermediate and cache files are created.
+#       It defaults to ${.OBJDIR}.
+#       Setting this variable to something common for huge amount of
+#       projects can save lots of time/energy wasted on unnecessary
+#       rechecking. Idea: to use hash from options passed to compiler
+#       for calculating the cache directory
+#       ( remove -Wxxx etc. + sort + uniq + ... + crc32/md5/...).
+#
+# MKC_SHOW_CACHED
+#        Set it to 0 when working with mk-configure-based Makefile
+#        interactively. This will hide annoying messages about
+#        fetching test result from the cache.
+#
+# MKC_DELETE_TMPFILES
+#        No comments.
 
 ######################################################################
 # system variables
@@ -170,6 +198,9 @@ MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_COMMON_DEFINES?=     # #defines
+
+#
+CFLAGS+=	${MKC_COMMON_DEFINES}
 
 #
 mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR=${MKC_CACHEDIR} MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_COMMON_DEFINES='${MKC_COMMON_DEFINES}' MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED}

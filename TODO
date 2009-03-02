@@ -18,7 +18,12 @@
    mkc_run # generating mkc_config.h and mkc_config.mk
 
 2) Adapt/test shell scripts for stupid/ancient Solaris' /bin/sh
+
 3) MKC_REQD - user settable variable for specifing minimal required
    version of mk-configure
+
 4) Adapt/test for pmake (old NetBSD make) already packaged for several
    Linux distros
+
+5)
+   MKC_NOAUTO_abcdefg...
