@@ -1,4 +1,5 @@
 MKC_COMMON_HEADERS
 MKC_COMMON_DEFINES
+MKC_NOAUTO, MKC_CFLAGS, MKC_SRCS, MKC_LDADD
 
 The same functionality but for bourne shell

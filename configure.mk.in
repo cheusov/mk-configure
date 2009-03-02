@@ -42,7 +42,7 @@ MKC_SOURCE_FUNCLIBS   ?=
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
 HAVE_HEADER.${h:S|.|_|g:S|/|.|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_header ${h}
-CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
+MKC_CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 .endfor
 
 # checking for functions in libraries
@@ -51,39 +51,44 @@ HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib 
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
 HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:C/:.*//1}
 .if !${MKC_FUNCLIBS_NOAUTO:U0} && !${MKC_FUNCLIBS_NOAUTO.${f:S/:/./g}:U0} && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
-LDADD+=-l${f:C/^.*://1}
+MKC_LDADD+=-l${f:C/^.*://1}
 .endif
 .endif
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}} && !empty(MKC_SOURCE_FUNCLIBS:M${f:C/:.*//1})
-SRCS+=${f:C/:.*//1}.c
+MKC_SRCS+=${f:C/:.*//1}.c
 .endif
 .endfor
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
 SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_sizeof ${t:S/:/ /g}
-CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}}
+MKC_CFLAGS+=	-DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}}
 .endfor
 
 # checking for declared #define
 .for d in ${MKC_CHECK_DEFINES}
 HAVE_DEFINE.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl define ${d:S/:/ /g}
-CFLAGS+=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=${HAVE_DEFINE.${d:S/./_/g:S/:/./g}}
+MKC_CFLAGS+=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=${HAVE_DEFINE.${d:S/./_/g:S/:/./g}}
 .endfor
 
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS}
 HAVE_VAR.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl variable ${d:S/:/ /g}
-CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
+MKC_CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 .endfor
 
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_CHECK_FUNCS${n}}
 HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl func${n} ${d:S/:/ /g}
-CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}}
+MKC_CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}}
 .endfor
 .endfor
+
+# final assignment
+CFLAGS += ${MKC_CFLAGS}
+LDADD  += ${MKC_LDADD}
+SRCS   += ${MKC_SRCS}
 
 # error check
 all : ${.OBJDIR}/.error-check
