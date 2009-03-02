@@ -39,10 +39,10 @@ shift
 MKC_CACHEDIR=${MKC_CACHEDIR:=.}
 CC=${CC:=cc}
 
-tmpc=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.c
-tmpexe=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.exe
-tmperr=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.err
-cache=$MKC_CACHEDIR/_mkc_funcs_${pathpart}.res
+tmpc=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.c
+tmpexe=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.exe
+tmperr=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.err
+cache=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.res
 
 for i in "$@"; do
     LDADD="$LDADD -l$i"
