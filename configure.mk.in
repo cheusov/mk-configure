@@ -22,6 +22,67 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+######################################################################
+# MKC_CHECK_HEADERS
+#       List of headers to be checked.
+#
+#       As a result of the check bmake's variable
+#       HAVE_HEADER.header is set to either 0 or 1.
+#
+#       Also -DHAVE_HEADER_<HEADER>=(0 or 1)
+#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#
+#   Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
+#   Res: HAVE_HEADER.sys.time_h = 1
+#        HAVE_HEADER.fcntl      = 1
+#        HAVE_HEADER.execinfo_h = 1
+#        CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 \
+#                  -DHAVE_HEADER_FCNTL=1 \
+#                  -DHAVE_HEADER_EXECINFO_H=0
+#
+# MKC_CHECK_FUNCLIBS
+#       List of function:library pairs to be checked,
+#       library part is optional. If "library" part is present,
+#       a presense of "function" in libc is also checked automatically.
+#
+#       As a result of the check bmake's variable
+#       HAVE_FUNCLIB.function.library (or HAVE_FUNCLIB.function)
+#       is set to either 0 or 1.
+#
+#       By default, if "function" is present in "library" but not in libc,
+#       "-llibrary" is automatically added to LDADD unless
+#       MKC_NOAUTO_FUNCLIBS.function.library or MKC_NOAUTO_FUNCLIBS
+#       are set to 1
+#
+#   Ex:  MKC_CHECK_FUNCLIBS += strlcat fgetln getline getopt_long
+#        MKC_CHECK_FUNCLIBS += crypt:crypt dlopen:dl nanosleep:rt
+#   Res: HAVE_FUNCLIB.strlcat      = 1
+#        HAVE_FUNCLIB.getline      = 0
+#        HAVE_FUNCLIB.dlopen       = 1
+#        HAVE_FUNCLIB.dlopen.dl    = 0
+#        HAVE_FUNCLIB.nanosleep    = 1
+#        HAVE_FUNCLIB.nanosleep.rt = 1
+#        HAVE_FUNCLIB.crypt        = 0
+#        HAVE_FUNCLIB.crypt.crypt  = 1
+#        LDADD += -lcrypt
+#
+# MKC_CHECK_DEFINES
+#       List of define:header to be checked. "header" part is optional.
+#       
+#       As a result of the check bmake's variable
+#       HAVE_DEFINE.define.header (or HAVE_DEFINE.define)
+#       is set to either 0 or 1.
+#
+#       Also -DHAVE_DEFINE_<UPPERCASE_DEFINE>_<UPPERCASE_HEADER>=(0 or 1)
+#       or -DHAVE_DEFINE_<UPPERCASE_DEFINE>=(0 or 1)
+#       are added to CFLAGS unless MKC_NOAUTO is set to 1
+#
+#   Ex: MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h O_DIRECT
+#
+# MKC_NOAUTO_FUNCLIBS
+#       See MKC_CHECK_FUNCLIBS
+
+######################################################################
 # system variables
 MKC_VERSION=@@version@@
 MKC_EXECDIR?=@@execsdir@@

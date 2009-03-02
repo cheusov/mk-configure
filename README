@@ -1,4 +1,32 @@
-Mk script written for BSD make for replacing GNU autoconf.
-Sample of usage in EXAMPLE.Makefile file.
+-------------------------------------------------------------------------
 
-NOTE: This script is currently in very early stage of development.
+      mk-configure is a lightweight replacement for GNU autoconf,
+             written for bmake (NetBSD make).
+
+-------------------------------------------------------------------------
+Installation:
+
+   make PREFIX=/usr/local
+   make install-dirs
+   make install
+
+"make" here is (Any)BSD make.
+
+-------------------------------------------------------------------------
+bmake sources are available from here:
+  
+There you can also download portable MK scripts (mk-files) for it.
+
+-------------------------------------------------------------------------
+Sample: see EXAMPLE.Makefile file.
+
+-------------------------------------------------------------------------
+Documentation: see configure.mk[.in]
+
+-------------------------------------------------------------------------
+NOTE: mk-configure is in "beta" stage of development now,
+      API may change in the future.
+
+-------------------------------------------------------------------------
+Send your suggestions, bug reports etc. to Aleksey Cheusov <vle@gmx.net>
+-------------------------------------------------------------------------
