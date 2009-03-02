@@ -27,14 +27,16 @@
 #       List of headers to be checked.
 #
 #       As a result of the check bmake's variable
-#       HAVE_HEADER.header is set to either 0 or 1.
+#       HAVE_HEADER.header is set to either 0 or 1
+#       (tr|./|_.|g in the header).
 #
 #       Also -DHAVE_HEADER_<HEADER>=(0 or 1)
 #       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in the <HEADER>).
 #
 #   Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
 #   Res: HAVE_HEADER.sys.time_h = 1
-#        HAVE_HEADER.fcntl      = 1
+#        HAVE_HEADER.fcntl_h    = 1
 #        HAVE_HEADER.execinfo_h = 1
 #        CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 \
 #                  -DHAVE_HEADER_FCNTL=1 \
@@ -42,17 +44,17 @@
 #
 # MKC_CHECK_FUNCLIBS
 #       List of function:library pairs to be checked,
-#       library part is optional. If "library" part is present,
-#       a presense of "function" in libc is also checked automatically.
+#       library part is optional. If <library> part is present,
+#       presense of <function> in libc is also checked automatically.
 #
 #       As a result of the check bmake's variable
-#       HAVE_FUNCLIB.function.library (or HAVE_FUNCLIB.function)
+#       HAVE_FUNCLIB.<function>.<library> (or HAVE_FUNCLIB.<function>)
 #       is set to either 0 or 1.
 #
-#       By default, if "function" is present in "library" but not in libc,
-#       "-llibrary" is automatically added to LDADD unless
-#       MKC_NOAUTO_FUNCLIBS.function.library or MKC_NOAUTO_FUNCLIBS
-#       are set to 1
+#       By default, if <function> is present in <library> but not in libc,
+#       "-l<library>" is automatically added to LDADD unless
+#       MKC_NOAUTO_FUNCLIBS.<function>.<library> or MKC_NOAUTO_FUNCLIBS
+#       is set to 1
 #
 #   Ex:  MKC_CHECK_FUNCLIBS += strlcat fgetln getline getopt_long
 #        MKC_CHECK_FUNCLIBS += crypt:crypt dlopen:dl nanosleep:rt
@@ -67,20 +69,95 @@
 #        LDADD += -lcrypt
 #
 # MKC_CHECK_DEFINES
-#       List of define:header to be checked. "header" part is optional.
+#       List of define:header to be checked. <header> part is optional.
 #       
 #       As a result of the check bmake's variable
-#       HAVE_DEFINE.define.header (or HAVE_DEFINE.define)
+#       HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
 #       is set to either 0 or 1.
+#       (tr|./|_.|g in the <header>).
 #
-#       Also -DHAVE_DEFINE_<UPPERCASE_DEFINE>_<UPPERCASE_HEADER>=(0 or 1)
-#       or -DHAVE_DEFINE_<UPPERCASE_DEFINE>=(0 or 1)
-#       are added to CFLAGS unless MKC_NOAUTO is set to 1
+#       Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=(0 or 1)
+#       or   -DHAVE_DEFINE_<DEFINE>=(0 or 1)
+#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in <HEADER>,
+#        tr|a-z|A-Z|g     in <DEFINE>).
 #
-#   Ex: MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h O_DIRECT
+#   Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__
+#   Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
+#        HAVE_DEFINE.__GNUC__          = 1
+#        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
+#                  -DHAVE_DEFINE___GNUC__=1
+#
+# MKC_CHECK_VARS
+#       List of variable:header to be checked. <header> part is optional.
+#       
+#       As a result of the check bmake's variable
+#       HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
+#       is set to either 0 or 1
+#       (tr|./|_.|g in the <header>).
+#
+#       Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=(0 or 1)
+#       or   -DHAVE_DEFINE_<VARIABLE>=(0 or 1)
+#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in <HEADER>).
+#
+#   Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
+#   Res: HAVE_VAR.sys_errlist.errno_h = 1
+#        CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
+#
+# MKC_CHECK_FUNCS<N>
+#       List of func:header to be checked. <header> part is optional.
+#       
+#       As a result of the check bmake's variable
+#       HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
+#       is set to either 0 or 1
+#       (tr|./|_.|g in the <header>).
+#
+#       Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
+#       or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1)
+#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in <HEADER>).
+#
+#   Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
+#        MKC_CHECK_FUNCS6 += pselect:sys/select.h
+#   Res: HAVE_FUNC2.fgetln.stdio_h = 1
+#        HAVE_FUNC6.pselect.sys.select_h = 1
+#        CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \
+#               += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1
+#
+# MKC_CHECK_SIZEOF
+#       List of type:header to be checked. <header> part is optional.
+#
+#       As a result of the check bmake's variable
+#       SIZEOF.<type> is set to the data type size or `failed'.
+#       (tr|*-|P_|g in <TYPE>).
+#
+#       Also -DSIZEOF_<TYPE>=<failed|1|2|...>
+#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       (tr|a-z*-|A-ZP_|g in <TYPE>).
+#
+#   Ex:  MKC_CHECK_SIZEOF += void*
+#        MKC_CHECK_SIZEOF += long-long off_t:sys/types.h
+#   Res: SIZEOF.voidP = 4
+#        SIZEOF.long_long = 4
+#        SIZEOF.off_t = 8
+#        CFLAGS += -DSIZEOF_VOIDP=4 \
+#                  -DSIZEOF_LONG_LONG=4 \
+#                  -DSIZEOF_OFF_T=8
 #
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
+# MKC_COMMON_HEADERS
+#       List of header files always #include'd to the test .c files
+#       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
+#       The defauklt value is an empty list.
+#   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
+#       MKC_CHECK_SIZEOF += offs_t size_t ssize_t
+# MKC_COMMON_DEFINES
+#       List of defines always passed to compiler
+#       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
+#   Ex: MKC_COMMON_DEFINES += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 # Linux
+#       MKC_COMMON_DEFINES += -D_ALL_SOURCE # Interix
 
 ######################################################################
 # system variables
@@ -107,7 +184,7 @@ MKC_SOURCE_FUNCLIBS   ?=
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
 HAVE_HEADER.${h:S|.|_|g:S|/|.|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_header ${h}
-MKC_CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
+MKC_CFLAGS+=	-DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 .endfor
 
 # checking for functions in libraries
@@ -145,8 +222,8 @@ MKC_CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_CHECK_FUNCS${n}}
-HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl func${n} ${d:S/:/ /g}
-MKC_CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}}
+HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|.|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl func${n} ${d:S/:/ /g}
+MKC_CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|.|g}}
 .endfor
 .endfor
 
