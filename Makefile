@@ -15,7 +15,8 @@ VERSION=		0.4.0
 
 BIRTHDATE=		2009-02-21
 
-SCRIPTS=		mkc_check_func mkc_check_header mkc_check_sizeof
+SCRIPTS=		mkc_check_funclib mkc_check_header \
+			mkc_check_sizeof  mkc_check_decl
 SCRIPTSDIR=		${EXECSDIR}
 
 FILES=			configure.mk
