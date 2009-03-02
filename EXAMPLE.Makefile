@@ -1,10 +1,9 @@
-MKC_CHECK_HEADERS+=	strings.h
 MKC_CHECK_HEADERS+=	sys/time.h
 MKC_CHECK_HEADERS+=	inttypes.h
 MKC_CHECK_HEADERS+=	stdint.h
 MKC_CHECK_HEADERS+=	zlib.h
-MKC_CHECK_HEADERS+=	Judy.h
 
+#FUNCLIBS_NOAUTO=	1 # in order to disable automatic update of LDADD
 MKC_CHECK_FUNCLIBS+=	accept:socket
 MKC_CHECK_FUNCLIBS+=	crypt:crypt
 MKC_CHECK_FUNCLIBS+=	strlcat
@@ -48,10 +47,6 @@ MKC_ERR_MSG+= "Really?"
 MKC_ERR_MSG+= "zlib.h not found, install it!"
 .endif
 
-.if !${HAVE_HEADER.Judy_h}
-MKC_ERR_MSG+= "Judy.h not found, install it!"
-.endif
-
 .if !${HAVE_FUNCLIB.strlcpy}
 SRCS+= strlcpy.c
 .endif
@@ -60,12 +55,10 @@ SRCS+= strlcpy.c
 SRCS+= strlcat.c
 .endif
 
-.if ${HAVE_FUNCLIB.dlopen}
-.elif ${HAVE_FUNCLIB.dlopen.dl}
-LDADD+= -ldl
+.if ${HAVE_FUNCLIB.dlopen} || ${HAVE_FUNCLIB.dlopen.dl}
+CFLAGS+=	-DPLUGINS_ENABLED=1
 .else
-SRCS+= dlopen.c
-CFLAGS+= -DMY_OWN_DLOPEN
+CFLAGS+=	-DPLUGINS_ENABLED=0
 .endif
 
 # your real code here
