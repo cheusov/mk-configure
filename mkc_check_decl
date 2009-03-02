@@ -57,7 +57,8 @@ get_includes (){
 }
 
 compile (){
-    "$CC" -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
+    "$CC" -c -o "$tmpo" $MKC_COMMON_DEFINES \
+	$CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
 }
 
 is_define (){
