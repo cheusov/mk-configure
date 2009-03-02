@@ -90,9 +90,11 @@ MKC_CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d
 .endfor
 
 # final assignment
+.if !${MKC_NOAUTO:U0}
 CFLAGS += ${MKC_CFLAGS}
 LDADD  += ${MKC_LDADD}
 SRCS   += ${MKC_SRCS}
+.endif
 
 # error check
 all : ${.OBJDIR}/.error-check
