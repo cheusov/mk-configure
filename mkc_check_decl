@@ -51,7 +51,7 @@ cache=$MKC_CACHEDIR/_mkc_decl_${decltype}_${pathpart}.res
 
 ####################
 get_includes (){
-    for i in "$@"; do
+    for i in $MKC_COMMON_HEADERS "$@"; do
 	echo "#include <$i>"
     done
 }

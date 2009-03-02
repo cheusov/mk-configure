@@ -1,3 +1,5 @@
+MKC_COMMON_HEADERS=	unistd.h stdlib.h
+
 MKC_CHECK_HEADERS+=	sys/time.h
 MKC_CHECK_HEADERS+=	inttypes.h
 MKC_CHECK_HEADERS+=	stdint.h

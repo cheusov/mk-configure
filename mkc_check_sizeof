@@ -49,7 +49,7 @@ else
     cached=''
     ret=failed
     for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
-	for f in $2; do
+	for f in $MKC_COMMON_HEADERS $2; do
 	    echo "#include <$f>"
 	done > "$tmpc"
 	cat >> "$tmpc" <<EOF
