@@ -31,6 +31,9 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+##################################################
+# initializing
+
 pathpart=`echo $* | tr '/. ' ___`
 
 funcname=$1
@@ -52,6 +55,9 @@ done
 if test -n "$libs_msg"; then
     libs_msg=" ($libs_msg )"
 fi
+
+##################################################
+# test
 
 if test -f "$cache"; then
     cached=' (cached)'
@@ -78,11 +84,16 @@ EOF
     fi
 fi
 
+##################################################
 # clean-ups
+
 rm -f "$tmpexe"
 if test "$MKC_DELETE_TMPFILES" = 1; then
     rm -f "$tmpc" "$tmperr"
 fi
+
+##################################################
+# finishing
 
 printme (){
     if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then

@@ -28,12 +28,14 @@
 
 set -e
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
+##################################################
+# initializing
 
-####################
 LC_ALL=C
 export LC_ALL
+
+MKC_CACHEDIR=${MKC_CACHEDIR:=.}
+CC=${CC:=cc}
 
 pathpart=`echo $* | tr '/. ' ___`
 
@@ -49,18 +51,22 @@ tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
 
-####################
+##################################################
+# functions
+
 get_includes (){
     for i in $MKC_COMMON_HEADERS "$@"; do
 	echo "#include <$i>"
     done
 }
 
+##############################
 compile (){
     "$CC" -c -o "$tmpo" $MKC_COMMON_DEFINES \
 	$CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
 }
 
+##############################
 is_define (){
     get_includes "$@" > "$tmpc"
 
@@ -79,6 +85,7 @@ EOF
     compile
 }
 
+##############################
 is_variable (){
     get_includes "$@" > "$tmpc"
 
@@ -92,6 +99,7 @@ EOF
     compile
 }
 
+##############################
 try_type (){
     get_includes "$@" > "$tmpc"
 
@@ -106,12 +114,14 @@ EOF
     compile
 }
 
+##############################
 is_type (){
     try_type "$@" || return 1
     is_variable "$@" && return 1
     return 0
 }
 
+##############################
 is_func (){
     get_includes "$@" > "$tmpc"
 
@@ -138,6 +148,9 @@ BEGIN {
     compile
 }
 
+##################################################
+# test
+
 for i in "$@"; do
     incs_msg="$incs_msg $i"
 done
@@ -163,11 +176,16 @@ else
     fi
 fi
 
+##################################################
 # clean-ups
+
 rm -f "$tmpo"
 if test "$MKC_DELETE_TMPFILES" = 1; then
     rm -f "$tmpc" "$tmperr"
 fi
+
+##################################################
+# finishing
 
 printme (){
     if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then

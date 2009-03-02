@@ -31,6 +31,9 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+##################################################
+# initializing
+
 type=`echo $1 | tr ' -' '  '`
 pathpart=`echo $type | tr '*' 'P'`
 
@@ -41,6 +44,9 @@ tmpc=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.c
 tmpo=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.res
+
+##################################################
+# test
 
 if test -f "$cache"; then
     cached=' (cached)'
@@ -70,11 +76,16 @@ EOF
     done
 fi
 
+##################################################
 # clean-ups
+
 rm -f "$tmpo"
 if test "$MKC_DELETE_TMPFILES" = 1; then
     rm -f "$tmpc" "$tmperr"
 fi
+
+##################################################
+# finishing
 
 printme (){
     if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
