@@ -44,10 +44,10 @@ shift
 declwhat=$1
 shift
 
-tmpc=$MKC_CACHEDIR/_mkc_${decltype}_${pathpart}.c
-tmpo=$MKC_CACHEDIR/_mkc_${decltype}_${pathpart}.o
-tmperr=$MKC_CACHEDIR/_mkc_${decltype}_${pathpart}.err
-cache=$MKC_CACHEDIR/_mkc_${decltype}_${pathpart}.res
+tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
+tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
+tmperr=$MKC_CACHEDIR/_mkc_${pathpart}.err
+cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
 
 ####################
 get_includes (){
