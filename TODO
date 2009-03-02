@@ -1,5 +1,15 @@
-MKC_COMMON_HEADERS
-MKC_COMMON_DEFINES
-MKC_NOAUTO, MKC_CFLAGS, MKC_SRCS, MKC_LDADD
+The same functionality but for bourne shell, e.g.
+   MKC_CONFIG_MK=mkc_config.mk
+   MKC_CONFIG_H=mkc_config.h
 
-The same functionality but for bourne shell
+   MKC_CHECK_HEADERS='
+      header1.h
+      header2.h
+      header3.h'
+   MKC_CHECK_FUNCLIBS='
+      func1:lib1
+      func2
+      func3:lib3'
+
+   . mkc_configure
+   mkc_run
