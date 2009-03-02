@@ -17,7 +17,7 @@ MKC_CHECK_FUNCLIBS+=	gettimeofday
 MKC_SOURCE_FUNCLIBS+=	strlcat strlcpy
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
-MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
+MKC_CHECK_DEFINES+=	__GNUC__
 
 MKC_CHECK_VARS+=	sys_errlist:errno.h
 MKC_CHECK_FUNCS1+=	strerror:string.h
