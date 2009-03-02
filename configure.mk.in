@@ -73,7 +73,7 @@ CFLAGS+=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=${HAVE_DEFINE.${d:S/./_/g:S/:/./g
 
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS}
-HAVE_VAR.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl var ${d:S/:/ /g}
+HAVE_VAR.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl variable ${d:S/:/ /g}
 CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 .endfor
 
