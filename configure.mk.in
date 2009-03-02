@@ -36,6 +36,9 @@ MKC_COMMON_DEFINES?=     # #defines
 #
 mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR=${MKC_CACHEDIR} MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_COMMON_DEFINES='${MKC_COMMON_DEFINES}' MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED}
 
+#
+MKC_SOURCE_FUNCLIBS   ?=
+
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
 HAVE_HEADER.${h:S|.|_|g:S|/|.|g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_header ${h}
@@ -43,13 +46,16 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 .endfor
 
 # checking for functions in libraries
-.for f in ${MKC_CHECK_FUNCLIBS}
+.for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS}
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:S/:/ /g}
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
 HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:C/:.*//1}
 .if !${MKC_FUNCLIBS_NOAUTO:U0} && !${MKC_FUNCLIBS_NOAUTO.${f:S/:/./g}:U0} && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
 LDADD+=-l${f:C/^.*://1}
 .endif
+.endif
+.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}} && !empty(MKC_SOURCE_FUNCLIBS:M${f:C/:.*//1})
+SRCS+=${f:C/:.*//1}.c
 .endif
 .endfor
 

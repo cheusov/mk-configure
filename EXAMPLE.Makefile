@@ -8,11 +8,12 @@ MKC_CHECK_HEADERS+=	zlib.h
 
 #MKC_FUNCLIBS_NOAUTO=	1 # in order to disable automatic updates of LDADD
 MKC_CHECK_FUNCLIBS+=	crypt:crypt
-MKC_CHECK_FUNCLIBS+=	strlcat
 MKC_CHECK_FUNCLIBS+=	dlopen:dl
 MKC_CHECK_FUNCLIBS+=	ftime:compat
 MKC_FUNCLIBS_NOAUTO.ftime.compat = 1
 MKC_CHECK_FUNCLIBS+=	gettimeofday
+
+MKC_SOURCE_FUNCLIBS+=	strlcat strlcpy
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_CHECK_DEFINES+=	O_DIRECT:fcntl.h
@@ -51,10 +52,6 @@ CFLAGS+=	-DUSE_FTIME
 .elif ${HAVE_FUNCLIB.ftime.compat}
 CFLAGS+=	-DUSE_FTIME
 LDADD+=		-lcompat
-.endif
-
-.if !${HAVE_FUNCLIB.strlcat}
-SRCS+= strlcat.c
 .endif
 
 .if ${HAVE_FUNCLIB.dlopen} || ${HAVE_FUNCLIB.dlopen.dl}
