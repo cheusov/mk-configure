@@ -42,9 +42,9 @@ CFLAGS+=	-DHAVE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
 
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS}
-HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:S/:/ /g}
+HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:S/:/ /g}
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
-HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_func ${f:C/:.*//1}
+HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:C/:.*//1}
 .if !${MKC_FUNCLIBS_NOAUTO:U0} && !${MKC_FUNCLIBS_NOAUTO.${f:S/:/./g}:U0} && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
 LDADD+=-l${f:C/^.*://1}
 .endif
