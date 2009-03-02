@@ -73,7 +73,7 @@ CFLAGS+=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_CHECK_FUNCS${n}}
 HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_decl func${n} ${d:S/:/ /g}
-CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}}
+CFLAGS+=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g}}
 .endfor
 .endfor
 
