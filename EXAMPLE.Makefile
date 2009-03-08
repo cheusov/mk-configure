@@ -7,12 +7,13 @@ MKC_CHECK_HEADERS+=	stdint.h
 MKC_CHECK_HEADERS+=	zlib.h
 
 #MKC_NOAUTO=	        1 # for disabling automatic updates of LDADD/SRCS/...
-#MKC_FUNCLIBS_NOAUTO=	1 # for disabling automatic updates of LDADD
+#MKC_NOAUTO_FUNCLIBS=	1 # for disabling automatic updates of LDADD
 MKC_CHECK_FUNCLIBS+=	crypt:crypt
 MKC_CHECK_FUNCLIBS+=	dlopen:dl
-MKC_CHECK_FUNCLIBS+=	ftime:compat
-MKC_FUNCLIBS_NOAUTO.ftime.compat = 1
 MKC_CHECK_FUNCLIBS+=	gettimeofday
+MKC_CHECK_FUNCLIBS+=	ftime:compat
+
+MKC_NOAUTO_FUNCLIBS+=   ftime:compat
 
 MKC_SOURCE_FUNCLIBS+=	strlcat strlcpy
 

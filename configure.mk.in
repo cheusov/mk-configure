@@ -53,19 +53,27 @@
 #
 #       By default, if <function> is present in <library> but not in libc,
 #       "-l<library>" is automatically added to LDADD unless
-#       MKC_NOAUTO_FUNCLIBS.<function>.<library> or MKC_NOAUTO_FUNCLIBS
-#       is set to 1
+#       function:library is listed in MKC_NOAUTO_FUNCLIBS or
+#       MKC_NOAUTO_FUNCLIBS is equal to 1 or
+#       MKC_NOAUTO is set to 1
 #
-#   Ex:  MKC_CHECK_FUNCLIBS += strlcat fgetln getline getopt_long
-#        MKC_CHECK_FUNCLIBS += crypt:crypt dlopen:dl nanosleep:rt
+#   Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
+#        MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
+#        MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
+#        MKC_NOAUTO_FUNCLIBS += ftime:compat
 #   Res: HAVE_FUNCLIB.strlcat      = 1
+#        HAVE_FUNCLIB.fgetln       = 1
 #        HAVE_FUNCLIB.getline      = 0
+#        HAVE_FUNCLIB.getopt_long  = 1
+#        HAVE_FUNCLIB.crypt        = 0
+#        HAVE_FUNCLIB.crypt.crypt  = 1
 #        HAVE_FUNCLIB.dlopen       = 1
 #        HAVE_FUNCLIB.dlopen.dl    = 0
 #        HAVE_FUNCLIB.nanosleep    = 1
 #        HAVE_FUNCLIB.nanosleep.rt = 1
-#        HAVE_FUNCLIB.crypt        = 0
-#        HAVE_FUNCLIB.crypt.crypt  = 1
+#        HAVE_FUNCLIB.ftime        = 0
+#        HAVE_FUNCLIB.ftime.compat = 1
+#        HAVE_FUNCLIB.gettimeofday = 1
 #        LDADD += -lcrypt
 #
 # MKC_SOURCE_FUNCLIBS
@@ -223,7 +231,7 @@ MKC_CFLAGS+=	-DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:S/:/ /g}
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
 HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_EXECDIR}/mkc_check_funclib ${f:C/:.*//1}
-.if !${MKC_FUNCLIBS_NOAUTO:U0} && !${MKC_FUNCLIBS_NOAUTO.${f:S/:/./g}:U0} && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
+.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
 MKC_LDADD+=-l${f:C/^.*://1}
 .endif
 .endif
