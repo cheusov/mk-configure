@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.6.0, by Aleksey Cheusov, ???
+Version 0.6.0, by Aleksey Cheusov, Sun,  8 Mar 2009 19:35:13 +0200
 
   MKC_FUNCLIBS_NOAUTO.ftime.compat is replaced
   with MKC_NOAUTO_FUNCLIBS list.
