@@ -45,14 +45,21 @@ tmpo=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.res
 
+printme (){
+    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+	printf "$@"
+    fi
+}
+
 ##################################################
 # test
 
+printme '%s' "checking for sizeof ${type}... " 1>&2
+
 if test -f "$cache"; then
-    cached=' (cached)'
+    printme '(cached) ' 1>&2
     ret=`cat "$cache"`
 else
-    cached=''
     ret=failed
     for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
 	for f in $MKC_COMMON_HEADERS $2; do
@@ -87,12 +94,5 @@ fi
 ##################################################
 # finishing
 
-printme (){
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
-
-printme '%s\n' "checking for sizeof ${type}...${cached} ${ret}" 1>&2
-
+echo $ret 1>&2
 echo $ret

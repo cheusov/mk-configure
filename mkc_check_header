@@ -44,15 +44,21 @@ tmpo=$MKC_CACHEDIR/_mkc_header_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_header_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_header_${pathpart}.res
 
+printme (){
+    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+	printf "$@"
+    fi
+}
+
 ##################################################
 # test
 
+printme '%s' "checking for header $1... " 1>&2
+
 if test -f "$cache"; then
-    cached=' (cached)'
+    printme '(cached) ' 1>&2
     ret=`cat "$cache"`
 else
-    cached=''
-
     # preparations
     cat > "$tmpc" <<EOF
 #include <$1>
@@ -83,14 +89,6 @@ fi
 
 ##################################################
 # finishing
-
-printme (){
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
-
-printme '%s' "checking for header $1...${cached} " 1>&2
 
 if test "$ret" -eq 1; then
     printme 'yes\n' 1>&2

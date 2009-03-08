@@ -54,6 +54,13 @@ cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
 ##################################################
 # functions
 
+printme (){
+    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+	printf "$@"
+    fi
+}
+
+##############################
 get_includes (){
     for i in $MKC_COMMON_HEADERS "$@"; do
 	echo "#include <$i>"
@@ -151,6 +158,8 @@ BEGIN {
 ##################################################
 # test
 
+printme '%s' "checking for $decltype ${declwhat}${incs_msg}... " 1>&2
+
 for i in "$@"; do
     incs_msg="$incs_msg $i"
 done
@@ -160,11 +169,9 @@ if test -n "$incs_msg"; then
 fi
 
 if test -f "$cache"; then
-    cached=' (cached)'
+    printme '(cached) ' 1>&2
     ret=`cat "$cache"`
 else
-    cached=''
-
     # test itself
     if eval is_${decltype} "$@"
     then
@@ -186,14 +193,6 @@ fi
 
 ##################################################
 # finishing
-
-printme (){
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
-
-printme '%s' "checking for $decltype ${declwhat}${incs_msg}...${cached} " 1>&2
 
 if test "$ret" -eq 1; then
     printme 'yes\n' 1>&2
