@@ -19,6 +19,9 @@
        Support for MKPTHREAD=yes|no.
      - ???Fallback to libtool if compiler is unknown or special variable is
        defined???
+     - INFILES - list of files that should be generated from appropriate
+       .in sources (equivalent of AC_CONFIG_FILES
+       but with better name :-) ).
 
 1) The same
        functionality but for bourne shell, e.g.
