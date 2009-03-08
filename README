@@ -1,12 +1,12 @@
 -------------------------------------------------------------------------
 
       mk-configure is a lightweight replacement for GNU autoconf,
-             written for bmake (NetBSD make).
+             written in and for bmake (NetBSD make).
 
 -------------------------------------------------------------------------
 
-"mk-configure" is currently in alpha stage of development now.
-API is not stable yet!
+"mk-configure" is currently in alpha stage of development.
+!!! API is not stable yet and may be changed in the next release !!!
 
 -------------------------------------------------------------------------
 Installation:

@@ -11,7 +11,7 @@ INST_DIR?=		${INSTALL} -d
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.5.0
+VERSION=		0.6.0
 
 BIRTHDATE=		2009-02-21
 

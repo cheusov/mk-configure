@@ -1,29 +1,49 @@
-1) 
-   The same functionality but for bourne shell, e.g.
+0)
+   Closer integration with Simon Gerraty's Mk scripts or Mk scripts
+   from pkgsrc. Both they are variants of NetBSD Mk scripts and now
+   are portable to a variety of platforms including OpenBSD, FreeBSD,
+   Linux, Solaris, IRIX, OSF1, HP-UX, Darwin and AIX.
 
-   configure:
-   MKC_CONFIG_MK=mkc_config.mk
-   MKC_CONFIG_H=mkc_config.h
+   bmake + mk-configure + Mk scripts = FULL replacement for autobloat.
 
-   MKC_CHECK_HEADERS='
-      header1.h
-      header2.h
-      header3.h'
-   MKC_CHECK_FUNCLIBS='
-      func1:lib1
-      func2
-      func3:lib3'
-   #<...>
-   . mkc_configure
-   mkc_run # generating mkc_config.h and mkc_config.mk
+   Ideas:
+     - PREFIX, BINDIR, SBINDIR, MANDIR etc. should default to /usr/local/xxx
+     - When running unprivileged BINOWN, BINGRP etc. should default to
+       'id -un' and 'id -gn'.
+     - The target "install" should create destination directories
+     - With a help of MKC_CHECK_DEFINES (Ex: MKC_CHECK_DEFINES+=__GNUC__)
+       mk-configure is able to detect the compiler in run-time.
+       This makes possible to make SHLIB_xxx (bsd.lib.mk) portable
+       to other compilers and platforms.
+     - Often compilers need special options to compile pthread code.
+       Support for MKPTHREAD=yes|no.
+     - ???Fallback to libtool if compiler is unknown or special variable is
+       defined???
 
-2) Adapt/test shell scripts for stupid/ancient Solaris' /bin/sh
+1) The same
+       functionality but for bourne shell, e.g.
 
-3) MKC_REQD - user settable variable for specifing minimal required
+   Upstream creates ./configure script:
+     MKC_CONFIG_MK=mkc_config.mk
+     MKC_CONFIG_H=mkc_config.h
+
+     MKC_CHECK_HEADERS='
+        header1.h
+        header2.h
+        header3.h'
+     MKC_CHECK_FUNCLIBS='
+        func1:lib1
+        func2
+        func3:lib3'
+     #<...>
+     . mkc_configure
+     mkc_run # generating mkc_config.h and mkc_config.mk
+
+   User runs
+     ./configure ...
+
+2) MKC_REQD - user settable variable for specifing minimal required
    version of mk-configure
 
-4) Adapt/test for pmake (old NetBSD make) already packaged for several
-   Linux distros
-
-5)
+3)
    MKC_NOAUTO_abcdefg...

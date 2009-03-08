@@ -1,9 +1,29 @@
 ======================================================================
+Version 0.6.0, by Aleksey Cheusov, ???
+
+  MKC_FUNCLIBS_NOAUTO.ftime.compat is replaced
+  with MKC_NOAUTO_FUNCLIBS list.
+
+     Ex.:
+       MKC_NOAUTO_FUNCLIBS += ftime:compat crypt:crypt
+       MKC_NOAUTO_FUNCLIBS = 1 # for disabling
+                               # all potential LDADD += ...
+
+  fix: "checking for..." messages is now sent to stderr
+  before result is calculated, not after.
+
+  Support for heirloom-sh and ancient Solaris-10 /bin/sh
+
+  added: MKC_SHELL variable defaulting to /bin/sh, mkc_check_XXX
+  scripts are run with with this shell. This is variable is mainly for
+  testing purposes but who knows.
+
+======================================================================
 Version 0.5.0, by Aleksey Cheusov, Tue,  3 Mar 2009 00:04:52 +0200
 
    Huge amount of changes. 0.5.0 is completely incompatible with 0.4.0
-   because 0.4.0 was proof-of-concept only ;-), inspired by discussion
-   in fido7.ru.unix.prog.
+   because 0.4.0 was proof-of-concept only ;-) Everything was
+   inspired by discussion in fido7.ru.unix.prog.
 
    Changing in API is also possible in the future until
    I stabilize it.
