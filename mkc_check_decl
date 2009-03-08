@@ -69,8 +69,13 @@ get_includes (){
 
 ##############################
 compile (){
-    "$CC" -c -o "$tmpo" $MKC_COMMON_DEFINES \
+    if "$CC" -c -o "$tmpo" $MKC_COMMON_DEFINES \
 	$CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
+    then
+	return 0
+    else
+	return 1
+    fi
 }
 
 ##############################
@@ -175,12 +180,11 @@ else
     # test itself
     if eval is_${decltype} "$@"
     then
-	echo 1 > "$cache"
 	ret=1
     else
-	echo 0 > "$cache"
 	ret=0
     fi
+    echo $ret > "$cache"
 fi
 
 ##################################################
