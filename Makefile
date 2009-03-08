@@ -22,6 +22,8 @@ SCRIPTSDIR=		${EXECSDIR}
 FILES=			configure.mk
 FILESDIR=		${MKFILESDIR}
 
+CLEANFILES+=		configure.mk
+
 ##################################################
 
 .SUFFIXES:  .in
@@ -35,16 +37,9 @@ all: configure.mk
 
 ##################################################
 
-clean: clean-local
-
-.PHONY: clean-local
-clean-local:
-	rm -f configure.mk
-
 # unfortunately bsd.prog.mk doesn't create
 # the destinations dirs at installation stage :-(
 #install: install-local
-
 .PHONY: install-dirs
 install-dirs:
 	${INST_DIR} ${DESTDIR}${MKFILESDIR}
