@@ -5,6 +5,7 @@ MKC_CHECK_HEADERS+=	sys/time.h
 MKC_CHECK_HEADERS+=	inttypes.h
 MKC_CHECK_HEADERS+=	stdint.h
 MKC_CHECK_HEADERS+=	zlib.h
+MKC_CHECK_HEADERS+=	execinfo.h
 
 #MKC_NOAUTO=	        1 # for disabling automatic updates of LDADD/SRCS/...
 #MKC_NOAUTO_FUNCLIBS=	1 # for disabling automatic updates of LDADD
@@ -19,8 +20,11 @@ MKC_SOURCE_FUNCLIBS+=	strlcat strlcpy
 
 MKC_CHECK_DEFINES+=	RTLD_LAZY:dlfcn.h
 MKC_CHECK_DEFINES+=	__GNUC__
+MKC_CHECK_DEFINES+=	__INTEL_COMPILER
 
 MKC_CHECK_VARS+=	sys_errlist:errno.h
+MKC_CHECK_VARS+=	__malloc_hook:malloc.h
+
 MKC_CHECK_FUNCS1+=	strerror:string.h
 
 MKC_CHECK_FUNCS2+=	fgetln:stdio.h
