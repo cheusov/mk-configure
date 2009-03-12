@@ -173,7 +173,7 @@ if test -n "$incs_msg"; then
     incs_msg=" ($incs_msg )"
 fi
 
-if test -f "$cache"; then
+if test -z "$MKC_NOCACHE" && test -f "$cache"; then
     printme '(cached) ' 1>&2
     ret=`cat "$cache"`
 else

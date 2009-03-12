@@ -56,7 +56,7 @@ printme (){
 
 printme '%s' "checking for sizeof ${type}... " 1>&2
 
-if test -f "$cache"; then
+if test -z "$MKC_NOCACHE" && test -f "$cache"; then
     printme '(cached) ' 1>&2
     ret=`cat "$cache"`
 else

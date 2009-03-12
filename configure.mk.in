@@ -199,7 +199,11 @@
 #        No comments.
 #
 # MKC_SHELL
-#        shell interpreter for mkc_check_XXX scripts
+#        Shell interpreter for mkc_check_XXX scripts, defaults to /bin/sh
+#
+# MKC_NOCACHE
+#        All results are cached unless MKC_NOCACHE variable is set
+#        non-empty value
 
 ######################################################################
 # system variables
@@ -213,12 +217,13 @@ MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_COMMON_DEFINES?=     # #defines
 MKC_SHELL?=/bin/sh       # mainly for portability testing purposes
+MKC_NOCACHE?=            # 1 or yes for disabling cache
 
 #
 CFLAGS+=	${MKC_COMMON_DEFINES}
 
 #
-mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR=${MKC_CACHEDIR} MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_COMMON_DEFINES='${MKC_COMMON_DEFINES}' MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES} MKC_SHOW_CACHED=${MKC_SHOW_CACHED}
+mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_COMMON_DEFINES='${MKC_COMMON_DEFINES}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}'
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
