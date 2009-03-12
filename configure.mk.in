@@ -39,8 +39,7 @@
 #        HAVE_HEADER.fcntl_h    = 1
 #        HAVE_HEADER.execinfo_h = 1
 #        CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 \
-#                  -DHAVE_HEADER_FCNTL=1 \
-#                  -DHAVE_HEADER_EXECINFO_H=0
+#                  -DHAVE_HEADER_FCNTL=1
 #
 # MKC_CHECK_FUNCLIBS
 #       List of function:library pairs to be checked,
@@ -77,27 +76,29 @@
 #        LDADD += -lcrypt
 #
 # MKC_SOURCE_FUNCLIBS
-#       The same as MKC_CHECK_FUNCLIBS, but if <function> is absent both in
-#       the specified <library> and in libc, function.c is added to
-#       SRCS unless MKC_NOAUTO=1.
+#       The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
+#       both in the specified <library> and in libc, function.c is
+#       added to SRCS unless MKC_NOAUTO=1.
 #
 # MKC_CHECK_DEFINES
 #       List of define:header to be checked. <header> part is optional.
-#       
+#
 #       As a result of the check bmake's variable
 #       HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
 #       is set to either 0 or 1.
 #       (tr|./|_.|g in the <header>).
 #
-#       Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=(0 or 1)
-#       or   -DHAVE_DEFINE_<DEFINE>=(0 or 1)
-#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
+#       or   -DHAVE_DEFINE_<DEFINE>=1
+#       is added to CFLAGS if the specified define was detected
+#       unless MKC_NOAUTO is set to 1
 #       (tr|a-z./|A-Z__|g in <HEADER>,
 #        tr|a-z|A-Z|g     in <DEFINE>).
 #
-#   Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__
+#   Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
 #   Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
 #        HAVE_DEFINE.__GNUC__          = 1
+#        HAVE_DEFINE._MSC_VER_         = 0
 #        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
 #                  -DHAVE_DEFINE___GNUC__=1
 #
@@ -109,9 +110,10 @@
 #       is set to either 0 or 1
 #       (tr|./|_.|g in the <header>).
 #
-#       Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=(0 or 1)
-#       or   -DHAVE_DEFINE_<VARIABLE>=(0 or 1)
-#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
+#       or   -DHAVE_DEFINE_<VARIABLE>=1
+#       is added to CFLAGS if the specified variable was detected
+#       unless MKC_NOAUTO is set to 1
 #       (tr|a-z./|A-Z__|g in <HEADER>).
 #
 #   Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
@@ -128,7 +130,8 @@
 #
 #       Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
 #       or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1)
-#       is added to CFLAGS unless MKC_NOAUTO is set to 1
+#       is added to CFLAGS if the specified function was detected
+#       unless MKC_NOAUTO is set to 1
 #       (tr|a-z./|A-Z__|g in <HEADER>).
 #
 #   Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
