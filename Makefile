@@ -35,6 +35,10 @@ all: configure.mk
 	    -e 's,@@version@@,${VERSION},g' \
 	    ${.ALLSRC} > ${.TARGET}
 
+.PHONY: test
+test: configure.mk
+	true
+
 ##################################################
 
 # unfortunately bsd.prog.mk doesn't create
