@@ -77,7 +77,7 @@ printme (){
 	return
     fi
 
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+    if test -n "$MKC_SHOW_CACHED" || test -z "$cached"; then
 	printf "$@"
     fi
 }
@@ -85,12 +85,12 @@ printme (){
 ##################################################
 # test
 
-printme '%s' "checking for sizeof ${type}... " 1>&2
-
 if test -z "$MKC_NOCACHE" && test -f "$cache"; then
-    printme '(cached) ' 1>&2
+    cached=1
+    printme '%s' "checking for sizeof ${type}... (cached) " 1>&2
     ret=`cat "$cache"`
 else
+    printme '%s' "checking for sizeof ${type}... " 1>&2
     ret=failed
     for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
 	for f in $MKC_COMMON_HEADERS $2; do

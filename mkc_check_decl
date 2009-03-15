@@ -87,7 +87,7 @@ printme (){
 	return
     fi
 
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+    if test -n "$MKC_SHOW_CACHED" || test -z "$cached"; then
 	printf "$@"
     fi
 }
@@ -195,8 +195,6 @@ BEGIN {
 ##################################################
 # test
 
-printme '%s' "checking for $decltype ${declwhat}${incs_msg}... " 1>&2
-
 for i in "$@"; do
     incs_msg="$incs_msg $i"
 done
@@ -206,9 +204,12 @@ if test -n "$incs_msg"; then
 fi
 
 if test -z "$MKC_NOCACHE" && test -f "$cache"; then
-    printme '(cached) ' 1>&2
+    cached=1
+    printme '%s' "checking for $decltype ${declwhat}${incs_msg}... (cached) " 1>&2
     ret=`cat "$cache"`
 else
+    printme '%s' "checking for $decltype ${declwhat}${incs_msg}... " 1>&2
+
     # test itself
     if eval is_${decltype} "$@"
     then

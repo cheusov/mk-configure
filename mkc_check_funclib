@@ -87,7 +87,7 @@ printme (){
 	return
     fi
 
-    if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
+    if test -n "$MKC_SHOW_CACHED" || test -z "$cached"; then
 	printf "$@"
     fi
 }
@@ -95,12 +95,13 @@ printme (){
 ##################################################
 # test
 
-printme '%s' "checking for function ${funcname}${libs_msg}... " 1>&2
-
 if test -z "$MKC_NOCACHE" && test -f "$cache"; then
-    printme '(cached) ' 1>&2
+    cached=1
+    printme '%s' "checking for function ${funcname}${libs_msg}... (cached) " 1>&2
     ret=`cat "$cache"`
 else
+    printme '%s' "checking for function ${funcname}${libs_msg}... " 1>&2
+
     # preparations
     cat > "$tmpc" <<EOF
 int main ()
