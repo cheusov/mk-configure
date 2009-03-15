@@ -77,7 +77,7 @@ printme (){
 	return
     fi
 
-    if test -n "$MKC_SHOW_CACHED" || test -z "$cached"; then
+    if test "$MKC_SHOW_CACHED" = 1 || test -z "$cached"; then
 	printf "$@"
     fi
 }
