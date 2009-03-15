@@ -1,0 +1,55 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2008 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VB \" Verbatim Begin
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKC_CHECK_HEADER 1 "Mar 15, 2009" "" ""
+.SH NAME
+mkc_check_header \- detects presense of header file.
+.SH SYNOPSIS
+.BI mkc_check_header " <header>"
+.br
+.BI mkc_check_header " -h|--help"
+.SH DESCRIPTION
+.B mkc_check_header
+detects presense of header file by compiling a test program.
+As a result it prints either 1 (true) or 0 (false) to stdout.
+.SH OPTIONS
+.TP
+.B "-h|--help"
+display help message
+.SH ENVIRONMENT
+.TP
+.B CC
+Compiler. By default
+.I cc
+is used.
+.TP
+.B MKC_CACHEDIR
+Directory where temporary and cache files are created.
+If unset they are created in a current directory.
+.TP
+.B MKC_NOCACHE
+All results are cached unless MKC_NOCACHE variable is set
+non-empty value
+.TP
+.B MKC_DELETE_TMPFILES
+Temporary files are removed.
+.SH EXAMPLES
+.VB
+   mkc_check_header stdint.h
+   mkc_check_header getopt.h
+.VE
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>

@@ -17,6 +17,9 @@ BIRTHDATE=		2009-02-21
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl
 
+MAN=			mkc_check_funclib.1 mkc_check_header.1 \
+			mkc_check_sizeof.1  mkc_check_decl.1
+
 FILES=			configure.mk
 FILESDIR=		${MKFILESDIR}
 
@@ -45,6 +48,12 @@ test: configure.mk
 install-dirs:
 	${INST_DIR} ${DESTDIR}${MKFILESDIR}
 	${INST_DIR} ${DESTDIR}${BINDIR}
+.if !defined(MKMAN) || empty(MKMAN:M[Nn][Oo])
+	$(INST_DIR) ${DESTDIR}${MANDIR}/man1
+.if !defined(MKCATPAGES) || empty(MKCATPAGES:M[Nn][Oo])
+	$(INST_DIR) ${DESTDIR}${MANDIR}/cat1
+.endif
+.endif
 
 ##################################################
 

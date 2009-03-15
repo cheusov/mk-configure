@@ -1,0 +1,61 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2008 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VB \" Verbatim Begin
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKC_CHECK_SIZEOF 1 "Mar 15, 2009" "" ""
+.SH NAME
+mkc_check_sizeof \- detects a sizeof(type).
+.SH SYNOPSIS
+.BI mkc_check_sizeof " type [headers...]"
+.br
+.BI mkc_check_sizeof " -h|--help"
+.SH DESCRIPTION
+.B mkc_check_sizeof
+detects sizeof(
+.I type
+) by compiling a test program.
+mkc_check_sizeof doesn't run a generated executable
+and therefore is ready for using a cross-compiler.
+.I headers
+are #include-d.
+.SH OPTIONS
+.TP
+.B "-h|--help"
+display help message
+.SH ENVIRONMENT
+.TP
+.B CC
+Compiler. By default
+.I cc
+is used.
+.TP
+.B MKC_CACHEDIR
+Directory where temporary and cache files are created.
+If unset they are created in a current directory.
+.TP
+.B MKC_NOCACHE
+All results are cached unless MKC_NOCACHE variable is set
+non-empty value
+.TP
+.B MKC_DELETE_TMPFILES
+Temporary files are removed.
+.SH EXAMPLES
+.VB
+   mkc_check_sizeof 'void*'
+   mkc_check_sizeof long-long
+   mkc_check_sizeof size_t stdlib.h
+.VE
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>

@@ -1,0 +1,58 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2008 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VB \" Verbatim Begin
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKC_CHECK_FUNCLIB 1 "Mar 15, 2009" "" ""
+.SH NAME
+mkc_check_funclib \- detects presense of function in a library.
+.SH SYNOPSIS
+.BI mkc_check_funclib " <functionname>" " [libraries...]"
+.br
+.BI mkc_check_funclib " -h|--help"
+.SH DESCRIPTION
+.B mkc_check_funclib
+detects presense of function in a library
+by compiling and linking a test program.
+As a result it prints either 1 (true) or 0 (false) to stdout.
+.SH OPTIONS
+.TP
+.B "-h|--help"
+display help message
+.SH ENVIRONMENT
+.TP
+.B CC
+Compiler. By default
+.I cc
+is used.
+.TP
+.B MKC_CACHEDIR
+Directory where temporary and cache files are created.
+If unset they are created in a current directory.
+.TP
+.B MKC_NOCACHE
+All results are cached unless MKC_NOCACHE variable is set
+non-empty value
+.TP
+.B MKC_DELETE_TMPFILES
+Temporary files are removed.
+.SH EXAMPLES
+.VB
+   mkc_check_funclib dlopen dl
+   mkc_check_funclib dlopen
+   mkc_check_funclib strlcpy
+   mkc_check_funclib select socket
+.VE
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
