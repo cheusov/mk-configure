@@ -1,4 +1,30 @@
 ======================================================================
+Version 0.7.0, by Aleksey Cheusov, Sun, 15 Mar 2009 11:02:29 +0200
+
+  No CFLAGS+=-DHAVE_XXXX=0 anymore, if XXX is not found
+  it is not defined at all. autoconf works the same way.
+
+  mkc_check_xxx scripts:
+      - installed to bin/ directory just like normal scripts.
+
+      - if MKC_VERBOSE variable is equal to '1', verbose messages
+        are output to stderr.
+
+      - -h|--help options printing usage information.
+
+      - manual pages are created.
+
+  new variable MKC_NOCACHE, if it is set to not empty string,
+  caching is disabled.
+
+  fix in mkc_check_decl: long-long is treated as 'long long'.
+
+  MKC_SHOW_CACHED, MKC_VERBOSE, MKC_DELETE_TMPFILES, MKC_NOCACHE
+  variables: 1 - true, other values - false.
+
+  minor clean-ups in Makefile
+
+======================================================================
 Version 0.6.0, by Aleksey Cheusov, Sun,  8 Mar 2009 19:35:13 +0200
 
   MKC_FUNCLIBS_NOAUTO.ftime.compat is replaced
