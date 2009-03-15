@@ -196,7 +196,7 @@
 #        fetching test result from the cache.
 #
 # MKC_DELETE_TMPFILES
-#        No comments.
+#        If set to 1, temporary files are removed.
 #
 # MKC_SHELL
 #        Shell interpreter for mkc_check_XXX scripts, defaults to /bin/sh
