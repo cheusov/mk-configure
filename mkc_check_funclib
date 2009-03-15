@@ -57,6 +57,10 @@ if test -n "$libs_msg"; then
 fi
 
 printme (){
+    if test -z "$MKC_VERBOSE"; then
+	return
+    fi
+
     if test "_$MKC_SHOW_CACHED" = _1 || test -z "$cached"; then
 	printf "$@"
     fi
