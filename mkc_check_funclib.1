@@ -37,6 +37,20 @@ Compiler. By default
 .I cc
 is used.
 .TP
+.B CPPFLAGS, CFLAGS
+Options passed to the compiler, for example -I for additional directories
+that contain header files.
+.TP
+.B LDFLAGS
+Options passed to the linker (compiler, set by CC variable), for example,
+-L/usr/local/lib
+.TP
+.B LDADD
+Extra libraries, for example, -lm.
+.TP
+.B MKC_VERBOSE
+Vrbose messages are output to stderr.
+.TP
 .B MKC_CACHEDIR
 Directory where temporary and cache files are created.
 If unset they are created in a current directory.
