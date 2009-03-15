@@ -24,26 +24,54 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-# usage: mkc_check_decl <define|variable|func[0-9]|type|struct> <what?> [includes...]
-
 set -e
-
-##################################################
-# initializing
 
 LC_ALL=C
 export LC_ALL
+
+##################################################
+# options
+usage (){
+    cat <<EOF
+mkc_check_decl detects presense of define, variable, function or type
+in system header files by compiling a test program.
+
+Usage: mkc_check_decl <define|variable|func[0-9]|type> <what> [includes...]
+
+Examples:
+   mkc_check_decl define __GCC__
+   mkc_check_decl define RTLD_LAZY dlfcn.h
+   mkc_check_decl variable sys_errlist errno.h
+   mkc_check_decl variable __malloc_hook malloc.h
+   mkc_check_decl func3 poll poll.h
+   mkc_check_decl func2 fgetln stdio.h
+   mkc_check_decl type mbstate_t wchar.h
+   mkc_check_decl type long-long
+EOF
+}
+
+if test $# -eq 0; then
+    usage
+    exit 1
+fi
+if test "$1" = '-h' -o "$1" = '--help'; then
+    usage
+    exit 0
+fi
+
+##################################################
+# initializing
 
 MKC_CACHEDIR=${MKC_CACHEDIR:=.}
 CC=${CC:=cc}
 
 pathpart=`echo $* | tr '/. ' ___`
 
-decltype=`echo $1 | sed 's/[0-9]//g'`
+decltype=`echo $1 | sed -e 's/[0-9]//g'`
 argscnt=`echo $1 | sed 's/[^0-9]//g'`
 shift
 
-declwhat=$1
+declwhat=`echo $1 | sed 's/-/ /'`
 shift
 
 tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
