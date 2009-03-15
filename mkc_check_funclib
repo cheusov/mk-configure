@@ -95,7 +95,7 @@ printme (){
 ##################################################
 # test
 
-if test -z "$MKC_NOCACHE" && test -f "$cache"; then
+if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
     cached=1
     printme '%s' "checking for function ${funcname}${libs_msg}... (cached) " 1>&2
     ret=`cat "$cache"`
