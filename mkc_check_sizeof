@@ -32,6 +32,33 @@ LC_ALL=C
 export LC_ALL
 
 ##################################################
+# options
+usage (){
+    cat <<EOF
+mkc_check_sizeof detects sizeof(type)
+by compiling a test program.
+mkc_check_sizeof doesn't run a generated executable
+and therefore is ready for cross-compiling.
+
+Usage: mkc_check_sizeof type [headers...]
+
+Examples:
+   mkc_check_sizeof 'void*'
+   mkc_check_sizeof long-long
+   mkc_check_sizeof size_t stdlib.h
+EOF
+}
+
+if test $# -eq 0; then
+    usage
+    exit 1
+fi
+if test "$1" = '-h' -o "$1" = '--help'; then
+    usage
+    exit 0
+fi
+
+##################################################
 # initializing
 
 type=`echo $1 | tr ' -' '  '`

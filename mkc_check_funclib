@@ -32,6 +32,32 @@ LC_ALL=C
 export LC_ALL
 
 ##################################################
+# options
+usage (){
+    cat <<EOF
+mkc_check_funclib detects presense of function in a library
+by compiling and linking a test program.
+
+Usage: mkc_check_funclib function [librarries...]
+
+Examples:
+   mkc_check_funclib dlopen dl
+   mkc_check_funclib dlopen
+   mkc_check_funclib strlcpy
+   mkc_check_funclib select socket
+EOF
+}
+
+if test $# -eq 0; then
+    usage
+    exit 1
+fi
+if test "$1" = '-h' -o "$1" = '--help'; then
+    usage
+    exit 0
+fi
+
+##################################################
 # initializing
 
 pathpart=`echo $* | tr '/. ' ___`
