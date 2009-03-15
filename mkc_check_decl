@@ -83,7 +83,7 @@ cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
 # functions
 
 printme (){
-    if test -z "$MKC_VERBOSE"; then
+    if test "$MKC_VERBOSE" != 1; then
 	return
     fi
 

@@ -73,7 +73,7 @@ tmperr=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.err
 cache=$MKC_CACHEDIR/_mkc_sizeof_${pathpart}.res
 
 printme (){
-    if test -z "$MKC_VERBOSE"; then
+    if test "$MKC_VERBOSE" != 1; then
 	return
     fi
 

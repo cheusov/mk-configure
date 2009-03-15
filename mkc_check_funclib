@@ -83,7 +83,7 @@ if test -n "$libs_msg"; then
 fi
 
 printme (){
-    if test -z "$MKC_VERBOSE"; then
+    if test "$MKC_VERBOSE" != 1; then
 	return
     fi
 
