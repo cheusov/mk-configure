@@ -1,0 +1,27 @@
+#-*-mode:  sh -*-
+MKC_CONFIG_MK=${MKC_CONFIG_MK:=mkc_config.mk}
+MKC_CONFIG_H=${MKC_CONFIG_H:=mkc_config.h}
+CC=${CC:=cc}
+MKC_CACHEDIR=${MKC_CACHEDIR:=.}
+MKC_SHELL=${MKC_SHELL:=/bin/sh}
+
+mkc_run (){
+    mkc_environ="CC='$CC' CPPFLAGS='$CPPFLAGS' CFLAGS='$CFLAGS $MKC_COMMON_DEFINES' LDFLAGS='$LDFLAGS' LDADD='$LDADD' MKC_CACHEDIR='$MKC_CACHEDIR' MKC_COMMON_HEADERS='$MKC_COMMON_HEADERS' MKC_DELETE_TMPFILES='$MKC_DELETE_TMPFILES' MKC_SHOW_CACHED='$MKC_SHOW_CACHED' MKC_NOCACHE='$MKC_NOCACHE' MKC_VERBOSE=1"
+
+    for h in $MKC_CHECK_HEADERS; do
+	h0=`echo $h | awk '{gsub(/[.\/]/, "_"); print toupper($0)}'`
+	cmd="env $mkc_environ $MKC_SHELL mkc_check_header $h"
+
+	eval HAVE_HEADER_${h0}=`eval $cmd`
+	eval echo HAVE_HEADER_${h0}='$'HAVE_HEADER_${h0}
+    done
+
+    for fl in $MKC_CHECK_FUNCLIBS; do
+	h0=`echo $fl | awk '{gsub(/:/, "_"); print toupper($0)}'`
+	h1=`echo $fl | tr ':' ' '`
+	cmd="env $mkc_environ $MKC_SHELL mkc_check_funclib $h1"
+
+	eval HAVE_FUNCLIB_${h0}=`eval $cmd`
+	eval echo HAVE_FUNCLIB_${h0}='$'HAVE_FUNCLIB_${h0}
+    done
+}

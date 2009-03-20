@@ -1,0 +1,26 @@
+#!/bin/sh
+
+MKC_COMMON_DEFINES='-D_ALL_SOURCE -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64'
+
+MKC_CONFIG_MK=mkc_config.mk
+MKC_CONFIG_H=mkc_config.h
+
+MKC_CHECK_HEADERS='
+   unistd.h
+   stdlib.h
+   sys/time.h
+   inttypes.h
+   stdint.h
+   zlib.h
+   execinfo.h
+'
+
+MKC_CHECK_FUNCLIBS='
+   crypt:crypt
+   dlopen:dl
+   gettimeofday
+   ftime:compat
+'
+
+. mkc_configure
+mkc_run
