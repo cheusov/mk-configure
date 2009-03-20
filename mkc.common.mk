@@ -1,0 +1,39 @@
+PREFIX?=	/usr/local
+BINDIR?=	${PREFIX}/bin
+DATADIR?=	${PREFIX}/share
+DOCDIR?=	${DATADIR}/doc
+FILESDIR?=	${PREFIX}/bin
+INCSDIR?=	${PREFIX}/include
+LIBDIR?=	${PREFIX}/lib
+LIBEXECDIR?=	${PREFIX}/libexec
+MANDIR?=	${PREFIX}/man
+NLSDIR?=	${DATADIR}/nls
+SBINDIR?=	${PREFIX}/sbin
+SYSCONFDIR?=	${PREFIX}/etc
+
+MKC_UID!=	id -u
+MKC_GID!=	id -g
+
+.if !empty(MKC_UID:M0)
+BINOWN=		${MKC_UID}
+MANOWN=		${MKC_UID}
+LIBOWN=		${MKC_UID}
+DOCOWN=		${MKC_UID}
+NLSOWN=		${MKC_UID}
+FILESOWN=	${MKC_UID}
+LIBOWN=		${MKC_UID}
+MANOWN=		${MKC_UID}
+BINOWN=		${MKC_UID}
+.endif
+
+.if !empty(MKC_GID:M0)
+BINOWN=		${MKC_GID}
+MANOWN=		${MKC_GID}
+LIBOWN=		${MKC_GID}
+DOCOWN=		${MKC_GID}
+NLSOWN=		${MKC_GID}
+FILESOWN=	${MKC_GID}
+LIBOWN=		${MKC_GID}
+MANOWN=		${MKC_GID}
+BINOWN=		${MKC_GID}
+.endif
