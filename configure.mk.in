@@ -296,7 +296,7 @@ SRCS   += ${MKC_SRCS}
 all : ${.OBJDIR}/.error-check
 ${.OBJDIR}/.error-check:
 	@if test -z ${MKC_ERR_MSG}; then \
-		touch $@; return 0; \
+		touch $@; exit 0; \
 	else \
-		echo ${MKC_ERR_MSG}; return 1; \
+		echo ${MKC_ERR_MSG}; exit 1; \
 	fi
