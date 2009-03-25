@@ -255,8 +255,8 @@ MKC_SRCS+=${f:C/:.*//1}.c
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
-SIZEOF.${t:S|-|_|g:S|*|P|g:C/:.*//1}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_sizeof ${t:S/:/ /g}
-MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S|-|_|g:S|*|P|g:C/:.*//1}}
+SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_sizeof ${t:S/:/ /g}
+MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
 .endfor
 
 # checking for declared #define

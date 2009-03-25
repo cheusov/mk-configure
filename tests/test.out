@@ -8,4 +8,4 @@ HAVE_FUNC3.strcpy=0
 SIZEOF.int=4
 SIZEOF.long_long=8
 SIZEOF.voidP=4
-SIZEOF.size_t=4
+SIZEOF.size_t.string_h=4
