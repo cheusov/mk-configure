@@ -37,7 +37,19 @@ all: configure.mk
 
 .PHONY: test
 test: configure.mk
-	true
+	@echo 'running tests...'; \
+	OBJDIR=${.OBJDIR}; \
+	MAKE='${MAKE}'; \
+	SRCDIR=${.CURDIR}; \
+	PATH=${.CURDIR}:$$PATH; \
+	MAKEOBJDIR=${.OBJDIR}; \
+	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR; \
+	echo $$PATH; \
+	if ${.CURDIR}/tests/test.sh > ${.OBJDIR}/_test.res && \
+	    diff -u ${.CURDIR}/tests/test.out ${.OBJDIR}/_test.res; \
+	then echo '   succeeded'; \
+	else echo '   failed'; false; \
+	fi
 
 ##################################################
 

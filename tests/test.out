@@ -1,0 +1,11 @@
+HAVE_HEADER.sys_time_h=1
+HAVE_HEADER.string_h=1
+HAVE_FUNCLIB.strcpy=0
+HAVE_FUNCLIB.sqrt.m=0
+HAVE_DEFINE.__GNUC__=1
+HAVE_FUNC2.strcmp.string_h=1
+HAVE_FUNC3.strcpy=0
+SIZEOF.int=4
+SIZEOF.long_long=8
+SIZEOF.voidP=4
+SIZEOF.size_t=4
