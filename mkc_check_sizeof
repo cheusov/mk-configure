@@ -104,8 +104,7 @@ int main ()
 }
 EOF
 
-	if "$CC" -c -o "${tmpo}" $MKC_COMMON_DEFINES \
-	    $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+	if "$CC" -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
 	then
 	    echo $sz > "$cache"
 	    ret=$sz
