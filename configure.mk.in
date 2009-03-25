@@ -28,14 +28,14 @@
 #
 #       As a result of the check bmake's variable
 #       HAVE_HEADER.header is set to either 0 or 1
-#       (tr|./|_.|g in the header).
+#       (tr|./|__|g in the header).
 #
 #       Also -DHAVE_HEADER_<HEADER>=(0 or 1)
 #       is added to CFLAGS unless MKC_NOAUTO is set to 1
 #       (tr|a-z./|A-Z__|g in the <HEADER>).
 #
 #   Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
-#   Res: HAVE_HEADER.sys.time_h = 1
+#   Res: HAVE_HEADER.sys_time_h = 1
 #        HAVE_HEADER.fcntl_h    = 1
 #        HAVE_HEADER.execinfo_h = 1
 #        CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 \
@@ -222,7 +222,7 @@ MKC_NOCACHE?=            # 1 or yes for disabling cache
 CFLAGS+=	${MKC_COMMON_DEFINES}
 
 #
-mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_COMMON_DEFINES='${MKC_COMMON_DEFINES}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
+mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS} ${MKC_COMMON_DEFINES}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
@@ -233,9 +233,9 @@ MKC_SOURCE_FUNCLIBS   ?=
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
-HAVE_HEADER.${h:S|.|_|g:S|/|.|g}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_header ${h}
-.if ${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
-MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|.|g}}
+HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_header ${h}
+.if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 .endif
 .endfor
 
@@ -255,8 +255,8 @@ MKC_SRCS+=${f:C/:.*//1}.c
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
-SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_sizeof ${t:S/:/ /g}
-MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S| |_|g:S|*|P|g:C/:.*//1}}
+SIZEOF.${t:S|-|_|g:S|*|P|g:C/:.*//1}   !=   env ${mkc.environ} ${MKC_SHELL} mkc_check_sizeof ${t:S/:/ /g}
+MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:C/:.*//1:tu}=${SIZEOF.${t:S|-|_|g:S|*|P|g:C/:.*//1}}
 .endfor
 
 # checking for declared #define
