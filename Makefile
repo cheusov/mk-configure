@@ -45,8 +45,7 @@ test: configure.mk
 	MAKEOBJDIR=${.OBJDIR}; \
 	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR; \
 	echo $$PATH; \
-	if ${.CURDIR}/tests/test.sh > ${.OBJDIR}/_test.res && \
-	    diff -u ${.CURDIR}/tests/test.out ${.OBJDIR}/_test.res; \
+	if ${.CURDIR}/tests/test.sh; \
 	then echo '   succeeded'; \
 	else echo '   failed'; false; \
 	fi
