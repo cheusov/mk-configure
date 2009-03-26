@@ -1,5 +1,8 @@
 MKC_COMMON_HEADERS+=	string.h
 
+MKC_SOURCE_FUNCLIBS+=	superfunc1
+MKC_SOURCE_FUNCLIBS+=	superfunc2:superlib2
+
 MKC_CHECK_HEADERS+=	sys/time.h string.h
 MKC_CHECK_HEADERS+=	bad_dir/bad_header.h bad_header.h
 
@@ -28,8 +31,9 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_DEFINE.__BAD_DEFINE__ \
 	HAVE_FUNC1.bad_func HAVE_FUNC1.bad_func.bad_header \
 	SIZEOF.bad_type SIZEOF.bad_type.bad_header_h \
+	HAVE_FUNCLIB.superfunc1 HAVE_FUNCLIB.superfunc2.superlib2 \
 	\
-	MKC_CFLAGS MIKC_SRCS MKC_LDADD
+	MKC_CFLAGS MKC_SRCS MKC_LDADD
 
 all:
 .for i in ${vars}

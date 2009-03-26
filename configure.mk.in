@@ -229,6 +229,7 @@ mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS} ${MKC_COMMON_DEFINES}' CFLAGS='${CF
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
+_MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 #MKC_CHECK_HEADERS     ?=
 #MKC_CHECK_SIZEOF      ?=
 #MKC_CHECK_DEFINES     ?=
@@ -251,7 +252,7 @@ HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_SHELL} mkc_check_funclib $
 MKC_LDADD+=-l${f:C/^.*://1}
 .endif
 .endif
-.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}} && !empty(MKC_SOURCE_FUNCLIBS:M${f:C/:.*//1})
+.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
 MKC_SRCS+=${f:C/:.*//1}.c
 .endif
 .endfor
