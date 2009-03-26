@@ -1,8 +1,9 @@
 ##################################################
 
-PREFIX?=/usr/local
-BINDIR?=${PREFIX}/bin
-MKFILESDIR?=${PREFIX}/share/mk
+PREFIX?=		/usr/local
+BINDIR?=		${PREFIX}/bin
+MANDIR?=		${PREFIX}/man
+MKFILESDIR?=		${PREFIX}/share/mk
 
 INST_DIR?=		${INSTALL} -d
 
