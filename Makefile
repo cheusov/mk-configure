@@ -48,7 +48,6 @@ test: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
 	MAKEOBJDIR=${.OBJDIR}; \
 	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR; \
-	echo $$PATH; \
 	if ${.CURDIR}/tests/test.sh; \
 	then echo '   succeeded'; \
 	else echo '   failed'; false; \
