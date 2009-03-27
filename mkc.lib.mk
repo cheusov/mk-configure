@@ -1,7 +1,7 @@
 .include <mkc.common.mk>
 
 .if !defined(NOMKCBSD) || empty(NOMKCBSD:M[Yy][Ee][Ss])
-.include <bsd.prog.mk>
+.include <bsd.lib.mk>
 .else
-.include <prog.mk>
+.include <lib.mk>
 .endif
