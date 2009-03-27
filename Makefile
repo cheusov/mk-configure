@@ -11,7 +11,7 @@ INST_DIR?=		${INSTALL} -d
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.7.0
+VERSION=		0.8.0
 
 BIRTHDATE=		2009-02-21
 
@@ -21,7 +21,10 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1
 
-FILES=			configure.mk
+FILES=			configure.mk mkc.configure.mk mkc.files.mk \
+			mkc.info.mk mkc.lib.mk mkc.man.mk mkc.prog.mk \
+			mkc.subdir.mk _mkc.common.mk
+
 FILESDIR=		${MKFILESDIR}
 
 CLEANFILES+=		configure.mk

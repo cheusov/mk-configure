@@ -1,4 +1,4 @@
-.include <mkc.common.mk>
+.include <_mkc.common.mk>
 
 .if !defined(NOMKCBSD) || empty(NOMKCBSD:M[Yy][Ee][Ss])
 .include <bsd.lib.mk>

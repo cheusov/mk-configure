@@ -299,6 +299,8 @@ SRCS   += ${MKC_SRCS}
 .endif
 
 # error check
+CLEANFILES+=	.error-check
+
 all : ${.OBJDIR}/.error-check
 ${.OBJDIR}/.error-check:
 	@if test -z ${MKC_ERR_MSG}; then \
