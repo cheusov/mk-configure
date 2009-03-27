@@ -11,7 +11,7 @@ INST_DIR?=		${INSTALL} -d
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.8.0
+VERSION=		0.8beta1
 
 BIRTHDATE=		2009-02-21
 
