@@ -58,23 +58,7 @@ fi
 
 pathpart=`echo $1 | tr /. __`
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
-
-tmpc=$MKC_CACHEDIR/_mkc_header_${pathpart}.c
-tmpo=$MKC_CACHEDIR/_mkc_header_${pathpart}.o
-tmperr=$MKC_CACHEDIR/_mkc_header_${pathpart}.err
-cache=$MKC_CACHEDIR/_mkc_header_${pathpart}.res
-
-printme (){
-    if test "$MKC_VERBOSE" != 1; then
-	return
-    fi
-
-    if test "$MKC_SHOW_CACHED" = 1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
+. mkc_check_common.sh
 
 ##################################################
 # test
@@ -109,10 +93,7 @@ fi
 ##################################################
 # clean-ups
 
-rm -f "$tmpo"
-if test "$MKC_DELETE_TMPFILES" = 1; then
-    rm -f "$tmpc" "$tmperr"
-fi
+cleanup
 
 ##################################################
 # finishing

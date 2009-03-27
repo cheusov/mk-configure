@@ -65,13 +65,7 @@ pathpart=`echo $* | tr '/. ' ___`
 funcname=$1
 shift
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
-
-tmpc=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.c
-tmpexe=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.exe
-tmperr=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.err
-cache=$MKC_CACHEDIR/_mkc_funclib_${pathpart}.res
+. mkc_check_common.sh
 
 for i in "$@"; do
     LDADD="$LDADD -l$i"
@@ -81,16 +75,6 @@ done
 if test -n "$libs_msg"; then
     libs_msg=" ($libs_msg )"
 fi
-
-printme (){
-    if test "$MKC_VERBOSE" != 1; then
-	return
-    fi
-
-    if test "$MKC_SHOW_CACHED" = 1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
 
 ##################################################
 # test
@@ -123,10 +107,7 @@ fi
 ##################################################
 # clean-ups
 
-rm -f "$tmpexe"
-if test "$MKC_DELETE_TMPFILES" = 1; then
-    rm -f "$tmpc" "$tmperr"
-fi
+cleanup
 
 ##################################################
 # finishing

@@ -62,9 +62,6 @@ fi
 ##################################################
 # initializing
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
-
 pathpart=`echo $* | tr '/. ' ___`
 
 decltype=`echo $1 | sed -e 's/[0-9]//g'`
@@ -74,25 +71,11 @@ shift
 declwhat=`echo $1 | sed 's/-/ /'`
 shift
 
-tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
-tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
-tmperr=$MKC_CACHEDIR/_mkc_${pathpart}.err
-cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
+. mkc_check_common.sh
 
 ##################################################
 # functions
 
-printme (){
-    if test "$MKC_VERBOSE" != 1; then
-	return
-    fi
-
-    if test "$MKC_SHOW_CACHED" = 1 || test -z "$cached"; then
-	printf "$@"
-    fi
-}
-
-##############################
 get_includes (){
     for i in $MKC_COMMON_HEADERS "$@"; do
 	echo "#include <$i>"
@@ -222,10 +205,7 @@ fi
 ##################################################
 # clean-ups
 
-rm -f "$tmpo"
-if test "$MKC_DELETE_TMPFILES" = 1; then
-    rm -f "$tmpc" "$tmperr"
-fi
+cleanup
 
 ##################################################
 # finishing
