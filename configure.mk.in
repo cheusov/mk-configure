@@ -246,14 +246,14 @@ MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS}
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} ${MKC_SHELL} mkc_check_funclib ${f:S/:/ /g}
-.if !defined(HAVE_FUNCLIB.${f:C/:.*//1})
-HAVE_FUNCLIB.${f:C/:.*//1}!=	env ${mkc.environ} ${MKC_SHELL} mkc_check_funclib ${f:C/:.*//1}
-.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}}
-MKC_LDADD+=-l${f:C/^.*://1}
+.if !defined(HAVE_FUNCLIB.${f:C/:.*//})
+HAVE_FUNCLIB.${f:C/:.*//}!=	env ${mkc.environ} ${MKC_SHELL} mkc_check_funclib ${f:C/:.*//}
+.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
+MKC_LDADD+=-l${f:C/^.*://}
 .endif
 .endif
-.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//1}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
-MKC_SRCS+=${f:C/:.*//1}.c
+.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
+MKC_SRCS+=${f:C/:.*//}.c
 .endif
 .endfor
 
