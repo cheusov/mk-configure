@@ -23,7 +23,8 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.info.mk mkc.lib.mk mkc.man.mk mkc.prog.mk \
-			mkc.subdir.mk _mkc.common.mk
+			mkc.subdir.mk _mkc.common.mk mkc_check_common.sh
+FILESDIR_mkc_check_common.sh=	${BINDIR}
 
 FILESDIR=		${MKFILESDIR}
 
