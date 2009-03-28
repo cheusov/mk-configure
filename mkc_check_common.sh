@@ -7,6 +7,7 @@ CC=${CC:=cc}
 tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
 tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
 tmperr=$MKC_CACHEDIR/_mkc_${pathpart}.err
+tmpexe=$MKC_CACHEDIR/_mkc_${pathpart}.exe
 cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
 
 printme (){
