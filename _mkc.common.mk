@@ -65,18 +65,17 @@ NLSGRP?=	${_MKC_GID}
 .endif # NOMKC_PERMS
 
 ######################################################################
-.if !defined(NOMKC_DEPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
+.if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
 
-mkc_printdpdata:
-	@echo ${.OBJDIR} ${SHLIB_MAJOR:?.so:.a}
+mkc_printobjdir:
+	@echo ${.OBJDIR}
 
-.for _lib _dir in ${MKC_DPLIBS}
-MKCDPDATA.${_lib}!= cd ${_dir} && ${MAKE} mkc_printdpdata
-LDADD+=		-L${MKCDPDATA.${_lib}:[1]} -l${_lib}
-DPADD+=		${MKCDPDATA.${_lib}:[1]}/lib${_lib}${MKCDPDATA.${_lib}:[2]}
+.for _dir in ${DPLIBDIRS}
+DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
+LDADD+=				-L${DPLIBDIRS.${_dir}}
 .endfor
 
-.endif # NOMKC_DEPLIBS
+.endif # NOMKC_DPLIBS
 
 ######################################################################
 .endif # NOMKC_ATALL
