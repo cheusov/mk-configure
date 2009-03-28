@@ -22,9 +22,11 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-.if !defined(NOMKCCOMMON) || empty(NOMKCCOMMON:M[Yy][Ee][Ss])
+######################################################################
+.if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
-.if !defined(NOMKCPATHS) || empty(NOMKCPATHS:M[Yy][Ee][Ss])
+######################################################################
+.if !defined(NOMKC_PATHS) || empty(NOMKC_PATHS:M[Yy][Ee][Ss])
 # Default PATHs
 PREFIX?=		/usr/local
 BINDIR?=		${PREFIX}/bin
@@ -35,9 +37,10 @@ LIBEXECDIR?=		${PREFIX}/libexec
 INCSDIR?=		${PREFIX}/include
 DATADIR?=		${PREFIX}/share
 SYSCONFDIR?=		${PREFIX}/etc
-.endif # nomkcpaths
+.endif # NOMKC_PATHS
 
-.if !defined(NOMKCOWN) || empty(NOMKCOWN:M[Yy][Ee][Ss])
+######################################################################
+.if !defined(NOMKC_PERMS) || empty(NOMKC_PERMS:M[Yy][Ee][Ss])
 # Default owner and group
 _MKC_UID!=	id -u
 _MKC_GID!=	id -g
@@ -59,6 +62,21 @@ DOCGRP?=	${_MKC_GID}
 
 NLSOWN?=	${_MKC_UID}
 NLSGRP?=	${_MKC_GID}
-.endif # nomkcown
+.endif # NOMKC_PERMS
 
-.endif # nomkccommon
+######################################################################
+.if !defined(NOMKC_DEPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
+
+mkc_printdpdata:
+	@echo ${.OBJDIR} ${SHLIB_MAJOR:?.so:.a}
+
+.for _lib _dir in ${MKCDPLIBS}
+MKCDPDATA.${_lib}!= cd ${_dir} && ${MAKE} mkc_printdpdata
+LDADD+=		-L${MKCDPDATA.${_lib}:[1]} -l${_lib}
+DPADD+=		${MKCDPDATA.${_lib}:[1]}/lib${_lib}${MKCDPDATA.${_lib}:[2]}
+.endfor
+
+.endif # NOMKC_DEPLIBS
+
+######################################################################
+.endif # NOMKC_ATALL
