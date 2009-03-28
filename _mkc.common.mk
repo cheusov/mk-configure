@@ -71,11 +71,23 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 .for _dir in ${DPLIBDIRS}
+.ifndef DPLIBDIRS.${_dir}
 DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
 LDADD+=				-L${DPLIBDIRS.${_dir}}
+.endif
 .endfor
 
 .endif # NOMKC_DPLIBS
+
+######################################################################
+.if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
+
+.PHONY: mkc-install-includes
+install : mkc-install-includes
+mkc-install-includes:
+	${MAKE} includes
+
+.endif # NOMKC_INCS
 
 ######################################################################
 .endif # NOMKC_ATALL
