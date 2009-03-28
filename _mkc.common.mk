@@ -70,7 +70,7 @@ NLSGRP?=	${_MKC_GID}
 mkc_printdpdata:
 	@echo ${.OBJDIR} ${SHLIB_MAJOR:?.so:.a}
 
-.for _lib _dir in ${MKCDPLIBS}
+.for _lib _dir in ${MKC_DPLIBS}
 MKCDPDATA.${_lib}!= cd ${_dir} && ${MAKE} mkc_printdpdata
 LDADD+=		-L${MKCDPDATA.${_lib}:[1]} -l${_lib}
 DPADD+=		${MKCDPDATA.${_lib}:[1]}/lib${_lib}${MKCDPDATA.${_lib}:[2]}
