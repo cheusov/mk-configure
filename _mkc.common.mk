@@ -45,6 +45,7 @@ SYSCONFDIR?=		${PREFIX}/etc
 _MKC_UID!=	id -u
 _MKC_GID!=	id -g
 
+.if ${_MKC_UID} != 0
 MANOWN?=	${_MKC_UID}
 MANGRP?=	${_MKC_GID}
 
@@ -62,6 +63,8 @@ DOCGRP?=	${_MKC_GID}
 
 NLSOWN?=	${_MKC_UID}
 NLSGRP?=	${_MKC_GID}
+.endif
+
 .endif # NOMKC_PERMS
 
 ######################################################################
@@ -82,10 +85,13 @@ LDADD+=				-L${DPLIBDIRS.${_dir}}
 ######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
 
-.PHONY: mkc-install-includes
-install : mkc-install-includes
-mkc-install-includes:
-	${MAKE} includes
+.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+realinstall : includes
+.else
+#.PHONY : mkc-install-includes
+#install : mkc-install-includes
+#	${INSTALL_DATA}
+.endif
 
 .endif # NOMKC_INCS
 
