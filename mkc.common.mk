@@ -37,7 +37,7 @@ LIBEXECDIR?=		${PREFIX}/libexec
 INCSDIR?=		${PREFIX}/include
 DATADIR?=		${PREFIX}/share
 SYSCONFDIR?=		${PREFIX}/etc
-FILES?=			${PREFIX}/bin
+FILESDIR?=		${PREFIX}/bin
 .endif # NOMKC_PATHS
 
 ######################################################################
@@ -86,7 +86,7 @@ LDFLAGS+=			-L${DPLIBDIRS.${_dir}}
 ######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
 
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+.if !defined(MKC_NOBSDMK) || !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 realinstall : includes
 .else
 #.PHONY : mkc-install-includes
@@ -101,31 +101,31 @@ realinstall : includes
 # install-dirs target
 
 .ifdef INCS
-INSTALLDIRS+=	${DESTDIR}${INCSDIR}
+_MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
 .endif
 
 .ifdef PROG
-INSTALLDIRS+=	${DESTDIR}${BINDIR}
+_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
 .endif
 
 .ifdef SCRIPTS
-INSTALLDIRS+=	${DESTDIR}${BINDIR}
+_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
 .endif
 
 .ifdef FILES
-INSTALLDIRS+=	${DESTDIR}${FILESDIR}
+_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR}
 .endif
 
 .ifdef LIB
-INSTALLDIRS+=	${DESTDIR}${LIBDIR}
+_MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 .endif
 
 .if defined(MAN)
 .if !defined(MKMAN) || empty(MKMAN:M[Nn][Oo])
 .if !defined(NOMAN) || empty(NOMAN:M[Yy][Ee][Ss])
-INSTALLDIRS+=	${DESTDIR}${MANDIR}/man1
+_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man1
 .if !defined(MKCATPAGES) || empty(MKCATPAGES:M[Nn][Oo])
-INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
+_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
 .endif
 .endif
 .endif
@@ -133,7 +133,7 @@ INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
 
 .PHONY: install-dirs
 install-dirs:
-.for d in ${INSTALLDIRS}
+.for d in ${_MKC_INSTALLDIRS}
 	${INSTALL} -d ${d}
 .endfor
 
