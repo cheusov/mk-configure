@@ -77,7 +77,7 @@ mkc_printobjdir:
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir}
 DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
-LDADD+=				-L${DPLIBDIRS.${_dir}}
+LDFLAGS+=			-L${DPLIBDIRS.${_dir}}
 .endif
 .endfor
 
