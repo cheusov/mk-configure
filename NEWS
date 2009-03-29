@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.8.0, by Aleksey Cheusov, Sun, 29 Mar 2009 15:57:30 +0300
+Version 0.9.0, by Aleksey Cheusov, Sun, 29 Mar 2009 16:53:57 +0300
 
   Huge amount of changes were made since previous release.  Now
   mk-configure provides a number of mkc.*.mk scripts working on top of
