@@ -1,0 +1,19 @@
+.\" Written by by Aleksey Cheusov (vle@gmx.net)
+.\" ------------------------------------------------------------------
+.TH HELLO_WORLD 1 "Mar 29, 2009" "" ""
+.SH NAME
+hello\_world \- hello application
+.SH SYNOPSIS
+.B "hello_world"
+.br
+.SH DESCRIPTION
+.B hello\_world
+outputs hello world message to stdout
+
+.SH "CONFIGURATION FILE"
+.TP
+The configuration file should be here
+.I @sysconfdir@/hello_world.conf
+but it is not used.
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
