@@ -1,3 +1,6 @@
+####################################################################
+# VERY large autoconfiguration part
+
 MKC_COMMON_HEADERS=	unistd.h stdlib.h
 MKC_COMMON_DEFINES=	-D_ALL_SOURCE -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
 
@@ -40,10 +43,12 @@ MKC_CHECK_SIZEOF+=	size_t:string.h
 
 MKC_CHECK_SIZEOF+=	off_t:sys/types.h
 
-.include <bsd.own.mk>
-.include "configure.mk"
+.include <mkc.configure.mk>
 
-.if !${HAVE_HEADER.sys.time_h}
+####################################################################
+# Analysing checks results
+
+.if !${HAVE_HEADER.sys_time_h}
 MKC_ERR_MSG+= "Really?"
 .endif
 
@@ -75,6 +80,9 @@ LIBC_SO_FN=	/lib/libc.so.${n}
 CFLAGS+=	-DLIBC_SO='"${LIBC_SO_FN}"'
 .endif
 
+####################################################################
 # your real code here
+PROG=		mega_prog
 
-.include <bsd.prog.mk>
+####################################################################
+.include <mkc.prog.mk>
