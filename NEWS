@@ -1,4 +1,51 @@
 ======================================================================
+Version 0.8.0, by Aleksey Cheusov, Sun, 29 Mar 2009 15:57:30 +0300
+
+  Huge amount of changes were made since previous release.  Now
+  mk-configure provides a number of mkc.*.mk scripts working on top of
+  pkgsrc's mk files or Simon Gerraty's mk-files and therefore provides
+  a replacement not only for GNU autoconf but for GNU automake too.
+  It makes sense to reread README file.
+  Lots of new information is there.
+
+  Lots of examples (yes, hello_worlds applications :-) ) were created
+  in examples/ subdirectory.
+
+  Lots of new mkc.*.mk files were added. They work on top of bsd.*.mk
+  files and provide new functions. See README.
+
+  Regression tests were added. Thanks to them a number of bugs were
+  detected and fixed.
+
+  Fixes in configure.mk:
+     - s/return/exit/ in ${.OBJDIR}/.error-check section.
+       This bug is seen under Linux/bash.
+
+     - bmake's variable SIZEOF.long_long was not set correctly
+       (long-long din't work)
+
+     - MKC_CHECK_SIZEOF+=type:header.h
+       bmake's variable SIZEOF.<type>.<header_h> is set
+       instead of plain SIZEOF.<type>
+
+     - MKC_CHECK_HEADERS += dir/hdr.h
+       bmake's variable: s/HAVE_HEADER.dir.hdr_h/HAVE_HEADER.dir_hdr_h/
+       (`.' vs. `_')
+       I hope this is a last change in configure.mk's API.
+
+  My own mkc.intexts.mk bmake module (mk file).
+
+  configure.mk:
+    If CHECK_SIZEOF_xxx check fails, MKC_CFLAGS is not changed.  Only
+    sucessful data type sizes are registered in MKC_CFLAGS and CFLAGS.
+
+  mkc_check_decl, mkc_check_sizeof: they don't use MKC_COMMON_DEFINES
+  environment enymore, everything should be passed through CFLAGS and
+  CPPFLAGS.
+
+  MKC_SHELL is currently disabled
+
+======================================================================
 Version 0.7.0, by Aleksey Cheusov, Sun, 15 Mar 2009 11:02:29 +0200
 
   No CFLAGS+=-DHAVE_XXXX=0 anymore, if XXX is not found
