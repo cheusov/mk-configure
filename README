@@ -2,11 +2,14 @@
 WHAT IS MK-CONFIGURE?
 
 mk-configure is a lightweight replacement for GNU autotools, written
-in and for bmake (portable version of NetBSD make).
+in and for bmake (portable version of NetBSD make).  FreeBSD and
+OpenBSD make are not good. They are incompatible with NetBSD
+bmake. Also NetBSD bmake is more functional. GNU make is not good too,
+it is COMPLETELY incompatible with NetBSD make.
 
-It consists of a number of Mk files written for bmake and a a number
-of standalone programs which should be installed to user's host for
-configuring and building mk-configure based software.
+mk-configure consists of a number of Mk files written for bmake and a
+a number of standalone programs which should be installed to user's
+host for configuring and building mk-configure based software.
 
 -------------------------------------------------------------------------
 HOW TO USE MK-CONFIGURE?
