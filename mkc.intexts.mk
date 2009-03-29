@@ -36,13 +36,13 @@ CLEANFILES+=	${INSCRIPTS} ${INFILES}
 .for i in ${INFILES}
 ${i} : ${i}.in
 	sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
-	chmod ${NONBINMODE} ${.TARGET}
+	chmod 0644 ${.TARGET}
 .endfor
 
 .for i in ${INSCRIPTS}
 ${i} : ${i}.in
 	sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
-	chmod ${BINMODE} ${.TARGET}
+	chmod 0755 ${.TARGET}
 .endfor
 
 all : ${INSCRIPTS} ${INFILES}
