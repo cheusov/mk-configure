@@ -119,8 +119,14 @@ WHAT DOES MK-CONFIGURE PROVIDES?
   particular library, defines, sizeof of data types. See documentation
   inside configure.mk file. Also see examples/ projects.
 
+- mkc.common.mk script is a place where all mkc.*.mk additions and
+  overrides (over bsd.*.mk) are implemented. If you want to use
+  bsd.xxx.mk file for which there are no mkc.xxx.mk analogs, make sure
+  you .include mkc.common.mk before it.
+
 - Standalone full-functional mkc_check_{funclib,header,sizeof,decl}
-  programs that can be used without bmake. Read appropriate man pages.
+  programs that can be used without bmake and without configure.mk.
+  Read appropriate man pages.
 
 -------------------------------------------------------------------------
 DOCUMENTATION:
