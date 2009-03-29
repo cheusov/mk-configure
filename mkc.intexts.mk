@@ -24,6 +24,11 @@
 
 ######################################################################
 
+# Given a list of files in INFILES or INSCRIPTS mkc.intexts.mk
+# generates them from appropriate *.in files replacing @prefix@,
+# @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ with real
+# ${PREFIX}, ${SYSCONFDIR} etc. See examples/ projects.
+
 INTEXTS_SED+=	-e 's,@sysconfdir@,${SYSCONFDIR},g'
 INTEXTS_SED+=	-e 's,@libdir@,${LIBDIR},g'
 INTEXTS_SED+=	-e 's,@prefix@,${PREFIX},g'
