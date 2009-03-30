@@ -19,6 +19,8 @@
  * will be copied.  Always NUL terminates (unless siz == 0).
  * Returns strlen(src); if retval >= siz, truncation occurred.
  */
+#include <string.h>
+
 size_t
 strlcpy(char *dst, const char *src, size_t siz)
 {
