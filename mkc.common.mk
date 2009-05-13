@@ -71,9 +71,6 @@ NLSGRP?=	${_MKC_GID}
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
 
-mkc_printobjdir:
-	@echo ${.OBJDIR}
-
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir}
 DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
@@ -138,5 +135,15 @@ install-dirs:
 .endfor
 
 ######################################################################
+# general purpose targets
+.PHONY : print-values
+print-values :
+.for v in ${VARS}
+	@printf "%s=%s\n" ${v} ${${v}:Q}
+.endfor
+
+.PHONY : mkc_printobjdir
+mkc_printobjdir:
+	@echo ${.OBJDIR}
 
 .endif # NOMKC_ATALL
