@@ -35,6 +35,6 @@
 install-dirs:
 .for d in ${SUBDIR}
 	if test "${d}" != .WAIT; then \
-		cd "${d}" && ${MAKE} ${MAKEFLAGS} install-dirs; \
+		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} install-dirs; \
 	fi
 .endfor
