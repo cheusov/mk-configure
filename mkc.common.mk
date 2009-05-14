@@ -74,9 +74,11 @@ NLSGRP?=	${_MKC_GID}
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir}
 DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
-LDFLAGS+=			-L${DPLIBDIRS.${_dir}}
+LDADD+=			-L${DPLIBDIRS.${_dir}}
 .endif
 .endfor
+
+LDADD+=			${DPLIBS}
 
 .endif # NOMKC_DPLIBS
 
@@ -151,5 +153,7 @@ print-values :
 .PHONY : mkc_printobjdir
 mkc_printobjdir:
 	@echo ${.OBJDIR}
+
+######################################################################
 
 .endif # NOMKC_ATALL
