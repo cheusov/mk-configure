@@ -36,10 +36,11 @@ usage (){
 mkc_check_decl detects presense of define, variable, function or type
 in system header files by compiling a test program.
 
-Usage: mkc_check_decl <define|variable|func[0-9]|type> <what> [includes...]
+Usage:
+ mkc_check_decl <define|variable|func[0-9]|type|member> <what> [includes...]
 
 Examples:
-   mkc_check_decl define __GCC__
+   mkc_check_decl define __GNUC__
    mkc_check_decl define RTLD_LAZY dlfcn.h
    mkc_check_decl variable sys_errlist errno.h
    mkc_check_decl variable __malloc_hook malloc.h
@@ -47,6 +48,8 @@ Examples:
    mkc_check_decl func2 fgetln stdio.h
    mkc_check_decl type mbstate_t wchar.h
    mkc_check_decl type long-long
+   mkc_check_decl member tm.tm_isdst time.h
+   mkc_check_decl member ifreq.ifr_addr.sa_len net/if.h
 EOF
 }
 
@@ -169,6 +172,24 @@ BEGIN {
 ' >> "$tmpc"
 
     printf ');\n}\n' >> "$tmpc"
+
+    #
+    compile
+}
+
+##############################
+is_member (){
+    get_includes "$@" > "$tmpc"
+
+    type_t=`echo $declwhat | sed 's/[.].*$//'`
+    member=`echo $declwhat | sed 's/^[^.]*[.]//'`
+    cat >> "$tmpc" <<EOF
+int main ()
+{
+   struct $type_t var;
+   return sizeof (var.$member);
+}
+EOF
 
     #
     compile

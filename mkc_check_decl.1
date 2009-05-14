@@ -18,14 +18,21 @@
 .SH NAME
 mkc_check_decl \- checks for define, function, variable or type.
 .SH SYNOPSIS
-.BI mkc_check_decl " <define|variable|func[0-9]|type>" " <what>" " [includes...]"
+.BI mkc_check_decl " <check_type> <what> [includes...]"
 .br
 .BI mkc_check_decl " -h|--help"
 .SH DESCRIPTION
+.I check_type
+is either
+.IR " define" , " variable" , " func[0-9]" , " type " or " member" .
+Depending on its value
 .B mkc_check_decl
-detects presense of define, variable, function or type
-in system header files by compiling a test program.
-As a result it prints either 1 (true) or 0 (false) to stdout.
+checks for define, variable, function with specified number
+of arguments, type or a member of structure 
+in a specified header files
+.I includes
+by compiling a test program.
+As a result it prints either 1 (success) or 0 (failure) to stdout.
 .SH OPTIONS
 .TP
 .B "-h|--help"
@@ -63,7 +70,7 @@ to 1.
 If set to 1, temporary files are removed.
 .SH EXAMPLES
 .VB
-   mkc_check_decl define __GCC__
+   mkc_check_decl define __GNUC__
    mkc_check_decl define RTLD_LAZY dlfcn.h
    mkc_check_decl variable sys_errlist errno.h
    mkc_check_decl variable __malloc_hook malloc.h
@@ -71,6 +78,8 @@ If set to 1, temporary files are removed.
    mkc_check_decl func2 fgetln stdio.h
    mkc_check_decl type mbstate_t wchar.h
    mkc_check_decl type long-long
+   mkc_check_decl member tm.tm_isdst time.h
+   mkc_check_decl member ifreq.ifr_addr.sa_len net/if.h
 .VE
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
