@@ -1,3 +1,10 @@
+MKC_COMMON_DEFINES.NetBSD=	-DSYSTEM_NetBSD
+MKC_COMMON_DEFINES.FreeBSD=	-DSYSTEM_FreeBSD
+MKC_COMMON_DEFINES.OpenBSD=	-DSYSTEM_OpenBSD
+MKC_COMMON_DEFINES.SunOS=	-DSYSTEM_SunOS
+MKC_COMMON_DEFINES.Linux=	-DSYSTEM_Linux
+MKC_COMMON_DEFINES=		-DMKC_COMMON_DEFINES_WORKS_FINE
+
 MKC_COMMON_HEADERS+=	string.h
 
 MKC_SOURCE_FUNCLIBS+=	superfunc1
@@ -35,9 +42,14 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	\
 	MKC_CFLAGS MKC_SRCS MKC_LDADD
 
+.include "./configure.mk"
+
 all:
 .for i in ${vars}
 	@echo ${i}=${${i}} | sed '/SIZEOF/ s|[0-9][0-9]*|n|g'
 .endfor
-
-.include "./configure.mk"
+	@echo ''
+	@printf "%s\n" "${CPPFLAGS}" | \
+		sed "s/^.*-DSYSTEM_`uname -s`.*$$/KNOWN_SYSTEM/"
+	@printf "%s\n" "${CPPFLAGS}" | \
+		sed 's/^.*\(MKC_COMMON_DEFINES_WORKS_FINE\).*$$/\1/'
