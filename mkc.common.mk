@@ -138,7 +138,9 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
 
 .PHONY: install-dirs
 install-dirs:
-	${INSTALL} -d ${_MKC_INSTALLDIRS:O:u}
+.for d in ${_MKC_INSTALLDIRS:O:u}
+	${INSTALL} -d "${d}"
+.endfor
 
 ######################################################################
 # general purpose targets
