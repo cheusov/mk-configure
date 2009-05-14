@@ -97,23 +97,29 @@ realinstall : includes
 
 # install-dirs target
 
-.ifdef INCS
+.if defined(INCS)
 _MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
 .endif
 
-.ifdef PROG
+.if defined(PROG)
 _MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
 .endif
 
-.ifdef SCRIPTS
-_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
+.if defined(SCRIPTS)
+_MKC_INSTALLDIRS+=	${DESTDIR}${SCRIPTSDIR}
 .endif
 
-.ifdef FILES
+.if defined(FILES)
+.for i in ${FILES}
+.if defined(FILESDIR_${i})
+_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR_${i}}
+.else
 _MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR}
 .endif
+.endfor
+.endif
 
-.ifdef LIB
+.if defined(LIB)
 _MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 .endif
 
