@@ -86,7 +86,7 @@
 #       As a result of the check bmake's variable
 #       HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
 #       is set to either 0 or 1.
-#       (tr|./|_.|g in the <header>).
+#       (tr|./|__|g in the <header>).
 #
 #       Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
 #       or   -DHAVE_DEFINE_<DEFINE>=1
@@ -112,7 +112,7 @@
 #       As a result of the check bmake's variable
 #       HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
 #       is set to either 0 or 1
-#       (tr|./|_.|g in the <header>).
+#       (tr|./|__|g in the <header>).
 #
 #       Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
 #       or   -DHAVE_DEFINE_<VARIABLE>=1
@@ -154,7 +154,7 @@
 #       As a result of the check bmake's variable
 #       HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
 #       is set to either 0 or 1
-#       (tr|./|_.|g in the <header>).
+#       (tr|./|__|g in the <header>).
 #
 #       Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
 #       or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1)
@@ -305,17 +305,17 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEO
 
 # checking for declared #define
 .for d in ${MKC_CHECK_DEFINES}
-HAVE_DEFINE.${d:S/./_/g:S/:/./g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
-.if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g}}
-MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=1
+HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
+.if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS}
-HAVE_VAR.${d:S/./_/g:S/:/./g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
-.if ${HAVE_VAR.${d:S/./_/g:S/:/./g}}
-MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=1
+HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
+.if ${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
@@ -330,8 +330,8 @@ MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_CHECK_FUNCS${n}}
-HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|.|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
-.if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|.|g}}
+HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
+.if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
