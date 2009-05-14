@@ -102,6 +102,10 @@
 #        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
 #                  -DHAVE_DEFINE___GNUC__=1
 #
+# MKC_CHECK_DEFINES.<SYSTEM>
+#       The same as MKC_CHECK_DEFINES but only
+#       for SYSTEM operating system (uname -s)
+#
 # MKC_CHECK_VARS
 #       List of variable:header to be checked. <header> part is optional.
 #       
@@ -120,9 +124,33 @@
 #   Res: HAVE_VAR.sys_errlist.errno_h = 1
 #        CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
 #
+# MKC_CHECK_MEMBERS
+#       List of structure.member:header to be checked.
+#            <header> part is optional.
+#
+#       As a result of the check bmake's variable
+#       HAVE_MEMBER.<structure>_<member>.<header>
+#            (or HAVE_MEMBER.<structure>_<member>)
+#       is set to either 0 or 1 depending on the result
+#       (tr|./|__|g in the <header>).
+#
+#       Also -DHAVE_MEMBER_<STRUCTURE>_<MEMBER>_<HEADER>=1
+#       (or   -DHAVE_MEMBER_<STRUCTURE>_<MEMBER>=1)
+#       is added to CFLAGS if the specified member was found in
+#       appropriate structure
+#       unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in <HEADER>, <STRUCTURE> and <MEMBER>).
+#
+#   Ex:  MKC_CHECK_VARS += ifreq.ifr_ifrn.ifrn_name:net/if.h
+#        MKC_CHECK_VARS += tm.tm_isdst:time.h
+#   Res: HAVE_MEMBER.ifreq_ifr_ifrn_ifrn_name.net_if_h=1
+#        HAVE_MEMBER.tm_tm_isdst.time_h=1
+#        CFLAGS += -DHAVE_MEMBER_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
+#        CFLAGS += -DHAVE_MEMBER_TM_TM_ISDST_TIME_H=1
+#
 # MKC_CHECK_FUNCS<N>
 #       List of func:header to be checked. <header> part is optional.
-#       
+#
 #       As a result of the check bmake's variable
 #       HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
 #       is set to either 0 or 1
@@ -217,20 +245,20 @@ MKC_SHOW_CACHED?=1       # set it to `0' to hide "...(cached)..." lines
 MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
-MKC_COMMON_DEFINES?=     # #defines
 MKC_SHELL?=/bin/sh       # mainly for portability testing purposes
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 
 #
-CFLAGS+=		${MKC_COMMON_DEFINES}
+OSNAME!=	uname -s
+.if defined(MKC_COMMON_DEFINES.${OSNAME})
+CPPFLAGS+=	${MKC_COMMON_DEFINES.${OSNAME}}
+.endif
+.if defined(MKC_COMMON_DEFINES)
+CPPFLAGS+=	${MKC_COMMON_DEFINES}
+.endif
 
 #
-_MKC_CPPFLAGS:=		${CPPFLAGS}
-_MKC_CFLAGS:=		${CFLAGS}
-_MKC_LDFLAGS:=		${LDFLAGS}
-_MKC_LDADD:=		${LDADD}
-
-mkc.environ=CC='${CC}' CPPFLAGS='${_MKC_CPPFLAGS} ${MKC_COMMON_DEFINES}' CFLAGS='${_MKC_CFLAGS}' LDFLAGS='${_MKC_LDFLAGS}' LDADD='${_MKC_LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1 MKC_SHELL='${MKC_SHELL}'
+mkc.environ=CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1 MKC_SHELL='${MKC_SHELL}'
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
@@ -283,6 +311,14 @@ MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g}=1
 HAVE_VAR.${d:S/./_/g:S/:/./g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
 .if ${HAVE_VAR.${d:S/./_/g:S/:/./g}}
 MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g}=1
+.endif
+.endfor
+
+# checking for struct members
+.for m in ${MKC_CHECK_MEMBERS}
+HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
+.if ${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
