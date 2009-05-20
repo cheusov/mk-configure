@@ -214,12 +214,14 @@ else
     printme '%s' "checking for $decltype ${declwhat}${incs_msg}... " 1>&2
 
     # test itself
+    set +e # workaround for buggy FreeBSD /bin/sh and ksh
     if eval is_${decltype} "$@"
     then
 	ret=1
     else
 	ret=0
     fi
+    set -e # workaround for buggy FreeBSD /bin/sh and ksh
     echo $ret > "$cache"
 fi
 
