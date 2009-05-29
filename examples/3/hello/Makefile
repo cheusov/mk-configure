@@ -1,8 +1,6 @@
 PROG=		hello_world
 SRCS=		main.c
 
-LDADD+=		-lhello1 -lhello2
-
 MAN=		hello_world.1
 
 INFILES=	hello_world.1
@@ -14,6 +12,8 @@ SCRIPTS=	${INSCRIPTS}
 
 .include "../libhello1/linkme.mk"
 .include "../libhello2/linkme.mk"
+
+DPLIBS+=	-lhello1 -lhello2
 
 .include "../Makefile.version"
 
