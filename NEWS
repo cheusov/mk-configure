@@ -1,4 +1,30 @@
 ======================================================================
+Version 0.10.0, by Aleksey Cheusov, Sat, 23 May 2009 18:23:42 +0300
+
+  "install-dirs" now work fully correctly.
+
+  New variable DPLIBS for listing -llibs for linking. Use DPLIBS
+  instead of LDADD for linking with local libraries.
+  See examples/8/hello/Makefile.
+
+  mkc.configure.mk:
+
+      New: MKC_CHECK_MEMBERS, mechanism for checking for structure
+      members. Regression tests for this new feature. Man page update
+      for mkc_check_decl. See the documentation for MKC_CHECK_MEMBERS
+      in configure.mk file.
+
+      Fix: HAVE_FUNCN.funcname.dir.header_h ->
+           HAVE_FUNCN.funcname.dir_header_h
+      New: Support for HAVE_VAR.varname.dir_header_h (dir/header.h!)
+      New: Support for HAVE_DEFINE.defname.dir_header.h (dir/header.h!)
+      New: MKC_COMMON_DEFINES.`uname -s`, e.g. MKC_COMMON_DEFINES.NetBSD,
+           MKC_COMMON_DEFINES.Linux etc.
+
+  mkc_check_decl:
+     workaround for buggy ksh and FreeBSD /bin/sh.
+
+======================================================================
 Version 0.9.0, by Aleksey Cheusov, Sun, 29 Mar 2009 16:53:57 +0300
 
   Huge amount of changes were made since previous release.  Now
