@@ -38,6 +38,7 @@ INCSDIR?=		${PREFIX}/include
 DATADIR?=		${PREFIX}/share
 SYSCONFDIR?=		${PREFIX}/etc
 FILESDIR?=		${PREFIX}/bin
+INFODIR?=		${PREFIX}/info
 .endif # NOMKC_PATHS
 
 ######################################################################
@@ -64,6 +65,10 @@ DOCGRP?=	${_MKC_GID}
 
 NLSOWN?=	${_MKC_UID}
 NLSGRP?=	${_MKC_GID}
+
+INFOOWN?=	${_MKC_UID}
+INFOGRP?=	${_MKC_GID}
+
 .endif
 
 .endif # NOMKC_PERMS
@@ -140,6 +145,12 @@ _MKC_INSTALLDIRS+=	${HTMLDIR}/html${i} # no ${DESTDIR} prefix!
 .endif # MKHTML
 .endif # MKMAN
 .endif # MAN
+
+.if defined(TEXINFO)
+.if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
+_MKC_INSTALLDIRS+=	${DESTDIR}${INFODIR}
+.endif # MKINFO
+.endif # TEXINFO
 
 .PHONY: install-dirs
 install-dirs:
