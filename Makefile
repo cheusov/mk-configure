@@ -5,6 +5,8 @@ BINDIR?=		${PREFIX}/bin
 MANDIR?=		${PREFIX}/man
 MKFILESDIR?=		${PREFIX}/share/mk
 
+MKHTML?=		no
+
 INST_DIR?=		${INSTALL} -d
 
 ##################################################
@@ -58,6 +60,10 @@ test: configure.mk
 
 ##################################################
 
+.include <bsd.prog.mk>
+
+##################################################
+
 # unfortunately bsd.prog.mk doesn't create
 # the destinations dirs at installation stage :-(
 #install: install-local
@@ -65,13 +71,9 @@ test: configure.mk
 install-dirs:
 	${INST_DIR} ${DESTDIR}${MKFILESDIR}
 	${INST_DIR} ${DESTDIR}${BINDIR}
-.if !defined(MKMAN) || empty(MKMAN:M[Nn][Oo])
+.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
 	$(INST_DIR) ${DESTDIR}${MANDIR}/man1
-.if !defined(MKCATPAGES) || empty(MKCATPAGES:M[Nn][Oo])
+.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
 	$(INST_DIR) ${DESTDIR}${MANDIR}/cat1
 .endif
 .endif
-
-##################################################
-
-.include <bsd.prog.mk>
