@@ -5,8 +5,6 @@ BINDIR?=		${PREFIX}/bin
 MANDIR?=		${PREFIX}/man
 MKFILESDIR?=		${PREFIX}/share/mk
 
-MKHTML?=		no
-
 INST_DIR?=		${INSTALL} -d
 
 ##################################################
