@@ -24,4 +24,6 @@
 
 # For documentation see configure.mk file
 
+.include <mkc.common.mk>
+
 .include <configure.mk>
