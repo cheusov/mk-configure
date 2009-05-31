@@ -1,11 +1,5 @@
 ======================================================================
-Version 0.10.0, by Aleksey Cheusov, Sat, 23 May 2009 18:23:42 +0300
-
-  "install-dirs" now work fully correctly.
-
-  New variable DPLIBS for listing -llibs for linking. Use DPLIBS
-  instead of LDADD for linking with local libraries.
-  See examples/8/hello/Makefile.
+Version 0.10.0, by Aleksey Cheusov, Sun, 31 May 2009 14:54:10 +0300
 
   mkc.configure.mk:
 
@@ -20,6 +14,13 @@ Version 0.10.0, by Aleksey Cheusov, Sat, 23 May 2009 18:23:42 +0300
       New: Support for HAVE_DEFINE.defname.dir_header.h (dir/header.h!)
       New: MKC_COMMON_DEFINES.`uname -s`, e.g. MKC_COMMON_DEFINES.NetBSD,
            MKC_COMMON_DEFINES.Linux etc.
+
+  "install-dirs" now work fully correctly, i.e. creates
+  all required directories.
+
+  New variable DPLIBS for listing -llibs for linking. Use DPLIBS
+  instead of LDADD for linking with local libraries.
+  See examples/8/hello/Makefile.
 
   mkc_check_decl:
      workaround for buggy ksh and FreeBSD /bin/sh.
