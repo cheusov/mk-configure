@@ -25,12 +25,6 @@
 ######################################################################
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
-.include <own.mk>
-.else
-.include <bsd.own.mk>
-.endif
-
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
 
@@ -46,11 +40,9 @@ LDADD+=			${DPLIBS}
 .endif # NOMKC_DPLIBS
 
 ######################################################################
-.ifndef MKC_COMMON_MK
-MKC_COMMON_MK:=	1
-
-######################################################################
 .if !defined(NOMKC_PATHS) || empty(NOMKC_PATHS:M[Yy][Ee][Ss])
+NOMKC_PATHS:=	yes
+
 # Default PATHs
 PREFIX?=		/usr/local
 BINDIR?=		${PREFIX}/bin
@@ -67,6 +59,8 @@ INFODIR?=		${PREFIX}/info
 
 ######################################################################
 .if !defined(NOMKC_PERMS) || empty(NOMKC_PERMS:M[Yy][Ee][Ss])
+NOMKC_PERMS:=	yes
+
 # Default owner and group
 _MKC_UID!=	id -u
 _MKC_GID!=	id -g
@@ -98,7 +92,15 @@ INFOGRP?=	${_MKC_GID}
 .endif # NOMKC_PERMS
 
 ######################################################################
+.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+.include <own.mk>
+.else
+.include <bsd.own.mk>
+.endif
+
+######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
+NOMKC_INCS:=	yes
 
 .if !defined(MKC_NOBSDMK) || !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 realinstall : includes
@@ -111,6 +113,8 @@ realinstall : includes
 .endif # NOMKC_INCS
 
 ######################################################################
+.if !defined(NOMKC_INSTDIRS) || empty(NOMKC_INSTDIRS:M[Yy][Ee][Ss])
+NOMKC_INSTDIRS:=	yes
 
 # install-dirs target
 
@@ -143,14 +147,14 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 .endif
 
 .if defined(MAN)
-.if !defined(MKMAN) || empty(MKMAN:M[Nn][Oo])
+.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man1
-.if !defined(MKCATPAGES) || empty(MKCATPAGES:M[Nn][Oo])
+.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
 .endif # MKCATPAGES
-.if !defined(MKHTML) || empty(MKHTML:M[Nn][Oo])
+.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
 .for i in ${MAN:E:O:u}
-_MKC_INSTALLDIRS+=	${HTMLDIR}/html${i} # no ${DESTDIR} prefix!
+_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/html${i}
 .endfor
 .endif # MKHTML
 .endif # MKMAN
@@ -168,8 +172,12 @@ install-dirs:
 	${INSTALL} -d "${d}"
 .endfor
 
+.endif # NOMKC_INSTDIRS
 ######################################################################
 # general purpose targets
+.if !defined(NOMKC_TARGETS) || empty(NOMKC_TARGETS:M[Yy][Ee][Ss])
+NOMKC_TARGETS:=        yes
+
 .PHONY : print-values
 print-values :
 .for v in ${VARS}
@@ -180,8 +188,7 @@ print-values :
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
+.endif # NOMKC_TARGETS
 ######################################################################
-
-.endif # MKC_COMMON_MK
 
 .endif # NOMKC_ATALL
