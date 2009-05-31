@@ -127,14 +127,17 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 
 .if defined(MAN)
 .if !defined(MKMAN) || empty(MKMAN:M[Nn][Oo])
-.if !defined(NOMAN) || empty(NOMAN:M[Yy][Ee][Ss])
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man1
 .if !defined(MKCATPAGES) || empty(MKCATPAGES:M[Nn][Oo])
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
-.endif
-.endif
-.endif
-.endif
+.endif # MKCATPAGES
+.if !defined(MKHTML) || empty(MKHTML:M[Nn][Oo])
+.for i in ${MAN:E:O:u}
+_MKC_INSTALLDIRS+=	${HTMLDIR}/html${i} # no ${DESTDIR} prefix!
+.endfor
+.endif # MKHTML
+.endif # MKMAN
+.endif # MAN
 
 .PHONY: install-dirs
 install-dirs:
