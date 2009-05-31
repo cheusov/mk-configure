@@ -22,8 +22,8 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
-.ifndef MKC_COMMON_MK
-MKC_COMMON_MK:=	1
+######################################################################
+.if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 .include <own.mk>
@@ -32,7 +32,22 @@ MKC_COMMON_MK:=	1
 .endif
 
 ######################################################################
-.if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
+.if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
+
+.for _dir in ${DPLIBDIRS}
+.ifndef DPLIBDIRS.${_dir}
+DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
+LDADD+=			-L${DPLIBDIRS.${_dir}}
+.endif
+.endfor
+
+LDADD+=			${DPLIBS}
+
+.endif # NOMKC_DPLIBS
+
+######################################################################
+.ifndef MKC_COMMON_MK
+MKC_COMMON_MK:=	1
 
 ######################################################################
 .if !defined(NOMKC_PATHS) || empty(NOMKC_PATHS:M[Yy][Ee][Ss])
@@ -81,20 +96,6 @@ INFOGRP?=	${_MKC_GID}
 .endif
 
 .endif # NOMKC_PERMS
-
-######################################################################
-.if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
-
-.for _dir in ${DPLIBDIRS}
-.ifndef DPLIBDIRS.${_dir}
-DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
-LDADD+=			-L${DPLIBDIRS.${_dir}}
-.endif
-.endfor
-
-LDADD+=			${DPLIBS}
-
-.endif # NOMKC_DPLIBS
 
 ######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
@@ -181,6 +182,6 @@ mkc_printobjdir:
 
 ######################################################################
 
-.endif # NOMKC_ATALL
-
 .endif # MKC_COMMON_MK
+
+.endif # NOMKC_ATALL
