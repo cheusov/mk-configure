@@ -76,4 +76,7 @@ install-dirs:
 .if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
 	$(INST_DIR) ${DESTDIR}${MANDIR}/cat1
 .endif
+.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
+	$(INST_DIR) ${HTMLDIR}/html1
+.endif
 .endif
