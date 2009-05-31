@@ -22,6 +22,15 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+.ifndef MKC_COMMON_MK
+MKC_COMMON_MK:=	1
+
+.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+.include <own.mk>
+.else
+.include <bsd.own.mk>
+.endif
+
 ######################################################################
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
@@ -173,3 +182,5 @@ mkc_printobjdir:
 ######################################################################
 
 .endif # NOMKC_ATALL
+
+.endif # MKC_COMMON_MK
