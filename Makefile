@@ -30,7 +30,7 @@ FILESDIR_mkc_check_common.sh=	${BINDIR}
 
 FILESDIR=		${MKFILESDIR}
 
-CLEANFILES+=		configure.mk
+CLEANFILES+=		configure.mk *.cat1 *.html1 .error-check tests/.error-check
 
 ##################################################
 
