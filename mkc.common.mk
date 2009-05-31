@@ -99,6 +99,8 @@ realinstall : includes
 
 # install-dirs target
 
+MKHTML?=	no
+
 .if defined(INCS)
 _MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
 .endif
