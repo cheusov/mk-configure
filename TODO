@@ -2,9 +2,6 @@
    More testing is needed.
 
 1)
-     - Target "install-dirs" for creating destination directories.
-       Unfortunately bsd.*.mk files does not create destination directories
-       in 'install' target. MKDESTDIRS=yes|no is needed.
      - With a help of MKC_CHECK_DEFINES (Ex: MKC_CHECK_DEFINES+=__GNUC__)
        mk-configure is able to detect the compiler at run-time.
        This makes possible to make SHLIB_xxx (bsd.lib.mk) portable
