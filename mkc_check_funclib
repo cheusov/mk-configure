@@ -60,7 +60,7 @@ fi
 ##################################################
 # initializing
 
-pathpart=`echo $* | tr '/. ' ___`
+pathpart=funclibs_`echo $* | tr '/. ' ___`
 
 funcname=$1
 shift
