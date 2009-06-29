@@ -56,7 +56,7 @@ fi
 ##################################################
 # initializing
 
-pathpart=`echo $1 | tr /. __`
+pathpart=header_`echo $1 | tr /. __`
 
 . mkc_check_common.sh
 
