@@ -62,7 +62,7 @@ fi
 # initializing
 
 type=`echo $1 | tr ' -' '  '`
-pathpart=`echo $type | tr '*' 'P'`
+pathpart=sizeof_`echo $type | tr '*' 'P'`
 
 . mkc_check_common.sh
 
