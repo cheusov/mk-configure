@@ -102,8 +102,8 @@
 #        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
 #                  -DHAVE_DEFINE___GNUC__=1
 #
-# MKC_CHECK_DEFINES.<SYSTEM>
-#       The same as MKC_CHECK_DEFINES but only
+# MKC_COMMON_DEFINES.<SYSTEM>
+#       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
 #
 # MKC_CHECK_VARS
