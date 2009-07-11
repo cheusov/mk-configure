@@ -275,7 +275,9 @@ _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS}
+.if !defined(HAVE_HEADER.${h:S|.|_|g:S|/|_|g})
 HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
+.endif
 .if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 .endif
@@ -283,9 +285,13 @@ MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:
 
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS}
+.if !defined(HAVE_FUNCLIB.${f:S/:/./g})
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
+.endif
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//})
 HAVE_FUNCLIB.${f:C/:.*//}!=	env ${mkc.environ} mkc_check_funclib ${f:C/:.*//}
+.endif
+.if ${HAVE_FUNCLIB.${f:C/:.*//}} != ${HAVE_FUNCLIB.${f:S/:/./g}}
 .if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
 MKC_LDADD+=-l${f:C/^.*://}
 .endif
@@ -297,7 +303,9 @@ MKC_SRCS+=${f:C/:.*//}.c
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
+.if !defined(SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g})
 SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/:/ /g}
+.endif
 .if ${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}} != failed
 MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
 .endif
@@ -305,7 +313,9 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEO
 
 # checking for declared #define
 .for d in ${MKC_CHECK_DEFINES}
+.if !defined(HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
+.endif
 .if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
@@ -313,7 +323,9 @@ MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS}
+.if !defined(HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
+.endif
 .if ${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
@@ -321,7 +333,9 @@ MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 # checking for struct members
 .for m in ${MKC_CHECK_MEMBERS}
+.if !defined(HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
+.endif
 .if ${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
@@ -330,7 +344,9 @@ MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 .for d in ${MKC_CHECK_FUNCS${n}}
+.if !defined(HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
+.endif
 .if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
