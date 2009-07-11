@@ -88,6 +88,8 @@ else
 
     # preparations
     cat > "$tmpc" <<EOF
+void $funcname ();
+
 int main ()
 {
    $funcname ();
