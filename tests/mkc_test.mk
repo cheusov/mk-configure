@@ -33,8 +33,8 @@ MKC_CHECK_FUNCS5+=	mkc_test_func:tests/mkc_test.h
 MKC_CHECK_SIZEOF+=	int long-long void* size_t:string.h
 MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 
-MKC_CHECK_TYPE+=	size_t:string.h tm:time.h
-MKC_CHECK_TYPE+=	bad_type bad-type:bad_header.h
+MKC_CHECK_TYPES+=	size_t:string.h mbstate_t:wchar.h
+MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
 
 MKC_CHECK_MEMBERS+=	tm.tm_isdst:time.h
 MKC_CHECK_MEMBERS+=	sockaddr_in.sin_addr.s_addr:netinet/in.h
@@ -48,8 +48,8 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_DEFINE.__GNUC__ \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
-	HAVE_TYPE.size_t.string_h HAVE_TYPE.tm.time_h \
-	HAVE_TYPE.bad_type SIZEOF.bad_type.bad_header_h \
+	HAVE_TYPE.size_t.string_h HAVE_TYPE.mbstate_t.wchar_h \
+	HAVE_TYPE.bad_type \
 	HAVE_HEADER.bad_header_h HAVE_HEADER.bad_dir_bad_header_h \
 	HAVE_FUNCLIB.bad_func HAVE_FUNCLIB.bad_func.bad_lib \
 	HAVE_DEFINE.__BAD_DEFINE__ \

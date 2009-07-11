@@ -102,6 +102,25 @@
 #        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
 #                  -DHAVE_DEFINE___GNUC__=1
 #
+# MKC_CHECK_TYPES
+#       List of type:header to be checked. <header> part is optional.
+#
+#       As a result of the check bmake's variable
+#       HAVE_TYPE.<type>.<header> (or HAVE_TYPE.<type>)
+#       is set to either 0 or 1.
+#       (tr|./|__|g in the <header>).
+#
+#       Also -DHAVE_TYPE_<TYPE>_<HEADER>=1
+#       or   -DHAVE_TYPE_<TYPE>=1
+#       is added to CFLAGS if the specified type was detected
+#       unless MKC_NOAUTO is set to 1
+#       (tr|a-z./|A-Z__|g in <HEADER>,
+#        tr|a-z|A-Z|g     in <TYPE>).
+#
+#   Ex:  MKC_CHECK_TYPES += size_t:string.h
+#   Res: HAVE_TYPE.size_t.string_h = 1
+#        CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
+#
 # MKC_COMMON_DEFINES.<SYSTEM>
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
@@ -318,6 +337,16 @@ HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_dec
 .endif
 .if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.endif
+.endfor
+
+# checking for declared type
+.for t in ${MKC_CHECK_TYPES}
+.if !defined(HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g})
+HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/:/ /g}
+.endif
+.if ${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
