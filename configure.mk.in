@@ -211,6 +211,32 @@
 #                  -DSIZEOF_LONG_LONG=4 \
 #                  -DSIZEOF_OFF_T_SYS_TYPES_H=8
 #
+# MKC_CUSTOM_DIR
+#       Directory containing custom check source files.
+#       See MKC_CHECK_CUSTOM below.
+#
+# MKC_CHECK_CUSTOM
+#       List of custom test checks (list of names).
+#    MKC_CUSTOM_FN.<custom_check_name>
+#       "C" source filename for your custom check,
+#       e.g., filename.c
+#
+#       As a result of the check bmake's variable
+#       HAVE_CUSTOM.<custom_check_name>
+#       is set to 1 if compilation of
+#       MKC_CUSTOM_FN.<custom_check_name> succeeded
+#       or 0 otherwise.
+#
+#       Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
+#       is added to CFLAGS if the specified check succeeded
+#       unless MKC_NOAUTO is set to 1
+#       (tr|a-z|A-Z|g in <CUSTOM_CHECK_NAME>).
+#
+#   Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
+#        MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
+#   Res. HAVE_CUSTOM.nested_funcs=1
+#        CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
+#
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
 #
@@ -266,6 +292,7 @@ MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_SHELL?=/bin/sh       # mainly for portability testing purposes
 MKC_NOCACHE?=            # 1 or yes for disabling cache
+MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
 #
 OSNAME!=		uname -s
@@ -380,6 +407,16 @@ HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_d
 MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
+.endfor
+
+# custom checks
+.for c in ${MKC_CHECK_CUSTOM}
+.if !defined(HAVE_CUSTOM.${c})
+HAVE_CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
+.endif
+.if ${HAVE_CUSTOM.${c}}
+MKC_CFLAGS  +=  -DHAVE_CUSTOM_${c:tu}=${HAVE_CUSTOM.${c}}
+.endif
 .endfor
 
 # final assignment

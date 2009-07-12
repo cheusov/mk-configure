@@ -16,3 +16,5 @@ HAVE_FUNC2.strcmp.string_h=2
 HAVE_FUNC3.strcpy=2
 HAVE_TYPE.mbstate_t.wchar_h=2
 HAVE_TYPE.bad_type=2
+HAVE_CUSTOM.custom_check1=0
+HAVE_CUSTOM.custom_check2=1

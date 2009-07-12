@@ -43,6 +43,14 @@ MKC_CHECK_MEMBERS+=	bad.member:string.h
 MKC_CHECK_MEMBERS+=	mkc_test_t.a:tests/mkc_test.h
 MKC_CHECK_MEMBERS+=	mkc_test_t.b.c:tests/mkc_test.h
 
+MKC_CUSTOM_DIR=			${.CURDIR}/tests
+
+MKC_CHECK_CUSTOM+=		custom_check1
+MKC_CUSTOM_FN.custom_check1=	custom_check1.c
+
+MKC_CHECK_CUSTOM+=		custom_check2
+MKC_CUSTOM_FN.custom_check2=	custom_check2.c
+
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt.m \
 	HAVE_DEFINE.__GNUC__ \
@@ -67,13 +75,15 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_MEMBER.mkc_test_t_a.tests_mkc_test_h \
 	HAVE_MEMBER.mkc_test_t_b_c.tests_mkc_test_h \
 	\
+	HAVE_CUSTOM.custom_check1 HAVE_CUSTOM.custom_check2 \
+	\
 	MKC_CFLAGS MKC_SRCS MKC_LDADD
 
 .include "./configure.mk"
 
 all:
 .for i in ${vars}
-	@echo ${i}=${${i}} | sed '/SIZEOF/ s|[0-9][0-9]*|n|g'
+	@echo ${i}=${${i}} | sed '/SIZEOF/ s|=[0-9][0-9]*|=n|g'
 .endfor
 	@echo ''
 	@printf "%s\n" "${CPPFLAGS}" | \
