@@ -80,7 +80,14 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 
 all:
 .for i in ${vars}
-	@echo ${i}=${${i}} | sed '/SIZEOF/ s|=[0-9][0-9]*|=n|g'
+	@echo ${i}=${${i}} | \
+	awk '{ \
+		for (i=1; i <= NF; ++i) { \
+			if ($$i ~ /SIZEOF/) \
+				sub(/=[0-9]+/, "=n", $$i); \
+		}; \
+		print $$0 \
+	}'
 .endfor
 	@echo ''
 	@printf "%s\n" "${CPPFLAGS}" | \
