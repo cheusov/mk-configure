@@ -225,7 +225,8 @@
 #       HAVE_CUSTOM.<custom_check_name>
 #       is set to 1 if compilation of
 #       MKC_CUSTOM_FN.<custom_check_name> succeeded
-#       or 0 otherwise.
+#       or 0 otherwise. If MKC_CUSTOM_FN.<custom_check_name>
+#       is not specified it defaults to custom_check_name.c
 #
 #       Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
 #       is added to CFLAGS if the specified check succeeded
@@ -412,6 +413,9 @@ MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 # custom checks
 .for c in ${MKC_CHECK_CUSTOM}
 .if !defined(HAVE_CUSTOM.${c})
+.if !defined(MKC_CUSTOM_FN.${c})
+MKC_CUSTOM_FN.${c}=${c}.c
+.endif
 HAVE_CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
 .if ${HAVE_CUSTOM.${c}}

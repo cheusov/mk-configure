@@ -45,11 +45,8 @@ MKC_CHECK_MEMBERS+=	mkc_test_t.b.c:tests/mkc_test.h
 
 MKC_CUSTOM_DIR=			${.CURDIR}/tests
 
-MKC_CHECK_CUSTOM+=		custom_check1
-MKC_CUSTOM_FN.custom_check1=	custom_check1.c
-
-MKC_CHECK_CUSTOM+=		custom_check2
-MKC_CUSTOM_FN.custom_check2=	custom_check2.c
+MKC_CHECK_CUSTOM+=		custom_check1 custom_check2
+MKC_CUSTOM_FN.custom_check2=	my_check2.c
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt.m \
