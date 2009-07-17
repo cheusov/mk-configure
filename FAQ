@@ -1,0 +1,164 @@
+----------------------------------------------------------------------
+Q: It looks like you are reimplenting the wheel. There are lots of
+   alternatives to GNU autoconf, e.g. CMake, scons, waf,
+   PMK (pre make kit) and others.
+
+A: mk-configure has different design and goals. Just to note a few:
+   simplicity for developers, Keep It Small and Simple, stop code
+   generation!, bmake is magic enough, using POSIX shell and POSIX for
+   implementing basic checks, and some others.  If you like these
+   principles maybe you find mk-configure interesting. In this case
+   try to use it and help me to improve it (any kind of feedback is
+   welcome, I don't ask you send me patches).
+   Otherwise just ignore it.
+
+----------------------------------------------------------------------
+Q: Using POSIX shell and POSIX utils for implementing a build looks
+   terrible to me. Why not to use more powerful languages like Perl,
+   Python, Ruby and others?
+
+A: Python, Ruby and Perl are very big. I don't want to depend on such
+   a big tools. I also don't like when backward compatibilities are
+   broken with new release of program language... Finally I dislike
+   Perl and Python for their syntax. Ruby is much better but it is
+   also very big and its language is not very stable.
+
+----------------------------------------------------------------------
+Q: Perl/Python/Ruby is available on almost every OS that ever exists
+   even on Windows and Symbian. Why you limit mk-configure to POSIX
+   compatible operating systems? 
+
+A: First, I don't use Windows and don't care about it. Second, if you
+   want to right software both for UNIX-like OSes and Windows there
+   are no problems. You can use Interix, cygwin, uwin or any other
+   POSIX subsystem for Windows to build your software. By the way,
+   cross-compilation is one of my priorities. So, there is no problem
+   in cross-compiling your software for embedded platforms, Windows or
+   whatever OS your software supports.
+
+----------------------------------------------------------------------
+Q: You say that portability is one of the main goal of your
+   mk-configure (build automation software MUST be portable. Right?).  At
+   the same time you say that you use POSIX shell and POSIX tools.  My
+   expirience says me that it is just not possible to right something
+   REALLY portable in shell/awk/sed etc.
+
+A: I know very well how broken POSIX tools may be on some OSes and
+   hardware platforms.  At the moment mk-configure supports the
+   following platforms: NetBSD, Linux, FreeBSD, DragonFlyBSD, Darwin,
+   and Solaris.  If you found a bug please let me know. Also note that
+   mk-configure have a regression tests. I don't make releases without
+   testing on all platforms available for me.
+
+----------------------------------------------------------------------
+Q: You just didn't read autobook and don't know how to use GNU
+   autotools properly. First, read the documentation!
+
+A: The question is not about me personally. Try to maintain software
+   packages in BSD/Linux/... distributions and you'll understand that
+   lots of FOSS developers actually do not understand how to use GNU
+   autotools properly. I believe this is because autotools's
+   complexity has grown beyond all reasonable levels.
+
+----------------------------------------------------------------------
+Q: bmake? What is it? Is it for NetBSD only?
+
+A: No. bmake is a portable version of NetBSD that supports at least
+   the following operating systems and POSIX environments (besides
+   NetBSD of course): FreeBSD, DragonFlyBSD, OpenBSD, Linux, Solaris,
+   AIX, HP-UX, QNX, A/UX, OSF/1, Darwin, Interix, UnixWare and IRIX.
+
+----------------------------------------------------------------------
+Q: NetBSD make? Then why not to support FreeBSD/OpenBSD makes? Are they
+   different?
+
+A: Yes, they are different and NetBSD make provides much more
+   features. More over, NetBSD and Free/OpenBSD are incompatible in
+   some aspects and have very different mk-files.
+
+----------------------------------------------------------------------
+Q: Why NetBSD bmake was choosen? Why not "standard" GNU make?  Today
+   Linux has MUCH more developers than FreeBSD/OpenBSD/Solaris and of
+   course NetBSD. Most programmers using Linux use GNU make. Without
+   support of Linux developers your project is dead.
+
+A: NetBSD make was choosen for the following reasons: when I started
+   mk-configure I could not find good analogs for mk-files written for
+   GNU make; In my view bmake is simplier and more convenient for use
+   than GNU make; I hate gmake's foreach/eval/call construct, bmake's
+   .for/.endfor is MUCH more convenient and easier for use; gmake
+   starts finding includes starting from CWD, this is terrible, bmake
+   starts searching for "includes" starting from the including
+   makefile's directory. Note that mk-configure and mk-file widely use
+   the .for/.endfor construct.
+
+   Theoretically it is possible to implement a full analog for
+   mk-configure supporting GNU make instead of bmake but I have no
+   time to do that. If you want to let me know.
+
+----------------------------------------------------------------------
+Q: You propose setting building options through environment and
+   bmake's options instead of ./configure --option=xxx.
+   Are you serious?
+
+A: Yes, I don't see significant difference between setting paths and
+   building options via --options and command line arguments and
+   environment. The only problem is that autoconf's ./configure script
+   checks for correctness of the given options but I don't think this
+   is a significant advantage. On the other hand using environment
+   variables for setting building options has its own advantage for
+   the development. You should set them ONCE for each shell session.
+   Alternatively (and even better) you can add
+
+     .sinclude "my_local_settings.mk"
+
+   to the Makefile and create this file. Then your local building
+   options will take effect every time you run bmake. Easy?
+
+----------------------------------------------------------------------
+Q: Autotools-based software often implements lots of
+   --with/without-foo building. What do you suggest instead?
+
+A: I think mk-configure does everything you need here. Look at
+   examples/complex_hello example project.
+   In order to build it without support for libhello1 just run
+
+     bmake WITH_LIBHELLO1=0.
+
+   or
+
+     bmake WITHOUT_LIBHELLO1=1.
+
+   If you want to build complex_hello with external libhello2m run
+
+     bmake EXTERNAL_LIBHELLO2=1
+
+   or
+
+     bmake LOCAL_LIBHELLO2=0
+
+----------------------------------------------------------------------
+Q: It's known that libxxx has different places in different Linux
+   distributions. Can mk-configure find it automatically?
+
+A: No. Software building tools MUST NOT have an artificial
+   intelligence inside.  If you need libxxx tell mk-configure correct
+   CPPFLAGS (-I/headers/here) and LDFLAGS (-L/libraries/here).
+   This is how it works.
+
+----------------------------------------------------------------------
+Q: Suppose I want to write a program which is built with different set
+   of dependencies depending on what libraries/programs are found on a
+   build host. Is it possible with mk-configure?
+
+A: Yes. See examples/lalala for the samples.
+
+----------------------------------------------------------------------
+Q: As far as I can see your mk-configure doesn't support ALL features
+   supported by GNU autotools and other competitors.
+
+A: Even if you have now plan to use mk-configure please send me what
+   type of functionality you need. If I find it helpful I'll try to
+   implement it in the future releases of mk-configure.
+
+----------------------------------------------------------------------
