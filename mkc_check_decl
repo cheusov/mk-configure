@@ -129,7 +129,7 @@ EOF
 }
 
 ##############################
-try_type (){
+has_size (){
     get_includes "$@" > "$tmpc"
 
     cat >> "$tmpc" <<EOF
@@ -143,9 +143,8 @@ EOF
     compile
 }
 
-##############################
 is_type (){
-    try_type "$@" || return 1
+    has_size "$@" || return 1
     is_variable "$@" && return 1
     return 0
 }
