@@ -45,11 +45,13 @@ all: configure.mk
 .PHONY: test
 test: configure.mk
 	@echo 'running tests...'; \
+	set -e; \
 	OBJDIR=${.OBJDIR}; \
 	MAKE='${MAKE}'; \
 	SRCDIR=${.CURDIR}; \
 	PATH=${.CURDIR}:$$PATH; \
 	MAKEOBJDIR=${.OBJDIR}; \
+	cd ${.CURDIR}; \
 	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR; \
 	if ${.CURDIR}/tests/test.sh; \
 	then echo '   succeeded'; \
