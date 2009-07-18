@@ -1,3 +1,5 @@
+.sinclude "cheusov_local_settings.mk"
+
 ##################################################
 
 PREFIX?=		/usr/local
@@ -51,15 +53,16 @@ test: configure.mk
 	SRCDIR=${.CURDIR}; \
 	PATH=${.CURDIR}:$$PATH; \
 	MAKEOBJDIR=${.OBJDIR}; \
+	MKFILESDIR=${MKFILESDIR}; \
 	cd ${.CURDIR}; \
-	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR; \
+	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR MKFILESDIR; \
 	if ${.CURDIR}/tests/test.sh; \
 	then echo '   succeeded'; \
 	else echo '   failed'; false; \
 	fi
+	cd examples && ${MAKE} -m ${.CURDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
 ##################################################
-
 .include <bsd.prog.mk>
 
 ##################################################
