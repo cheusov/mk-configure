@@ -36,12 +36,12 @@ MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 MKC_CHECK_TYPES+=	size_t:string.h mbstate_t:wchar.h
 MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
 
-MKC_CHECK_MEMBERS+=	tm.tm_isdst:time.h
-MKC_CHECK_MEMBERS+=	sockaddr_in.sin_addr.s_addr:netinet/in.h
+MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:time.h
+MKC_CHECK_MEMBERS+=	struct-sockaddr_in.sin_addr.s_addr:netinet/in.h
 MKC_CHECK_MEMBERS+=	bad.member
 MKC_CHECK_MEMBERS+=	bad.member:string.h
-MKC_CHECK_MEMBERS+=	mkc_test_t.a:tests/mkc_test.h
-MKC_CHECK_MEMBERS+=	mkc_test_t.b.c:tests/mkc_test.h
+MKC_CHECK_MEMBERS+=	struct-mkc_test_t.a:tests/mkc_test.h
+MKC_CHECK_MEMBERS+=	struct-mkc_test_t.b.c:tests/mkc_test.h
 
 MKC_CUSTOM_DIR=			${.CURDIR}/tests
 
@@ -61,16 +61,16 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNC1.bad_func HAVE_FUNC1.bad_func.bad_header \
 	SIZEOF.bad_type SIZEOF.bad_type.bad_header_h \
 	HAVE_FUNCLIB.superfunc1 HAVE_FUNCLIB.superfunc2.superlib2 \
-	HAVE_MEMBER.tm_tm_isdst.time_h \
-	HAVE_MEMBER.sockaddr_in_sin_addr_s_addr.netinet_in_h \
+	HAVE_MEMBER.struct_tm_tm_isdst.time_h \
+	HAVE_MEMBER.struct_sockaddr_in_sin_addr_s_addr.netinet_in_h \
 	HAVE_MEMBER.bad_member \
 	HAVE_MEMBER.bad_member.string_h \
 	HAVE_HEADER.tests_mkc_test_h \
 	HAVE_DEFINE.MKC_TEST_DEFINE.tests_mkc_test_h \
 	HAVE_FUNC5.mkc_test_func.tests_mkc_test_h \
 	HAVE_VAR.mkc_test_var.tests_mkc_test_h \
-	HAVE_MEMBER.mkc_test_t_a.tests_mkc_test_h \
-	HAVE_MEMBER.mkc_test_t_b_c.tests_mkc_test_h \
+	HAVE_MEMBER.struct_mkc_test_t_a.tests_mkc_test_h \
+	HAVE_MEMBER.struct_mkc_test_t_b_c.tests_mkc_test_h \
 	\
 	HAVE_CUSTOM.custom_check1 HAVE_CUSTOM.custom_check2 \
 	\
