@@ -35,7 +35,7 @@
 .PHONY : install-dirs
 install-dirs:
 .for d in ${SUBDIR}
-	if test "${d}" != .WAIT; then \
+	@if test "${d}" != .WAIT; then \
 		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} install-dirs; \
 	fi
 .endfor
@@ -43,7 +43,7 @@ install-dirs:
 .PHONY : test
 test:
 .for d in ${SUBDIR}
-	if test "${d}" != .WAIT; then \
+	@if test "${d}" != .WAIT; then \
 		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} test; \
 	fi
 .endfor
