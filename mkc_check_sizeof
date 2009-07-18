@@ -69,6 +69,26 @@ pathpart=sizeof_`echo $type | tr '*' 'P'`
 ##################################################
 # test
 
+try_it (){
+    # succeedes if size is bad
+    # $1 - test size
+    for f in $MKC_COMMON_HEADERS $2; do
+	echo "#include <$f>"
+    done > "$tmpc"
+    cat >> "$tmpc" <<EOF
+int main ()
+{
+   switch (0){
+      case sizeof ($type): break;
+      case $1:             break;
+   }
+   return 0;
+}
+EOF
+
+    $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+}
+
 if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
     cached=1
     printme '%s' "checking for sizeof ${type}... (cached) " 1>&2
@@ -76,25 +96,19 @@ if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
 else
     printme '%s' "checking for sizeof ${type}... " 1>&2
     ret=failed
-    for sz in 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1; do
-	for f in $MKC_COMMON_HEADERS $2; do
-	    echo "#include <$f>"
-	done > "$tmpc"
-	cat >> "$tmpc" <<EOF
-int main ()
-{
-   char a [sizeof ($type)-${sz}];
-   return 0;
-}
-EOF
-
-	if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
-	then
-	    echo $sz > "$cache"
-	    ret=$sz
-	    break
-	fi
-    done
+    if try_it 10000
+    then
+	for sz in 4 8 2 1 16 12    3 5 6 7 9 10 11 13 14 15; do
+	    if try_it $sz
+	    then
+		:
+	    else
+		echo $sz > "$cache"
+		ret=$sz
+		break
+	    fi
+	done
+    fi
 fi
 
 ##################################################
