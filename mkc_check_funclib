@@ -98,7 +98,7 @@ int main ()
 EOF
 
     # test itself
-    if "$CC" -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr"; then
+    if $CC -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr"; then
 	ret=1
     else
 	ret=0

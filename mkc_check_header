@@ -80,7 +80,7 @@ int main ()
 EOF
 
     # test itself
-    if "$CC" -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+    if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
     then
 	echo 1 > "$cache"
 	ret=1
