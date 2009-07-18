@@ -188,8 +188,10 @@ print-values :
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
-.PHONY : test
-test:
+.PHONY : test all
+.ifndef SUBDIR # skip the following for mkc.subdir.mk
+test: all
+.endif
 
 .endif # NOMKC_TARGETS
 ######################################################################
