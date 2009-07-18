@@ -188,6 +188,9 @@ print-values :
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
+.PHONY : test
+test:
+
 .endif # NOMKC_TARGETS
 ######################################################################
 
