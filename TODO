@@ -49,3 +49,5 @@ mkc.qt.mk
 mkc.subdir.mk sucks, improve it
 environment is limired in size
 make doxygen
+framewerk
+kBuild
