@@ -38,3 +38,14 @@
 
 4)
    MKC_NOAUTO_abcdefg...
+
+5)
+comparison with CMake, scons, waf, framewerk, pmk, 
+bmake configure
+bmake test
+formatted bmake's output
+mkc.pkg-config.mk
+mkc.qt.mk
+mkc.subdir.mk sucks, improve it
+environment is limired in size
+make doxygen
