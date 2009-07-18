@@ -20,10 +20,9 @@ msg=	Unknown compiler
 
 CFLAGS+=	-DMSG='"${msg}"'
 
-aaa:
-	@echo HAVE_DEFINE._MSC_VER=${HAVE_DEFINE._MSC_VER}
-	@echo HAVE_DEFINE.__INTEL_COMPILER=${HAVE_DEFINE.__INTEL_COMPILER}
-	@echo HAVE_DEFINE.__PCC__=${HAVE_DEFINE.__PCC__}
-	@echo HAVE_DEFINE.__GNUC__=${HAVE_DEFINE.__GNUC__}
+.PHONY : all
+test.out: all
+	@./compiler_test > ${.TARGET}
 
+.include <mkc.minitest.mk>
 .include <mkc.prog.mk>

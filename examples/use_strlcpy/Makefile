@@ -5,5 +5,10 @@ PROG=			hello4
 SRCS=			hello.c
 MKMAN=			no
 
+.PHONY : all
+test.out: all
+	@./hello4 > ${.TARGET} < input.in
+
+.include <mkc.minitest.mk>
 .include <mkc.configure.mk>
 .include <mkc.prog.mk>

@@ -1,0 +1,5 @@
+sizeof(int)=n
+sizeof(long)=n
+sizeof(long long)=n
+sizeof(size_t)=n
+sizeof(void*)=n
