@@ -47,7 +47,7 @@ formatted bmake's output
 mkc.pkg-config.mk
 mkc.qt.mk
 mkc.subdir.mk sucks, improve it
+mkc.doxygen.mk
 environment is limited in size
-make doxygen
 framewerk
 kBuild
