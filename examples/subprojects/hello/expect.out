@@ -1,0 +1,5 @@
+Hello World! version 1.2.3
+============================
+/objdir/prefix/bin/hello_subproject
+/objdir/prefix/bin/hello_subproject2
+/objdir/prefix/man/man1/hello_subproject.1

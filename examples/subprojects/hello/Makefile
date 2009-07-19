@@ -1,10 +1,10 @@
-PROG=		hello_world
+PROG=		hello_subproject
 SRCS=		main.c
 
-MAN=		hello_world.1
+MAN=		hello_subproject.1
 
-INFILES=	hello_world.1
-INSCRIPTS=	hello_world2
+INFILES=	hello_subproject.1
+INSCRIPTS=	hello_subproject2
 
 INTEXTS_SED+=	-e 's,@HELLO_VERSION@,${VERSION},'
 
@@ -17,5 +17,6 @@ DPLIBS+=	-lhello1 -lhello2
 
 .include "../Makefile.version"
 
+.include "test.mk"
 .include <mkc.intexts.mk>
 .include <mkc.prog.mk>
