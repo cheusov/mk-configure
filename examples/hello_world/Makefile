@@ -2,10 +2,9 @@ PROG=	hello_world
 
 MKMAN=	no
 
-.PHONY : all
-${.OBJDIR}/${.CURDIR:T}.test.out: all
+.PHONY : test_output all
+test_output: all
 	@set -e; \
-	{ \
 	${.OBJDIR}/hello_world; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
@@ -13,8 +12,7 @@ ${.OBJDIR}/${.CURDIR:T}.test.out: all
 	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
-	sed -e 's,${.OBJDIR},/objdir,' -e 's,${PREFIX},/prefix,'; \
-	} > ${.TARGET}
+	sed -e 's,${.OBJDIR},/objdir,' -e 's,${PREFIX},/prefix,'
 
 .include <mkc.minitest.mk>
 .include <mkc.prog.mk>
