@@ -7,3 +7,5 @@ test:
 	diff -u ${.CURDIR}/expect.out $$tmp_out && \
 	echo '      succeeded' 1>&2 || \
 	{ echo '      FAILED' 1>&2; false; }
+
+CLEANFILES+=	${.OBJDIR}/${.CURDIR:T}.test.out
