@@ -6,10 +6,20 @@ SCRIPTS=	hello_world2 hello_world3
 MAN=		hello_world.1
 
 .PHONY : all
-${.CURDIR:T}.test.out: all
-	@${.OBJDIR}/hello_world1 > ${.TARGET}; \
-	${.CURDIR}/hello_world2 >> ${.TARGET}; \
-	${.CURDIR}/hello_world3 >> ${.TARGET}
+${.OBJDIR}/${.CURDIR:T}.test.out: all
+	@set -e; \
+	{ \
+	${.OBJDIR}/hello_world1; \
+	${.CURDIR}/hello_world2; \
+	${.CURDIR}/hello_world3; \
+	echo ============================; \
+	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=no; export MKCATPAGES; \
+	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
+		> /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f | \
+	sed -e 's,${.OBJDIR},/objdir,' -e 's,${PREFIX},/prefix,'; \
+	} > ${.TARGET}
 
 .include <mkc.minitest.mk>
 .include <mkc.prog.mk>
