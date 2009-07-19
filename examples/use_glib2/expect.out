@@ -1,0 +1,6 @@
+Hello World!
+glib_major_version=N
+glib_minor_version=N
+glib_micro_version=N
+============================
+/objdir/prefix/bin/hello_glib2

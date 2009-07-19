@@ -7,5 +7,7 @@ CFLAGS+=		-DG_DISABLE_SINGLE_INCLUDES
 
 MKMAN=			no
 
-.include "../../mkc.pkg-config.mk"
+.include "test.mk"
+
+.include <mkc.pkg-config.mk>
 .include <mkc.prog.mk>
