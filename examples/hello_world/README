@@ -1,0 +1,9 @@
+This is a well known "hello world" application.
+It provides "hello_world" application written in C
+and nothing else.
+
+In order to build this program run the following commands:
+
+   bmake              # for bulding
+   bmake install-dirs # for creating destination directories
+   bmake install      # for installing files

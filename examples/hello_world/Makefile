@@ -1,6 +1,11 @@
-PROG=	hello_world
+DOCDIR?=	${DATADIR}/doc/${PROG}
 
-MKMAN=	no
+PROG=		hello_world
+
+MKMAN=		no
+
+FILES=		COPYRIGHT README
+FILESDIR=	${DOCDIR}
 
 .include "test.mk"
 .include <mkc.prog.mk>
