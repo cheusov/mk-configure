@@ -21,8 +21,8 @@ msg=	Unknown compiler
 CFLAGS+=	-DMSG='"${msg}"'
 
 .PHONY : all
-test.out: all
-	@./compiler_test > ${.TARGET}
+${.CURDIR:T}.test.out: all
+	@${.OBJDIR}/compiler_test > ${.TARGET}
 
 .include <mkc.minitest.mk>
 .include <mkc.prog.mk>

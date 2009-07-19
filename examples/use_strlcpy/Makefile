@@ -6,8 +6,8 @@ SRCS=			hello.c
 MKMAN=			no
 
 .PHONY : all
-test.out: all
-	@./hello4 > ${.TARGET} < input.in
+${.CURDIR:T}.test.out: all
+	@${.OBJDIR}/hello4 > ${.TARGET} < ${.CURDIR}/input.in
 
 .include <mkc.minitest.mk>
 .include <mkc.configure.mk>

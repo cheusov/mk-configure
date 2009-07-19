@@ -60,7 +60,8 @@ test: configure.mk
 	then echo '   succeeded'; \
 	else echo '   failed'; false; \
 	fi
-	cd examples && ${MAKE} -m ${.CURDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
+	cd ${.CURDIR}/examples && \
+	${MAKE} -m ${.CURDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
 ##################################################
 .include <bsd.prog.mk>

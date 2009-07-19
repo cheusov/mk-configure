@@ -5,8 +5,8 @@ PROG=			sizeof_test
 MKMAN=			no
 
 .PHONY : all
-test.out: all
-	@./sizeof_test | tr '1248' 'nnnn' >  ${.TARGET}
+${.CURDIR:T}.test.out: all
+	@${.OBJDIR}/sizeof_test | tr '1248' 'nnnn' >  ${.TARGET}
 
 .include <mkc.minitest.mk>
 .include <mkc.configure.mk>
