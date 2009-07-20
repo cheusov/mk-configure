@@ -46,22 +46,11 @@ all: configure.mk
 
 .PHONY: test
 test: configure.mk
-	@echo 'running tests...'; \
-	set -e; \
-	OBJDIR=${.OBJDIR}; \
-	MAKE='${MAKE}'; \
-	SRCDIR=${.CURDIR}; \
+	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
-	MAKEOBJDIR=${.OBJDIR}; \
-	MKFILESDIR=${MKFILESDIR}; \
-	cd ${.CURDIR}; \
-	export OBJDIR MAKE SRCDIR PATH MAKEOBJDIR MKFILESDIR; \
-	if ${.CURDIR}/tests/test.sh; \
-	then echo '   succeeded'; \
-	else echo '   failed'; false; \
-	fi
-	cd ${.CURDIR}/examples && \
-	${MAKE} -m ${.CURDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
+	export PATH; \
+	cd ${.CURDIR}/tests; \
+	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
 ##################################################
 .include <bsd.prog.mk>

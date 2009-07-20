@@ -13,22 +13,22 @@ MKC_SOURCE_FUNCLIBS+=	superfunc2:superlib2
 
 MKC_CHECK_HEADERS+=	sys/time.h string.h
 MKC_CHECK_HEADERS+=	bad_dir/bad_header.h bad_header.h
-MKC_CHECK_HEADERS+=	tests/mkc_test.h
+MKC_CHECK_HEADERS+=	include/mkc_test.h
 
 MKC_CHECK_FUNCLIBS+=	strcpy sqrt:m
 MKC_CHECK_FUNCLIBS+=	bad_func:bad_lib bad_func
 
 MKC_CHECK_DEFINES+=	__GNUC__ __BAD_DEFINE__
-MKC_CHECK_DEFINES+=	MKC_TEST_DEFINE:tests/mkc_test.h
+MKC_CHECK_DEFINES+=	MKC_TEST_DEFINE:include/mkc_test.h
 
 MKC_CHECK_VARS+=	errno:errno.h
 MKC_CHECK_VARS+=	bad_var:bar_header
-MKC_CHECK_VARS+=	mkc_test_var:tests/mkc_test.h
+MKC_CHECK_VARS+=	mkc_test_var:include/mkc_test.h
 
 MKC_CHECK_FUNCS2+=	strcmp:string.h
 MKC_CHECK_FUNCS3+=	strcpy
 MKC_CHECK_FUNCS1+=	bad_func bad_func:bad_header
-MKC_CHECK_FUNCS5+=	mkc_test_func:tests/mkc_test.h
+MKC_CHECK_FUNCS5+=	mkc_test_func:include/mkc_test.h
 
 MKC_CHECK_SIZEOF+=	int long-long void* size_t:string.h
 MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
@@ -40,10 +40,10 @@ MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:time.h
 MKC_CHECK_MEMBERS+=	struct-sockaddr_in.sin_addr.s_addr:netinet/in.h
 MKC_CHECK_MEMBERS+=	bad.member
 MKC_CHECK_MEMBERS+=	bad.member:string.h
-MKC_CHECK_MEMBERS+=	struct-mkc_test_t.a:tests/mkc_test.h
-MKC_CHECK_MEMBERS+=	struct-mkc_test_t.b.c:tests/mkc_test.h
+MKC_CHECK_MEMBERS+=	struct-mkc_test_t.a:include/mkc_test.h
+MKC_CHECK_MEMBERS+=	struct-mkc_test_t.b.c:include/mkc_test.h
 
-MKC_CUSTOM_DIR=			${.CURDIR}/tests
+MKC_CUSTOM_DIR=			${.CURDIR}/custom
 
 MKC_CHECK_CUSTOM+=		custom_check1 custom_check2
 MKC_CUSTOM_FN.custom_check2=	my_check2.c
@@ -65,18 +65,18 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_MEMBER.struct_sockaddr_in_sin_addr_s_addr.netinet_in_h \
 	HAVE_MEMBER.bad_member \
 	HAVE_MEMBER.bad_member.string_h \
-	HAVE_HEADER.tests_mkc_test_h \
-	HAVE_DEFINE.MKC_TEST_DEFINE.tests_mkc_test_h \
-	HAVE_FUNC5.mkc_test_func.tests_mkc_test_h \
-	HAVE_VAR.mkc_test_var.tests_mkc_test_h \
-	HAVE_MEMBER.struct_mkc_test_t_a.tests_mkc_test_h \
-	HAVE_MEMBER.struct_mkc_test_t_b_c.tests_mkc_test_h \
+	HAVE_HEADER.include_mkc_test_h \
+	HAVE_DEFINE.MKC_TEST_DEFINE.include_mkc_test_h \
+	HAVE_FUNC5.mkc_test_func.include_mkc_test_h \
+	HAVE_VAR.mkc_test_var.include_mkc_test_h \
+	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
+	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
 	\
 	HAVE_CUSTOM.custom_check1 HAVE_CUSTOM.custom_check2 \
 	\
 	MKC_CFLAGS MKC_SRCS MKC_LDADD
 
-.include "./configure.mk"
+.include <configure.mk>
 
 all:
 .for i in ${vars}
