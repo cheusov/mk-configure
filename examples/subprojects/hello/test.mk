@@ -4,7 +4,7 @@ test_output: all
 	${.OBJDIR}/hello_subproject2; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
+	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
 	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \

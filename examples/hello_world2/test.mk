@@ -6,7 +6,7 @@ test_output: all
 	${.CURDIR}/hello_world3; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
+	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
 	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
