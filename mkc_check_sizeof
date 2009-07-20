@@ -61,6 +61,7 @@ fi
 
 type=`echo $1 | tr ' -' '  '`
 pathpart=sizeof_`echo $type | tr '*' 'P'`
+shift
 
 . mkc_check_common.sh
 
@@ -70,7 +71,11 @@ pathpart=sizeof_`echo $type | tr '*' 'P'`
 try_it (){
     # succeedes if size is bad
     # $1 - test size
-    for f in $MKC_COMMON_HEADERS $2; do
+    # $2.. - #includes
+    sz=$1
+    shift
+
+    for f in $MKC_COMMON_HEADERS "$@"; do
 	echo "#include <$f>"
     done > "$tmpc"
     cat >> "$tmpc" <<EOF
@@ -78,7 +83,7 @@ int main ()
 {
    switch (0){
       case sizeof ($type): break;
-      case $1:             break;
+      case $sz:            break;
    }
    return 0;
 }
@@ -94,10 +99,10 @@ if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
 else
     printme '%s' "checking for sizeof ${type}... " 1>&2
     ret=failed
-    if try_it 10000
+    if try_it 2147483647 "$@"
     then
 	for sz in 4 8 2 1 16 12    3 5 6 7 9 10 11 13 14 15; do
-	    if try_it $sz
+	    if try_it $sz "$@"
 	    then
 		:
 	    else
