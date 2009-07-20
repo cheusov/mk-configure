@@ -3,10 +3,10 @@
 CPPFLAGS.pkg-config.${l}    != pkg-config --cflags ${l}
 .endif
 
-.if !defined(LDFLAGS.pkg-config.${l})
-LDFLAGS.pkg-config.${l}     != pkg-config --libs   ${l}
+.if !defined(LDADD.pkg-config.${l})
+LDADD.pkg-config.${l}     != pkg-config --libs   ${l}
 .endif
 
 CPPFLAGS+=	${CPPFLAGS.pkg-config.${l}}
-LDFLAGS+=	${LDFLAGS.pkg-config.${l}}
+LDADD+=		${LDADD.pkg-config.${l}}
 .endfor
