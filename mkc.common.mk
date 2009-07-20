@@ -196,4 +196,14 @@ test: all
 .endif # NOMKC_TARGETS
 ######################################################################
 
+.if !defined(SRCS)
+.if defined(PROG)
+SRCS+=	${PROG}.c
+.elif defined(LIB)
+SRCS+=	${LIB}.c
+.endif
+.endif
+
+######################################################################
+
 .endif # NOMKC_ATALL
