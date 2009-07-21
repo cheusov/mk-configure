@@ -8,3 +8,5 @@ test_output:
 		-f mkc_test.mk
 
 .include <mkc.minitest.mk>
+.include <mkc.configure.mk>
+.include <mkc.prog.mk>

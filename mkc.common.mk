@@ -188,9 +188,14 @@ print-values :
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
-.PHONY : test all
+.PHONY : test all distclean
+distclean: clean
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 test: all
+
+distclean:
+	rm -f ${DISTCLEANFILES}
+
 .endif
 
 .endif # NOMKC_TARGETS
