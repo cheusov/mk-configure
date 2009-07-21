@@ -1,10 +1,10 @@
-PROG=		hello_subproject
-SRCS=		main.c
+PROG=		hello_subprojects
+SRCS=		hello_subprojects.c
 
-MAN=		hello_subproject.1
+MAN=		hello_subprojects.1
 
-INFILES=	hello_subproject.1
-INSCRIPTS=	hello_subproject2
+INFILES=	hello_subprojects.1
+INSCRIPTS=	hello_subprojects2
 
 INTEXTS_SED+=	-e 's,@HELLO_VERSION@,${VERSION},'
 
