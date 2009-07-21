@@ -1,13 +1,9 @@
 .sinclude "cheusov_local_settings.mk"
 
 ##################################################
+.PATH:			${.CURDIR}
 
-PREFIX?=		/usr/local
-BINDIR?=		${PREFIX}/bin
-MANDIR?=		${PREFIX}/man
 MKFILESDIR?=		${PREFIX}/share/mk
-
-INST_DIR?=		${INSTALL} -d
 
 ##################################################
 
@@ -32,17 +28,12 @@ FILESDIR_mkc_check_common.sh=	${BINDIR}
 
 FILESDIR=		${MKFILESDIR}
 
-CLEANFILES+=		configure.mk *.cat1 *.html1 .error-check tests/.error-check
+CLEANFILES+=		configure.mk *.cat1 *.html1 .error-check
+
+INFILES+=		configure.mk
+INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 
 ##################################################
-
-.SUFFIXES:  .in
-
-all: configure.mk
-
-.in:
-	sed -e 's,@@version@@,${VERSION},g' \
-	    ${.ALLSRC} > ${.TARGET}
 
 .PHONY: test
 test: configure.mk
@@ -53,23 +44,5 @@ test: configure.mk
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
 ##################################################
-.include <bsd.prog.mk>
-
-##################################################
-
-# unfortunately bsd.prog.mk doesn't create
-# the destinations dirs at installation stage :-(
-#install: install-local
-.PHONY: install-dirs
-install-dirs:
-	${INST_DIR} ${DESTDIR}${MKFILESDIR}
-	${INST_DIR} ${DESTDIR}${BINDIR}
-.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
-	$(INST_DIR) ${DESTDIR}${MANDIR}/man1
-.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
-	$(INST_DIR) ${DESTDIR}${MANDIR}/cat1
-.endif
-.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-	$(INST_DIR) ${HTMLDIR}/html1
-.endif
-.endif
+.include <mkc.intexts.mk>
+.include <mkc.prog.mk>
