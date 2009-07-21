@@ -1,7 +1,7 @@
 .PHONY : test_output all
 test_output: all
 	@set -e; \
-	${.OBJDIR}/hello_subproject2; \
+	${.OBJDIR}/hello_subprojects2; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
