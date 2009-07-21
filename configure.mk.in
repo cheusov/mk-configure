@@ -431,13 +431,5 @@ SRCS   += ${MKC_SRCS}
 .endif
 
 # error check
-CLEANFILES+=		.error-check
+#CLEANFILES+=		.error-check
 DISTCLEANFILES+=	${:!echo ${MKC_CACHEDIR}/_mkc_*!}
-
-all : ${.OBJDIR}/.error-check
-${.OBJDIR}/.error-check:
-	@if test -z ${MKC_ERR_MSG}; then \
-		touch $@; exit 0; \
-	else \
-		echo ${MKC_ERR_MSG}; exit 1; \
-	fi

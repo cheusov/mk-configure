@@ -196,6 +196,13 @@ test: all
 distclean:
 	rm -f ${DISTCLEANFILES}
 
+
+all : error-check # ${.OBJDIR}/.error-check
+#${.OBJDIR}/.error-check:
+error-check:
+	@if test -n "${MKC_ERR_MSG}"; then \
+		echo ${MKC_ERR_MSG}; exit 1; \
+	fi
 .endif
 
 .endif # NOMKC_TARGETS
