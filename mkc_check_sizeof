@@ -89,7 +89,11 @@ int main ()
 }
 EOF
 
-    $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+    if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"; then
+    	return 0
+    else
+    	return 1
+    fi
 }
 
 if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
