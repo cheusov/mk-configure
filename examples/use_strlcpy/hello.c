@@ -5,7 +5,7 @@
 size_t strlcpy(char *dst, const char *src, size_t siz);
 #endif
 
-int main ()
+int main (int argc, char ** argv)
 {
 	char buf [2000];
 	char small_buf [10];
