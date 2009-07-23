@@ -160,8 +160,16 @@ A: Yes, I don't see significant difference between setting paths and
 
      .sinclude "my_local_settings.mk"
 
-   to the Makefile and create this file. Then your local building
-   options will take effect every time you run bmake. Easy?
+   to the Makefile and write in your settings to this this file. Then
+   your local building options will take effect every time you run
+   bmake. Easy?
+
+   If you don't like .sinclude way described above use
+
+     bmake -f my_local_settings.mk -f Makefile
+
+   The interactive shell's aliases and functions will help to make
+   things easier.
 
 ----------------------------------------------------------------------
 Q: Autotools-based software often implements lots of
