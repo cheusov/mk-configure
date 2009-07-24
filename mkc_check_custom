@@ -70,7 +70,7 @@ fi
 ##################################################
 # initializing
 basefn=`basename $1`
-basefn=${basefn%%.c}
+basefn=`echo ${basefn} | sed 's|[.]c$||'`
 pathpart="$basefn"
 
 . mkc_check_common.sh
