@@ -102,7 +102,7 @@ INFOGRP?=	${_MKC_GID}
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
 NOMKC_INCS:=	yes
 
-.if !defined(MKC_NOBSDMK) || !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+.if !defined(MKC_NOBSDMK) || empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 realinstall : includes
 .else
 #.PHONY : mkc-install-includes

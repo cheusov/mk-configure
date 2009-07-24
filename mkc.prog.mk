@@ -28,6 +28,7 @@
 
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 .include <prog.mk>
+.include <scripts.mk>
 .else
 .include <bsd.prog.mk>
 .endif
