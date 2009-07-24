@@ -2,4 +2,5 @@
 
 BEGIN {
 	print "Hello World 3!"
+	exit 0
 }
