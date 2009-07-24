@@ -81,8 +81,7 @@ tmpc="$1"
 # functions
 
 compile (){
-    if $CC -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"
-    then
+    if $CC -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"; then
 	return 0
     else
 	return 1
