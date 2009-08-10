@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main ()
+int main (int argc, char **argv)
 {
 	printf ("sizeof(int)=%i\n", SIZEOF_INT);
 	printf ("sizeof(long)=%i\n", SIZEOF_LONG);
