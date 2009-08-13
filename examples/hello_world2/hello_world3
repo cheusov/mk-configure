@@ -1,6 +1,0 @@
-#!/usr/bin/awk -f
-
-BEGIN {
-	print "Hello World 3!"
-	exit 0
-}
