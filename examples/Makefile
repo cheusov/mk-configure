@@ -1,10 +1,10 @@
 SUBDIR+=	hello_world
-SUBDIR+=	hello_world2
-SUBDIR+=	sizeof
+SUBDIR+=	hello_scripts
+SUBDIR+=	hello_sizeof
 SUBDIR+=	subprojects
-SUBDIR+=	test_for_compiler
-SUBDIR+=	use_dlopen
-SUBDIR+=	use_glib2
-SUBDIR+=	use_strlcpy
+SUBDIR+=	hello_compilers
+SUBDIR+=	hello_dlopen
+SUBDIR+=	hello_glib2
+SUBDIR+=	hello_strlcpy
 
 .include <mkc.subdir.mk>
