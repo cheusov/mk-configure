@@ -6,7 +6,7 @@ MKMAN=			no
 
 .if exists(/lib/libc.so)
 LIBC_FN=		/lib/libc.so
-.elif
+.else
 LIBC_FN!=		echo /lib/libc.so* | cut -d ' ' -f1
 .endif
 
