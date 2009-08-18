@@ -1,7 +1,7 @@
 .PHONY : test_output all
 test_output: all
-	@set -e; \
-	${.OBJDIR}/dlopen_test | sed 's/0x......../0xF00DBEAF/'; \
+	@set -e; LC_ALL=C; export LC_ALL; \
+	${.OBJDIR}/dlopen_test | sed 's/[0-9a-fA-F]*$$/F00DBEAF/'; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=no; export MKCATPAGES; \
