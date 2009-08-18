@@ -1,7 +1,7 @@
 .PHONY : test_output all
 test_output: all
 	@set -e; \
-	${.OBJDIR}/dlopen_test libc.so | sed 's/0x......../0xF00DBEAF/'; \
+	${.OBJDIR}/dlopen_test | sed 's/0x......../0xF00DBEAF/'; \
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=no; export MKCATPAGES; \
