@@ -4,8 +4,8 @@ Q: It looks like you are reimplenting the wheel. There are lots of
    PMK (pre make kit) and others.
 
 A: mk-configure has different design and goals. Just to note a few:
-   simplicity for developers, Keep It Small and Simple, stop code
-   generation!, bmake is magic enough, using POSIX shell and POSIX for
+   simplicity for developers, Keep It Small and Simple, STOP CODE
+   GENERATION!, bmake is magic enough, using POSIX shell and POSIX for
    implementing basic checks, and some others.  If you like these
    principles maybe you'll find mk-configure interesting. In this case
    try to use it and help me to improve it. Any kind of feedback is
@@ -175,7 +175,9 @@ A: Yes, I don't see significant difference between setting paths and
 Q: Autotools-based software often implements lots of
    --with/without-foo build options. What do you suggest instead?
 
-A: I think mk-configure does everything you may need here. Look at
+A: *** THIS IS NOT IMPLEMENTED YET ***
+
+   I think mk-configure does everything you may need here. Look at
    examples/complex_hello example project.
    In order to build complex_hello without libhello1 just run
 
