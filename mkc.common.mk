@@ -61,6 +61,7 @@ INFODIR?=		${PREFIX}/info
 
 ######################################################################
 .if !defined(NOMKC_PERMS) || empty(NOMKC_PERMS:M[Yy][Ee][Ss])
+.if make(install)
 NOMKC_PERMS:=	yes
 
 # Default owner and group
@@ -94,6 +95,7 @@ INFOGRP?=	${_MKC_GROUP}
 
 .endif
 
+.endif # make(install)
 .endif # NOMKC_PERMS
 
 ######################################################################
@@ -105,6 +107,8 @@ INFOGRP?=	${_MKC_GROUP}
 
 ######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
+.if make(install)
+
 NOMKC_INCS:=	yes
 
 .if !defined(MKC_NOBSDMK) || empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
@@ -115,10 +119,13 @@ realinstall : includes
 #	${INSTALL_DATA}
 .endif
 
+.endif # make(install)
 .endif # NOMKC_INCS
 
 ######################################################################
 .if !defined(NOMKC_INSTDIRS) || empty(NOMKC_INSTDIRS:M[Yy][Ee][Ss])
+.if make(install-dirs)
+
 NOMKC_INSTDIRS:=	yes
 
 # install-dirs target
@@ -175,9 +182,12 @@ install-dirs:
 	${INSTALL} -d "${d}"
 .endfor
 
+.endif # make(install-dirs)
 .endif # NOMKC_INSTDIRS
 ######################################################################
 .if !defined(NOMKC_UNINSTALL) || empty(NOMKC_UNINSTALL:M[Yy][Ee][Ss])
+.if make(uninstall)
+
 NOMKC_UNINSTALL:=	yes
 
 # uninstall target
@@ -239,6 +249,7 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${INFODIR}/${i}
 uninstall:
 	rm -f ${_MKC_UNINSTALLFILES}
 
+.endif # make(uninstall)
 .endif # NOMKC_UNINSTALL
 ######################################################################
 # general purpose targets
@@ -260,9 +271,8 @@ mkc_printobjdir:
 
 ###########
 .PHONY : test all distclean
-distclean: clean
 
-#######################################
+###########
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
@@ -270,6 +280,7 @@ test: all
 
 ###########
 
+distclean: clean
 distclean:
 	rm -f ${DISTCLEANFILES}
 
