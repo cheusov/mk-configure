@@ -20,7 +20,7 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1
 
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
-			mkc.info.mk mkc.lib.mk mkc.man.mk mkc.prog.mk \
+			mkc.lib.mk mkc.man.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc.common.mk mkc_check_common.sh
 

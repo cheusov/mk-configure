@@ -348,9 +348,15 @@ MAN+=	${PROG}.1
 
 ######################################################################
 
+.if defined(TEXINFO)
+CLEANFILES+=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
+.endif # TEXINFO
+
+.if defined(MAN)
 .for i in ${MAN}
 CLEANFILES+=	${i:R}.cat${i:E}
-.endfor
+.endfor # i
+.endif # MAN
 
 ######################################################################
 

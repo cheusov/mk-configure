@@ -27,8 +27,20 @@
 .include <mkc.common.mk>
 
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+
 .include <prog.mk>
+.if defined(SCRIPTS)
 .include <scripts.mk>
+.endif # SCRIPTS
+.if defined(TEXINFO)
+.include <info.mk>
+.endif # TEXINFO
+
 .else
+
 .include <bsd.prog.mk>
-.endif
+.if defined(TEXINFO)
+.include <bsd.info.mk>
+.endif # TEXINFO
+
+.endif #
