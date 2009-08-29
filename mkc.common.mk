@@ -177,6 +177,18 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${INFODIR}
 .endif # MKINFO
 .endif # TEXINFO
 
+.if defined(LINKS)
+.for i j in ${LINKS}
+_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
+.endfor # i j
+.endif # LINKS
+
+.if defined(SYMLINKS)
+.for i j in ${SYMLINKS}
+_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
+.endfor # i j
+.endif # LINKS
+
 .PHONY: install-dirs
 install-dirs:
 .for d in ${_MKC_INSTALLDIRS:O:u}

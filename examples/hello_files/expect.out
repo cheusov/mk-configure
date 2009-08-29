@@ -9,12 +9,12 @@
 /objdir/test.mk
 ========= install ==========
 /objdir/prefix/bin/shell_func1
-/objdir/prefix/bin/shell_func1.sh
 /objdir/prefix/bin/shell_func2
-/objdir/prefix/bin/shell_func2.sh
 /objdir/prefix/libexec/shell_func3
-/objdir/prefix/libexec/shell_func3.sh
 /objdir/prefix/man/man7/shell_func.7
+/objdir/prefix/share/files1/shell_func1.sh
+/objdir/prefix/share/files2/shell_func2.sh
+/objdir/prefix/share/files3/shell_func3.sh
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
