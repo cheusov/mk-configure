@@ -1,3 +1,36 @@
 returned address: F00DBEAF
-============================
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_funclib_dlopen.c
+/objdir/_mkc_funclib_dlopen.err
+/objdir/_mkc_funclib_dlopen.res
+/objdir/_mkc_funclib_dlopen_dl.c
+/objdir/_mkc_funclib_dlopen_dl.err
+/objdir/_mkc_funclib_dlopen_dl.res
+/objdir/dlopen_test
+/objdir/dlopen_test.c
+/objdir/dlopen_test.o
+/objdir/expect.out
+/objdir/hello_dlopen.test.out.tmp
+/objdir/test.mk
+========= install ==========
 /objdir/prefix/bin/dlopen_test
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_funclib_dlopen.c
+/objdir/_mkc_funclib_dlopen.err
+/objdir/_mkc_funclib_dlopen.res
+/objdir/_mkc_funclib_dlopen_dl.c
+/objdir/_mkc_funclib_dlopen_dl.err
+/objdir/_mkc_funclib_dlopen_dl.res
+/objdir/dlopen_test.c
+/objdir/expect.out
+/objdir/hello_dlopen.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/dlopen_test.c
+/objdir/expect.out
+/objdir/hello_dlopen.test.out.tmp
+/objdir/test.mk
