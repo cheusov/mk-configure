@@ -181,24 +181,35 @@ install-dirs:
 .if !defined(NOMKC_TARGETS) || empty(NOMKC_TARGETS:M[Yy][Ee][Ss])
 NOMKC_TARGETS:=        yes
 
+###########
+
 .PHONY : print-values
 print-values :
 .for v in ${VARS}
 	@printf "%s=%s\n" ${v} ${${v}:Q}
 .endfor
 
+###########
 .PHONY : mkc_printobjdir
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
+###########
 .PHONY : test all distclean
 distclean: clean
+
+#######################################
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
+###########
+
 test: all
+
+###########
 
 distclean:
 	rm -f ${DISTCLEANFILES}
 
+###########
 
 all : error-check # ${.OBJDIR}/.error-check
 #${.OBJDIR}/.error-check:
@@ -206,8 +217,8 @@ error-check:
 	@if test -n "${MKC_ERR_MSG}"; then \
 		echo ${MKC_ERR_MSG}; exit 1; \
 	fi
-.endif
-
+.endif # SUBDIR
+#######################################
 .endif # NOMKC_TARGETS
 ######################################################################
 
@@ -218,6 +229,18 @@ SRCS+=	${PROG}.c
 SRCS+=	${LIB}.c
 .endif
 .endif
+
+.if !defined(MAN)
+.if defined(PROG)
+MAN+=	${PROG}.1
+.endif
+.endif
+
+######################################################################
+
+.for i in ${MAN}
+CLEANFILES+=	${i:R}.cat${i:E}
+.endfor
 
 ######################################################################
 
