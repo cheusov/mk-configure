@@ -25,6 +25,8 @@
 ######################################################################
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
+MKHTML?=	no
+
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
 
@@ -121,8 +123,6 @@ NOMKC_INSTDIRS:=	yes
 
 # install-dirs target
 
-MKHTML?=	no
-
 .if defined(INCS)
 _MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
 .endif
@@ -176,6 +176,70 @@ install-dirs:
 .endfor
 
 .endif # NOMKC_INSTDIRS
+######################################################################
+.if !defined(NOMKC_UNINSTALL) || empty(NOMKC_UNINSTALL:M[Yy][Ee][Ss])
+NOMKC_UNINSTALL:=	yes
+
+# uninstall target
+
+.if defined(INCS)
+.for i in ${INCS}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${INCSDIR}/${i}
+.endfor
+.endif
+
+.if defined(PROG)
+_MKC_UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROG}
+.endif
+
+.if defined(SCRIPTS)
+.for i in ${SCRIPTS}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${i}
+.endfor
+.endif
+
+.if defined(FILES)
+.for i in ${FILES}
+.if defined(FILESDIR_${i})
+_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR_${i}}/${i}
+.else
+_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR}/${i}
+.endif
+.endfor
+.endif
+
+.if defined(LIB)
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/${LIB}
+.endif
+
+.if defined(MAN)
+.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
+#_MKC_MANCTGRS=		${MAN:E:O:u}
+.for i in ${MAN}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${i:E}/${i}
+.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
+_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${i:E}/${i:R}.cat${i:E}
+.endif # MKCATPAGES
+.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
+_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/html${i}/${i:R}.html${i:E}
+.endif # MKHTML
+.endfor # i
+.endif # MKMAN
+.endif # MAN
+
+.if defined(TEXINFO)
+.if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
+.for i in ${TEXINFO}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${INFODIR}/${i}
+.endfor
+.endif # MKINFO
+.endif # TEXINFO
+
+.PHONY: uninstall
+uninstall:
+	rm -f ${_MKC_UNINSTALLFILES}
+
+.endif # NOMKC_UNINSTALL
 ######################################################################
 # general purpose targets
 .if !defined(NOMKC_TARGETS) || empty(NOMKC_TARGETS:M[Yy][Ee][Ss])

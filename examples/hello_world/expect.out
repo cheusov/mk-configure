@@ -1,5 +1,32 @@
 Hello World!
-============================
+=========== all ============
+/objdir/COPYRIGHT
+/objdir/Makefile
+/objdir/README
+/objdir/expect.out
+/objdir/hello_world
+/objdir/hello_world.c
+/objdir/hello_world.o
+/objdir/hello_world.test.out.tmp
+/objdir/test.mk
+========= install ==========
 /objdir/prefix/bin/hello_world
 /objdir/prefix/share/doc/hello_world/COPYRIGHT
 /objdir/prefix/share/doc/hello_world/README
+======== uninstall =========
+========== clean ===========
+/objdir/COPYRIGHT
+/objdir/Makefile
+/objdir/README
+/objdir/expect.out
+/objdir/hello_world.c
+/objdir/hello_world.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/COPYRIGHT
+/objdir/Makefile
+/objdir/README
+/objdir/expect.out
+/objdir/hello_world.c
+/objdir/hello_world.test.out.tmp
+/objdir/test.mk
