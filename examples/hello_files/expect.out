@@ -1,0 +1,36 @@
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_files.test.out.tmp
+/objdir/shell_func.7
+/objdir/shell_func1
+/objdir/shell_func2
+/objdir/shell_func3
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/shell_func1
+/objdir/prefix/bin/shell_func1.sh
+/objdir/prefix/bin/shell_func2
+/objdir/prefix/bin/shell_func2.sh
+/objdir/prefix/libexec/shell_func3
+/objdir/prefix/libexec/shell_func3.sh
+/objdir/prefix/man/man7/shell_func.7
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_files.test.out.tmp
+/objdir/shell_func.7
+/objdir/shell_func1
+/objdir/shell_func2
+/objdir/shell_func3
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_files.test.out.tmp
+/objdir/shell_func.7
+/objdir/shell_func1
+/objdir/shell_func2
+/objdir/shell_func3
+/objdir/test.mk
