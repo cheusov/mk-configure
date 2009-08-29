@@ -3,7 +3,6 @@ test_output: all
 	@set -e; \
 	${.OBJDIR}/compiler_test; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

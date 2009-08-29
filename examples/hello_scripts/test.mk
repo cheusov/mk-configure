@@ -6,7 +6,6 @@ test_output: all
 	${.CURDIR}/hello_world3; \
 	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

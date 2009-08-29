@@ -3,14 +3,13 @@ test_output: all
 	@set -e; LC_ALL=C; export LC_ALL; \
 	${.OBJDIR}/dlopen_test | \
 	sed -e 's/0x//' -e 's/[0-9a-fA-F]*$$/F00DBEAF/'; \
+	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \
 	test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
 	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \

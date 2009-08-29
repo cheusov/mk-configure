@@ -39,7 +39,8 @@ INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 test: configure.mk
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
-	export PATH; \
+	MKCATPAGES=no; \
+	export PATH MKCATPAGES; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 

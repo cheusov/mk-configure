@@ -3,7 +3,6 @@ test_output: all
 	@set -e; \
 	${.OBJDIR}/hello_glib2 | sed 's,[0-9][0-9]*,N,'; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

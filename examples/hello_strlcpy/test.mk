@@ -3,7 +3,6 @@ test_output: all
 	@set -e; \
 	${.OBJDIR}/hello4 < ${.CURDIR}/input.in; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

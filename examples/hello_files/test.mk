@@ -3,9 +3,8 @@ test_output: all
 	@set -e; \
 	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
 	\
-	echo =========== all ============ $$MKCATPAGES; \
+	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \
 	test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
