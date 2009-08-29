@@ -13,6 +13,10 @@ LINKS+=			${BINDIR}/shell_func2 ${STRANGEDIR2}/shell_func2.sh
 SYMLINKS=		${LIBEXECDIR}/shell_func3 ${STRANGEDIR3}/shell_func3.sh
 
 MAN=			shell_func.7
+TEXINFO=		shell_func.texinfo
+
+INSTALL_INFO=		: # (for test) we will not create and update dir file
 
 .include "test.mk"
+.include <mkc.info.mk>
 .include <mkc.prog.mk>

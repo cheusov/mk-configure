@@ -31,3 +31,7 @@
 .else
 .include <bsd.info.mk>
 .endif
+
+.if defined(TEXINFO)
+CLEANFILES+=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
+.endif

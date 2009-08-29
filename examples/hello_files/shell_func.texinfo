@@ -1,0 +1,38 @@
+\input texinfo    @c -*-texinfo-*-
+@setfilename shell_func.info
+@settitle shell_func shell functions
+@setchapternewpage odd
+
+@ifinfo
+@dircategory Libraries
+@direntry
+* Shell_func: (shell_func).       Info page for shell_func.
+@end direntry
+
+This is fake!
+
+@end ifinfo
+
+@titlepage  
+@title shell_func info page
+@subtitle Edition @value{EDITION}, Version @value{VERSION}.
+@subtitle @value{UPDATE-MONTH}
+@author Aleksey Cheusov
+
+@page
+foobar
+
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2009 Aleksey Cheusov
+@end titlepage
+
+@ifinfo
+@node Top
+@top shell_func fake!
+
+This is fake too!
+
+@end ifinfo
+
+@contents
+@bye

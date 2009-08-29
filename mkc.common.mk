@@ -275,7 +275,7 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/html${i}/${i:R}.html${i:E}
 .if defined(TEXINFO)
 .if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
 .for i in ${TEXINFO}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${INFODIR}/${i}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${INFODIR}/${i:R}.info
 .endfor
 .endif # MKINFO
 .endif # TEXINFO
