@@ -1,8 +1,43 @@
 Hello World 1!
 Hello World 2!
 Hello World 3!
-============================
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_scripts.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world.cat1
+/objdir/hello_world1
+/objdir/hello_world2
+/objdir/hello_world3
+/objdir/main.c
+/objdir/main.o
+/objdir/msg.c
+/objdir/msg.o
+/objdir/test.mk
+========= install ==========
 /objdir/prefix/bin/hello_world1
 /objdir/prefix/bin/hello_world2
 /objdir/prefix/bin/hello_world3
 /objdir/prefix/man/man1/hello_world.1
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_scripts.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world2
+/objdir/hello_world3
+/objdir/main.c
+/objdir/msg.c
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_scripts.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world2
+/objdir/hello_world3
+/objdir/main.c
+/objdir/msg.c
+/objdir/test.mk
