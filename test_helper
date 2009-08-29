@@ -1,0 +1,14 @@
+#!/bin/sh
+
+set -e
+test $# -eq 2
+
+prefix="$1"
+objdir="$2"
+
+LC_ALL=C
+export LC_ALL
+
+grep -v CVS |
+sed -e "s,$objdir,/objdir," -e "s,$prefix,/prefix," |
+sort

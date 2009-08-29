@@ -10,6 +10,6 @@ test_output: all
 	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
-	sed -e 's,${.OBJDIR},/objdir,' -e 's,${PREFIX},/prefix,'
+	test_helper "${PREFIX}" "${.OBJDIR}"
 
 .include <mkc.minitest.mk>
