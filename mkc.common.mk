@@ -113,6 +113,7 @@ NOMKC_INCS:=	yes
 
 .if !defined(MKC_NOBSDMK) || empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 realinstall : includes
+includes :
 .else
 #.PHONY : mkc-install-includes
 #install : mkc-install-includes
@@ -158,15 +159,15 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 
 .if defined(MAN)
 .if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
-_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man1
+.for i in ${MAN:E:O:u}
+_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man${i}
 .if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
-_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat1
+_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat${i}
 .endif # MKCATPAGES
 .if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-.for i in ${MAN:E:O:u}
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/html${i}
-.endfor
 .endif # MKHTML
+.endfor # i
 .endif # MKMAN
 .endif # MAN
 
@@ -220,6 +221,18 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR}/${i}
 
 .if defined(LIB)
 _MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/${LIB}
+.endif
+
+.if defined(LINKS)
+.for i mkc_dst in ${LINKS}
+_MKC_UNINSTALLFILES+=	${DESTDIR}/${mkc_dst}
+.endfor
+.endif
+
+.if defined(SYMLINKS)
+.for i mkc_dst in ${SYMLINKS}
+_MKC_UNINSTALLFILES+=	${DESTDIR}/${mkc_dst}
+.endfor
 .endif
 
 .if defined(MAN)
