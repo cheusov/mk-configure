@@ -15,7 +15,7 @@ SCRIPTS=	${INSCRIPTS}
 
 DPLIBS+=	-lhello1 -lhello2
 
-.include "../Makefile.version"
+.include "../version.mk"
 
 .include "test.mk"
 .include <mkc.intexts.mk>

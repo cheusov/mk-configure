@@ -1,6 +1,5 @@
 =========== all ============
 /objdir/Makefile
-/objdir/Makefile.version
 /objdir/expect.out
 /objdir/hello/Makefile
 /objdir/hello/expect.out
@@ -35,6 +34,7 @@
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
+/objdir/version.mk
 ========= install ==========
 /objdir/prefix/bin/hello_subprojects
 /objdir/prefix/bin/hello_subprojects2
@@ -51,7 +51,6 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/Makefile.version
 /objdir/expect.out
 /objdir/hello/Makefile
 /objdir/hello/expect.out
@@ -69,9 +68,9 @@
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
+/objdir/version.mk
 ======= distclean ==========
 /objdir/Makefile
-/objdir/Makefile.version
 /objdir/expect.out
 /objdir/hello/Makefile
 /objdir/hello/expect.out
@@ -89,3 +88,4 @@
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
+/objdir/version.mk

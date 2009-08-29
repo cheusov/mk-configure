@@ -6,6 +6,6 @@ MKPIC=	no
 CPPFLAGS+=	-I${.CURDIR}/include
 CFLAGS+=	-DHELLO_VERSION='"${VERSION}"'
 
-.include "../Makefile.version"
+.include "../version.mk"
 
 .include <mkc.lib.mk>
