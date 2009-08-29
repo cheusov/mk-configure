@@ -187,7 +187,7 @@ install-dirs:
 .endif # NOMKC_INSTDIRS
 ######################################################################
 .if !defined(NOMKC_UNINSTALL) || empty(NOMKC_UNINSTALL:M[Yy][Ee][Ss])
-.if make(uninstall)
+.if make(uninstall) && empty(SUBDIR)
 
 NOMKC_UNINSTALL:=	yes
 
@@ -220,8 +220,18 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR}/${i}
 .endif
 
 .if defined(LIB)
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/${LIB}
-.endif
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.a
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+.if defined(SHLIB_MAJOR)
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.so
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
+.if defined(SHLIB_TEENY)
+_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
+.endif # SHLIB_TEENY
+.endif # SHLIB_MAJOR
+.endif # LIB
 
 .if defined(LINKS)
 .for i mkc_dst in ${LINKS}

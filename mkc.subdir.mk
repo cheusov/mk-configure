@@ -48,6 +48,15 @@ distclean:
 	fi
 .endfor
 
+.PHONY : uninstall
+uninstall:
+.for d in ${SUBDIR}
+	@if test "${d}" != .WAIT; then \
+		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} uninstall; \
+	fi
+.endfor
+
+.if !target(test)
 .PHONY : test
 test:
 	@ex=0; \
@@ -59,3 +68,4 @@ test:
 	   fi; \
 	done; \
 	exit $$ex
+.endif
