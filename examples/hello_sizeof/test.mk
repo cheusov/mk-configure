@@ -1,5 +1,5 @@
-.PHONY : test_output all
-test_output: all
+.PHONY : test_output
+test_output:
 	@set -e; \
 	${.OBJDIR}/sizeof_test | tr '1248' 'nnnn'; \
 	rm -rf ${.OBJDIR}${PREFIX}; \

@@ -1,5 +1,5 @@
-.PHONY : test_output all
-test_output: all
+.PHONY : test_output
+test_output:
 	@set -e; \
 	${.OBJDIR}/compiler_test; \
 	rm -rf ${.OBJDIR}${PREFIX}; \

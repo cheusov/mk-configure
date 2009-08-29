@@ -1,5 +1,5 @@
-.PHONY : test_output all
-test_output: all
+.PHONY : test_output
+test_output:
 	@set -e; \
 	${.OBJDIR}/hello4 < ${.CURDIR}/input.in; \
 	rm -rf ${.OBJDIR}${PREFIX}; \

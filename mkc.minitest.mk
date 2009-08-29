@@ -1,5 +1,5 @@
 .PHONY : test
-test:
+test: all
 	@echo 'Testing ${.CURDIR}... ' 1>&2; \
 	set -e; cd ${.CURDIR}; \
 	tmp_out=${.OBJDIR}/${.CURDIR:T}.test.out; \
