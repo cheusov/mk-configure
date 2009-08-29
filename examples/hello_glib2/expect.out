@@ -2,5 +2,26 @@ Hello World!
 glib_major_version=N
 glib_minor_version=N
 glib_micro_version=N
-============================
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_glib2
+/objdir/hello_glib2.c
+/objdir/hello_glib2.o
+/objdir/hello_glib2.test.out.tmp
+/objdir/test.mk
+========= install ==========
 /objdir/prefix/bin/hello_glib2
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_glib2.c
+/objdir/hello_glib2.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_glib2.c
+/objdir/hello_glib2.test.out.tmp
+/objdir/test.mk
