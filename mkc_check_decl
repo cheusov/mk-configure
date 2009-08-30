@@ -65,7 +65,11 @@ fi
 ##################################################
 # initializing
 
-pathpart=`echo $* | tr '/. ' ___`
+if test "$1" = type; then
+    pathpart=`echo $* | sed -e 's/ /_/' -e 'y|/. |__~|'`
+else
+    pathpart=`echo $* | tr '/. ' '___'`
+fi
 
 decltype=`echo $1 | sed -e 's/[0-9]//g'`
 argscnt=`echo $1 | sed 's/[^0-9]//g'`
