@@ -238,6 +238,22 @@
 #   Res. HAVE_CUSTOM.nested_funcs=1
 #        CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
 #
+# MKC_CHECK_PROGS
+#       List of programs to check (list of names).
+#
+#       As a result of the check bmake's variable
+#       HAVE_PROG.<progname> to either 1 (true) or 0 (false)
+#       depending on check results. If <progname> was found
+#       PROG.<progname> is set to its full path.
+#
+#   Ex:  MKC_CHECK_PROGS += lua ruby gawk runawk
+#   Res: HAVE_PROG.lua             = 1
+#        PROG.lua                  = /usr/pkg/bin/lua
+#        HAVE_PROG.ruby            = 0
+#        HAVE_PROG.gawk            = 1
+#        PROG.gawk                 = /usr/bin/gawk
+#        HAVE_PROG.runawk          = 1
+#        PROG.runawk               = /usr/pkg/bin/runawk
 # MKC_REQUIRE_HEADERS
 #       The same as MKC_CHECK_HEADERS, but absense of header is
 #       treated as a fatal error.
@@ -500,6 +516,24 @@ HAVE_CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_DIR}/${
 MKC_CFLAGS  +=  -DHAVE_CUSTOM_${c:tu}=${HAVE_CUSTOM.${c}}
 .endif
 .endfor
+
+# checking for declared #define
+.for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
+.if !defined(PROG.${p})
+PROG.${p}   !=   	env ${mkc.environ} mkc_which -x '${p}' 2>/dev/null
+.endif # !defined(PROG.${p})
+.if !empty(PROG.${p})
+HAVE_PROG.${p}=		1
+.else
+HAVE_PROG.${p}=		0
+.endif
+.endfor # p
+
+.for p in ${MKC_REQUIRE_PROGS}
+.if !${HAVE_PROG.${p}}
+MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
+.endif
+.endfor # p
 
 # final assignment
 .if !${MKC_NOAUTO:U0}

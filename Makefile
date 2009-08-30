@@ -15,7 +15,8 @@ VERSION=		0.10.0
 BIRTHDATE=		2009-02-21
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
-			mkc_check_sizeof  mkc_check_decl
+			mkc_check_sizeof  mkc_check_decl \
+			mkc_which
 
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1

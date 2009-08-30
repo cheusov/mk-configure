@@ -43,6 +43,8 @@ MKC_CHECK_MEMBERS+=	bad.member:string.h
 MKC_CHECK_MEMBERS+=	struct-mkc_test_t.a:include/mkc_test.h
 MKC_CHECK_MEMBERS+=	struct-mkc_test_t.b.c:include/mkc_test.h
 
+MKC_CHECK_PROGS+=	awk sh megaprog-x34
+
 MKC_CUSTOM_DIR=			${.CURDIR}/custom
 
 MKC_CHECK_CUSTOM+=		custom_check1 custom_check2
@@ -74,6 +76,10 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	\
 	HAVE_CUSTOM.custom_check1 HAVE_CUSTOM.custom_check2 \
 	\
+	HAVE_PROG.sh           PROG.sh \
+	HAVE_PROG.awk          PROG.awk \
+	HAVE_PROG.megaprog-x34 PROG.megaprog-x34 \
+	\
 	MKC_CFLAGS MKC_SRCS MKC_LDADD
 
 .include <configure.mk>
@@ -85,8 +91,10 @@ all:
 		for (i=1; i <= NF; ++i) { \
 			if ($$i ~ /SIZEOF/) \
 				sub(/=[0-9]+/, "=n", $$i); \
+			if ($$i ~ /PROG/) \
+				sub(/\/.*\/bin/, "/somewhere/bin", $$i); \
 		}; \
-		print $$0 \
+		print $$0; \
 	}'
 .endfor
 	@echo ''

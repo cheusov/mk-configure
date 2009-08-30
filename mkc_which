@@ -1,0 +1,30 @@
+#!/bin/sh
+
+set -x
+
+# Replacement for which(1) that sucks so much on some systems, e.g. Solaris
+
+if test "$1" = "-x"; then
+    failure=0
+    shift
+else
+    failure=1
+fi
+
+if test $# -ne 1; then
+    cat <<EOF
+usage: mkc_which [-x] program
+  -x -- exit status is always 0
+EOF
+    exit 1
+fi
+
+for i in `echo $PATH|tr : ' '`; do
+    if test -x "$i/$1"; then
+	echo $i/$1
+	exit 0
+    fi
+done
+
+echo "Cannot find $1" >&2
+exit $failure

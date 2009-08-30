@@ -18,3 +18,5 @@ HAVE_TYPE.mbstate_t.wchar_h=2
 HAVE_TYPE.bad_type=2
 HAVE_CUSTOM.custom_check1=0
 HAVE_CUSTOM.custom_check2=1
+PROG.awk=
+PROG.megaprog-x34=/bad/path
