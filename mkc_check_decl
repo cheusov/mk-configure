@@ -73,7 +73,7 @@ declwhat=`echo $1 | sed 's/-/ /'`
 shift
 
 if test "$decltype" = type; then
-    pathpart=`echo ${decltype}_${declwhat}$* | tr '/. ' '__~'`
+    pathpart=`echo ${decltype}_${declwhat}_$* | tr '/. ' '__~'`
 else
     pathpart=`echo $decltype$argscnt $declwhat $* | tr '/. ' '___'`
 fi
