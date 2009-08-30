@@ -19,6 +19,8 @@ checking for member struct bad.member ( stdlib.h )... no
 checking for func strcmp ( string.h )... yes
 checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
+checking for custom test custom_check1... yes
+checking for custom test custom_check2... no
 checking for program sh... found
 checking for program awk... found
 checking for program foobar_prog... NOT FOUND
@@ -33,4 +35,5 @@ ERROR: cannot find declaration of variable barbaz:unistd.h
 ERROR: cannot find member struct-bad.member:stdlib.h
 ERROR: cannot find declaration of function foobar:stdlib.h
 ERROR: cannot find declaration of function barbaz
+ERROR: custom test custom_check2 failed
 ERROR: cannot find program foobar_prog

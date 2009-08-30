@@ -505,7 +505,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
 .endfor # n
 
 # custom checks
-.for c in ${MKC_CHECK_CUSTOM}
+.for c in ${MKC_CHECK_CUSTOM} ${MKC_REQUIRE_CUSTOM}
 .if !defined(HAVE_CUSTOM.${c})
 .if !defined(MKC_CUSTOM_FN.${c})
 MKC_CUSTOM_FN.${c}=${c}.c
@@ -514,6 +514,12 @@ HAVE_CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_DIR}/${
 .endif
 .if ${HAVE_CUSTOM.${c}}
 MKC_CFLAGS  +=  -DHAVE_CUSTOM_${c:tu}=${HAVE_CUSTOM.${c}}
+.endif
+.endfor
+
+.for c in ${MKC_REQUIRE_CUSTOM}
+.if !${HAVE_CUSTOM.${c}}
+MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
 

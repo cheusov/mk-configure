@@ -11,6 +11,7 @@ MKC_REQUIRE_MEMBERS+=	struct-bad.member:stdlib.h
 MKC_REQUIRE_FUNCS2+=	strcmp:string.h foobar:stdlib.h
 MKC_REQUIRE_FUNCS9+=	barbaz
 MKC_REQUIRE_PROGS+=	sh awk foobar_prog
+MKC_REQUIRE_CUSTOM+=	custom_check1 custom_check2
 
 .include "test.mk"
 .include <mkc.configure.mk>
