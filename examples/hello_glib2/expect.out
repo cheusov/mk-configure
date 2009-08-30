@@ -4,6 +4,8 @@ glib_minor_version=N
 glib_micro_version=N
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
 /objdir/expect.out
 /objdir/hello_glib2
 /objdir/hello_glib2.c
@@ -15,6 +17,8 @@ glib_micro_version=N
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
 /objdir/expect.out
 /objdir/hello_glib2.c
 /objdir/hello_glib2.test.out.tmp
