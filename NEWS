@@ -3,7 +3,7 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
 
   Regression tests have been reorganized and significantly improved.
   All examples become regression tests.  Lots of new tests.
-  Run 'bmake test' to activate them.
+  Run 'bmake test' to run them.
 
   mk-configure uses its own mkc.*.mk scripts to build and install
   itself.  As a result Free/OpenBSD make cannot be used anymore for
@@ -17,19 +17,22 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
   itself.
 
   Initial version of mkc.pkg-config.mk module
-  See examples/hello_glib2 for example.
+  See examples/hello_glib2 for the sample of use.
+  Note that it is not complete yet.
 
   mkc.configure.mk and configure.mk:
 
       - checks are not run if appropriate HAVE_xxx.yyy variable is
-        already set. This makes possible to effectively build software
-        in a well defined stable environment.
+        already defined. This makes possible to effectively build
+        software in a well defined stable environment.
         Ex: bmake -f predefined_settings.mk -f Makefile all
 
       - ADDED: MKC_CHECK_TYPES for checking for types.
         See the documentation in configure.mk.in and examples/.
 
       - ADDED: MKC_CHECK_CUSTOM for custom user's checks.
+        Custom check is a user's code.
+        Check itself -- is this code compilable or not.
         See the documentation in configure.mk.in and examples/.
 
       - Behaviour of MKC_CHECK_MEMBERS changed: Now "struct " prefix
@@ -47,25 +50,19 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
         See configure.mk.in for the documentation and
         examples/ for the samples of use.
 
-      - NEW: MKC_REQUIRE_CUSTOM.
-        See configure.mk.in for the documentation and
-        examples/ for the samples of use.
-
       - NEW: targets "distclean" and "cleandir" removes _mkc_* cache files.
 
-      - all checks are disabled for targets "clean" and "distclean".
+      - all checks are disabled for targets "clean", "cleandir" and
+        "distclean".
 
       -  Cache file names changed. Now they are:
-           _mkc_type_<type>
-           _mkc_sizeof_<type>
-           _mkc_header_<header>
-           _mkc_funclib_<funclib>
-           _mkc_funcN_<func>
-           _mkc_variable_<variable>
-           _mkc_custom_<custom-check>
-           _mkc_prog_<progname>
-           _mkc_define_<define>
-           _mkc_member_<member>
+           _mkc_type_<type>, _mkc_sizeof_<type>, _mkc_header_<header>,
+           _mkc_funclib_<funclib>, _mkc_funcN_<func>,
+           _mkc_variable_<variable>, _mkc_custom_<custom-check>,
+           _mkc_prog_<progname>, _mkc_define_<define>, _mkc_member_<member>
+
+  mkc.info.mk and mkc.man.mk are removed. They are included automatically
+  from mkc.prog.mk, mkc.lib.mk and mkc.files.mk if needed.
 
   mkc.prog.mk, mkc.lib.mk, mkc.files.mk and mkc.subdir.mk:
 
@@ -84,40 +81,31 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
           - "uninstall" target takes TEXINFO into account.
           - "clean" target removes generated .info files.
 
-      - mkc.{prog,lib,files}.mk, mkc.lib.mk and mkc.subdir.mk support
-        target "test".  By default it does nothing.  The target "test"
-        of mkc.subdir.mk runs 'bmake test' for each SUBDIR. If you
-        want to define your own "test" target overriding the default
-        one, define it in your project's Makefile before any
-            .include <mkc.*.mk>.
-        directive.
-
-  mkc.pkg-config.mk
-
-      - fixes and improvements.
+      - mkc.{prog,lib,files}.mk supports a target "test".  By default
+        it does nothing.  The target "test" of mkc.subdir.mk runs
+        'bmake test' for each SUBDIR. If you want to define your own
+        "test" target overriding the default one, define it in your
+        project's Makefile before any .include <mkc.*.mk> directive.
 
   Makefile of mk-configure: README, NEWS, TODO, FAQ and COPYRIGHT
-  files are also installed unless EXTRAFILES is set to an empty
-  string.
+  files are also installed unless EXTRAFILES is set to an empty string.
 
-  mkc_check_sizeof doesn't create file with spaces in its name anymore.
-  Space inside filename is replaced with ~ (tilde).
-
-  mkc.info.mk and mkc.man.mk are removed. They are included automatically
-  from mkc.prog.mk, mkc.lib.mk and mkc.files.mk if needed.
-
-  Other fixes and improvements.
+  "mkc_check_sizeof" and "mkc_check_decl type" don't create cache
+  files with spaces in its name anymore.  Space inside a filename is
+  replaced with symbol ~ (tilde).
 
   FIXED: mkc_check_custom, mkc_check_decl, mkc_check_funclib,
-  mkc_check_header and mkc_check_sizeof failed if CC contain space.
-  Thanks to Vitaly Lipatov for report.
+  mkc_check_header and mkc_check_sizeof failed if CC contains space.
+  Thanks to Vitaly Lipatov for the report.
 
-  mkc_check_sizeof now it works drammatically faster.
+  mkc_check_sizeof now works drammatically faster.
 
   MKHTML defaults to "no".
 
   mkc_check_sizeof, mkc_check_custom:
       - fixes for problems with Solaris' /bin/sh
+
+  Other fixes and improvements.
 
 ======================================================================
 Version 0.10.0, by Aleksey Cheusov, Sun, 31 May 2009 14:54:10 +0300
