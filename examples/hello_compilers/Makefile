@@ -6,13 +6,13 @@ MKMAN=			no
 
 .include <mkc.configure.mk>
 
-.if ${HAVE_DEFINE._MSC_VER}
+.if ${HAVE_DEFINE._MSC_VER:U0}
 msg=	Microsoft C Compiler
-.elif ${HAVE_DEFINE.__INTEL_COMPILER}
+.elif ${HAVE_DEFINE.__INTEL_COMPILER:U0}
 msg=	Intel C Compiler
-.elif ${HAVE_DEFINE.__PCC__}
+.elif ${HAVE_DEFINE.__PCC__:U0}
 msg=	Portable C Compiler
-.elif ${HAVE_DEFINE.__GNUC__}
+.elif ${HAVE_DEFINE.__GNUC__:U1}
 msg=	GNU C Compiler
 .else
 msg=	Unknown compiler
