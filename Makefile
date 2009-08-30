@@ -1,9 +1,9 @@
 .sinclude "cheusov_local_settings.mk"
 
 ##################################################
-.PATH:			${.CURDIR}
 
 MKFILESDIR?=		${PREFIX}/share/mk
+EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 
 ##################################################
 
@@ -19,10 +19,16 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1
 
+EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.lib.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc.common.mk mkc_check_common.sh
+FILES+=			${EXTRAFILES}
+
+.for i in ${EXTRAFILES}
+FILESDIR_${i}=		${EXTRAFILESDIR}
+.endfor
 
 FILESDIR_mkc_check_common.sh=	${BINDIR}
 
