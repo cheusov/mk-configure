@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -x
-
 # Replacement for which(1) that sucks so much on some systems, e.g. Solaris
 
 if test "$1" = "-x"; then

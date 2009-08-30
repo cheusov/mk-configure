@@ -520,7 +520,7 @@ MKC_CFLAGS  +=  -DHAVE_CUSTOM_${c:tu}=${HAVE_CUSTOM.${c}}
 # checking for declared #define
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
 .if !defined(PROG.${p})
-PROG.${p}   !=   	env ${mkc.environ} mkc_which -x '${p}' 2>/dev/null
+PROG.${p}   !=   	env ${mkc.environ} mkc_check_prog '${p}'
 .endif # !defined(PROG.${p})
 .if !empty(PROG.${p})
 HAVE_PROG.${p}=		1
