@@ -19,6 +19,9 @@ checking for member struct bad.member ( stdlib.h )... no
 checking for func strcmp ( string.h )... yes
 checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
+checking for program sh... found
+checking for program awk... found
+checking for program foobar_prog... NOT FOUND
 ERROR: cannot find header foobar.h
 ERROR: cannot find function foobar
 ERROR: cannot find function barbaz:z
@@ -30,3 +33,4 @@ ERROR: cannot find declaration of variable barbaz:unistd.h
 ERROR: cannot find member struct-bad.member:stdlib.h
 ERROR: cannot find declaration of function foobar:stdlib.h
 ERROR: cannot find declaration of function barbaz
+ERROR: cannot find program foobar_prog
