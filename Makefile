@@ -1,6 +1,7 @@
 .sinclude "cheusov_local_settings.mk"
 
 ##################################################
+.PATH:			${.CURDIR}
 
 MKFILESDIR?=		${PREFIX}/share/mk
 EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
