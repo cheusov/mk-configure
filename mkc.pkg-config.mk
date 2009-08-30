@@ -1,13 +1,18 @@
 MKC_REQUIRE_PROGS+=	pkg-config
+DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 
-.if !defined(PROG.pkg-config)
+# begin of hack
+# improve this hack!!!
 MKC_CACHEDIR?=${.OBJDIR}
 MKC_NOCACHE?=
 MKC_DELETE_TMPFILES?=0
 MKC_SHOW_CACHED?=1
+.if !defined(PROG.pkg-config)
 PROG.pkg-config   !=   	env MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1 mkc_check_prog pkg-config
-DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 .endif # !defined(PROG.pkg-config)
+# end of hack
+
+.if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
 .if !empty(PROG.pkg-config)
 
@@ -34,3 +39,5 @@ LDADD+=		${LDADD.pkg-config.${l}}
 .endfor # .for l
 
 .endif # PROG.pkg-config
+
+.endif # !make(clean) && !make(distclean)
