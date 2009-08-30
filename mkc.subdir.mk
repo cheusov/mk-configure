@@ -40,13 +40,13 @@ install-dirs:
 	fi
 .endfor
 
-.PHONY : distclean
-distclean:
-.for d in ${SUBDIR}
-	@if test "${d}" != .WAIT; then \
-		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} distclean; \
-	fi
-.endfor
+#.PHONY : distclean
+#distclean:
+#.for d in ${SUBDIR}
+#	@if test "${d}" != .WAIT; then \
+#		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} distclean; \
+#	fi
+#.endfor
 
 .PHONY : uninstall
 uninstall:

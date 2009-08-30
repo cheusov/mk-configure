@@ -305,14 +305,15 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 ###########
-.PHONY : test all distclean
+.PHONY : test all distclean cleandir
 
 ###########
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
-distclean: clean
-distclean:
+#cleandir: distclean
+cleandir: clean
+cleandir:
 	rm -f ${DISTCLEANFILES}
 
 ###########

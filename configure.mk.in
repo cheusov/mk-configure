@@ -331,7 +331,7 @@ MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
 DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 
-.if !make(clean) && !make(distclean) # .endif is in the end of file
+.if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
 #
 OSNAME!=		uname -s
