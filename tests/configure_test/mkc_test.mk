@@ -92,7 +92,7 @@ all:
 			if ($$i ~ /SIZEOF/) \
 				sub(/=[0-9]+/, "=n", $$i); \
 			if ($$i ~ /PROG/) \
-				sub(/\/.*\/bin/, "/somewhere/bin", $$i); \
+				sub(/=.*bin/, "=/somewhere/bin", $$i); \
 		}; \
 		print $$0; \
 	}'
