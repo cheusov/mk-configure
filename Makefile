@@ -1,4 +1,4 @@
-.sinclude "cheusov_local_settings.mk"
+.sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
 .PATH:			${.CURDIR}
