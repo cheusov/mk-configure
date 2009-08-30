@@ -26,6 +26,8 @@
 
 .include <mkc.common.mk>
 
+.if !defined(MKC_ERR_MSG)
+
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 
 .include <prog.mk>
@@ -36,11 +38,13 @@
 .include <info.mk>
 .endif # TEXINFO
 
-.else
+.else # MKC_NOBSDMK
 
 .include <bsd.prog.mk>
 .if defined(TEXINFO)
 .include <bsd.info.mk>
 .endif # TEXINFO
 
-.endif #
+.endif # MKC_NOBSDMK
+
+.endif # MKC_ERR_MSG

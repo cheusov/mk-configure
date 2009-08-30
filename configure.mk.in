@@ -238,6 +238,40 @@
 #   Res. HAVE_CUSTOM.nested_funcs=1
 #        CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
 #
+# MKC_REQUIRE_HEADERS
+#       The same as MKC_CHECK_HEADERS, but absense of header is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_FUNCLIBS
+#       The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_DEFINES
+#       The same as MKC_CHECK_DEFINES, but absense of define is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_TYPES
+#       The same as MKC_CHECK_TYPES, but absense of type declaration is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_VARS
+#       The same as MKC_CHECK_VARS, but absense of variable declaration is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_MEMBERS
+#       The same as MKC_CHECK_MEMBERS, but absense of member is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_FUNCS<N>
+#       The same as MKC_CHECK_FUNCS<N>, but absense of function declaration is
+#       treated as a fatal error.
+#
+# MKC_REQUIRE_CUSTOM
+#       The same as MKC_CHECK_CUSTOM, but failures means a fatal error.
+#
+# MKC_REQUIRE_PROGS
+#       The same as MKC_CHECK_PROGS, but failures means a fatal error.
+#
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
 #
@@ -295,6 +329,10 @@ MKC_SHELL?=/bin/sh       # mainly for portability testing purposes
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
+DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
+
+.if !make(clean) && !make(distclean) # .endif is in the end of file
+
 #
 OSNAME!=		uname -s
 .if defined(MKC_COMMON_DEFINES.${OSNAME})
@@ -321,17 +359,19 @@ _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 #MKC_CHECK_VARS        ?=
 
 # checking for headers
-.for h in ${MKC_CHECK_HEADERS}
+.for h in ${MKC_CHECK_HEADERS} ${MKC_REQUIRE_HEADERS}
 .if !defined(HAVE_HEADER.${h:S|.|_|g:S|/|_|g})
 HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
 .endif
 .if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+.elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
+MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
 .endif
 .endfor
 
 # checking for functions in libraries
-.for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS}
+.for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS} ${MKC_REQUIRE_FUNCLIBS}
 .if !defined(HAVE_FUNCLIB.${f:S/:/./g})
 HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
 .endif
@@ -346,7 +386,13 @@ MKC_LDADD+=-l${f:C/^.*://}
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
 MKC_SRCS+=${f:C/:.*//}.c
 .endif
-.endfor
+.endfor # f
+
+.for f in ${MKC_REQUIRE_FUNCLIBS}
+.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
+MKC_ERR_MSG+=		"ERROR: cannot find function ${f}"
+.endif
+.endfor # f
 
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF}
@@ -359,7 +405,7 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEO
 .endfor
 
 # checking for declared #define
-.for d in ${MKC_CHECK_DEFINES}
+.for d in ${MKC_CHECK_DEFINES} ${MKC_REQUIRE_DEFINES}
 .if !defined(HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
 .endif
@@ -368,8 +414,14 @@ MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
+.for d in ${MKC_REQUIRE_DEFINES}
+.if !${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d}"
+.endif
+.endfor
+
 # checking for declared type
-.for t in ${MKC_CHECK_TYPES}
+.for t in ${MKC_CHECK_TYPES} ${MKC_REQUIRE_TYPES}
 .if !defined(HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/:/ /g}
 .endif
@@ -378,8 +430,14 @@ MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
+.for t in ${MKC_REQUIRE_TYPES}
+.if !${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t}"
+.endif
+.endfor
+
 # checking for declared variables
-.for d in ${MKC_CHECK_VARS}
+.for d in ${MKC_CHECK_VARS} ${MKC_REQUIRE_VARS}
 .if !defined(HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
 .endif
@@ -388,8 +446,14 @@ MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
+.for d in ${MKC_REQUIRE_VARS}
+.if !${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d}"
+.endif
+.endfor
+
 # checking for struct members
-.for m in ${MKC_CHECK_MEMBERS}
+.for m in ${MKC_CHECK_MEMBERS} ${MKC_REQUIRE_MEMBERS}
 .if !defined(HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g})
 HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
 .endif
@@ -398,17 +462,31 @@ MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 .endif
 .endfor
 
+.for m in ${MKC_REQUIRE_MEMBERS}
+.if !${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
+MKC_ERR_MSG+=		"ERROR: cannot find member ${m}"
+.endif
+.endfor
+
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
-.for d in ${MKC_CHECK_FUNCS${n}}
+
+.for d in ${MKC_CHECK_FUNCS${n}} ${MKC_REQUIRE_FUNCS${n}}
 .if !defined(HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g})
 HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
 .endif
 .if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
 MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
-.endfor
-.endfor
+.endfor # d
+
+.for d in ${MKC_REQUIRE_FUNCS${n}}
+.if !${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
+.endif
+.endfor # d
+
+.endfor # n
 
 # custom checks
 .for c in ${MKC_CHECK_CUSTOM}
@@ -430,6 +508,4 @@ LDADD  += ${MKC_LDADD}
 SRCS   += ${MKC_SRCS}
 .endif
 
-# error check
-#CLEANFILES+=		.error-check
-DISTCLEANFILES+=	${:!echo ${MKC_CACHEDIR}/_mkc_*!}
+.endif # !make(clean) && !make(distclean)

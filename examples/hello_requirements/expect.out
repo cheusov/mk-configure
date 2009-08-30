@@ -1,0 +1,32 @@
+checking for header foobar.h... no
+checking for header string.h... yes
+checking for header unistd.h... yes
+checking for function strcasecmp... yes
+checking for function foobar... no
+checking for function barbaz ( -lz )... no
+checking for function barbaz... no
+checking for define __GNUC__... yes
+checking for define FOOBAR... no
+checking for type long... yes
+checking for type size_t ( string.h )... yes
+checking for type foobar_t... no
+checking for type barbaz ( string.h )... no
+checking for variable errno ( errno.h )... yes
+checking for variable foobar_var... no
+checking for variable barbaz ( unistd.h )... no
+checking for member struct tm.tm_isdst ( time.h )... yes
+checking for member struct bad.member ( stdlib.h )... no
+checking for func strcmp ( string.h )... yes
+checking for func foobar ( stdlib.h )... no
+checking for func barbaz... no
+ERROR: cannot find header foobar.h
+ERROR: cannot find function foobar
+ERROR: cannot find function barbaz:z
+ERROR: cannot find declaration of define FOOBAR
+ERROR: cannot find declaration of type foobar_t
+ERROR: cannot find declaration of type barbaz:string.h
+ERROR: cannot find declaration of variable foobar_var
+ERROR: cannot find declaration of variable barbaz:unistd.h
+ERROR: cannot find member struct-bad.member:stdlib.h
+ERROR: cannot find declaration of function foobar:stdlib.h
+ERROR: cannot find declaration of function barbaz

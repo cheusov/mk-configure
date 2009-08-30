@@ -311,22 +311,19 @@ mkc_printobjdir:
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
-test: all
-
-###########
-
 distclean: clean
 distclean:
 	rm -f ${DISTCLEANFILES}
 
 ###########
 
-all : error-check # ${.OBJDIR}/.error-check
-#${.OBJDIR}/.error-check:
+.PHONY: error-check
+all : error-check
 error-check:
-	@if test -n "${MKC_ERR_MSG}"; then \
-		echo ${MKC_ERR_MSG}; exit 1; \
-	fi
+	@for msg in ${MKC_ERR_MSG}; do \
+		printf '%s\n' "$$msg"; ex=1; \
+	done; exit $$ex
+
 .endif # SUBDIR
 #######################################
 .endif # NOMKC_TARGETS
