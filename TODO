@@ -1,8 +1,3 @@
-MKC_REQUIRE_LIBS
-MKC_REQUIRE_FUNCLIBS
-MKC_REQUIRE_PROGS
-MKC_REQUIRE_HEADERS
-
 0) Closer integration with Simon Gerraty's Mk files.
    More testing is needed.
 
