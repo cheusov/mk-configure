@@ -1,8 +1,13 @@
+########################################################################
+
+################### THIS MODULE IS INCOMPLETE!!! #######################
+
+########################################################################
+
 MKC_REQUIRE_PROGS+=	pkg-config
 DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 
-# begin of hack
-# improve this hack!!!
+# begin of hack. FIX ME!!!
 MKC_CACHEDIR?=${.OBJDIR}
 MKC_NOCACHE?=
 MKC_DELETE_TMPFILES?=0
