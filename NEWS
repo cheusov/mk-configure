@@ -52,6 +52,9 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
 
       - NEW: targets "distclean" and "cleandir" removes _mkc_* cache files.
 
+      - NEW: target "configure" runs all checks
+        and creates _mkc_ cache files.
+
       - all checks are disabled for targets "clean", "cleandir" and
         "distclean".
 
