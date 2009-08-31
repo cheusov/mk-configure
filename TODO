@@ -1,7 +1,15 @@
-0) Closer integration with Simon Gerraty's Mk files.
+= comparison with kBuild, CMake, scons, waf, framewerk, pmk, etc.
+= formatted bmake's output
+= Improve mkc.pkg-config.mk
+= Implement mkc.qt.mk
+= Implement mkc.subprjs.mk supporting dependency graph etc.
+= Implement mkc.doxygen.mk?
+= ??? (environment is limited in size) ???
+
+= Closer integration with Simon Gerraty's Mk files.
    More testing is needed.
 
-1)
+=
      - With a help of MKC_CHECK_DEFINES (Ex: MKC_CHECK_DEFINES+=__GNUC__)
        mk-configure is able to detect the compiler at run-time.
        This makes possible to make SHLIB_xxx (bsd.lib.mk) portable
@@ -12,7 +20,7 @@
      - Support for libtool in addition to native bsd.{lib,prog}.rules.
        User's side variable USE_LIBTOOL=yes|no.
 
-2) mkc.configure.mk functionality but for bourne shell, e.g.
+= mkc.configure.mk functionality but for bourne shell, e.g.
 
    Upstream creates ./configure script:
      MKC_CONFIG_MK=mkc_config.mk
@@ -33,21 +41,8 @@
    User runs
      ./configure ...
 
-3) MKC_REQD - user settable variable for specifing minimal required
+= MKC_REQD - user settable variable for specifing minimal required
    version of mk-configure
 
-4)
+=
    MKC_NOAUTO_abcdefg...
-
-5)
-comparison with CMake, scons, waf, framewerk, pmk, etc.
-bmake configure
-bmake test
-formatted bmake's output
-mkc.pkg-config.mk
-mkc.qt.mk
-mkc.subdir.mk sucks, improve it
-mkc.doxygen.mk
-environment is limited in size
-framewerk
-kBuild
