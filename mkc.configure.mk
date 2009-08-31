@@ -27,3 +27,6 @@
 .include <mkc.common.mk>
 
 .include <configure.mk>
+
+.PHONY: configure
+configure: error-check
