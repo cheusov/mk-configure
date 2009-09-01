@@ -26,6 +26,12 @@
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
 MKHTML?=	no
+MANTARGET?=	man # for Simon Gerraty's mk-files
+
+.if make(cleandir) || make(distclean)
+MANALL=		    # workaround for buggy Simon Gerraty's man.mk,
+		    # it wrongly removes man page when MANTARGET=man.
+.endif
 
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
@@ -115,9 +121,9 @@ NOMKC_INCS:=	yes
 realinstall : includes
 includes :
 .else
-#.PHONY : mkc-install-includes
-#install : mkc-install-includes
-#	${INSTALL_DATA}
+.PHONY: maninstall
+maninstall:
+#install : maninstall
 .endif
 
 .endif # make(install)
@@ -311,7 +317,8 @@ mkc_printobjdir:
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
-#cleandir: distclean
+.PHONY: distclean
+distclean: cleandir
 cleandir: clean
 cleandir:
 	rm -f ${DISTCLEANFILES}
