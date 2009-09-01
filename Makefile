@@ -26,7 +26,10 @@ EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.lib.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
-			mkc.common.mk mkc_check_common.sh
+			mkc.common.mk mkc_check_common.sh \
+			mkc.minitest.mk mkc.pkg-config.mk \
+			_mkc.missedfiles.mk
+
 FILES+=			${EXTRAFILES}
 
 .for i in ${EXTRAFILES}
