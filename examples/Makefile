@@ -8,6 +8,7 @@ SUBDIR+=	hello_dlopen
 SUBDIR+=	hello_glib2
 SUBDIR+=	hello_strlcpy
 SUBDIR+=	hello_customtests
+SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements
 
 .include <mkc.subdir.mk>

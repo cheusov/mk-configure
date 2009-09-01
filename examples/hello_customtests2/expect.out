@@ -1,0 +1,33 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_custom_alloca_in_alloca_h.err
+/objdir/_mkc_custom_alloca_in_alloca_h.res
+/objdir/_mkc_custom_alloca_in_stdlib_h.err
+/objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/expect.out
+/objdir/hello_customtests2
+/objdir/hello_customtests2.c
+/objdir/hello_customtests2.o
+/objdir/hello_customtests2.test.out.tmp
+/objdir/test.mk
+=========== run ============
+alloca(3) succeeded
+========= install ==========
+/objdir/prefix/bin/hello_customtests2
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_custom_alloca_in_alloca_h.err
+/objdir/_mkc_custom_alloca_in_alloca_h.res
+/objdir/_mkc_custom_alloca_in_stdlib_h.err
+/objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/expect.out
+/objdir/hello_customtests2.c
+/objdir/hello_customtests2.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_customtests2.c
+/objdir/hello_customtests2.test.out.tmp
+/objdir/test.mk

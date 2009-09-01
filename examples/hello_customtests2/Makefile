@@ -1,0 +1,12 @@
+PROG=			hello_customtests2
+
+MKC_CUSTOM_DIR=		${.CURDIR}/../hello_customtests/custom_tests
+
+MKC_CHECK_CUSTOM=	alloca_in_stdlib_h
+MKC_CHECK_CUSTOM+=	alloca_in_alloca_h
+
+MKMAN=			no
+
+.include "test.mk"
+.include <mkc.configure.mk>
+.include <mkc.prog.mk>
