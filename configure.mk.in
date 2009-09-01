@@ -550,4 +550,4 @@ LDADD  += ${MKC_LDADD}
 SRCS   += ${MKC_SRCS}
 .endif
 
-.endif # !make(clean) && !make(distclean)
+.endif # !make(clean) && !make(cleandir) && !make(distclean)

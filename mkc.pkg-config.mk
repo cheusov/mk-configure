@@ -54,4 +54,4 @@ LDADD+=		${LDADD.pkg-config.${l}}
 MKC_ERR_MSG+= "ERROR: pkg-config is not initialized properly, read mkc.pkg-config.mk"
 .endif #defined(PROG.pkg-config)
 
-.endif # !make(clean) && !make(distclean)
+.endif # !make(clean) && !make(cleandir) && !make(distclean)
