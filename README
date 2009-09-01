@@ -37,7 +37,7 @@ HOW TO USE MK-CONFIGURE?
 
       You need not remember about configure script, their options and
       many other things.
-      BMAKE is enough for everything! ;-)
+      BMAKE is magic enough! ;-)
 
 -------------------------------------------------------------------------
 WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
@@ -82,31 +82,49 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
  9) Generated files, configure and Makefile, are practically unreadable.
 
 -------------------------------------------------------------------------
-WHAT DOES MK-CONFIGURE PROVIDES?
+WHAT MK-CONFIGURE PROVIDES?
 
-- mkc.{files,info,lib,man,own,prog,subdir}.mk files.
+- mkc.{files,lib,own,prog,subdir}.mk files.
       They are wrappers over appropriate bsd.*.mk files.
 
-      In addition to functionality provided by bsd.*.mk file mkc.*.mk
+      In addition to functionality provided by bsd.*.mk files mkc.*.mk
       equivalents provide the following features.
 
       - PREFIX, BINDIR etc. variables default to /usr/local/xxx
-        directories unless you set NOMKC_PATHS to YES.
-        By default bsd.*.mk are set /usr because they are mainly
-        used for NetBSD's own code.
+        subdirectories.  By default bsd.*.mk are set to /usr because
+        they are used mainly for NetBSD's own code.
+
       - BINOWN, BINGRP, MANOWN etc. variables are set to 'id -u' and
-        'id -g' if bmake is run under unprivileged user unless you
-        set NOMKC_PERMS to YES.
-        By default bsd.*.mk use root, wheel etc.
-      - 'install' target also runs 'includes' target to install include
-        files listed in INCS unless you set NOMKC_INCS to YES.
-        By default bsd.*.mk files doesn't install include files.
-      - DPLIBDIRS variable, if set, contains a list of directories
-        of the libraries your project depends on. If this variable is set
-        LDFLAGS is modified accordingly. See examples/3 project.
-        You can disable this by setting NOMKC_DPLIBS to YES.
-      - All features mensioned above are disabled if NOMKC_ATALL is
-        set to YES.
+        'id -g' if bmake is run under an unprivileged user.
+        By default bsd.*.mk use root, wheel, bin etc. by default.
+
+      - A target 'install' installs include files, info pages and
+        others not installed by default by bsd.*.mk files.
+
+      - The target 'install-dirs' creates all required destination
+        directories. bsd.*.mk files do not create them at all.
+
+      - The target 'uninstall' removes all installed files from
+        destination directories. bsd.*.mk files do not provide such a
+        target.
+
+      - The target 'test' of mkc.subdir.mk (by default) runs a "test"
+        target for each SUBDIR. Other mkc.*.mk files provide "test"
+        target too but does nothing by default.  If you want to test
+        your application, define your own "test" target in
+        application's Makefile.
+
+      - DPLIBDIRS variable, if set, contains a list of directories of
+        the libraries your project depends on. If this variable is
+        set, LDFLAGS is modified accordingly. See examples/ projects.
+
+      - "cleandir" and "distclean" targets for removing all temporary
+        files and mk.configure.mk's cache files.
+
+      - support for texinfo/info files. There is no need to .include
+        <mkc.info.mk> file.
+
+      - other additions and improvements.
 
 - mkc.intexts.in
   This file is analogue for autoconf's AC_CONFIG_FILES macro.
@@ -119,28 +137,37 @@ WHAT DOES MK-CONFIGURE PROVIDES?
   replacement for GNU autoconf. Its documentation is large enough to
   describe here.  It short, it allows to check for presense of header
   files, function or variable declarations, presense of function in a
-  particular library, defines, sizeof of data types. See documentation
-  inside configure.mk file. Also see examples/ projects.
+  particular library, defines, sizeof of data types and other
+  things. Read a documentation inside configure.mk file. Also see
+  examples/ projects.
 
-- mkc.common.mk script is a place where all mkc.*.mk additions and
+- mkc.common.mk script is a place where most mkc.*.mk additions and
   overrides (over bsd.*.mk) are implemented. If you want to use
-  bsd.xxx.mk file for which there are no mkc.xxx.mk analogs, make sure
-  you .include mkc.common.mk before it.
+  original bsd.xxx.mk file for which there are no mkc.xxx.mk analogs,
+  make sure you .include mkc.common.mk before it.
 
-- Standalone full-functional mkc_check_{funclib,header,sizeof,decl}
-  programs that can be used without bmake and without configure.mk.
-  Read appropriate man pages.
+- Standalone full-functional
+  mkc_check_{funclib,header,sizeof,decl,prog,custom} programs that can
+  be used without bmake and without mkc.*.mk files.  Read appropriate
+  man pages.
 
 -------------------------------------------------------------------------
 DOCUMENTATION:
+
    - Read README file
+
    - See examples/ directory, there you'll find a number of samples.
+
    - Read configure.mk file for a help about autoconfiguring part
      of mk-configure.
+
    - Read mkc.intexts.mk file
+
    - Read BSD mk-file's documentation. Usually it is in bsd.README file.
+
    - See other mkc.*.mk files
-   - Read mkc_check_{decl,header,funclib,sizeof} -h and
+
+   - Read mkc_check_{decl,header,funclib,sizeof,prog,custom} -h and
      their manual pages if you want to use these scripts.
 
 -------------------------------------------------------------------------
@@ -168,7 +195,7 @@ INSTALLATION:
         http://www.mova.org/~cheusov/pub/netbsd-tools/pkgsrc-mk-files/
 
    3)
-      cd  mk-configure-1.2.3/
+      cd  mk-configure-X.Y.Z/
       bmake all PREFIX=/usr/local MKFILESDIR=/usr/local/share/mk
       bmake test # for testing mk-configure
       bmake install-dirs
@@ -178,8 +205,8 @@ INSTALLATION:
       Of course, you can change /usr/local to whatever you want.
 
 Instead of pkgsrc's version of mk-files Simon Gerraty's mk-files can
-also be used (See MKC_NOBSDMK variable) but they are not tested yet.
-Look for mk-files tarball here
+also be used (See MKC_NOBSDMK variable) but they are not fully supported yet.
+Look for mk-YYYYMMDD tarball here
      ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
 
 -------------------------------------------------------------------------
