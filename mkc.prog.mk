@@ -31,9 +31,15 @@
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 
 .include <prog.mk>
+
+.if defined(FILES)
+.include <_mkc.missedfiles.mk>
+.endif # FILES
+
 .if defined(SCRIPTS)
 .include <scripts.mk>
 .endif # SCRIPTS
+
 .if defined(TEXINFO)
 .include <info.mk>
 .endif # TEXINFO
