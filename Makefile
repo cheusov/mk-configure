@@ -49,7 +49,8 @@ test: configure.mk
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
 	MKCATPAGES=no; \
-	export PATH MKCATPAGES; \
+	NO_AUTODEP=yes; \
+	export PATH MKCATPAGES NO_AUTODEP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
