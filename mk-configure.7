@@ -1,0 +1,85 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2009 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VB \" Verbatim Begin
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MK-CONFIGURE 7 "Sep 2, 2009" "" ""
+.SH NAME
+mk-configure \- lightweight repplacement for GNU autotools
+.SH DESCRIPTION
+.B mk-configure
+is a collection of mkc.*.mk files for bmake (portable version of
+NetBSD make) and a number of executables. It significantly simplifies
+application build process.
+.SS "mkc.files.mk"
+lalala
+.IP FILES
+.IP FILESDIR
+.SS "mkc.prog.mk"
+lalala
+.IP BINGRP Binary group.
+
+.IP BINOWN Binary owner.
+
+.IP BINMODE Binary mode.
+
+.IP CLEANFILES	Additional files to remove for the clean and cleandir targets.
+
+.IP COPTS Additional flags to the compiler when creating C objects.
+CPPFLAGS Additional flags to the C pre-processor
+
+.IP LDADD Additional loader objects.  Usually used for libraries.
+ For example, to load with the compatibility and utility
+ libraries, use:
+.VB
+			LDADD+=-lutil -lcompat
+.VE
+.IP LDFLAGS		Additional loader flags.
+
+.IP LINKS The list of binary links; should be full pathnames, the
+ linked-to file coming first, followed by the linked
+ file.  The files are hard-linked.  For example, to link
+ /bin/test and /bin/[, use:
+.VB
+			LINKS=	${DESTDIR}/bin/test ${DESTDIR}/bin/[
+.VE
+.IP SYMLINKS The list of symbolic links; should be full pathnames.
+ Syntax is identical to LINKS. Note that DESTDIR is not
+ automatically included in the link.
+
+.IP MAN Manual pages (should end in .1 - .9).  If no MAN variable is
+ defined, "MAN=${PROG}.1" is assumed.
+
+.IP PROG The name of the program to build.  If not supplied, nothing
+ is built.
+
+.IP PROGNAME The name that the above program will be installed as, if
+ different from ${PROG}.
+
+.IP SRCS List of source files to build the program.  If SRCS is not
+ defined, it's assumed to be ${PROG}.c.
+.SS "mkc.lib.mk"
+lalala
+.SS "mkc.own.mk"
+lalala
+.SS "mkc.subdir.mk"
+lalala
+.SS "mkc.configure.mk"
+lalala
+.SS "mkc.intexts.mk"
+lalala
+.SS "mkc.pkg-config.mk"
+lalala
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
