@@ -16,61 +16,233 @@
 .\" ------------------------------------------------------------------
 .TH MK-CONFIGURE 7 "Sep 2, 2009" "" ""
 .SH NAME
-mk-configure \- lightweight repplacement for GNU autotools
+mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
 .B mk-configure
 is a collection of mkc.*.mk files for bmake (portable version of
-NetBSD make) and a number of executables. It significantly simplifies
-application build process.
+NetBSD make) and a number of executables. It is intended to simplify
+crossplatform development and software building.
 .SS "mkc.files.mk"
-lalala
+The include file
+.B <mkc.files.mk>
+handles the FILES variables and is included
+from
+.BR <mkc.lib.mk> " and " <mkc.prog.mk> .
+List of supported variables:
 .IP FILES
+The list of files to install.
+.\" .IP CONFIGFILES Similar semantics to FILES, except that the files
+.\"  are installed by the `configinstall' target,
+.\"  not the `install' target.
+.\"  The FILES* variables documented below also apply.
 .IP FILESDIR
+The location to install the files. It defaults to
+.I ${PREFIX}/bin
+.IP FILESOWN
+File owner. If
+.B bmake
+is run with root privileges, it defaults to
+.I ${BINOWN}
+or to a current user otherwise.
+.IP FILESGRP
+File group. If
+.B bmake
+is run with root privileges, it defaults to
+.I ${BINGRP}
+or to a current group otherwise.
+.IP FILESMODE
+File mode. It defaults to
+.I ${NONBINMODE}
+.IP FILESNAME
+Optional name to install each file as.
+.IP FILESDIR_<fn>
+The location to install the specific file <fn>.
+.IP FILESOWN_<fn>
+File owner of the specific file <fn>.
+.IP FILESGRP_<fn>
+File group of the specific file <fn>.
+.IP FILESMODE_<fn>
+File mode of the specific file <fn>.
+.IP FILESNAME_<fn>
+Optional name to install <fn> as.
+.IP CLEANFILES
+Additional files to remove for the
+.IR clean ", " cleandir " and " distclean
+targets.
+.\" .IP FILESBUILD_<fn> A value different from "no" will add the file
+ \" to the list of
+.\" targets to be built by `realall'.  Users of that variable
+.\" should provide a target to build the file.
+.\" .IP BUILDSYMLINKS List of two word items:
+.\" lnsrc lntgt
+.\" For each lnsrc item, create a symlink named lntgt.
+.\" The lntgt symlinks are removed by the cleandir target.
+.\" .IP UUDECODE_FILES List of files which are stored as <file>.uue in
+ \" the source
+.\" tree. Each one will be decoded with ${TOOL_UUDECODE}.
+.\" The source files have a `.uue' suffix, the generated files do 
+.\" not.
+.\" .IP UUDECODE_FILES_RENAME_<fn>
+.\" Rename the output from the decode to the provided name.
+.\" *NOTE: These files are simply decoded, with no install or other
+.\" rule applying implicitly except being added to the clean
+.\" target.
 .SS "mkc.prog.mk"
-lalala
-.IP BINGRP Binary group.
-
-.IP BINOWN Binary owner.
-
-.IP BINMODE Binary mode.
-
-.IP CLEANFILES	Additional files to remove for the clean and cleandir targets.
-
-.IP COPTS Additional flags to the compiler when creating C objects.
-CPPFLAGS Additional flags to the C pre-processor
-
-.IP LDADD Additional loader objects.  Usually used for libraries.
- For example, to load with the compatibility and utility
- libraries, use:
-.VB
-			LDADD+=-lutil -lcompat
-.VE
-.IP LDFLAGS		Additional loader flags.
-
-.IP LINKS The list of binary links; should be full pathnames, the
- linked-to file coming first, followed by the linked
- file.  The files are hard-linked.  For example, to link
- /bin/test and /bin/[, use:
-.VB
-			LINKS=	${DESTDIR}/bin/test ${DESTDIR}/bin/[
-.VE
-.IP SYMLINKS The list of symbolic links; should be full pathnames.
- Syntax is identical to LINKS. Note that DESTDIR is not
- automatically included in the link.
-
-.IP MAN Manual pages (should end in .1 - .9).  If no MAN variable is
- defined, "MAN=${PROG}.1" is assumed.
-
-.IP PROG The name of the program to build.  If not supplied, nothing
- is built.
-
-.IP PROGNAME The name that the above program will be installed as, if
- different from ${PROG}.
-
-.IP SRCS List of source files to build the program.  If SRCS is not
+The include file
+.B <mkc.prog.mk>
+handles building program from one or
+more source files, along with their manual pages.  It has a limited
+number of suffixes.
+List of supported variables:
+.IP PROG
+The name of the program to build.  If not supplied, nothing
+is built.
+.IP PROGNAME
+The name that the above program will be installed as, if
+different from ${PROG}.
+.IP SRCS
+List of source files to build the program.  If SRCS is not
  defined, it's assumed to be ${PROG}.c.
+.IP CFLAGS
+Additional flags to the compiler when creating C objects.
+.IP CPPFLAGS
+Additional flags to the C pre-processor.
+.IP LDADD
+Additional objects.  Usually used for libraries.
+For example, to load with the compatibility and utility
+libraries, use:
+.VB
+    LDADD+=  -lutil -lcompat
+.VE
+.IP LDFLAGS
+Additional linker flags. Often used for specifying library directories.
+.VB
+    LDFLAGS+=  -L/opt/company/software/lib
+.VE
+.IP BINDIR
+Target directory for program. It defaults to
+.I ${PREFIX}/bin
+.IP BINMODE
+Binary mode.
+.IP BINOWN
+File owner. If
+.B bmake
+is run by an unprivileged user, it defaults to `id -u`.
+.IP BINGRP
+File group. If
+.B bmake
+is run by an unprivileged user, it defaults to `id -g`.
+.\"  .IP COPTS
+.\"  Additional flags to the compiler when creating C objects.
+.IP LINKS
+The list of binary links; should be full pathnames, the
+linked-to file coming first, followed by the linked
+file.  The files are hard-linked.  For example, to link
+${BINDIR}/gzip and ${BINDIR}/gunzip, use:
+.VB
+    LINKS=   ${DESTDIR}/bin/gzip ${DESTDIR}${BINDIR}/gunzip
+.VE
+.IP SYMLINKS
+The list of symbolic links; should be full pathnames.
+Syntax is identical to LINKS. Note that DESTDIR is not
+automatically included in the link.
+.IP MAN
+Manual pages (should end in .1 - .9).  If no MAN variable is
+defined, "MAN=${PROG}.1" is assumed.
+.PP
+.B <mkc.prog.mk>
+includes
+.B <mkc.files.mk>
+and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
-lalala
+The include file
+.B <mkc.lib.mk>
+has support for building a static or dynanic library.  It has a
+limited number of suffixes.
+.B <mkc.lib.mk>
+sets/uses the following variables:
+.IP LIB
+The name of the library to build.
+.IP LIBDIR
+Target directory for libraries. It defaults to 
+.IR ${PREFIX}/lib .
+.\" .IP SHLIBINSTALLDIR Target directory for shared libraries if
+.\" ${USE_SHLIBDIR}
+.\" is not "no".
+.\" USE_SHLIBDIR If not "no", use ${SHLIBINSTALLDIR} instead of ${LIBDIR}
+.\" as the path to install shared libraries to.
+.\" USE_SHLIBDIR must be defined before <bsd.own.mk> is included.
+.\" Default: no
+.IP LIBOWN
+Library owner.
+.IP LIBGRP
+Library group.
+.IP LIBMODE
+Library mode.
+.\" .IP LIBISMODULE
+.\" If not "no", install as ${LIB}.so (without the "lib" prefix).
+.\" .\" and act as "MKDEBUGLIB=no MKLINT=no MKPICINSTALL=no
+.\" .\" MKPROFILE=no MKSTATICLIB=no".
+.\" Default: no
+.\" .IP LIBISPRIVATE
+.\" If not "no", act as MKPIC=no and
+.\" , act as "MKDEBUGLIB=no MKLINT=no MKPIC=no
+.\" MKPROFILE=no", and
+.\" don't install the (.a) library.
+.\" This is useful for "build only" helper libraries.
+.\" Default: no
+.\" .IP LIBISCXX
+.\" If not "no", Use ${CXX} instead of ${CC} to link
+.\" shared libraries.
+.\" This is useful for C++ libraries.
+.\" Default: no
+.\" .IP LINTLIBDIR
+.\" Target directory for lint libraries.
+.IP LDADD
+Additional objects. See LDADD in section
+.I <mkc.prog.mk>
+.IP LDFLAGS
+Additional linker flags. See LDFLAGS in section
+.I <mkc.prog.mk>
+.IP MAN
+The manual pages to be installed (use a .1 - .9 suffix).
+.\" NOCHECKVER_<library>
+.\" NOCHECKVER	If set, disables checking for installed shared object
+.\" 		libraries with versions greater than the source.  A
+.\" 		particular library name, without the "lib" prefix, may
+.\" 		be appended to the variable name to disable the check for
+.\" 		only that library.
+.IP SRCS
+List of source files to build the library.  Suffix types
+ .s, .c, and .f are supported.  Note, .s files are preferred
+ to .c files of the same name.
+.\" (This is not the default for
+.\"  versions of make.)
+.\" LIBDPLIBS	A list of the tuples:
+.\" 			libname  path-to-srcdir-of-libname
+.\" 		For each tuple;
+.\" 		     *	LIBDO.libname contains the .OBJDIR of the library
+.\" 			`libname', and if it is not set it is determined
+.\" 			from the srcdir and added to MAKEOVERRIDES (the
+.\" 			latter is to allow for build time optimization).
+.\" 		     *	LDADD gets  -L${LIBDO.libname} -llibname    added.
+.\" 		     *	DPADD gets  ${LIBDO.libname}/liblibname.so  or
+.\" 				    ${LIBDO.libname}/liblibname.a   added.
+.\" 		This variable may be used for individual libraries, as
+.\" 		well as in parent directories to cache common libraries 
+.\" 		as a build-time optimization.
+.\" 
+.\" The include file <bsd.lib.mk> includes the file named "../Makefile.inc"
+.\" if it exists, as well as the include file <bsd.man.mk>.
+.\" 
+.\" It has rules for building profiled objects; profiled libraries are
+.\" built by default.
+.PP
+Libraries are ranlib'd when made.
+.B <mkc.lib.mk>
+includes
+.B <mkc.files.mk>
+and therefore supports all variables supported by it.
 .SS "mkc.own.mk"
 lalala
 .SS "mkc.subdir.mk"
