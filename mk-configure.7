@@ -38,36 +38,40 @@ The list of files to install.
 .IP FILESDIR
 The location to install the files. It defaults to
 .I ${PREFIX}/bin
+.IP FILESDIR_<fn>
+The location to install the specific file <fn>.
 .IP FILESOWN
 File owner. If
 .B bmake
 is run with root privileges, it defaults to
 .I ${BINOWN}
-or to a current user otherwise.
+or to `id -u` otherwise.
+.IP FILESOWN_<fn>
+File owner of the specific file <fn>.
 .IP FILESGRP
 File group. If
 .B bmake
 is run with root privileges, it defaults to
 .I ${BINGRP}
-or to a current group otherwise.
+or to `id -g` otherwise.
+.IP FILESGRP_<fn>
+File group of the specific file <fn>.
 .IP FILESMODE
 File mode. It defaults to
 .I ${NONBINMODE}
-.IP FILESNAME
-Optional name to install each file as.
-.IP FILESDIR_<fn>
-The location to install the specific file <fn>.
-.IP FILESOWN_<fn>
-File owner of the specific file <fn>.
-.IP FILESGRP_<fn>
-File group of the specific file <fn>.
 .IP FILESMODE_<fn>
 File mode of the specific file <fn>.
+.IP FILESNAME
+Optional name to install each file as.
 .IP FILESNAME_<fn>
 Optional name to install <fn> as.
 .IP CLEANFILES
 Additional files to remove for the
 .IR clean ", " cleandir " and " distclean
+targets.
+.IP DISTCLEANFILES
+Additional files to remove for the
+.IR cleandir " and " distclean
 targets.
 .\" .IP FILESBUILD_<fn> A value different from "no" will add the file
  \" to the list of
@@ -109,7 +113,7 @@ Additional flags to the compiler when creating C objects.
 Additional flags to the C pre-processor.
 .IP LDADD
 Additional objects.  Usually used for libraries.
-For example, to load with the compatibility and utility
+For example, to link with the compatibility and utility
 libraries, use:
 .VB
     LDADD+=  -lutil -lcompat
@@ -174,9 +178,13 @@ Target directory for libraries. It defaults to
 .\" USE_SHLIBDIR must be defined before <bsd.own.mk> is included.
 .\" Default: no
 .IP LIBOWN
-Library owner.
+Library owner. If
+.B bmake
+is run by an unprivileged user, it defaults to `id -u`.
 .IP LIBGRP
-Library group.
+Library group. If
+.B bmake
+is run by an unprivileged user, it defaults to `id -g`.
 .IP LIBMODE
 Library mode.
 .\" .IP LIBISMODULE
