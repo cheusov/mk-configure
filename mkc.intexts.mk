@@ -31,10 +31,13 @@
 
 INTEXTS_SED+=	-e 's,@sysconfdir@,${SYSCONFDIR},g'
 INTEXTS_SED+=	-e 's,@libdir@,${LIBDIR},g'
+INTEXTS_SED+=	-e 's,@libexecdir@,${LIBEXECDIR},g'
 INTEXTS_SED+=	-e 's,@prefix@,${PREFIX},g'
 INTEXTS_SED+=	-e 's,@bindir@,${BINDIR},g'
 INTEXTS_SED+=	-e 's,@sbindir@,${SBINDIR},g'
 INTEXTS_SED+=	-e 's,@datadir@,${DATADIR},g'
+INTEXTS_SED+=	-e 's,@mandir@,${MANDIR},g'
+INTEXTS_SED+=	-e 's,@incsdir@,${INCSDIR},g'
 
 CLEANFILES+=	${INSCRIPTS} ${INFILES}
 
