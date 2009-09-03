@@ -173,6 +173,32 @@ automatically included in the link.
 .IP MAN
 Manual pages (should end in .1 - .9).  If no MAN variable is
 defined, "MAN=${PROG}.1" is assumed.
+.IP MKMAN
+If "no", don't build or install the man pages,
+and also acts as "MKCATPAGES=no MKHTML=no".
+Default: yes.
+.IP MKCATPAGES
+If "no", don't build or install the catman pages.
+Default: no.
+.IP MKHTML
+If "no", don't build or install the HTML man pages.
+Default: no
+.IP MKINFO
+If "no", don't build or install Info documentation from
+Texinfo source files.
+Default: yes
+.IP MKSHARE
+If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
+I.e, don't build catman pages, man pages, info
+documentation,...
+Default: yes
+.IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
+These provide a way to specify additions to the associated
+variables in a way that applies only to a particular
+program.  <prog> corresponds to either PROG
+or PROG_CXX (if set).  For example, if COPTS.yourapp is
+set to "-g", "-g" will be added to COPTS only when compiling
+the "yourapp" application.
 .PP
 .B <mkc.prog.mk>
 includes
@@ -265,6 +291,23 @@ List of source files to build the library.  Suffix types
 .\" 
 .\" It has rules for building profiled objects; profiled libraries are
 .\" built by default.
+.IP MKPIC
+If "no", don't build or install shared libraries, and
+also acts as "MKPICLIB=no"
+Default: yes (for MACHINE_ARCHs that support it)
+.IP MKPICINSTALL
+If "no", don't install the *_pic.a libraries.
+Default: no
+.IP MKPROFILE
+If "no", don't build or install the profiling (*_p.a) libraries.
+Default: no
+.IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
+These provide a way to specify additions to the associated
+variables in a way that applies only to a particular
+library.  <lib> corresponds to a LIB variable.
+For example, if COPTS.libfoobar is
+set to "-g", "-g" will be added to COPTS only when compiling
+the "libfoobar" library.
 .PP
 Libraries are ranlib'd when made.
 .B <mkc.lib.mk>
