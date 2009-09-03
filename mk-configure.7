@@ -101,6 +101,11 @@ List of supported variables:
 .IP PROG
 The name of the program to build.  If not supplied, nothing
 is built.
+.\" .IP PROG_CXX
+.\" If defined, the name of the program to build.  Also
+.\" causes <mkc.prog.mk> to link the program with the C++
+.\" compiler rather than the C compiler.  PROG_CXX overrides
+.\" the value of PROG if PROG is also set.
 .IP PROGNAME
 The name that the above program will be installed as, if
 different from ${PROG}.
@@ -195,10 +200,18 @@ Default: yes
 .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
 These provide a way to specify additions to the associated
 variables in a way that applies only to a particular
-program.  <prog> corresponds to either PROG
-or PROG_CXX (if set).  For example, if COPTS.yourapp is
+program.  <prog> corresponds to
+.\" either
+PROG.
+.\" or PROG_CXX (if set)
+For example, if COPTS.foobar is
 set to "-g", "-g" will be added to COPTS only when compiling
-the "yourapp" application.
+the "foobar" application.
+.IP TEXINFO
+List of Texinfo source files.  Info documentation will
+consist of single files with the extension replaced by .info.
+.IP INFOFLAGS
+Flags to pass to makeinfo. The default is empty string.
 .PP
 .B <mkc.prog.mk>
 includes
@@ -223,6 +236,10 @@ Target directory for libraries. It defaults to
 .\" as the path to install shared libraries to.
 .\" USE_SHLIBDIR must be defined before <bsd.own.mk> is included.
 .\" Default: no
+.IP SHLIB_MAJOR
+Major shared library number. If unset, shared library is not built.
+.IP SHLIB_MINOR
+Minor shared library number.
 .IP LIBOWN
 Library owner. If
 .B bmake
@@ -318,6 +335,12 @@ library.  <lib> corresponds to a LIB variable.
 For example, if COPTS.libfoobar is
 set to "-g", "-g" will be added to COPTS only when compiling
 the "libfoobar" library.
+.IP TEXINFO
+The same as in
+.B <mkc.prog.mk>
+.IP INFOFLAGS
+The same as in
+.B <mkc.prog.mk>
 .PP
 Libraries are ranlib'd when made.
 .B <mkc.lib.mk>
