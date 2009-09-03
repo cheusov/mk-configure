@@ -138,6 +138,26 @@ File group. If
 is run by an unprivileged user, it defaults to `id -g`.
 .\"  .IP COPTS
 .\"  Additional flags to the compiler when creating C objects.
+.IP STRIPFLAG
+The flag passed to the install program to cause the binary
+to be stripped.
+.IP SCRIPTS
+A list of interpreter scripts (written in shell, awk, lua etc).
+These are installed like programs.
+.IP SCRIPTSNAME
+The name that the above program will be installed as, if
+different from ${SCRIPTS}.
+.IP SCRIPTSNAME_<script>
+Optional name to install <script> as.
+.IP SCRIPTSDIR
+Target directory for scripts.
+It defaults to ${BINDIR}.
+.IP SCRIPTSOWN
+Script files owner. It defaults to ${BINOWN}.
+.IP SCRIPTSGRP
+Script file group. It defaults to ${BINGRP}.
+.IP SCRIPTSMODE
+Script file mode. It defaults to ${BINMODE}.
 .IP LINKS
 The list of binary links; should be full pathnames, the
 linked-to file coming first, followed by the linked
@@ -254,7 +274,28 @@ and therefore supports all variables supported by it.
 .SS "mkc.own.mk"
 lalala
 .SS "mkc.subdir.mk"
-lalala
+The include file
+.B <mkc.subdir.mk>
+contains the default targets for building
+subdirectories.  It has the same targets as
+.BR <mkc.prog.mk> .
+For all of
+the directories listed in the variable SUBDIR, the specified directory 
+will be visited and the target made.  There is also a default target which
+allows the command "make subdir" where subdir is any directory listed in
+the variable SUBDIR.
+
+As a special case, the use of a token
+.WAIT
+as an entry in SUBDIR acts
+as a synchronization barrier when multiple make jobs are run; subdirs
+before the 
+.WAIT
+must complete before any subdirs after .WAIT are
+started.  See
+.B bmake(1)
+for some caveats on use of .WAIT and other
+special sources.
 .SS "mkc.configure.mk"
 lalala
 .SS "mkc.intexts.mk"
