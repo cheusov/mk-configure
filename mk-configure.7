@@ -299,8 +299,38 @@ special sources.
 .SS "mkc.configure.mk"
 lalala
 .SS "mkc.intexts.mk"
-lalala
-.SS "mkc.pkg-config.mk"
-lalala
+.B <mkc.intexts.mk>
+is an auxiliary mk file that converts <fn>.in files to <fn> by expanding
+the following @@ patterns:
+
+.VB
+ "Pattern     Result"
+----------------------
+@prefix@       ${PREFIX}
+@bindir@       ${BINDIR}
+@mandir@       ${MANDIR}
+@sbindir@      ${SBINDIR}
+@libdir@       ${LIBDIR}
+@libexecdir@   ${LIBEXECDIR}
+@datadir@      ${DATADIR}
+@sysconfdir@   ${SYSCONFDIR}
+@incsdir@      ${INCSDIR}
+.VE
+
+.B <mkc.intexts.mk>
+supports the following variables:
+.IP INFILES
+List of files that needs to be generated.
+.IP INSCRIPTS
+List of scripts that needs to be generated.
+.IP INTEXTS_SED
+List of additional
+.B sed(1)
+expressions for expanding, e.g.
+.VB
+    INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
+.VE
+.\" .SS "mkc.pkg-config.mk"
+.\" lalala
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
