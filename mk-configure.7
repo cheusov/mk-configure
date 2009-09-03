@@ -22,6 +22,95 @@ mk-configure \- lightweight replacement for GNU autotools
 is a collection of mkc.*.mk files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
+.SS "Common variables"
+The following variables control how various files are compiled/built.
+.IP AR
+Create, modify, and extract from archives.  [ar]
+.IP ARFLAGS
+Options to ${AR}.  [rl]
+.IP AS
+Assembler.  [as]
+.IP AFLAGS
+Options to ${CC} when compiling or linking .s or .S
+assembly source files.  []
+.IP CC
+C compiler.  [cc]
+.IP CFLAGS
+Options to ${CC}.  [Usually -O or -O2]
+.IP CPP
+C Pre-Processor.  [cpp]
+.IP CPPFLAGS
+Options to ${CPP}.  []
+.IP CXX
+C++ compiler.  [c++]
+.IP CXXFLAGS
+Options to ${CXX}.  [${CFLAGS}]
+.IP FC
+Fortran compiler.  [f77]
+.IP FFLAGS
+Options to {$FC}.  [-O]
+.IP INSTALL
+install(1) command.  [install]
+.IP LEX
+Lexical analyzer.  [lex]
+.IP LFLAGS
+Options to ${LEX}.  []
+.IP LPREFIX
+Symbol prefix for ${LEX} (see -P option in lex(1)) [yy]
+.IP LD
+Linker.  [ld]
+.IP LDFLAGS
+Options to ${LD} during the link process.  []
+.IP LORDER
+List dependencies for object files.  [lorder]
+.IP MAKE
+bmake(1).  [bmake]
+.IP NM
+List symbols from object files.  [nm]
+.IP PC
+Pascal compiler.  [pc]  (Not present)
+.IP PFLAGS
+Options to ${PC}.  []
+.\" .IP OBJC
+.\" Objective C compiler.  [${CC}]
+.\" .IP OBJCFLAGS
+.\" Options to ${OBJC}.  [${CFLAGS}]
+.IP OBJCOPY
+Copy and translate object files.  [objcopy]
+.IP OBJDUMP
+Display information from object files.  [objdump]
+.IP RANLIB
+Generate index to archive.  [ranlib]
+.IP SIZE
+List section sizes and total size.  [size]
+.IP STRIP
+Discard symbols from object files.  [strip]
+.IP TSORT
+Topological sort of a directed graph.  [tsort -q]
+.IP YACC
+LALR(1) parser generator.  [yacc]
+.IP YFLAGS
+Options to ${YACC}.  []
+.IP YHEADER
+If defined, add "-d" to YFLAGS, and add dependencies
+from <file>.y to <file>.h and <file>.c, and add
+<foo>.h to CLEANFILES.
+.IP YPREFIX
+If defined, add "-p ${YPREFIX}" to YFLAGS.
+.IP NOGCCERROR
+If defined, prevents passing certain ${CFLAGS} to GCC
+that cause warnings to be fatal, such as:
+-Werror -Wa,--fatal-warnings
+(The latter being for as(1).)
+.IP WARNS
+Crank up GCC warning options; the distinct levels are (the higher the
+more strict):
+.VB
+    WARNS=1
+    WARNS=2
+    WARNS=3
+    WARNS=4
+.VE
 .SS "mkc.files.mk"
 The include file
 .B <mkc.files.mk>
@@ -216,7 +305,9 @@ Flags to pass to makeinfo. The default is empty string.
 .B <mkc.prog.mk>
 includes
 .B <mkc.files.mk>
-and therefore supports all variables supported by it.
+and
+.B <mkc.own.mk>
+and therefore supports all variables supported by them.
 .SS "mkc.lib.mk"
 The include file
 .B <mkc.lib.mk>
@@ -347,8 +438,6 @@ Libraries are ranlib'd when made.
 includes
 .B <mkc.files.mk>
 and therefore supports all variables supported by it.
-.SS "mkc.own.mk"
-lalala
 .SS "mkc.subdir.mk"
 The include file
 .B <mkc.subdir.mk>
@@ -376,8 +465,8 @@ special sources.
 lalala
 .SS "mkc.intexts.mk"
 .B <mkc.intexts.mk>
-is an auxiliary mk file that converts <fn>.in files to <fn> by expanding
-the following @@ patterns:
+is an auxiliary include file that converts <fn>.in files to <fn> by
+expanding the following @@ patterns:
 
 .VB
  "Pattern     Result"
