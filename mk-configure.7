@@ -111,6 +111,26 @@ more strict):
     WARNS=3
     WARNS=4
 .VE
+.IP PREFIX
+Target directory. [/usr/local]
+.IP BINDIR
+Target directory for utilities. [${PREFIX}/bin]
+.IP SBINDIR
+Target directory for administration utilities. [${PREFIX}/sbin]
+.IP MANDIR
+Target directory for man pages. [${PREFIX}/man]
+.IP LIBDIR
+Target directory for libraries. [${PREFIX}/lib]
+.IP LIBEXECDIR
+Target directory for system utilities. [${PREFIX}/libexec]
+.IP INCSDIR
+Target directory for includes. [${PREFIX}/include]
+.IP DATADIR
+Target directory for architecture-independent text files. [${PREFIX}/share]
+.IP SYSCONFDIR
+Target directory for configuration files. [${PREFIX}/etc]
+.IP INFODIR
+Target directory for .info files. [${PREFIX}/info]
 .SS "mkc.files.mk"
 The include file
 .B <mkc.files.mk>
