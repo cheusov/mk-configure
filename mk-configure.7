@@ -291,6 +291,16 @@ List of source files to build the library.  Suffix types
 .\" 
 .\" It has rules for building profiled objects; profiled libraries are
 .\" built by default.
+.IP INCS
+The list of include files.
+.IP INCSDIR
+The location to install the include files.
+.IP INCSNAME
+Target name of the include file, if only one; same as
+FILESNAME, but for include files.
+.IP INCSNAME_<file>
+The name file <file> should be installed as, if not <file>,
+same as FILESNAME_<file>, but for include files.
 .IP MKPIC
 If "no", don't build or install shared libraries, and
 also acts as "MKPICLIB=no"
