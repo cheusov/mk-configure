@@ -225,6 +225,8 @@ List of source files to build the program.  If SRCS is not
 Additional flags to the compiler when creating C objects.
 .IP CPPFLAGS
 Additional flags to the C pre-processor.
+.IP COPTS
+Additional flags to the compiler when creating C objects.
 .IP LDADD
 Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
@@ -306,16 +308,16 @@ If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
 documentation,...
 Default: yes
-.IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
-These provide a way to specify additions to the associated
-variables in a way that applies only to a particular
-program.  <prog> corresponds to
-.\" either
-PROG.
-.\" or PROG_CXX (if set)
-For example, if COPTS.foobar is
-set to "-g", "-g" will be added to COPTS only when compiling
-the "foobar" application.
+.\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
+.\" These provide a way to specify additions to the associated
+.\" variables in a way that applies only to a particular
+.\" program.  <prog> corresponds to
+.\" .\" either
+.\" PROG.
+.\" .\" or PROG_CXX (if set)
+.\" For example, if COPTS.foobar is
+.\" set to "-g", "-g" will be added to COPTS only when compiling
+.\" the "foobar" application.
 .IP TEXINFO
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
@@ -439,13 +441,13 @@ Default: no
 .IP MKPROFILE
 If "no", don't build or install the profiling (*_p.a) libraries.
 Default: no
-.IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
-These provide a way to specify additions to the associated
-variables in a way that applies only to a particular
-library.  <lib> corresponds to a LIB variable.
-For example, if COPTS.libfoobar is
-set to "-g", "-g" will be added to COPTS only when compiling
-the "libfoobar" library.
+.\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
+.\" These provide a way to specify additions to the associated
+.\" variables in a way that applies only to a particular
+.\" library.  <lib> corresponds to a LIB variable.
+.\" For example, if COPTS.libfoobar is
+.\" set to "-g", "-g" will be added to COPTS only when compiling
+.\" the "libfoobar" library.
 .IP TEXINFO
 The same as in
 .B <mkc.prog.mk>
