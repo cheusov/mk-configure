@@ -150,16 +150,14 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
 .endif
 
 .if defined(SCRIPTS)
-_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
+.for i in ${SCRIPTS}
+_MKC_INSTALLDIRS+=	${DESTDIR}${SCRIPTSDIR_${i}:U${SCRIPTSDIR}}
+.endfor
 .endif
 
 .if defined(FILES)
 .for i in ${FILES}
-.if defined(FILESDIR_${i})
-_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR_${i}}
-.else
-_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR}
-.endif
+_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR_${i}:U${FILESDIR}}
 .endfor
 .endif
 
@@ -227,17 +225,13 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROG}
 
 .if defined(SCRIPTS)
 .for i in ${SCRIPTS}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${i}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${SCRIPTSDIR_${i}:U${SCRIPTSDIR}}/${i}
 .endfor
 .endif
 
 .if defined(FILES)
 .for i in ${FILES}
-.if defined(FILESDIR_${i})
-_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR_${i}}/${i}
-.else
-_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR}/${i}
-.endif
+_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR_${i}:U${FILESDIR}}/${i}
 .endfor
 .endif
 
@@ -353,6 +347,14 @@ SRCS+=	${LIB}.c
 .if defined(PROG)
 MAN+=	${PROG}.1
 .endif
+.endif
+
+######################################################################
+
+MKC_VERSION=@@version@@
+
+.ifdef MKC_REQD
+_mkc_version_ok!=	echo ${MKC_REQD}:${MKC_VERSION} | awk '{}'
 .endif
 
 ######################################################################
