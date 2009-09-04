@@ -766,6 +766,23 @@ treated as a fatal error (See
 target.
 .IP MKC_CUSTOM_DIR
 .IP MKC_CHECK_PROGS
+List of <progname>s to check.
+
+As a result of the check bmake's variable
+HAVE_PROG.<progname> is set to either 1 (true) or 0 (false).
+Also PROG.<progname> is set to a full path of a program
+or to an empty string.
+.VB
+
+ Ex:  MKC_CHECK_PROGS += lua ruby gawk runawk
+ Res: HAVE_PROG.lua             = 1
+      PROG.lua                  = /usr/pkg/bin/lua
+      HAVE_PROG.ruby            = 0
+      HAVE_PROG.gawk            = 1
+      PROG.gawk                 = /usr/bin/gawk
+      HAVE_PROG.runawk          = 1
+      PROG.runawk               = /usr/pkg/bin/runawk
+.VE
 .IP MKC_REQUIRE_PROGS
 The same as MKC_CHECK_PROGS, but absense of program is
 treated as a fatal error (See

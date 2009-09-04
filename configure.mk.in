@@ -31,23 +31,6 @@
 #       Directory containing custom check source files.
 #       See MKC_CHECK_CUSTOM below.
 #
-# MKC_CHECK_PROGS
-#       List of programs to check (list of names).
-#
-#       As a result of the check bmake's variable
-#       HAVE_PROG.<progname> to either 1 (true) or 0 (false)
-#       depending on check results. If <progname> was found
-#       PROG.<progname> is set to its full path.
-#
-#   Ex:  MKC_CHECK_PROGS += lua ruby gawk runawk
-#   Res: HAVE_PROG.lua             = 1
-#        PROG.lua                  = /usr/pkg/bin/lua
-#        HAVE_PROG.ruby            = 0
-#        HAVE_PROG.gawk            = 1
-#        PROG.gawk                 = /usr/bin/gawk
-#        HAVE_PROG.runawk          = 1
-#        PROG.runawk               = /usr/pkg/bin/runawk
-#
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
 #
