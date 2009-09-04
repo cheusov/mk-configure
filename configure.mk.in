@@ -23,12 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_NOAUTO_FUNCLIBS
-#       See MKC_CHECK_FUNCLIBS
-#
-# MKC_NOAUTO
-#       See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
-#
 # MKC_SHOW_CACHED
 #        Set it to 0 when working with mk-configure-based Makefile
 #        interactively. This will hide annoying messages about
