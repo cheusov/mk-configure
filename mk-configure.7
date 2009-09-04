@@ -849,6 +849,13 @@ The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
 .IP MKC_CACHEDIR
+Directory where intermediate and cache files are created.
+It defaults to ${.OBJDIR}.
+.\" Setting this variable to something common for huge amount of
+.\" projects can save lots of time/energy wasted on unnecessary
+.\" rechecking. Idea: to use hash from options passed to compiler
+.\" for calculating the cache directory
+.\" ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
 .IP MKC_SHOW_CACHED
 .IP MKC_DELETE_TMPFILES
 .IP MKC_SHELL

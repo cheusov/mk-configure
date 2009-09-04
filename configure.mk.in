@@ -29,15 +29,6 @@
 # MKC_NOAUTO
 #       See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
 #
-# MKC_CACHEDIR
-#       Directory where intermediate and cache files are created.
-#       It defaults to ${.OBJDIR}.
-#       Setting this variable to something common for huge amount of
-#       projects can save lots of time/energy wasted on unnecessary
-#       rechecking. Idea: to use hash from options passed to compiler
-#       for calculating the cache directory
-#       ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
-#
 # MKC_SHOW_CACHED
 #        Set it to 0 when working with mk-configure-based Makefile
 #        interactively. This will hide annoying messages about
