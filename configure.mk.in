@@ -23,63 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_CHECK_HEADERS
-#       List of headers to be checked.
-#
-#       As a result of the check bmake's variable
-#       HAVE_HEADER.header is set to either 0 or 1
-#       (tr|./|__|g in the header).
-#
-#       Also -DHAVE_HEADER_<HEADER>=(0 or 1)
-#       is added to CFLAGS unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in the <HEADER>).
-#
-#   Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
-#   Res: HAVE_HEADER.sys_time_h = 1
-#        HAVE_HEADER.fcntl_h    = 1
-#        HAVE_HEADER.execinfo_h = 1
-#        CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 \
-#                  -DHAVE_HEADER_FCNTL=1
-#
-# MKC_CHECK_FUNCLIBS
-#       List of function:library pairs to be checked,
-#       library part is optional. If <library> part is present,
-#       presense of <function> in libc is also checked automatically.
-#
-#       As a result of the check bmake's variable
-#       HAVE_FUNCLIB.<function>.<library> (or HAVE_FUNCLIB.<function>)
-#       is set to either 0 or 1.
-#
-#       By default, if <function> is present in <library> but not in libc,
-#       "-l<library>" is automatically added to LDADD unless
-#       function:library is listed in MKC_NOAUTO_FUNCLIBS or
-#       MKC_NOAUTO_FUNCLIBS is equal to 1 or
-#       MKC_NOAUTO is set to 1
-#
-#   Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
-#        MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
-#        MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
-#        MKC_NOAUTO_FUNCLIBS += ftime:compat
-#   Res: HAVE_FUNCLIB.strlcat      = 1
-#        HAVE_FUNCLIB.fgetln       = 1
-#        HAVE_FUNCLIB.getline      = 0
-#        HAVE_FUNCLIB.getopt_long  = 1
-#        HAVE_FUNCLIB.crypt        = 0
-#        HAVE_FUNCLIB.crypt.crypt  = 1
-#        HAVE_FUNCLIB.dlopen       = 1
-#        HAVE_FUNCLIB.dlopen.dl    = 0
-#        HAVE_FUNCLIB.nanosleep    = 1
-#        HAVE_FUNCLIB.nanosleep.rt = 1
-#        HAVE_FUNCLIB.ftime        = 0
-#        HAVE_FUNCLIB.ftime.compat = 1
-#        HAVE_FUNCLIB.gettimeofday = 1
-#        LDADD += -lcrypt
-#
-# MKC_SOURCE_FUNCLIBS
-#       The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
-#       both in the specified <library> and in libc, function.c is
-#       added to SRCS unless MKC_NOAUTO=1.
-#
 # MKC_CHECK_DEFINES
 #       List of define:header to be checked. <header> part is optional.
 #
@@ -254,39 +197,6 @@
 #        PROG.gawk                 = /usr/bin/gawk
 #        HAVE_PROG.runawk          = 1
 #        PROG.runawk               = /usr/pkg/bin/runawk
-# MKC_REQUIRE_HEADERS
-#       The same as MKC_CHECK_HEADERS, but absense of header is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_FUNCLIBS
-#       The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_DEFINES
-#       The same as MKC_CHECK_DEFINES, but absense of define is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_TYPES
-#       The same as MKC_CHECK_TYPES, but absense of type declaration is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_VARS
-#       The same as MKC_CHECK_VARS, but absense of variable declaration is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_MEMBERS
-#       The same as MKC_CHECK_MEMBERS, but absense of member is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_FUNCS<N>
-#       The same as MKC_CHECK_FUNCS<N>, but absense of function declaration is
-#       treated as a fatal error.
-#
-# MKC_REQUIRE_CUSTOM
-#       The same as MKC_CHECK_CUSTOM, but failures means a fatal error.
-#
-# MKC_REQUIRE_PROGS
-#       The same as MKC_CHECK_PROGS, but failures means a fatal error.
 #
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
