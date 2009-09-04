@@ -23,28 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_CHECK_DEFINES
-#       List of define:header to be checked. <header> part is optional.
-#
-#       As a result of the check bmake's variable
-#       HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
-#       is set to either 0 or 1.
-#       (tr|./|__|g in the <header>).
-#
-#       Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
-#       or   -DHAVE_DEFINE_<DEFINE>=1
-#       is added to CFLAGS if the specified define was detected
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in <HEADER>,
-#        tr|a-z|A-Z|g     in <DEFINE>).
-#
-#   Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
-#   Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
-#        HAVE_DEFINE.__GNUC__          = 1
-#        HAVE_DEFINE._MSC_VER_         = 0
-#        CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \
-#                  -DHAVE_DEFINE___GNUC__=1
-#
 # MKC_CHECK_TYPES
 #       List of type:header to be checked. <header> part is optional.
 #
