@@ -23,10 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_COMMON_DEFINES.<SYSTEM>
-#       The same as MKC_COMMON_DEFINES but only
-#       for SYSTEM operating system (uname -s)
-#
 # MKC_CUSTOM_DIR
 #       Directory containing custom check source files.
 #       See MKC_CHECK_CUSTOM below.
@@ -44,13 +40,6 @@
 #   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
 #       MKC_CHECK_SIZEOF += offs_t size_t ssize_t
 #
-# MKC_COMMON_DEFINES
-#       List of defines always passed to compiler
-#       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
-#       By default list is empty.
-#   Ex: MKC_COMMON_DEFINES += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 # Linux
-#       MKC_COMMON_DEFINES += -D_ALL_SOURCE # Interix
-# 
 # MKC_CACHEDIR
 #       Directory where intermediate and cache files are created.
 #       It defaults to ${.OBJDIR}.
