@@ -27,27 +27,6 @@
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
 #
-# MKC_CHECK_FUNCS<N>
-#       List of func:header to be checked. <header> part is optional.
-#
-#       As a result of the check bmake's variable
-#       HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
-#       is set to either 0 or 1
-#       (tr|./|__|g in the <header>).
-#
-#       Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
-#       or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1)
-#       is added to CFLAGS if the specified function was detected
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in <HEADER>).
-#
-#   Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
-#        MKC_CHECK_FUNCS6 += pselect:sys/select.h
-#   Res: HAVE_FUNC2.fgetln.stdio_h = 1
-#        HAVE_FUNC6.pselect.sys.select_h = 1
-#        CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \
-#               += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1
-#
 # MKC_CHECK_SIZEOF
 #       List of type:header to be checked. <header> part is optional.
 #
