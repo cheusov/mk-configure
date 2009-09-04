@@ -26,9 +26,6 @@
 # MKC_DELETE_TMPFILES
 #        If set to 1, temporary files are removed.
 #
-# MKC_SHELL
-#        Shell interpreter for mkc_check_XXX scripts, defaults to /bin/sh
-#
 # MKC_NOCACHE
 #        All results are cached unless MKC_NOCACHE variable is set
 #        non-empty value
@@ -42,7 +39,6 @@ MKC_SHOW_CACHED?=1       # set it to `0' to hide "...(cached)..." lines
 MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
-MKC_SHELL?=/bin/sh       # mainly for portability testing purposes
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
@@ -67,7 +63,7 @@ _MKC_CFLAGS:=		${CFLAGS}
 _MKC_LDFLAGS:=		${LDFLAGS}
 _MKC_LDADD:=		${LDADD}
 
-mkc.environ=CC='${CC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAGS='${_MKC_CFLAGS}' LDFLAGS='${_MKC_LDFLAGS}' LDADD='${_MKC_LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1 MKC_SHELL='${MKC_SHELL}'
+mkc.environ=CC='${CC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAGS='${_MKC_CFLAGS}' LDFLAGS='${_MKC_LDFLAGS}' LDADD='${_MKC_LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
