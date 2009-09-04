@@ -29,13 +29,6 @@
 # MKC_NOAUTO
 #       See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
 #
-# MKC_COMMON_HEADERS
-#       List of header files always #include'd to the test .c files
-#       in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} tests.
-#       The default value is an empty list.
-#   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
-#       MKC_CHECK_SIZEOF += offs_t size_t ssize_t
-#
 # MKC_CACHEDIR
 #       Directory where intermediate and cache files are created.
 #       It defaults to ${.OBJDIR}.

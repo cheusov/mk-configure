@@ -825,6 +825,14 @@ unless MKC_NOAUTO is set to 1
 .IP MKC_NOAUTO_FUNCLIBS
 .IP MKC_NOAUTO
 .IP MKC_COMMON_HEADERS
+List of header files always #include'd to the test .c file
+in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
+The default value is an empty list.
+.VB
+
+  Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
+      MKC_CHECK_SIZEOF   += offs_t size_t ssize_t
+.VE
 .IP MKC_COMMON_DEFINES
 List of defines always passed to compiler
 in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
