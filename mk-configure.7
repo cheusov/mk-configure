@@ -22,6 +22,29 @@ mk-configure \- lightweight replacement for GNU autotools
 is a collection of mkc.*.mk files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
+.SS "Targets"
+.BR <mkc.prog.mk> ", " <mkc.lib.mk> ", " <mkc.files.mk> " and " <mkc.subdir.mk>
+include files provide the following targets:
+.IP all
+build everything
+.IP clean
+clean temporary files created while building
+.IP distclean
+remove all of the files removed by the target clean, as
+well as cache files created by
+.B <mkc.configure.mk>
+.IP cleandir
+synonym for target "distclean"
+.IP install-dirs
+create target directories
+.IP install
+install programs, libraries, files, include files, manual pages etc.
+to target directories
+.IP uninstall
+remove files from target directories
+.IP error-check
+checks for MKC_ERR_MSG variable and fails if it set printing
+an error message
 .SS "Common variables"
 The following variables control how various files are compiled/built.
 .IP AR
@@ -131,6 +154,8 @@ Target directory for architecture-independent text files. [${PREFIX}/share]
 Target directory for configuration files. [${PREFIX}/etc]
 .IP INFODIR
 Target directory for .info files. [${PREFIX}/info]
+.IP MKC_ERR_MSG
+If set, keep an error message. []
 .SS "mkc.files.mk"
 The include file
 .B <mkc.files.mk>
