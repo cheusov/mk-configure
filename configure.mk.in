@@ -23,10 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_CUSTOM_DIR
-#       Directory containing custom check source files.
-#       See MKC_CHECK_CUSTOM below.
-#
 # MKC_NOAUTO_FUNCLIBS
 #       See MKC_CHECK_FUNCLIBS
 #
