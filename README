@@ -195,10 +195,9 @@ INSTALLATION:
       Both PREFIX and MKFILESDIR are optional.
       Of course, you can change /usr/local to whatever you want.
 
-Instead of pkgsrc's version of mk-files Simon Gerraty's mk-files can
-also be used (See MKC_NOBSDMK variable) but they are not fully supported yet.
-Look for mk-YYYYMMDD tarball here
+Simon Gerraty's mk-files availables from here
      ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
+are not supported. Use pkgsrc mk-files!
 
 -------------------------------------------------------------------------
 FEEDBACK

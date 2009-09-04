@@ -1,6 +1,11 @@
 ======================================================================
 Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
 
+  mk-configure(7)
+
+  Simo Gerrary's mk-files is not supported anymore.
+  Use pkgsrc-mk-files!
+
   Regression tests have been reorganized and significantly improved.
   All examples become regression tests.  Lots of new tests.
   Run 'bmake test' to run them.
