@@ -15,22 +15,18 @@
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/hello1.o
-/objdir/libhello1/hello1.po
 /objdir/libhello1/hello1.so
 /objdir/libhello1/libhello1.a
 /objdir/libhello1/libhello1.so
 /objdir/libhello1/libhello1.so.1
 /objdir/libhello1/libhello1.so.1.0
-/objdir/libhello1/libhello1_p.a
 /objdir/libhello1/libhello1_pic.a
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/hello2.o
-/objdir/libhello2/hello2.po
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/libhello2.a
-/objdir/libhello2/libhello2_p.a
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
@@ -43,10 +39,7 @@
 /objdir/prefix/lib/libhello1.so
 /objdir/prefix/lib/libhello1.so.1
 /objdir/prefix/lib/libhello1.so.1.0
-/objdir/prefix/lib/libhello1_p.a
-/objdir/prefix/lib/libhello1_pic.a
 /objdir/prefix/lib/libhello2.a
-/objdir/prefix/lib/libhello2_p.a
 /objdir/prefix/man/man1/hello_subprojects.1
 ======== uninstall =========
 ========== clean ===========
