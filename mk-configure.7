@@ -867,8 +867,10 @@ Setting it to 0 will hide
 .VE
 messages, that is messages about fetching results from cache files.
 .IP MKC_DELETE_TMPFILES
-.IP MKC_SHELL
+If set to 1, temporary files are removed.
 .IP MKC_NOCACHE
+All results are cached unless MKC_NOCACHE variable is set
+non-empty value
 .SS "mkc.intexts.mk"
 .B <mkc.intexts.mk>
 is an auxiliary include file that converts <fn>.in files to <fn> by
