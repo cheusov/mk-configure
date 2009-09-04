@@ -23,25 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_CHECK_TYPES
-#       List of type:header to be checked. <header> part is optional.
-#
-#       As a result of the check bmake's variable
-#       HAVE_TYPE.<type>.<header> (or HAVE_TYPE.<type>)
-#       is set to either 0 or 1.
-#       (tr|./|__|g in the <header>).
-#
-#       Also -DHAVE_TYPE_<TYPE>_<HEADER>=1
-#       or   -DHAVE_TYPE_<TYPE>=1
-#       is added to CFLAGS if the specified type was detected
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in <HEADER>,
-#        tr|a-z|A-Z|g     in <TYPE>).
-#
-#   Ex:  MKC_CHECK_TYPES += size_t:string.h
-#   Res: HAVE_TYPE.size_t.string_h = 1
-#        CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
-#
 # MKC_COMMON_DEFINES.<SYSTEM>
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
