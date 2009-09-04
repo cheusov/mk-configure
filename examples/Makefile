@@ -10,5 +10,6 @@ SUBDIR+=	hello_strlcpy
 SUBDIR+=	hello_customtests
 SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements
+SUBDIR+=	hello_reqd
 
 .include <mkc.subdir.mk>

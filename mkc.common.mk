@@ -291,6 +291,17 @@ uninstall:
 .endif # make(uninstall)
 .endif # NOMKC_UNINSTALL
 ######################################################################
+
+.sinclude <_mkc.ver.mk>
+
+.if defined(MKC_REQD) && defined(MKC_VERSION)
+_mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
+.if !${_mkc_version_ok}
+MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
+.endif
+.endif
+
+######################################################################
 # general purpose targets
 .if !defined(NOMKC_TARGETS) || empty(NOMKC_TARGETS:M[Yy][Ee][Ss])
 NOMKC_TARGETS:=        yes
@@ -347,14 +358,6 @@ SRCS+=	${LIB}.c
 .if defined(PROG)
 MAN+=	${PROG}.1
 .endif
-.endif
-
-######################################################################
-
-MKC_VERSION=@@version@@
-
-.ifdef MKC_REQD
-_mkc_version_ok!=	echo ${MKC_REQD}:${MKC_VERSION} | awk '{}'
 .endif
 
 ######################################################################

@@ -10,13 +10,15 @@ EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.11rc1
+VERSION=		0.11.0
 
 BIRTHDATE=		2009-02-21
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
-			mkc_check_prog mkc_which
+			mkc_check_prog mkc_which mkc_check_version
+#SCRIPTSDIR_mkc_which=		${LIBEXECDIR}/mkc
+#SCRIPTSDIR_mkc_check_version=	${LIBEXECDIR}/mkc
 
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
@@ -27,7 +29,7 @@ FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.lib.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc.common.mk mkc_check_common.sh \
-			mkc.minitest.mk mkc.pkg-config.mk \
+			mkc.minitest.mk mkc.pkg-config.mk _mkc.ver.mk \
 			_mkc.missedfiles.mk
 
 FILES+=			${EXTRAFILES}
@@ -42,7 +44,7 @@ FILESDIR=		${MKFILESDIR}
 
 CLEANFILES+=		configure.mk *.cat1 *.html1 .error-check
 
-INFILES+=		configure.mk
+INFILES+=		configure.mk _mkc.ver.mk
 INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 
 ##################################################

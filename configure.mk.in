@@ -26,10 +26,6 @@
 # See  mk-configure(7) for documentation
 #
 
-######################################################################
-# system variables
-MKC_VERSION=@@version@@
-
 # user defined variables
 MKC_SHOW_CACHED?=1       # set it to `0' to hide "...(cached)..." lines
 MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
