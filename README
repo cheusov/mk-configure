@@ -152,21 +152,14 @@ WHAT MK-CONFIGURE PROVIDES?
 -------------------------------------------------------------------------
 DOCUMENTATION:
 
-   - Read README file
+   - README file.
 
-   - See examples/ directory, there you'll find a number of samples.
+   - mk-configure(7).
 
-   - Read configure.mk file for a help about autoconfiguring part
-     of mk-configure.
+   - examples/ directory. Lots of simple examples are there.
 
-   - Read mkc.intexts.mk file
-
-   - Read BSD mk-file's documentation. Usually it is in bsd.README file.
-
-   - See other mkc.*.mk files
-
-   - Read mkc_check_{decl,header,funclib,sizeof,prog,custom} -h and
-     their manual pages if you want to use these scripts.
+   - mkc_check_{decl,header,funclib,sizeof,prog,custom} -h
+     and their manual pages.
 
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?
