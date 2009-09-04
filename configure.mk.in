@@ -27,55 +27,9 @@
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
 #
-# MKC_CHECK_SIZEOF
-#       List of type:header to be checked. <header> part is optional.
-#
-#       As a result of the check bmake's variable
-#       SIZEOF.<type> (or SIZEOF.<type>.<header>)
-#             is set to the data type size or `failed' string.
-#       (tr|*-|P_|g in <type>, tr|/.|__|g in <header>).
-#
-#       Also -DSIZEOF_<TYPE>=<failed|1|2|...>
-#         (or -DSIZEOF_<TYPE>_<HEADER>=<failed|1|2|...>)
-#       is added to CFLAGS unless MKC_NOAUTO is set to 1
-#       (tr|a-z*-|A-ZP_|g in <TYPE>, tr|a-z/.|A-Z__|g in <HEADER>)
-#       if sizeof() check was successful.
-#
-#   Ex:  MKC_CHECK_SIZEOF += void*
-#        MKC_CHECK_SIZEOF += long-long off_t:sys/types.h
-#   Res: SIZEOF.voidP             = 4
-#        SIZEOF.long_long         = 4
-#        SIZEOF.off_t.sys_types_h = 8
-#        CFLAGS += -DSIZEOF_VOIDP=4 \
-#                  -DSIZEOF_LONG_LONG=4 \
-#                  -DSIZEOF_OFF_T_SYS_TYPES_H=8
-#
 # MKC_CUSTOM_DIR
 #       Directory containing custom check source files.
 #       See MKC_CHECK_CUSTOM below.
-#
-# MKC_CHECK_CUSTOM
-#       List of custom test checks (list of names).
-#    MKC_CUSTOM_FN.<custom_check_name>
-#       "C" source filename for your custom check,
-#       e.g., filename.c
-#
-#       As a result of the check bmake's variable
-#       HAVE_CUSTOM.<custom_check_name>
-#       is set to 1 if compilation of
-#       MKC_CUSTOM_FN.<custom_check_name> succeeded
-#       or 0 otherwise. If MKC_CUSTOM_FN.<custom_check_name>
-#       is not specified it defaults to custom_check_name.c
-#
-#       Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
-#       is added to CFLAGS if the specified check succeeded
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z|A-Z|g in <CUSTOM_CHECK_NAME>).
-#
-#   Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
-#        MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
-#   Res. HAVE_CUSTOM.nested_funcs=1
-#        CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
 #
 # MKC_CHECK_PROGS
 #       List of programs to check (list of names).

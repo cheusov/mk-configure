@@ -735,6 +735,30 @@ treated as a fatal error (See
 .B error-check
 target.
 .IP MKC_CHECK_CUSTOM
+List of custom checks (list of names).
+MKC_CUSTOM_FN.<custom_check_name> is a
+"C" source filename for your custom check,
+e.g., filename.c.
+
+As a result of the check bmake's variable
+HAVE_CUSTOM.<custom_check_name>
+is set to 1 if compilation of
+MKC_CUSTOM_FN.<custom_check_name> succeeded
+or 0 otherwise. If MKC_CUSTOM_FN.<custom_check_name>
+is not specified it defaults to custom_check_name.c
+
+Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
+is added to CFLAGS if the specified check succeeded
+unless MKC_NOAUTO is set to 1.
+.br
+<CUSTOM_CHECK_NAME>: tr|a-z|A-Z|g
+.VB
+
+ Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
+      MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
+ Res. HAVE_CUSTOM.nested_funcs=        1
+      CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
+.VE
 .IP MKC_REQUIRE_CUSTOM
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
@@ -748,6 +772,37 @@ treated as a fatal error (See
 .B error-check
 target.
 .IP MKC_CHECK_SIZEOF
+List of <type>:<header> to check. <header> part is optional.
+
+As a result of the check bmake's variable
+SIZEOF.<type>.<header> (or SIZEOF.<type>)
+is set to the data type size or string "failed".
+.br
+<type>: tr|*-|P_|g
+.br
+<header>: tr|/.|__|g
+.br
+Also -DSIZEOF_<TYPE>_<HEADER>=<failed|1|2|...>
+(or -DSIZEOF_<TYPE>=<failed|1|2|...>)
+is added to CFLAGS
+if sizeof() check was successful
+unless MKC_NOAUTO is set to 1
+.br
+<TYPE>: tr|a-z*-|A-ZP_|g
+.br
+<HEADER>: tr|a-z/.|A-Z__|g
+.br
+.VB
+
+ Ex:  MKC_CHECK_SIZEOF += void*
+      MKC_CHECK_SIZEOF += long-long off_t:sys/types.h
+ Res: SIZEOF.voidP             = 4
+      SIZEOF.long_long         = 4
+      SIZEOF.off_t.sys_types_h = 8
+      CFLAGS += -DSIZEOF_VOIDP=4 \\
+                -DSIZEOF_LONG_LONG=4 \\
+                -DSIZEOF_OFF_T_SYS_TYPES_H=8
+.VE
 .IP MKC_COMMON_DEFINES.<SYSTEM>
 .IP MKC_NOAUTO_FUNCLIBS
 .IP MKC_NOAUTO
