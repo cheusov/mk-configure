@@ -644,6 +644,26 @@ treated as a fatal error (See
 .B error-check
 target.
 .IP MKC_CHECK_VARS
+List of variable:header to check. <header> part is optional.
+       
+As a result of the check bmake's variable
+HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
+is set to either 0 or 1
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
+(or -DHAVE_DEFINE_<VARIABLE>=1)
+is added to CFLAGS if the specified variable was detected
+unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.VB
+
+ Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
+ Res: HAVE_VAR.sys_errlist.errno_h = 1
+      CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
+.VE
 .IP MKC_REQUIRE_VARS
 The same as MKC_CHECK_VARS, but absense of the variable declaration is
 treated as a fatal error (See

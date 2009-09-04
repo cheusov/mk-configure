@@ -27,24 +27,6 @@
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
 #
-# MKC_CHECK_VARS
-#       List of variable:header to be checked. <header> part is optional.
-#       
-#       As a result of the check bmake's variable
-#       HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
-#       is set to either 0 or 1
-#       (tr|./|__|g in the <header>).
-#
-#       Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
-#       or   -DHAVE_DEFINE_<VARIABLE>=1
-#       is added to CFLAGS if the specified variable was detected
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in <HEADER>).
-#
-#   Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
-#   Res: HAVE_VAR.sys_errlist.errno_h = 1
-#        CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
-#
 # MKC_CHECK_MEMBERS
 #       List of type.member:header to be checked.
 #            <header> part is optional.
