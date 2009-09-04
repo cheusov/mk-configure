@@ -23,11 +23,6 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ######################################################################
-# MKC_SHOW_CACHED
-#        Set it to 0 when working with mk-configure-based Makefile
-#        interactively. This will hide annoying messages about
-#        fetching test result from the cache.
-#
 # MKC_DELETE_TMPFILES
 #        If set to 1, temporary files are removed.
 #

@@ -859,6 +859,13 @@ It defaults to ${.OBJDIR}.
 .\" for calculating the cache directory
 .\" ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
 .IP MKC_SHOW_CACHED
+Setting it to 0 will hide
+.VB
+
+   Checking ... (cached) ...
+
+.VE
+messages, that is messages about fetching results from cache files.
 .IP MKC_DELETE_TMPFILES
 .IP MKC_SHELL
 .IP MKC_NOCACHE
