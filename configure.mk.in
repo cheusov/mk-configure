@@ -27,30 +27,6 @@
 #       The same as MKC_COMMON_DEFINES but only
 #       for SYSTEM operating system (uname -s)
 #
-# MKC_CHECK_MEMBERS
-#       List of type.member:header to be checked.
-#            <header> part is optional.
-#
-#       As a result of the check bmake's variable
-#       HAVE_MEMBER.<type>_<member>.<header>
-#            (or HAVE_MEMBER.<type>_<member>)
-#       is set to either 0 or 1 depending on the result
-#       (tr|./|__|g in the <header>).
-#
-#       Also -DHAVE_MEMBER_<TYPE>_<MEMBER>_<HEADER>=1
-#       (or   -DHAVE_MEMBER_<TYPE>_<MEMBER>=1)
-#       is added to CFLAGS if the specified member was found in
-#       appropriate type
-#       unless MKC_NOAUTO is set to 1
-#       (tr|a-z./|A-Z__|g in <HEADER>, <TYPE> and <MEMBER>).
-#
-#   Ex:  MKC_CHECK_VARS += struct-ifreq.ifr_ifrn.ifrn_name:net/if.h
-#        MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
-#   Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
-#        HAVE_MEMBER.struct_tm_tm_isdst.time_h=1
-#        CFLAGS += -DHAVE_MEMBER_STRUCT_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
-#        CFLAGS += -DHAVE_MEMBER_STRUCT_TM_TM_ISDST_TIME_H=1
-#
 # MKC_CHECK_FUNCS<N>
 #       List of func:header to be checked. <header> part is optional.
 #
