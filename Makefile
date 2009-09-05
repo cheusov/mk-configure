@@ -22,7 +22,8 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
-			mkc_check_prog.1
+			mkc_check_prog.1 \
+			mk-configure.7
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
