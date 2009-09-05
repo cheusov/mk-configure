@@ -324,8 +324,8 @@ mkc_printobjdir:
 ###########
 
 distclean: cleandir
-cleandir: clean
-cleandir:
+cleandir: clean mkc_cleandir
+mkc_cleandir:
 	rm -f ${DISTCLEANFILES}
 
 ###########
