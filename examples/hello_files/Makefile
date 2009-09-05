@@ -17,5 +17,7 @@ TEXINFO=		shell_func.texinfo # for .info file
 
 INSTALL_INFO=		: # (for test) we will not create and update dir file
 
+MKC_REQD=		0.11.0
+
 .include "test.mk"
 .include <mkc.files.mk>

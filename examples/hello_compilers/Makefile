@@ -4,6 +4,8 @@ PROG=			compiler_test
 
 MKMAN=			no
 
+MKC_REQD=		0.10.0
+
 .include <mkc.configure.mk>
 
 .if ${HAVE_DEFINE._MSC_VER:U0}

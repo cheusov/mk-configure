@@ -9,6 +9,8 @@ CFLAGS+=		-DG_DISABLE_SINGLE_INCLUDES
 
 MKMAN=			no
 
+MKC_REQD=		0.11.0
+
 .include "test.mk"
 
 .include <mkc.configure.mk>

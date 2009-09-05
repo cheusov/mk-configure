@@ -12,6 +12,8 @@ LIBC_FN!=		echo /lib/libc.so* | cut -d ' ' -f1
 
 CPPFLAGS+=		-DLIBC_FN='"${LIBC_FN}"'
 
+MKC_REQD=		0.10.0
+
 .include "test.mk"
 .include <mkc.configure.mk>
 .include <mkc.prog.mk>
