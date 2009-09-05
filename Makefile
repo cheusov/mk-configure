@@ -42,7 +42,7 @@ FILESDIR_mkc_check_common.sh=	${BINDIR}
 
 FILESDIR=		${MKFILESDIR}
 
-CLEANFILES+=		configure.mk *.cat1 *.html1 .error-check
+CLEANFILES+=		configure.mk *.cat1 *.html1
 
 INFILES+=		configure.mk _mkc.ver.mk
 INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
@@ -50,7 +50,7 @@ INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 ##################################################
 
 .PHONY: test
-test: configure.mk
+test: configure.mk _mkc.ver.mk
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
 	MKCATPAGES=no; \
@@ -58,6 +58,18 @@ test: configure.mk
 	export PATH MKCATPAGES NO_AUTODEP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
+
+.PHONY: cleandir cleandir_tests
+cleandir: cleandir_tests
+cleandir_tests: configure.mk
+	PATH=${.CURDIR}:$$PATH; \
+	export PATH; \
+	cd ${.CURDIR}/tests; \
+	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
+		${MAKEFLAGS} cleandir; \
+	cd ..
+	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
+		${MAKEFLAGS} clean
 
 ##################################################
 .include <mkc.intexts.mk>
