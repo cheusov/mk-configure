@@ -1,4 +1,4 @@
-#!/usr/pkg/heirloom/bin/nawk -f
+#!/usr/bin/awk -f
 
 #
 # usage:   _mkc_check_version <reqd> <version>
