@@ -19,7 +19,7 @@
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
 .B mk-configure
-is a collection of mkc.*.mk files for bmake (portable version of
+is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .SS "Targets"
@@ -39,59 +39,77 @@ synonym for target "distclean"
 create target directories
 .IP install
 install programs, libraries, files, include files, manual pages etc.
-to target directories
+to the target directories
 .IP uninstall
-remove files from target directories
+remove installed files
 .IP error-check
-checks for MKC_ERR_MSG variable and fails if it set printing
+check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .SS "Common variables"
 The following variables control how various files are compiled/built.
 .IP AR
-Create, modify, and extract from archives.  [ar]
+Create, modify, and extract from archives.
+.RI [ ar ]
 .IP ARFLAGS
-Options to ${AR}.  [rl]
+Options to ${AR}.
+.RI [ rl ]
 .IP AS
-Assembler.  [as]
+Assembler.
+.RI [ as ]
 .IP AFLAGS
 Options to ${CC} when compiling or linking .s or .S
 assembly source files.  []
 .IP CC
-C compiler.  [cc]
+C compiler.
+.RI [ cc ]
 .IP CFLAGS
-Options to ${CC}.  [Usually -O or -O2]
+Options to ${CC}.
+.RI "[Usually " -O " or " -O2 ]
 .IP CPP
-C Pre-Processor.  [cpp]
+C Pre-Processor.
+.RI [ cpp ]
 .IP CPPFLAGS
 Options to ${CPP}.  []
 .IP CXX
-C++ compiler.  [c++]
+C++ compiler.
+.RI [ c++ ]
 .IP CXXFLAGS
-Options to ${CXX}.  [${CFLAGS}]
+Options to ${CXX}.
+.RI [ ${CFLAGS} ]
 .IP FC
-Fortran compiler.  [f77]
+Fortran compiler.
+.RI [ f77 ]
 .IP FFLAGS
-Options to {$FC}.  [-O]
+Options to {$FC}.
+.RI [ -O ]
 .IP INSTALL
-install(1) command.  [install]
+install(1) command.
+.RI [ install ]
 .IP LEX
-Lexical analyzer.  [lex]
+Lexical analyzer.
+.RI [ lex ]
 .IP LFLAGS
 Options to ${LEX}.  []
 .IP LPREFIX
-Symbol prefix for ${LEX} (see -P option in lex(1)) [yy]
+Symbol prefix for ${LEX} (see -P option in lex(1)).
+.RI [ yy ]
 .IP LD
-Linker.  [ld]
+Linker.
+.RI [ ld ]
 .IP LDFLAGS
 Options to ${LD} during the link process.  []
 .IP LORDER
-List dependencies for object files.  [lorder]
+List dependencies for object files.
+.RI [ lorder ]
 .IP MAKE
-bmake(1).  [bmake]
+bmake(1).
+.RI [ bmake ]
 .IP NM
-List symbols from object files.  [nm]
+List symbols from object files.
+.RI [ nm ]
 .IP PC
-Pascal compiler.  [pc]  (Not present)
+Pascal compiler.
+.RI [ pc ]
 .IP PFLAGS
 Options to ${PC}.  []
 .\" .IP OBJC
@@ -99,19 +117,26 @@ Options to ${PC}.  []
 .\" .IP OBJCFLAGS
 .\" Options to ${OBJC}.  [${CFLAGS}]
 .IP OBJCOPY
-Copy and translate object files.  [objcopy]
+Copy and translate object files.
+.RI [ objcopy ]
 .IP OBJDUMP
-Display information from object files.  [objdump]
+Display information from object files.
+.RI [ objdump ]
 .IP RANLIB
-Generate index to archive.  [ranlib]
+Generate index to archive.
+.RI [ ranlib ]
 .IP SIZE
-List section sizes and total size.  [size]
+List section sizes and total size.
+.RI [ size ]
 .IP STRIP
-Discard symbols from object files.  [strip]
+Discard symbols from object files.
+.RI [ strip ]
 .IP TSORT
-Topological sort of a directed graph.  [tsort -q]
+Topological sort of a directed graph.
+.RI [ "tsort -q" ]
 .IP YACC
-LALR(1) parser generator.  [yacc]
+LALR(1) parser generator.
+.RI [ yacc ]
 .IP YFLAGS
 Options to ${YACC}.  []
 .IP YHEADER
@@ -135,25 +160,37 @@ more strict):
     WARNS=4
 .VE
 .IP PREFIX
-Target directory. [/usr/local]
+Target directory.
+.RI [ /usr/local ]
 .IP BINDIR
-Target directory for utilities. [${PREFIX}/bin]
+Target directory for utilities.
+.RI [ ${PREFIX}/bin ]
 .IP SBINDIR
-Target directory for administration utilities. [${PREFIX}/sbin]
+Target directory for administration utilities.
+.RI [ ${PREFIX}/sbin ]
 .IP MANDIR
-Target directory for man pages. [${PREFIX}/man]
+Target directory for man pages.
+.RI [ ${PREFIX}/man ]
 .IP LIBDIR
-Target directory for libraries. [${PREFIX}/lib]
+Target directory for libraries.
+.RI [ ${PREFIX}/lib ]
 .IP LIBEXECDIR
-Target directory for system utilities. [${PREFIX}/libexec]
+Target directory for system utilities.
+.RI [ ${PREFIX}/libexec ]
 .IP INCSDIR
-Target directory for includes. [${PREFIX}/include]
+Target directory for includes.
+.RI [ ${PREFIX}/include ]
 .IP DATADIR
-Target directory for architecture-independent text files. [${PREFIX}/share]
+Target directory for architecture-independent text files.
+.RI [ ${PREFIX}/share ]
 .IP SYSCONFDIR
-Target directory for configuration files. [${PREFIX}/etc]
+Target directory for configuration files.
+.RI [ ${PREFIX}/etc ]
 .IP INFODIR
-Target directory for .info files. [${PREFIX}/info]
+Target directory for .info files.
+.RI [ ${PREFIX}/info ]
+.IP DESTDIR
+Installation prefix. []
 .IP MKC_ERR_MSG
 If set, keep an error message. []
 .SS "mkc.files.mk"
@@ -170,8 +207,8 @@ The list of files to install.
 .\"  not the `install' target.
 .\"  The FILES* variables documented below also apply.
 .IP FILESDIR
-The location to install the files. It defaults to
-.I ${PREFIX}/bin
+The location to install the files.
+.RI [ ${PREFIX}/bin ]
 .IP FILESDIR_<fn>
 The location to install the specific file <fn>.
 .IP FILESOWN
@@ -179,7 +216,9 @@ File owner. If
 .B bmake
 is run with root privileges, it defaults to
 .I ${BINOWN}
-or to `id -u` otherwise.
+or to
+.I "`id -u`"
+otherwise.
 .IP FILESOWN_<fn>
 File owner of the specific file <fn>.
 .IP FILESGRP
@@ -187,12 +226,14 @@ File group. If
 .B bmake
 is run with root privileges, it defaults to
 .I ${BINGRP}
-or to `id -g` otherwise.
+or to
+.I "`id -g`"
+otherwise.
 .IP FILESGRP_<fn>
 File group of the specific file <fn>.
 .IP FILESMODE
-File mode. It defaults to
-.I ${NONBINMODE}
+File mode.
+.RI [ ${NONBINMODE} ]
 .IP FILESMODE_<fn>
 File mode of the specific file <fn>.
 .IP FILESNAME
@@ -257,26 +298,30 @@ Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
 libraries, use:
 .VB
+
     LDADD+=  -lutil -lcompat
 .VE
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VB
+
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
 .IP BINDIR
-Target directory for program. It defaults to
-.I ${PREFIX}/bin
+Target directory for program.
+.RI [ ${PREFIX}/bin ]
 .IP BINMODE
 Binary mode.
 .IP BINOWN
 File owner. If
 .B bmake
-is run by an unprivileged user, it defaults to `id -u`.
+is run by an unprivileged user, it defaults to
+.IR "`id -u`" .
 .IP BINGRP
 File group. If
 .B bmake
-is run by an unprivileged user, it defaults to `id -g`.
+is run by an unprivileged user, it defaults to
+.IR "`id -g`" .
 .\"  .IP COPTS
 .\"  Additional flags to the compiler when creating C objects.
 .IP STRIPFLAG
@@ -292,13 +337,16 @@ different from ${SCRIPTS}.
 Optional name to install <script> as.
 .IP SCRIPTSDIR
 Target directory for scripts.
-It defaults to ${BINDIR}.
+.RI [ ${BINDIR} ]
 .IP SCRIPTSOWN
-Script files owner. It defaults to ${BINOWN}.
+Script files owner.
+.RI [ ${BINOWN} ]
 .IP SCRIPTSGRP
-Script file group. It defaults to ${BINGRP}.
+Script file group.
+.RI [ ${BINGRP} ]
 .IP SCRIPTSMODE
-Script file mode. It defaults to ${BINMODE}.
+Script file mode.
+.RI [ ${BINMODE} ]
 .IP LINKS
 The list of binary links; should be full pathnames, the
 linked-to file coming first, followed by the linked
@@ -317,22 +365,22 @@ defined, "MAN=${PROG}.1" is assumed if it exists.
 .IP MKMAN
 If "no", don't build or install the man pages,
 and also acts as "MKCATPAGES=no MKHTML=no".
-Default: yes.
+.RI [ yes ]
 .IP MKCATPAGES
 If "no", don't build or install the catman pages.
-Default: no.
+.RI [ no ]
 .IP MKHTML
 If "no", don't build or install the HTML man pages.
-Default: no
+.RI [ no ]
 .IP MKINFO
 If "no", don't build or install Info documentation from
 Texinfo source files.
-Default: yes
+.RI [ yes ]
 .IP MKSHARE
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
 documentation,...
-Default: yes
+.RI [ yes ]
 .\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
@@ -347,26 +395,26 @@ Default: yes
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
 .IP INFOFLAGS
-Flags to pass to makeinfo. The default is empty string.
+Flags to pass to makeinfo. []
 .PP
 .B <mkc.prog.mk>
 includes
 .B <mkc.files.mk>
-and
-.B <mkc.own.mk>
-and therefore supports all variables supported by them.
+.\" and
+.\" .B <mkc.own.mk>
+and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
 The include file
 .B <mkc.lib.mk>
 has support for building a static or dynanic library.  It has a
 limited number of suffixes.
 .B <mkc.lib.mk>
-sets/uses the following variables:
+uses the following variables:
 .IP LIB
 The name of the library to build.
 .IP LIBDIR
-Target directory for libraries. It defaults to 
-.IR ${PREFIX}/lib .
+Target directory for libraries.
+.RI [ ${PREFIX}/lib ]
 .\" .IP SHLIBINSTALLDIR Target directory for shared libraries if
 .\" ${USE_SHLIBDIR}
 .\" is not "no".
@@ -381,13 +429,16 @@ Minor shared library number.
 .IP LIBOWN
 Library owner. If
 .B bmake
-is run by an unprivileged user, it defaults to `id -u`.
+is run by an unprivileged user, it defaults to
+.IR "`id -u`" .
 .IP LIBGRP
 Library group. If
 .B bmake
-is run by an unprivileged user, it defaults to `id -g`.
+is run by an unprivileged user, it defaults to
+.IR "`id -g`" .
 .IP LIBMODE
 Library mode.
+.RI [ ${BINMODE} ]
 .\" .IP LIBISMODULE
 .\" If not "no", install as ${LIB}.so (without the "lib" prefix).
 .\" .\" and act as "MKDEBUGLIB=no MKLINT=no MKPICINSTALL=no
@@ -408,10 +459,10 @@ Library mode.
 .\" .IP LINTLIBDIR
 .\" Target directory for lint libraries.
 .IP LDADD
-Additional objects. See LDADD in section
+Additional objects. See LDADD in
 .I <mkc.prog.mk>
 .IP LDFLAGS
-Additional linker flags. See LDFLAGS in section
+Additional linker flags. See LDFLAGS in
 .I <mkc.prog.mk>
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
@@ -458,14 +509,15 @@ The name file <file> should be installed as, if not <file>,
 same as FILESNAME_<file>, but for include files.
 .IP MKPIC
 If "no", don't build or install shared libraries, and
-also acts as "MKPICLIB=no"
-Default: yes (for MACHINE_ARCHs that support it)
+also acts as "MKPICLIB=no".
+.RI [ yes ]
+(for MACHINE_ARCHs that support it)
 .IP MKPICINSTALL
 If "no", don't install the *_pic.a libraries.
-Default: no
+.RI [ no ]
 .IP MKPROFILE
 If "no", don't build or install the profiling (*_p.a) libraries.
-Default: no
+.RI [ no ]
 .\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
@@ -494,7 +546,7 @@ subdirectories.  It has the same targets as
 For all of
 the directories listed in the variable SUBDIR, the specified directory 
 will be visited and the target made.  There is also a default target which
-allows the command "make subdir" where subdir is any directory listed in
+allows the command "bmake subdir" where subdir is any directory listed in
 the variable SUBDIR.
 
 As a special case, the use of a token
