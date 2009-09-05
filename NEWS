@@ -1,10 +1,10 @@
 ======================================================================
-Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
+Version 0.11.0, by Aleksey Cheusov, Sat,  5 Sep 2009 12:42:53 +0300
 
   mk-configure(7)
 
-  Simo Gerrary's mk-files is not supported anymore.
-  Use pkgsrc-mk-files!
+  Simon Gerrary's mk-files is not supported anymore.
+  Use pkgsrc mk-files!
 
   Regression tests have been reorganized and significantly improved.
   All examples become regression tests.  Lots of new tests.
@@ -94,6 +94,8 @@ Version 0.11rc1, by Aleksey Cheusov, Sun, 30 Aug 2009 19:03:28 +0300
         'bmake test' for each SUBDIR. If you want to define your own
         "test" target overriding the default one, define it in your
         project's Makefile before any .include <mkc.*.mk> directive.
+
+      - MKC_REQD variable
 
   Makefile of mk-configure: README, NEWS, TODO, FAQ and COPYRIGHT
   files are also installed unless EXTRAFILES is set to an empty string.
