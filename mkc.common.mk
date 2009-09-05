@@ -320,13 +320,9 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 ###########
-.PHONY : test all distclean cleandir
-
-###########
 .ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
-.PHONY: distclean
 distclean: cleandir
 cleandir: clean
 cleandir:
@@ -344,6 +340,10 @@ error-check:
 .endif # SUBDIR
 #######################################
 .endif # NOMKC_TARGETS
+######################################################################
+
+.PHONY : test all distclean cleandir clean
+
 ######################################################################
 
 .if !defined(SRCS)
