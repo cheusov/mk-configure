@@ -561,6 +561,12 @@ started.  See
 for some caveats on use of .WAIT and other
 special sources.
 .SS "mkc.configure.mk"
+.B mkc.configure.mk
+is an auxiliary include file for checking platform's individualities
+like headers, function of variable declarations, function implementation
+in a particular libraries, data types sizes etc.
+.B mkc.configure.mk
+supports the following variables.
 .IP MKC_CHECK_HEADERS
 List of headers to be checked.
 As a result of the check bmake's variable
@@ -955,6 +961,13 @@ expressions for expanding, e.g.
 .VB
     INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
 .VE
+.SS "mkc.minitest.mk"
+.B mkc.minitest.mk
+is an auxiliary include file that implement simple framework for unit
+tests.  Idea: application provides the target test_output and
+expect.out file that contains ideal output. "bmake test" runs "bmake
+test_output" and compare generated output with expect.out.
+Look at the sources.
 .\" .SS "mkc.pkg-config.mk"
 .\" lalala
 .SH "SEE ALSO"
@@ -964,5 +977,6 @@ expressions for expanding, e.g.
 .BR mkc_check_funclib (1),
 .BR mkc_check_sizeof (1),
 .BR mkc_check_custom (1),
+.BR bmake (1),
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
