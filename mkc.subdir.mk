@@ -26,6 +26,11 @@
 
 .include <mkc.common.mk>
 
+.PHONY: cleandir distclean clean localclean
+cleandir distclean clean: localclean
+localclean:
+	rm -f ${CLEANFILES}
+
 .if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 .include <subdir.mk>
 .else
