@@ -2,8 +2,6 @@ MKC_CHECK_FUNCLIBS+=	dlopen:dl
 
 PROG=			dlopen_test
 
-MKMAN=			no
-
 .if exists(/lib/libc.so)
 LIBC_FN=		/lib/libc.so
 .else

@@ -3,7 +3,6 @@ MKC_CHECK_FUNCS3+=	strlcpy:string.h
 
 PROG=			hello4
 SRCS=			hello.c
-MKMAN=			no
 
 MKC_REQD=	0.10.0
 

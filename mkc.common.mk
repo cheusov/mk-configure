@@ -355,8 +355,8 @@ SRCS+=	${LIB}.c
 .endif
 
 .if !defined(MAN)
-.if defined(PROG)
-MAN+=	${PROG}.1
+.if defined(PROG) && !exists(${PROG}.1)
+MKMAN=		no
 .endif
 .endif
 

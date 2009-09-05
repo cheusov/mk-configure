@@ -2,8 +2,6 @@ MKC_CHECK_DEFINES+=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__
 
 PROG=			compiler_test
 
-MKMAN=			no
-
 MKC_REQD=		0.10.0
 
 .include <mkc.configure.mk>
