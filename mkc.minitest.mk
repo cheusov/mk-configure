@@ -11,4 +11,4 @@ test: all
 	{ echo '      FAILED' 1>&2; false; }
 
 CLEANFILES+=		${.OBJDIR}/${.CURDIR:T}.test.out
-DISTCLEANFILES+=	${.OBJDIR}/${.CURDIR:T}.test.out.tmp
+#DISTCLEANFILES+=	${.OBJDIR}/${.CURDIR:T}.test.out.tmp
