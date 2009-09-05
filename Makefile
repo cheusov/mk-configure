@@ -16,9 +16,8 @@ BIRTHDATE=		2009-02-21
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
-			mkc_check_prog mkc_which mkc_check_version
-#SCRIPTSDIR_mkc_which=		${LIBEXECDIR}/mkc
-#SCRIPTSDIR_mkc_check_version=	${LIBEXECDIR}/mkc
+			mkc_check_prog mkc_which mkc_check_version \
+			mkc_test_helper
 
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
