@@ -28,6 +28,6 @@ BEGIN {
 	reqd = sprintf("%04d.%04d.%04d",
 				   arr_reqd [1]+0, arr_reqd [2]+0, arr_reqd [3]+0)
 
-	print (reqd < ver)
+	print (reqd <= ver)
 	exit 0
 }
