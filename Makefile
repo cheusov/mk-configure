@@ -57,7 +57,7 @@ test: configure.mk _mkc.ver.mk
 	MKCATPAGES=no; \
 	NO_AUTODEP=yes; \
 	export PATH MKCATPAGES NO_AUTODEP; \
-	unset MAKEOBJDIR MAKEOBJDIRPREFIX; \
+	unset MAKEOBJDIR MAKEOBJDIRPREFIX || true; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
