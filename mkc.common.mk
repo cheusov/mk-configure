@@ -67,6 +67,7 @@ DATADIR?=		${PREFIX}/share
 SYSCONFDIR?=		${PREFIX}/etc
 FILESDIR?=		${PREFIX}/bin
 INFODIR?=		${PREFIX}/info
+SCRIPTSDIR?=		${BINDIR}
 .endif # NOMKC_PATHS
 
 ######################################################################
