@@ -550,13 +550,10 @@ the directories listed in the variable SUBDIR, the specified directory
 will be visited and the target made.  There is also a default target which
 allows the command "bmake subdir" where subdir is any directory listed in
 the variable SUBDIR.
-
-As a special case, the use of a token
-.WAIT
+As a special case, the use of a token .WAIT
 as an entry in SUBDIR acts
 as a synchronization barrier when multiple make jobs are run; subdirs
-before the 
-.WAIT
+before the .WAIT
 must complete before any subdirs after .WAIT are
 started.  See
 .B bmake(1)
@@ -919,9 +916,25 @@ non-empty value
 .B <mkc.intexts.mk>
 is an auxiliary include file that converts <fn>.in files to <fn> by
 expanding the following @@ patterns:
-
+.\" .TS
+.\" tab(:), center, box;
+.\" c | c
+.\" l | l.
+.\" Pattern:Result
+.\" _
+.\" @prefix@:${PREFIX}
+.\" @bindir@:${BINDIR}
+.\" @mandir@:${MANDIR}
+.\" @sbindir@:${SBINDIR}
+.\" @libdir@:${LIBDIR}
+.\" @libexecdir@:${LIBEXECDIR}
+.\" @datadir@:${DATADIR}
+.\" @sysconfdir@:${SYSCONFDIR}
+.\" @incsdir@:${INCSDIR}
+.\" .TE
+.ne 11
 .VB
- "Pattern     Result"
+ Pattern       Result
 ----------------------
 @prefix@       ${PREFIX}
 @bindir@       ${BINDIR}
