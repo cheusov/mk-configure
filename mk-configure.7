@@ -7,6 +7,7 @@
 .\"
 .\" ------------------------------------------------------------------
 .de VB \" Verbatim Begin
+.sp
 .ft CW
 .nf
 .ne \\$1
@@ -14,6 +15,7 @@
 .de VE \" Verbatim End
 .ft R
 .fi
+.sp
 ..
 .\" ------------------------------------------------------------------
 .TH MK-CONFIGURE 7 "Sep 2, 2009" "" ""
@@ -300,13 +302,11 @@ Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
 libraries, use:
 .VB
-
     LDADD+=  -lutil -lcompat
 .VE
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VB
-
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
 .IP BINDIR
@@ -583,7 +583,6 @@ is added to CFLAGS unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
 .VB
-
  Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
  Res: HAVE_HEADER.sys_time_h = 1
       HAVE_HEADER.fcntl_h    = 1
@@ -610,7 +609,6 @@ By default, if <function> is found in <library> but not in libc,
 MKC_NOAUTO_FUNCLIBS is equal to 1 or
 MKC_NOAUTO is set to 1
 .VB
-
  Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
       MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
       MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
@@ -640,7 +638,6 @@ The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
 both in the specified <library> and in libc, function.c is
 added to SRCS unless MKC_NOAUTO=1.
 .VB
-
  Ex:  MKC_SOURCE_FUNCLIBS+= getline
  Res: SRCS+= getline.c
       HAVE_FUNCLIB.getline= 0
@@ -663,7 +660,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <DEFINE>: tr|a-z|A-Z|g
 .VB
-
  Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
  Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
       HAVE_DEFINE.__GNUC__          = 1
@@ -693,7 +689,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <TYPE>:   tr|a-z|A-Z|g
 .VB
-
  Ex:  MKC_CHECK_TYPES += size_t:string.h
  Res: HAVE_TYPE.size_t.string_h = 1
       CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
@@ -719,7 +714,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
 .VB
-
  Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
  Res: HAVE_VAR.sys_errlist.errno_h = 1
       CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
@@ -752,7 +746,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <MEMBER>: tr|a-z./|A-Z__|g
 .VB
-
    Ex:  MKC_CHECK_VARS += struct-ifreq.ifr_ifrn.ifrn_name:net/if.h
         MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
    Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
@@ -781,7 +774,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
 .VB
-
  Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
       MKC_CHECK_FUNCS6 += pselect:sys/select.h
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
@@ -813,7 +805,6 @@ unless MKC_NOAUTO is set to 1.
 .br
 <CUSTOM_CHECK_NAME>: tr|a-z|A-Z|g
 .VB
-
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
  Res. HAVE_CUSTOM.nested_funcs=        1
@@ -835,7 +826,6 @@ HAVE_PROG.<progname> is set to either 1 (true) or 0 (false).
 Also PROG.<progname> is set to a full path of a program
 or to an empty string.
 .VB
-
  Ex:  MKC_CHECK_PROGS += lua ruby gawk runawk
  Res: HAVE_PROG.lua             = 1
       PROG.lua                  = /usr/pkg/bin/lua
@@ -872,7 +862,6 @@ unless MKC_NOAUTO is set to 1
 <HEADER>: tr|a-z/.|A-Z__|g
 .br
 .VB
-
  Ex:  MKC_CHECK_SIZEOF += void*
       MKC_CHECK_SIZEOF += long-long off_t:sys/types.h
  Res: SIZEOF.voidP             = 4
@@ -891,7 +880,6 @@ List of header files always #include'd to the test .c file
 in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
 The default value is an empty list.
 .VB
-
   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
       MKC_CHECK_SIZEOF   += offs_t size_t ssize_t
 .VE
@@ -899,14 +887,12 @@ The default value is an empty list.
 List of defines always passed to compiler
 in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
 .VB
-
    Ex: MKC_COMMON_DEFINES += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 # Linux
        MKC_COMMON_DEFINES += -D_ALL_SOURCE # Interix
 .VE
 .IP MKC_COMMON_DEFINES.<OPSYS>
 The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
 .VB
-
    Ex: MKC_COMMON_DEFINES.Linux   += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
@@ -921,9 +907,7 @@ It defaults to ${.OBJDIR}.
 .IP MKC_SHOW_CACHED
 Setting it to 0 will hide
 .VB
-
    Checking ... (cached) ...
-
 .VE
 messages, that is messages about fetching results from cache files.
 .IP MKC_DELETE_TMPFILES
@@ -949,7 +933,6 @@ expanding the following @@ patterns:
 @sysconfdir@   ${SYSCONFDIR}
 @incsdir@      ${INCSDIR}
 .VE
-
 .B <mkc.intexts.mk>
 supports the following variables:
 .IP INFILES
