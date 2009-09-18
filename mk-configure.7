@@ -6,7 +6,7 @@
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
-.de VB \" Verbatim Begin
+.de VS \" Verbatim Start
 .sp
 .ft CW
 .nf
@@ -157,7 +157,7 @@ that cause warnings to be fatal, such as:
 .IP WARNS
 Crank up GCC warning options; the distinct levels are (the higher the
 more strict):
-.VB
+.VS
     WARNS=1
     WARNS=2
     WARNS=3
@@ -301,12 +301,12 @@ Additional flags to the compiler when creating C objects.
 Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
 libraries, use:
-.VB
+.VS
     LDADD+=  -lutil -lcompat
 .VE
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
-.VB
+.VS
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
 .IP BINDIR
@@ -354,7 +354,7 @@ The list of binary links; should be full pathnames, the
 linked-to file coming first, followed by the linked
 file.  The files are hard-linked.  For example, to link
 ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
-.VB
+.VS
     LINKS=   ${DESTDIR}/bin/gzip ${DESTDIR}${BINDIR}/gunzip
 .VE
 .IP SYMLINKS
@@ -579,7 +579,7 @@ Also -DHAVE_HEADER_<HEADER>=(0 or 1)
 is added to CFLAGS unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
-.VB
+.VS
  Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
  Res: HAVE_HEADER.sys_time_h = 1
       HAVE_HEADER.fcntl_h    = 1
@@ -605,7 +605,7 @@ By default, if <function> is found in <library> but not in libc,
 <function>:<library> is listed in MKC_NOAUTO_FUNCLIBS or
 MKC_NOAUTO_FUNCLIBS is equal to 1 or
 MKC_NOAUTO is set to 1
-.VB
+.VS
  Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
       MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
       MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
@@ -634,7 +634,7 @@ target.
 The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
 both in the specified <library> and in libc, function.c is
 added to SRCS unless MKC_NOAUTO=1.
-.VB
+.VS
  Ex:  MKC_SOURCE_FUNCLIBS+= getline
  Res: SRCS+= getline.c
       HAVE_FUNCLIB.getline= 0
@@ -656,7 +656,7 @@ unless MKC_NOAUTO is set to 1.
 <HEADER>: tr|a-z./|A-Z__|g
 .br
 <DEFINE>: tr|a-z|A-Z|g
-.VB
+.VS
  Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
  Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
       HAVE_DEFINE.__GNUC__          = 1
@@ -685,7 +685,7 @@ unless MKC_NOAUTO is set to 1.
 <HEADER>: tr|a-z./|A-Z__|g
 .br
 <TYPE>:   tr|a-z|A-Z|g
-.VB
+.VS
  Ex:  MKC_CHECK_TYPES += size_t:string.h
  Res: HAVE_TYPE.size_t.string_h = 1
       CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
@@ -710,7 +710,7 @@ is added to CFLAGS if the specified variable was detected
 unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
-.VB
+.VS
  Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
  Res: HAVE_VAR.sys_errlist.errno_h = 1
       CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
@@ -742,7 +742,7 @@ unless MKC_NOAUTO is set to 1.
 <TYPE>:   tr|a-z./|A-Z__|g
 .br
 <MEMBER>: tr|a-z./|A-Z__|g
-.VB
+.VS
    Ex:  MKC_CHECK_VARS += struct-ifreq.ifr_ifrn.ifrn_name:net/if.h
         MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
    Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
@@ -770,7 +770,7 @@ is added to CFLAGS if the specified function was detected
 unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
-.VB
+.VS
  Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
       MKC_CHECK_FUNCS6 += pselect:sys/select.h
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
@@ -801,7 +801,7 @@ is added to CFLAGS if the specified check succeeded
 unless MKC_NOAUTO is set to 1.
 .br
 <CUSTOM_CHECK_NAME>: tr|a-z|A-Z|g
-.VB
+.VS
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
  Res. HAVE_CUSTOM.nested_funcs=        1
@@ -822,7 +822,7 @@ As a result of the check bmake's variable
 HAVE_PROG.<progname> is set to either 1 (true) or 0 (false).
 Also PROG.<progname> is set to a full path of a program
 or to an empty string.
-.VB
+.VS
  Ex:  MKC_CHECK_PROGS += lua ruby gawk runawk
  Res: HAVE_PROG.lua             = 1
       PROG.lua                  = /usr/pkg/bin/lua
@@ -858,7 +858,7 @@ unless MKC_NOAUTO is set to 1
 .br
 <HEADER>: tr|a-z/.|A-Z__|g
 .br
-.VB
+.VS
  Ex:  MKC_CHECK_SIZEOF += void*
       MKC_CHECK_SIZEOF += long-long off_t:sys/types.h
  Res: SIZEOF.voidP             = 4
@@ -876,20 +876,20 @@ See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
 List of header files always #include'd to the test .c file
 in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
 The default value is an empty list.
-.VB
+.VS
   Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
       MKC_CHECK_SIZEOF   += offs_t size_t ssize_t
 .VE
 .IP MKC_COMMON_DEFINES
 List of defines always passed to compiler
 in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
-.VB
+.VS
    Ex: MKC_COMMON_DEFINES += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64 # Linux
        MKC_COMMON_DEFINES += -D_ALL_SOURCE # Interix
 .VE
 .IP MKC_COMMON_DEFINES.<OPSYS>
 The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
-.VB
+.VS
    Ex: MKC_COMMON_DEFINES.Linux   += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
@@ -903,7 +903,7 @@ It defaults to ${.OBJDIR}.
 .\" ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
 .IP MKC_SHOW_CACHED
 Setting it to 0 will hide
-.VB
+.VS
    Checking ... (cached) ...
 .VE
 messages, that is messages about fetching results from cache files.
@@ -933,7 +933,7 @@ expanding the following @@ patterns:
 .\" @incsdir@:${INCSDIR}
 .\" .TE
 .ne 11
-.VB
+.VS
  Pattern       Result
 ----------------------
 @prefix@       ${PREFIX}
@@ -956,7 +956,7 @@ List of scripts to generate.
 List of additional
 .B sed(1)
 expressions for expanding, e.g.
-.VB
+.VS
     INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
 .VE
 .SS "mkc.minitest.mk"
