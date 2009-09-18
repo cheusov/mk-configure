@@ -27,7 +27,7 @@ is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .SS "Targets"
-.BR <mkc.prog.mk> ", " <mkc.lib.mk> ", " <mkc.files.mk> " and " <mkc.subdir.mk>
+.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk " and " mkc.subdir.mk
 include files provide the following targets:
 .IP all
 build everything
@@ -36,7 +36,7 @@ clean temporary files created while building
 .IP distclean
 remove all of the files removed by the target clean, as
 well as cache files created by
-.B <mkc.configure.mk>
+.B mkc.configure.mk
 .IP cleandir
 synonym for target "distclean"
 .IP install-dirs
@@ -199,10 +199,10 @@ Installation prefix. []
 If set, keep an error message. []
 .SS "mkc.files.mk"
 The include file
-.B <mkc.files.mk>
+.B mkc.files.mk
 handles the FILES variables and is included
 from
-.BR <mkc.lib.mk> " and " <mkc.prog.mk> .
+.BR mkc.lib.mk " and " mkc.prog.mk .
 List of supported variables:
 .IP FILES
 The list of files to install.
@@ -272,7 +272,7 @@ targets.
 .\" target.
 .SS "mkc.prog.mk"
 The include file
-.B <mkc.prog.mk>
+.B mkc.prog.mk
 handles building program from one or
 more source files, along with their manual pages.  It has a limited
 number of suffixes.
@@ -282,7 +282,7 @@ The name of the program to build.  If not supplied, nothing
 is built.
 .\" .IP PROG_CXX
 .\" If defined, the name of the program to build.  Also
-.\" causes <mkc.prog.mk> to link the program with the C++
+.\" causes mkc.prog.mk to link the program with the C++
 .\" compiler rather than the C compiler.  PROG_CXX overrides
 .\" the value of PROG if PROG is also set.
 .IP PROGNAME
@@ -399,18 +399,18 @@ consist of single files with the extension replaced by .info.
 .IP INFOFLAGS
 Flags to pass to makeinfo. []
 .PP
-.B <mkc.prog.mk>
+.B mkc.prog.mk
 includes
-.B <mkc.files.mk>
+.B mkc.files.mk
 .\" and
-.\" .B <mkc.own.mk>
+.\" .B mkc.own.mk
 and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
 The include file
-.B <mkc.lib.mk>
+.B mkc.lib.mk
 has support for building a static or dynanic library.  It has a
 limited number of suffixes.
-.B <mkc.lib.mk>
+.B mkc.lib.mk
 uses the following variables:
 .IP LIB
 The name of the library to build.
@@ -462,10 +462,10 @@ Library mode.
 .\" Target directory for lint libraries.
 .IP LDADD
 Additional objects. See LDADD in
-.I <mkc.prog.mk>
+.B mkc.prog.mk
 .IP LDFLAGS
 Additional linker flags. See LDFLAGS in
-.I <mkc.prog.mk>
+.B mkc.prog.mk
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
 .\" NOCHECKVER_<library>
@@ -529,22 +529,22 @@ If "no", don't build or install the profiling (*_p.a) libraries.
 .\" the "libfoobar" library.
 .IP TEXINFO
 The same as in
-.B <mkc.prog.mk>
+.B mkc.prog.mk
 .IP INFOFLAGS
 The same as in
-.B <mkc.prog.mk>
+.B mkc.prog.mk
 .PP
 Libraries are ranlib'd when made.
-.B <mkc.lib.mk>
+.B mkc.lib.mk
 includes
-.B <mkc.files.mk>
+.B mkc.files.mk
 and therefore supports all variables supported by it.
 .SS "mkc.subdir.mk"
 The include file
-.B <mkc.subdir.mk>
+.B mkc.subdir.mk
 contains the default targets for building
 subdirectories.  It has the same targets as
-.BR <mkc.prog.mk> .
+.BR mkc.prog.mk .
 For all of
 the directories listed in the variable SUBDIR, the specified directory 
 will be visited and the target made.  There is also a default target which
@@ -913,7 +913,7 @@ If set to 1, temporary files are removed.
 All results are cached unless MKC_NOCACHE variable is set
 non-empty value
 .SS "mkc.intexts.mk"
-.B <mkc.intexts.mk>
+.B mkc.intexts.mk
 is an auxiliary include file that converts <fn>.in files to <fn> by
 expanding the following @@ patterns:
 .\" .TS
@@ -946,7 +946,7 @@ expanding the following @@ patterns:
 @sysconfdir@   ${SYSCONFDIR}
 @incsdir@      ${INCSDIR}
 .VE
-.B <mkc.intexts.mk>
+.B mkc.intexts.mk
 supports the following variables:
 .IP INFILES
 List of files to generate.
