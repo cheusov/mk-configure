@@ -78,118 +78,118 @@ MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
 .endfor
 
 # checking for functions in libraries
-.for f in ${MKC_CHECK_FUNCLIBS} ${MKC_SOURCE_FUNCLIBS} ${MKC_REQUIRE_FUNCLIBS}
-.if !defined(HAVE_FUNCLIB.${f:S/:/./g})
-HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
+.for f in ${MKC_CHECK_FUNCLIBS:U:S/:/;/g} ${MKC_SOURCE_FUNCLIBS:U:S/:/;/g} ${MKC_REQUIRE_FUNCLIBS:U:S/:/;/g}
+.if !defined(HAVE_FUNCLIB.${f:S/;/./g})
+HAVE_FUNCLIB.${f:S/;/./g}!=	env ${mkc.environ} mkc_check_funclib ${f:S/;/ /g}
 .endif
-.if !defined(HAVE_FUNCLIB.${f:C/:.*//})
-HAVE_FUNCLIB.${f:C/:.*//}!=	env ${mkc.environ} mkc_check_funclib ${f:C/:.*//}
+.if !defined(HAVE_FUNCLIB.${f:C/;.*//})
+HAVE_FUNCLIB.${f:C/;.*//}!=	env ${mkc.environ} mkc_check_funclib ${f:C/;.*//}
 .endif
-.if ${HAVE_FUNCLIB.${f:C/:.*//}} != ${HAVE_FUNCLIB.${f:S/:/./g}}
-.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
-MKC_LDADD+=-l${f:C/^.*://}
+.if ${HAVE_FUNCLIB.${f:C/;.*//}} != ${HAVE_FUNCLIB.${f:S/;/./g}}
+.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/;/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/;/./g}} && !${HAVE_FUNCLIB.${f:C/;.*//}}
+MKC_LDADD+=-l${f:C/^.*;//}
 .endif
 .endif
-.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
-MKC_SRCS+=${f:C/:.*//}.c
+.if !${HAVE_FUNCLIB.${f:S/;/./g}} && !${HAVE_FUNCLIB.${f:C/;.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/;.*//})
+MKC_SRCS+=${f:C/;.*//}.c
 .endif
 .endfor # f
 
-.for f in ${MKC_REQUIRE_FUNCLIBS}
-.if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
-MKC_ERR_MSG+=		"ERROR: cannot find function ${f}"
+.for f in ${MKC_REQUIRE_FUNCLIBS:U:S/:/;/g}
+.if !${HAVE_FUNCLIB.${f:S/;/./g}} && !${HAVE_FUNCLIB.${f:C/;.*//}}
+MKC_ERR_MSG+=		"ERROR: cannot find function ${f:S/;/:/g}"
 .endif
 .endfor # f
 
 # checking for sizeof(xxx)
-.for t in ${MKC_CHECK_SIZEOF}
-.if !defined(SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g})
-SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/:/ /g}
+.for t in ${MKC_CHECK_SIZEOF:U:S/:/;/g}
+.if !defined(SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|;|.|g})
+SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|;|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/;/ /g}
 .endif
-.if ${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}} != failed
-MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
+.if ${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|;|.|g}} != failed
+MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|;|_|g:S|.|_|g:tu}=${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|;|.|g}}
 .endif
 .endfor
 
 # checking for declared #define
-.for d in ${MKC_CHECK_DEFINES} ${MKC_REQUIRE_DEFINES}
-.if !defined(HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
+.for d in ${MKC_CHECK_DEFINES:U:S/:/;/g} ${MKC_REQUIRE_DEFINES:U:S/:/;/g}
+.if !defined(HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g})
+HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/;/ /g}
 .endif
-.if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.if ${HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
-.for d in ${MKC_REQUIRE_DEFINES}
-.if !${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d}"
+.for d in ${MKC_REQUIRE_DEFINES:U:S/:/;/g}
+.if !${HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d:S/;/:/g}"
 .endif
 .endfor
 
 # checking for declared type
-.for t in ${MKC_CHECK_TYPES} ${MKC_REQUIRE_TYPES}
-.if !defined(HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/:/ /g}
+.for t in ${MKC_CHECK_TYPES:U:S/:/;/g} ${MKC_REQUIRE_TYPES:U:S/:/;/g}
+.if !defined(HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g})
+HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/;/ /g}
 .endif
-.if ${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.if ${HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
-.for t in ${MKC_REQUIRE_TYPES}
-.if !${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t}"
+.for t in ${MKC_REQUIRE_TYPES:U:S/:/;/g}
+.if !${HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t:S/;/:/g}"
 .endif
 .endfor
 
 # checking for declared variables
-.for d in ${MKC_CHECK_VARS} ${MKC_REQUIRE_VARS}
-.if !defined(HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
+.for d in ${MKC_CHECK_VARS:U:S/:/;/g} ${MKC_REQUIRE_VARS:U:S/:/;/g}
+.if !defined(HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g})
+HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/;/ /g}
 .endif
-.if ${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.if ${HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor
 
-.for d in ${MKC_REQUIRE_VARS}
-.if !${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d}"
+.for d in ${MKC_REQUIRE_VARS:U:S/:/;/g}
+.if !${HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d:S/;/:/g}"
 .endif
 .endfor
 
 # checking for struct members
-.for m in ${MKC_CHECK_MEMBERS} ${MKC_REQUIRE_MEMBERS}
-.if !defined(HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g})
-HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
+.for m in ${MKC_CHECK_MEMBERS:U:S/:/;/g} ${MKC_REQUIRE_MEMBERS:U:S/:/;/g}
+.if !defined(HAVE_MEMBER.${m:S/./_/g:S/;/./g:S|/|_|g:S/-/_/g})
+HAVE_MEMBER.${m:S/./_/g:S/;/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/;/ /g}
 .endif
-.if ${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
-MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
+.if ${HAVE_MEMBER.${m:S/./_/g:S/;/./g:S|/|_|g:S/-/_/g}}
+MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/;/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 .endif
 .endfor
 
-.for m in ${MKC_REQUIRE_MEMBERS}
-.if !${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
-MKC_ERR_MSG+=		"ERROR: cannot find member ${m}"
+.for m in ${MKC_REQUIRE_MEMBERS:U:S/:/;/g}
+.if !${HAVE_MEMBER.${m:S/./_/g:S/;/./g:S|/|_|g:S/-/_/g}}
+MKC_ERR_MSG+=		"ERROR: cannot find member ${m:S/;/:/g}"
 .endif
 .endfor
 
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 
-.for d in ${MKC_CHECK_FUNCS${n}} ${MKC_REQUIRE_FUNCS${n}}
-.if !defined(HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
+.for d in ${MKC_CHECK_FUNCS${n}:U:S/:/;/g} ${MKC_REQUIRE_FUNCS${n}:U:S/:/;/g}
+.if !defined(HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g})
+HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/;/ /g}
 .endif
-.if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.if ${HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endfor # d
 
-.for d in ${MKC_REQUIRE_FUNCS${n}}
-.if !${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
+.for d in ${MKC_REQUIRE_FUNCS${n}:U:S/:/;/g}
+.if !${HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g}}
+MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d:S/;/:/g}"
 .endif
 .endfor # d
 
