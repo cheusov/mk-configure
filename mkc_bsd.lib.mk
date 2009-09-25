@@ -6,9 +6,9 @@ __initialized__:
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
-.include <bsd.own.mk>
-.include <bsd.obj.mk>
-.include <bsd.depall.mk>
+.include <_mkc.own.mk>
+.include <_mkc.obj.mk>
+#.include <_mkc.depall.mk>
 .MAIN:		all
 .endif
 
@@ -512,13 +512,13 @@ ${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln: llib-l${LIB}.ln
 .endif
 .endif
 
-.include <bsd.man.mk>
-.include <bsd.nls.mk>
-.include <bsd.files.mk>
-.include <bsd.inc.mk>
-.include <bsd.links.mk>
-.include <bsd.dep.mk>
-.include <bsd.sys.mk>
+.include <_mkc.man.mk>
+#.include <_mkc.nls.mk>
+.include <_mkc.files.mk>
+.include <_mkc.inc.mk>
+.include <_mkc.links.mk>
+#.include <_mkc.dep.mk>
+.include <_mkc.sys.mk>
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 lint regress:

@@ -24,7 +24,7 @@ linksinstall::
 .if defined(LINKS) && !empty(LINKS)
 linksinstall::
 	@(set ${LINKS}; \
-	 echo ".include <bsd.own.mk>"; \
+	 echo ".include <_mkc.own.mk>"; \
 	 while test $$# -ge 2; do \
 		l=${DESTDIR}$$1; \
 		shift; \
