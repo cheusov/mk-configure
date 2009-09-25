@@ -11,6 +11,8 @@ _BSD_OWN_MK_=1
 .include "/etc/mk.conf"
 .endif
 
+.include <mkc_bsd.sys.mk>
+
 # Defining `SKEY' causes support for S/key authentication to be compiled in.
 SKEY=		yes
 

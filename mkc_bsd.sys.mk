@@ -2,7 +2,11 @@
 #	@(#)sys.mk	8.2 (Berkeley) 3/21/94
 
 unix?=		We run Unix
-OS!=		uname -s
+.ifndef OPSYS
+OPSYS!=			uname -s
+.endif
+
+.sinclude <mkc_bsd.${OPSYS}.mk>
 
 .SUFFIXES: .out .a .ln .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4
@@ -15,9 +19,6 @@ RANLIB?=	ranlib
 
 AS?=		as
 AFLAGS?=
-.if ${MACHINE_ARCH} == "sparc64" 
-AFLAGS+= -Wa,-Av9a
-.endif
 COMPILE.s?=	${CC} ${AFLAGS} -c
 LINK.s?=	${CC} ${AFLAGS} ${LDFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
