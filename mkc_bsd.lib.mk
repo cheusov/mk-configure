@@ -346,7 +346,7 @@ realall: ${SRCS} ${ALLOBJS:O} ${_LIBS}
 
 __archivebuild: .USE
 	@rm -f ${.TARGET}
-	${AR} cq ${.TARGET} `NM=${NM} ${LORDER} ${.ALLSRC:M*o} | ${TSORT}`
+	${AR} cq ${.TARGET} ${.ALLSRC}
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
