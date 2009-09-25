@@ -1,3 +1,5 @@
+= mkc_shell
+
 = mk-files supports building the shared libraries only by GNU cc and
   GNU ld, and therefore mk-configure is also limited to them.
   Currently building shared libraries doesn't work on Solaris and
