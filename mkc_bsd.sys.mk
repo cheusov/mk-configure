@@ -1,134 +1,208 @@
-#	$NetBSD: bsd.sys.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
-#
-# Overrides used for NetBSD source tree builds.
+#	$NetBSD: sys.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
+#	@(#)sys.mk	8.2 (Berkeley) 3/21/94
 
-.if defined(WARNS)
-.if ${WARNS} > 0
-CFLAGS+= -Wall -Wstrict-prototypes -Wmissing-prototypes -Wpointer-arith
-# XXX Delete -Wuninitialized by default for now -- the compiler doesn't
-# XXX always get it right.
-CFLAGS+= -Wno-uninitialized
+unix?=		We run Unix
+OS!=		uname -s
+
+.SUFFIXES: .out .a .ln .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
+.SUFFIXES: .sh .m4
+
+.LIBS:		.a
+
+AR?=		ar
+ARFLAGS?=	rl
+RANLIB?=	ranlib
+
+AS?=		as
+AFLAGS?=
+.if ${MACHINE_ARCH} == "sparc64" 
+AFLAGS+= -Wa,-Av9a
 .endif
-.if ${WARNS} > 1
-CFLAGS+=-Wreturn-type -Wcast-qual -Wpointer-arith -Wwrite-strings
-CFLAGS+=-Wswitch -Wshadow
+COMPILE.s?=	${CC} ${AFLAGS} -c
+LINK.s?=	${CC} ${AFLAGS} ${LDFLAGS}
+COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
+LINK.S?=	${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
+
+CC?=		cc
+.if ${MACHINE_ARCH} == "alpha" || \
+    ${MACHINE_ARCH} == "arm" || ${MACHINE_ARCH} == "arm26" || \
+		${MACHINE_ARCH} == "arm32" || \
+    ${MACHINE_ARCH} == "i386" || \
+    ${MACHINE_ARCH} == "m68k" || \
+    ${MACHINE_ARCH} == "mipsel" || ${MACHINE_ARCH} == "mipseb" || \
+    ${MACHINE_ARCH} == "sparc" || \
+    ${MACHINE_ARCH} == "vax"
+DBG?=	-O2
+.elif ${MACHINE_ARCH} == "x86_64"
+DBG?=
+.else
+DBG?=	-O
 .endif
-.endif
+CFLAGS?=	${DBG}
+COMPILE.c?=	${CC} ${CFLAGS} ${CPPFLAGS} -c
+LINK.c?=	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
-.if defined(WFORMAT) && defined(FORMAT_AUDIT)
-.if ${WFORMAT} > 1
-CFLAGS+=-Wnetbsd-format-audit -Wno-format-extra-args
-.endif
-.endif
+CXX?=		c++
+CXXFLAGS?=	${CFLAGS}
+COMPILE.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} -c
+LINK.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
-.if !defined(NOGCCERROR)
-CFLAGS+= -Werror
-.endif
-CFLAGS+= ${CWARNFLAGS}
+OBJC?=		${CC}
+OBJCFLAGS?=	${CFLAGS}
+COMPILE.m?=	${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
+LINK.m?=	${OBJC} ${OBJCFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
-.if defined(DESTDIR)
-CPPFLAGS+= -nostdinc -idirafter ${DESTDIR}/usr/include
-LINTFLAGS+= -d ${DESTDIR}/usr/include
-.endif
+CPP?=		cpp
+CPPFLAGS?=	
 
-.if defined(AUDIT)
-CPPFLAGS+= -D__AUDIT__
-.endif
+FC?=		f77
+FFLAGS?=	-O
+RFLAGS?=
+COMPILE.f?=	${FC} ${FFLAGS} -c
+LINK.f?=	${FC} ${FFLAGS} ${LDFLAGS}
+COMPILE.F?=	${FC} ${FFLAGS} ${CPPFLAGS} -c
+LINK.F?=	${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.r?=	${FC} ${FFLAGS} ${RFLAGS} -c
+LINK.r?=	${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
 
-.if defined(MKSOFTFLOAT) && (${MKSOFTFLOAT} != "no")
-COPTS+=		-msoft-float
-FOPTS+=		-msoft-float
-.endif
+INSTALL?=	install
 
-# Helpers for cross-compiling
-HOST_CC?=	cc
-HOST_CFLAGS?=	-O
-HOST_COMPILE.c?=${HOST_CC} ${HOST_CFLAGS} ${HOST_CPPFLAGS} -c
-HOST_LINK.c?=	${HOST_CC} ${HOST_CFLAGS} ${HOST_CPPFLAGS} ${HOST_LDFLAGS}
+LEX?=		lex
+LFLAGS?=
+LEX.l?=		${LEX} ${LFLAGS}
 
-HOST_CPP?=	cpp
-HOST_CPPFLAGS?=
+LD?=		ld
+LDFLAGS?=
 
-HOST_LD?=	ld
-HOST_LDFLAGS?=
+LINT?=		lint
+LINTFLAGS?=	-chapbxzF
 
-OBJCOPY?=	objcopy
-STRIP?=		strip
-CONFIG?=	config
-RPCGEN?=	rpcgen
-MKLOCALE?=	mklocale
+LORDER?=	lorder
 
-.SUFFIXES:	.m .o .ln .lo
+MAKE?=		make
 
-# Objective C
-# (Defined here rather than in <sys.mk> because `.m' is not just
-#  used for Objective C source)
-.m:
-	${LINK.m} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
-.m.o:
-	${COMPILE.m} ${.IMPSRC}
+NM?=		nm
 
-# Host-compiled C objects
-.c.lo:
-	${HOST_COMPILE.c} -o ${.TARGET} ${.IMPSRC}
+PC?=		pc
+PFLAGS?=
+COMPILE.p?=	${PC} ${PFLAGS} ${CPPFLAGS} -c
+LINK.p?=	${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
 
+SHELL?=		sh
 
-.if defined(PARALLEL) || defined(LPREFIX)
-LPREFIX?=yy
-LFLAGS+=-P${LPREFIX}
+SIZE?=		size
+
+TSORT?= 	tsort -q
+
+YACC?=		yacc
+YFLAGS?=
+YACC.y?=	${YACC} ${YFLAGS}
+
+# C
+.c:
+	${LINK.c} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.c.o:
+	${COMPILE.c} ${.IMPSRC}
+.c.a:
+	${COMPILE.c} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+.c.ln:
+	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
+
+# C++
+.cc .cpp .cxx .C:
+	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.cc.o .cpp.o .cxx.o .C.o:
+	${COMPILE.cc} ${.IMPSRC}
+.cc.a .cpp.a .cxx.a .C.a:
+	${COMPILE.cc} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
+# Fortran/Ratfor
+.f:
+	${LINK.f} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.f.o:
+	${COMPILE.f} ${.IMPSRC}
+.f.a:
+	${COMPILE.f} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
+.F:
+	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.F.o:
+	${COMPILE.F} ${.IMPSRC}
+.F.a:
+	${COMPILE.F} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
+.r:
+	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.r.o:
+	${COMPILE.r} ${.IMPSRC}
+.r.a:
+	${COMPILE.r} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
+# Pascal
+.p:
+	${LINK.p} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.p.o:
+	${COMPILE.p} ${.IMPSRC}
+.p.a:
+	${COMPILE.p} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
+# Assembly
+.s:
+	${LINK.s} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.s.o:
+	${COMPILE.s} ${.IMPSRC}
+.s.a:
+	${COMPILE.s} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+.S:
+	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
+.S.o:
+	${COMPILE.S} ${.IMPSRC}
+.S.a:
+	${COMPILE.S} ${.IMPSRC}
+	${AR} ${ARFLAGS} $@ $*.o
+	rm -f $*.o
+
 # Lex
 .l:
-	${LEX.l} -o${.TARGET:R}.${LPREFIX}.c ${.IMPSRC}
-	${LINK.c} -o ${.TARGET} ${.TARGET:R}.${LPREFIX}.c ${LDLIBS} -ll
-	rm -f ${.TARGET:R}.${LPREFIX}.c
+	${LEX.l} ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} lex.yy.c ${LDLIBS} -ll
+	rm -f lex.yy.c
 .l.c:
-	${LEX.l} -o${.TARGET} ${.IMPSRC}
+	${LEX.l} ${.IMPSRC}
+	mv lex.yy.c ${.TARGET}
 .l.o:
-	${LEX.l} -o${.TARGET:R}.${LPREFIX}.c ${.IMPSRC}
-	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.${LPREFIX}.c 
-	rm -f ${.TARGET:R}.${LPREFIX}.c
-.l.lo:
-	${LEX.l} -o${.TARGET:R}.${LPREFIX}.c ${.IMPSRC}
-	${HOST_COMPILE.c} -o ${.TARGET} ${.TARGET:R}.${LPREFIX}.c 
-	rm -f ${.TARGET:R}.${LPREFIX}.c
-.endif
+	${LEX.l} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} lex.yy.c 
+	rm -f lex.yy.c
 
 # Yacc
-.if defined(YHEADER) || defined(YPREFIX)
-.if defined(YPREFIX)
-YFLAGS+=-p${YPREFIX}
-.endif
-.if defined(YHEADER)
-YFLAGS+=-d
-.endif
 .y:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${LINK.c} -o ${.TARGET} ${.TARGET:R}.tab.c ${LDLIBS}
-	rm -f ${.TARGET:R}.tab.c ${.TARGET:R}.tab.h
-.y.h: ${.TARGET:R}.c
+	${YACC.y} ${.IMPSRC}
+	${LINK.c} -o ${.TARGET} y.tab.c ${LDLIBS}
+	rm -f y.tab.c
 .y.c:
-	${YACC.y} -o ${.TARGET} ${.IMPSRC}
+	${YACC.y} ${.IMPSRC}
+	mv y.tab.c ${.TARGET}
 .y.o:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.tab.c
-	rm -f ${.TARGET:R}.tab.c ${TARGET:R}.tab.h
-.y.lo:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${HOST_COMPILE.c} -o ${.TARGET} ${.TARGET:R}.tab.c
-	rm -f ${.TARGET:R}.tab.c ${TARGET:R}.tab.h
-.elif defined(PARALLEL)
-.y:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${LINK.c} -o ${.TARGET} ${.TARGET:R}.tab.c ${LDLIBS}
-	rm -f ${.TARGET:R}.tab.c
-.y.c:
-	${YACC.y} -o ${.TARGET} ${.IMPSRC}
-.y.o:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${COMPILE.c} -o ${.TARGET} ${.TARGET:R}.tab.c
-	rm -f ${.TARGET:R}.tab.c
-.y.lo:
-	${YACC.y} -b ${.TARGET:R} ${.IMPSRC}
-	${HOST_COMPILE.c} -o ${.TARGET} ${.TARGET:R}.tab.c
-	rm -f ${.TARGET:R}.tab.c
-.endif
+	${YACC.y} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} y.tab.c
+	rm -f y.tab.c
+
+# Shell
+.sh:
+	rm -f ${.TARGET}
+	cp ${.IMPSRC} ${.TARGET}

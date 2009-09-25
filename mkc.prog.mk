@@ -28,29 +28,9 @@
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
-
-.include <prog.mk>
-
-.if defined(FILES)
-.include <_mkc.missedfiles.mk>
-.endif # FILES
-
-.if defined(SCRIPTS)
-.include <scripts.mk>
-.endif # SCRIPTS
-
+.include <mkc_bsd.prog.mk>
 .if defined(TEXINFO)
-.include <info.mk>
+.include <mkc_bsd.info.mk>
 .endif # TEXINFO
-
-.else # MKC_NOBSDMK
-
-.include <bsd.prog.mk>
-.if defined(TEXINFO)
-.include <bsd.info.mk>
-.endif # TEXINFO
-
-.endif # MKC_NOBSDMK
 
 .endif # MKC_ERR_MSG

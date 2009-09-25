@@ -28,20 +28,10 @@
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
+.include <mkc_bsd.lib.mk>
 
-.include <lib.mk>
 .if defined(TEXINFO)
-.include <info.mk>
+.include <mkc_bsd.info.mk>
 .endif # TEXINFO
-
-.else
-
-.include <bsd.lib.mk>
-.if defined(TEXINFO)
-.include <bsd.info.mk>
-.endif # TEXINFO
-
-.endif # MKC_NOBSDMK
 
 .endif # MKC_ERR_MSG

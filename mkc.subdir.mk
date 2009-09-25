@@ -31,11 +31,7 @@ cleandir distclean clean: localclean
 localclean:
 	rm -f ${CLEANFILES}
 
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
-.include <subdir.mk>
-.else
-.include <bsd.subdir.mk>
-.endif
+.include <mkc_bsd.subdir.mk>
 
 .PHONY : install-dirs
 install-dirs:

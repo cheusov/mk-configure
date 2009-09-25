@@ -6,9 +6,9 @@ __initialized__:
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
-.include <_mkc.own.mk>
-.include <_mkc.obj.mk>
-.include <_mkc.depall.mk>
+.include <mkc_bsd.own.mk>
+#.include <mkc_bsd.obj.mk>
+.include <mkc_bsd.depall.mk>
 .MAIN:		all
 .endif
 

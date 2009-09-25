@@ -30,8 +30,7 @@ FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.lib.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc.common.mk mkc_check_common.sh \
-			mkc.minitest.mk mkc.pkg-config.mk _mkc.ver.mk \
-			_mkc.missedfiles.mk
+			mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk
 
 FILES+=			${EXTRAFILES}
 
@@ -45,13 +44,13 @@ FILESDIR=		${MKFILESDIR}
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
-INFILES+=		configure.mk _mkc.ver.mk
+INFILES+=		configure.mk mkc.ver.mk
 INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 
 ##################################################
 
 .PHONY: test
-test: configure.mk _mkc.ver.mk
+test: configure.mk mkc.ver.mk
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
 	MKCATPAGES=no; \

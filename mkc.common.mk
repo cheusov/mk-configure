@@ -110,11 +110,7 @@ INFOGRP?=	${_MKC_GROUP}
 .endif # NOMKC_PERMS
 
 ######################################################################
-.if defined(MKC_NOBSDMK) && !empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
-.include <own.mk>
-.else
-.include <bsd.own.mk>
-.endif
+.include <mkc_bsd.own.mk>
 
 ######################################################################
 .if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
@@ -122,14 +118,8 @@ INFOGRP?=	${_MKC_GROUP}
 
 NOMKC_INCS:=	yes
 
-.if !defined(MKC_NOBSDMK) || empty(MKC_NOBSDMK:M[Yy][Ee][Ss])
 realinstall : includes
 includes :
-.else
-.PHONY: maninstall
-maninstall:
-#install : maninstall
-.endif
 
 .endif # make(install)
 .endif # NOMKC_INCS
@@ -293,7 +283,7 @@ uninstall:
 .endif # NOMKC_UNINSTALL
 ######################################################################
 
-.sinclude <_mkc.ver.mk>
+.sinclude <mkc.ver.mk>
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)
 _mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
