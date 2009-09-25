@@ -18,15 +18,6 @@ clean cleandir: cleanprog
 
 CFLAGS+=	${COPTS}
 
-# ELF platforms depend on crtbegin.o and crtend.o
-.if ${OBJECT_FMT} == "ELF" && ${MACHINE:Mirix} != ""
-LIBCRTBEGIN?=	${DESTDIR}/usr/lib/crtbegin.o
-LIBCRTEND?=	${DESTDIR}/usr/lib/crtend.o
-.else
-LIBCRTBEGIN?=
-LIBCRTEND?=
-.endif
-
 # here is where you can define what LIB* are
 .-include <libnames.mk>
 
@@ -67,21 +58,12 @@ LOBJS+=		${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
 
 .if defined(OBJS) && !empty(OBJS)
 .NOPATH: ${OBJS}
-.if defined(DESTDIR)
-
-${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
-.if !commands(${PROG})
-	${CC} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} -nostdlib -Wl,-rpath-link,${DESTDIR}/usr/lib ${LIBCRT0} ${LIBCRTBEGIN} ${OBJS} ${LDADD} -L${DESTDIR}/usr/lib -lgcc -lc -lgcc ${LIBCRTEND}
-.endif
-
-.else
 
 ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
 .if !commands(${PROG})
 	${CC} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} ${OBJS} ${LDADD}
 .endif
 
-.endif	# defined(DESTDIR)
 .endif	# defined(OBJS) && !empty(OBJS)
 
 .if !defined(MAN)
