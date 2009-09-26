@@ -62,9 +62,6 @@ DOCMODE?=	${NONBINMODE}
 
 COPY?=		-c
 PRESERVE?=
-.if defined(UNPRIVILEGED)
-INSTPRIV?=	-U
-.endif
 STRIPFLAG?=	-s
 
 

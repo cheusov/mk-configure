@@ -67,7 +67,7 @@ HTMLPAGES=	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
 .endif
 .endif
 
-MINSTALL=	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} \
+MINSTALL=	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
 		    -o ${MANOWN} -g ${MANGRP} -m ${MANMODE}
 
 .if defined(MANZ)

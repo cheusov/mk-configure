@@ -324,7 +324,7 @@ __archivebuild: .USE
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} -o ${LIBOWN} \
+	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m 600 ${.ALLSRC} ${.TARGET}
 	chmod ${LIBMODE} ${.TARGET}
 
@@ -423,7 +423,7 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: .MADE
 .endif
 ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} -o ${LIBOWN} \
+	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 .if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR)
 	/sbin/ldconfig -m ${LIBDIR}

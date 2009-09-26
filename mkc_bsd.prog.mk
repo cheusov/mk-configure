@@ -93,7 +93,7 @@ proginstall:: ${DESTDIR}${BINDIR}/${PROGNAME}
 .PHONY: ${DESTDIR}${BINDIR}/${PROGNAME}
 
 __proginstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} ${INSTPRIV} \
+	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 .if !defined(BUILD) && !make(all) && !make(${PROG})
@@ -117,7 +117,7 @@ scriptsinstall:: ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRI
 .PHONY: ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
 
 __scriptinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} \
+	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
 	    -o ${SCRIPTSOWN_${.ALLSRC:T}:U${SCRIPTSOWN}} \
 	    -g ${SCRIPTSGRP_${.ALLSRC:T}:U${SCRIPTSGRP}} \
 	    -m ${SCRIPTSMODE_${.ALLSRC:T}:U${SCRIPTSMODE}} \
