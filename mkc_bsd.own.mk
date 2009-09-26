@@ -110,6 +110,7 @@ PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 #
 
 MKCATPAGES?=no
+MKHTML?=no
 
 .if defined(NODOC)
 MKDOC=no

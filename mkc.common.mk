@@ -25,8 +25,6 @@
 ######################################################################
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
-MKHTML?=	no
-
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
 
@@ -42,26 +40,7 @@ LDADD+=			${DPLIBS}
 .endif # NOMKC_DPLIBS
 
 ######################################################################
-.if !defined(NOMKC_PERMS) || empty(NOMKC_PERMS:M[Yy][Ee][Ss])
-.if make(install)
-NOMKC_PERMS:=	yes
-
-# Default owner and group
-
-.endif # make(install)
-.endif # NOMKC_PERMS
-
-######################################################################
 .include <mkc_bsd.own.mk>
-
-######################################################################
-.if !defined(NOMKC_INCS) || empty(NOMKC_INCS:M[Yy][Ee][Ss])
-.if make(install)
-
-NOMKC_INCS:=	yes
-
-.endif # make(install)
-.endif # NOMKC_INCS
 
 ######################################################################
 .if !defined(NOMKC_INSTDIRS) || empty(NOMKC_INSTDIRS:M[Yy][Ee][Ss])
