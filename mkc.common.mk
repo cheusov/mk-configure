@@ -266,10 +266,6 @@ NOMKC_TARGETS:=        yes
 .endif # NOMKC_TARGETS
 ######################################################################
 
-.PHONY : test all distclean cleandir clean
-
-######################################################################
-
 .if !defined(SRCS)
 .if defined(PROG)
 SRCS+=	${PROG}.c
@@ -283,18 +279,6 @@ SRCS+=	${LIB}.c
 MKMAN=		no
 .endif
 .endif
-
-######################################################################
-
-.if defined(TEXINFO)
-CLEANFILES+=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
-.endif # TEXINFO
-
-.if defined(MAN)
-.for i in ${MAN}
-CLEANFILES+=	${i:R}.cat${i:E}
-.endfor # i
-.endif # MAN
 
 ######################################################################
 
