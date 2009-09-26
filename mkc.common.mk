@@ -47,12 +47,10 @@ LDADD+=			${DPLIBS}
 NOMKC_PERMS:=	yes
 
 # Default owner and group
-_MKC_UID!=	id -u
-_MKC_GID!=	id -g
-
-.if ${_MKC_UID} != 0
 _MKC_USER!=	id -un
 _MKC_GROUP!=	id -gn
+
+.if ${_MKC_USER} != root
 
 MANOWN?=	${_MKC_USER}
 MANGRP?=	${_MKC_GROUP}
