@@ -181,7 +181,4 @@ realall:
 
 .endif # CATPAGES
 
-# Make sure all of the standard targets are defined, even if they do nothing.
-clean depend includes lint regress tags:
-
 .endif # _MKC_BSD_MAN_MK

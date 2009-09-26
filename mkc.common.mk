@@ -84,9 +84,6 @@ INFOGRP?=	${_MKC_GROUP}
 
 NOMKC_INCS:=	yes
 
-realinstall : includes
-includes :
-
 .endif # make(install)
 .endif # NOMKC_INCS
 
@@ -263,37 +260,9 @@ NOMKC_TARGETS:=        yes
 
 ###########
 
-.PHONY : print-values
-print-values :
-.for v in ${VARS}
-	@printf "%s=%s\n" ${v} ${${v}:Q}
-.endfor
-
-###########
-.PHONY : mkc_printobjdir
-mkc_printobjdir:
-	@echo ${.OBJDIR}
-
-###########
-.ifndef SUBDIR # skip the following for mkc.subdir.mk
 ###########
 
-distclean: cleandir
-cleandir: clean mkc_cleandir
-mkc_cleandir:
-	rm -f ${DISTCLEANFILES}
-
 ###########
-
-.PHONY: error-check
-all : error-check
-error-check:
-	@for msg in ${MKC_ERR_MSG}; do \
-		printf '%s\n' "$$msg"; ex=1; \
-	done; exit $$ex
-
-.endif # SUBDIR
-#######################################
 .endif # NOMKC_TARGETS
 ######################################################################
 

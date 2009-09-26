@@ -25,6 +25,7 @@
 # For documentation see README file
 
 .include <mkc.common.mk>
+.include <mkc_bsd.init.mk>
 
 .PHONY: cleandir distclean clean localclean
 cleandir distclean clean: localclean
