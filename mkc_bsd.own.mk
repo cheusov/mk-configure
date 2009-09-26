@@ -73,11 +73,6 @@ TARGETS+=	all clean cleandir depend dependall includes \
 		beforeinstall afterinstall realinstall realdepend realall \
 		html installhtml cheanhtml
 
-# set NEED_OWN_INSTALL_TARGET, if it's not already set, to yes
-# this is used by bsd.pkg.mk to stop "install" being defined
-NEED_OWN_INSTALL_TARGET?=	yes
-
-.if ${NEED_OWN_INSTALL_TARGET} == "yes"
 .if !target(install)
 install:	.NOTMAIN beforeinstall subdir-install realinstall afterinstall
 beforeinstall:	.NOTMAIN
@@ -92,7 +87,6 @@ depend:		.NOTMAIN realdepend subdir-depend
 subdir-depend:	.NOTMAIN
 realdepend:	.NOTMAIN
 distclean:	.NOTMAIN cleandir
-.endif
 
 PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 
