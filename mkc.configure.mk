@@ -24,7 +24,6 @@
 
 # For documentation see configure.mk file
 
-.include <mkc.common.mk>
 .include <mkc_bsd.init.mk>
 
 .include <configure.mk>

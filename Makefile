@@ -29,7 +29,7 @@ EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.lib.mk mkc.prog.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
-			mkc.common.mk mkc_check_common.sh \
+			mkc_check_common.sh \
 			mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk
 FILES+= mkc_bsd.AIX.sys.mk mkc_bsd.Darwin.sys.mk mkc_bsd.FreeBSD.sys.mk \
 	mkc_bsd.HPUX.sys.mk mkc_bsd.IRIX.sys.mk mkc_bsd.Interix.sys.mk \

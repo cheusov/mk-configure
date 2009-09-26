@@ -24,7 +24,6 @@
 
 # For documentation see README file
 
-.include <mkc.common.mk>
 .include <mkc_bsd.init.mk>
 
 .include <mkc_bsd.subdir.mk>

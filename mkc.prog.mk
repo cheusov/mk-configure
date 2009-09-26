@@ -25,7 +25,6 @@
 # For documentation see README file
 
 .include <mkc_bsd.init.mk>
-.include <mkc.common.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 

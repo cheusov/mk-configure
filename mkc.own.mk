@@ -24,6 +24,4 @@
 
 # For documentation see README file
 
-.include <mkc.common.mk>
-
 .include <mkc_bsd.own.mk>
