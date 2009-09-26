@@ -56,10 +56,14 @@ print-shlib-teeny:
 	@false
 .endif
 
+SHLIB_EXT0?=	.so
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+SHLIB_EXT1?=	.so.${SHLIB_MAJOR}
 .if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+SHLIB_EXT2?=	.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
 .if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
+SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
 .else
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}
 .endif
@@ -68,6 +72,7 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif
 .endif
 
+SHLIB_EXT?=	.so.${SHLIB_FULLVERSION}
 #.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 #SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
 #.endif
@@ -153,7 +158,7 @@ MKPICLIB?= yes
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
 SHLIB_SOVERSION=	${SHLIB_MAJOR}
-SHLIB_SHFLAGS?=		-soname lib${LIB}.so.${SHLIB_SOVERSION}
+SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXT}
 SHLIB_LDSTARTFILE?=	${DESTDIR}/usr/lib/crtbeginS.o
 SHLIB_LDENDFILE?=	${DESTDIR}/usr/lib/crtendS.o
 .endif
@@ -328,7 +333,7 @@ _LIBS+=${SOLIB}
 SOBJS+=${OBJS:.o=.so}
 .endif
 .if defined(SHLIB_FULLVERSION)
-_LIBS+=lib${LIB}.so.${SHLIB_FULLVERSION}
+_LIBS+=lib${LIB}${SHLIB_EXT}
 .endif
 .endif
 
@@ -394,10 +399,10 @@ lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
 	    ${SHLIB_LDENDFILE}
 .endif
 .if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}.so.${SHLIB_FULLVERSION} lib${LIB}.so.${SHLIB_MAJOR}.tmp
-	mv -f lib${LIB}.so.${SHLIB_MAJOR}.tmp lib${LIB}.so.${SHLIB_MAJOR}
-	ln -sf lib${LIB}.so.${SHLIB_FULLVERSION} lib${LIB}.so.tmp
-	mv -f lib${LIB}.so.tmp lib${LIB}.so
+	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp
+	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT0}
+	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp
+	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
 .endif
 
 .if !empty(LOBJS)
@@ -412,7 +417,8 @@ cleanlib:
 	rm -f a.out [Ee]rrs mklog core *.core ${CLEANFILES}
 	rm -f lib${LIB}.a ${OBJS}
 	rm -f lib${LIB}_p.a ${POBJS}
-	rm -f lib${LIB}_pic.a lib${LIB}.so.* lib${LIB}.so ${SOBJS}
+	rm -f lib${LIB}_pic.a lib${LIB}${SHLIB_EXT0} lib${LIB}${SHLIB_EXT1}
+	rm -f lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SOBJS}
 	rm -f llib-l${LIB}.ln ${LOBJS}
 
 .if defined(SRCS)
@@ -473,31 +479,31 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
 
 .if ${MKPIC} != "no" && defined(SHLIB_FULLVERSION)
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_FULLVERSION}
-.PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_FULLVERSION}
+libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
+.PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .if !defined(UPDATE)
-.PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_FULLVERSION}
+.PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .endif
 
-.if !defined(BUILD) && !make(all) && !make(lib${LIB}.so.${SHLIB_FULLVERSION})
-${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_FULLVERSION}: .MADE
+.if !defined(BUILD) && !make(all) && !make(lib${LIB}${SHLIB_EXT})
+${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: .MADE
 .endif
-${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_FULLVERSION}: lib${LIB}.so.${SHLIB_FULLVERSION}
+${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 .if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR)
 	/sbin/ldconfig -m ${LIBDIR}
 .endif
 .if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}.so.${SHLIB_FULLVERSION}\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}.tmp
-	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}.tmp\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.so.${SHLIB_MAJOR}
+	ln -sf lib${LIB}${SHLIB_EXT}\
+	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
+	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
+	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 .if ${MKLINKLIB} != "no"
-	ln -sf lib${LIB}.so.${SHLIB_FULLVERSION}\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.so.tmp
-	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.so.tmp\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.so
+	ln -sf lib${LIB}${SHLIB_EXT}\
+	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
+	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
+	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0}
 .endif
 .endif
 .endif
