@@ -15,27 +15,6 @@ __initialized__:
 .PHONY:		libinstall
 realinstall:	libinstall
 
-print-shlib-major:
-.if defined(SHLIB_MAJOR)
-	@echo ${SHLIB_MAJOR}
-.else
-	@false
-.endif
-
-print-shlib-minor:
-.if defined(SHLIB_MINOR)
-	@echo ${SHLIB_MINOR}
-.else
-	@false
-.endif
-
-print-shlib-teeny:
-.if defined(SHLIB_TEENY)
-	@echo ${SHLIB_TEENY}
-.else
-	@false
-.endif
-
 SHLIB_EXT0?=	.so
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1?=	.so.${SHLIB_MAJOR}
