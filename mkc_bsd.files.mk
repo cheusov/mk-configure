@@ -3,9 +3,7 @@
 .if !defined(_BSD_FILES_MK)
 _BSD_FILES_MK:=	1
 
-.PHONY: clean
-clean:
-	rm -f ${CLEANFILES}
+.include <mkc_bsd.init.mk>
 
 .if defined(FILES) && !empty(FILES)
 

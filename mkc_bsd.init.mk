@@ -9,4 +9,8 @@ __initialized__=1
 #.include <mkc_bsd.depall.mk>
 .MAIN:		all
 
+.PHONY: clean
+clean:
+	rm -f ${CLEANFILES}
+
 .endif # __initialized__
