@@ -48,30 +48,9 @@ NOMKC_PERMS:=	yes
 
 # Default owner and group
 _MKC_UID!=	id -u
-_MKC_GID!=	id -g
 
 .if ${_MKC_UID} != 0
-_MKC_USER!=	id -un
-_MKC_GROUP!=	id -gn
-
-MANOWN?=	${_MKC_USER}
-MANGRP?=	${_MKC_GROUP}
-
-BINOWN?=	${_MKC_USER}
-BINGRP?=	${_MKC_GROUP}
-
-FILESOWN?=	${_MKC_USER}
-FILESGRP?=	${_MKC_GROUP}
-
-LIBOWN?=	${_MKC_USER}
-LIBGRP?=	${_MKC_GROUP}
-
-DOCOWN?=	${_MKC_USER}
-DOCGRP?=	${_MKC_GROUP}
-
-INFOOWN?=	${_MKC_USER}
-INFOGRP?=	${_MKC_GROUP}
-
+UNPRIVILEGED=	1
 .endif
 
 .endif # make(install)
