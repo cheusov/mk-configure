@@ -10,10 +10,10 @@ incinstall:: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
 __incinstall: .USE
 	@cmp -s ${.ALLSRC} ${.TARGET} > /dev/null 2>&1 || \
-	    (echo "${INSTALL} ${RENAME} ${PRESERVE} -c \
+	    (echo "${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
 		-o ${BINOWN} -g ${BINGRP} -m ${NONBINMODE} \
 		${.ALLSRC} ${.TARGET}" && \
-	     ${INSTALL} ${RENAME} ${PRESERVE} -c \
+	     ${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
 		 -o ${BINOWN} \
 		 -g ${BINGRP} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET})
 
