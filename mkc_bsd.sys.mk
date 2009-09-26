@@ -87,7 +87,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 # C
 .c:
-	${LINK.c} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.c} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .c.o:
 	${COMPILE.c} ${.IMPSRC}
 .c.a:
@@ -99,7 +99,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 # C++
 .cc .cpp .cxx .C:
-	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.cc} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .cc.o .cpp.o .cxx.o .C.o:
 	${COMPILE.cc} ${.IMPSRC}
 .cc.a .cpp.a .cxx.a .C.a:
@@ -109,7 +109,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 # Fortran/Ratfor
 .f:
-	${LINK.f} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.f} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .f.o:
 	${COMPILE.f} ${.IMPSRC}
 .f.a:
@@ -118,7 +118,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 	rm -f $*.o
 
 .F:
-	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .F.o:
 	${COMPILE.F} ${.IMPSRC}
 .F.a:
@@ -127,7 +127,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 	rm -f $*.o
 
 .r:
-	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .r.o:
 	${COMPILE.r} ${.IMPSRC}
 .r.a:
@@ -137,7 +137,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 # Pascal
 .p:
-	${LINK.p} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.p} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .p.o:
 	${COMPILE.p} ${.IMPSRC}
 .p.a:
@@ -147,7 +147,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 
 # Assembly
 .s:
-	${LINK.s} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.s} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .s.o:
 	${COMPILE.s} ${.IMPSRC}
 .s.a:
@@ -155,7 +155,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 	${AR} ${ARFLAGS} $@ $*.o
 	rm -f $*.o
 .S:
-	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDADD}
+	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDFLAGS} ${LDADD}
 .S.o:
 	${COMPILE.S} ${.IMPSRC}
 .S.a:
@@ -166,7 +166,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 # Lex
 .l:
 	${LEX.l} ${.IMPSRC}
-	${LINK.c} -o ${.TARGET} lex.yy.c ${LDADD} -ll
+	${LINK.c} -o ${.TARGET} lex.yy.c ${LDFLAGS} ${LDADD} -ll
 	rm -f lex.yy.c
 .l.c:
 	${LEX.l} ${.IMPSRC}
@@ -179,7 +179,7 @@ YACC.y?=	${YACC} ${YFLAGS}
 # Yacc
 .y:
 	${YACC.y} ${.IMPSRC}
-	${LINK.c} -o ${.TARGET} y.tab.c ${LDADD}
+	${LINK.c} -o ${.TARGET} y.tab.c ${LDFLAGS} ${LDADD}
 	rm -f y.tab.c
 .y.c:
 	${YACC.y} ${.IMPSRC}
