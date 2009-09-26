@@ -12,27 +12,14 @@ __initialized__:
 .MAIN:		all
 .endif
 
-.PHONY:		checkver cleanlib libinstall
-realinstall:	checkver libinstall
+.PHONY:		cleanlib libinstall
+realinstall:	libinstall
 clean cleandir: cleanlib
 
 .if exists(${SHLIB_VERSION_FILE})
 SHLIB_MAJOR != . ${SHLIB_VERSION_FILE} ; echo $$major
 SHLIB_MINOR != . ${SHLIB_VERSION_FILE} ; echo $$minor
 SHLIB_TEENY != . ${SHLIB_VERSION_FILE} ; echo $$teeny
-
-# Check for higher installed library versions.
-.if !defined(NOCHECKVER) && !defined(NOCHECKVER_${LIB}) && \
-	exists(${BSDSRCDIR}/lib/checkver)
-checkver:
-	@(cd ${.CURDIR} && \
-		sh ${BSDSRCDIR}/lib/checkver -v ${SHLIB_VERSION_FILE} \
-		    -d ${DESTDIR}${LIBDIR} ${LIB})
-.endif
-.endif
-
-.if !target(checkver)
-checkver:
 .endif
 
 print-shlib-major:
@@ -384,19 +371,10 @@ lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
     ${SHLIB_LDSTARTFILE} ${SHLIB_LDENDFILE}
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXT}
-.if defined(DESTDIR)
-	$(LD) -nostdlib ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
-	    ${SHLIB_LDSTARTFILE} \
-	    --whole-archive ${SOLIB} \
-	    --no-whole-archive ${LDADD} \
-	    -L${DESTDIR}${LIBDIR} ${RPATH_FLAG}${LIBDIR} \
-	    ${SHLIB_LDENDFILE}
-.else
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SHLIB_LDSTARTFILE} \
 	    ${LDFLAGS_WHOLEARCH} ${SOBJS} ${LDFLAGS_NOWHOLEARCH} ${LDADD} \
 	    ${SHLIB_LDENDFILE}
-.endif
 .if ${OBJECT_FMT} == "ELF"
 	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT0}
@@ -505,21 +483,6 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0}
 .endif
 .endif
-.endif
-
-.if ${MKLINT} != "no" && ${MKLINKLIB} != "no" && !empty(LOBJS)
-libinstall:: ${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln
-.PRECIOUS: ${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln
-.if !defined(UPDATE)
-.PHONY: ${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln
-.endif
-
-.if !defined(BUILD) && !make(all) && !make(llib-l${LIB}.ln)
-${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln: .MADE
-.endif
-${DESTDIR}${LINTLIBDIR}/llib-l${LIB}.ln: llib-l${LIB}.ln
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} -o ${LIBOWN} \
-	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${DESTDIR}${LINTLIBDIR}
 .endif
 .endif
 
