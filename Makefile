@@ -31,6 +31,15 @@ FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc.common.mk mkc_check_common.sh \
 			mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk
+FILES+= mkc_bsd.AIX.sys.mk mkc_bsd.Darwin.sys.mk mkc_bsd.FreeBSD.sys.mk \
+	mkc_bsd.HPUX.sys.mk mkc_bsd.IRIX.sys.mk mkc_bsd.Interix.sys.mk \
+	mkc_bsd.Linux.sys.mk mkc_bsd.Minix.sys.mk mkc_bsd.NetBSD.own.mk \
+	mkc_bsd.NetBSD.sys.mk mkc_bsd.OSF1.sys.mk mkc_bsd.OpenBSD.own.mk \
+	mkc_bsd.OpenBSD.sys.mk mkc_bsd.SunOS.sys.mk mkc_bsd.UnixWare.sys.mk \
+	\
+	mkc_bsd.files.mk mkc_bsd.inc.mk mkc_bsd.info.mk mkc_bsd.lib.mk \
+	mkc_bsd.links.mk mkc_bsd.man.mk mkc_bsd.own.mk mkc_bsd.prog.mk \
+	mkc_bsd.subdir.mk mkc_bsd.sys.mk
 
 FILES+=			${EXTRAFILES}
 
