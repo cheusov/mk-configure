@@ -39,7 +39,7 @@ FILES+= mkc_bsd.AIX.sys.mk mkc_bsd.Darwin.sys.mk mkc_bsd.FreeBSD.sys.mk \
 	\
 	mkc_bsd.files.mk mkc_bsd.inc.mk mkc_bsd.info.mk mkc_bsd.lib.mk \
 	mkc_bsd.links.mk mkc_bsd.man.mk mkc_bsd.own.mk mkc_bsd.prog.mk \
-	mkc_bsd.subdir.mk mkc_bsd.sys.mk
+	mkc_bsd.subdir.mk mkc_bsd.sys.mk mkc_bsd.init.mk
 
 FILES+=			${EXTRAFILES}
 

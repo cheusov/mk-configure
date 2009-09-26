@@ -4,16 +4,7 @@
 .if !defined(_MKC_BSD_SUBDIR_MK)
 _MKC_BSD_SUBDIR_MK=1
 
-.ifndef __initialized__
-__initialized__=1
-
-.if exists(${.CURDIR}/../Makefile.inc)
-.include "${.CURDIR}/../Makefile.inc"
-.endif
-.include <mkc_bsd.own.mk>
-.MAIN:		all
-
-.endif # __initialized__
+.include <mkc_bsd.init.mk>
 
 .for dir in ${SUBDIR}
 .if exists(${dir}.${MACHINE})
