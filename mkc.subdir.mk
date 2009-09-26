@@ -27,11 +27,6 @@
 .include <mkc.common.mk>
 .include <mkc_bsd.init.mk>
 
-.PHONY: cleandir distclean clean localclean
-cleandir distclean clean: localclean
-localclean:
-	rm -f ${CLEANFILES}
-
 .include <mkc_bsd.subdir.mk>
 
 .PHONY : install-dirs

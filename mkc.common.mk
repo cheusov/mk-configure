@@ -274,12 +274,6 @@ SRCS+=	${LIB}.c
 .endif
 .endif
 
-.if !defined(MAN)
-.if defined(PROG) && !exists(${PROG}.1)
-MKMAN=		no
-.endif
-.endif
-
 ######################################################################
 
 .endif # NOMKC_ATALL

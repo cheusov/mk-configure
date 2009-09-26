@@ -39,9 +39,10 @@ ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPAD
 
 .endif	# defined(OBJS) && !empty(OBJS)
 
-.if !defined(MAN)
-MAN=	${PROG}.1
-.endif	# !defined(MAN)
+.if !defined(MAN) && exists(${PROG}.1)
+MAN=		${PROG}.1
+.endif
+
 .endif	# defined(PROG)
 
 realall: ${PROG} ${SCRIPTS}
