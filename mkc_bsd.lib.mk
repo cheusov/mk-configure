@@ -32,11 +32,6 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif
 
 SHLIB_EXT?=	.so.${SHLIB_FULLVERSION}
-#.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
-#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
-#.endif
-#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
-#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
 
 # add additional suffixes not exported.
 # .po is used for profiling object files.
