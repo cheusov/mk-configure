@@ -349,7 +349,7 @@ lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
 	@rm -f lib${LIB}.${SHLIB_EXT}
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SHLIB_LDSTARTFILE} \
-	    ${LDFLAGS_WHOLEARCH} ${SOBJS} ${LDFLAGS_NOWHOLEARCH} ${LDADD} \
+	    ${SOBJS} ${LDADD} \
 	    ${SHLIB_LDENDFILE}
 .if ${OBJECT_FMT} == "ELF"
 	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp

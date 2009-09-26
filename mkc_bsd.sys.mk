@@ -61,8 +61,6 @@ LEX.l?=		${LEX} ${LFLAGS}
 LD?=		ld
 LDFLAGS_SHARED?=	-shared
 LDFLAGS_SONAME?=	-soname
-LDFLAGS_WHOLEARCH?=	--whole-archive
-LDFLAGS_NOWHOLEARCH?=	--no-whole-archive
 LDFLAGS?=
 
 LINT?=		lint
