@@ -14,6 +14,8 @@ _BSD_OWN_MK_=1
 .include <mkc_bsd.sys.mk>
 .sinclude <mkc_bsd.${OPSYS}.own.mk>
 
+OBJECT_FMT?=	ELF
+
 ROOT_USER?=	root
 ROOT_GROUP?=	wheel
 
