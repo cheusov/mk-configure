@@ -12,7 +12,7 @@ __initialized__:
 .MAIN:		all
 .endif
 
-.PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml cleanhtml
+.PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
 .if ${MKMAN} != "no"
 realinstall:	${MANINSTALL}
 .endif
@@ -174,11 +174,7 @@ ${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 .endif
 installhtml: ${HTMLPAGES:@P@${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 
-cleanhtml:
-.if defined(HTMLPAGES) && !empty(HTMLPAGES)
-	rm -f ${HTMLPAGES}
-.endif
-
+CLEANFILES+=	${HTMLPAGES}
 
 .if defined(CATPAGES)
 .if ${MKCATPAGES} != "no" && ${MKMAN} != "no"
