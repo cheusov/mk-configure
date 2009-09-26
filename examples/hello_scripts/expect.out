@@ -6,6 +6,7 @@ Hello World 3!
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
+/objdir/hello_world.cat1
 /objdir/hello_world1
 /objdir/hello_world2
 /objdir/hello_world3
@@ -18,6 +19,7 @@ Hello World 3!
 /objdir/prefix/bin/hello_world1
 /objdir/prefix/bin/hello_world2
 /objdir/prefix/bin/hello_world3
+/objdir/prefix/man/cat1/hello_world.0
 /objdir/prefix/man/man1/hello_world.1
 ======== uninstall =========
 ========== clean ===========

@@ -224,7 +224,7 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}/${mkc_dst}
 .for i in ${MAN}
 _MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${i:E}/${i}
 .if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
-_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${i:E}/${i:R}.cat${i:E}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${i:E}/${i:R}.0
 .endif # MKCATPAGES
 .if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
 _MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/html${i}/${i:R}.html${i:E}

@@ -53,7 +53,7 @@ INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
 test: configure.mk mkc.ver.mk
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
-	MKCATPAGES=no; \
+	MKCATPAGES=yes; \
 	NO_AUTODEP=yes; \
 	export PATH MKCATPAGES NO_AUTODEP; \
 	unset MAKEOBJDIR MAKEOBJDIRPREFIX || true; \
