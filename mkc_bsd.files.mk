@@ -5,6 +5,10 @@
 .if !defined(_BSD_FILES_MK)
 _BSD_FILES_MK:=	1
 
+.PHONY: clean
+clean:
+	rm -f ${CLEANFILES}
+
 .PHONY:		filesinstall
 realinstall:	filesinstall
 

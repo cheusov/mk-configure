@@ -12,9 +12,8 @@ __initialized__:
 .MAIN:		all
 .endif
 
-.PHONY:		cleanlib libinstall
+.PHONY:		libinstall
 realinstall:	libinstall
-clean cleandir: cleanlib
 
 print-shlib-major:
 .if defined(SHLIB_MAJOR)
@@ -358,12 +357,11 @@ lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
 .endif
 
-cleanlib:
-	rm -f a.out [Ee]rrs mklog core *.core ${CLEANFILES}
-	rm -f lib${LIB}.a ${OBJS}
-	rm -f lib${LIB}_p.a ${POBJS}
-	rm -f lib${LIB}_pic.a lib${LIB}${SHLIB_EXT0} lib${LIB}${SHLIB_EXT1}
-	rm -f lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SOBJS}
+CLEANFILES+= a.out [Ee]rrs mklog core *.core \
+	lib${LIB}.a ${OBJS} lib${LIB}_p.a ${POBJS} \
+	lib${LIB}_pic.a ${SOBJS} \
+	lib${LIB}${SHLIB_EXT0} lib${LIB}${SHLIB_EXT1} \
+	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
 
 .if defined(SRCS)
 afterdepend: .depend

@@ -12,9 +12,9 @@ __initialized__:
 .MAIN:		all
 .endif
 
-.PHONY:		cleanprog proginstall scriptsinstall
+.PHONY:		proginstall scriptsinstall
 realinstall:	proginstall scriptsinstall
-clean cleandir: cleanprog
+clean cleandir:
 
 CFLAGS+=	${COPTS}
 
@@ -52,9 +52,8 @@ MAN=	${PROG}.1
 
 realall: ${PROG} ${SCRIPTS}
 
-cleanprog:
-	rm -f a.out [Ee]rrs mklog core *.core \
-	    ${PROG} ${OBJS} ${LOBJS} ${CLEANFILES}
+CLEANFILES+= a.out [Ee]rrs mklog core *.core \
+	    ${PROG} ${OBJS} ${LOBJS}
 
 .if defined(SRCS) && !target(afterdepend)
 afterdepend: .depend
