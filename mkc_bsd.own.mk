@@ -48,11 +48,7 @@ DOCOWN?=	${ROOT_USER}
 DOCMODE?=	${NONBINMODE}
 
 COPY?=		-c
-.if defined(UPDATE)
-PRESERVE?=	-p
-.else
 PRESERVE?=
-.endif
 .if defined(UNPRIVILEGED)
 INSTPRIV?=	-U
 .endif

@@ -6,9 +6,7 @@ includes:	${INCS} incinstall
 .if defined(INCS)
 incinstall:: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 .PRECIOUS: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
-.if !defined(UPDATE)
 .PHONY: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
-.endif
 
 __incinstall: .USE
 	@cmp -s ${.ALLSRC} ${.TARGET} > /dev/null 2>&1 || \
