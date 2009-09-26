@@ -24,7 +24,6 @@ sizeof(void*)=n
 /objdir/hello_sizeof.test.out.tmp
 /objdir/sizeof_test
 /objdir/sizeof_test.c
-/objdir/sizeof_test.o
 /objdir/test.mk
 ========= install ==========
 /objdir/prefix/bin/sizeof_test
