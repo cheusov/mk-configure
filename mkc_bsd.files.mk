@@ -2,6 +2,8 @@
 
 # This file can be included multiple times.  It clears the definition of
 # FILES at the end so that this is possible.
+.if !defined(_BSD_FILES_MK)
+_BSD_FILES_MK:=	1
 
 .PHONY:		filesinstall
 realinstall:	filesinstall
@@ -35,4 +37,4 @@ ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}:
 filesinstall::
 .endif
 
-FILES:=
+.endif # _BSD_FILES_MK
