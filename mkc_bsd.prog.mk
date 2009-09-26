@@ -21,27 +21,6 @@ CFLAGS+=	${COPTS}
 # here is where you can define what LIB* are
 .-include <libnames.mk>
 
-.if defined(SHAREDSTRINGS)
-CLEANFILES+=strings
-.c.o:
-	${CC} -E ${CFLAGS} ${.IMPSRC} | xstr -c -
-	@${CC} ${CFLAGS} -c x.c -o ${.TARGET}
-	@rm -f x.c
-
-.cc.o:
-	${CXX} -E ${CXXFLAGS} ${.IMPSRC} | xstr -c -
-	@mv -f x.c x.cc
-	@${CXX} ${CXXFLAGS} -c x.cc -o ${.TARGET}
-	@rm -f x.cc
-
-.C.o:
-	${CXX} -E ${CXXFLAGS} ${.IMPSRC} | xstr -c -
-	@mv -f x.c x.C
-	@${CXX} ${CXXFLAGS} -c x.C -o ${.TARGET}
-	@rm -f x.C
-.endif
-
-
 .if defined(PROG)
 SRCS?=		${PROG}.c
 
