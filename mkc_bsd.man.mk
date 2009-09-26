@@ -12,11 +12,10 @@ __initialized__:
 .MAIN:		all
 .endif
 
-.PHONY:		catinstall maninstall catpages manpages catlinks manlinks cleanman html installhtml cleanhtml
+.PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml cleanhtml
 .if ${MKMAN} != "no"
 realinstall:	${MANINSTALL}
 .endif
-cleandir: cleanman
 
 TMACDIR?=	${DESTDIR}/usr/share/groff/tmac
 HTMLDIR?=	${DESTDIR}/usr/share/man
@@ -61,6 +60,7 @@ TBL?=		tbl
 .if defined(MAN) && !empty(MAN)
 MANPAGES=	${MAN}
 CATPAGES=	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
+CLEANFILES+=	${CATPAGES}
 .NOPATH:	${CATPAGES}
 .if !defined(NOHTML)
 HTMLPAGES=	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
@@ -187,10 +187,6 @@ realall: ${CATPAGES}
 realall:
 .endif
 
-cleanman:
-	rm -f ${CATPAGES}
-.else
-cleanman:
 .endif
 
 # Make sure all of the standard targets are defined, even if they do nothing.
