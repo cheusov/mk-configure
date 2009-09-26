@@ -401,6 +401,8 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 .endif
 .endif
 
+INSTALLDIRS+=	${DESTDIR}${LIBDIR}
+
 .include <mkc_bsd.man.mk>
 #.include <mkc_bsd.nls.mk>
 .include <mkc_bsd.files.mk>

@@ -22,6 +22,7 @@ linksinstall::
 	 done; )
 .for l r in ${SYMLINKS}
 UNINSTALLFILES += ${DESTDIR}${r}
+INSTALLDIRS +=    ${DESTDIR}${r:H}
 .endfor
 .endif
 
@@ -43,6 +44,7 @@ linksinstall::
 	) | ${MAKE} -f- all
 .for l r in ${LINKS}
 UNINSTALLFILES += ${DESTDIR}${r}
+INSTALLDIRS +=    ${DESTDIR}${r:H}
 .endfor
 .endif
 

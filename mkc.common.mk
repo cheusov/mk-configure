@@ -29,77 +29,77 @@
 .include <mkc_bsd.own.mk>
 
 ######################################################################
-.if !defined(NOMKC_INSTDIRS) || empty(NOMKC_INSTDIRS:M[Yy][Ee][Ss])
-.if make(install-dirs)
+#.if !defined(NOMKC_INSTDIRS) || empty(NOMKC_INSTDIRS:M[Yy][Ee][Ss])
+#.if make(install-dirs)
 
-NOMKC_INSTDIRS:=	yes
+#NOMKC_INSTDIRS:=	yes
 
 # install-dirs target
 
-.if defined(INCS)
-_MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
-.endif
+#.if defined(INCS)
+#_MKC_INSTALLDIRS+=	${DESTDIR}${INCSDIR}
+#.endif
 
-.if defined(PROG)
-_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
-.endif
+#.if defined(PROG)
+#_MKC_INSTALLDIRS+=	${DESTDIR}${BINDIR}
+#.endif
 
-.if defined(SCRIPTS)
-.for i in ${SCRIPTS}
-_MKC_INSTALLDIRS+=	${DESTDIR}${SCRIPTSDIR_${i}:U${SCRIPTSDIR}}
-.endfor
-.endif
+#.if defined(SCRIPTS)
+#.for i in ${SCRIPTS}
+#_MKC_INSTALLDIRS+=	${DESTDIR}${SCRIPTSDIR_${i}:U${SCRIPTSDIR}}
+#.endfor
+#.endif
 
-.if defined(FILES)
-.for i in ${FILES}
-_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR_${i}:U${FILESDIR}}
-.endfor
-.endif
+#.if defined(FILES)
+#.for i in ${FILES}
+#_MKC_INSTALLDIRS+=	${DESTDIR}${FILESDIR_${i}:U${FILESDIR}}
+#.endfor
+#.endif
 
-.if defined(LIB)
-_MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
-.endif
+#.if defined(LIB)
+#_MKC_INSTALLDIRS+=	${DESTDIR}${LIBDIR}
+#.endif
 
-.if defined(MAN)
-.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
-.for i in ${MAN:E:O:u}
-_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man${i}
-.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
-_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat${i}
-.endif # MKCATPAGES
-.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-_MKC_INSTALLDIRS+=	${DESTDIR}${HTMLDIR}/html${i}
-.endif # MKHTML
-.endfor # i
-.endif # MKMAN
-.endif # MAN
+#.if defined(MAN)
+#.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
+#.for i in ${MAN:E:O:u}
+#_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man${i}
+#.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
+#_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat${i}
+#.endif # MKCATPAGES
+#.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
+#_MKC_INSTALLDIRS+=	${DESTDIR}${HTMLDIR}/html${i}
+#.endif # MKHTML
+#.endfor # i
+#.endif # MKMAN
+#.endif # MAN
 
-.if defined(TEXINFO)
-.if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
-_MKC_INSTALLDIRS+=	${DESTDIR}${INFODIR}
-.endif # MKINFO
-.endif # TEXINFO
+#.if defined(TEXINFO)
+#.if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
+#_MKC_INSTALLDIRS+=	${DESTDIR}${INFODIR}
+#.endif # MKINFO
+#.endif # TEXINFO
 
-.if defined(LINKS)
-.for i j in ${LINKS}
-_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
-.endfor # i j
-.endif # LINKS
+#.if defined(LINKS)
+#.for i j in ${LINKS}
+#_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
+#.endfor # i j
+#.endif # LINKS
 
-.if defined(SYMLINKS)
-.for i j in ${SYMLINKS}
-_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
-.endfor # i j
-.endif # LINKS
+#.if defined(SYMLINKS)
+#.for i j in ${SYMLINKS}
+#_MKC_INSTALLDIRS+=	${DESTDIR}${j:H}
+#.endfor # i j
+#.endif # LINKS
 
-.PHONY: install-dirs
-install-dirs:
-.for d in ${_MKC_INSTALLDIRS:O:u}
-	${INSTALL} -d "${d}"
-.endfor
+#.PHONY: install-dirs
+#install-dirs:
+#.for d in ${_MKC_INSTALLDIRS:O:u}
+#	${INSTALL} -d "${d}"
+#.endfor
 
-.endif # make(install-dirs)
-.endif # NOMKC_INSTDIRS
+#.endif # make(install-dirs)
+#.endif # NOMKC_INSTDIRS
 
 ######################################################################
 

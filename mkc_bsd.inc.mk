@@ -19,6 +19,7 @@ ${DESTDIR}${INCSDIR}/$I: $I __incinstall
 .endfor
 
 UNINSTALLFILES+=	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
+INSTALLDIRS+=		${INCS:@I@${DESTDIR}${INCSDIR}@}
 
 .endif # INCS
 

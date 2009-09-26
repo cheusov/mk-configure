@@ -75,6 +75,11 @@ LDADD+=			${DPLIBS}
 .PHONY: uninstall
 uninstall:
 	rm -f ${UNINSTALLFILES}
+
+.PHONY: install-dirs
+install-dirs:
+	${INSTALL} -d ${INSTALLDIRS:O:u}
+
 .endif # SUBDIR
 
 .endif # __initialized__
