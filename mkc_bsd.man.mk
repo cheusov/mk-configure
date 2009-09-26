@@ -18,7 +18,6 @@ realinstall:	${MANINSTALL}
 .endif
 
 TMACDIR?=	${DESTDIR}/usr/share/groff/tmac
-HTMLDIR?=	${DESTDIR}/usr/share/man
 .if exists(${TMACDIR}/tmac.andoc) && exists(${TMACDIR}/tmac.doc)
 CATDEPS?=	${TMACDIR}/tmac.andoc \
 		${TMACDIR}/tmac.doc
@@ -166,17 +165,18 @@ html: ${HTMLPAGES}
 
 .if defined(HTMLPAGES) && !empty(HTMLPAGES)
 .for P in ${HTMLPAGES:O:u} 
-${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
+${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
 .endif
-installhtml: ${HTMLPAGES:@P@${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
+installhtml: ${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 
 CLEANFILES+=	${HTMLPAGES}
 
 .if defined(CATPAGES)
 
 .if !empty(MKHTML:M[Yy][Ee][Ss])
+realinstall: installhtml
 realall: ${HTMLPAGES}
 .else
 realall:

@@ -132,7 +132,7 @@ _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/man${i}
 _MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/cat${i}
 .endif # MKCATPAGES
 .if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-_MKC_INSTALLDIRS+=	${DESTDIR}${MANDIR}/html${i}
+_MKC_INSTALLDIRS+=	${DESTDIR}${HTMLDIR}/html${i}
 .endif # MKHTML
 .endfor # i
 .endif # MKMAN
@@ -227,7 +227,7 @@ _MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${i:E}/${i}
 _MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${i:E}/${i:R}.0
 .endif # MKCATPAGES
 .if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/html${i}/${i:R}.html${i:E}
+_MKC_UNINSTALLFILES+=	${DESTDIR}${HTMLDIR}/html${i:E}/${i:R}.html
 .endif # MKHTML
 .endfor # i
 .endif # MKMAN
