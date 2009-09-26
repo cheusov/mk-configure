@@ -25,6 +25,19 @@ LINTFLAGS?=	-chapbx
 LDFLAGS_WHOLEARCH?=
 LDFLAGS_NOWHOLEARCH?=
 
+SHLIB_EXT0?=	.dylib
+.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+SHLIB_EXT1?=	.${SHLIB_MAJOR}.dylib
+.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+SHLIB_EXT2?=	.${SHLIB_MAJOR}.${SHLIB_MINOR}.dylib
+.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
+SHLIB_EXT3?=	.${SHLIB_FULLVERSION}.dylib
+.endif
+.endif
+.endif
+
+SHLIB_EXT?=	.${SHLIB_FULLVERSION}.dylib
+
 #### Test the default rules under Darwin
 #.cc.a:
 #	${COMPILE.cc} ${.IMPSRC}
