@@ -117,28 +117,6 @@ CFLAGS+=-Wno-format -fno-builtin
 .endif
 .endif
 
-# GNU sources and packages sometimes see architecture names differently.
-# This table maps an architecture name to its GNU counterpart.
-# Use as so:  ${GNU_ARCH.${TARGET_ARCH}} or ${MACHINE_GNU_ARCH}
-.ifndef MACHINE_GNU_ARCH
-GNU_ARCH.alpha=alpha
-GNU_ARCH.arm26=arm
-GNU_ARCH.arm32=arm
-GNU_ARCH.arm=arm
-GNU_ARCH.i386=i386
-GNU_ARCH.m68k=m68k
-GNU_ARCH.mipseb=mipseb
-GNU_ARCH.mipsel=mipsel
-GNU_ARCH.ns32k=ns32k
-GNU_ARCH.powerpc=powerpc
-GNU_ARCH.sh3eb=sh
-GNU_ARCH.sh3el=sh
-GNU_ARCH.sparc=sparc
-GNU_ARCH.sparc64=sparc64
-GNU_ARCH.vax=vax
-MACHINE_GNU_ARCH=${GNU_ARCH.${MACHINE_ARCH}}
-.endif
-
 # In order to identify NetBSD to GNU packages, we sometimes need
 # an "elf" tag for historically a.out platforms.
 .if ${OBJECT_FMT} == "ELF" && \
@@ -214,16 +192,6 @@ MKDOC?=yes
 
 MKINFO?=yes
 
-.if defined(NOLINKLIB)
-MKLINKLIB=no
-.else
-MKLINKLIB?=yes
-.endif
-.if ${MKLINKLIB} == "no"
-MKPICINSTALL=no
-MKPROFILE=no
-.endif
-
 MKLINT?=no
 
 .if defined(NOMAN)
@@ -233,12 +201,6 @@ MKMAN?=yes
 .endif
 .if ${MKMAN} == "no"
 MKCATPAGES=no
-.endif
-
-.if defined(NONLS)
-MKNLS=no
-.else
-MKNLS?=yes
 .endif
 
 #
@@ -281,23 +243,6 @@ MKCATPAGES=no
 MKDOC=no
 MKINFO=no
 MKMAN=no
-MKNLS=no
-.endif
-
-.if defined(NOCRYPTO)
-MKCRYPTO=no
-.else
-MKCRYPTO?=yes
-.endif
-
-MKCRYPTO_IDEA?=no
-
-MKCRYPTO_RC5?=no
-
-.if defined(NOKERBEROS) || (${MKCRYPTO} == "no")
-MKKERBEROS=no
-.else
-MKKERBEROS?=yes
 .endif
 
 MKSOFTFLOAT?=no
