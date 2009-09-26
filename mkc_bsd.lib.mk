@@ -297,12 +297,7 @@ FFLAGS+=	${FOPTS}
 	@${LD} -r ${.TARGET}.o -o ${.TARGET}
 	@rm -f ${.TARGET}.o
 
-.if ${MKPIC} == "no" || (defined(LDSTATIC) && ${LDSTATIC} != "") \
-	|| ${MKLINKLIB} != "no"
 _LIBS=lib${LIB}.a
-.else
-_LIBS=
-.endif
 
 OBJS+=${SRCS:N*.h:N*.sh:R:S/$/.o/g}
 
@@ -324,12 +319,7 @@ _LIBS+=lib${LIB}${SHLIB_EXT}
 .endif
 .endif
 
-.if ${MKPIC} == "no" || (defined(LDSTATIC) && ${LDSTATIC} != "") \
-	|| ${MKLINKLIB} != "no"
 ALLOBJS=${OBJS} ${POBJS} ${SOBJS}
-.else
-ALLOBJS=${POBJS} ${SOBJS} 
-.endif
 .NOPATH: ${ALLOBJS} ${_LIBS}
 
 realall: ${SRCS} ${ALLOBJS:O} ${_LIBS}
@@ -390,10 +380,9 @@ afterdepend: .depend
 .endif
 
 .if !target(libinstall)
-# Make sure it gets defined, in case MKPIC==no && MKLINKLIB==no
+# Make sure it gets defined, in case MKPIC==no
 libinstall::
 
-.if ${MKLINKLIB} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .if !defined(UPDATE)
@@ -404,7 +393,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: .MADE
 .endif
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
-.endif
 
 .if ${MKPROFILE} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
@@ -459,12 +447,10 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
 	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
-.if ${MKLINKLIB} != "no"
 	ln -sf lib${LIB}${SHLIB_EXT}\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
 	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0}
-.endif
 .endif
 .endif
 .endif
