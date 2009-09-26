@@ -51,9 +51,6 @@ __infoinstall: .USE
 	${INSTALL_INFO} --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 
 .for F in ${INFOFILES:O:u}
-.if !defined(BUILD) && !make(all) && !make(${F})
-${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: .MADE
-.endif
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor
 .else

@@ -30,9 +30,6 @@ __fileinstall: .USE
 	    ${.ALLSRC} ${.TARGET}
 
 .for F in ${FILES:O:u}
-.if !defined(BUILD) && !make(all) && !make(${F})
-${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: .MADE
-.endif
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
 .endfor
 .endif

@@ -74,9 +74,6 @@ __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
-.if !defined(BUILD) && !make(all) && !make(${PROG})
-${DESTDIR}${BINDIR}/${PROGNAME}: .MADE
-.endif
 ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
 .endif
 
@@ -102,9 +99,6 @@ __scriptinstall: .USE
 	    ${.ALLSRC} ${.TARGET}
 
 .for S in ${SCRIPTS:O:u}
-.if !defined(BUILD) && !make(all) && !make(${S})
-${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}: .MADE
-.endif
 ${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}: ${S} __scriptinstall
 .endfor
 .endif

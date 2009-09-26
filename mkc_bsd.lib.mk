@@ -353,9 +353,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 
-.if !defined(BUILD) && !make(all) && !make(lib${LIB}.a)
-${DESTDIR}${LIBDIR}/lib${LIB}.a: .MADE
-.endif
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 
 .if ${MKPROFILE} != "no"
@@ -363,9 +360,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 
-.if !defined(BUILD) && !make(all) && !make(lib${LIB}_p.a)
-${DESTDIR}${LIBDIR}/lib${LIB}_p.a: .MADE
-.endif
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
 
@@ -374,9 +368,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
-.if !defined(BUILD) && !make(all) && !make(lib${LIB}_pic.a)
-${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: .MADE
-.endif
 .if ${MKPICLIB} == "no"
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a:
 	rm -f ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
@@ -391,9 +382,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 
-.if !defined(BUILD) && !make(all) && !make(lib${LIB}${SHLIB_EXT})
-${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: .MADE
-.endif
 ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
