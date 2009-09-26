@@ -5,10 +5,10 @@ _BSD_FILES_MK:=	1
 
 .include <mkc_bsd.init.mk>
 
-.if defined(FILES) && !empty(FILES)
-
 .PHONY:		filesinstall
 realinstall:	filesinstall
+
+.if defined(FILES) && !empty(FILES)
 
 filesinstall:: ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
 .PRECIOUS: ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
@@ -26,5 +26,9 @@ ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}:
 .endfor
 
 .endif # FILES
+
+.if !target(filesinstall)
+filesinstall::
+.endif
 
 .endif # _BSD_FILES_MK
