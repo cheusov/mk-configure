@@ -27,19 +27,29 @@ NONBINMODE?=	444
 # Define MANZ to have the man pages compressed (gzip)
 #MANZ=		1
 
-MANDIR?=	/usr/share/man
+PREFIX?=	/usr/local
+
+BINDIR?=	${PREFIX}/bin
+SBINDIR?=	${PREFIX}/sbin
+FILESDIR?=	${PREFIX}/bin
+LIBEXECDIR?=	${PREFIX}/libexec
+INCSDIR?=	${PREFIX}/include
+DATADIR?=	${PREFIX}/share
+SYSCONFDIR?=	${PREFIX}/etc
+INFODIR?=	${PREFIX}/info
+MANDIR?=	${PREFIX}/man
+LIBDIR?=	${PREFIX}/lib
+SCRIPTSDIR?=	${BINDIR}
+
 MANGRP?=	${ROOT_GROUP}
 MANOWN?=	${ROOT_USER}
 MANMODE?=	${NONBINMODE}
 MANINSTALL?=	maninstall catinstall
 
-INFODIR?=	/usr/share/info
 INFOGRP?=	${ROOT_GROUP}
 INFOOWN?=	${ROOT_USER}
 INFOMODE?=	${NONBINMODE}
 
-LIBDIR?=	/usr/lib
-LINTLIBDIR?=	/usr/libdata/lint
 LIBGRP?=	${BINGRP}
 LIBOWN?=	${BINOWN}
 LIBMODE?=	${NONBINMODE}

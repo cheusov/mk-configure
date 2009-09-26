@@ -42,25 +42,6 @@ LDADD+=			${DPLIBS}
 .endif # NOMKC_DPLIBS
 
 ######################################################################
-.if !defined(NOMKC_PATHS) || empty(NOMKC_PATHS:M[Yy][Ee][Ss])
-NOMKC_PATHS:=	yes
-
-# Default PATHs
-PREFIX?=		/usr/local
-BINDIR?=		${PREFIX}/bin
-SBINDIR?=		${PREFIX}/sbin
-MANDIR?=		${PREFIX}/man
-LIBDIR?=		${PREFIX}/lib
-LIBEXECDIR?=		${PREFIX}/libexec
-INCSDIR?=		${PREFIX}/include
-DATADIR?=		${PREFIX}/share
-SYSCONFDIR?=		${PREFIX}/etc
-FILESDIR?=		${PREFIX}/bin
-INFODIR?=		${PREFIX}/info
-SCRIPTSDIR?=		${BINDIR}
-.endif # NOMKC_PATHS
-
-######################################################################
 .if !defined(NOMKC_PERMS) || empty(NOMKC_PERMS:M[Yy][Ee][Ss])
 .if make(install)
 NOMKC_PERMS:=	yes
