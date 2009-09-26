@@ -17,7 +17,13 @@ CXX?=		c++
 
 YFLAGS?=	-d
 
+LDFLAGS_SHARED?=	-dylib
+SHLIB_SHFLAGS?=
+
 LINTFLAGS?=	-chapbx
+
+LDFLAGS_WHOLEARCH?=
+LDFLAGS_NOWHOLEARCH?=
 
 #### Test the default rules under Darwin
 #.cc.a:

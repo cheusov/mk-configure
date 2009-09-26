@@ -68,6 +68,12 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif
 .endif
 
+#.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
+#.endif
+#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
+#SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
+
 # add additional suffixes not exported.
 # .po is used for profiling object files.
 # .so is used for PIC object files.
@@ -147,7 +153,7 @@ MKPICLIB?= yes
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
 SHLIB_SOVERSION=	${SHLIB_MAJOR}
-SHLIB_SHFLAGS=		-soname lib${LIB}.so.${SHLIB_SOVERSION}
+SHLIB_SHFLAGS?=		-soname lib${LIB}.so.${SHLIB_SOVERSION}
 SHLIB_LDSTARTFILE?=	${DESTDIR}/usr/lib/crtbeginS.o
 SHLIB_LDENDFILE?=	${DESTDIR}/usr/lib/crtendS.o
 .endif
@@ -370,21 +376,21 @@ lib${LIB}_p.a:: ${POBJS} __archivebuild
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 	@echo building shared object ${LIB} library
 
-lib${LIB}.so.${SHLIB_FULLVERSION}: ${SOLIB} ${DPADD} \
+lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
     ${SHLIB_LDSTARTFILE} ${SHLIB_LDENDFILE}
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
-	@rm -f lib${LIB}.so.${SHLIB_FULLVERSION}
+	@rm -f lib${LIB}.${SHLIB_EXT}
 .if defined(DESTDIR)
-	$(LD) -nostdlib -shared ${SHLIB_SHFLAGS} -o ${.TARGET} \
+	$(LD) -nostdlib ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SHLIB_LDSTARTFILE} \
 	    --whole-archive ${SOLIB} \
 	    --no-whole-archive ${LDADD} \
 	    -L${DESTDIR}${LIBDIR} ${RPATH_FLAG}${LIBDIR} \
 	    ${SHLIB_LDENDFILE}
 .else
-	$(LD) -shared ${SHLIB_SHFLAGS} -o ${.TARGET} \
+	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SHLIB_LDSTARTFILE} \
-	    --whole-archive ${SOLIB} --no-whole-archive ${LDADD} \
+	    ${LDFLAGS_WHOLEARCH} ${SOBJS} ${LDFLAGS_NOWHOLEARCH} ${LDADD} \
 	    ${SHLIB_LDENDFILE}
 .endif
 .if ${OBJECT_FMT} == "ELF"

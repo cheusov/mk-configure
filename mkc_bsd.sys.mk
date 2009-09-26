@@ -6,7 +6,7 @@ unix?=		We run Unix
 OPSYS!=			uname -s
 .endif
 
-.sinclude <mkc_bsd.${OPSYS}.mk>
+.sinclude <mkc_bsd.${OPSYS}.sys.mk>
 
 .SUFFIXES: .out .a .ln .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4
@@ -59,6 +59,10 @@ LFLAGS?=
 LEX.l?=		${LEX} ${LFLAGS}
 
 LD?=		ld
+LDFLAGS_SHARED?=	-shared
+LDFLAGS_SONAME?=	-soname
+LDFLAGS_WHOLEARCH?=	--whole-archive
+LDFLAGS_NOWHOLEARCH?=	--no-whole-archive
 LDFLAGS?=
 
 LINT?=		lint
