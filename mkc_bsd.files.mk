@@ -24,6 +24,7 @@ __fileinstall: .USE
 .for F in ${FILES:O:u}
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
 .endfor
+
 .endif # FILES
 
 .endif # _BSD_FILES_MK

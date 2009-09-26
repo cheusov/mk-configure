@@ -1,8 +1,9 @@
 #	$NetBSD: bsd.inc.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
 
 .if defined(INCS)
+
 .PHONY:		incinstall
-install:	incinstall
+realinstall:	incinstall
 
 incinstall:: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 .PRECIOUS: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
