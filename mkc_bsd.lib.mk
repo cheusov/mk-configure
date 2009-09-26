@@ -1,8 +1,12 @@
 #	$NetBSD: bsd.lib.mk,v 1.3 2009/04/07 23:42:17 tez Exp $
 #	@(#)bsd.lib.mk	8.3 (Berkeley) 4/22/94
 
-.if !target(__initialized__)
-__initialized__:
+.if !defined(_MKC_BSD_LIB_MK)
+_MKC_BSD_LIB_MK=1
+
+.ifndef __initialized__
+__initialized__=1
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
@@ -10,7 +14,8 @@ __initialized__:
 #.include <mkc_bsd.obj.mk>
 #.include <mkc_bsd.depall.mk>
 .MAIN:		all
-.endif
+
+.endif # __initialized__
 
 .PHONY:		libinstall
 realinstall:	libinstall
@@ -411,3 +416,5 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 lint regress:
+
+.endif #_MKC_BSD_LIB_MK

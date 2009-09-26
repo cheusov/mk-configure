@@ -1,15 +1,20 @@
 #	$NetBSD: bsd.info.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
 
-.if !target(__initialized__)
-__initialized__:
+.ifndef _MKC_BSD_INFO_MK
+_MKC_BSD_INFO_MK=1
+
+.ifndef __initialized__
+__initialized__=1
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 .include <mkc_bsd.own.mk>
-.include <mkc_bsd.obj.mk>
-.include <mkc_bsd.depall.mk>
+#.include <mkc_bsd.obj.mk>
+#.include <mkc_bsd.depall.mk>
 .MAIN:		all
-.endif
+
+.endif # __initialized__
 
 MAKEINFO?=	makeinfo
 INFOFLAGS?=	
@@ -55,3 +60,5 @@ ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 clean depend includes lint regress tags:
+
+.endif # _MKC_BSD_INFO_MK

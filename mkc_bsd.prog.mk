@@ -1,8 +1,12 @@
 #	$NetBSD: bsd.prog.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
 #	@(#)bsd.prog.mk	8.2 (Berkeley) 4/2/94
 
-.if !target(__initialized__)
-__initialized__:
+.if !defined(_MKC_BSD_PROG_MK)
+_MKC_BSD_PROG_MK=1
+
+.ifndef __initialized__
+__initialized__=1
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
@@ -10,7 +14,8 @@ __initialized__:
 #.include <mkc_bsd.obj.mk>
 #.include <mkc_bsd.depall.mk>
 .MAIN:		all
-.endif
+
+.endif # __initialized__
 
 .PHONY:		proginstall scriptsinstall
 realinstall:	proginstall scriptsinstall
@@ -122,3 +127,5 @@ lint: ${LOBJS}
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 regress:
+
+.endif # _MKC_BSD_PROG_MK

@@ -1,16 +1,21 @@
 #	$NetBSD: bsd.man.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
 #	@(#)bsd.man.mk	8.1 (Berkeley) 6/8/93
 
-.if !target(__initialized__)
-__initialized__:
+.if !defined(_MKC_BSD_MAN_MK)
+_MKC_BSD_MAN_MK=1
+
+.ifndef __initialized__
+__initialized__=1
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 .include <mkc_bsd.own.mk>
 #.include <mkc_bsd.obj.mk>
-.include <mkc_bsd.depall.mk>
+#.include <mkc_bsd.depall.mk>
 .MAIN:		all
-.endif
+
+.endif #__initialized__
 
 .PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
 .if ${MKMAN} != "no"
@@ -189,3 +194,5 @@ realall:
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 clean depend includes lint regress tags:
+
+.endif # _MKC_BSD_MAN_MK
