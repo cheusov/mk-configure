@@ -324,19 +324,11 @@ _LIBS+=lib${LIB}${SHLIB_EXT}
 .endif
 .endif
 
-LOBJS+=${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
-.if ${MKLINT} != "no" && ${MKLINKLIB} != "no" && !empty(LOBJS)
-_LIBS+=llib-l${LIB}.ln
-.endif
-
 .if ${MKPIC} == "no" || (defined(LDSTATIC) && ${LDSTATIC} != "") \
 	|| ${MKLINKLIB} != "no"
 ALLOBJS=${OBJS} ${POBJS} ${SOBJS}
 .else
 ALLOBJS=${POBJS} ${SOBJS} 
-.endif
-.if ${MKLINT} != "no" && ${MKLINKLIB} != "no" && !empty(LOBJS)
-ALLOBJS+=${LOBJS}
 .endif
 .NOPATH: ${ALLOBJS} ${_LIBS}
 
@@ -382,21 +374,12 @@ lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
 .endif
 
-.if !empty(LOBJS)
-LLIBS?=		-lc
-llib-l${LIB}.ln: ${LOBJS}
-	@echo building llib-l${LIB}.ln
-	@rm -f llib-l${LIB}.ln
-	@${LINT} -C${LIB} ${.ALLSRC} ${LLIBS}
-.endif
-
 cleanlib:
 	rm -f a.out [Ee]rrs mklog core *.core ${CLEANFILES}
 	rm -f lib${LIB}.a ${OBJS}
 	rm -f lib${LIB}_p.a ${POBJS}
 	rm -f lib${LIB}_pic.a lib${LIB}${SHLIB_EXT0} lib${LIB}${SHLIB_EXT1}
 	rm -f lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SOBJS}
-	rm -f llib-l${LIB}.ln ${LOBJS}
 
 .if defined(SRCS)
 afterdepend: .depend
