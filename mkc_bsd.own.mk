@@ -113,19 +113,6 @@ CFLAGS+=-Wno-format -fno-builtin
 .endif
 .endif
 
-# In order to identify NetBSD to GNU packages, we sometimes need
-# an "elf" tag for historically a.out platforms.
-.if ${OBJECT_FMT} == "ELF" && \
-    (${MACHINE_ARCH} == "arm" || \
-     ${MACHINE_ARCH} == "i386" || \
-     ${MACHINE_ARCH} == "m68k" || \
-     ${MACHINE_ARCH} == "sparc" || \
-     ${MACHINE_ARCH} == "vax")
-MACHINE_GNU_PLATFORM?= netbsdelf
-.else
-MACHINE_GNU_PLATFORM?= netbsd
-.endif
-
 # CPU model, derived from MACHINE_ARCH
 MACHINE_CPU=	${MACHINE_ARCH:C/mipse[bl]/mips/:S/arm26/arm/:S/arm32/arm/:C/sh3e[bl]/sh3/:S/m68000/m68k/}
 
