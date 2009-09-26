@@ -15,8 +15,7 @@ MAKEINFO?=	makeinfo
 INFOFLAGS?=	
 INSTALL_INFO?=	install-info
 
-.PHONY:		infoinstall cleaninfo
-cleandir: cleaninfo
+.PHONY:		infoinstall
 
 .SUFFIXES: .txi .texi .texinfo .info
 
@@ -32,8 +31,7 @@ realinstall: infoinstall
 realall: ${INFOFILES}
 .endif
 
-cleaninfo:
-	rm -f ${INFOFILES}
+CLEANFILES+=	${INFOFILES}
 
 infoinstall:: ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
 .PRECIOUS: ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
@@ -53,8 +51,6 @@ __infoinstall: .USE
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor
-.else
-cleaninfo:
 .endif
 
 # Make sure all of the standard targets are defined, even if they do nothing.
