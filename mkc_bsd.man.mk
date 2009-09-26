@@ -62,9 +62,7 @@ MANPAGES=	${MAN}
 CATPAGES=	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
 CLEANFILES+=	${CATPAGES}
 .NOPATH:	${CATPAGES}
-.if !defined(NOHTML)
 HTMLPAGES=	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
-.endif
 .endif
 
 MINSTALL=	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
@@ -177,13 +175,20 @@ installhtml: ${HTMLPAGES:@P@${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 CLEANFILES+=	${HTMLPAGES}
 
 .if defined(CATPAGES)
+
+.if !empty(MKHTML:M[Yy][Ee][Ss])
+realall: ${HTMLPAGES}
+.else
+realall:
+.endif # MKHTML
+
 .if ${MKCATPAGES} != "no" && ${MKMAN} != "no"
 realall: ${CATPAGES}
 .else
 realall:
-.endif
+.endif # MKCATPAGES
 
-.endif
+.endif # CATPAGES
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 clean depend includes lint regress tags:
