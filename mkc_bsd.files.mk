@@ -25,6 +25,8 @@ __fileinstall: .USE
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
 .endfor
 
+UNINSTALLFILES+=	${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
+
 .endif # FILES
 
 .if !target(filesinstall)

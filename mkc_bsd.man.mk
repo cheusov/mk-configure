@@ -11,7 +11,7 @@ _MKC_BSD_MAN_MK=1
 realinstall:	${MANINSTALL}
 .endif
 
-TMACDIR?=	${DESTDIR}/usr/share/groff/tmac
+TMACDIR?=	/usr/share/groff/tmac
 .if exists(${TMACDIR}/tmac.andoc) && exists(${TMACDIR}/tmac.doc)
 CATDEPS?=	${TMACDIR}/tmac.andoc \
 		${TMACDIR}/tmac.doc
@@ -89,6 +89,8 @@ catpages:: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MC
 .PRECIOUS: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
 .PHONY: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
 
+UNINSTALLFILES+=	${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
+
 .   for P in ${CATPAGES:O:u}
 ${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}: ${P} __installpage
 .   endfor
@@ -101,6 +103,8 @@ catpages::
 manpages:: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 .PRECIOUS: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 .PHONY: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
+
+UNINSTALLFILES+=	${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 
 .   for P in ${MANPAGES:O:u}
 ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __installpage
@@ -159,8 +163,10 @@ html: ${HTMLPAGES}
 ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
+
 .endif
 installhtml: ${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
+UNINSTALLFILES+=	${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 
 CLEANFILES+=	${HTMLPAGES}
 

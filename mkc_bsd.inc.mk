@@ -18,6 +18,8 @@ __incinstall: .USE
 ${DESTDIR}${INCSDIR}/$I: $I __incinstall
 .endfor
 
+UNINSTALLFILES+=	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
+
 .endif # INCS
 
 .if !target(incinstall)

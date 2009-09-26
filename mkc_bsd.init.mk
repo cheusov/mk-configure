@@ -60,5 +60,21 @@ MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is
 .endif
 
 ###########
+.for _dir in ${DPLIBDIRS}
+.ifndef DPLIBDIRS.${_dir}
+DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
+LDFLAGS+=		-L${DPLIBDIRS.${_dir}}
+.endif
+.endfor
+
+LDADD+=			${DPLIBS}
+
+###########
+.ifndef SUBDIR # skip the following for mkc.subdir.mk
+
+.PHONY: uninstall
+uninstall:
+	rm -f ${UNINSTALLFILES}
+.endif # SUBDIR
 
 .endif # __initialized__

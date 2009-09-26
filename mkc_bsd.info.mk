@@ -45,6 +45,9 @@ __infoinstall: .USE
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor
+
+UNINSTALLFILES+=	${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
+
 .endif
 
 # Make sure all of the standard targets are defined, even if they do nothing.

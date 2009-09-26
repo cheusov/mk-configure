@@ -346,6 +346,7 @@ libinstall::
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
+UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 
@@ -353,6 +354,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
@@ -361,6 +363,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
 .if ${MKPICLIB} == "no"
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a:
@@ -375,6 +378,9 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
+UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
+		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0} \
+		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 
 ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \

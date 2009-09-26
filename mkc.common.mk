@@ -26,20 +26,6 @@
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
 ######################################################################
-.if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])
-
-.for _dir in ${DPLIBDIRS}
-.ifndef DPLIBDIRS.${_dir}
-DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
-LDADD+=			-L${DPLIBDIRS.${_dir}}
-.endif
-.endfor
-
-LDADD+=			${DPLIBS}
-
-.endif # NOMKC_DPLIBS
-
-######################################################################
 .include <mkc_bsd.own.mk>
 
 ######################################################################
@@ -114,89 +100,7 @@ install-dirs:
 
 .endif # make(install-dirs)
 .endif # NOMKC_INSTDIRS
-######################################################################
-.if !defined(NOMKC_UNINSTALL) || empty(NOMKC_UNINSTALL:M[Yy][Ee][Ss])
-.if make(uninstall) && empty(SUBDIR)
 
-NOMKC_UNINSTALL:=	yes
-
-# uninstall target
-
-.if defined(INCS)
-.for i in ${INCS}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${INCSDIR}/${i}
-.endfor
-.endif
-
-.if defined(PROG)
-_MKC_UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROG}
-.endif
-
-.if defined(SCRIPTS)
-.for i in ${SCRIPTS}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${SCRIPTSDIR_${i}:U${SCRIPTSDIR}}/${i}
-.endfor
-.endif
-
-.if defined(FILES)
-.for i in ${FILES}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${FILESDIR_${i}:U${FILESDIR}}/${i}
-.endfor
-.endif
-
-.if defined(LIB)
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}.a
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-.if defined(SHLIB_MAJOR)
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT2}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT3}
-.endif # SHLIB_MAJOR
-.endif # LIB
-
-.if defined(LINKS)
-.for i mkc_dst in ${LINKS}
-_MKC_UNINSTALLFILES+=	${DESTDIR}/${mkc_dst}
-.endfor
-.endif
-
-.if defined(SYMLINKS)
-.for i mkc_dst in ${SYMLINKS}
-_MKC_UNINSTALLFILES+=	${DESTDIR}/${mkc_dst}
-.endfor
-.endif
-
-.if defined(MAN)
-.if defined(MKMAN) && !empty(MKMAN:M[Yy][Ee][Ss])
-#_MKC_MANCTGRS=		${MAN:E:O:u}
-.for i in ${MAN}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${i:E}/${i}
-.if defined(MKCATPAGES) && !empty(MKCATPAGES:M[Yy][Ee][Ss])
-_MKC_UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${i:E}/${i:R}.0
-.endif # MKCATPAGES
-.if defined(MKHTML) && !empty(MKHTML:M[Yy][Ee][Ss])
-_MKC_UNINSTALLFILES+=	${DESTDIR}${HTMLDIR}/html${i:E}/${i:R}.html
-.endif # MKHTML
-.endfor # i
-.endif # MKMAN
-.endif # MAN
-
-.if defined(TEXINFO)
-.if !defined(MKINFO) || empty(MKINFO:M[Nn][Oo])
-.for i in ${TEXINFO}
-_MKC_UNINSTALLFILES+=	${DESTDIR}${INFODIR}/${i:R}.info
-.endfor
-.endif # MKINFO
-.endif # TEXINFO
-
-.PHONY: uninstall
-uninstall:
-	rm -f ${_MKC_UNINSTALLFILES}
-
-.endif # make(uninstall)
-.endif # NOMKC_UNINSTALL
 ######################################################################
 
 .endif # NOMKC_ATALL

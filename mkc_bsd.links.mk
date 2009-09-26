@@ -20,7 +20,11 @@ linksinstall::
 		echo "$$t -> $$l"; \
 		rm -rf $$t; ln -s $$l $$t; \
 	 done; )
+.for l r in ${SYMLINKS}
+UNINSTALLFILES += ${DESTDIR}${r}
+.endfor
 .endif
+
 .if defined(LINKS) && !empty(LINKS)
 linksinstall::
 	@(set ${LINKS}; \
@@ -37,6 +41,9 @@ linksinstall::
 		echo "	@rm -f $$t; ln $$l $$t"; \
 	 done; \
 	) | ${MAKE} -f- all
+.for l r in ${LINKS}
+UNINSTALLFILES += ${DESTDIR}${r}
+.endfor
 .endif
 
 .if !target(linksinstall)

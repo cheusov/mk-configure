@@ -70,6 +70,9 @@ __proginstall: .USE
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
+
+UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROGNAME}
+
 .endif
 
 .if !target(proginstall)
@@ -96,6 +99,9 @@ __scriptinstall: .USE
 .for S in ${SCRIPTS:O:u}
 ${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}: ${S} __scriptinstall
 .endfor
+
+UNINSTALLFILES+=	${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
+
 .endif
 
 .if !target(scriptsinstall)
