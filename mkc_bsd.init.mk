@@ -1,6 +1,7 @@
 .ifndef __initialized__
 __initialized__=1
 
+###########
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
@@ -47,5 +48,17 @@ error-check:
 # Make sure all of the standard targets are defined, even if they do nothing.
 #.PHONY : test all distclean cleandir clean
 #test all distclean cleandir clean:
+
+###########
+.sinclude <mkc.ver.mk>
+
+.if defined(MKC_REQD) && defined(MKC_VERSION)
+_mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
+.if !${_mkc_version_ok}
+MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
+.endif
+.endif
+
+###########
 
 .endif # __initialized__

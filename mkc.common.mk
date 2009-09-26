@@ -244,26 +244,6 @@ uninstall:
 .endif # NOMKC_UNINSTALL
 ######################################################################
 
-.sinclude <mkc.ver.mk>
-
-.if defined(MKC_REQD) && defined(MKC_VERSION)
-_mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
-.if !${_mkc_version_ok}
-MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
-.endif
-.endif
-
-######################################################################
-# general purpose targets
-.if !defined(NOMKC_TARGETS) || empty(NOMKC_TARGETS:M[Yy][Ee][Ss])
-NOMKC_TARGETS:=        yes
-
-###########
-
-###########
-
-###########
-.endif # NOMKC_TARGETS
 ######################################################################
 
 .if !defined(SRCS)
