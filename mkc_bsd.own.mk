@@ -13,14 +13,6 @@ _BSD_OWN_MK_=1
 
 .include <mkc_bsd.sys.mk>
 
-# Defining `SKEY' causes support for S/key authentication to be compiled in.
-SKEY=		yes
-
-# where the system object and source trees are kept; can be configurable
-# by the user in case they want them in ~/foosrc and ~/fooobj, for example
-BSDSRCDIR?=	/usr/src
-BSDOBJDIR?=	/usr/obj
-
 ROOT_USER?=	root
 ROOT_GROUP?=	wheel
 
@@ -54,21 +46,6 @@ HTMLDOCDIR?=	/usr/share/doc/html
 DOCGRP?=	${ROOT_GROUP}
 DOCOWN?=	${ROOT_USER}
 DOCMODE?=	${NONBINMODE}
-
-NLSDIR?=	/usr/share/nls
-NLSGRP?=	${ROOT_GROUP}
-NLSOWN?=	${ROOT_USER}
-NLSMODE?=	${NONBINMODE}
-
-KMODDIR?=	/usr/lkm
-KMODGRP?=	${ROOT_GROUP}
-KMODOWN?=	${ROOT_USER}
-KMODMODE?=	${NONBINMODE}
-
-LOCALEDIR?=	/usr/share/locale
-LOCALEGRP?=	${ROOT_GROUP}
-LOCALEOWN?=	${ROOT_USER}
-LOCALEMODE?=	${NONBINMODE}
 
 COPY?=		-c
 .if defined(UPDATE)
