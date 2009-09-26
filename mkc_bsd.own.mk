@@ -100,8 +100,6 @@ MKCATPAGES?=no
 
 .if defined(NODOC)
 MKDOC=no
-#.elif !defined(MKDOC)
-#MKDOC=yes
 .else
 MKDOC?=yes
 .endif
@@ -152,7 +150,5 @@ MKDOC=no
 MKINFO=no
 MKMAN=no
 .endif
-
-MKSOFTFLOAT?=no
 
 .endif		# _BSD_OWN_MK_
