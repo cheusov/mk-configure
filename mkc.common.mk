@@ -25,17 +25,7 @@
 ######################################################################
 .if !defined(NOMKC_ATALL) || empty(NOMKC_ATALL:M[Yy][Ee][Ss])
 
-MKCATPAGES?=	no
 MKHTML?=	no
-MANTARGET?=	man # for Simon Gerraty's mk-files
-
-MKPICINSTALL=	no
-MKPROFILE=	no
-
-.if make(cleandir) || make(distclean)
-MANALL=		    # workaround for buggy Simon Gerraty's man.mk,
-		    # it wrongly removes man page when MANTARGET=man.
-.endif
 
 ######################################################################
 .if !defined(NOMKC_DPLIBS) || empty(NOMKC_DEPLIBS:M[Yy][Ee][Ss])

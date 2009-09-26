@@ -94,7 +94,7 @@ PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 # The NOxxx variables should only be used by Makefiles.
 #
 
-MKCATPAGES?=yes
+MKCATPAGES?=no
 
 .if defined(NODOC)
 MKDOC=no
@@ -135,17 +135,9 @@ MKPIC=no
 MKPIC?=yes
 .endif
 
-.if defined(NOPICINSTALL)
-MKPICINSTALL=no
-.else
-MKPICINSTALL?=yes
-.endif
+MKPICINSTALL?=no
 
-.if defined(NOPROFILE)
-MKPROFILE=no
-.else
-MKPROFILE?=yes
-.endif
+MKPROFILE?=no
 
 .if defined(NOSHARE)
 MKSHARE=no
