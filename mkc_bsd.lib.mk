@@ -16,12 +16,6 @@ __initialized__:
 realinstall:	libinstall
 clean cleandir: cleanlib
 
-.if exists(${SHLIB_VERSION_FILE})
-SHLIB_MAJOR != . ${SHLIB_VERSION_FILE} ; echo $$major
-SHLIB_MINOR != . ${SHLIB_VERSION_FILE} ; echo $$minor
-SHLIB_TEENY != . ${SHLIB_VERSION_FILE} ; echo $$teeny
-.endif
-
 print-shlib-major:
 .if defined(SHLIB_MAJOR)
 	@echo ${SHLIB_MAJOR}

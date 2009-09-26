@@ -140,11 +140,6 @@ CFLAGS+=-Wno-format -fno-builtin
 .endif
 .endif
 
-# Location of the file that contains the major and minor numbers of the
-# version of a shared library.  If this file exists a shared library
-# will be built by <bsd.lib.mk>.
-SHLIB_VERSION_FILE?= ${.CURDIR}/shlib_version
-
 # GNU sources and packages sometimes see architecture names differently.
 # This table maps an architecture name to its GNU counterpart.
 # Use as so:  ${GNU_ARCH.${TARGET_ARCH}} or ${MACHINE_GNU_ARCH}
