@@ -47,30 +47,6 @@ LDADD+=			${DPLIBS}
 NOMKC_PERMS:=	yes
 
 # Default owner and group
-_MKC_USER!=	id -un
-_MKC_GROUP!=	id -gn
-
-.if ${_MKC_USER} != root
-
-MANOWN?=	${_MKC_USER}
-MANGRP?=	${_MKC_GROUP}
-
-BINOWN?=	${_MKC_USER}
-BINGRP?=	${_MKC_GROUP}
-
-FILESOWN?=	${_MKC_USER}
-FILESGRP?=	${_MKC_GROUP}
-
-LIBOWN?=	${_MKC_USER}
-LIBGRP?=	${_MKC_GROUP}
-
-DOCOWN?=	${_MKC_USER}
-DOCGRP?=	${_MKC_GROUP}
-
-INFOOWN?=	${_MKC_USER}
-INFOGRP?=	${_MKC_GROUP}
-
-.endif
 
 .endif # make(install)
 .endif # NOMKC_PERMS

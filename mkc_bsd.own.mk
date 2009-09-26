@@ -11,6 +11,14 @@ _BSD_OWN_MK_=1
 .include "/etc/mk.conf"
 .endif
 
+_MKC_USER!=	id -un
+_MKC_GROUP!=	id -gn
+
+.if ${_MKC_USER} != root
+ROOT_USER?=	${_MKC_USER}
+ROOT_GROUP?=	${_MKC_GROUP}
+.endif
+
 .include <mkc_bsd.sys.mk>
 .sinclude <mkc_bsd.${OPSYS}.own.mk>
 
@@ -18,11 +26,6 @@ OBJECT_FMT?=	ELF
 
 ROOT_USER?=	root
 ROOT_GROUP?=	wheel
-
-BINGRP?=	${ROOT_GROUP}
-BINOWN?=	${ROOT_USER}
-BINMODE?=	555
-NONBINMODE?=	444
 
 # Define MANZ to have the man pages compressed (gzip)
 #MANZ=		1
@@ -44,6 +47,11 @@ SCRIPTSDIR?=	${BINDIR}
 DOCDIR?=	${DATADIR}/doc
 HTMLDOCDIR?=	${DOCDIR}/html
 HTMLDIR?=	${MANDIR}
+
+BINGRP?=	${ROOT_GROUP}
+BINOWN?=	${ROOT_USER}
+BINMODE?=	555
+NONBINMODE?=	444
 
 MANGRP?=	${ROOT_GROUP}
 MANOWN?=	${ROOT_USER}
