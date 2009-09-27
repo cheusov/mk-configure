@@ -10,7 +10,7 @@ EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.11.1
+VERSION=		0.11.5
 
 BIRTHDATE=		2009-02-21
 
