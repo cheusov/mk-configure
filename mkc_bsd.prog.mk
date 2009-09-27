@@ -8,7 +8,6 @@ _MKC_BSD_PROG_MK=1
 
 .PHONY:		proginstall scriptsinstall
 realinstall:	proginstall scriptsinstall
-clean cleandir:
 
 CFLAGS+=	${COPTS}
 
@@ -43,22 +42,6 @@ ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPAD
 MAN=		${PROG}.1
 .endif
 
-.endif	# defined(PROG)
-
-realall: ${PROG} ${SCRIPTS}
-
-CLEANFILES+= a.out [Ee]rrs mklog core *.core \
-	    ${PROG} ${OBJS} ${LOBJS}
-
-.if defined(SRCS) && !target(afterdepend)
-afterdepend: .depend
-	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.ln:/' \
-	      < .depend > $$TMP; \
-	    mv $$TMP .depend)
-.endif
-
-.if defined(PROG) && !target(proginstall)
 PROGNAME?=${PROG}
 
 proginstall:: ${DESTDIR}${BINDIR}/${PROGNAME}
@@ -74,21 +57,29 @@ ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
 UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROGNAME}
 INSTALLDIRS+=		${DESTDIR}${BINDIR}
 
+.else # defined(PROG)
+proginstall:
+.endif # defined(PROG)
+
+realall: ${PROG} ${SCRIPTS}
+
+CLEANFILES+= a.out [Ee]rrs mklog core *.core \
+	    ${PROG} ${OBJS} ${LOBJS}
+
+.if defined(SRCS) && !target(afterdepend)
+afterdepend: .depend
+	@(TMP=/tmp/_depend$$$$; \
+	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.ln:/' \
+	      < .depend > $$TMP; \
+	    mv $$TMP .depend)
 .endif
 
-.if !target(proginstall)
-proginstall::
-.endif
+.if defined(SCRIPTS)
+destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
 
-.if defined(SCRIPTS) && !target(scriptsinstall)
-SCRIPTSDIR?=${BINDIR}
-SCRIPTSOWN?=${BINOWN}
-SCRIPTSGRP?=${BINGRP}
-SCRIPTSMODE?=${BINMODE}
-
-scriptsinstall:: ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
-.PRECIOUS: ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
-.PHONY: ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
+scriptsinstall:: ${destination_scripts}
+.PRECIOUS:       ${destination_scripts}
+.PHONY:          ${destination_scripts}
 
 __scriptinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
@@ -101,19 +92,17 @@ __scriptinstall: .USE
 ${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}: ${S} __scriptinstall
 .endfor
 
-UNINSTALLFILES+=	${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
-INSTALLDIRS+=		${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}@}
+UNINSTALLFILES+=	${destination_scripts}
+INSTALLDIRS+=		${destination_scripts:H}
 
-.endif
+.else # defined(SCRIPTS)
+scriptsinstall:
+.endif # defined(SCRIPTS)
 
-.if !target(scriptsinstall)
-scriptsinstall::
-.endif
-
-lint: ${LOBJS}
-.if defined(LOBJS) && !empty(LOBJS)
-	${LINT} ${LINTFLAGS} ${LDFLAGS:M-L*} ${LOBJS} ${LDADD}
-.endif
+#lint: ${LOBJS}
+#.if defined(LOBJS) && !empty(LOBJS)
+#	${LINT} ${LINTFLAGS} ${LDFLAGS:M-L*} ${LOBJS} ${LDADD}
+#.endif
 
 .include <mkc_bsd.man.mk>
 #.include <mkc_bsd.nls.mk>
@@ -122,8 +111,5 @@ lint: ${LOBJS}
 .include <mkc_bsd.links.mk>
 #.include <mkc_bsd.dep.mk>
 .include <mkc_bsd.sys.mk>
-
-# Make sure all of the standard targets are defined, even if they do nothing.
-regress:
 
 .endif # _MKC_BSD_PROG_MK
