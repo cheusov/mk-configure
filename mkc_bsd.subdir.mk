@@ -30,7 +30,13 @@ __recurse: .USE
 
 # for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"
 # but have to assign to __TARGDIR first.
-.for targ in ${TARGETS}
+.if !target(test)
+test_target=test
+.else
+test_target=
+.endif
+
+.for targ in ${TARGETS} ${test_target}
 .for dir in ${__REALSUBDIR}
 __TARGDIR := ${dir}
 .if ${__TARGDIR} == ".WAIT"
@@ -49,6 +55,6 @@ ${targ}: subdir-${targ}
 .endfor
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-${TARGETS}:
+${TARGETS} ${test_target}:
 
 .endif # _MKC_BSD_SUBDIR_MK

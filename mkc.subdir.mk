@@ -34,17 +34,3 @@ subdir-clean:
 cleandir: subdir-distclean
 subdir-distclean:
 	rm -f ${DISTCLEANFILES}
-
-.if !target(test)
-.PHONY : test
-test:
-	@ex=0; \
-	for d in ${SUBDIR}; do \
-	   if test "$${d}" != .WAIT; then \
-		if cd ${.CURDIR}/"$${d}" && ${MAKE} ${MAKEFLAGS} test; then true; else \
-			ex=1; \
-		fi; \
-	   fi; \
-	done; \
-	exit $$ex
-.endif
