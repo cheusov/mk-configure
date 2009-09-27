@@ -69,15 +69,20 @@ test: configure.mk mkc.ver.mk
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test
 
-.PHONY: cleandir cleandir_tests
+.PHONY: cleandir_tests clean_tests
+
 cleandir: cleandir_tests
 cleandir_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
 	export PATH; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
-		${MAKEFLAGS} cleandir; \
-	cd ..
+		${MAKEFLAGS} cleandir
+clean: clean_tests
+clean_tests: configure.mk
+	PATH=${.CURDIR}:$$PATH; \
+	export PATH; \
+	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} clean
 
