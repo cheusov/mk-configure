@@ -22,6 +22,17 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 
+###########
+.for _dir in ${DPLIBDIRS}
+.ifndef DPLIBDIRS.${_dir:T}
+DPLIBDIRS.${_dir:T}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
+LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
+.endif
+.endfor
+
+LDADD+=			${DPLIBS}
+
+######################################################################
 .ifndef __initialized__
 __initialized__=1
 
@@ -52,7 +63,6 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 ###########
-.ifndef SUBDIR # skip the following for mkc.subdir.mk
 
 distclean: cleandir
 cleandir: clean mkc_cleandir
@@ -66,7 +76,6 @@ error-check:
 		printf '%s\n' "$$msg"; ex=1; \
 	done; exit $$ex
 
-.endif # SUBDIR
 ###########
 
 # Make sure all of the standard targets are defined, even if they do nothing.
@@ -84,14 +93,8 @@ MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is
 .endif
 
 ###########
-.for _dir in ${DPLIBDIRS}
-.ifndef DPLIBDIRS.${_dir}
-DPLIBDIRS.${_dir}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
-LDFLAGS+=		-L${DPLIBDIRS.${_dir}}
-.endif
-.endfor
 
-LDADD+=			${DPLIBS}
+LDLIBS=		${LDFLAGS} ${LDADD}
 
 ###########
 .ifndef SUBDIR # skip the following for mkc.subdir.mk

@@ -2,6 +2,9 @@
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello/Makefile
+/objdir/hello/_mkc_header_stdio_h.c
+/objdir/hello/_mkc_header_stdio_h.err
+/objdir/hello/_mkc_header_stdio_h.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects
 /objdir/hello/hello_subprojects.1
@@ -48,6 +51,9 @@
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello/Makefile
+/objdir/hello/_mkc_header_stdio_h.c
+/objdir/hello/_mkc_header_stdio_h.err
+/objdir/hello/_mkc_header_stdio_h.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects.1.in
 /objdir/hello/hello_subprojects.c

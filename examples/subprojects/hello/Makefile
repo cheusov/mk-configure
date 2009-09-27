@@ -8,7 +8,11 @@ INSCRIPTS=	hello_subprojects2
 
 INTEXTS_SED+=	-e 's,@HELLO_VERSION@,${VERSION},'
 
+MKC_CHECK_HEADERS+=	stdio.h
+
 SCRIPTS=	${INSCRIPTS}
+
+.include <mkc.configure.mk>
 
 .include "../libhello1/linkme.mk"
 .include "../libhello2/linkme.mk"
