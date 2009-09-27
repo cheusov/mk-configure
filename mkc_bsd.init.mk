@@ -109,8 +109,10 @@ uninstall:
 installdirs:
 	${INSTALL} -d ${INSTALLDIRS:O:u}
 
+test:
+
 .endif # SUBDIR
 
-${TARGETS} test:
+${TARGETS}:
 
 .endif # __initialized__
