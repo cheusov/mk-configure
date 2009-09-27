@@ -1,1 +1,0 @@
-# Setting specific to FreeBSD

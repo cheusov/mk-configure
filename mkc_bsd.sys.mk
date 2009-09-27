@@ -6,7 +6,7 @@ unix?=		We run Unix
 OPSYS!=			uname -s
 .endif
 
-.sinclude <mkc_bsd.${OPSYS}.sys.mk>
+.sinclude <mkc_bsd.platform.sys.mk>
 
 .SUFFIXES: .out .a .ln .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4
