@@ -28,14 +28,14 @@ __recurse: .USE
 		;;							\
 	esac
 
-# for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"
-# but have to assign to __TARGDIR first.
 .if !target(test)
 test_target=test
 .else
 test_target=
 .endif
 
+# for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"
+# but have to assign to __TARGDIR first.
 .for targ in ${TARGETS} ${test_target}
 .for dir in ${__REALSUBDIR}
 __TARGDIR := ${dir}
