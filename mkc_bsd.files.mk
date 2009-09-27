@@ -11,7 +11,8 @@ realinstall:	filesinstall
 .if defined(FILES) && !empty(FILES)
 
 destination_files= ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
-filesinstall: ${destination_files}
+
+filesinstall:: ${destination_files}
 .PRECIOUS: ${destination_files}
 .PHONY: ${destination_files}
 
