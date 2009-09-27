@@ -25,16 +25,18 @@
 ###########
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T}	!= 	cd ${_dir} && ${MAKE} mkc_printobjdir
+DPLIBDIRS.${_dir:T}	!= 	cd ${.CURDIR}/${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir
 LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .endif
 .endfor
 
-LDADD+=			${DPLIBS}
+.undef DPLIBDIRS
 
 ######################################################################
 .ifndef __initialized__
 __initialized__=1
+
+LDADD+=			${DPLIBS}
 
 ###########
 .if exists(${.CURDIR}/../Makefile.inc)
