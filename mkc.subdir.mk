@@ -28,6 +28,11 @@
 
 .include <mkc_bsd.subdir.mk>
 
+.PHONY: cleandir distclean clean localclean
+cleandir distclean clean: localclean
+localclean:
+	rm -f ${CLEANFILES}
+
 .PHONY : install-dirs
 install-dirs:
 .for d in ${SUBDIR}
