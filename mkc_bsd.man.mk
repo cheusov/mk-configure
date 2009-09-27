@@ -4,6 +4,10 @@
 .if !defined(_MKC_BSD_MAN_MK)
 _MKC_BSD_MAN_MK=1
 
+.if defined(USETBL) && !empty(USETBL:M[Nn][Oo])
+.undef USETBL
+.endif
+
 .include <mkc_bsd.init.mk>
 
 .PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
