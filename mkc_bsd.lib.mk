@@ -9,7 +9,7 @@ _MKC_BSD_LIB_MK=1
 .PHONY:		libinstall
 realinstall:	libinstall
 
-SHLIB_EXT0?=	.so
+SHLIB_EXT?=	.so
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1?=	.so.${SHLIB_MAJOR}
 .if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
@@ -25,7 +25,7 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif
 .endif
 
-SHLIB_EXT?=	.so.${SHLIB_FULLVERSION}
+SHLIB_EXTFULL?=	.so.${SHLIB_FULLVERSION}
 
 # add additional suffixes not exported.
 # .po is used for profiling object files.
@@ -106,7 +106,7 @@ MKPICLIB?= yes
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
 SHLIB_SOVERSION=	${SHLIB_MAJOR}
-SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXT}
+SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXTFULL}
 SHLIB_LDSTARTFILE?=	${DESTDIR}/usr/lib/crtbeginS.o
 SHLIB_LDENDFILE?=	${DESTDIR}/usr/lib/crtendS.o
 .endif
@@ -276,7 +276,7 @@ _LIBS+=${SOLIB}
 SOBJS+=${OBJS:.o=.so}
 .endif
 .if defined(SHLIB_FULLVERSION)
-_LIBS+=lib${LIB}${SHLIB_EXT}
+_LIBS+=lib${LIB}${SHLIB_EXTFULL}
 .endif
 .endif
 
@@ -310,25 +310,25 @@ lib${LIB}_p.a:: ${POBJS} __archivebuild
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 	@echo building shared object ${LIB} library
 
-lib${LIB}${SHLIB_EXT}: ${SOLIB} ${DPADD} \
+lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD} \
     ${SHLIB_LDSTARTFILE} ${SHLIB_LDENDFILE}
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
-	@rm -f lib${LIB}.${SHLIB_EXT}
+	@rm -f lib${LIB}.${SHLIB_EXTFULL}
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SHLIB_LDSTARTFILE} \
 	    ${SOBJS} ${LDADD} \
 	    ${SHLIB_LDENDFILE}
 .if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp
-	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT0}
-	ln -sf lib${LIB}${SHLIB_EXT} lib${LIB}.tmp
+	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
+	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT}
+	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
 .endif
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	lib${LIB}.a ${OBJS} lib${LIB}_p.a ${POBJS} \
 	lib${LIB}_pic.a ${SOBJS} \
-	lib${LIB}${SHLIB_EXT0} lib${LIB}${SHLIB_EXT1} \
+	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
 
 .if defined(SRCS)
@@ -375,28 +375,28 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
 
 .if ${MKPIC} != "no" && defined(SHLIB_FULLVERSION)
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
-.PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
-.PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
-UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
-		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0} \
+libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+.PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+.PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL} \
+		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
 		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 
-${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}: lib${LIB}${SHLIB_EXT}
+${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 .if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR)
 	/sbin/ldconfig -m ${LIBDIR}
 .endif
 .if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}${SHLIB_EXT}\
+	ln -sf lib${LIB}${SHLIB_EXTFULL}\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
 	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
-	ln -sf lib${LIB}${SHLIB_EXT}\
+	ln -sf lib${LIB}${SHLIB_EXTFULL}\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
 	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT0}
+	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .endif
 .endif
 .endif
