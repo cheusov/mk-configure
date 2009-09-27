@@ -25,6 +25,9 @@
 # For documentation see README file
 
 .include <mkc_bsd.init.mk>
+
+.if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
+
 .include <mkc_bsd.subdir.mk>
 
 .PHONY: subdir-clean subdir-distclean
@@ -34,3 +37,5 @@ subdir-clean:
 cleandir: subdir-distclean
 subdir-distclean:
 	rm -f ${DISTCLEANFILES}
+
+.endif # MKC_ERR_MSG
