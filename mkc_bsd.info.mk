@@ -27,11 +27,11 @@ realall: ${INFOFILES}
 
 CLEANFILES+=	${INFOFILES}
 
-infoinstall:: ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
-.PRECIOUS: ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
-.if !defined(UPDATE)
-.PHONY: ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
-.endif
+destination_infos=${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
+
+infoinstall:: ${destination_infos}
+.PRECIOUS: ${destination_infos}
+.PHONY: ${destination_infos}
 
 __infoinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} \
@@ -46,12 +46,9 @@ __infoinstall: .USE
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor
 
-UNINSTALLFILES+=	${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
-INSTALLDIRS+=		${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}@}
+UNINSTALLFILES+=	${destination_infos}
+INSTALLDIRS+=		${destination_infos:H}
 
 .endif
-
-# Make sure all of the standard targets are defined, even if they do nothing.
-clean depend includes lint regress tags:
 
 .endif # _MKC_BSD_INFO_MK
