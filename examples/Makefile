@@ -6,6 +6,7 @@ SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
 SUBDIR+=	hello_dlopen
 SUBDIR+=	hello_glib2
+SUBDIR+=	hello_subdirs
 SUBDIR+=	hello_strlcpy
 SUBDIR+=	hello_customtests
 SUBDIR+=	hello_customtests2
