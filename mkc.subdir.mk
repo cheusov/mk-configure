@@ -35,14 +35,6 @@ cleandir: subdir-distclean
 subdir-distclean:
 	rm -f ${DISTCLEANFILES}
 
-.PHONY : install-dirs
-install-dirs:
-.for d in ${SUBDIR}
-	@if test "${d}" != .WAIT; then \
-		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} install-dirs; \
-	fi
-.endfor
-
 .PHONY : uninstall
 uninstall:
 .for d in ${SUBDIR}

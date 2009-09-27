@@ -5,7 +5,7 @@ test_output: all
 	echo ============================; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=no; MKHTML=no; export MKCATPAGES MKHTML; \
-	${MAKE} ${MAKE_FLAGS} install-dirs install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKE_FLAGS} installdirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
 	sed -e 's,${.OBJDIR},/objdir,' -e 's,${PREFIX},/prefix,'

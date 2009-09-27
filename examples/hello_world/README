@@ -5,5 +5,5 @@ and nothing else.
 In order to build this program run the following commands:
 
    bmake              # for bulding
-   bmake install-dirs # for creating destination directories
+   bmake installdirs  # for creating destination directories
    bmake install      # for installing files

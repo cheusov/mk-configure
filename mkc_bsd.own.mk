@@ -80,7 +80,8 @@ STRIPFLAG?=	-s
 
 
 TARGETS+=	all clean cleandir depend dependall includes \
-		install lint obj regress tags html installhtml cleanhtml
+		install lint obj regress tags html installhtml cleanhtml \
+		installdirs
 .PHONY:		all clean cleandir depend dependall distclean includes \
 		install lint obj regress tags beforedepend afterdepend \
 		beforeinstall afterinstall realinstall realdepend realall \
