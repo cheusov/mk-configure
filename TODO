@@ -1,3 +1,7 @@
+= regression test and documentation for USETBL
+= regression test and documentation for MANZ
+= implement MANBZ2?
+
 = mkc_install
 
 = mk-files supports building the shared libraries only by GNU cc and
