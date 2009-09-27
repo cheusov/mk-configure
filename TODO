@@ -15,11 +15,12 @@
 
 = Improve support for C++ (Fortran, Pascal)
 
-= Comparison with kBuild, CMake, scons, waf, framewerk, pmk, etc.
+= Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
+  MagicMakefiles etc.
 
 = MKC_CHECK_BIGENDIAN
 
-= Formatted bmake's output
+= Formatted output
 
 = Improve mkc.pkg-config.mk
 
@@ -47,7 +48,7 @@
 
 = mkc.configure.mk functionality but for bourne shell, e.g.
 
-   Upstream creates ./configure script:
+   Upstream creates ./configure shell script:
      MKC_CONFIG_MK=mkc_config.mk
      MKC_CONFIG_H=mkc_config.h
 
@@ -65,9 +66,6 @@
 
    User runs
      ./configure ...
-
-= MKC_REQD - user settable variable for specifing minimal required
-   version of mk-configure
 
 =
    MKC_NOAUTO_abcdefg...
