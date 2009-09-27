@@ -77,40 +77,44 @@ __installpage: .USE
 	@chown ${MANOWN}:${MANGRP} ${.TARGET}
 	@chmod ${MANMODE} ${.TARGET}
 .else
-	@cmp -s ${.ALLSRC} ${.TARGET} > /dev/null 2>&1 || \
-	    (echo "${MINSTALL} ${.ALLSRC} ${.TARGET}" && \
-	     ${MINSTALL} ${.ALLSRC} ${.TARGET})
+	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endif
 
 
 # Rules for cat'ed man page installation
 .if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES} != "no"
-catpages:: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
-.PRECIOUS: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
-.PHONY: ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
+realall: ${CATPAGES}
 
-UNINSTALLFILES+=	${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
-INSTALLDIRS+=		${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}@}
+destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
 
-.   for P in ${CATPAGES:O:u}
+catpages:: ${destination_capages}
+.PRECIOUS: ${destination_capages}
+.PHONY:    ${destination_capages}
+
+UNINSTALLFILES+=	${destination_capages}
+INSTALLDIRS+=		${destination_capages:H}
+
+.for P in ${CATPAGES:O:u}
 ${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}: ${P} __installpage
-.   endfor
+.endfor
 .else
 catpages::
 .endif
 
 # Rules for source page installation
 .if defined(MANPAGES) && !empty(MANPAGES)
-manpages:: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
-.PRECIOUS: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
-.PHONY: ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
+destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 
-UNINSTALLFILES+=	${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
-INSTALLDIRS+=		${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}@}
+manpages:: ${destination_manpages}
+.PRECIOUS: ${destination_manpages}
+.PHONY:    ${destination_manpages}
 
-.   for P in ${MANPAGES:O:u}
+UNINSTALLFILES+=	${destination_manpages}
+INSTALLDIRS+=		${destination_manpages:H}
+
+.for P in ${MANPAGES:O:u}
 ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __installpage
-.   endfor
+.endfor
 .else
 manpages::
 .endif
@@ -165,29 +169,21 @@ html: ${HTMLPAGES}
 ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
+.endif # HTMLPAGES
 
-.endif
-installhtml: ${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
-UNINSTALLFILES+=	${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
-INSTALLDIRS+=		${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}@}
+destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
+
+installhtml:            ${destination_htmls}
+UNINSTALLFILES+=	${destination_htmls}
+INSTALLDIRS+=		${destination_htmls:H}
 
 CLEANFILES+=	${HTMLPAGES}
-
-.if defined(CATPAGES)
 
 .if !empty(MKHTML:M[Yy][Ee][Ss])
 realinstall: installhtml
 realall: ${HTMLPAGES}
-.else
-realall:
 .endif # MKHTML
 
-.if ${MKCATPAGES} != "no" && ${MKMAN} != "no"
-realall: ${CATPAGES}
-.else
 realall:
-.endif # MKCATPAGES
-
-.endif # CATPAGES
 
 .endif # _MKC_BSD_MAN_MK
