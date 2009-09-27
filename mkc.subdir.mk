@@ -25,13 +25,15 @@
 # For documentation see README file
 
 .include <mkc_bsd.init.mk>
-
 .include <mkc_bsd.subdir.mk>
 
-.PHONY: cleandir distclean clean localclean
-cleandir distclean clean: localclean
-localclean:
+.PHONY: subdir-clean subdir-distclean
+clean: subdir-clean
+subdir-clean:
 	rm -f ${CLEANFILES}
+cleandir: subdir-distclean
+subdir-distclean:
+	rm -f ${DISTCLEANFILES}
 
 .PHONY : install-dirs
 install-dirs:
@@ -40,14 +42,6 @@ install-dirs:
 		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} install-dirs; \
 	fi
 .endfor
-
-#.PHONY : distclean
-#distclean:
-#.for d in ${SUBDIR}
-#	@if test "${d}" != .WAIT; then \
-#		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} distclean; \
-#	fi
-#.endfor
 
 .PHONY : uninstall
 uninstall:
