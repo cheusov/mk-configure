@@ -111,4 +111,6 @@ installdirs:
 
 .endif # SUBDIR
 
+${TARGETS} test:
+
 .endif # __initialized__
