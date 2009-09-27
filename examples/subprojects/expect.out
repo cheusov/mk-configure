@@ -43,7 +43,6 @@
 /objdir/prefix/lib/libhello1.so
 /objdir/prefix/lib/libhello1.so.1
 /objdir/prefix/lib/libhello1.so.1.0
-/objdir/prefix/lib/libhello2.a
 /objdir/prefix/man/cat1/hello_subprojects.0
 /objdir/prefix/man/man1/hello_subprojects.1
 ======== uninstall =========

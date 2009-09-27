@@ -34,6 +34,13 @@ test_output:
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKE_FLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ==== install MKINSTALL=no ====; \
+	MKINSTALL=no; export MKINSTALL; \
+	${MAKE} ${MAKE_FLAGS} all installdirs install DESTDIR=${.OBJDIR} \
+		> /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
 .include <mkc.minitest.mk>

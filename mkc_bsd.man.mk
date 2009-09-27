@@ -93,7 +93,9 @@ __installpage: .USE
 .if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES} != "no"
 realall: ${CATPAGES}
 
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
+.endif
 
 catpages:: ${destination_capages}
 .PRECIOUS: ${destination_capages}
@@ -111,7 +113,10 @@ catpages::
 
 # Rules for source page installation
 .if defined(MANPAGES) && !empty(MANPAGES)
+
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
+.endif
 
 manpages:: ${destination_manpages}
 .PRECIOUS: ${destination_manpages}
@@ -179,7 +184,9 @@ ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 .endfor
 .endif # HTMLPAGES
 
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
+.endif
 
 installhtml:            ${destination_htmls}
 UNINSTALLFILES+=	${destination_htmls}

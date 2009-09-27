@@ -44,9 +44,13 @@ MAN=		${PROG}.1
 
 PROGNAME?=${PROG}
 
-proginstall:: ${DESTDIR}${BINDIR}/${PROGNAME}
-.PRECIOUS: ${DESTDIR}${BINDIR}/${PROGNAME}
-.PHONY: ${DESTDIR}${BINDIR}/${PROGNAME}
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+destination_prog=${DESTDIR}${BINDIR}/${PROGNAME}
+.endif
+
+proginstall:: ${destination_prog}
+.PRECIOUS:    ${destination_prog}
+.PHONY:       ${destination_prog}
 
 __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
@@ -54,8 +58,8 @@ __proginstall: .USE
 
 ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
 
-UNINSTALLFILES+=	${DESTDIR}${BINDIR}/${PROGNAME}
-INSTALLDIRS+=		${DESTDIR}${BINDIR}
+UNINSTALLFILES+=	${destination_prog}
+INSTALLDIRS+=		${destination_prog:H}
 
 .else # defined(PROG)
 proginstall:
@@ -75,7 +79,9 @@ afterdepend: .depend
 .endif
 
 .if defined(SCRIPTS)
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
+.endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}
 .PRECIOUS:       ${destination_scripts}

@@ -7,7 +7,9 @@ _MKC_BSD_LIB_MK=1
 .include <mkc_bsd.init.mk>
 
 .PHONY:		libinstall
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 realinstall:	libinstall
+.endif # MKINSTALL
 
 SHLIB_EXT?=	.so
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)

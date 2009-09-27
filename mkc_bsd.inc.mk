@@ -4,7 +4,7 @@
 realinstall:	incinstall
 
 .if defined(INCS)
-
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_incs=${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
 incinstall:: ${destination_incs}
@@ -22,7 +22,7 @@ ${DESTDIR}${INCSDIR}/$I: $I __incinstall
 
 UNINSTALLFILES+=	${destination_incs}
 INSTALLDIRS+=		${destination_incs:H}
-
+.endif # MKINSTALL
 .endif # INCS
 
 .if !target(incinstall)

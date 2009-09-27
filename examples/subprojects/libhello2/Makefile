@@ -1,6 +1,10 @@
 LIB=	hello2
 SRCS=	hello2.cc
 
+INCS!=	echo include/*.h
+
+MKINSTALL?=	no # do not install this library
+
 MKPIC=	no
 
 CPPFLAGS+=	-I${.CURDIR}/include

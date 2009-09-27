@@ -3,7 +3,7 @@
 .PHONY:		linksinstall
 realinstall:	linksinstall
 
-.if defined(SYMLINKS) && !empty(SYMLINKS)
+.if defined(SYMLINKS) && !empty(SYMLINKS) && !empty(MKINSTALL:M[Yy][Ee][Ss])
 linksinstall::
 	@(set ${SYMLINKS}; \
 	 while test $$# -ge 2; do \
@@ -26,7 +26,7 @@ INSTALLDIRS +=    ${DESTDIR}${r:H}
 .endfor
 .endif
 
-.if defined(LINKS) && !empty(LINKS)
+.if defined(LINKS) && !empty(LINKS) && !empty(MKINSTALL:M[Yy][Ee][Ss])
 linksinstall::
 	@(set ${LINKS}; \
 	 echo ".include <mkc_bsd.own.mk>"; \

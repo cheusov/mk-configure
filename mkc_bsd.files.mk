@@ -10,6 +10,7 @@ realinstall:	filesinstall
 
 .if defined(FILES) && !empty(FILES)
 
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_files= ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
 
 filesinstall:: ${destination_files}
@@ -29,7 +30,7 @@ ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}:
 
 UNINSTALLFILES+=	${destination_files}
 INSTALLDIRS+=		${destination_files:H}
-
+.endif # MKINSTALL
 .endif # FILES
 
 .if !target(filesinstall)

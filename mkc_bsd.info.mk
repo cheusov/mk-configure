@@ -21,9 +21,10 @@ INFOFILES=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
 .if ${MKINFO} != "no"
-realinstall: infoinstall
 realall: ${INFOFILES}
-.endif
+
+.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+realinstall: infoinstall
 
 CLEANFILES+=	${INFOFILES}
 
@@ -48,7 +49,9 @@ ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F
 
 UNINSTALLFILES+=	${destination_infos}
 INSTALLDIRS+=		${destination_infos:H}
+.endif # MKINSTALL
+.endif # MKINFO
 
-.endif
+.endif # TEXINFO
 
 .endif # _MKC_BSD_INFO_MK

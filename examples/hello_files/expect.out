@@ -57,3 +57,16 @@
 /objdir/shell_func2
 /objdir/shell_func3
 /objdir/test.mk
+==== install MKINSTALL=no ====
+/objdir/Makefile
+/objdir/expect.NetBSD.out
+/objdir/expect.out
+/objdir/hello_files.test.out.tmp
+/objdir/shell_func.7
+/objdir/shell_func.cat7
+/objdir/shell_func.info
+/objdir/shell_func.texinfo
+/objdir/shell_func1
+/objdir/shell_func2
+/objdir/shell_func3
+/objdir/test.mk
