@@ -14,23 +14,17 @@ __REALSUBDIR+=${dir}
 .endif
 .endfor
 
-.if defined(DESTDIR) && exists(${DESTDIR}/usr/share/mk/sys.mk)
-_M=-m ${DESTDIR}/usr/share/mk
-.else
-_M=
-.endif
-
 __recurse: .USE
 	@targ=${.TARGET:C/-.*$//};dir=${.TARGET:C/^[^-]*-//};		\
 	case "$$dir" in /*)						\
 		echo "$$targ ===> $$dir";				\
 		cd "$$dir";						\
-		${MAKE} ${_M} "_THISDIR_=$$dir/" $$targ;		\
+		${MAKE} "_THISDIR_=$$dir/" $$targ;		\
 		;;							\
 	*)								\
 		echo "$$targ ===> ${_THISDIR_}$$dir";			\
 		cd "${.CURDIR}/$$dir";					\
-		${MAKE} ${_M} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;	\
+		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;	\
 		;;							\
 	esac
 
