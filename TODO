@@ -11,8 +11,6 @@
 
 = MLINKS?
 
-= LIBISPRIVATE variable from NetBSD's mk-files
-
 = Improve support for C++ (Fortran, Pascal)
 
 = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
