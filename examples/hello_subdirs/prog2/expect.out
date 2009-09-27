@@ -1,1 +1,24 @@
 Hello World2
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2
+/objdir/prog2.c
+/objdir/prog2.o
+/objdir/prog2.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/program2
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2.c
+/objdir/prog2.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2.c
+/objdir/prog2.test.out.tmp
+/objdir/test.mk

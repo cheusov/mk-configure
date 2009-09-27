@@ -1,1 +1,34 @@
 Hello World1
+Hello World1-2
+Hello World1-3
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog1
+/objdir/prog1.awk
+/objdir/prog1.c
+/objdir/prog1.o
+/objdir/prog1.sh
+/objdir/prog1.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/prog1
+/objdir/prefix/bin/program1.awk
+/objdir/prefix/libexec/program1.sh
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog1.awk
+/objdir/prog1.c
+/objdir/prog1.sh
+/objdir/prog1.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog1.awk
+/objdir/prog1.c
+/objdir/prog1.sh
+/objdir/prog1.test.out.tmp
+/objdir/test.mk

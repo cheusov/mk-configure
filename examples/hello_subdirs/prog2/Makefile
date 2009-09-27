@@ -1,8 +1,8 @@
 PROG=	prog2
 
-.PHONY : test_output
-test_output:
-	@${.OBJDIR}/prog2
+# Do not set PROGNAME in project's Makefile!
+# This is just a regression test.
+PROGNAME=program2
 
-.include <mkc.minitest.mk>
+.include "test.mk"
 .include <mkc.prog.mk>
