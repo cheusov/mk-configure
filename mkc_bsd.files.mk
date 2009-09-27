@@ -10,9 +10,10 @@ realinstall:	filesinstall
 
 .if defined(FILES) && !empty(FILES)
 
-filesinstall:: ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
-.PRECIOUS: ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
-.PHONY: ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
+destination_files= ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
+filesinstall: ${destination_files}
+.PRECIOUS: ${destination_files}
+.PHONY: ${destination_files}
 
 __fileinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
@@ -25,8 +26,8 @@ __fileinstall: .USE
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
 .endfor
 
-UNINSTALLFILES+=	${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
-INSTALLDIRS+=		${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}@}
+UNINSTALLFILES+=	${destination_files}
+INSTALLDIRS+=		${destination_files:H}
 
 .endif # FILES
 
