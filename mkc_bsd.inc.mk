@@ -5,9 +5,11 @@ realinstall:	incinstall
 
 .if defined(INCS)
 
-incinstall:: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
-.PRECIOUS: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
-.PHONY: ${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
+destination_incs=${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
+
+incinstall:: ${destination_incs}
+.PRECIOUS: ${destination_incs}
+.PHONY: ${destination_incs}
 
 __incinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
@@ -18,8 +20,8 @@ __incinstall: .USE
 ${DESTDIR}${INCSDIR}/$I: $I __incinstall
 .endfor
 
-UNINSTALLFILES+=	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
-INSTALLDIRS+=		${INCS:@I@${DESTDIR}${INCSDIR}@}
+UNINSTALLFILES+=	${destination_incs}
+INSTALLDIRS+=		${destination_incs:H}
 
 .endif # INCS
 
