@@ -107,7 +107,9 @@ uninstall:
 
 .PHONY: installdirs
 installdirs:
-	${INSTALL} -d ${INSTALLDIRS:O:u}
+	if test -n "${INSTALLDIRS:O:u}"; then \
+		${INSTALL} -d ${INSTALLDIRS:O:u}; \
+	fi
 
 test:
 
