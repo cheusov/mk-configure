@@ -35,14 +35,6 @@ cleandir: subdir-distclean
 subdir-distclean:
 	rm -f ${DISTCLEANFILES}
 
-.PHONY : uninstall
-uninstall:
-.for d in ${SUBDIR}
-	@if test "${d}" != .WAIT; then \
-		cd ${.CURDIR}/"${d}" && ${MAKE} ${MAKEFLAGS} uninstall; \
-	fi
-.endfor
-
 .if !target(test)
 .PHONY : test
 test:
