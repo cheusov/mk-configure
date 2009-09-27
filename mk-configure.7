@@ -198,9 +198,12 @@ Installation prefix. []
 .IP MKC_ERR_MSG
 If set, keep an error message. []
 .IP USETBL
-If set to not "no" (e.g. "yes"), preprocess man pages using
+If not "no", preprocess man pages using
 .B tbl(1)
 while generating cat pages.
+.RI [ no ]
+.IP MANZ
+If not "no", compress manual pages at installation time.
 .RI [ no ]
 .SS "mkc.files.mk"
 The include file

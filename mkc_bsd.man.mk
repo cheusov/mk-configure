@@ -8,6 +8,10 @@ _MKC_BSD_MAN_MK=1
 .undef USETBL
 .endif
 
+.if defined(MANZ) && !empty(MANZ:M[Nn][Oo])
+.undef MANZ
+.endif
+
 .include <mkc_bsd.init.mk>
 
 .PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
