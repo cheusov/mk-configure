@@ -20,7 +20,7 @@ ROOT_GROUP?=	${_MKC_GROUP}
 .endif
 
 .include <mkc_bsd.sys.mk>
-.sinclude <mkc_bsd.${OPSYS}.own.mk>
+.sinclude <mkc_bsd.platform.own.mk>
 
 OBJECT_FMT?=	ELF
 
