@@ -1,3 +1,12 @@
+= better support for cross-compilation
+
+= support for different compilers, OS + compilers,
+  OS + hardware + compiler etc.
+
+= MKC_CHECK_CUSTOM based on sh scripts.
+  "try to compile me" is already done.
+  "try to run me" is also needed.
+
 = implement MANBZ2?
 
 = mkc_install
