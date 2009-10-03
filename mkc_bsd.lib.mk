@@ -32,20 +32,21 @@ realinstall:	libinstall
 #			with ELF, also set shared-lib version for ld.so.
 # SHLIB_LDSTARTFILE:	support .o file, call C++ file-level constructors
 # SHLIB_LDENDFILE:	support .o file, call C++ file-level destructors
-# FPICFLAGS:		flags for ${FC} to compile .[fF] files to .so objects.
+#
+# FFLAGS.PIC:		flags for ${FC} to compile .[fF] files to .so objects.
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
-# CPICFLAGS:		flags for ${CC} to compile .[cC] files to .so objects.
-# CAPICFLAGS		flags for {$CC} to compiling .[Ss] files
-#		 	(usually just ${CPPPICFLAGS} ${CPICFLAGS})
-# APICFLAGS:		flags for ${AS} to assemble .[sS] to .so objects.
+# CFLAGS.PIC:		flags for ${CC} to compile .[cC] files to .so objects.
+# CAFLAGS.PIC		flags for {$CC} to compiling .[Ss] files
+#		 	(usually just ${CPPFLAGS.PIC} ${CFLAGS.PIC})
+# AFLAGS.PIC:		flags for ${AS} to assemble .[sS] to .so objects.
 
 .if ${MACHINE_ARCH} == "alpha"
 		# Alpha-specific shared library flags
-FPICFLAGS ?= -fPIC
-CPICFLAGS ?= -fPIC -DPIC
-CPPPICFLAGS?= -DPIC 
-CAPICFLAGS?= ${CPPPICFLAGS} ${CPICFLAGS}
-APICFLAGS ?=
+FFLAGS.PIC ?= -fPIC
+CFLAGS.PIC ?= -fPIC -DPIC
+CPPFLAGS.PIC?= -DPIC 
+CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
+AFLAGS.PIC ?=
 .elif ${MACHINE_ARCH} == "mipsel" || ${MACHINE_ARCH} == "mipseb"
 		# mips-specific shared library flags
 
@@ -64,11 +65,11 @@ MKPICLIB= no
 .elif (${MACHINE_ARCH} == "sparc" || ${MACHINE_ARCH} == "sparc64") && \
        ${OBJECT_FMT} == "ELF"
 
-FPICFLAGS ?= -fPIC
-CPICFLAGS ?= -fPIC -DPIC
-CPPPICFLAGS?= -DPIC 
-CAPICFLAGS?= ${CPPPICFLAGS} ${CPICFLAGS}
-APICFLAGS ?= -KPIC
+FFLAGS.PIC ?= -fPIC
+CFLAGS.PIC ?= -fPIC -DPIC
+CPPFLAGS.PIC?= -DPIC 
+CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
+AFLAGS.PIC ?= -KPIC
 
 .else
 
@@ -77,11 +78,11 @@ SHLIB_LDSTARTFILE=
 SHLIB_LDENDFILE=
 SHLIB_SOVERSION=${SHLIB_FULLVERSION}
 SHLIB_SHFLAGS=
-FPICFLAGS ?= -fPIC
-CPICFLAGS?= -fPIC -DPIC
-CPPPICFLAGS?= -DPIC 
-CAPICFLAGS?= ${CPPPICFLAGS} ${CPICFLAGS}
-APICFLAGS?= -k
+FFLAGS.PIC ?= -fPIC
+CFLAGS.PIC?= -fPIC -DPIC
+CPPFLAGS.PIC?= -DPIC 
+CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
+AFLAGS.PIC?= -k
 
 .endif
 
@@ -105,7 +106,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
 
 .c.so:
-	${COMPILE.c} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.c} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
 
 .c.ln:
 	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
@@ -117,7 +118,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
 
 .cc.so .C.so:
-	${COMPILE.cc} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
 
 .f.o:
 	${COMPILE.f} ${.IMPSRC}
@@ -126,7 +127,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
 
 .f.so:
-	${COMPILE.f} ${FPICFLAGS} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.f} ${FFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
 
 .f.ln:
 	${ECHO} Skipping lint for Fortran libraries.
@@ -138,7 +139,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
 
 .m.so:
-	${COMPILE.m} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.m} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
 
 .S.o .s.o:
 	${COMPILE.S} ${AINC} ${.IMPSRC} -o ${.TARGET}
@@ -147,7 +148,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.S} ${PROFFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 .S.so .s.so:
-	${COMPILE.S} ${CAPICFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.S} ${CAFLAGS.PIC} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 _LIBS=lib${LIB}.a
 
