@@ -1,4 +1,4 @@
-= better support for cross-compilation
+= support for cross-compilation
 
 = support for different compilers, OS + compilers,
   OS + hardware + compiler etc.
