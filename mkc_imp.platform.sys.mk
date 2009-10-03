@@ -46,8 +46,8 @@ COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
 
 YFLAGS?=	-d
 
-LDFLAGS_SHARED?=	-dylib
-SHLIB_SHFLAGS?=
+LDFLAGS.shared?=	-dylib
+LDFLAGS.soname?=
 
 LDFLAGS_WHOLEARCH?=
 LDFLAGS_NOWHOLEARCH?=
@@ -158,17 +158,20 @@ SHLIB_EXTFULL=	.so.${SHLIB_FULLVERSION}
 OBJECT_FMT?=	ELF
 
 # Platform-independent flags for NetBSD a.out shared libraries (and PowerPC)
-LDFLAGS.soname=
 FFLAGS.pic?= -fPIC
 CFLAGS.pic?= -fPIC -DPIC
 CPPFLAGS.pic?= -DPIC 
 CAFLAGS.pic?= ${CPPFLAGS.pic} ${CFLAGS.pic}
 AFLAGS.pic?= -k
 
-
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
 LDFLAGS.soname?=		-soname lib${LIB}${SHLIB_EXT1}
 .endif
+
+############################################################
+############################################################
+
+LDFLAGS.shared?=-shared
 
 .endif #_MKC_PLATFORM_MK

@@ -58,8 +58,6 @@ LFLAGS?=
 LEX.l?=		${LEX} ${LFLAGS}
 
 LD?=		ld
-LDFLAGS_SHARED?=	-shared
-LDFLAGS_SONAME?=	-soname
 LDFLAGS?=
 
 LORDER?=	lorder
