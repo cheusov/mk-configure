@@ -99,148 +99,55 @@ CFLAGS+=	${COPTS}
 FFLAGS+=	${FOPTS}
 
 .c.o:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.c} ${.IMPSRC}
-.else
-	@echo ${COMPILE.c:Q} ${.IMPSRC}
-	@${COMPILE.c} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .c.po:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.c:Q} -pg ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .c.so:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.c} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.c:Q} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.c} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .c.ln:
 	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
 
 .cc.o .C.o:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.cc} ${.IMPSRC}
-.else
-	@echo ${COMPILE.cc:Q} ${.IMPSRC}
-	@${COMPILE.cc} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .cc.po .C.po:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.cc:Q} -pg ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .cc.so .C.so:
-.if defined(COPTS) && !empty(COPTS:M*-g*)
 	${COMPILE.cc} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.cc:Q} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.cc} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .f.o:
-.if defined(FOPTS) && !empty(FOPTS:M*-g*)
 	${COMPILE.f} ${.IMPSRC}
-.else
-	@echo ${COMPILE.f:Q} ${.IMPSRC}
-	@${COMPILE.f} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .f.po:
-.if defined(FOPTS) && !empty(FOPTS:M*-g*)
 	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.f:Q} -pg ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .f.so:
-.if defined(FOPTS) && !empty(FOPTS:M*-g*)
 	${COMPILE.f} ${FPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.f:Q} ${FPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.f} ${FPICFLAGS} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .f.ln:
 	${ECHO} Skipping lint for Fortran libraries.
 
 .m.o:
-.if defined(OBJCFLAGS) && !empty(OBJCFLAGS:M*-g*)
 	${COMPILE.m} ${.IMPSRC}
-.else
-	@echo ${COMPILE.m:Q} ${.IMPSRC}
-	@${COMPILE.m} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .m.po:
-.if defined(OBJCFLAGS) && !empty(OBJCFLAGS:M*-g*)
 	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.m:Q} -pg ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .m.so:
-.if defined(OBJCFLAGS) && !empty(OBJCFLAGS:M*-g*)
 	${COMPILE.m} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-.else
-	@echo ${COMPILE.m:Q} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.m} ${CPICFLAGS} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
-.endif
 
 .S.o .s.o:
-	@echo ${COMPILE.S:Q} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC}
-	@${COMPILE.S} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
+	${COMPILE.S} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 .S.po .s.po:
-	@echo ${COMPILE.S:Q} -DGPROF -DPROF ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.S} -DGPROF -DPROF ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
+	${COMPILE.S} ${PROFFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 .S.so .s.so:
-	@echo ${COMPILE.S:Q} ${CAPICFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}
-	@${COMPILE.S} ${CAPICFLAGS} ${CFLAGS:M-[ID]*} ${AINC} ${.IMPSRC} -o ${.TARGET}.o
-	@${LD} -r ${.TARGET}.o -o ${.TARGET}
-	@rm -f ${.TARGET}.o
+	${COMPILE.S} ${CAPICFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 _LIBS=lib${LIB}.a
 
