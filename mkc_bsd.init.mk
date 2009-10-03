@@ -23,14 +23,17 @@
 # POSSIBILITY OF SUCH DAMAGE.
 
 ###########
+.ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T}	!= 	cd ${.CURDIR}/${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir
+DPLIBDIRS.${_dir:T}!= 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir
 LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .endif
 .endfor
 
 .undef DPLIBDIRS
+
+.endif # DPLIBDIRS
 
 ######################################################################
 .ifndef __initialized__
