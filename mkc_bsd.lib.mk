@@ -190,6 +190,7 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
 	    ${SOBJS} ${LDADD}
+
 .if ${OBJECT_FMT} == "ELF"
 	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT}

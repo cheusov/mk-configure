@@ -20,7 +20,6 @@ ROOT_GROUP?=	${_MKC_GROUP}
 .endif
 
 .include <mkc_bsd.sys.mk>
-.sinclude <mkc_bsd.platform.own.mk>
 
 OBJECT_FMT?=	ELF
 
@@ -118,20 +117,9 @@ MKINSTALL?=yes
 
 MKCATPAGES?=no
 MKHTML?=no
-
-.if defined(NODOC)
-MKDOC=no
-.else
 MKDOC?=yes
-.endif
-
 MKINFO?=yes
-
-.if defined(NOMAN)
-MKMAN=no
-.else
 MKMAN?=yes
-.endif
 .if ${MKMAN} == "no"
 MKCATPAGES=no
 .endif
@@ -140,29 +128,16 @@ MKCATPAGES=no
 # MKOBJDIRS controls whether object dirs are created during "make build".
 # MKOBJ controls whether the "make obj" rule does anything.
 #
-.if defined(NOOBJ)
-MKOBJ=no
-MKOBJDIRS=no
-.else
 MKOBJ?=yes
 MKOBJDIRS?=no
-.endif
 
-.if defined(NOPIC)
-MKPIC=no
-.else
 MKPIC?=yes
-.endif
-
 MKPICINSTALL?=no
 
 MKPROFILE?=no
 
-.if defined(NOSHARE)
-MKSHARE=no
-.else
 MKSHARE?=yes
-.endif
+
 .if ${MKSHARE} == "no"
 MKCATPAGES=no
 MKDOC=no
