@@ -35,3 +35,25 @@ cleanup (){
 	rm -f "$tmperr"
     fi
 }
+
+check_and_cache (){
+    # $1 - message
+    # $2 - cache file name
+    # $@ - args...
+
+    _msg="$1"
+    _cache="$2"
+    shift; shift
+
+    if test "$MKC_NOCACHE" != 1 && test -f "$_cache"; then
+	cached=1
+	printme '%s' "$_msg... (cached) " 1>&2
+	ret=`cat "$cache"`
+    else
+	printme '%s' "$_msg... " 1>&2
+
+	# test itself
+	ret=`check_itself "$@"`
+	echo "$ret" > "$_cache"
+    fi
+}

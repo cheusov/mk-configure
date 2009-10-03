@@ -77,13 +77,10 @@ fi
 ##################################################
 # test
 
-if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
-    cached=1
-    printme '%s' "checking for function ${funcname}${libs_msg}... (cached) " 1>&2
-    ret=`cat "$cache"`
-else
-    printme '%s' "checking for function ${funcname}${libs_msg}... " 1>&2
+check_itself (){
+}
 
+check_itself (){
     # preparations
     cat > "$tmpc" <<EOF
 void $funcname ();
@@ -97,12 +94,13 @@ EOF
 
     # test itself
     if $CC -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr"; then
-	ret=1
+	echo 1
     else
-	ret=0
+	echo 0
     fi
-    echo "$ret" > "$cache"
-fi
+}
+
+check_and_cache "checking for function ${funcname}${libs_msg}" "$cache" "$@"
 
 ##################################################
 # clean-ups

@@ -96,13 +96,7 @@ EOF
     fi
 }
 
-if test "$MKC_NOCACHE" != 1 && test -f "$cache"; then
-    cached=1
-    printme '%s' "checking for sizeof ${type}... (cached) " 1>&2
-    ret=`cat "$cache"`
-else
-    printme '%s' "checking for sizeof ${type}... " 1>&2
-    ret=failed
+check_itself (){
     if try_it 2147483647 "$@"
     then
 	for sz in 4 8 2 1 16 12    3 5 6 7 9 10 11 13 14 15; do
@@ -110,13 +104,15 @@ else
 	    then
 		:
 	    else
-		echo $sz > "$cache"
-		ret=$sz
-		break
+		echo $sz
+		return
 	    fi
 	done
     fi
-fi
+    echo failed
+}
+
+check_and_cache "checking for sizeof ${type}" "$cache" "$@"
 
 ##################################################
 # clean-ups
