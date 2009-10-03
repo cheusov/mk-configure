@@ -8,7 +8,7 @@ OPSYS!=			uname -s
 
 .sinclude <mkc_bsd.platform.sys.mk>
 
-.SUFFIXES: .out .a .ln .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
+.SUFFIXES: .out .a .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4
 
 .LIBS:		.a
@@ -63,9 +63,6 @@ LDFLAGS_SHARED?=	-shared
 LDFLAGS_SONAME?=	-soname
 LDFLAGS?=
 
-LINT?=		lint
-LINTFLAGS?=	-chapbxzF
-
 LORDER?=	lorder
 
 NM?=		nm
@@ -94,8 +91,6 @@ YACC.y?=	${YACC} ${YFLAGS}
 	${COMPILE.c} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
 	rm -f $*.o
-.c.ln:
-	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
 
 # C++
 .cc .cpp .cxx .C:

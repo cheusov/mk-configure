@@ -84,10 +84,10 @@ STRIPFLAG?=	-s
 
 
 TARGETS+=	all clean cleandir depend dependall includes \
-		install lint obj regress tags html installhtml cleanhtml \
+		install obj regress tags html installhtml cleanhtml \
 		installdirs uninstall
 .PHONY:		all clean cleandir depend dependall distclean includes \
-		install lint obj regress tags beforedepend afterdepend \
+		install obj regress tags beforedepend afterdepend \
 		beforeinstall afterinstall realinstall realdepend realall \
 		html installhtml cheanhtml
 
@@ -126,8 +126,6 @@ MKDOC?=yes
 .endif
 
 MKINFO?=yes
-
-MKLINT?=no
 
 .if defined(NOMAN)
 MKMAN=no

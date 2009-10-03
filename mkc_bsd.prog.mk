@@ -25,7 +25,6 @@ CLEANFILES+=	${SRCS:M*.y:.y=.h}
 
 .if !empty(SRCS:N*.h:N*.sh:N*.fth)
 OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:R:S/$/.o/g}
-LOBJS+=		${LSRCS:.c=.ln} ${SRCS:M*.c:.c=.ln}
 .endif
 
 .if defined(OBJS) && !empty(OBJS)
@@ -68,12 +67,12 @@ proginstall:
 realall: ${PROG} ${SCRIPTS}
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
-	    ${PROG} ${OBJS} ${LOBJS}
+	    ${PROG} ${OBJS}
 
 .if defined(SRCS) && !target(afterdepend)
 afterdepend: .depend
 	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.ln:/' \
+	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o:/' \
 	      < .depend > $$TMP; \
 	    mv $$TMP .depend)
 .endif
@@ -104,11 +103,6 @@ INSTALLDIRS+=		${destination_scripts:H}
 .else # defined(SCRIPTS)
 scriptsinstall:
 .endif # defined(SCRIPTS)
-
-#lint: ${LOBJS}
-#.if defined(LOBJS) && !empty(LOBJS)
-#	${LINT} ${LINTFLAGS} ${LDFLAGS:M-L*} ${LOBJS} ${LDADD}
-#.endif
 
 .include <mkc_bsd.man.mk>
 #.include <mkc_bsd.nls.mk>

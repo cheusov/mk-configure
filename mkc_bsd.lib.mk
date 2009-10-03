@@ -14,7 +14,7 @@ realinstall:	libinstall
 # add additional suffixes not exported.
 # .po is used for profiling object files.
 # .so is used for PIC object files.
-.SUFFIXES: .out .a .ln .so .po .o .s .S .c .cc .C .m .F .f .r .y .l .cl .p .h
+.SUFFIXES: .out .a .so .po .o .s .S .c .cc .C .m .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4 .m
 
 
@@ -108,9 +108,6 @@ FFLAGS+=	${FOPTS}
 .c.so:
 	${COMPILE.c} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
 
-.c.ln:
-	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
-
 .cc.o .C.o:
 	${COMPILE.cc} ${.IMPSRC}
 
@@ -128,9 +125,6 @@ FFLAGS+=	${FOPTS}
 
 .f.so:
 	${COMPILE.f} ${FFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
-
-.f.ln:
-	${ECHO} Skipping lint for Fortran libraries.
 
 .m.o:
 	${COMPILE.m} ${.IMPSRC}
@@ -228,7 +222,7 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 .if defined(SRCS)
 afterdepend: .depend
 	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.po \1.so \1.ln:/' \
+	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.po \1.so:/' \
 	      < .depend > $$TMP; \
 	    mv $$TMP .depend)
 .endif
@@ -304,8 +298,5 @@ INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 .include <mkc_bsd.links.mk>
 #.include <mkc_bsd.dep.mk>
 .include <mkc_bsd.sys.mk>
-
-# Make sure all of the standard targets are defined, even if they do nothing.
-lint regress:
 
 .endif #_MKC_BSD_LIB_MK
