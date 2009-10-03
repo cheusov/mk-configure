@@ -314,6 +314,7 @@ lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 
 lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD} \
     ${SHLIB_LDSTARTFILE} ${SHLIB_LDENDFILE}
+.if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
@@ -325,7 +326,8 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD} \
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT}
 	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
-.endif
+.endif # ELF
+.endif # !commands(...)
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	lib${LIB}.a ${OBJS} lib${LIB}_p.a ${POBJS} \
