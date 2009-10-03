@@ -81,7 +81,6 @@ COPY?=		-c
 PRESERVE?=
 STRIPFLAG?=	-s
 
-
 TARGETS+=	all clean cleandir depend dependall includes \
 		install obj regress tags html installhtml cleanhtml \
 		installdirs uninstall
