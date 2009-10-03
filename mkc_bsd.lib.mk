@@ -26,8 +26,6 @@ realinstall:	libinstall
 # OBJECT_FMT:		currently either "ELF" or "a.out", from <bsd.own.mk>
 # SHLIB_SHFLAGS:	Flags to tell ${LD} to emit shared library.
 #			with ELF, also set shared-lib version for ld.so.
-# SHLIB_LDSTARTFILE:	support .o file, call C++ file-level constructors
-# SHLIB_LDENDFILE:	support .o file, call C++ file-level destructors
 #
 # FFLAGS.PIC:		flags for ${FC} to compile .[fF] files to .so objects.
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
@@ -70,8 +68,6 @@ AFLAGS.PIC ?= -KPIC
 .else
 
 # Platform-independent flags for NetBSD a.out shared libraries (and PowerPC)
-SHLIB_LDSTARTFILE=
-SHLIB_LDENDFILE=
 SHLIB_SHFLAGS=
 FFLAGS.PIC ?= -fPIC
 CFLAGS.PIC?= -fPIC -DPIC
@@ -86,8 +82,6 @@ MKPICLIB?= yes
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
 SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXT1}
-SHLIB_LDSTARTFILE?=	${DESTDIR}/usr/lib/crtbeginS.o
-SHLIB_LDENDFILE?=	${DESTDIR}/usr/lib/crtendS.o
 .endif
 
 CFLAGS+=	${COPTS}
@@ -190,15 +184,12 @@ lib${LIB}_p.a:: ${POBJS} __archivebuild
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 	@echo building shared object ${LIB} library
 
-lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD} \
-    ${SHLIB_LDSTARTFILE} ${SHLIB_LDENDFILE}
+lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
 	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
-	    ${SHLIB_LDSTARTFILE} \
-	    ${SOBJS} ${LDADD} \
-	    ${SHLIB_LDENDFILE}
+	    ${SOBJS} ${LDADD}
 .if ${OBJECT_FMT} == "ELF"
 	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
 	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT}
