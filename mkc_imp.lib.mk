@@ -140,7 +140,7 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
-	$(LD) ${LDFLAGS_SHARED} ${LDFLAGS.soname} -o ${.TARGET} \
+	$(LD) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDADD}
 
 .if ${OBJECT_FMT} == "ELF"
