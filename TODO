@@ -20,7 +20,7 @@
 
 = MLINKS?
 
-= Improve support for C++ (Fortran, Pascal)
+= Improve support for C++, Fortran and Pascal
 
 = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
   MagicMakefiles etc.
