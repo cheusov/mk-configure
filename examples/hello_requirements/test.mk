@@ -6,3 +6,4 @@ test:
 	diff ${.CURDIR}/expect.out ${.OBJDIR}/_output.tmp 
 
 CLEANFILES+=	_output.tmp
+DISTCLEANDIRS+=	${.CURDIR}/usr
