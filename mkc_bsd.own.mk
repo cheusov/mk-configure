@@ -107,12 +107,6 @@ distclean:	.NOTMAIN cleandir
 
 PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 
-# Define MKxxx variables (which are either yes or no) for users
-# to set in /etc/mk.conf and override on the make commandline.
-# These should be tested with `== "no"' or `!= "no"'.
-# The NOxxx variables should only be used by Makefiles.
-#
-
 MKINSTALL?=yes
 
 MKCATPAGES?=no
