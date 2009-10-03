@@ -9,23 +9,23 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKE_FLAGS} installdirs install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} installdirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKE_FLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKE_FLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKE_FLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

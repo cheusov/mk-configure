@@ -19,7 +19,7 @@ TEXINFO=		shell_func.texinfo # for .info file
 # We will not create and update dir file
 INSTALL_INFO=		:
 
-# The following line is for regression test only.
+# The following lines are for regression test only.
 # We will build .html from man page only under NetBSD
 OPSYS!=			uname -s
 .if ${OPSYS} != "NetBSD"
