@@ -45,9 +45,9 @@ LDADD+=			${DPLIBS}
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
-.include <mkc_bsd.own.mk>
-#.include <mkc_bsd.obj.mk>
-#.include <mkc_bsd.depall.mk>
+.include <mkc_imp.own.mk>
+#.include <mkc_imp.obj.mk>
+#.include <mkc_imp.depall.mk>
 .MAIN:		all
 
 ###########

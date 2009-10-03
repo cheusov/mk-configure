@@ -24,13 +24,13 @@
 
 # For documentation see README file
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.include <mkc_bsd.prog.mk>
+.include <mkc_imp.prog.mk>
 .if defined(TEXINFO)
-.include <mkc_bsd.info.mk>
+.include <mkc_imp.info.mk>
 .endif # TEXINFO
 
 .endif # MKC_ERR_MSG

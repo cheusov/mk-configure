@@ -1,9 +1,9 @@
 #	$NetBSD: bsd.info.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
 
-.ifndef _MKC_BSD_INFO_MK
-_MKC_BSD_INFO_MK=1
+.ifndef _MKC_IMP_INFO_MK
+_MKC_IMP_INFO_MK=1
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 MAKEINFO?=	makeinfo
 INFOFLAGS?=	
@@ -54,4 +54,4 @@ INSTALLDIRS+=		${destination_infos:H}
 
 .endif # TEXINFO
 
-.endif # _MKC_BSD_INFO_MK
+.endif # _MKC_IMP_INFO_MK

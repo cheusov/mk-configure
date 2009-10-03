@@ -24,11 +24,11 @@
 
 # For documentation see README file
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.include <mkc_bsd.subdir.mk>
+.include <mkc_imp.subdir.mk>
 
 .PHONY: subdir-clean subdir-distclean
 clean: subdir-clean

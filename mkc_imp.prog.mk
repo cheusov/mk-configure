@@ -1,10 +1,10 @@
 #	$NetBSD: bsd.prog.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
 #	@(#)bsd.prog.mk	8.2 (Berkeley) 4/2/94
 
-.if !defined(_MKC_BSD_PROG_MK)
-_MKC_BSD_PROG_MK=1
+.if !defined(_MKC_IMP_PROG_MK)
+_MKC_IMP_PROG_MK=1
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .PHONY:		proginstall scriptsinstall
 realinstall:	proginstall scriptsinstall
@@ -104,12 +104,12 @@ INSTALLDIRS+=		${destination_scripts:H}
 scriptsinstall:
 .endif # defined(SCRIPTS)
 
-.include <mkc_bsd.man.mk>
-#.include <mkc_bsd.nls.mk>
-.include <mkc_bsd.files.mk>
-.include <mkc_bsd.inc.mk>
-.include <mkc_bsd.links.mk>
-#.include <mkc_bsd.dep.mk>
-.include <mkc_bsd.sys.mk>
+.include <mkc_imp.man.mk>
+#.include <mkc_imp.nls.mk>
+.include <mkc_imp.files.mk>
+.include <mkc_imp.inc.mk>
+.include <mkc_imp.links.mk>
+#.include <mkc_imp.dep.mk>
+.include <mkc_imp.sys.mk>
 
-.endif # _MKC_BSD_PROG_MK
+.endif # _MKC_IMP_PROG_MK

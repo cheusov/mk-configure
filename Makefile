@@ -31,10 +31,10 @@ FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
 			mkc_check_common.sh \
 			mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk
-FILES+= mkc_bsd.files.mk mkc_bsd.inc.mk mkc_bsd.info.mk mkc_bsd.lib.mk \
-	mkc_bsd.links.mk mkc_bsd.man.mk mkc_bsd.own.mk mkc_bsd.prog.mk \
-	mkc_bsd.subdir.mk mkc_bsd.sys.mk mkc_bsd.init.mk \
-	mkc_bsd.platform.sys.mk
+FILES+= mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
+	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
+	mkc_imp.subdir.mk mkc_imp.sys.mk mkc_imp.init.mk \
+	mkc_imp.platform.sys.mk
 
 FILES+=			${EXTRAFILES}
 

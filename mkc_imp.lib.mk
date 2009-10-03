@@ -1,10 +1,10 @@
 #	$NetBSD: bsd.lib.mk,v 1.3 2009/04/07 23:42:17 tez Exp $
 #	@(#)bsd.lib.mk	8.3 (Berkeley) 4/22/94
 
-.if !defined(_MKC_BSD_LIB_MK)
-_MKC_BSD_LIB_MK=1
+.if !defined(_MKC_IMP_LIB_MK)
+_MKC_IMP_LIB_MK=1
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .PHONY:		libinstall
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
@@ -277,12 +277,12 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 
 INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 
-.include <mkc_bsd.man.mk>
-#.include <mkc_bsd.nls.mk>
-.include <mkc_bsd.files.mk>
-.include <mkc_bsd.inc.mk>
-.include <mkc_bsd.links.mk>
-#.include <mkc_bsd.dep.mk>
-.include <mkc_bsd.sys.mk>
+.include <mkc_imp.man.mk>
+#.include <mkc_imp.nls.mk>
+.include <mkc_imp.files.mk>
+.include <mkc_imp.inc.mk>
+.include <mkc_imp.links.mk>
+#.include <mkc_imp.dep.mk>
+.include <mkc_imp.sys.mk>
 
-.endif #_MKC_BSD_LIB_MK
+.endif #_MKC_IMP_LIB_MK

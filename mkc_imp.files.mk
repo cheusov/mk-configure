@@ -3,7 +3,7 @@
 .if !defined(_BSD_FILES_MK)
 _BSD_FILES_MK:=	1
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .PHONY:		filesinstall
 realinstall:	filesinstall

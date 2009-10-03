@@ -19,7 +19,7 @@ ROOT_USER?=	${_MKC_USER}
 ROOT_GROUP?=	${_MKC_GROUP}
 .endif
 
-.include <mkc_bsd.sys.mk>
+.include <mkc_imp.sys.mk>
 
 OBJECT_FMT?=	ELF
 

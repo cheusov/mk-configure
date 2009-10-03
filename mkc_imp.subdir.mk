@@ -1,10 +1,10 @@
 #	$NetBSD: bsd.subdir.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
 #	@(#)bsd.subdir.mk	8.1 (Berkeley) 6/8/93
 
-.if !defined(_MKC_BSD_SUBDIR_MK)
-_MKC_BSD_SUBDIR_MK=1
+.if !defined(_MKC_IMP_SUBDIR_MK)
+_MKC_IMP_SUBDIR_MK=1
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .for dir in ${SUBDIR}
 .if exists(${dir}.${MACHINE})
@@ -57,4 +57,4 @@ ${targ}: subdir-${targ}
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
 
-.endif # _MKC_BSD_SUBDIR_MK
+.endif # _MKC_IMP_SUBDIR_MK

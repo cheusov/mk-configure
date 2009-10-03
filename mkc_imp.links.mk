@@ -29,7 +29,7 @@ INSTALLDIRS +=    ${DESTDIR}${r:H}
 .if defined(LINKS) && !empty(LINKS) && !empty(MKINSTALL:M[Yy][Ee][Ss])
 linksinstall::
 	@(set ${LINKS}; \
-	 echo ".include <mkc_bsd.own.mk>"; \
+	 echo ".include <mkc_imp.own.mk>"; \
 	 while test $$# -ge 2; do \
 		l=${DESTDIR}$$1; \
 		shift; \

@@ -24,7 +24,7 @@
 
 # For documentation see configure.mk file
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .include <configure.mk>
 

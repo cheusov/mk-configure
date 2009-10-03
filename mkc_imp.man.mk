@@ -1,8 +1,8 @@
 #	$NetBSD: bsd.man.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
 #	@(#)bsd.man.mk	8.1 (Berkeley) 6/8/93
 
-.if !defined(_MKC_BSD_MAN_MK)
-_MKC_BSD_MAN_MK=1
+.if !defined(_MKC_IMP_MAN_MK)
+_MKC_IMP_MAN_MK=1
 
 .if ${MKSHARE} == "no"
 MKCATPAGES=no
@@ -22,7 +22,7 @@ MKCATPAGES=no
 .undef MANZ
 .endif
 
-.include <mkc_bsd.init.mk>
+.include <mkc_imp.init.mk>
 
 .PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
 .if ${MKMAN} != "no"
@@ -213,4 +213,4 @@ realall: ${HTMLPAGES}
 
 realall:
 
-.endif # _MKC_BSD_MAN_MK
+.endif # _MKC_IMP_MAN_MK
