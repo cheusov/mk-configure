@@ -95,7 +95,7 @@ realall: ${CATPAGES}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
-.endif
+.endif # MKINSTALL
 
 catpages:: ${destination_capages}
 .PRECIOUS: ${destination_capages}
@@ -107,16 +107,17 @@ INSTALLDIRS+=		${destination_capages:H}
 .for P in ${CATPAGES:O:u}
 ${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}: ${P} __installpage
 .endfor
+
 .else
 catpages::
-.endif
+.endif # CATPAGES
 
 # Rules for source page installation
 .if defined(MANPAGES) && !empty(MANPAGES)
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
-.endif
+.endif # MKINSTALL
 
 manpages:: ${destination_manpages}
 .PRECIOUS: ${destination_manpages}
@@ -128,9 +129,10 @@ INSTALLDIRS+=		${destination_manpages:H}
 .for P in ${MANPAGES:O:u}
 ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __installpage
 .endfor
+
 .else
 manpages::
-.endif
+.endif # MANPAGES
 
 .if ${MKCATPAGES} != "no"
 catlinks: catpages
@@ -182,7 +184,6 @@ html: ${HTMLPAGES}
 ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
-.endif # HTMLPAGES
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
@@ -198,6 +199,7 @@ CLEANFILES+=	${HTMLPAGES}
 realinstall: installhtml
 realall: ${HTMLPAGES}
 .endif # MKHTML
+.endif # HTMLPAGES
 
 realall:
 
