@@ -120,9 +120,6 @@ MKHTML?=no
 MKDOC?=yes
 MKINFO?=yes
 MKMAN?=yes
-.if ${MKMAN} == "no"
-MKCATPAGES=no
-.endif
 
 #
 # MKOBJDIRS controls whether object dirs are created during "make build".

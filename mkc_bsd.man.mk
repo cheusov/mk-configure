@@ -10,6 +10,9 @@ MKDOC=no
 MKINFO=no
 MKMAN=no
 .endif
+.if ${MKMAN} == "no"
+MKCATPAGES=no
+.endif
 
 .if defined(USETBL) && !empty(USETBL:M[Nn][Oo])
 .undef USETBL
