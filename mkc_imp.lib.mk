@@ -24,65 +24,17 @@ realinstall:	libinstall
 # Data-driven table using make variables to control how shared libraries
 # are built for different platforms and object formats.
 # OBJECT_FMT:		currently either "ELF" or "a.out", from <bsd.own.mk>
-# SHLIB_SHFLAGS:	Flags to tell ${LD} to emit shared library.
+# LDFLAGS.soname:	Flags to tell ${LD} to emit shared library.
 #			with ELF, also set shared-lib version for ld.so.
 #
-# FFLAGS.PIC:		flags for ${FC} to compile .[fF] files to .so objects.
+# FFLAGS.pic:		flags for ${FC} to compile .[fF] files to .so objects.
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
-# CFLAGS.PIC:		flags for ${CC} to compile .[cC] files to .so objects.
-# CAFLAGS.PIC		flags for {$CC} to compiling .[Ss] files
-#		 	(usually just ${CPPFLAGS.PIC} ${CFLAGS.PIC})
-# AFLAGS.PIC:		flags for ${AS} to assemble .[sS] to .so objects.
-
-.if ${MACHINE_ARCH} == "alpha"
-		# Alpha-specific shared library flags
-FFLAGS.PIC ?= -fPIC
-CFLAGS.PIC ?= -fPIC -DPIC
-CPPFLAGS.PIC?= -DPIC 
-CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
-AFLAGS.PIC ?=
-.elif ${MACHINE_ARCH} == "mipsel" || ${MACHINE_ARCH} == "mipseb"
-		# mips-specific shared library flags
-
-# On mips, all libs are compiled with ABIcalls, not just sharedlibs.
-MKPICLIB= no
-
-# so turn shlib PIC flags on for ${AS}.
-AINC+=-DABICALLS
-AFLAGS+= -fPIC
-AS+=	-KPIC
-
-.elif ${MACHINE_ARCH} == "vax" && ${OBJECT_FMT} == "ELF"
-# On the VAX, all object are PIC by default, not just sharedlibs.
-MKPICLIB= no
-
-.elif (${MACHINE_ARCH} == "sparc" || ${MACHINE_ARCH} == "sparc64") && \
-       ${OBJECT_FMT} == "ELF"
-
-FFLAGS.PIC ?= -fPIC
-CFLAGS.PIC ?= -fPIC -DPIC
-CPPFLAGS.PIC?= -DPIC 
-CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
-AFLAGS.PIC ?= -KPIC
-
-.else
-
-# Platform-independent flags for NetBSD a.out shared libraries (and PowerPC)
-SHLIB_SHFLAGS=
-FFLAGS.PIC ?= -fPIC
-CFLAGS.PIC?= -fPIC -DPIC
-CPPFLAGS.PIC?= -DPIC 
-CAFLAGS.PIC?= ${CPPFLAGS.PIC} ${CFLAGS.PIC}
-AFLAGS.PIC?= -k
-
-.endif
+# CFLAGS.pic:		flags for ${CC} to compile .[cC] files to .so objects.
+# CAFLAGS.pic		flags for {$CC} to compiling .[Ss] files
+#		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
+# AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .so objects.
 
 MKPICLIB?= yes
-
-# Platform-independent linker flags for ELF shared libraries
-.if ${OBJECT_FMT} == "ELF"
-SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXT1}
-.endif
 
 CFLAGS+=	${COPTS}
 FFLAGS+=	${FOPTS}
@@ -94,7 +46,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
 
 .c.so:
-	${COMPILE.c} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.c} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .cc.o .C.o:
 	${COMPILE.cc} ${.IMPSRC}
@@ -103,7 +55,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
 
 .cc.so .C.so:
-	${COMPILE.cc} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .f.o:
 	${COMPILE.f} ${.IMPSRC}
@@ -112,7 +64,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
 
 .f.so:
-	${COMPILE.f} ${FFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.f} ${FFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .m.o:
 	${COMPILE.m} ${.IMPSRC}
@@ -121,7 +73,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
 
 .m.so:
-	${COMPILE.m} ${CFLAGS.PIC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.m} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .S.o .s.o:
 	${COMPILE.S} ${AINC} ${.IMPSRC} -o ${.TARGET}
@@ -130,7 +82,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.S} ${PROFFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 .S.so .s.so:
-	${COMPILE.S} ${CAFLAGS.PIC} ${AINC} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.S} ${CAFLAGS.pic} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 _LIBS=lib${LIB}.a
 
@@ -188,7 +140,7 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
-	$(LD) ${LDFLAGS_SHARED} ${SHLIB_SHFLAGS} -o ${.TARGET} \
+	$(LD) ${LDFLAGS_SHARED} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDADD}
 
 .if ${OBJECT_FMT} == "ELF"

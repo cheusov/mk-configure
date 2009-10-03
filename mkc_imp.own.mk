@@ -21,8 +21,6 @@ ROOT_GROUP?=	${_MKC_GROUP}
 
 .include <mkc_imp.sys.mk>
 
-OBJECT_FMT?=	ELF
-
 ROOT_USER?=	root
 ROOT_GROUP?=	wheel
 
