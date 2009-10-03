@@ -463,12 +463,12 @@ Library mode.
 .RI [ ${BINMODE} ]
 .\" .IP LIBISMODULE
 .\" If not "no", install as ${LIB}.so (without the "lib" prefix).
-.\" .\" and act as "MKDEBUGLIB=no MKLINT=no MKPICINSTALL=no
+.\" .\" and act as "MKDEBUGLIB=no MKPICINSTALL=no
 .\" .\" MKPROFILE=no MKSTATICLIB=no".
 .\" Default: no
 .\" .IP LIBISPRIVATE
 .\" If not "no", act as MKPIC=no and
-.\" , act as "MKDEBUGLIB=no MKLINT=no MKPIC=no
+.\" , act as "MKDEBUGLIB=no MKPIC=no
 .\" MKPROFILE=no", and
 .\" don't install the (.a) library.
 .\" This is useful for "build only" helper libraries.
@@ -478,8 +478,6 @@ Library mode.
 .\" shared libraries.
 .\" This is useful for C++ libraries.
 .\" Default: no
-.\" .IP LINTLIBDIR
-.\" Target directory for lint libraries.
 .IP LDADD
 Additional objects. See LDADD in
 .B mkc.prog.mk
