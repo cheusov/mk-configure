@@ -54,6 +54,7 @@ LDADD+=			${DPLIBS}
 .PHONY: clean
 clean:
 	rm -f ${CLEANFILES}
+	rm -rf ${CLEANDIRS}
 
 ###########
 .PHONY : print-values
@@ -73,6 +74,7 @@ distclean: cleandir
 cleandir: clean mkc_cleandir
 mkc_cleandir:
 	rm -f ${DISTCLEANFILES}
+	rm -rf ${DISTCLEANDIRS}
 
 .PHONY: error-check
 all : error-check
