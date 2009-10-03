@@ -24,10 +24,6 @@ realinstall:	libinstall
 # Data-driven table using make variables to control how shared libraries
 # are built for different platforms and object formats.
 # OBJECT_FMT:		currently either "ELF" or "a.out", from <bsd.own.mk>
-# SHLIB_SOVERSION:	version number to be compiled into a shared library
-#			via -soname. Usualy ${SHLIB_MAJOR} on ELF.
-#			NetBSD/pmax used to use ${SHLIB_MAJOR}[.${SHLIB_MINOR}
-#			[.${SHLIB_TEENY}]]
 # SHLIB_SHFLAGS:	Flags to tell ${LD} to emit shared library.
 #			with ELF, also set shared-lib version for ld.so.
 # SHLIB_LDSTARTFILE:	support .o file, call C++ file-level constructors
@@ -76,7 +72,6 @@ AFLAGS.PIC ?= -KPIC
 # Platform-independent flags for NetBSD a.out shared libraries (and PowerPC)
 SHLIB_LDSTARTFILE=
 SHLIB_LDENDFILE=
-SHLIB_SOVERSION=${SHLIB_FULLVERSION}
 SHLIB_SHFLAGS=
 FFLAGS.PIC ?= -fPIC
 CFLAGS.PIC?= -fPIC -DPIC
@@ -90,8 +85,7 @@ MKPICLIB?= yes
 
 # Platform-independent linker flags for ELF shared libraries
 .if ${OBJECT_FMT} == "ELF"
-SHLIB_SOVERSION=	${SHLIB_MAJOR}
-SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXTFULL}
+SHLIB_SHFLAGS?=		-soname lib${LIB}${SHLIB_EXT1}
 SHLIB_LDSTARTFILE?=	${DESTDIR}/usr/lib/crtbeginS.o
 SHLIB_LDENDFILE?=	${DESTDIR}/usr/lib/crtendS.o
 .endif
