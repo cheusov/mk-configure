@@ -138,11 +138,4 @@ MKPROFILE?=no
 
 MKSHARE?=yes
 
-.if ${MKSHARE} == "no"
-MKCATPAGES=no
-MKDOC=no
-MKINFO=no
-MKMAN=no
-.endif
-
 .endif		# _BSD_OWN_MK_

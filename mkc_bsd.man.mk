@@ -4,6 +4,13 @@
 .if !defined(_MKC_BSD_MAN_MK)
 _MKC_BSD_MAN_MK=1
 
+.if ${MKSHARE} == "no"
+MKCATPAGES=no
+MKDOC=no
+MKINFO=no
+MKMAN=no
+.endif
+
 .if defined(USETBL) && !empty(USETBL:M[Nn][Oo])
 .undef USETBL
 .endif
