@@ -21,8 +21,8 @@ checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
 checking for custom test custom_check1... yes
 checking for custom test custom_check2... no
-checking for program sh... found
-checking for program awk... found
+checking for program sh... /path/to/sh
+checking for program awk... /path/to/awk
 checking for program foobar_prog... NOT FOUND
 ERROR: cannot find header foobar.h
 ERROR: cannot find function foobar

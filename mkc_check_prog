@@ -78,7 +78,7 @@ cleanup
 # finishing
 
 if test -n "$ret"; then
-    printme 'found\n' 1>&2
+    printme "$ret\n" 1>&2
 else
     printme 'NOT FOUND\n' 1>&2
 fi
