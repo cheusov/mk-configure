@@ -11,24 +11,6 @@ _MKC_BSD_LIB_MK=1
 realinstall:	libinstall
 .endif # MKINSTALL
 
-SHLIB_EXT?=	.so
-.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
-SHLIB_EXT1?=	.so.${SHLIB_MAJOR}
-.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
-SHLIB_EXT2?=	.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
-.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
-SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
-SHLIB_EXT3?=	.so.${SHLIB_FULLVERSION}
-.else
-SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif
-.else
-SHLIB_FULLVERSION=${SHLIB_MAJOR}
-.endif
-.endif
-
-SHLIB_EXTFULL?=	.so.${SHLIB_FULLVERSION}
-
 # add additional suffixes not exported.
 # .po is used for profiling object files.
 # .so is used for PIC object files.

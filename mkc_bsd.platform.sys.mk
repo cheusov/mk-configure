@@ -4,8 +4,12 @@ _MKC_PLATFORM_MK=1
 ############################################################
 .if ${OPSYS} == "Linux"
 
+SHLIB_EXT=	.so
+
 ############################################################
 .elif ${OPSYS} == "NetBSD"
+
+SHLIB_EXT=	.so
 
 .if ${MACHINE_ARCH:U} == "sparc64" 
 AFLAGS+= -Wa,-Av9a
@@ -14,11 +18,17 @@ AFLAGS+= -Wa,-Av9a
 ############################################################
 .elif ${OPSYS} == "FreeBSD"
 
+SHLIB_EXT=	.so
+
 ############################################################
 .elif ${OPSYS} == "OpenBSD"
 
+SHLIB_EXT=	.so
+
 ############################################################
 .elif ${OPSYS} == "SunOS"
+
+SHLIB_EXT=	.so
 
 COMPILE.S?=	${AS} ${AFLAGS} ${CPPFLAGS} -P
 CC?=		gcc
@@ -28,6 +38,8 @@ INSTALL?=	/usr/ucb/install
 
 ############################################################
 .elif ${OPSYS} == "Darwin"
+
+SHLIB_EXT=	.dylib
 
 COMPILE.s?=	${AS} ${AFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
@@ -57,6 +69,8 @@ SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
 
 ############################################################
 .elif ${OPSYS} == "Interix"
+
+SHLIB_EXT=	.so
 
 CFLAGS+=	-D_ALL_SOURCE
 INSTALL=	mkc_shell
@@ -111,5 +125,33 @@ CPP?=		${CC} -E
 INSTALL?=	mkc_install
 
 .endif
+
+############################################################
+############################################################
+
+.if defined(SHLIB_EXT) && !empty(SHLIB_EXT)
+
+.if ${SHLIB_EXT} == ".so"
+
+.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+SHLIB_EXT1=	.so.${SHLIB_MAJOR}
+.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+SHLIB_EXT2=	.so.${SHLIB_MAJOR}.${SHLIB_MINOR}
+.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
+SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
+SHLIB_EXT3=	.so.${SHLIB_FULLVERSION}
+.else
+SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}
+.endif
+.else
+SHLIB_FULLVERSION=${SHLIB_MAJOR}
+.endif
+.endif
+
+SHLIB_EXTFULL=	.so.${SHLIB_FULLVERSION}
+
+.endif # SHLIB_EXT
+
+.endif # defined(SHLIB_EXT)
 
 .endif #_MKC_PLATFORM_MK
