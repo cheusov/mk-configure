@@ -78,9 +78,6 @@ fi
 # test
 
 check_itself (){
-}
-
-check_itself (){
     # preparations
     cat > "$tmpc" <<EOF
 void $funcname ();
