@@ -1,3 +1,5 @@
+= mkc_check_ver fails under Solaris (/usr/bin/awk)
+
 = support for cross-compilation
 
 = support for different compilers, OS + compilers,
