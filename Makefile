@@ -8,6 +8,12 @@ EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 
 ##################################################
 
+.if exists(/usr/xpg4/bin/awk)
+AWK?=/usr/xpg4/bin/awk
+.else
+AWK?=/usr/bin/awk
+.endif
+
 PROJECTNAME=		mk-configure
 
 VERSION=		0.11.5
@@ -49,12 +55,14 @@ FILESDIR=		${MKFILESDIR}
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
 INFILES+=		configure.mk mkc.ver.mk
+INSCRIPTS+=		mkc_check_version
 INTEXTS_SED+=		-e 's,@@version@@,${VERSION},g'
+INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
 
 ##################################################
 
 .PHONY: test
-test: configure.mk mkc.ver.mk
+test: configure.mk mkc.ver.mk mkc_check_version
 	@set -e; \
 	PATH=${.CURDIR}:$$PATH; \
 	MKCATPAGES=yes; \
