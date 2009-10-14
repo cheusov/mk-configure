@@ -1,0 +1,38 @@
+#!/bin/sh
+
+set -e
+
+LC_ALL=C
+export LC_ALL
+
+##################################################
+
+checks='
+        __GNUC__:gcc
+         __PCC__:pcc
+__INTEL_COMPILER:icc
+        _MSC_VER:msc
+'
+
+check_itself (){
+    type=unknown
+
+    for i in $checks; do
+	define=`echo $i | cut -d: -f1`
+	cctype=`echo $i | cut -d: -f2`
+	ret=`env MKC_VERBOSE= mkc_check_decl define "$define"`
+	if test _1 = "_$ret"; then
+	    type=$cctype
+	    break
+	fi
+    done
+
+    echo $type
+}
+
+pathpart=compiler_type
+. mkc_check_common.sh
+
+check_and_cache "Checking for compiler type" "$cache"
+
+printme '%s\n' "$ret" 1>&2
