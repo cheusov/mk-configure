@@ -112,9 +112,9 @@ uninstall:
 
 .PHONY: installdirs
 installdirs:
-	if test -n "${INSTALLDIRS:O:u}"; then \
-		${INSTALL} -d ${INSTALLDIRS:O:u}; \
-	fi
+	for d in ${INSTALLDIRS:O:u}; do \
+		${INSTALL} -d "$$d"; \
+	done
 
 test:
 
