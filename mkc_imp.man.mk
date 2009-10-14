@@ -35,8 +35,8 @@ CATDEPS?=	${TMACDIR}/tmac.andoc \
 		${TMACDIR}/tmac.doc
 .endif
 MANTARGET?=	cat
-NROFF?=		nroff -Tascii
-GROFF?=		groff -Tascii
+NROFF?=		nroff
+GROFF?=		groff
 TBL?=		tbl
 
 
@@ -47,12 +47,12 @@ TBL?=		tbl
 .9.cat9 .8.cat8 .7.cat7 .6.cat6 .5.cat5 .4.cat4 .3.cat3 .2.cat2 .1.cat1: \
     ${CATDEPS}
 .if !defined(USETBL)
-	@echo "${NROFF} -mandoc ${.IMPSRC} > ${.TARGET}"
-	@${NROFF} -mandoc ${.IMPSRC} > ${.TARGET} || \
+	@echo "${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET}"
+	@${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET} || \
 	 (rm -f ${.TARGET}; false)
 .else
-	@echo "${TBL} ${.IMPSRC} | ${NROFF} -mandoc > ${.TARGET}"
-	@${TBL} ${.IMPSRC} | ${NROFF} -mandoc > ${.TARGET} || \
+	@echo "${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET}"
+	@${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET} || \
 	 (rm -f ${.TARGET}; false)
 .endif
 

@@ -36,6 +36,8 @@ CXX?=		g++
 CPP?=		${CC} -E
 INSTALL?=	/usr/ucb/install
 
+NROFF_MAN2CAT?=	-man
+
 ############################################################
 .elif ${OPSYS} == "Darwin"
 
@@ -178,5 +180,7 @@ LDFLAGS.soname?=		-soname lib${LIB}${SHLIB_EXT1}
 ############################################################
 
 LDFLAGS.shared?=-shared
+
+NROFF_MAN2CAT?=	-mandoc -Tascii
 
 .endif #_MKC_PLATFORM_MK
