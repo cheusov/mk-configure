@@ -6,6 +6,9 @@ _MKC_PLATFORM_MK=1
 
 SHLIB_EXT=	.so
 
+BINMODE?=	755
+NONBINMODE?=	644
+
 ############################################################
 .elif ${OPSYS} == "NetBSD"
 
@@ -37,6 +40,12 @@ CPP?=		${CC} -E
 INSTALL?=	/usr/ucb/install
 
 NROFF_MAN2CAT?=	-man
+
+LDFLAGS.shared?=	-G
+LDFLAGS.soname?=	-h lib${LIB}${SHLIB_EXT1}
+
+BINMODE?=	755
+NONBINMODE?=	644
 
 ############################################################
 .elif ${OPSYS} == "Darwin"
@@ -71,6 +80,9 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif
 
 SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
+
+BINMODE?=       755
+NONBINMODE?=    644
 
 ############################################################
 .elif ${OPSYS} == "Interix"
