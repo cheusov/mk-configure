@@ -36,3 +36,5 @@ pathpart=compiler_type
 check_and_cache "Checking for compiler type" "$cache"
 
 printme '%s\n' "$ret" 1>&2
+
+echo "$ret"
