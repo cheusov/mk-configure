@@ -64,7 +64,7 @@ INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
 .PHONY: test
 test: configure.mk mkc.ver.mk mkc_check_version
 	@set -e; \
-	PATH=${.CURDIR}:$$PATH; \
+	PATH=${.CURDIR}:${.OBJDIR}:$$PATH; \
 	MKCATPAGES=yes; \
 	NO_AUTODEP=yes; \
 	export PATH MKCATPAGES NO_AUTODEP; \
