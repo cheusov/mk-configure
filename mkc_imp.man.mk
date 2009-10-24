@@ -59,8 +59,8 @@ TBL?=		tbl
 .9.html9 .8.html8 .7.html7 .6.html6 .5.html5 .4.html4 .3.html3 .2.html2 .1.html1: \
     ${CATDEPS}
 .if !defined(USETBL)
-	@echo "${GROFF} -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET}"
-	@${GROFF} -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET} || \
+	@echo "${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET}"
+	@${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET} || \
 	 (rm -f ${.TARGET}; false)
 .else
 	@echo "${TBL} ${.IMPSRC} | ${GROFF} -mdoc2html -P-b -P-u -P-o > ${.TARGET}"
