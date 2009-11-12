@@ -1,4 +1,65 @@
 ======================================================================
+Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
+
+  mk-configure doesn't depend on external pkgsrc-mk-files anymore!
+  The only required thing is bmake itself.  Everything else is inside
+  mk-configure tarball now (yes, I've forked mk-files. Lots of fixes
+  were made, clean-ups, reorganization, additions, improvements,
+  useless code removal ...). Some interesting things were stolen from
+  NetBSD base system's mk-files.  Do not rely on things you found in
+  NetBSD/pkgsrc/sjg mk-files.  Only features documented in
+  mk-configure.7 will be supported.
+
+  A target "install-dirs" has been renamed to "installdirs".
+  Ask mkc.subdir.mk why ;-)
+
+  Lots of updates in mk-configure.7
+
+  mkc.lib.mk:
+    - Commands for building a .so/.dylib shared library
+      is overridable (bmake's commands).
+
+  Shared libraries
+    - support for Darwin (.dylib)
+    - support for Solaris (Solaris' ld)
+    - support for shared libraries is still terrible, more flexibility
+      is needed.
+
+  Variables:
+    - New variables CLEANDIRS and DISTCLEANDIRS.
+    - As of this release MKC_SHOW_CACHED defaults to 0.
+    - New variable MKINSTALL. You can use it for internal static libraries.
+    - New variable MKC_REQD. Minimal mk-configure version required. If
+      this check fails, an entire build fails.
+    - New variable USETBL. NOTE: It is "yes"/"no" variable.
+    - New variable MANZ. NOTE: It is "yes"/"no" variable.
+    - New variable SCRIPTSBIN that defaults to ${BINDIR}.
+    - HTMLDIR is introduced containing directry for .html pages
+      generated from manual pages. html pages are automatically
+      installed if MKHTML=yes.
+    - LDLIBS is not used anymore. Use LDADD for libraries.
+    - DISTCLEANFILES modifyable by user contains a list of files
+      removed by targets "cleandir" and "distdir"
+    - New variable NROFF_MAN2DOC.
+
+  Fixes:
+    - A target "uninstall" now works correctly with .cat files.
+    - configure.mk
+      Workaround for buggy 20081111 < bmake < 20090909.
+      See NetBSD BTS bin/41998:
+          /usr/bin/make: .for loop + ":" inside iter_var = bug
+
+  mk-configure:
+    - "make distclean" run at the root mk-c's directory really removes
+      all garbage.
+    - Tons of new regression tests.
+
+  mkc_check_prog (MKC_CHECK_PROG):
+    - Path to a found program is shown, not just "found".
+
+  mkc_check_compiler - new utility, not used in mkc.*.mk (yet?).
+
+======================================================================
 Version 0.11.1, by Aleksey Cheusov, Sat,  5 Sep 2009 17:25:18 +0300
 
   fixed: path to awk in mkc_check_version script
