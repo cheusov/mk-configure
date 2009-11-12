@@ -4,24 +4,22 @@ Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
   mk-configure doesn't depend on external pkgsrc-mk-files anymore!
   The only required thing is bmake itself.  Everything else is inside
   mk-configure tarball now (yes, I've forked mk-files. Lots of fixes,
-  clean-ups, reorganizations, additions, improvements, useless code
-  removals...). Some interesting things were stolen from NetBSD base
-  system's mk-files.  Do not rely on things you found in
-  NetBSD/pkgsrc/sjg mk-files!  Only features documented in
-  mk-configure.7 will be supported.
+  clean-ups, reorganizations, additions, improvements, removals of
+  useless code...). Some interesting things were stolen from NetBSD
+  base system's mk-files.  Do not rely on things you found in
+  NetBSD/pkgsrc/sjg mk-files or even mk-c sources! Only features
+  documented in mk-configure.7 will be supported.
 
   A target "install-dirs" has been renamed to "installdirs".
   Ask mkc.subdir.mk why ;-)
 
-  Lots of updates in mk-configure.7
-
   mkc.lib.mk:
     - Commands for building a .so/.dylib shared library
-      is overridable (bmake's commands).
+      is overridable by user (using bmake's "commands").
 
   Shared libraries
-    - support for Darwin (.dylib)
-    - support for Solaris (Solaris' ld)
+    - support for Darwin (.dylib and Apple's ld)
+    - support for Solaris (gcc + Solaris' ld)
     - support for shared libraries is still terrible, more flexibility
       is needed.
 
@@ -56,9 +54,9 @@ Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
       run "bmake test" and send me results ;-)
 
   mkc_check_prog (MKC_CHECK_PROG):
-    - Path to a found program is shown, not just "found" message.
+    - Path to a found program is output instead of just "found" message.
 
-  mkc_check_compiler - new utility, not used in mkc.*.mk (yet?).
+  mkc_check_compiler - new utility, not used in mkc.*.mk yet.
 
 ======================================================================
 Version 0.11.1, by Aleksey Cheusov, Sat,  5 Sep 2009 17:25:18 +0300

@@ -209,6 +209,12 @@ If not "no", compress manual pages at installation time.
 If not "yes", build everything but do not install. This option is useful
 for e.g. internal libraries.
 .RI [ yes ]
+.IP MKC_REQD
+Required version of
+.BR mk-configure .
+If a required version is not found,
+.B bmake
+fails.
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -394,6 +400,9 @@ If "no", don't build or install the catman pages.
 .IP MKHTML
 If "no", don't build or install the HTML man pages.
 .RI [ no ]
+.IP HTMLDIR
+Target directory for html pages generated from man pages.
+.RI [ ${MANDIR} ]
 .IP MKINFO
 If "no", don't build or install Info documentation from
 Texinfo source files.

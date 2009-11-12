@@ -1,8 +1,8 @@
-= mkc_check_ver fails under Solaris (/usr/bin/awk)
+= 'bmake depend' and/or automatic generating .d files.
 
 = support for cross-compilation
 
-= support for different compilers, OS + compilers,
+= support for different compilers, OS + compilers + linker,
   OS + hardware + compiler etc.
 
 = MKC_CHECK_CUSTOM based on sh scripts.
