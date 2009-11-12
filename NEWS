@@ -3,11 +3,11 @@ Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
 
   mk-configure doesn't depend on external pkgsrc-mk-files anymore!
   The only required thing is bmake itself.  Everything else is inside
-  mk-configure tarball now (yes, I've forked mk-files. Lots of fixes
-  were made, clean-ups, reorganization, additions, improvements,
-  useless code removal ...). Some interesting things were stolen from
-  NetBSD base system's mk-files.  Do not rely on things you found in
-  NetBSD/pkgsrc/sjg mk-files.  Only features documented in
+  mk-configure tarball now (yes, I've forked mk-files. Lots of fixes,
+  clean-ups, reorganizations, additions, improvements, useless code
+  removals...). Some interesting things were stolen from NetBSD base
+  system's mk-files.  Do not rely on things you found in
+  NetBSD/pkgsrc/sjg mk-files!  Only features documented in
   mk-configure.7 will be supported.
 
   A target "install-dirs" has been renamed to "installdirs".
@@ -52,10 +52,11 @@ Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
   mk-configure:
     - "make distclean" run at the root mk-c's directory really removes
       all garbage.
-    - Tons of new regression tests.
+    - TONS OF NEW REGRESSION TESTS. If you are running an exotic platform,
+      run "bmake test" and send me results ;-)
 
   mkc_check_prog (MKC_CHECK_PROG):
-    - Path to a found program is shown, not just "found".
+    - Path to a found program is shown, not just "found" message.
 
   mkc_check_compiler - new utility, not used in mkc.*.mk (yet?).
 
