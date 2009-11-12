@@ -1,5 +1,11 @@
-#	$NetBSD: sys.mk,v 1.1.1.1 2006/07/14 23:13:01 jlam Exp $
-#	@(#)sys.mk	8.2 (Berkeley) 3/21/94
+# Copyright (c) 2009 by Aleksey Cheusov
+# Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
+# Copyright (c) 1988, 1989, 1993 The Regents of the University of California
+# Copyright (c) 1988, 1989 by Adam de Boor
+# Copyright (c) 1989 by Berkeley Softworks
+#
+# See COPYRIGHT file in the distribution.
+############################################################
 
 .ifndef OPSYS
 OPSYS!=			uname -s

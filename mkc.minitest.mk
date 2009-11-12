@@ -1,3 +1,8 @@
+# Copyright (c) 2009 by Aleksey Cheusov
+#
+# See COPYRIGHT file in the distribution.
+############################################################
+
 .ifndef OPSYS
 OPSYS != uname -s
 .endif

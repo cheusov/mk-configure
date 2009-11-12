@@ -1,5 +1,11 @@
-#	$NetBSD: bsd.man.mk,v 1.1.1.1 2006/07/14 23:13:00 jlam Exp $
-#	@(#)bsd.man.mk	8.1 (Berkeley) 6/8/93
+# Copyright (c) 2009 by Aleksey Cheusov
+# Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
+# Copyright (c) 1988, 1989, 1993 The Regents of the University of California
+# Copyright (c) 1988, 1989 by Adam de Boor
+# Copyright (c) 1989 by Berkeley Softworks
+#
+# See COPYRIGHT file in the distribution.
+############################################################
 
 .if !defined(_MKC_IMP_MAN_MK)
 _MKC_IMP_MAN_MK=1

@@ -1,5 +1,11 @@
 #!/bin/sh
 
+############################################################
+# Copyright (c) 2009 by Aleksey Cheusov
+#
+# See COPYRIGHT file in the distribution.
+############################################################
+
 # Replacement for which(1) that sucks so much on some systems, e.g. Solaris
 
 if test "$1" = "-x"; then

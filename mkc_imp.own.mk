@@ -1,4 +1,11 @@
-#	$NetBSD: bsd.own.mk.in,v 1.2 2007/08/25 09:33:57 rillig Exp $
+# Copyright (c) 2009 by Aleksey Cheusov
+# Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
+# Copyright (c) 1988, 1989, 1993 The Regents of the University of California
+# Copyright (c) 1988, 1989 by Adam de Boor
+# Copyright (c) 1989 by Berkeley Softworks
+#
+# See COPYRIGHT file in the distribution.
+############################################################
 
 .if !defined(_BSD_OWN_MK_)
 _BSD_OWN_MK_=1

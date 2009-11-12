@@ -1,3 +1,8 @@
+# Copyright (c) 2009 by Aleksey Cheusov
+#
+# See COPYRIGHT file in the distribution.
+############################################################
+
 # include file, not executable
 # common variables and functions for mk_check_executables
 

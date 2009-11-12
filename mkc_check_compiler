@@ -1,5 +1,11 @@
 #!/bin/sh
 
+############################################################
+# Copyright (c) 2009 by Aleksey Cheusov
+#
+# See COPYRIGHT file in the distribution.
+############################################################
+
 set -e
 
 LC_ALL=C

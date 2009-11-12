@@ -1,5 +1,11 @@
 #!@AWK@ -f
 
+############################################################
+# Copyright (c) 2009 by Aleksey Cheusov
+#
+# See COPYRIGHT file in the distribution.
+############################################################
+
 #
 # usage:   _mkc_check_version <reqd> <version>
 # example: _mkc_check_version 0.9.0  0.10.0
