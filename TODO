@@ -1,5 +1,7 @@
 = 'bmake depend' and/or automatic generating .d files.
 
+= Implicit YACC|LEX|... -> MKC_REQUIRE_PROGS rules
+
 = support for cross-compilation
 
 = support for different compilers, OS + compilers + linker,
@@ -11,14 +13,12 @@
 
 = implement MANBZ2?
 
-= mkc_install
+= mkc_install - replacement for broken/absent native install(1)
 
-= mk-files supports building the shared libraries only by GNU cc and
-  GNU ld, and therefore mk-configure is also limited to them.
-  Currently building shared libraries doesn't work on Solaris and
-  Darwin. This is BAD news and needs to be fixed ASAP.
+= mkc_mkdir   - portable BSD licensed "mkdir -p"
 
-= COPTS.<prog> and COPTS.lib<lib> variables
+=    COPTS.<prog> and COPTS.lib<lib> variables
+  or COPTS_<prog> and COPTS_lib<lib>?
 
 = MLINKS?
 
