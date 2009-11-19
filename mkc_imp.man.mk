@@ -35,11 +35,6 @@ MKCATPAGES=no
 realinstall:	${MANINSTALL}
 .endif
 
-TMACDIR?=	/usr/share/groff/tmac
-.if exists(${TMACDIR}/tmac.andoc) && exists(${TMACDIR}/tmac.doc)
-CATDEPS?=	${TMACDIR}/tmac.andoc \
-		${TMACDIR}/tmac.doc
-.endif
 MANTARGET?=	cat
 NROFF?=		nroff
 GROFF?=		groff
@@ -50,8 +45,7 @@ TBL?=		tbl
 	   .cat1 .cat2 .cat3 .cat4 .cat5 .cat6 .cat7 .cat8 .cat9 \
 	   .html1 .html2 .html3 .html4 .html5 .html6 .html7 .html8 .html9
 
-.9.cat9 .8.cat8 .7.cat7 .6.cat6 .5.cat5 .4.cat4 .3.cat3 .2.cat2 .1.cat1: \
-    ${CATDEPS}
+.9.cat9 .8.cat8 .7.cat7 .6.cat6 .5.cat5 .4.cat4 .3.cat3 .2.cat2 .1.cat1:
 .if !defined(USETBL)
 	@echo "${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET}"
 	@${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET} || \
@@ -62,8 +56,7 @@ TBL?=		tbl
 	 (rm -f ${.TARGET}; false)
 .endif
 
-.9.html9 .8.html8 .7.html7 .6.html6 .5.html5 .4.html4 .3.html3 .2.html2 .1.html1: \
-    ${CATDEPS}
+.9.html9 .8.html8 .7.html7 .6.html6 .5.html5 .4.html4 .3.html3 .2.html2 .1.html1:
 .if !defined(USETBL)
 	@echo "${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET}"
 	@${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET} || \
