@@ -30,7 +30,7 @@ CLEANFILES+=	${SRCS:M*.y:.y=.h}
 .endif
 
 .if !empty(SRCS:N*.h:N*.sh:N*.fth)
-OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:R:S/$/.o/g}
+OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 .endif
 
 .if defined(OBJS) && !empty(OBJS)

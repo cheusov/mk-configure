@@ -92,7 +92,7 @@ FFLAGS+=	${FOPTS}
 
 _LIBS=lib${LIB}.a
 
-OBJS+=${SRCS:N*.h:N*.sh:R:S/$/.o/g}
+OBJS+=${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 
 .if ${MKPROFILE} != "no"
 _LIBS+=lib${LIB}_p.a
