@@ -12,4 +12,8 @@ LDADD+=		${DPLIBS}
 LDADD+=		-ll
 .endif
 
+.if !empty(SRCS:U:M*.y)
+LDADD+=		-ly
+.endif
+
 .endif # MKC_IMP.FINAL.MK

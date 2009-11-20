@@ -3,6 +3,7 @@ SUBDIR+=	hello_scripts
 SUBDIR+=	hello_files
 SUBDIR+=	hello_sizeof
 SUBDIR+=	hello_lex
+SUBDIR+=	hello_yacc
 SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
 SUBDIR+=	hello_dlopen

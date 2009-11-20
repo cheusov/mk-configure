@@ -1,0 +1,31 @@
+4
+45
+-1
+45
+=========== all ============
+/objdir/Makefile
+/objdir/calc.c
+/objdir/calc.o
+/objdir/calc.y
+/objdir/expect.out
+/objdir/hello_calc
+/objdir/hello_yacc.test.out.tmp
+/objdir/input.txt
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/hello_calc
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/calc.y
+/objdir/expect.out
+/objdir/hello_yacc.test.out.tmp
+/objdir/input.txt
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/calc.y
+/objdir/expect.out
+/objdir/hello_yacc.test.out.tmp
+/objdir/input.txt
+/objdir/test.mk
