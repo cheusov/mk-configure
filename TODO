@@ -2,7 +2,6 @@
 
 = Regression tests:
   - SRCS = subdir/source.c
-  - .y
   - optional .f tests
   - optional .p tests
   - optional(!) glib2 tests
