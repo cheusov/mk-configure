@@ -1,8 +1,21 @@
 = 'bmake depend' and/or automatic generating .d files.
 
-= Implicit YACC|LEX|... -> MKC_REQUIRE_PROGS rules
+= Regression tests:
+  - SRCS = subdir/source.c
+  - .y + .l
+  - optional .f tests
+  - optional .p tests
+  - optional(!) glib2 tests
+
+= PROGS= a b c d
+  SRCS.a = ...
+  SRCS.b = ...
+
+= Implicit YACC|LEX|FC|PC|... -> MKC_REQUIRE_PROGS rules
 
 = support for cross-compilation
+
+= improve share libraries support
 
 = support for different compilers, OS + compilers + linker,
   OS + hardware + compiler etc.
