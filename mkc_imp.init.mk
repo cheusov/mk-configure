@@ -20,8 +20,6 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .ifndef __initialized__
 __initialized__=1
 
-LDADD+=			${DPLIBS}
-
 ###########
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"

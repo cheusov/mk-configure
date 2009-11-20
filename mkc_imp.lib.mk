@@ -243,4 +243,6 @@ INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 #.include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
 
+.include <mkc_imp.final.mk>
+
 .endif #_MKC_IMP_LIB_MK
