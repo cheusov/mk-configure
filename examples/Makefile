@@ -2,6 +2,7 @@ SUBDIR+=	hello_world
 SUBDIR+=	hello_scripts
 SUBDIR+=	hello_files
 SUBDIR+=	hello_sizeof
+SUBDIR+=	hello_lex
 SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
 SUBDIR+=	hello_dlopen
