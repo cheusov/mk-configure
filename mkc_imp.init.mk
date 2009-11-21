@@ -21,6 +21,8 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 __initialized__=1
 
 ###########
+MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
+
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
@@ -55,7 +57,7 @@ mkc_cleandir:
 	rm -f ${DISTCLEANFILES}
 	rm -rf ${DISTCLEANDIRS}
 
-.PHONY: error-check
+.PHONY: all error-check
 all : error-check
 error-check:
 	@for msg in ${MKC_ERR_MSG}; do \
