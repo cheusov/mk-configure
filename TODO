@@ -1,7 +1,6 @@
 = 'bmake depend' and/or automatic generating .d files.
 
 = Regression tests:
-  - SRCS = subdir/source.c
   - optional .f tests
   - optional .p tests
   - optional(!) glib2 tests
