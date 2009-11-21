@@ -59,6 +59,10 @@ check_and_cache (){
 
 	# test itself
 	ret=`check_itself "$@"`
-	echo "$ret" > "$_cache"
+	if test "$MKC_NOCACHE" = 1; then
+	    rm -f $tmpc $tmpo $tmpexe $tmperr
+	else
+	    echo "$ret" > "$_cache"
+	fi
     fi
 }
