@@ -1,6 +1,7 @@
 Compiled by GNU C Compiler
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_define__MSC_VER.c
 /objdir/_mkc_define__MSC_VER.err
 /objdir/_mkc_define__MSC_VER.res
@@ -23,6 +24,7 @@ Compiled by GNU C Compiler
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_define__MSC_VER.c
 /objdir/_mkc_define__MSC_VER.err
 /objdir/_mkc_define__MSC_VER.res

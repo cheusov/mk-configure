@@ -5,6 +5,7 @@ sizeof(size_t)=n
 sizeof(void*)=n
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_sizeof_int.c
 /objdir/_mkc_sizeof_int.err
 /objdir/_mkc_sizeof_int.res
@@ -30,6 +31,7 @@ sizeof(void*)=n
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_sizeof_int.c
 /objdir/_mkc_sizeof_int.err
 /objdir/_mkc_sizeof_int.res

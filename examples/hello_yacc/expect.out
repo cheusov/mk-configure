@@ -4,6 +4,7 @@
 45
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/calc.c
 /objdir/calc.o
 /objdir/calc.y
@@ -17,6 +18,7 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/calc.y
 /objdir/expect.out
 /objdir/hello_yacc.test.out.tmp

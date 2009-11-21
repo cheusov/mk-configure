@@ -11,50 +11,89 @@
 _MKC_PLATFORM_MK=1
 
 ############################################################
-.if ${OPSYS} == "Linux"
+# CC compiler type
+.if make(cleandir) || make(distclean) || make(clean)
+DISTCLEANFILES+=	_mkc_compiler_type.res
+.elif !defined(SKIP_CONFIGURE_MK) && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
+mkc.cc_type.environ= CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
+CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler
+.endif
 
-SHLIB_EXT=	.so
+CC_TYPE?=	unknown
 
-BINMODE?=	755
-NONBINMODE?=	644
+cc_type:
+	@echo ${CC_TYPE}
 
-############################################################
-.elif ${OPSYS} == "NetBSD"
+SHLIB_EXT.NetBSD=	.so
+BINMODE.NetBSD?=	755
+NONBINMODE.NetBSD?=	644
+INSTALL.NetBSD=		/usr/bin/install
 
-SHLIB_EXT=	.so
+SHLIB_EXT.OpenBSD=	.so
+BINMODE.OpenBSD?=	755
+NONBINMODE.OpenBSD?=	644
+INSTALL.OpenBSD=	/usr/bin/install
 
-.if ${MACHINE_ARCH:U} == "sparc64" 
-AFLAGS+= -Wa,-Av9a
+SHLIB_EXT.FreeBSD=	.so
+BINMODE.FreeBSD?=	755
+NONBINMODE.FreeBSD?=	644
+INSTALL.FreeBSD=	/usr/bin/install
+
+SHLIB_EXT.DragonFlyBSD=		.so
+BINMODE.DragonFlyBSD?=		755
+NONBINMODE.DragonFlyBSD?=	644
+INSTALL.DragonFlyBSD=		/usr/bin/install
+
+SHLIB_EXT.Linux=	.so
+BINMODE.Linux?=		755
+NONBINMODE.Linux?=	644
+INSTALL.Linux=		install
+
+SHLIB_EXT.SunOS=	.so
+BINMODE.SunOS?=		755
+NONBINMODE.SunOS?=	644
+INSTALL.SunOS=		/usr/ucb/install
+
+SHLIB_EXT.Darwin=	.so
+BINMODE.Darwin?=	755
+NONBINMODE.Darwin?=	644
+INSTALL.Darwin=		/usr/bin/install
+
+.if defined(SHLIB_EXT.${TARGET_OPSYS})
+SHLIB_EXT=${SHLIB_EXT.${TARGET_OPSYS}}
+.else
+SHLIB_EXT=.so
+.endif
+
+.if defined(BINMODE.${TARGET_OPSYS})
+BINMODE=${BINMODE.${TARGET_OPSYS}}
+.else
+BINMODE=755
+.endif
+
+.if defined(NONBINMODE.${TARGET_OPSYS})
+NONBINMODE=${NONBINMODE.${TARGET_OPSYS}}
+.else
+NONBINMODE=644
+.endif
+
+.if defined(INSTALL.${OPSYS})
+INSTALL=${INSTALL.${OPSYS}}
+.else
+INSTALL=mkc_shell
 .endif
 
 ############################################################
-.elif ${OPSYS} == "FreeBSD"
+.if ${OPSYS} == "SunOS"
 
-SHLIB_EXT=	.so
-
-############################################################
-.elif ${OPSYS} == "OpenBSD"
-
-SHLIB_EXT=	.so
-
-############################################################
-.elif ${OPSYS} == "SunOS"
-
-SHLIB_EXT=	.so
-
-COMPILE.S?=	${AS} ${AFLAGS} ${CPPFLAGS} -P
 CC?=		gcc
 CXX?=		g++
 CPP?=		${CC} -E
-INSTALL?=	/usr/ucb/install
 
 NROFF_MAN2CAT?=	-man
 
 LDFLAGS.shared?=	-G
 LDFLAGS.soname?=	-h lib${LIB}${SHLIB_EXT1}
-
-BINMODE?=	755
-NONBINMODE?=	644
 
 ############################################################
 .elif ${OPSYS} == "Darwin"
@@ -90,16 +129,12 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 
 SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
 
-BINMODE?=       755
-NONBINMODE?=    644
-
 ############################################################
 .elif ${OPSYS} == "Interix"
 
 SHLIB_EXT=	.so
 
 CFLAGS+=	-D_ALL_SOURCE
-INSTALL=	mkc_shell
 
 ############################################################
 .elif ${OPSYS} == "UnixWare"
@@ -203,5 +238,7 @@ LDFLAGS.soname?=		-soname lib${LIB}${SHLIB_EXT1}
 LDFLAGS.shared?=-shared
 
 NROFF_MAN2CAT?=	-mandoc -Tascii
+
+CC?=	cc
 
 .endif #_MKC_PLATFORM_MK

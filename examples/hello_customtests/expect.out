@@ -1,5 +1,6 @@
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_alloca_in_alloca_h.err
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err
@@ -18,6 +19,7 @@ alloca(3) succeeded
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_alloca_in_alloca_h.err
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err

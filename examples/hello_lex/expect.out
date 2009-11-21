@@ -1,6 +1,7 @@
 # of lines = 2, # of chars = 26
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/expect.out
 /objdir/hello_lex
 /objdir/hello_lex.c
@@ -14,6 +15,7 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/expect.out
 /objdir/hello_lex.l
 /objdir/hello_lex.test.out.tmp

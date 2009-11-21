@@ -1,6 +1,7 @@
 returned address: F00DBEAF
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_funclib_dlopen.c
 /objdir/_mkc_funclib_dlopen.err
 /objdir/_mkc_funclib_dlopen.res
@@ -17,6 +18,7 @@ returned address: F00DBEAF
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_funclib_dlopen.c
 /objdir/_mkc_funclib_dlopen.err
 /objdir/_mkc_funclib_dlopen.res

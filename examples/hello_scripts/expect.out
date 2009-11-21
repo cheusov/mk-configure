@@ -3,6 +3,7 @@ Hello World 2!
 Hello World 3!
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
@@ -24,6 +25,7 @@ Hello World 3!
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
@@ -44,6 +46,7 @@ Hello World 3!
 /objdir/test.mk
 ==== install MKINSTALL=no ====
 /objdir/Makefile
+/objdir/_mkc_compiler_type.res
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
