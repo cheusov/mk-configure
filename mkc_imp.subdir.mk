@@ -51,14 +51,16 @@ SUBDIR_${targ} += .WAIT
 .PHONY: ${targ}-${dir}
 ${targ}-${dir}: .MAKE __recurse
 SUBDIR_${targ} += ${targ}-${dir}
-.endif
-.endfor
+.endif # .WAIT
+.endfor # dir
+
 .if defined(__REALSUBDIR)
 .PHONY: subdir-${targ}
 subdir-${targ}: ${SUBDIR_${targ}}
 ${targ}: subdir-${targ}
 .endif
-.endfor
+
+.endfor # targ
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
