@@ -21,97 +21,112 @@ CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler
 
 CC_TYPE?=	unknown
 
-cc_type:
-	@echo ${CC_TYPE}
+####################
+SHLIB_EXT.Darwin=	.dylib
 
-SHLIB_EXT.NetBSD=	.so
-BINMODE.NetBSD?=	755
-NONBINMODE.NetBSD?=	644
+SHLIB_EXT?=		${SHLIB_EXT.${TARGET_OPSYS}:U.so}
+
+####################
+BINMODE.Interix=	775
+NONBINMODE.Interix=	664
+
+BINMODE?=		${BINMODE.${TARGET_OPSYS}:U755}
+NONBINMODE?=		${BINMODE.${TARGET_OPSYS}:U644}
+
+####################
 INSTALL.NetBSD=		/usr/bin/install
-
-SHLIB_EXT.OpenBSD=	.so
-BINMODE.OpenBSD?=	755
-NONBINMODE.OpenBSD?=	644
 INSTALL.OpenBSD=	/usr/bin/install
-
-SHLIB_EXT.FreeBSD=	.so
-BINMODE.FreeBSD?=	755
-NONBINMODE.FreeBSD?=	644
 INSTALL.FreeBSD=	/usr/bin/install
-
-SHLIB_EXT.DragonFlyBSD=		.so
-BINMODE.DragonFlyBSD?=		755
-NONBINMODE.DragonFlyBSD?=	644
-INSTALL.DragonFlyBSD=		/usr/bin/install
-
-SHLIB_EXT.Linux=	.so
-BINMODE.Linux?=		755
-NONBINMODE.Linux?=	644
+INSTALL.DragonFlyBSD=	/usr/bin/install
 INSTALL.Linux=		install
-
-SHLIB_EXT.SunOS=	.so
-BINMODE.SunOS?=		755
-NONBINMODE.SunOS?=	644
-INSTALL.SunOS=		/usr/ucb/install
-
-SHLIB_EXT.Darwin=	.so
-BINMODE.Darwin?=	755
-NONBINMODE.Darwin?=	644
 INSTALL.Darwin=		/usr/bin/install
+INSTALL.SunOS=		/usr/ucb/install
+INSTALL.UnixWare=	/usr/ucb/install
 
-.if defined(SHLIB_EXT.${TARGET_OPSYS})
-SHLIB_EXT=${SHLIB_EXT.${TARGET_OPSYS}}
-.else
-SHLIB_EXT=.so
-.endif
+INSTALL?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
-.if defined(BINMODE.${TARGET_OPSYS})
-BINMODE=${BINMODE.${TARGET_OPSYS}}
-.else
-BINMODE=755
-.endif
+####################
 
-.if defined(NONBINMODE.${TARGET_OPSYS})
-NONBINMODE=${NONBINMODE.${TARGET_OPSYS}}
-.else
-NONBINMODE=644
-.endif
+CC.SunOS=	gcc
+CXX.SunOS=	g++
+CPP.SunOS=	${CC} -E
 
-.if defined(INSTALL.${OPSYS})
-INSTALL=${INSTALL.${OPSYS}}
-.else
-INSTALL=mkc_shell
-.endif
+CC.UnixWare=	gcc
+CXX.UnixWare=	g++
+CPP.UnixWare=	${CC} -E
+
+CXX.OSF1=	cxx
+CPP.OSF1=	${CC} -E
+
+CXX.IRIX=	CC
+
+CPP.AIX=	${CC} -E
+
+CC?=		${CC.${TARGET_OPSYS}:Ucc}
+CXX?=		${CC.${TARGET_OPSYS}:Uc++}
+CPP?=		${CC.${TARGET_OPSYS}:Ucpp}
+
+####################
+CPPFLAGS.Interix=	-D_ALL_SOURCE
+CPPFLAGS.UnixWare=	-DUNIXWARE
+
+CPPFLAGS+=	${CPPFLAGS.${TARGET_OPSYS}:U}
+
+####################
+#FFLAGS.pic?= -fPIC
+
+####################
+CFLAGS.pic.gcc?=	-fPIC -DPIC
+CPPFLAGS.pic.gcc?=	-DPIC
+
+CFLAGS.pic.icc?=	-fPIC -DPIC
+CPPFLAGS.pic.icc?=	-DPIC
+
+CFLAGS.pic.pcc?=	-k -DPIC
+CPPFLAGS.pic.pcc?=	-DPIC
+
+CFLAGS.pic?=		${CFLAGS.pic.${CC_TYPE}:U}
+CPPFLAGS.pic?=		${CPPFLAGS.pic.${CC_TYPE}:U}
+
+####################
+RANLIB.IRIX=		true
+
+RANLIB?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
+
+####################
+NROFF_MAN2CAT.SunOS?=		-man
+
+NROFF_MAN2CAT?=			${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
+
+####################
+LD_TYPE.SunOS=			sunld
+LD_TYPE.Darwin=			darwinld
+
+LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
+
+####################
+OBJECT_FMT?=			ELF
+
+####################
+LDFLAGS.shared.sunld?=		-G
+LDFLAGS.soname.sunld?=		-h lib${LIB}.so.${SHLIB_MAJOR}
+
+LDFLAGS.shared.darwinld?=	-dylib
+LDFLAGS.soname.darwinld?=
+
+LDFLAGS.shared.gnuld?=		-shared
+LDFLAGS.soname.gnuld?=		-soname lib${LIB}.${SHLIB_EXT}.${SHLIB_MAJOR}
+
+LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
+LDFLAGS.soname?=		${LDFLAGS.soname.${LD_TYPE}:U}
 
 ############################################################
-.if ${OPSYS} == "SunOS"
-
-CC?=		gcc
-CXX?=		g++
-CPP?=		${CC} -E
-
-NROFF_MAN2CAT?=	-man
-
-LDFLAGS.shared?=	-G
-LDFLAGS.soname?=	-h lib${LIB}${SHLIB_EXT1}
-
 ############################################################
-.elif ${OPSYS} == "Darwin"
-
-SHLIB_EXT=	.dylib
+.if ${OPSYS} == "Darwin"
 
 COMPILE.s?=	${AS} ${AFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
 
-YFLAGS?=	-d
-
-LDFLAGS.shared?=	-dylib
-LDFLAGS.soname?=
-
-LDFLAGS_WHOLEARCH?=
-LDFLAGS_NOWHOLEARCH?=
-
-SHLIB_EXT?=	.dylib
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1?=	.${SHLIB_MAJOR}.dylib
 .if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
@@ -121,71 +136,15 @@ SHLIB_EXT3?=	.${SHLIB_FULLVERSION}.dylib
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
 .else
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif
+.endif # SHLIB_TEENY
 .else
 SHLIB_FULLVERSION=${SHLIB_MAJOR}
-.endif
-.endif
+.endif # SHLIB_MINOR
+.endif # SHLIB_MAJOR
 
 SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
 
-############################################################
-.elif ${OPSYS} == "Interix"
-
-SHLIB_EXT=	.so
-
-CFLAGS+=	-D_ALL_SOURCE
-
-############################################################
-.elif ${OPSYS} == "UnixWare"
-
-CC?=		gcc
-CXX?=		g++
-FC?=		g77
-# gcc on Unixware has no internal macro to identify the system
-CFLAGS?=	-DUNIXWARE ${DBG}
-CXXFLAGS?=	-DUNIXWARE ${CFLAGS}
-CPPFLAGS?=	-DUNIXWARE
-#
-INSTALL?=	/usr/ucb/install
-
-############################################################
-.elif ${OPSYS} == "OSF1"
-
-CXX?=		cxx
-CPP?=		${CC} -E
-INSTALL?=	mkc_install
-
-############################################################
-.elif ${OPSYS} == "Minix"
-
-############################################################
-.elif ${OPSYS} == "IRIX"
-
-RANLIB?=	true
-CXX=		CC
-
-.ifndef _IRIXVERS
-_IRIXVERS!=	uname -r
-.endif
-.if !empty(_IRIXVERS:M6*)
-CPP?=		CC -E
-.else
-CPP?=		cpp
-.endif
-
-INSTALL?=	mkc_install
-
-############################################################
-.elif ${OPSYS} == "HPUX"
-
-############################################################
-.elif ${OPSYS} == "AIX"
-
-CPP?=		${CC} -E
-INSTALL?=	mkc_install
-
-.endif
+.endif # Darwin!
 
 ############################################################
 ############################################################
@@ -203,11 +162,11 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
 SHLIB_EXT3=	.so.${SHLIB_FULLVERSION}
 .else
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif
+.endif # SHLIB_TEENY
 .else
 SHLIB_FULLVERSION=${SHLIB_MAJOR}
-.endif
-.endif
+.endif # SHLIB_MINOR
+.endif # SHLIB_MAJOR
 
 SHLIB_EXTFULL=	.so.${SHLIB_FULLVERSION}
 
@@ -217,28 +176,5 @@ SHLIB_EXTFULL=	.so.${SHLIB_FULLVERSION}
 
 ############################################################
 ############################################################
-
-OBJECT_FMT?=	ELF
-
-# Platform-independent flags for NetBSD a.out shared libraries (and PowerPC)
-FFLAGS.pic?= -fPIC
-CFLAGS.pic?= -fPIC -DPIC
-CPPFLAGS.pic?= -DPIC 
-CAFLAGS.pic?= ${CPPFLAGS.pic} ${CFLAGS.pic}
-AFLAGS.pic?= -k
-
-# Platform-independent linker flags for ELF shared libraries
-.if ${OBJECT_FMT} == "ELF"
-LDFLAGS.soname?=		-soname lib${LIB}${SHLIB_EXT1}
-.endif
-
-############################################################
-############################################################
-
-LDFLAGS.shared?=-shared
-
-NROFF_MAN2CAT?=	-mandoc -Tascii
-
-CC?=	cc
 
 .endif #_MKC_PLATFORM_MK
