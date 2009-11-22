@@ -58,7 +58,7 @@ check_and_cache (){
 	printme '%s' "$_msg... " 1>&2
 
 	# test itself
-	ret=`check_itself "$@"`
+	ret=`check_itself "$@" 2>"$tmperr"`
 	if test "$MKC_NOCACHE" = 1; then
 	    rm -f $tmpc $tmpo $tmpexe $tmperr
 	else
