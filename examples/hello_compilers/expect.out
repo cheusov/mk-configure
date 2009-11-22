@@ -14,6 +14,8 @@ Compiled by GNU C Compiler
 /objdir/_mkc_define___PCC__.c
 /objdir/_mkc_define___PCC__.err
 /objdir/_mkc_define___PCC__.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/compiler_test
 /objdir/compiler_test.c
 /objdir/compiler_test.o
@@ -38,6 +40,8 @@ Compiled by GNU C Compiler
 /objdir/_mkc_define___PCC__.c
 /objdir/_mkc_define___PCC__.err
 /objdir/_mkc_define___PCC__.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/compiler_test.c
 /objdir/expect.out
 /objdir/hello_compilers.test.out.tmp

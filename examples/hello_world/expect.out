@@ -4,6 +4,8 @@ Hello World!
 /objdir/Makefile
 /objdir/README
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_world
 /objdir/hello_world.c
@@ -20,6 +22,8 @@ Hello World!
 /objdir/Makefile
 /objdir/README
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_world.c
 /objdir/hello_world.test.out.tmp

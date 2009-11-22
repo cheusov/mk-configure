@@ -5,6 +5,8 @@ glib_micro_version=N
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/expect.out
@@ -19,6 +21,8 @@ glib_micro_version=N
 ========== clean ===========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/expect.out

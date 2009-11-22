@@ -6,6 +6,8 @@
 /objdir/hello/_mkc_header_stdio_h.c
 /objdir/hello/_mkc_header_stdio_h.err
 /objdir/hello/_mkc_header_stdio_h.res
+/objdir/hello/_mkc_prog_cc.err
+/objdir/hello/_mkc_prog_cc.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects
 /objdir/hello/hello_subprojects.1
@@ -18,6 +20,8 @@
 /objdir/hello/test.mk
 /objdir/libhello1/Makefile
 /objdir/libhello1/_mkc_compiler_type.res
+/objdir/libhello1/_mkc_prog_cc.err
+/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/hello1.o
@@ -30,6 +34,8 @@
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
 /objdir/libhello2/_mkc_compiler_type.res
+/objdir/libhello2/_mkc_prog_c++.err
+/objdir/libhello2/_mkc_prog_c++.res
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
@@ -57,6 +63,8 @@
 /objdir/hello/_mkc_header_stdio_h.c
 /objdir/hello/_mkc_header_stdio_h.err
 /objdir/hello/_mkc_header_stdio_h.res
+/objdir/hello/_mkc_prog_cc.err
+/objdir/hello/_mkc_prog_cc.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects.1.in
 /objdir/hello/hello_subprojects.c
@@ -64,11 +72,15 @@
 /objdir/hello/test.mk
 /objdir/libhello1/Makefile
 /objdir/libhello1/_mkc_compiler_type.res
+/objdir/libhello1/_mkc_prog_cc.err
+/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
 /objdir/libhello2/_mkc_compiler_type.res
+/objdir/libhello2/_mkc_prog_c++.err
+/objdir/libhello2/_mkc_prog_c++.res
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/linkme.mk

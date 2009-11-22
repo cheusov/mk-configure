@@ -30,6 +30,8 @@
 /objdir/_mkc_funclib_strlcpy.c
 /objdir/_mkc_funclib_strlcpy.err
 /objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello.c
 /objdir/hello.o
@@ -50,6 +52,8 @@
 /objdir/_mkc_funclib_strlcpy.c
 /objdir/_mkc_funclib_strlcpy.err
 /objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello.c
 /objdir/hello_strlcpy.test.out.tmp

@@ -25,6 +25,7 @@ checking for custom test custom_check2... no
 checking for program sh... /path/to/sh
 checking for program awk... /path/to/awk
 checking for program foobar_prog... NOT FOUND
+checking for program cc... /path/to/cc
 ERROR: cannot find header foobar.h
 ERROR: cannot find function foobar
 ERROR: cannot find function barbaz:z

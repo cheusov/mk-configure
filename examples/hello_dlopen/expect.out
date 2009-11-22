@@ -8,6 +8,8 @@ returned address: F00DBEAF
 /objdir/_mkc_funclib_dlopen_dl.c
 /objdir/_mkc_funclib_dlopen_dl.err
 /objdir/_mkc_funclib_dlopen_dl.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/dlopen_test
 /objdir/dlopen_test.c
 /objdir/dlopen_test.o
@@ -26,6 +28,8 @@ returned address: F00DBEAF
 /objdir/_mkc_funclib_dlopen_dl.c
 /objdir/_mkc_funclib_dlopen_dl.err
 /objdir/_mkc_funclib_dlopen_dl.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/dlopen_test.c
 /objdir/expect.out
 /objdir/hello_dlopen.test.out.tmp

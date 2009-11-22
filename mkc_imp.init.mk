@@ -20,17 +20,44 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .ifndef __initialized__
 __initialized__=1
 
-.if !empty(SRCS:U:M*.y)
-MKC_CHECK_CUSTOM+=			yacc_need_liby
-MKC_CUSTOM_FN.yacc_need_liby=	${SYSCUSTOMDIR}/custom_yacc_need_liby
-.endif
-
 .if defined(PROG)
 SRCS?=		${PROG}.c
 .endif
 
 .if defined(LIB)
 SRCS?=		${LIB}.c
+.endif
+
+.if !empty(SRCS:U:M*.y)
+MKC_REQUIRE_PROGS+=			${YACC:[1]}
+MKC_PROG.id.${YACC:[1]:S/+/x/g}=	yacc
+MKC_CHECK_CUSTOM+=			yacc_need_liby
+MKC_CUSTOM_FN.yacc_need_liby=	${SYSCUSTOMDIR}/custom_yacc_need_liby
+.endif
+
+.if !empty(SRCS:U:M*.l)
+MKC_REQUIRE_PROGS+=			${LEX:[1]}
+MKC_PROG.id.${LEX:[1]:S/+/x/g}=		lex
+.endif
+
+.if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y)
+MKC_REQUIRE_PROGS+=			${CC:[1]}
+MKC_PROG.id.${CC:[1]:S/+/x/g}=		cc
+.endif
+
+.if !empty(SRCS:U:M*.cc) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp)
+MKC_REQUIRE_PROGS+=			${CXX:[1]}
+MKC_PROG.id.${CXX:[1]:S/+/x/g}=		cxx
+.endif
+
+.if !empty(SRCS:U:M*.f)
+MKC_REQUIRE_PROGS+=			${FC:[1]}
+MKC_PROG.id.${FC:[1]:S/+/x/g}=		fc
+.endif
+
+.if !empty(SRCS:U:M*.p)
+MKC_REQUIRE_PROGS+=			${PC:[1]}
+MKC_PROG.id.${PC:[1]:S/+/x/g}=		pc
 .endif
 
 ###########

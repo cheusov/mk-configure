@@ -11,6 +11,8 @@
 /objdir/_mkc_custom_shtest.res
 /objdir/_mkc_custom_true_is_available.err
 /objdir/_mkc_custom_true_is_available.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/custom_tests/alloca_in_alloca_h.c
 /objdir/custom_tests/alloca_in_stdlib_h.c
 /objdir/custom_tests/cxx_with_templates.cc
@@ -43,6 +45,8 @@ shtest is good: NO
 /objdir/_mkc_custom_shtest.res
 /objdir/_mkc_custom_true_is_available.err
 /objdir/_mkc_custom_true_is_available.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/custom_tests/alloca_in_alloca_h.c
 /objdir/custom_tests/alloca_in_stdlib_h.c
 /objdir/custom_tests/cxx_with_templates.cc

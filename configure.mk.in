@@ -247,18 +247,17 @@ MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 
 # checking for declared #define
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
-.if !defined(PROG.${p})
-PROG.${p}   !=   	env ${mkc.environ} mkc_check_prog '${p}'
-.endif # !defined(PROG.${p})
-.if !empty(PROG.${p})
-HAVE_PROG.${p}=		1
+prog_id:=	${MKC_PROG.id.${p:S/+/x/g}:U${p}}
+.if !defined(PROG.${prog_id})
+PROG.${prog_id} != env ${mkc.environ} mkc_check_prog -i '${prog_id}' '${p}'
+.endif # !defined(PROG.${prog_id})
+.if !empty(PROG.${prog_id})
+HAVE_PROG.${prog_id}=		1
 .else
-HAVE_PROG.${p}=		0
+HAVE_PROG.${prog_id}=		0
 .endif
-.endfor # p
 
-.for p in ${MKC_REQUIRE_PROGS}
-.if !${HAVE_PROG.${p}}
+.if !${HAVE_PROG.${prog_id}}
 MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 .endif
 .endfor # p

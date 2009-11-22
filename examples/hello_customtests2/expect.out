@@ -5,6 +5,8 @@
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_customtests2
 /objdir/hello_customtests2.c
@@ -23,6 +25,8 @@ alloca(3) succeeded
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_customtests2.c
 /objdir/hello_customtests2.test.out.tmp

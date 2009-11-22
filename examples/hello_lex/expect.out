@@ -2,6 +2,10 @@
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_lex.err
+/objdir/_mkc_prog_lex.res
 /objdir/expect.out
 /objdir/hello_lex
 /objdir/hello_lex.c
@@ -16,6 +20,10 @@
 ========== clean ===========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_lex.err
+/objdir/_mkc_prog_lex.res
 /objdir/expect.out
 /objdir/hello_lex.l
 /objdir/hello_lex.test.out.tmp
