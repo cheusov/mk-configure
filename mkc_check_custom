@@ -57,13 +57,13 @@ pathpart=custom_"$basefn"
 
 . mkc_check_common.sh
 
-tmpc="$1"
+src_or_exe="$1"
 
 ##################################################
 # functions
 
 compile (){
-    if $CC -c -o "$tmpo" $CPPFLAGS $CFLAGS "$tmpc" 2>"$tmperr"; then
+    if $CC -c -o "$tmpo" $CPPFLAGS $CFLAGS "$src_or_exe" 2>"$tmperr"; then
 	echo 1
     else
 	echo 0
@@ -71,7 +71,36 @@ compile (){
 }
 
 check_itself (){
-    compile
+    if test -x "$src_or_exe"; then
+	compiler="$src_or_exe"
+	flags=''
+    else
+	case "$src_or_exe" in
+	    *.c)
+		compiler="$CC"
+		flags="-c -o $tmpo $CFLAGS $CPPFLAGS $src_or_exe";;
+	    *.cc|*.C|*.cxx|*.cpp)
+		compiler="$CXX"
+		flags="-c -o $tmpo $CXXFLAGS $CPPFLAGS $src_or_exe";;
+	    *.f)
+		compiler="$FC"
+		flags="-c -o $tmpo $FFLAGS $src_or_exe";;
+	    *)
+		echo 'Bad filename for custom check. What to do?' 1>&2
+		exit 1
+	esac
+    fi
+
+    if test -z "$compiler"; then
+	echo "Bad compiler for $src_or_exe. What to do?" 1>&2
+	exit 1
+    fi
+
+    if $compiler $flags 2>"$tmperr"; then
+	echo 1
+    else
+	echo 0
+    fi
 }
 
 ##################################################
