@@ -19,6 +19,7 @@
 /objdir/expect.out
 /objdir/hello_customtests
 /objdir/hello_customtests.c
+/objdir/hello_customtests.o
 /objdir/hello_customtests.test.out.tmp
 /objdir/test.mk
 =========== run ============

@@ -21,7 +21,6 @@ CFLAGS+=	${COPTS}
 .-include <libnames.mk>
 
 .if defined(PROG)
-SRCS?=		${PROG}.c
 
 DPSRCS+=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
 CLEANFILES+=	${DPSRCS}

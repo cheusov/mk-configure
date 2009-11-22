@@ -10,6 +10,7 @@ returned address: F00DBEAF
 /objdir/_mkc_funclib_dlopen_dl.res
 /objdir/dlopen_test
 /objdir/dlopen_test.c
+/objdir/dlopen_test.o
 /objdir/expect.out
 /objdir/hello_dlopen.test.out.tmp
 /objdir/test.mk

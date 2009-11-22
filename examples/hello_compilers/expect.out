@@ -16,6 +16,7 @@ Compiled by GNU C Compiler
 /objdir/_mkc_define___PCC__.res
 /objdir/compiler_test
 /objdir/compiler_test.c
+/objdir/compiler_test.o
 /objdir/expect.out
 /objdir/hello_compilers.test.out.tmp
 /objdir/test.mk

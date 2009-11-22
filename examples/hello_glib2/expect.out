@@ -10,6 +10,7 @@ glib_micro_version=N
 /objdir/expect.out
 /objdir/hello_glib2
 /objdir/hello_glib2.c
+/objdir/hello_glib2.o
 /objdir/hello_glib2.test.out.tmp
 /objdir/test.mk
 ========= install ==========
