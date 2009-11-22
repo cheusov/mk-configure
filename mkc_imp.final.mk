@@ -13,7 +13,9 @@ LDADD+=		-ll
 .endif
 
 .if !empty(SRCS:U:M*.y)
+.if HAVE_CUSTOM.yacc_need_liby
 LDADD+=		-ly
+.endif
 .endif
 
 .endif # MKC_IMP.FINAL.MK

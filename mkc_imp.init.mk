@@ -20,6 +20,19 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .ifndef __initialized__
 __initialized__=1
 
+.if !empty(SRCS:U:M*.y)
+MKC_CHECK_CUSTOM+=			yacc_need_liby
+MKC_CUSTOM_FN.yacc_need_liby=	${SYSCUSTOMDIR}/custom_yacc_need_liby
+.endif
+
+.if defined(PROG)
+SRCS?=		${PROG}.c
+.endif
+
+.if defined(LIB)
+SRCS?=		${LIB}.c
+.endif
+
 ###########
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 
@@ -45,7 +58,7 @@ print-values :
 .endfor
 
 ###########
-.PHONY : mkc_printobjdir
+.PHONY : all mkc_printobjdir
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
@@ -57,7 +70,7 @@ mkc_cleandir:
 	rm -f ${DISTCLEANFILES}
 	rm -rf ${DISTCLEANDIRS}
 
-.PHONY: all error-check
+.PHONY: error-check
 all : error-check
 error-check:
 	@for msg in ${MKC_ERR_MSG}; do \

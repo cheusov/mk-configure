@@ -7,6 +7,8 @@
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
+.include <mkc.configure.mk>
+
 .include <mkc_imp.lib.mk>
 
 .if defined(TEXINFO)

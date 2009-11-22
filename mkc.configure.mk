@@ -7,7 +7,7 @@
 
 .ifndef SKIP_CONFIGURE_MK
 
-.include <configure.mk>
+.sinclude <configure.mk>
 
 .endif
 

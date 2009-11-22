@@ -1,1 +1,2 @@
 MKC_VERSION=@version@
+SYSCUSTOMDIR?=@syscustomdir@
