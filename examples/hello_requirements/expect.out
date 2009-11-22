@@ -1,4 +1,4 @@
-Checking for compiler type... gcc
+checking for compiler type... gcc
 checking for header foobar.h... no
 checking for header string.h... yes
 checking for header unistd.h... yes
