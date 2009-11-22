@@ -39,11 +39,13 @@ DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 .if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
 #
-.ifndef OSNAME
-OSNAME!=		uname -s
+.ifndef OPSYS
+OPSYS!=	uname -s
 .endif
-.if defined(MKC_COMMON_DEFINES.${OSNAME})
-CPPFLAGS+=		${MKC_COMMON_DEFINES.${OSNAME}}
+
+TARGET_OPSYS?=	${OPSYS}
+.if defined(MKC_COMMON_DEFINES.${TARGET_OPSYS})
+CPPFLAGS+=		${MKC_COMMON_DEFINES.${TARGET_OPSYS}}
 .endif
 .if defined(MKC_COMMON_DEFINES)
 CPPFLAGS+=		${MKC_COMMON_DEFINES}
