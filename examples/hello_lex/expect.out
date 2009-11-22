@@ -1,6 +1,7 @@
 # of lines = 2, # of chars = 26
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
@@ -19,6 +20,7 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res

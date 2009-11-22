@@ -4,6 +4,7 @@
 45
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_yacc_need_liby.err
 /objdir/_mkc_custom_yacc_need_liby.res
@@ -26,6 +27,7 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_yacc_need_liby.err
 /objdir/_mkc_custom_yacc_need_liby.res

@@ -4,6 +4,7 @@ glib_minor_version=N
 glib_micro_version=N
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
@@ -20,6 +21,7 @@ glib_micro_version=N
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res

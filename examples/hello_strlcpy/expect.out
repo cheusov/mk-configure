@@ -23,6 +23,7 @@
 # POSSIBI
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err
@@ -45,6 +46,7 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err

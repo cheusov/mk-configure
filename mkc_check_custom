@@ -72,8 +72,8 @@ compile (){
 
 check_itself (){
     if test -x "$src_or_exe"; then
-	compiler="$src_or_exe"
-	flags=''
+	"$src_or_exe"
+	return 0
     else
 	case "$src_or_exe" in
 	    *.c)
@@ -87,16 +87,16 @@ check_itself (){
 		flags="-c -o $tmpo $FFLAGS $src_or_exe";;
 	    *)
 		echo 'Bad filename for custom check. What to do?' 1>&2
-		exit 1
+		return 1
 	esac
     fi
 
     if test -z "$compiler"; then
 	echo "Bad compiler for $src_or_exe. What to do?" 1>&2
-	exit 1
+	return 1
     fi
 
-    if $compiler $flags 2>"$tmperr"; then
+    if $compiler $flags; then
 	echo 1
     else
 	echo 0
@@ -117,10 +117,13 @@ cleanup
 ##################################################
 # finishing
 
-if test "$ret" -eq 1; then
-    printme 'yes\n' 1>&2
-else
-    printme 'no\n' 1>&2
-fi
+case "$ret" in
+    1)
+	printme '1 (yes)\n' 1>&2;;
+    0)
+	printme '0 (no)\n' 1>&2;;
+    *)
+	printme '%s\n' "$ret" 1>&2;;
+esac
 
 echo $ret

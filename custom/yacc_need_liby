@@ -16,8 +16,6 @@ export LC_ALL
 pathpart=yacc_need_liby
 . mkc_check_common.sh
 
-echo tmpc=$tmpc 1>/dev/tty
-echo MKC_CACHEDIR=$MKC_CACHEDIR 1>/dev/tty
 tmpy=${tmpc%.c}.y
 
 cat > "$tmpy" <<'EOF'
@@ -57,9 +55,9 @@ fi
 
 "$YACC" -o "$tmpc" "$tmpy"
 
-if $CC -o "$tmpexe" $CFLAGS $CPPFLAGS $LDFLAGS "$tmpc" $LDADD; then
-	exit 1
+if $CC -o "$tmpexe" $CFLAGS $CPPFLAGS $LDFLAGS "$tmpc" $LDADD 1>&2; then
+    echo 0
 else
-	rm -f "$tmpexe"
-	exit 0
+    rm -f "$tmpexe"
+    echo 1
 fi

@@ -1,5 +1,6 @@
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_alloca_in_alloca_h.err
 /objdir/_mkc_custom_alloca_in_alloca_h.res
@@ -34,6 +35,7 @@ shtest is good: NO
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_custom_alloca_in_alloca_h.err
 /objdir/_mkc_custom_alloca_in_alloca_h.res
