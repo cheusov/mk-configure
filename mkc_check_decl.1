@@ -4,7 +4,7 @@
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
-.de VB \" Verbatim Begin
+.de VS \" Verbatim Start
 .ft CW
 .nf
 .ne \\$1
@@ -69,7 +69,7 @@ to 1.
 .B MKC_DELETE_TMPFILES
 If set to 1, temporary files are removed.
 .SH EXAMPLES
-.VB
+.VS
    mkc_check_decl define __GNUC__
    mkc_check_decl define RTLD_LAZY dlfcn.h
    mkc_check_decl variable sys_errlist errno.h

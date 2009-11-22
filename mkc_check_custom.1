@@ -4,7 +4,7 @@
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
-.de VB \" Verbatim Begin
+.de VS \" Verbatim Start
 .ft CW
 .nf
 .ne \\$1
@@ -91,7 +91,7 @@ to 1.
 .B MKC_DELETE_TMPFILES
 If set to 1, temporary files are removed.
 .SH EXAMPLES
-.VB
+.VS
    mkc_check_custom alloca_in_stdlib.c
    mkc_check_custom custom_checks/cxx_foo_test.cc
    mkc_check_custom /full/path/to/yacc_need_liby
