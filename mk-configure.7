@@ -864,11 +864,14 @@ or to an empty string.
       HAVE_PROG.runawk          = 1
       PROG.runawk               = /usr/pkg/bin/runawk
 .VE
+If MKC_PROG.id.<progname> is set to, e.g, <prog_id>,
+then HAVE_PROG.<prog_id> and PROG.<prog_id> are set.
+MKC_PROG.id.<progname> also changes cache file names.
 .IP MKC_REQUIRE_PROGS
 The same as MKC_CHECK_PROGS, but absense of program is
 treated as a fatal error (See
 .B error-check
-target.
+target).
 .IP MKC_CHECK_SIZEOF
 List of <type>:<header> to check. <header> part is optional.
 
