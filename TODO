@@ -1,88 +1,94 @@
-= 'bmake depend' and/or automatic generating .d files.
+============================================================
+Plan 1)
 
-= Regression tests:
-  - optional .f tests
-  - optional .p tests
-  - optional(!) glib2 tests
+  = 'bmake depend' and/or automatic generating .d files.
+    This is a "must have" features for development.
 
-= PROGS= a b c d
-  SRCS.a = ...
-  SRCS.b = ...
+  = PROGS= a b c d
+    SRCS.a = ...
+    SRCS.b = ...
 
-= gnu-spesific
+  = gnu-spesific
 
-= support for cross-compilation
+  = support for cross-compilation
 
-= improve shared libraries support, HP-UX, AIX, QNX, UnixWare, OSF1 etc.
+  = improve shared libraries support, HP-UX, AIX, QNX, UnixWare, OSF1 etc.
 
-= support for different compilers, OS + compilers + linker,
-  OS + hardware + compiler etc.
+  = improve support for different compilers, OS + compilers + linker,
+    OS + hardware + compiler etc.
 
-= MKC_CHECK_CUSTOM:
-   - MKC_CUSTOM_FN=xxx.f
-   - MKC_CUSTOM_FN=xxx.objc
+  = MKC_CHECK_PROG_GAWK, MKC_CHECK_PROG_FLEX, MKC_CHECK_PROG_BISON,
+    MKC_CHECK_PROG_GNUM4
 
-= MKC_CHECK_PROG_GAWK, MKC_CHECK_PROG_FLEX, MKC_CHECK_PROG_BISON,
-  MKC_CHECK_PROG_GNUM4
+  = mkc_install - replacement for broken/absent native install(1)
 
-= implement MANBZ2?
+  = mkc_mkdir   - portable BSD licensed "mkdir -p"
 
-= mkc_install - replacement for broken/absent native install(1)
+  =    COPTS.<prog> and COPTS.lib<lib> variables
+    or COPTS_<prog> and COPTS_lib<lib>?
 
-= mkc_mkdir   - portable BSD licensed "mkdir -p"
+  = MLINKS?
 
-=    COPTS.<prog> and COPTS.lib<lib> variables
-  or COPTS_<prog> and COPTS_lib<lib>?
+  = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
+    MagicMakefiles etc.
 
-= MLINKS?
+  = MKC_CHECK_BIGENDIAN
 
-= Improve support for C++, Objective-C, Fortran and Pascal
+  = Formatted output
 
-= Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
-  MagicMakefiles etc.
+  = Improve mkc.pkg-config.mk
 
-= MKC_CHECK_BIGENDIAN
+  = Implement mkc.libtool.mk to make building
+    the shared libraries really portable
 
-= Formatted output
+  = Implement mkc.subprjs.mk supporting dependency graph...
 
-= Improve mkc.pkg-config.mk
+  = Often compilers need special options to make pthread code.
+    Support for MKPTHREAD=yes|no is needed.
 
-= Implement mkc.libtool.mk to make building
-  the shared libraries really portable
+============================================================
+Plan2)
 
-= Implement mkc.qt.mk
+  = MKC_CHECK_CUSTOM:
+    - MKC_CUSTOM_FN=xxx.f
+    - MKC_CUSTOM_FN=xxx.objc
 
-= Implement mkc.subprjs.mk supporting dependency graph...
+  = Regression tests:
+    - optional .f tests
+    - optional .p tests
+    - optional(!) glib2 tests
 
-= Implement mkc.doxygen.mk?
+  = implement MANBZ2?
 
-= ??? (environment is limited in size) ???
+  = Improve support for C++, Objective-C, Fortran and Pascal
 
-=    - Often compilers need special options to make pthread code.
-       Support for MKPTHREAD=yes|no is needed.
-     - Support for libtool in addition to native bsd.{lib,prog}.rules.
-       User's side variable USE_LIBTOOL=yes|no.
+  = Implement mkc.qt.mk
 
-= mkc.configure.mk functionality but for bourne shell, e.g.
+  = Implement mkc.doxygen.mk?
 
-   Upstream creates ./configure shell script:
-     MKC_CONFIG_MK=mkc_config.mk
-     MKC_CONFIG_H=mkc_config.h
+  = ??? (environment is limited in size) ???
 
-     MKC_CHECK_HEADERS='
+============================================================
+Plan 3)
+
+  = mkc.configure.mk functionality but for bourne shell, e.g.
+
+    Upstream creates ./configure shell script:
+      MKC_CONFIG_MK=mkc_config.mk
+      MKC_CONFIG_H=mkc_config.h
+
+      MKC_CHECK_HEADERS='
         header1.h
         header2.h
         header3.h'
-     MKC_CHECK_FUNCLIBS='
+      MKC_CHECK_FUNCLIBS='
         func1:lib1
         func2
         func3:lib3'
-     #<...>
-     . mkc_configure
-     mkc_run # generating mkc_config.h and mkc_config.mk
+      #<...>
+      . mkc_configure
+      mkc_run # generating mkc_config.h and mkc_config.mk
 
-   User runs
-     ./configure ...
-
-=
-   MKC_NOAUTO_abcdefg...
+    User runs
+      ./configure ...
+      <any>make all
