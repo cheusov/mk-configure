@@ -18,9 +18,9 @@
 = support for different compilers, OS + compilers + linker,
   OS + hardware + compiler etc.
 
-= MKC_CHECK_CUSTOM based on sh scripts.
-  "try to compile me" is already done.
-  "try to run me" is also needed.
+= MKC_CHECK_CUSTOM:
+   - MKC_CUSTOM_FN=xxx.f
+   - MKC_CUSTOM_FN=xxx.objc
 
 = implement MANBZ2?
 
