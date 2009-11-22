@@ -39,7 +39,7 @@ check_itself (){
 pathpart=compiler_type
 . mkc_check_common.sh
 
-check_and_cache "Checking for compiler type" "$cache"
+check_and_cache "checking for compiler type" "$cache"
 
 printme '%s\n' "$ret" 1>&2
 
