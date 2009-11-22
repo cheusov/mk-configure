@@ -1,4 +1,4 @@
-checking for compiler type... gcc
+checking for compiler type... known ;-)
 checking for header foobar.h... no
 checking for header string.h... yes
 checking for header unistd.h... yes
@@ -6,7 +6,6 @@ checking for function strcasecmp... yes
 checking for function foobar... no
 checking for function barbaz ( -lz )... no
 checking for function barbaz... no
-checking for define __GNUC__... yes
 checking for define FOOBAR... no
 checking for type long... yes
 checking for type size_t ( string.h )... yes
@@ -22,10 +21,10 @@ checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
 checking for custom test custom_check1... 1 (yes)
 checking for custom test custom_check2... 0 (no)
-checking for program sh... /path/to/sh
-checking for program awk... /path/to/awk
+checking for program known ;-) /path/to/program
+checking for program known ;-) /path/to/program
 checking for program foobar_prog... NOT FOUND
-checking for program cc... /path/to/cc
+checking for program known ;-) /path/to/program
 ERROR: cannot find header foobar.h
 ERROR: cannot find function foobar
 ERROR: cannot find function barbaz:z

@@ -20,7 +20,7 @@ MKC_CHECK_FUNCLIBS+=	bad_func:bad_lib bad_func
 
 MKC_NOAUTO_FUNCLIBS+=	sqrt:m
 
-MKC_CHECK_DEFINES+=	__GNUC__ __BAD_DEFINE__
+MKC_CHECK_DEFINES+=	__BAD_DEFINE__
 MKC_CHECK_DEFINES+=	MKC_TEST_DEFINE:include/mkc_test.h
 
 MKC_CHECK_VARS+=	errno:errno.h
@@ -54,7 +54,6 @@ MKC_CUSTOM_FN.custom_check2=	my_check2.c
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
-	HAVE_DEFINE.__GNUC__ \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
 	HAVE_TYPE.size_t.string_h HAVE_TYPE.mbstate_t.wchar_h \

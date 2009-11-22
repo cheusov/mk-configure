@@ -22,6 +22,7 @@ __REALSUBDIR+=${dir}
 
 __recurse: .USE
 	@targ=${.TARGET:C/-.*$//};dir=${.TARGET:C/^[^-]*-//};		\
+	echo ==================================================;	\
 	case "$$dir" in /*)						\
 		echo "$$targ ===> $$dir";				\
 		cd "$$dir";						\
