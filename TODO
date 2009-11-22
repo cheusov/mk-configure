@@ -1,19 +1,27 @@
 ============================================================
 Plan 1)
 
-  = 'bmake depend' and/or automatic generating .d files.
-    This is a "must have" features for development.
+  = Online tutorial for lazy programmers
+
+  = Rewrite README
+
+  = 'bmake depend' and/or automatic generating .d files
+    using mkdep(1) or makedepend(1).
+    This is a "must have" features for real life development.
 
   = PROGS= a b c d
     SRCS.a = ...
     SRCS.b = ...
 
+    Sometimes it is easier to handle...
+
   = support for cross-compilation
 
-  = improve shared libraries support, HP-UX, AIX, QNX, UnixWare, OSF1 etc.
+  = improve shared libraries support, HP-UX, AIX, QNX, UnixWare,
+    OSF1, Hurd etc.
 
-  = improve support for different compilers, OS + compilers + linker,
-    OS + hardware + compiler etc.
+  = improve support for different compilers, OSes, linkers,
+    hardware etc.
 
   = MKC_CHECK_PROG_GAWK, MKC_CHECK_PROG_FLEX, MKC_CHECK_PROG_BISON,
     MKC_CHECK_PROG_GNUM4
@@ -33,11 +41,17 @@ Plan 1)
   = MKC_CHECK_BIGENDIAN
 
   = Formatted output
+     CC: source.c
+     CXX: source.cc
+     FC: source.f
+     PC: source.p
+     LD: source.a, source.so, source.dylib
+     nroff: source.a, source.so, source.dylib
 
   = Improve mkc.pkg-config.mk
 
-  = Implement mkc.libtool.mk to make building
-    the shared libraries really portable
+  = Implement mkc_imp.libtool.mk to make building
+    the shared libraries really portable (just a fallback).
 
   = Implement mkc.subprjs.mk supporting dependency graph...
 
