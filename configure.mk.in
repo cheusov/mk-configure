@@ -268,9 +268,20 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 
 # final assignment
 .if !${MKC_NOAUTO:U0}
-CFLAGS += ${MKC_CFLAGS}
-LDADD  += ${MKC_LDADD}
-SRCS   += ${MKC_SRCS}
-.endif
+.for i in ${MKC_CFLAGS}
+CFLAGS+=	${i}
+.endfor
+.for i in ${MKC_LDADD}
+LDADD+=		${i}
+.endfor
+.for i in ${MKC_SRCS}
+SRCS+=		${i}
+.endfor
+
+.undef MKC_SRCS
+.undef MKC_LDADD
+.undef MKC_CFLAGS
+
+.endif # .if MKC_AUTO
 
 .endif # !make(clean) && !make(cleandir) && !make(distclean)

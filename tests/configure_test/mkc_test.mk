@@ -82,7 +82,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_PROG.awk          PROG.awk \
 	HAVE_PROG.megaprog-x34 PROG.megaprog-x34 \
 	\
-	MKC_CFLAGS MKC_SRCS MKC_LDADD
+	CFLAGS SRCS LDADD
 
 .include <configure.mk>
 
