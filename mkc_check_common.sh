@@ -66,3 +66,18 @@ check_and_cache (){
 	fi
     fi
 }
+
+find_n_match (){
+    # $1 - progname
+    # $2 - opts
+    # $3 - regexp for matching
+    __prog=`which $1 2>/dev/null`
+
+    if test -n "$__prog" &&
+	"$__prog" $2 2>/dev/null < /dev/null |
+	grep -i "$3" > /dev/null
+    then
+	echo "$__prog"
+	exit 0
+    fi
+}
