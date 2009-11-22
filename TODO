@@ -58,13 +58,7 @@
 
 = ??? (environment is limited in size) ???
 
-=
-     - With a help of MKC_CHECK_DEFINES (Ex: MKC_CHECK_DEFINES+=__GNUC__)
-       mk-configure is able to detect the compiler at run-time.
-       This makes possible to make SHLIB_xxx (bsd.lib.mk) portable
-       to other compilers. Currently bsd.lib.mk (SHLIB_xxx) supports
-       only GCC.
-     - Often compilers need special options to make pthread code.
+=    - Often compilers need special options to make pthread code.
        Support for MKPTHREAD=yes|no is needed.
      - Support for libtool in addition to native bsd.{lib,prog}.rules.
        User's side variable USE_LIBTOOL=yes|no.
