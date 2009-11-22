@@ -64,10 +64,14 @@ mkc.environ=CC='${CC}' YACC='${YACC}' CXX='${CXX}' FC='${FC}' CPPFLAGS='${_MKC_C
 #
 MKC_SOURCE_FUNCLIBS   ?=
 _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
-#MKC_CHECK_HEADERS     ?=
-#MKC_CHECK_SIZEOF      ?=
-#MKC_CHECK_DEFINES     ?=
-#MKC_CHECK_VARS        ?=
+
+# checking for specific programs
+_custom_progs?=	gawk gm4 flex bison
+.for i in ${_custom_progs}
+MKC_CUSTOM_FN.prog__${i}?=	${MKC_CUSTOM_DIR}/prog_${i}
+MKC_CHECK_${i}?=	${MKC_REQUIRE_${i}}
+MKC_CHECK_CUSTOM+=	${empty(MKC_CHECK_${i}):?:prog__${i}}
+.endfor
 
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS} ${MKC_REQUIRE_HEADERS}
@@ -242,9 +246,6 @@ MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
 
-.undef MKC_CHECK_CUSTOM
-.undef MKC_REQUIRE_CUSTOM
-
 # checking for declared #define
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
 prog_id:=	${MKC_PROG.id.${p:S/+/x/g}:U${p}}
@@ -264,6 +265,19 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 
 .undef MKC_CHECK_PROGS
 .undef MKC_REQUIRE_PROGS
+
+# MKC_CHECK_<progname>
+.for i in ${_custom_progs}
+.if defined(MKC_REQUIRE_${i}) && empty(HAVE_CUSTOM.prog__${i})
+MKC_ERR_MSG+=	"ERROR: ${i} is required but cannot be found"
+.elif defined(MKC_CHECK_${i})
+PROG.prog__${i}?=	${HAVE_CUSTOM.prog__${i}}
+HAVE_PROG.prog__${i}?=	${empty(HAVE_CUSTOM.prog__${i}):?0:1}
+.endif # !defined(MKC_REQUIRE...)...
+.endfor # i
+
+.undef MKC_CHECK_CUSTOM
+.undef MKC_REQUIRE_CUSTOM
 
 # final assignment
 .if !${MKC_NOAUTO:U0}
