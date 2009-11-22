@@ -811,17 +811,19 @@ treated as a fatal error (See
 .B error-check
 target.
 .IP MKC_CHECK_CUSTOM
-List of custom checks (list of names).
+A list of custom checks (list of names).
 MKC_CUSTOM_FN.<custom_check_name> is a
-"C" source filename for your custom check,
-e.g., filename.c.
+"C", "C++" or "Fortran" source filename or an executable program
+for your custom check,
+e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
+filename.cpp, mychecks/filename.f or subdir/executable_script.
 
-As a result of the check bmake's variable
-HAVE_CUSTOM.<custom_check_name>
-is set to 1 if compilation of
-MKC_CUSTOM_FN.<custom_check_name> succeeded
-or 0 otherwise. If MKC_CUSTOM_FN.<custom_check_name>
-is not specified it defaults to custom_check_name.c
+.B mk-configure
+tries to compile or run the specified file and sets
+HAVE_CUSTOM.<custom_check_name> variable
+to 1 if succeeded or 0 otherwise.
+If unset MKC_CUSTOM_FN.<custom_check_name>
+defaults to custom_check_name.c
 
 Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
 is added to CFLAGS if the specified check succeeded
@@ -831,9 +833,12 @@ unless MKC_NOAUTO is set to 1.
 .VS
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
+      MKC_CUSTOM_FN.script_check=      checks/script_check
  Res. HAVE_CUSTOM.nested_funcs=        1
+      HAVE_CUSTOM.script_check=        0
       CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
 .VE
+Note that script for the check should be an executable file.
 .IP MKC_REQUIRE_CUSTOM
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
