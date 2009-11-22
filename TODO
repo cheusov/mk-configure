@@ -9,11 +9,9 @@
   SRCS.a = ...
   SRCS.b = ...
 
-= Implicit YACC|LEX|FC|PC|... -> MKC_REQUIRE_PROGS rules
-
 = support for cross-compilation
 
-= improve share libraries support
+= improve shared libraries support, HP-UX, AIX, QNX, UnixWare, OSF1 etc.
 
 = support for different compilers, OS + compilers + linker,
   OS + hardware + compiler etc.
@@ -21,6 +19,9 @@
 = MKC_CHECK_CUSTOM:
    - MKC_CUSTOM_FN=xxx.f
    - MKC_CUSTOM_FN=xxx.objc
+
+= MKC_CHECK_PROG_GAWK, MKC_CHECK_PROG_FLEX, MKC_CHECK_PROG_BISON,
+  MKC_CHECK_PROG_GNUM4
 
 = implement MANBZ2?
 
@@ -33,7 +34,7 @@
 
 = MLINKS?
 
-= Improve support for C++, Fortran and Pascal
+= Improve support for C++, Objective-C, Fortran and Pascal
 
 = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
   MagicMakefiles etc.
