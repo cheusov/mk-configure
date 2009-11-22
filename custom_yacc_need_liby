@@ -57,4 +57,9 @@ fi
 
 "$YACC" -o "$tmpc" "$tmpy"
 
-$CC -o "$tmpexe" $CFLAGS $CPPFLAGS $LDFLAGS "$tmpc" $LDADD -ly
+if $CC -o "$tmpexe" $CFLAGS $CPPFLAGS $LDFLAGS "$tmpc" $LDADD; then
+	exit 1
+else
+	rm -f "$tmpexe"
+	exit 0
+fi
