@@ -4,7 +4,7 @@
 ############################################################
 
 # include file, not executable
-# common variables and functions for mk_check_executables
+# common variables and functions for mkc_check_xxx executables
 
 if test "$pathpart" = ''; then
     echo "You've found a bug, please contact the author" 1>&2
