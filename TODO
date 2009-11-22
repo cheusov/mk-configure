@@ -9,6 +9,8 @@
   SRCS.a = ...
   SRCS.b = ...
 
+= gnu-spesific
+
 = support for cross-compilation
 
 = improve shared libraries support, HP-UX, AIX, QNX, UnixWare, OSF1 etc.

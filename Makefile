@@ -26,8 +26,9 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
 			mkc_check_prog mkc_check_custom \
 			mkc_which mkc_check_version \
-			mkc_test_helper \
-			custom_yacc_need_liby
+			mkc_test_helper
+
+SCRIPTS+=		${:!echo custom/*!}
 
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
@@ -55,7 +56,9 @@ FILESDIR_mkc_check_common.sh=	${BINDIR}
 
 FILESDIR=		${MKFILESDIR}
 
-SCRIPTSDIR_custom_yacc_need_liby=	${SYSCUSTOMDIR}
+.for s in ${SCRIPTS:Mcustom/*}
+SCRIPTSDIR_${s:S|/|_|}=		${SYSCUSTOMDIR}
+.endfor
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
@@ -71,7 +74,7 @@ INTEXTS_SED+=		-e 's,@syscustomdir@,${SYSCUSTOMDIR},g'
 test: configure.mk mkc.ver.mk mkc_check_version
 	@set -e; \
 	PATH=${.CURDIR}:${.OBJDIR}:$$PATH; \
-	SYSCUSTOMDIR=${.CURDIR}; \
+	SYSCUSTOMDIR=${.CURDIR}/custom; \
 	MKCATPAGES=yes; \
 	NO_AUTODEP=yes; \
 	export PATH SYSCUSTOMDIR MKCATPAGES NO_AUTODEP; \

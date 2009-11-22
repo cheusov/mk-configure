@@ -5,8 +5,8 @@
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
-/objdir/_mkc_custom_custom_yacc_need_liby.err
-/objdir/_mkc_custom_custom_yacc_need_liby.res
+/objdir/_mkc_custom_yacc_need_liby.err
+/objdir/_mkc_custom_yacc_need_liby.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_yacc.err
@@ -27,8 +27,8 @@
 ========== clean ===========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.res
-/objdir/_mkc_custom_custom_yacc_need_liby.err
-/objdir/_mkc_custom_custom_yacc_need_liby.res
+/objdir/_mkc_custom_yacc_need_liby.err
+/objdir/_mkc_custom_yacc_need_liby.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_yacc.err

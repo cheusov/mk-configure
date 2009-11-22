@@ -84,7 +84,7 @@ afterdepend: .depend
 
 .if defined(SCRIPTS)
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
-destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}@}
+destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
 .endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}
@@ -99,7 +99,7 @@ __scriptinstall: .USE
 	    ${.ALLSRC} ${.TARGET}
 
 .for S in ${SCRIPTS:O:u}
-${DESTDIR}${SCRIPTSDIR_${S}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S}:U${SCRIPTSNAME:U${S:T:R}}}: ${S} __scriptinstall
+${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}: ${S} __scriptinstall
 .endfor
 
 UNINSTALLFILES+=	${destination_scripts}
