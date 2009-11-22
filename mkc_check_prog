@@ -17,19 +17,39 @@ usage (){
     cat <<EOF
 mkc_check_prog detects presense of program file.
 
-Usage: mkc_check_prog progname
+Usage: mkc_check_prog [OPTION] progname
 
+OPTIONS:
+   -h|--help            display this screen
+   -i                   program id, a part of _mkc_* cache file
 Examples:
+   mkc_check_prog -h
    mkc_check_prog lua
    mkc_check_prog gawk
-   mkc_check_prog runawk
+   mkc_check_prog -i gxx g++
 EOF
 }
 
-if test "$1" = '-h' -o "$1" = '--help'; then
-    usage
-    exit 0
-fi
+while test $# -ne 0; do
+    case "$1" in
+	-h|--help)
+	    usage
+	    exit 0;;
+	-i)
+	    pathpart=prog_$2
+	    shift;;
+	--)
+	    shift
+	    break;;
+	-*)
+	    echo "Unknown option $1" 1>&2
+	    exit 1;;
+	*)
+	    break;;
+    esac
+    shift
+done
+
 if test $# -ne 1; then
     usage
     exit 1
@@ -38,7 +58,7 @@ fi
 ##################################################
 # initializing
 
-pathpart=prog_`echo $1 | tr /. __`
+pathpart=${pathpart-prog_`echo $1 | tr /. __`}
 
 . mkc_check_common.sh
 
