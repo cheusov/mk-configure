@@ -1,4 +1,7 @@
-######################## 2-clause BSD license #######################
+Different parts of mk-configure have different copyright holder,
+but everything is licenced under BSD licence.
+
+######################################################################
 
 Copyright (c) 2009 by Aleksey Cheusov
 
@@ -27,7 +30,7 @@ IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-######################## 3-clause BSD license #######################
+######################################################################
 
 Copyright (c) 1988, 1989, 1993
 	The Regents of the University of California.  All rights reserved.
@@ -64,7 +67,7 @@ OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
-######################## 2-clause BSD license #######################
+######################################################################
 
 Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 All rights reserved.
