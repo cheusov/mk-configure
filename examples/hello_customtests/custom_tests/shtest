@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# Just a test
+foo_bar_baz
