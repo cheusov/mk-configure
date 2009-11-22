@@ -13,7 +13,7 @@ LDADD+=		-ll
 .endif
 
 .if !empty(SRCS:U:M*.y)
-.if HAVE_CUSTOM.yacc_need_liby
+.if ${HAVE_CUSTOM.yacc_need_liby:U0}
 LDADD+=		-ly
 .endif
 .endif
