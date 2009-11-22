@@ -362,9 +362,13 @@ These are installed like programs.
 The name that the above program will be installed as, if
 different from ${SCRIPTS}.
 .IP SCRIPTSNAME_<script>
-Optional name to install <script> as.
+Optional name to install <script> as. If <script> has a form
+<subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
 .IP SCRIPTSDIR
 Target directory for scripts.
+.IP SCRIPTSDIR_<script>
+Optional directory to install <script> to. If <script> has a form
+<subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
 .RI [ ${BINDIR} ]
 .IP SCRIPTSOWN
 Script files owner.
