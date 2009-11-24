@@ -46,6 +46,18 @@ yylex (){
 	/**/
 	return '+';
 }
+
+
+void yyerror (char const *s)
+{
+	fprintf (stderr, "%s\n", s);
+}
+
+int main (int argc, char **argv)
+{
+	yyparse ();
+	return 0;
+}
 EOF
 
 if test -z "$YACC"; then

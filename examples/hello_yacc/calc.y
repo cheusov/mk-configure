@@ -35,3 +35,14 @@ yylex (){
 	}
 	return c;
 }
+
+void yyerror (char const *s)
+{
+	fprintf (stderr, "%s\n", s);
+}
+
+int main (int argc, char **argv)
+{
+	yyparse ();
+	return 0;
+}

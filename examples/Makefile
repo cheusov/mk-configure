@@ -15,4 +15,8 @@ SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements
 SUBDIR+=	hello_reqd
 
+.ifdef WITH_require_tools
+SUBDIR+=	hello_require_tools
+.endif
+
 .include <mkc.subdir.mk>
