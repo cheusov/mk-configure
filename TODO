@@ -1,7 +1,7 @@
 ============================================================
 Plan 1)
 
-  = Online tutorial for lazy programmers
+  = Online tutorial
 
   = Rewrite README
 
@@ -23,7 +23,8 @@ Plan 1)
   = improve support for different compilers, OSes, linkers,
     hardware etc.
 
-  = mkc_install - replacement for broken/absent native install(1)
+  = mkc_install - portable BSD licensed replacement
+                  for broken/absent native install(1)
 
   = mkc_mkdir   - portable BSD licensed "mkdir -p"
 
