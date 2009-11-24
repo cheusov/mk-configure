@@ -36,8 +36,6 @@ Plan 1)
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
     MagicMakefiles etc.
 
-  = MKC_CHECK_BIGENDIAN
-
   = Formatted output
      CC: source.c
      CXX: source.cc

@@ -8,6 +8,8 @@
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
 /objdir/_mkc_custom_cxx_with_templates.cc.err
 /objdir/_mkc_custom_cxx_with_templates.cc.res
+/objdir/_mkc_custom_endianess.err
+/objdir/_mkc_custom_endianess.res
 /objdir/_mkc_custom_shtest.err
 /objdir/_mkc_custom_shtest.res
 /objdir/_mkc_custom_true_is_available.err
@@ -43,6 +45,8 @@ shtest is good: NO
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
 /objdir/_mkc_custom_cxx_with_templates.cc.err
 /objdir/_mkc_custom_cxx_with_templates.cc.res
+/objdir/_mkc_custom_endianess.err
+/objdir/_mkc_custom_endianess.res
 /objdir/_mkc_custom_shtest.err
 /objdir/_mkc_custom_shtest.res
 /objdir/_mkc_custom_true_is_available.err

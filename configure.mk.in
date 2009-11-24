@@ -66,9 +66,9 @@ MKC_SOURCE_FUNCLIBS   ?=
 _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
 # checking for specific programs
-_custom_progs=	prog_gawk prog_gm4 prog_flex prog_bison
-#_custom_progs+=
-.for i in ${_custom_progs}
+system_custom_checks=	prog_gawk prog_gm4 prog_flex prog_bison
+system_custom_checks+=	endianess
+.for i in ${system_custom_checks}
 MKC_CUSTOM_${i}?=	${MKC_REQUIRE_${i}}
 MKC_CUSTOM_FN.${i}?=	${SYSCUSTOMDIR}/${i}
 MKC_CHECK_CUSTOM+=	${empty(MKC_CUSTOM_${i}):?:${i}}
@@ -268,7 +268,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 .undef MKC_REQUIRE_PROGS
 
 # MKC_CHECK_<progname>
-.for i in ${_custom_progs}
+.for i in ${system_custom_checks}
 .if defined(MKC_REQUIRE_${i}) && empty(CUSTOM.${i})
 MKC_ERR_MSG+=	"ERROR: ${i} is required but cannot be found"
 .endif # !defined(MKC_REQUIRE...)...
