@@ -23,9 +23,6 @@ Plan 1)
   = improve support for different compilers, OSes, linkers,
     hardware etc.
 
-  = MKC_CHECK_PROG_GAWK, MKC_CHECK_PROG_FLEX, MKC_CHECK_PROG_BISON,
-    MKC_CHECK_PROG_GNUM4
-
   = mkc_install - replacement for broken/absent native install(1)
 
   = mkc_mkdir   - portable BSD licensed "mkdir -p"
