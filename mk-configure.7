@@ -932,6 +932,18 @@ The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
    Ex: MKC_COMMON_DEFINES.Linux   += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
+.IP MKC_CHECK_prog_<progname>
+Find <progname> by analysing program's help and version
+messages. If found, CUSTOM_prog_<progname> is set to a path, otherwise
+it is unset. Valid values for <progname> are: gawk (GNU awk),
+flex, bison, gm4 (GNU m4). Note that
+.I gawk
+may be found as
+.IR awk ,
+.I bison
+as
+.I yacc
+etc.
 .IP MKC_CACHEDIR
 Directory where intermediate and cache files are created.
 It defaults to ${.OBJDIR}.
