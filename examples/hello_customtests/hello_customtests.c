@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#if HAVE_CUSTOM_ALLOCA_IN_STDLIB_H
+#if CUSTOM_ALLOCA_IN_STDLIB_H
 #include <stdlib.h>
-#elif HAVE_CUSTOM_ALLOCA_IN_ALLOCA_H
+#elif CUSTOM_ALLOCA_IN_ALLOCA_H
 #include <alloca.h>
 #endif
 

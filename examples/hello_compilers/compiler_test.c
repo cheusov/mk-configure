@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 #ifndef HAVE_DEFINE__MSC_VER
 #define HAVE_DEFINE__MSC_VER 0
