@@ -6,9 +6,9 @@ MKC_REQUIRE_prog_bison=1
 SCRIPTS=	fake
 
 test: error-check
-	@echo ${HAVE_CUSTOM.prog_gawk}
-	@echo ${HAVE_CUSTOM.prog_gm4}
-	@echo ${HAVE_CUSTOM.prog_flex}
-	@echo ${HAVE_CUSTOM.prog_bison}
+	@echo ${CUSTOM.prog_gawk}
+	@echo ${CUSTOM.prog_gm4}
+	@echo ${CUSTOM.prog_flex}
+	@echo ${CUSTOM.prog_bison}
 
 .include <mkc.prog.mk>

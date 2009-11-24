@@ -69,9 +69,9 @@ _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 _custom_progs=	prog_gawk prog_gm4 prog_flex prog_bison
 #_custom_progs+=
 .for i in ${_custom_progs}
-MKC_CHECK_${i}?=	${MKC_REQUIRE_${i}}
+MKC_CUSTOM_${i}?=	${MKC_REQUIRE_${i}}
 MKC_CUSTOM_FN.${i}?=	${SYSCUSTOMDIR}/${i}
-MKC_CHECK_CUSTOM+=	${empty(MKC_CHECK_${i}):?:${i}}
+MKC_CHECK_CUSTOM+=	${empty(MKC_CUSTOM_${i}):?:${i}}
 .endfor
 
 # checking for headers
