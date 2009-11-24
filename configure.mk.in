@@ -68,7 +68,7 @@ _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 # checking for specific programs
 _custom_progs?=	gawk gm4 flex bison
 .for i in ${_custom_progs}
-MKC_CUSTOM_FN.prog__${i}?=	${MKC_CUSTOM_DIR}/prog_${i}
+MKC_CUSTOM_FN.prog__${i}?=	${SYSCUSTOMDIR}/prog_${i}
 MKC_CHECK_${i}?=	${MKC_REQUIRE_${i}}
 MKC_CHECK_CUSTOM+=	${empty(MKC_CHECK_${i}):?:prog__${i}}
 .endfor
