@@ -229,20 +229,20 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d:S/;/:/g}"
 
 # custom checks
 .for c in ${MKC_CHECK_CUSTOM} ${MKC_REQUIRE_CUSTOM}
-.if !defined(HAVE_CUSTOM.${c})
+.if !defined(CUSTOM.${c})
 .if !defined(MKC_CUSTOM_FN.${c})
 MKC_CUSTOM_FN.${c}=${c}.c
 .endif
-HAVE_CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom \
+CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom \
 	${MKC_CUSTOM_FN.${c}:H:S|^.$|${MKC_CUSTOM_DIR}|}/${MKC_CUSTOM_FN.${c}:T}
 .endif
-.if ${HAVE_CUSTOM.${c}}
-MKC_CFLAGS  +=  -DHAVE_CUSTOM_${c:tu}=${HAVE_CUSTOM.${c}}
+.if ${CUSTOM.${c}}
+MKC_CFLAGS  +=  -DCUSTOM_${c:tu}=${CUSTOM.${c}}
 .endif
 .endfor
 
 .for c in ${MKC_REQUIRE_CUSTOM}
-.if !${HAVE_CUSTOM.${c}}
+.if !${CUSTOM.${c}}
 MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
@@ -269,7 +269,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 
 # MKC_CHECK_<progname>
 .for i in ${_custom_progs}
-.if defined(MKC_REQUIRE_${i}) && empty(HAVE_CUSTOM.${i})
+.if defined(MKC_REQUIRE_${i}) && empty(CUSTOM.${i})
 MKC_ERR_MSG+=	"ERROR: ${i} is required but cannot be found"
 .endif # !defined(MKC_REQUIRE...)...
 .endfor # i

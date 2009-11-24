@@ -75,7 +75,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
 	\
-	HAVE_CUSTOM.custom_check1 HAVE_CUSTOM.custom_check2 \
+	CUSTOM.custom_check1 CUSTOM.custom_check2 \
 	\
 	HAVE_PROG.sh           PROG.sh \
 	HAVE_PROG.awk          PROG.awk \
