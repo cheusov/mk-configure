@@ -66,11 +66,12 @@ MKC_SOURCE_FUNCLIBS   ?=
 _MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
 # checking for specific programs
-_custom_progs?=	gawk gm4 flex bison
+_custom_progs=	prog_gawk prog_gm4 prog_flex prog_bison
+#_custom_progs+=
 .for i in ${_custom_progs}
-MKC_CUSTOM_FN.prog__${i}?=	${SYSCUSTOMDIR}/prog_${i}
 MKC_CHECK_${i}?=	${MKC_REQUIRE_${i}}
-MKC_CHECK_CUSTOM+=	${empty(MKC_CHECK_${i}):?:prog__${i}}
+MKC_CUSTOM_FN.${i}?=	${SYSCUSTOMDIR}/${i}
+MKC_CHECK_CUSTOM+=	${empty(MKC_CHECK_${i}):?:${i}}
 .endfor
 
 # checking for headers
@@ -268,11 +269,8 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 
 # MKC_CHECK_<progname>
 .for i in ${_custom_progs}
-.if defined(MKC_REQUIRE_${i}) && empty(HAVE_CUSTOM.prog__${i})
+.if defined(MKC_REQUIRE_${i}) && empty(HAVE_CUSTOM.${i})
 MKC_ERR_MSG+=	"ERROR: ${i} is required but cannot be found"
-.elif defined(MKC_CHECK_${i})
-PROG.prog__${i}?=	${HAVE_CUSTOM.prog__${i}}
-HAVE_PROG.prog__${i}?=	${empty(HAVE_CUSTOM.prog__${i}):?0:1}
 .endif # !defined(MKC_REQUIRE...)...
 .endfor # i
 
