@@ -43,6 +43,7 @@ Plan 1)
      PC: source.p
      LD: source.a, source.so, source.dylib
      nroff: source.a, source.so, source.dylib
+     ...
 
   = Improve mkc.pkg-config.mk
 
