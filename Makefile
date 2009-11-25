@@ -5,7 +5,7 @@
 
 MKFILESDIR?=		${PREFIX}/share/mk
 EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
-SYSCUSTOMDIR?=		${PREFIX}/share/mk-configure/custom
+BUILTINSDIR?=		${PREFIX}/share/mk-configure/custom
 
 ##################################################
 
@@ -57,7 +57,7 @@ FILESDIR_mkc_check_common.sh=	${BINDIR}
 FILESDIR=		${MKFILESDIR}
 
 .for s in ${SCRIPTS:Mcustom/*}
-SCRIPTSDIR_${s:S|/|_|}=		${SYSCUSTOMDIR}
+SCRIPTSDIR_${s:S|/|_|}=		${BUILTINSDIR}
 .endfor
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
@@ -66,7 +66,7 @@ INFILES+=		configure.mk mkc.ver.mk
 INSCRIPTS+=		mkc_check_version
 INTEXTS_SED+=		-e 's,@version@,${VERSION},g'
 INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
-INTEXTS_SED+=		-e 's,@syscustomdir@,${SYSCUSTOMDIR},g'
+INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
 
 ##################################################
 
@@ -74,10 +74,10 @@ INTEXTS_SED+=		-e 's,@syscustomdir@,${SYSCUSTOMDIR},g'
 test: configure.mk mkc.ver.mk mkc_check_version
 	@set -e; \
 	PATH=${.CURDIR}:${.OBJDIR}:$$PATH; \
-	SYSCUSTOMDIR=${.CURDIR}/custom; \
+	BUILTINSDIR=${.CURDIR}/custom; \
 	MKCATPAGES=yes; \
 	NO_AUTODEP=yes; \
-	export PATH SYSCUSTOMDIR MKCATPAGES NO_AUTODEP; \
+	export PATH BUILTINSDIR MKCATPAGES NO_AUTODEP; \
 	unset MAKEOBJDIR MAKEOBJDIRPREFIX || true; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test

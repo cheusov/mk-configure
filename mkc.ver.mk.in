@@ -1,2 +1,2 @@
 MKC_VERSION=@version@
-SYSCUSTOMDIR?=@syscustomdir@
+BUILTINSDIR?=@syscustomdir@

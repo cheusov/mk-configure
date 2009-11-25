@@ -31,8 +31,6 @@ SRCS?=		${LIB}.c
 .if !empty(SRCS:U:M*.y)
 MKC_REQUIRE_PROGS+=			${YACC:[1]}
 MKC_PROG.id.${YACC:[1]:S/+/x/g}=	yacc
-#MKC_CHECK_CUSTOM+=			yacc_need_liby
-#MKC_CUSTOM_FN.yacc_need_liby=		${SYSCUSTOMDIR}/yacc_need_liby
 .endif
 
 .if !empty(SRCS:U:M*.l)
