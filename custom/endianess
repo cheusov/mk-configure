@@ -32,12 +32,10 @@ int main (int argc, char **argv)
 }
 EOF
 
-if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc"; then # 2>/dev/null; then
+if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc" 2>/dev/null; then
     echo little
     exit 0
 fi
-
-exit 5
 
 cat > "$tmpc" <<EOF
 #include <sys/types.h>
@@ -54,7 +52,7 @@ int main (int argc, char **argv)
 EOF
 
 if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc" 2>/dev/null; then
-    echo little
+    echo big
     exit 0
 fi
 
