@@ -18,40 +18,42 @@ pathpart=endianess
 
 trap "rm -f $tmpc $tmpo" 0
 
-cat > "$tmpc" <<EOF
-#include <sys/types.h>
-#include <sys/param.h>
+CFLAGS="$CFLAGS -D_GNU_SOURCE -D_ALL_SOURCE"
+
+check_me (){
+	cat > "$tmpc" <<EOF
+$3
 
 int main (int argc, char **argv)
 {
-#if BYTE_ORDER == _LITTLE_ENDIAN
+  #if $1 == $2
    return 0;
 #else
    error
 #endif
 }
 EOF
+	if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc" 2>/dev/null; then
+		return 0
+	else
+		return 1
+	fi
+}
 
-if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc" 2>/dev/null; then
+if check_me BYTE_ORDER LITTLE_ENDIAN '
+#include <sys/types.h>
+#include <sys/param.h>
+';
+then
     echo little
     exit 0
 fi
 
-cat > "$tmpc" <<EOF
+if check_me BYTE_ORDER BIG_ENDIAN '
 #include <sys/types.h>
 #include <sys/param.h>
-
-int main (int argc, char **argv)
-{
-#if BYTE_ORDER == _BIG_ENDIAN
-   return 0;
-#else
-   error
-#endif
-}
-EOF
-
-if $CC -o "$tmpo" -c $CFLAGS $CPPFLAGS "$tmpc" 2>/dev/null; then
+';
+then
     echo big
     exit 0
 fi
