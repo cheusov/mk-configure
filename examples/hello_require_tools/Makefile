@@ -1,7 +1,4 @@
-MKC_REQUIRE_prog_gawk=1
-MKC_REQUIRE_prog_flex=1
-MKC_REQUIRE_prog_gm4=1
-MKC_REQUIRE_prog_bison=1
+MKC_REQUIRE_BUILTINS+=	prog_gawk prog_flex prog_gm4 prog_bison
 
 SCRIPTS=	fake
 

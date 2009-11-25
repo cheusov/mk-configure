@@ -851,9 +851,39 @@ target.
 .IP MKC_CUSTOM_DIR
 Directory with custom checks source files.
 See MKC_CHECK_CUSTOM. It defaults to ${.CURDIR}.
+.IP MKC_CHECK_BUILTINS
+.B mk-configure
+provides a number of built-in custom checks, that is, source files
+to compile or scripts to run in order to check for something.
+Checks listed in MKC_CHECK_BUILTINS will be run.
+.RS
+Avalable values:
+.TP
+.BR prog_flex ", " prog_bison ", " prog_gawk ", " prog_gm4
+Find flex, bison, GNU awk or GNU m4 by analysing program's help and/or
+version messages. If found, CUSTOM.prog_<progname> is set to a path,
+otherwise it is unset. Note that
+.I gawk
+may be found as
+.IR awk ,
+.I bison
+as
+.IR yacc ,
+.I gm4
+as
+.IR m4
+and
+.I flex
+as
+.IR lex.
+.TP
+.B endianess
+CUSTON.endianess variable is set to either
+.IR little ", " big " or " unknown
+depending on your hardware.
+.RE
 .IP MKC_CHECK_PROGS
 List of <progname>s to check.
-
 As a result of the check bmake's variable
 HAVE_PROG.<progname> is set to either 1 (true) or 0 (false).
 Also PROG.<progname> is set to a full path of a program
@@ -932,22 +962,6 @@ The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
    Ex: MKC_COMMON_DEFINES.Linux   += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
-.IP MKC_CUSTOM_prog_<progname>
-Find <progname> by analysing program's help and version
-messages. If found, CUSTOM_prog_<progname> is set to a path, otherwise
-it is unset. Valid values for <progname> are: gawk (GNU awk),
-flex, bison, gm4 (GNU m4). Note that
-.I gawk
-may be found as
-.IR awk ,
-.I bison
-as
-.I yacc
-etc.
-.IP MKC_CUSTOM_endianess
-CUSTON.endianess variable is set to either
-.IR little ", " big " or " unknown
-depending on your hardware.
 .IP MKC_CACHEDIR
 Directory where intermediate and cache files are created.
 It defaults to ${.OBJDIR}.
@@ -961,7 +975,7 @@ Setting it to 0 will hide
 .VS
    Checking ... (cached) ...
 .VE
-messages, that is messages about fetching results from cache files.
+messages, that is, messages about fetching results from cache files.
 .IP MKC_DELETE_TMPFILES
 If set to 1, temporary files are removed.
 .IP MKC_NOCACHE
