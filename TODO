@@ -26,7 +26,7 @@ Plan 1)
   = mkc_install - portable BSD licensed replacement
                   for broken/absent native install(1)
 
-  = mkc_mkdir   - portable BSD licensed "mkdir -p"
+  = mkc_mkdir-p - portable BSD licensed "mkdir -p"
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
