@@ -39,6 +39,11 @@ DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 .if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
 #
+.undef MKC_SRCS
+.undef MKC_LDADD
+.undef MKC_CFLAGS
+
+#
 .ifndef OPSYS
 OPSYS!=	uname -s
 .endif
@@ -279,10 +284,6 @@ LDADD+=		${i}
 .for i in ${MKC_SRCS}
 SRCS+=		${i}
 .endfor
-
-.undef MKC_SRCS
-.undef MKC_LDADD
-.undef MKC_CFLAGS
 
 .endif # .if MKC_AUTO
 

@@ -81,9 +81,13 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_PROG.awk          PROG.awk \
 	HAVE_PROG.megaprog-x34 PROG.megaprog-x34 \
 	\
-	CFLAGS SRCS LDADD
+	MKC_AUTO_CFLAGS MKC_AUTO_SRCS MKC_AUTO_LDADD
 
 .include <configure.mk>
+
+MKC_AUTO_SRCS:=		${MKC_SRCS}
+MKC_AUTO_CFLAGS:=	${MKC_CFLAGS}
+MKC_AUTO_LDADD:=	${MKC_LDADD}
 
 HAVE_MEMBER.struct_sockaddr_in_sin_addr_s_addr.netinet_in_h  ?=  \
    ${HAVE_MEMBER.struct_sockaddr_in_sin_addr_s_addr.arpa_inet_h.netinet_in_h}
