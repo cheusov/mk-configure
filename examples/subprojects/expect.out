@@ -37,8 +37,8 @@
 /objdir/libhello2/Makefile
 /objdir/libhello2/_mkc_compiler_type.err
 /objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_c++.err
-/objdir/libhello2/_mkc_prog_c++.res
+/objdir/libhello2/_mkc_prog_cxx.err
+/objdir/libhello2/_mkc_prog_cxx.res
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
@@ -85,8 +85,8 @@
 /objdir/libhello2/Makefile
 /objdir/libhello2/_mkc_compiler_type.err
 /objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_c++.err
-/objdir/libhello2/_mkc_prog_c++.res
+/objdir/libhello2/_mkc_prog_cxx.err
+/objdir/libhello2/_mkc_prog_cxx.res
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/linkme.mk
