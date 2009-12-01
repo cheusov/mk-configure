@@ -1,4 +1,4 @@
-MKC_CHECK_DEFINES+=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__
+MKC_CHECK_DEFINES+=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__ __SUNPRO_C
 
 PROG=			compiler_test
 
@@ -14,6 +14,8 @@ msg=	Intel C Compiler
 msg=	Portable C Compiler
 .elif ${HAVE_DEFINE.__GNUC__:U1}
 msg=	GNU C Compiler
+.elif ${HAVE_DEFINE.__SUNPRO_C:U1}
+msg=	SunPro C Compiler
 .else
 msg=	Unknown compiler
 .endif
