@@ -142,7 +142,7 @@ is_func (){
     cat >> "$tmpc" <<EOF
 void func (void)
 {
-   if (${declwhat}) return 0;
+   if (${declwhat}) return;
    ${declwhat} (
 EOF
 
