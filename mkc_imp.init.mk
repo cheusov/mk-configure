@@ -20,6 +20,18 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .ifndef __initialized__
 __initialized__=1
 
+###########
+MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
+
+.if exists(${.CURDIR}/../Makefile.inc)
+.include "${.CURDIR}/../Makefile.inc"
+.endif
+.include <mkc_imp.own.mk>
+#.include <mkc_imp.obj.mk>
+#.include <mkc_imp.depall.mk>
+.MAIN:		all
+
+###########
 .if defined(PROG)
 SRCS?=		${PROG}.c
 .endif
@@ -40,7 +52,7 @@ MKC_PROG.id.${LEX:[1]:S/+/x/g}=		lex
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y)
 MKC_REQUIRE_PROGS+=			${CC:[1]}
-MKC_PROG.id.${CC:[1]:S/+/x/g}=		cc
+MKC_PROG.id.${CC:[1]:S|+|x|g}=		cc
 .endif
 
 .if !empty(SRCS:U:M*.cc) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp)
@@ -57,17 +69,6 @@ MKC_PROG.id.${FC:[1]:S/+/x/g}=		fc
 MKC_REQUIRE_PROGS+=			${PC:[1]}
 MKC_PROG.id.${PC:[1]:S/+/x/g}=		pc
 .endif
-
-###########
-MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
-
-.if exists(${.CURDIR}/../Makefile.inc)
-.include "${.CURDIR}/../Makefile.inc"
-.endif
-.include <mkc_imp.own.mk>
-#.include <mkc_imp.obj.mk>
-#.include <mkc_imp.depall.mk>
-.MAIN:		all
 
 ###########
 .PHONY: clean
