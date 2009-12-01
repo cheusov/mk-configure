@@ -21,10 +21,10 @@ checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
 checking for custom test custom_check1... 1 (yes)
 checking for custom test custom_check2... 0 (no)
-checking for program known ;-) /path/to/program
-checking for program known ;-) /path/to/program
-checking for program foobar_prog... NOT FOUND
-checking for program known ;-) /path/to/program
+checking for program FOOBAR... /path/to/FOOBAR
+checking for program FOOBAR... /path/to/FOOBAR
+checking for program FOOBAR... NOT FOUND
+checking for program FOOBAR... /path/to/FOOBAR
 ERROR: cannot find header foobar.h
 ERROR: cannot find function foobar
 ERROR: cannot find function barbaz:z
