@@ -2,10 +2,7 @@
 
 extern int mkc_test_var;
 
-void mkc_test_func (int a, int b, int c, int d, int e)
-{
-	return a + b + c + d + e;
-}
+int mkc_test_func (int a, int b, int c, int d, int e);
 
 struct mkc_test_t {
 	int a;
