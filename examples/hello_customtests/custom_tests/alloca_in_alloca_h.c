@@ -2,6 +2,8 @@
 
 int main (int argc, char **argv)
 {
-	alloca (100);
+#ifndef alloca
+	void *p = &alloca;
+#endif
 	return 0;
 }
