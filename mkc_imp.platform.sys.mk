@@ -140,7 +140,7 @@ LDFLAGS.shared.darwinld?=	-dylib
 LDFLAGS.soname.darwinld?=
 
 LDFLAGS.shared.gnuld?=		-shared
-LDFLAGS.soname.gnuld?=		-soname lib${LIB}.${SHLIB_EXT}.${SHLIB_MAJOR}
+LDFLAGS.soname.gnuld?=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.${LD_TYPE}:U}
