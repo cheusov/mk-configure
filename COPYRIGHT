@@ -1,5 +1,6 @@
-Different parts of mk-configure have different copyright holder,
-but everything is licenced under BSD licence.
+Different parts of mk-configure have different copyright holders.
+All used licences are listed here.
+See individual files for details.
 
 ######################################################################
 
@@ -93,3 +94,25 @@ INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
 IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+######################################################################
+
+Copyright 1991 by the Massachusetts Institute of Technology
+
+Permission to use, copy, modify, distribute, and sell this software
+and its documentation for any purpose is hereby granted without fee,
+provided that the above copyright notice appear in all copies and that
+both that copyright notice and this permission notice appear in
+supporting documentation, and that the name of M.I.T. not be used in
+advertising or publicity pertaining to distribution of the software
+without specific, written prior permission.  M.I.T. makes no
+representations about the suitability of this software for any
+purpose.  It is provided "as is" without express or implied warranty.
+
+Calling this script install-sh is preferred over install.sh, to
+prevent `make' implicit rules from creating a file called install from
+it when there is no Makefile.
+
+This script is compatible with the BSD install script, but was written
+from scratch.  It can only install one file at a time, a restriction
+shared with many OS's install programs.

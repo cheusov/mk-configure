@@ -26,7 +26,8 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
 			mkc_check_prog mkc_check_custom \
 			mkc_which mkc_check_version \
-			mkc_test_helper mkc_check_compiler
+			mkc_test_helper mkc_check_compiler \
+			mkc_install
 
 SCRIPTS+=		${:!cd ${.CURDIR} && echo custom/*!:N*/CVS}
 
