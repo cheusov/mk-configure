@@ -55,6 +55,10 @@ Plan 1)
   = Often compilers need special options to make pthread code.
     Support for MKPTHREAD=yes|no is needed.
 
+  = MKC_CHECK_DECL_TYPE (define, function|variable)
+
+  = MKC_DEFINE_01 - -DHAVE_XXX=0 or -DHAVE_XXX=1
+
 ============================================================
 Plan2)
 
@@ -101,3 +105,18 @@ Plan 3)
     User runs
       ./configure ...
       <any>make all
+
+============================================================
+Plan 4)
+  = MKC_BUILTINS (from autoconf):
+      broken_free_NULL,
+      exit_ret_int,
+      isinf, isnan, malloc_0, putenv_xxx, realloc, signal,
+      snprintf, sprintf, sscanf, strerror_r, strnlen,
+      sysconf, unlink, unsetenv, va_copy, va_list,
+      signed_shr, int_div, chown_minus_1,...
+      (autoconf.info/Particular Function Checks)
+
+      AC_FUNC_ALLOCA
+  = autoconf (Portability of headers)
+  = autoconf (Particular Header Checks)
