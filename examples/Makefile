@@ -14,6 +14,7 @@ SUBDIR+=	hello_customtests
 SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements
 SUBDIR+=	hello_reqd
+SUBDIR+=	hello_cxx
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools

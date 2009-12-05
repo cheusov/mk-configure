@@ -1,0 +1,39 @@
+Hello world!
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/expect.out
+/objdir/hello_cxx
+/objdir/hello_cxx.test.out.tmp
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/hello_msg.o
+/objdir/main.cc
+/objdir/main.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/hello_cxx
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/expect.out
+/objdir/hello_cxx.test.out.tmp
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/main.cc
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_cxx.test.out.tmp
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/main.cc
+/objdir/test.mk
