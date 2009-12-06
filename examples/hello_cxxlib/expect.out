@@ -1,0 +1,44 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/expect.out
+/objdir/hello_cxxlib.test.out.tmp
+/objdir/hello_msg.h
+/objdir/hello_msg1.cpp
+/objdir/hello_msg1.o
+/objdir/hello_msg1.so
+/objdir/hello_msg2.cpp
+/objdir/hello_msg2.o
+/objdir/hello_msg2.so
+/objdir/libcxxlib.a
+/objdir/libcxxlib.so.1.0
+/objdir/libcxxlib_pic.a
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/include/hello_msg.h
+/objdir/prefix/lib/libcxxlib.a
+/objdir/prefix/lib/libcxxlib.so.1.0
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/expect.out
+/objdir/hello_cxxlib.test.out.tmp
+/objdir/hello_msg.h
+/objdir/hello_msg1.cpp
+/objdir/hello_msg2.cpp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_cxxlib.test.out.tmp
+/objdir/hello_msg.h
+/objdir/hello_msg1.cpp
+/objdir/hello_msg2.cpp
+/objdir/test.mk
