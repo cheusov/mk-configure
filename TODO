@@ -17,8 +17,8 @@ Plan 1)
 
   = support for cross-compilation
 
-  = improve shared libraries support, HP-UX, AIX, QNX, UnixWare,
-    OSF1, Hurd etc.
+  = shared libraries support, HP-UX, AIX, QNX, UnixWare,
+    OSF1, Hurd and other exotic platforms.
 
   = improve support for different compilers, OSes, linkers,
     hardware etc.
@@ -51,10 +51,6 @@ Plan 1)
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
-
-  = MKC_CHECK_DECL_TYPE (define, function|variable)
-
-  = MKC_DEFINE_01 - -DHAVE_XXX=0 or -DHAVE_XXX=1
 
 ============================================================
 Plan2)
@@ -102,6 +98,10 @@ Plan 3)
     User runs
       ./configure ...
       <any>make all
+
+  = MKC_CHECK_DECL_TYPE (define, function|variable)
+
+  = MKC_DEFINE_01 - -DHAVE_XXX=0 or -DHAVE_XXX=1
 
 ============================================================
 Plan 4)
