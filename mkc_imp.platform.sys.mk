@@ -148,7 +148,7 @@ LDFLAGS.shared.gnuld=		-shared
 LDFLAGS.soname.gnuld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 
-LDFLAGS.shared.gcc.Darwin=	-dylib
+LDFLAGS.shared.gcc.Darwin=	-dynamiclib # -shared
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
