@@ -20,7 +20,7 @@ realinstall:	libinstall
 # add additional suffixes not exported.
 # .po is used for profiling object files.
 # .so is used for PIC object files.
-.SUFFIXES: .out .a .so .po .o .s .S .c .cc .C .m .F .f .r .y .l .cl .p .h
+.SUFFIXES: .out .a .so .po .o .s .S .c .cc .cpp .C .m .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4 .m
 
 
@@ -54,13 +54,13 @@ FFLAGS+=	${FOPTS}
 .c.so:
 	${COMPILE.c} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
-.cc.o .C.o:
+.cc.o .C.o .cpp.o:
 	${COMPILE.cc} ${.IMPSRC}
 
-.cc.po .C.po:
+.cc.po .C.po .cpp.po:
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
 
-.cc.so .C.so:
+.cc.so .C.so .cpp.so:
 	${COMPILE.cc} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .f.o:
@@ -146,7 +146,7 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
-	$(LD) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
+	$(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDADD}
 
 .if ${OBJECT_FMT} == "ELF"
