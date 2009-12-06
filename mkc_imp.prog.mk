@@ -35,15 +35,9 @@ OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 .if defined(OBJS) && !empty(OBJS)
 .NOPATH: ${OBJS}
 
-.if !empty(SRCS:M*.cxx) || !empty(SRCS:M*.cpp) || !empty(SRCS:M*.C) || !empty(SRCS:M*.cc)
-REALLINKER=${CXX}
-.else
-REALLINKER=${CC}
-.endif
-
 ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
 .if !commands(${PROG})
-	${REALLINKER} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} ${OBJS} ${LDADD}
+	${LDREAL} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} ${OBJS} ${LDADD}
 .endif
 
 .endif	# defined(OBJS) && !empty(OBJS)

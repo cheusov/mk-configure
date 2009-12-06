@@ -142,8 +142,22 @@ LDFLAGS.soname.darwinld?=
 LDFLAGS.shared.gnuld?=		-shared
 LDFLAGS.soname.gnuld?=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
+
+LDFLAGS.shared.gcc.Darwin?=	-dylib
+LDFLAGS.shared.gcc?=		-shared
+LDFLAGS.shared.pcc?=		-shared
+LDFLAGS.shared.icc?=		-shared
+
+
+LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
+
+.if ${LDCOMPILER:U0}
+LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
+.else
 LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
-LDFLAGS.soname?=		${LDFLAGS.soname.${LD_TYPE}:U}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld}
+.endif
 
 ############################################################
 ############################################################

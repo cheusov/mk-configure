@@ -20,6 +20,40 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .ifndef __initialized__
 __initialized__=1
 
+.MAIN:		all
+
+###########
+
+.if defined(PROG)
+SRCS?=		${PROG}.c
+.endif
+
+.if defined(LIB)
+SRCS?=		${LIB}.c
+.endif
+
+.if !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cc)
+src_type+=	cxx
+LDCOMPILER=	1
+LDREAL?=	${CXX}
+.endif
+
+LDCOMPILER?=	0
+
+.if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
+src_type+=	c
+.endif
+
+.if ${LDCOMPILER}
+LDREAL?=	${CC}
+.endif
+
+.if defined(PROG)
+LDREAL?=	${CC}
+.else
+LDREAL?=	${LD}
+.endif
+
 ###########
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 
@@ -29,17 +63,8 @@ MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 .include <mkc_imp.own.mk>
 #.include <mkc_imp.obj.mk>
 #.include <mkc_imp.depall.mk>
-.MAIN:		all
 
 ###########
-.if defined(PROG)
-SRCS?=		${PROG}.c
-.endif
-
-.if defined(LIB)
-SRCS?=		${LIB}.c
-.endif
-
 .if !empty(SRCS:U:M*.y)
 MKC_REQUIRE_PROGS+=			${YACC:[1]}
 MKC_PROG.id.${YACC:[1]:S/+/x/g}=	yacc
