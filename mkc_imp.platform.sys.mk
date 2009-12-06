@@ -151,7 +151,7 @@ LDFLAGS.shared.icc?=		-shared
 
 LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 
-.if ${LDCOMPILER:U0}
+.if defined(LDCOMPILER) && !empty(LDCOMPILER:M[Yy][Ye][Ss])
 LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
 .else

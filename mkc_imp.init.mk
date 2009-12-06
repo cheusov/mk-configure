@@ -34,17 +34,17 @@ SRCS?=		${LIB}.c
 
 .if !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cc)
 src_type+=	cxx
-LDCOMPILER=	1
+LDCOMPILER=	yes
 LDREAL?=	${CXX}
 .endif
 
-LDCOMPILER?=	0
+LDCOMPILER?=	no
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
 src_type+=	c
 .endif
 
-.if ${LDCOMPILER}
+.if !empty(LDCOMPILER:M[Yy][Ye][Ss])
 LDREAL?=	${CC}
 .endif
 
