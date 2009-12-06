@@ -17,12 +17,6 @@ Plan 1)
 
   = support for cross-compilation
 
-  = INCSSUBDIR, INCSSUBDIR.<header>
-
-  = C++ as a linker for C++ code
-
-  = option for CC/CXX as a linker instead of LD (mkc.lib.mk)
-
   = improve shared libraries support, HP-UX, AIX, QNX, UnixWare,
     OSF1, Hurd etc.
 
