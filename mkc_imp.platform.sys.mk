@@ -138,21 +138,28 @@ LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 OBJECT_FMT?=			ELF
 
 ####################
-LDFLAGS.shared.sunld?=		-G
-LDFLAGS.soname.sunld?=		-h lib${LIB}.so.${SHLIB_MAJOR}
+LDFLAGS.shared.sunld=		-G
+LDFLAGS.soname.sunld=		-h lib${LIB}.so.${SHLIB_MAJOR}
 
-LDFLAGS.shared.darwinld?=	-dylib
-LDFLAGS.soname.darwinld?=
+LDFLAGS.shared.darwinld=	-dylib
+LDFLAGS.soname.darwinld=
 
-LDFLAGS.shared.gnuld?=		-shared
-LDFLAGS.soname.gnuld?=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
+LDFLAGS.shared.gnuld=		-shared
+LDFLAGS.soname.gnuld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 
-LDFLAGS.shared.gcc.Darwin?=	-dylib
-LDFLAGS.shared.gcc?=		-shared
-LDFLAGS.shared.pcc?=		-shared
-LDFLAGS.shared.icc?=		-shared
+LDFLAGS.shared.gcc.Darwin=	-dylib
+LDFLAGS.shared.gcc=		-shared
+LDFLAGS.shared.pcc=		-shared
+LDFLAGS.shared.icc=		-shared
 
+CFLAGS.cctold.sunpro=		-X
+CFLAGS.cctold.gcc=		-Wl,
+CFLAGS.cctold.pcc=		-Wl,
+CFLAGS.cctold.icc=		-Wl,
+
+CFLAGS.cctold?=			${CFLAGS.cctold.${CC_TYPE}:U-Wrong-option}
+CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wrong-option}
 
 LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 
@@ -162,10 +169,10 @@ LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld}
 .elif ${LDREAL:U0} == ${CC:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
-LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}
 .elif ${LDREAL:U0} == ${CXX:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}}:U-shared}
-LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}
 .endif
 
 ############################################################
