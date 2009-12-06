@@ -27,6 +27,7 @@ CC_TYPE?=	unknown
 
 ####################
 SHLIB_EXT.Darwin=	.dylib
+SHLIB_EXT.HP-UX=	.sl
 
 SHLIB_EXT?=		${SHLIB_EXT.${TARGET_OPSYS}:U.so}
 
@@ -105,14 +106,27 @@ CPPFLAGS+=	${CPPFLAGS.${TARGET_OPSYS}:U}
 #FFLAGS.pic?= -fPIC
 
 ####################
-CFLAGS.pic.gcc?=	-fPIC -DPIC
-CPPFLAGS.pic.gcc?=	-DPIC
+CFLAGS.pic.gcc=		-fPIC -DPIC
+CPPFLAGS.pic.gcc=	-DPIC
 
-CFLAGS.pic.icc?=	-fPIC -DPIC
-CPPFLAGS.pic.icc?=	-DPIC
+CFLAGS.pic.icc=		-fPIC -DPIC
+CPPFLAGS.pic.icc=	-DPIC
 
-CFLAGS.pic.pcc?=	-k -DPIC
-CPPFLAGS.pic.pcc?=	-DPIC
+CFLAGS.pic.pcc=		-k
+CPPFLAGS.pic.pcc=
+
+CFLAGS.pic.mipspro=	-KPIC
+CPPFLAGS.pic.mipspro=
+
+CFLAGS.pic.sunpro=	-xcode=pic32 #-KPIC
+CPPFLAGS.pic.sunpro=
+
+CFLAGS.pic.hpc=		+Z # +z
+CPPFLAGS.pic.hpc=
+
+CFLAGS.pic.ibmc=	-qpic=large # -qpic=small
+CPPFLAGS.pic.ibmc=
+
 
 CFLAGS.pic?=		${CFLAGS.pic.${CC_TYPE}:U}
 CXXFLAGS.pic?=		${CFLAGS.pic.${CXX_TYPE}:U}
@@ -129,6 +143,9 @@ NROFF_MAN2CAT.SunOS?=		-man
 NROFF_MAN2CAT?=			${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
 
 ####################
+LD_TYPE.UnixWare=		scold
+LD_TYPE.AIX=			aixld
+LD_TYPE.HP-UX=			hpld
 LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
 
@@ -142,21 +159,37 @@ LDFLAGS.shared.sunld=		-G
 LDFLAGS.soname.sunld=		-h lib${LIB}.so.${SHLIB_MAJOR}
 
 LDFLAGS.shared.darwinld=	-dylib
-LDFLAGS.soname.darwinld=
+LDFLAGS.soname.darwinld=	#
 
 LDFLAGS.shared.gnuld=		-shared
 LDFLAGS.soname.gnuld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
+LDFLAGS.shared.hpld=		-b
+LDFLAGS.soname.hpld=		#
 
-LDFLAGS.shared.gcc.Darwin=	-dynamiclib # -shared
+LDFLAGS.shared.aixld=		-G
+LDFLAGS.soname.aixld=		#
+
+LDFLAGS.shared.irixld=		-shared
+LDFLAGS.soname.irixld=		#
+
+
+LDFLAGS.shared.gcc.Darwin=	-dynamiclib
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
+LDFLAGS.shared.hpc=		-b
+LDFLAGS.shared.imbc=		-qmkshrobj
+LDFLAGS.shared.mipspro=		-shared
+LDFLAGS.shared.sunpro=		-G
 
-CFLAGS.cctold.sunpro=		-X
 CFLAGS.cctold.gcc=		-Wl,
 CFLAGS.cctold.pcc=		-Wl,
 CFLAGS.cctold.icc=		-Wl,
+CFLAGS.cctold.mipspro=		-Wl,
+CFLAGS.cctold.sunpro=		-Wl,
+CFLAGS.cctold.hpc=		-Wl,
+CFLAGS.cctold.ibmc=		-Wl,
 
 CFLAGS.cctold?=			${CFLAGS.cctold.${CC_TYPE}:U-Wrong-option}
 CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wrong-option}
