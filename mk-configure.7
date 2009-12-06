@@ -184,6 +184,11 @@ Target directory for system utilities.
 .IP INCSDIR
 Target directory for includes.
 .RI [ ${PREFIX}/include ]
+.IP INCSSRCDIR
+Source directory for include files. This variable have an influence on
+CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
+(paths in ${INCS} are relative to ${INCSSRCDIR}).
+.RI [ . ]
 .IP DATADIR
 Target directory for architecture-independent text files.
 .RI [ ${PREFIX}/share ]
