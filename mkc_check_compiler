@@ -13,6 +13,14 @@ export LC_ALL
 
 ##################################################
 
+pathpart=compiler_type
+if test "$1" = -x; then
+    pathpart=cxx_type
+    CC="$CXX"
+    export CC
+fi
+
+##################################################
 checks='
         __GNUC__:gcc
          __PCC__:pcc
@@ -48,7 +56,6 @@ check_itself (){
     echo $type
 }
 
-pathpart=compiler_type
 . mkc_check_common.sh
 
 check_and_cache "checking for compiler type" "$cache"

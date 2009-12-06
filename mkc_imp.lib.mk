@@ -61,7 +61,7 @@ FFLAGS+=	${FOPTS}
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
 
 .cc.so .C.so .cpp.so:
-	${COMPILE.cc} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} ${CXXFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .f.o:
 	${COMPILE.f} ${.IMPSRC}

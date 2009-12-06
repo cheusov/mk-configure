@@ -15,8 +15,12 @@ _MKC_PLATFORM_MK=1
 .if make(cleandir) || make(distclean) || make(clean)
 DISTCLEANFILES+=	_mkc_compiler_type.res
 .elif !defined(SKIP_CONFIGURE_MK) && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
-mkc.cc_type.environ= CC='${CC}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
+mkc.cc_type.environ= CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
+.if !empty(src_type:Mc)
 CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler
+.elif !empty(src_type:Mcxx)
+CXX_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler -x
+.endif
 .endif
 
 CC_TYPE?=	unknown
@@ -111,6 +115,7 @@ CFLAGS.pic.pcc?=	-k -DPIC
 CPPFLAGS.pic.pcc?=	-DPIC
 
 CFLAGS.pic?=		${CFLAGS.pic.${CC_TYPE}:U}
+CXXFLAGS.pic?=		${CFLAGS.pic.${CXX_TYPE}:U}
 CPPFLAGS.pic?=		${CPPFLAGS.pic.${CC_TYPE}:U}
 
 ####################
@@ -151,12 +156,16 @@ LDFLAGS.shared.icc?=		-shared
 
 LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 
-.if defined(LDCOMPILER) && !empty(LDCOMPILER:M[Yy][Ye][Ss])
-LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
-LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
-.else
+#.if !defined(LDCOMPILER) || empty(LDCOMPILER:M[Yy][Ye][Ss])
+.if ${LDREAL:U0} == ${LD:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld}
+.elif ${LDREAL:U0} == ${CC:U0}
+LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
+.elif ${LDREAL:U0} == ${CXX:U0}
+LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}}:U-shared}
+LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@-Wl,${v}@}
 .endif
 
 ############################################################
