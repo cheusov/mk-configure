@@ -11,6 +11,9 @@
 realinstall:	incinstall
 
 .if defined(INCS)
+INCSSRCDIR?=	.
+CPPFLAGS+=	-I${INCSSRCDIR}
+
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_incs=${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
@@ -24,7 +27,7 @@ __incinstall: .USE
 	    -g ${BINGRP} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET}
 
 .for I in ${INCS:O:u}
-${DESTDIR}${INCSDIR}/$I: $I __incinstall
+${DESTDIR}${INCSDIR}/$I: ${INCSSRCDIR}/$I __incinstall
 .endfor
 
 UNINSTALLFILES+=	${destination_incs}
