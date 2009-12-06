@@ -23,8 +23,6 @@ Plan 1)
   = improve support for different compilers, OSes, linkers,
     hardware etc.
 
-  = mkc_mkdir-p - portable BSD licensed "mkdir -p"
-
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
 
