@@ -8,10 +8,10 @@
 /objdir/hello_cxxlib.test.out.tmp
 /objdir/hello_msg1.cpp
 /objdir/hello_msg1.o
-/objdir/hello_msg1.so
+/objdir/hello_msg1.os
 /objdir/hello_msg2.cpp
 /objdir/hello_msg2.o
-/objdir/hello_msg2.so
+/objdir/hello_msg2.os
 /objdir/include/hello_msg.h
 /objdir/include/impl/hello_msg1.h
 /objdir/include/impl/hello_msg2.h

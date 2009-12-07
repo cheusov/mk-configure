@@ -18,9 +18,9 @@ realinstall:	libinstall
 .endif # MKINSTALL
 
 # add additional suffixes not exported.
-# .po is used for profiling object files.
-# .so is used for PIC object files.
-.SUFFIXES: .out .a .so .po .o .s .S .c .cc .cpp .C .m .F .f .r .y .l .cl .p .h
+# .op is used for profiling object files.
+# .os is used for PIC object files.
+.SUFFIXES: .out .a .so .os .po .op .o .s .S .c .cc .cpp .C .m .F .f .r .y .l .cl .p .h
 .SUFFIXES: .sh .m4 .m
 
 
@@ -33,12 +33,12 @@ realinstall:	libinstall
 # LDFLAGS.soname:	Flags to tell ${LD} to emit shared library.
 #			with ELF, also set shared-lib version for ld.so.
 #
-# FFLAGS.pic:		flags for ${FC} to compile .[fF] files to .so objects.
+# FFLAGS.pic:		flags for ${FC} to compile .[fF] files to .os objects.
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
-# CFLAGS.pic:		flags for ${CC} to compile .[cC] files to .so objects.
+# CFLAGS.pic:		flags for ${CC} to compile .[cC] files to .os objects.
 # CAFLAGS.pic		flags for {$CC} to compiling .[Ss] files
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
-# AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .so objects.
+# AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
 MKPICLIB?= yes
 
@@ -48,46 +48,46 @@ FFLAGS+=	${FOPTS}
 .c.o:
 	${COMPILE.c} ${.IMPSRC}
 
-.c.po:
+.c.op:
 	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
 
-.c.so:
+.c.os:
 	${COMPILE.c} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .cc.o .C.o .cpp.o:
 	${COMPILE.cc} ${.IMPSRC}
 
-.cc.po .C.po .cpp.po:
+.cc.op .C.op .cpp.op:
 	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
 
-.cc.so .C.so .cpp.so:
+.cc.os .C.os .cpp.os:
 	${COMPILE.cc} ${CXXFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .f.o:
 	${COMPILE.f} ${.IMPSRC}
 
-.f.po:
+.f.op:
 	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
 
-.f.so:
+.f.os:
 	${COMPILE.f} ${FFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .m.o:
 	${COMPILE.m} ${.IMPSRC}
 
-.m.po:
+.m.op:
 	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
 
-.m.so:
+.m.os:
 	${COMPILE.m} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
 
 .S.o .s.o:
 	${COMPILE.S} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
-.S.po .s.po:
+.S.op .s.op:
 	${COMPILE.S} ${PROFFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
-.S.so .s.so:
+.S.os .s.os:
 	${COMPILE.S} ${CAFLAGS.pic} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 _LIBS=lib${LIB}.a
@@ -96,7 +96,7 @@ OBJS+=${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 
 .if ${MKPROFILE} != "no"
 _LIBS+=lib${LIB}_p.a
-POBJS+=${OBJS:.o=.po}
+POBJS+=${OBJS:.o=.op}
 .endif
 
 .if ${MKPIC} != "no"
@@ -105,7 +105,7 @@ SOLIB=lib${LIB}.a
 .else
 SOLIB=lib${LIB}_pic.a
 _LIBS+=${SOLIB}
-SOBJS+=${OBJS:.o=.so}
+SOBJS+=${OBJS:.o=.os}
 .endif
 .if defined(SHLIB_FULLVERSION)
 _LIBS+=lib${LIB}${SHLIB_EXTFULL}
@@ -166,7 +166,7 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 .if defined(SRCS)
 afterdepend: .depend
 	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.po \1.so:/' \
+	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.op \1.os:/' \
 	      < .depend > $$TMP; \
 	    mv $$TMP .depend)
 .endif
