@@ -118,7 +118,7 @@ CPPFLAGS.pic.pcc=
 CFLAGS.pic.mipspro=	-KPIC
 CPPFLAGS.pic.mipspro=
 
-CFLAGS.pic.sunpro=	-xcode=pic32 #-KPIC
+CFLAGS.pic.sunpro=	-KPIC # -xcode=pic32
 CPPFLAGS.pic.sunpro=
 
 CFLAGS.pic.hpc=		+Z # +z
@@ -156,7 +156,7 @@ OBJECT_FMT?=			ELF
 
 ####################
 LDFLAGS.shared.sunld=		-G
-LDFLAGS.soname.sunld=		-h lib${LIB}.so.${SHLIB_MAJOR}
+LDFLAGS.soname.sunld=		#-h lib${LIB}.so.${SHLIB_MAJOR}
 
 LDFLAGS.shared.darwinld=	-dylib
 LDFLAGS.soname.darwinld=	#
@@ -201,10 +201,10 @@ LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld}
 .elif ${LDREAL:U0} == ${CC:U0}
-LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}}:U-shared}
+LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}:U-shared}}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}
 .elif ${LDREAL:U0} == ${CXX:U0}
-LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}}:U-shared}
+LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}:U-shared}}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}
 .endif
 
