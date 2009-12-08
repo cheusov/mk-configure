@@ -5,16 +5,19 @@
 #define HAVE_DEFINE__MSC_VER 0
 #endif
 
+#ifndef HAVE_DEFINE___GNUC__
+#define HAVE_DEFINE___GNUC__ 0
+#endif
+
 #ifndef HAVE_DEFINE___INTEL_COMPILER
 #define HAVE_DEFINE___INTEL_COMPILER 0
+#else
+#undef HAVE_DEFINE___GNUC__
+#define HAVE_DEFINE___GNUC__ 0
 #endif
 
 #ifndef HAVE_DEFINE___PCC__
 #define HAVE_DEFINE___PCC__ 0
-#endif
-
-#ifndef HAVE_DEFINE___GNUC__
-#define HAVE_DEFINE___GNUC__ 0
 #endif
 
 #ifndef HAVE_DEFINE___SUNPRO_C
