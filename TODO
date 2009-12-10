@@ -3,8 +3,6 @@ Plan 1)
 
   = ROOT_GROUP != wheel under Linux
 
-  = Do not install htmlN directory for man pages
-
   = Online tutorial
 
   = Rewrite README
