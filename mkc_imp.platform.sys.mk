@@ -57,6 +57,18 @@ INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
 
+.if ${OPSYS} == "Linux"
+.if exists(/usr/bin/ginstall)
+INSTALL?=		/usr/bin/ginstall
+.elif exists(/bin/ginstall)
+INSTALL?=		/bin/ginstall
+.elif exists(/usr/bin/install)
+INSTALL?=		/usr/bin/install
+.elif exists(/bin/install)
+INSTALL?=		/bin/install
+.endif
+.endif
+
 INSTALL?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
 # The following line is for debugging only
