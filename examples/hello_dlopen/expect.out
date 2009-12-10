@@ -18,6 +18,8 @@ returned address: F00DBEAF
 /objdir/hello_dlopen.test.out.tmp
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/dlopen_test
 ======== uninstall =========
 ========== clean ===========

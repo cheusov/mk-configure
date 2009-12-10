@@ -17,6 +17,8 @@
 =========== run ============
 alloca(3) succeeded
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_customtests2
 ======== uninstall =========
 ========== clean ===========

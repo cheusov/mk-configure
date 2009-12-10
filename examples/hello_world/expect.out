@@ -14,7 +14,12 @@ Hello World!
 /objdir/hello_world.test.out.tmp
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_world
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/hello_world
 /objdir/prefix/share/doc/hello_world/COPYRIGHT
 /objdir/prefix/share/doc/hello_world/README
 ======== uninstall =========

@@ -33,6 +33,8 @@ We have C++ compiler with working templates: YES
 We have a working 'true' in bourne shell: YES
 shtest is good: NO
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_customtests
 ======== uninstall =========
 ========== clean ===========

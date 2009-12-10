@@ -19,6 +19,8 @@
 /objdir/input.txt
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_calc
 ======== uninstall =========
 ========== clean ===========

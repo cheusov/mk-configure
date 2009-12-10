@@ -17,6 +17,8 @@ glib_micro_version=N
 /objdir/hello_glib2.test.out.tmp
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_glib2
 ======== uninstall =========
 ========== clean ===========

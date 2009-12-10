@@ -31,6 +31,8 @@ sizeof(void*)=n
 /objdir/sizeof_test.o
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/sizeof_test
 ======== uninstall =========
 ========== clean ===========

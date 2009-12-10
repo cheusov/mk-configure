@@ -20,9 +20,13 @@
 /objdir/libcxxlib_pic.a
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/include
 /objdir/prefix/include/hello_msg.h
+/objdir/prefix/include/impl
 /objdir/prefix/include/impl/hello_msg1.h
 /objdir/prefix/include/impl/hello_msg2.h
+/objdir/prefix/lib
 /objdir/prefix/lib/libcxxlib.a
 /objdir/prefix/lib/libcxxlib.so.1.0
 ======== uninstall =========

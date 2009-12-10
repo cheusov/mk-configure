@@ -42,6 +42,8 @@
 /objdir/strlcpy.c
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello4
 ======== uninstall =========
 ========== clean ===========

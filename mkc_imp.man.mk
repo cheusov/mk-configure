@@ -199,14 +199,13 @@ destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 .endif
 
 installhtml:            ${destination_htmls}
-UNINSTALLFILES+=	${destination_htmls}
-INSTALLDIRS+=		${destination_htmls:H}
-
-CLEANFILES+=	${HTMLPAGES}
+CLEANFILES+=		${HTMLPAGES}
 
 .if !empty(MKHTML:M[Yy][Ee][Ss])
 realinstall: installhtml
 realall: ${HTMLPAGES}
+UNINSTALLFILES+=	${destination_htmls}
+INSTALLDIRS+=		${destination_htmls:H}
 .endif # MKHTML
 .endif # HTMLPAGES
 

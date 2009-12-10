@@ -48,14 +48,21 @@
 /objdir/test.mk
 /objdir/version.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/hello_subprojects
 /objdir/prefix/bin/hello_subprojects2
+/objdir/prefix/include
 /objdir/prefix/include/hello1.h
+/objdir/prefix/lib
 /objdir/prefix/lib/libhello1.a
 /objdir/prefix/lib/libhello1.so
 /objdir/prefix/lib/libhello1.so.1
 /objdir/prefix/lib/libhello1.so.1.0
+/objdir/prefix/man
+/objdir/prefix/man/cat1
 /objdir/prefix/man/cat1/hello_subprojects.0
+/objdir/prefix/man/man1
 /objdir/prefix/man/man1/hello_subprojects.1
 ======== uninstall =========
 ========== clean ===========

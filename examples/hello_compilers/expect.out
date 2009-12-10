@@ -27,6 +27,8 @@
 /objdir/hello_compilers.test.out.tmp
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/compiler_test
 ======== uninstall =========
 ========== clean ===========

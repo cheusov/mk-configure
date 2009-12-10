@@ -26,15 +26,27 @@
 /objdir/shell_func3
 /objdir/test.mk
 ========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
 /objdir/prefix/bin/shell_func1
 /objdir/prefix/bin/shell_func2
+/objdir/prefix/info
 /objdir/prefix/info/shell_func.info
+/objdir/prefix/libexec
 /objdir/prefix/libexec/shell_func3
+/objdir/prefix/man
+/objdir/prefix/man/cat7
 /objdir/prefix/man/cat7/shell_func.0
+/objdir/prefix/man/html7
 /objdir/prefix/man/html7/shell_func.html
+/objdir/prefix/man/man7
 /objdir/prefix/man/man7/shell_func.7
+/objdir/prefix/share
+/objdir/prefix/share/files1
 /objdir/prefix/share/files1/shell_func1.sh
+/objdir/prefix/share/files2
 /objdir/prefix/share/files2/shell_func2.sh
+/objdir/prefix/share/files3
 /objdir/prefix/share/files3/shell_func3.sh
 ======== uninstall =========
 ========== clean ===========
