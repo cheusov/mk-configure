@@ -1,9 +1,9 @@
 ============================================================
 Plan 1)
 
-  = Online tutorial
+  = Update README
 
-  = Rewrite README
+  = Online tutorial
 
   = 'bmake depend' and/or automatic generating .d files
     using mkdep(1) or makedepend(1).
