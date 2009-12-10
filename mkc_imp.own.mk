@@ -28,9 +28,6 @@ ROOT_GROUP?=	${_MKC_GROUP}
 
 .include <mkc_imp.sys.mk>
 
-ROOT_USER?=	root
-ROOT_GROUP?=	wheel
-
 # Define MANZ to have the man pages compressed (gzip)
 #MANZ=		1
 

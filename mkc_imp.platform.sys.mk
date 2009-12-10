@@ -39,11 +39,20 @@ BINMODE?=		${BINMODE.${TARGET_OPSYS}:U755}
 NONBINMODE?=		${BINMODE.${TARGET_OPSYS}:U644}
 
 ####################
+ROOT_GROUP.NetBSD=		wheel
+ROOT_GROUP.OpenBSD=		wheel
+ROOT_GROUP.FreeBSD=		wheel
+ROOT_GROUP.Darwin=		wheel
+ROOT_GROUP.DragonFlyBSD=	wheel
+
+ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
+ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}
+
+####################
 INSTALL.NetBSD=		/usr/bin/install
 INSTALL.OpenBSD=	/usr/bin/install
 INSTALL.FreeBSD=	/usr/bin/install
 INSTALL.DragonFlyBSD=	/usr/bin/install
-INSTALL.Linux=		install
 INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
