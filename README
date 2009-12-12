@@ -7,9 +7,53 @@ in and for bmake (portable version of NetBSD make) and UNIX tools
 incompatible with NetBSD bmake. GNU make is not good too, it is
 completely incompatible with NetBSD bmake.
 
-mk-configure consists of a number of include files written for bmake
-and a a number of standalone programs which should be installed to
-user's host for building a software.
+mk-configure provides a number of include files written in and for
+bmake and a a number of standalone programs that should be installed
+to user's host for building a software.
+
+-------------------------------------------------------------------------
+GOALS OF THE PROJECT
+
+ - No code generation! Library approach is used instead.  Instead of
+   generating tons of unreadable blobs mk-configure uses bmake include
+   files (bmake's libraries) and external executables to make its job.
+   Developers should distribute source code only, not blobs.
+
+ - Single top level command for building a software, bmake in our
+   case. Instead of running and learning
+   autoconf/automake/aclocal/autoreconf/config.status/autoheader and
+   many other tools and the way they interact with each other you
+   should learn only ONE tool, bmake.
+
+ - No bloat. At this time mk-configure consists of far less than 10000
+   lines of code (excluding examples and regression tests). Compare
+   this number with autotools sources and you'll see a difference.
+
+ - Simplicity for both developers and users. The only file developer
+   should be aware of during development is 'Makefile'.  Users just
+   run 'env <options> bmake all <options>' to build a software. The
+   same for developers -- for building a software, just run 'bmake'.
+
+ - Portability. At the moment the following systems and compilers are
+   supported:
+
+    - NetBSD. Tested under NetBSD-5.0/x86 and NetBSD-2.0/alpha with
+      gcc and pcc (Portable C compiler).
+
+    - FreeBSD. Tested under FreeBSD-6.2/x86, FreeBSD-7.1/spark64 and
+      FreeBSD-7.1/x86 with gcc.
+
+    - OpenBSD. Tested under OpenBSD-4.6/x86 with gcc.
+
+    - Solaris. Tested under Solaris-10/x86 with Sun Studio 11 and gcc.
+
+    - Darwin (MacOS-X). Tested under Darwin-8.11.0/ppc (MacOS-X Tiger)
+      with native gcc.
+
+    - Interix. Tested under Interix-3.5/x86 with native gcc.
+
+    If you don't see your favourite system/compiler here and want to
+    help me to improve mk-configure, feel free to contact me.
 
 -------------------------------------------------------------------------
 HOW TO USE MK-CONFIGURE?
@@ -19,11 +63,11 @@ HOW TO USE MK-CONFIGURE?
     - Install mk-configure to your system.
     - Develop your software using bmake and mkc.*.mk include files
       provided by mk-configure.
-    - Run 'bmake' or 'bmake all' for building your project.  You need
+    - Run 'bmake' or 'bmake all' for building your software.  You need
       not autoconf/autoheader/automake/aclocal/config.guess/
       /autoreconf/config.status/config.sub and blah-blah-blah.
 
-      BMAKE is enough for everything! ;-)
+      BMAKE is magic enough! ;-)
 
  For users and software packagers:
     - Install bmake and sys.mk your system.
@@ -34,7 +78,7 @@ HOW TO USE MK-CONFIGURE?
          env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
               bmake all install
 
-      There is no configure script.
+      There is no need for configure script and analogs.
 
       BMAKE is magic enough! ;-)
 
@@ -81,11 +125,15 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
 -------------------------------------------------------------------------
 WHAT MK-CONFIGURE PROVIDES?
 
-- mkc.{files,lib,own,prog,subdir}.mk files.
+- mkc.{files,lib,prog,subdir}.mk files.
 
-      Unlike well known mk files in *BSD systems mkc.*.mk, files
-      provide the following features. THIS LIST OF DIFFERENCE IS NOT
-      COMPLETE, SEE mk-configure.7 FOR DETAILS.
+      These include files are responsible for building, installing and
+      uninstalling the applications, static and shared libraries,
+      scripts, plain files, mand and info pages, hard and soft links
+      etc...  Note for *BSD users: unlike well known mk files in *BSD
+      systems mkc.*.mk, files provide the following features.  THIS
+      LIST OF DIFFERENCES IS NOT COMPLETE, SEE mk-configure.7 FOR
+      DETAILS.
 
       - PREFIX, BINDIR, MANDIR etc. variables default to
         /usr/local/xxx.  By default bsd.*.mk are set to /usr because
