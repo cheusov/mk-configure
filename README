@@ -5,9 +5,7 @@ mk-configure is a lightweight replacement for GNU autotools, written
 in and for bmake (portable version of NetBSD make) and UNIX tools
 (shell, awk etc.).  FreeBSD and OpenBSD make are not good. They are
 incompatible with NetBSD bmake. GNU make is not good too, it is
-completely incompatible with NetBSD bmake. Note for NetBSD users: I'd
-recommend to use latest stable version of bmake. Old bmake may not
-work, e.g., /usr/bin/make shipped with NetBSD-2.0 is not supported.
+completely incompatible with NetBSD bmake.
 
 mk-configure provides a number of include files written in and for
 bmake and a number of standalone programs that should be installed to
@@ -263,6 +261,11 @@ INSTALLATION:
 
   If you use pkgsrc (cross platforms packaging system), you may find
   a package for latest mk-configure in wip/mk-configure.
+
+  NOTE: I'd recommend to use the latest stable version of bmake. Old
+  bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
+  not supported. pmake-1.111 (ancient version of NetBSD make) found in
+  some Linux distributions is not supported too.
 
 -------------------------------------------------------------------------
 FEEDBACK

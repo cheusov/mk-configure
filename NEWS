@@ -1,4 +1,119 @@
 ======================================================================
+Version 0.13.0, by Aleksey Cheusov, Sat, 12 Dec 2009 14:04:33 +0200
+
+  CC, CXX and LD types are automatically detected and options passed
+  to them (e.g. options for generating a position independent code or
+  options for building a shared library) depend on this type.
+  At the moment the following systems and compilers are supported:
+
+      - NetBSD. Tested under NetBSD-5.0/x86 and NetBSD-2.0/alpha with
+        gcc and pcc (Portable C compiler).
+
+      - FreeBSD. Tested under FreeBSD-6.2/x86, FreeBSD-7.1/spark64 and
+        FreeBSD-7.1/x86 with gcc.
+
+      - OpenBSD. Tested under OpenBSD-4.6/x86 with gcc.
+
+      - Solaris. Tested under Solaris-10/x86 with Sun Studio 11 and
+        gcc.
+
+      - Darwin (MacOS-X). Tested under Darwin-8.11.0/ppc (MacOS-X
+        Tiger) with native gcc.
+
+      - Interix. Tested under Interix-3.5/x86 with native gcc.
+
+      - Partial support for AIX and HP-UX and their native compilers
+        and linkers. Support is not complete because I have no access
+        to "big iron". Any help? ;-)
+
+      If you don't see your favourite system/compiler here and want to
+      help me to improve mk-configure, feel free to contact
+      me. mk-configure needs your help! ;-)
+
+  So called built-in checks are implemented. See MKC_CHECK_BUILTINS
+  variable. Built-in checks are checks provided by mk-configure. At
+  the moment the following checks are implemented: endianess,
+  prog_flex, prog_bison, prog_gawk, prog_gm4. See mk-configure.7 for
+  the documentation.
+
+  mkc.configure.mk:
+    - At the end of this file MKC_{REQUIRE,CHECK}_XXX variables as
+      well as MKC_{CFLAGS,LDADD,SRCS} are .undef-ed. This allows one
+      to .include mkc.configure.mk several times.
+    - This include file is activated automatically from mkc.prog.mk
+      and mkc.lib.mk. You need to .include mkc.configure.mk
+      explicitely only if postcheck actions are needed.
+
+  SCRIPTS variable can contain subdir/<script>s, they are installed
+  just as <script>s, i.e. subdir/ is silently stripped.
+  SCRIPTSDIR_subdir_<script> and SCRIPTSNAME_subdir_<script> can be
+  used for specifying an alternative destination path and filename.
+
+  If .l or .y source files are listed in SRCS variable, mk-configure
+  automatically checks weather ${LEX} and ${YACC} are available or
+  not.  The same for .c/${CC}, .cpp|.cc|.cxx|.C/${CXX}, .f/${FC} and
+  .p/${PC}.  In case of absense of appropriate tool bmake exits with
+  error on early stage.
+
+  MKC_CHECK_CUSTOM, MKC_REQUIRE_CUSTOM:
+    - HAVE_CUSTOM.xxx bmake's variables and HAVE_CUSTOM_xxx #defines
+      have been renamed to CUSTOM.xxx and CUSTOM_xxx respectively.
+      Formally speaking this breaks backward compatibility with
+      earlier mk-c releases.
+    - Support for checks written in C++ (.cc, .cxx, .C and .cpp) and
+      Fortran (.f) is added.
+    - Support for checks implemented as an executable program/script is added.
+
+  FIXES:
+    - mkc_imp.man.mk: useless TMACDIR and dependencies on tmac files
+      under /usr/share are removed
+    - mkc_check_decl:
+      void function() cannot 'return 0' (thanks to SunPro compiler!)
+    - If C++ source files are listed in SRCS, ${CXX} is used as a
+      linker both for executables and shared libraries.
+    - Linux, SunOS and lots of others have no "wheel" group.  They use
+      "root".
+    - "make installdirs" should not create man/htmlN directories
+      unless MKHTML is set to "yes"
+    - mkc_imp.lib.mk: .so build rule must use ${LDFLAGS}
+
+  .c:, .f:, .l: and similar useless rules are removed. It is enough to
+  have .c.o:, .f.o:, .l.c etc.
+
+  Improvements for cross-compilation.
+
+  Lots of new regression tests:
+
+  mkc_check_common.sh:
+    if MKC_NOCACHE=1, tmp.c, tmp.o, tmp.exe and tmp.err are
+    removed.
+
+  Support for lex:
+    -ll is added to linker if needed.
+
+  mkc_check_compiler:
+    - Added support for the following compilers: IBM Visual Age, HP
+      cc/aCC, SunPro C/C++, Watcom, Borland, DEC C/C++ and Comeau C/C++
+    - New option '-x' for checking C++ compiler type.
+
+  mkc_which:
+    Accepts full paths. /path/to/program -> /path/to/program
+
+  In order to avoid confusion, position independent object files (.so)
+  have been renamed to .os. Also, .po has been renamed to .op.
+
+  mkc_imp.lib.mk:
+    - suffix rules for .cpp, widely used extension for C++ sources, are
+      added.
+    - LDCOMPILER variable is introduced, if "yes", compiler is used
+      for linking a shared library.
+
+  INCSSRCDIR variable is introduced, see the documentation.
+
+  mkc_install: New utility for platforms having no BSD compatible
+  install(1). INSTALL variable is set to mkc_install if needed.
+
+======================================================================
 Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
 
   mk-configure doesn't depend on external pkgsrc-mk-files anymore!
