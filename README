@@ -60,6 +60,19 @@ GOALS OF THE PROJECT
     help me to improve mk-configure, feel free to contact
     me. mk-configure needs your help! ;-)
 
+ - Declarative approach in writing Makefiles. Instead of specifying
+   _HOW_ to build your software, you should specify source files,
+   files to build and (optionally) build options, e.g. LDCOMPILER=yes
+   meaning that ${CC} or ${C++} compiler should be used as a linker
+   instead of ${LD}. Small/medium size projects may have no rules in
+   Makefiles at all. Most useful things are already implemented in
+   mk-configure include files including implementation for targets
+   all, install, uninstall as well as support for building the shared
+   libraries, installation to ${DESTDIR} etc. Usually Makefile contain
+   only variable assignments, .include-s and .if/.for directives.
+
+ - No heavy dependencies like Python or Perl.
+
 -------------------------------------------------------------------------
 HOW TO USE MK-CONFIGURE?
 
