@@ -52,8 +52,13 @@ GOALS OF THE PROJECT
 
     - Interix. Tested under Interix-3.5/x86 with native gcc.
 
+    - Partial support for AIX and HP-UX and their native
+      compilers. Support is not complete because I have no access to
+      "big iron" :-( .
+
     If you don't see your favourite system/compiler here and want to
-    help me to improve mk-configure, feel free to contact me.
+    help me to improve mk-configure, feel free to contact
+    me. mk-configure needs your help! ;-)
 
 -------------------------------------------------------------------------
 HOW TO USE MK-CONFIGURE?
@@ -215,6 +220,8 @@ IS MK-CONFIGURE STABLE?
 IF YOU WANT TO HELP ME STABILIZE IT,
 SEND YOUR SUGGESTIONS AND IDEAS TO ME AS SOON AS POSSIBLE ;-)
 
+Also mk-configure is not feature-complete yet, see TODO file for details.
+
 -------------------------------------------------------------------------
 INSTALLATION:
 
@@ -240,19 +247,33 @@ INSTALLATION:
                  # Note that testing requires lex(1), yacc(1),
                  # pkg-config(1), glib2 library and other things
                  # that are not mandatory for using mk-configure.
-      bmake installdirs
-      bmake install
+                 # If "bmake test" fails on your platform, please let
+                 #  me know.
+      bmake installdirs install
 
       Of course, you can change /usr/local to whatever you want.
       PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mk
+
+      On platforms having no BSD compatible install(1)
+      you may install mk-configure by running
+
+      env PATH=$PWD:$PATH bmake installdirs install
+
+  If you use pkgsrc (cross platforms packaging system), you may find
+  a package for latest mk-configure in wip/mk-configure.
 
 -------------------------------------------------------------------------
 FEEDBACK
 
 Send all your suggestions, bug reports etc.
-to Aleksey Cheusov <vle@gmx.net>
+to Aleksey Cheusov <vle@gmx.net> or register them at project's site
+http://sourceforge.net/projects/mk-configure/
 
-Feel free to notify me about spelling errors.
-English is not my first language.
+For free subscription for mk-configure releases, visit
+http://freshmeat.net/projects/mk-configure/
+
+Feel free to notify me about spelling errors in the documentation.
+English is not my first language. If you want to participate the
+project, let me know.
 
 -------------------------------------------------------------------------
