@@ -155,6 +155,8 @@ DOCUMENTATION:
    - Most programs (mkc_check_{decl,header,funclib,sizeof,prog,custom})
      have -h option and manual page.
 
+   - Read the FAQ document. It may be helpful.
+
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?
 
