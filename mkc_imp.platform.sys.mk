@@ -195,7 +195,7 @@ LDFLAGS.shared.irixld=		-shared
 LDFLAGS.soname.irixld=		#
 
 
-LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}
+LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
