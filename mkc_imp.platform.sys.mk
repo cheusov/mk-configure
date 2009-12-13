@@ -195,7 +195,7 @@ LDFLAGS.shared.irixld=		-shared
 LDFLAGS.soname.irixld=		#
 
 
-LDFLAGS.shared.gcc.Darwin=	-dynamiclib
+LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
@@ -203,6 +203,12 @@ LDFLAGS.shared.hpc=		-b
 LDFLAGS.shared.imbc=		-qmkshrobj
 LDFLAGS.shared.mipspro=		-shared
 LDFLAGS.shared.sunpro=		-G
+
+.if ${TARGET_OPSYS} == "Darwin"
+SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR}
+LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
+LDFLAGS.soname.gcc+=		-compatibility_version ${SHLIB_MAJORp1}
+.endif
 
 CFLAGS.cctold.gcc=		-Wl,
 CFLAGS.cctold.pcc=		-Wl,
@@ -217,21 +223,22 @@ CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wrong-option}
 
 LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 
-#.if !defined(LDCOMPILER) || empty(LDCOMPILER:M[Yy][Ye][Ss])
 .if ${LDREAL:U0} == ${LD:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
 LDFLAGS.soname?=		${LDFLAGS.soname.ld}
 .elif ${LDREAL:U0} == ${CC:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}:U-shared}}
-LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}
+LDFLAGS.soname?=		${LDFLAGS.soname.${CC_TYPE}:U${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}}
 .elif ${LDREAL:U0} == ${CXX:U0}
 LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}:U-shared}}
-LDFLAGS.soname?=		${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}
+LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
 
 ############################################################
 ############################################################
-.if ${OPSYS} == "Darwin"
+.if ${TARGET_OPSYS} == "Darwin"
+
+LDCOMPILE=	yes
 
 COMPILE.s?=	${AS} ${AFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
