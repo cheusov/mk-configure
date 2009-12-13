@@ -7,13 +7,6 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-####################
-.ifndef OPSYS
-OPSYS!=			uname -s
-.endif
-TARGET_OPSYS?=		${OPSYS}
-
-####################
 .sinclude <mkc_imp.platform.sys.mk>
 
 .SUFFIXES: .out .a .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h

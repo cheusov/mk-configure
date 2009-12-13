@@ -57,7 +57,7 @@ INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
 
-.if ${OPSYS} == "Linux"
+.if ${OPSYS:Unone} == "Linux"
 .if exists(/usr/bin/ginstall)
 INSTALL?=		/usr/bin/ginstall
 .elif exists(/bin/ginstall)
@@ -204,8 +204,8 @@ LDFLAGS.shared.imbc=		-qmkshrobj
 LDFLAGS.shared.mipspro=		-shared
 LDFLAGS.shared.sunpro=		-G
 
-.if ${TARGET_OPSYS} == "Darwin"
-SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR}
+.if ${TARGET_OPSYS:Unone} == "Darwin"
+SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
 LDFLAGS.soname.gcc+=		-compatibility_version ${SHLIB_MAJORp1}
 .endif
@@ -236,7 +236,7 @@ LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAG
 
 ############################################################
 ############################################################
-.if ${TARGET_OPSYS} == "Darwin"
+.if ${TARGET_OPSYS:Unone} == "Darwin"
 
 LDCOMPILE=	yes
 

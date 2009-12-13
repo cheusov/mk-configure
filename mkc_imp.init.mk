@@ -24,6 +24,14 @@ __initialized__=1
 
 ###########
 
+.ifndef OPSYS
+OPSYS!=			uname -s
+.endif
+
+TARGET_OPSYS?=	${OPSYS}
+
+###########
+
 .if defined(PROG)
 SRCS?=		${PROG}.c
 .endif
@@ -38,11 +46,14 @@ LDCOMPILER=	yes
 LDREAL?=	${CXX}
 .endif
 
-LDCOMPILER?=	no
+LDCOMPILER.Darwin=	yes
+LDCOMPILER?=		${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
 src_type+=	c
 .endif
+
+src_type?=	0
 
 .if !empty(LDCOMPILER:M[Yy][Ye][Ss])
 LDREAL?=	${CC}
