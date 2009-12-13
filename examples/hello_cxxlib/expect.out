@@ -16,7 +16,7 @@
 /objdir/include/impl/hello_msg1.h
 /objdir/include/impl/hello_msg2.h
 /objdir/libcxxlib.a
-/objdir/libcxxlib.so.1.0
+/objdir/libcxxlib.so.1.0.5
 /objdir/libcxxlib_pic.a
 /objdir/test.mk
 ========= install ==========
@@ -28,7 +28,9 @@
 /objdir/prefix/include/impl/hello_msg2.h
 /objdir/prefix/lib
 /objdir/prefix/lib/libcxxlib.a
-/objdir/prefix/lib/libcxxlib.so.1.0
+/objdir/prefix/lib/libcxxlib.so
+/objdir/prefix/lib/libcxxlib.so.1
+/objdir/prefix/lib/libcxxlib.so.1.0.5
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
