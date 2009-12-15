@@ -10,7 +10,6 @@ BUILTINSDIR?=		${PREFIX}/share/mk-configure/custom
 ##################################################
 
 .if exists(/usr/xpg4/bin/awk)
-# On Solaris prepand PATH with /usr/xpg4/bin!
 AWK?=/usr/xpg4/bin/awk
 .else
 AWK?=/usr/bin/awk
@@ -21,6 +20,8 @@ PROJECTNAME=		mk-configure
 VERSION=		0.12.9
 
 BIRTHDATE=		2009-02-21
+
+MKC_BOOTSTRAP=		1
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
@@ -88,14 +89,16 @@ test: configure.mk mkc.ver.mk mkc_check_version
 cleandir: cleandir_tests
 cleandir_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	export PATH; \
+	MKC_BOOTSTRAP=1; \
+	export PATH MKC_BOOTSTRAP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} cleandir
 clean: clean_tests
 clean_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	export PATH; \
+	MKC_BOOTSTRAP=1; \
+	export PATH MKC_BOOTSTRAP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} clean
