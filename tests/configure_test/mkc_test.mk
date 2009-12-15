@@ -99,15 +99,8 @@ HAVE_FUNCLIB.sqrt=	ok
 all:
 .for i in ${vars}
 	@echo ${i}=${${i}} | \
-	awk '{ \
-		for (i=1; i <= NF; ++i) { \
-			if ($$i ~ /SIZEOF/) \
-				sub(/=[0-9]+/, "=n", $$i); \
-			if ($$i ~ /PROG/) \
-				sub(/=.*bin/, "=/somewhere/bin", $$i); \
-		}; \
-		print $$0; \
-	}'
+	sed -e 's|\([^ ]*SIZEOF[^ =]*\)=[0-9][0-9]*|\1=n|g' \
+	    -e 's|\([^ ]*PROG[^ =]*\)=[^ =]*bin/|\1=/somewhere/bin/|g'
 .endfor
 	@echo ''
 	@printf "%s\n" "${CPPFLAGS}" | \

@@ -11,6 +11,12 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+if test -d /usr/xpg4/bin; then
+    # We cannot work with Solaris' default usercrap
+    PATH=/usr/xpg4/bin:$PATH
+    export PATH
+fi
+
 ##################################################
 # options
 usage (){

@@ -18,8 +18,13 @@ _BSD_OWN_MK_=1
 .include "/etc/mk.conf"
 .endif
 
+.if ${OPSYS:Ux} == "SunOS"
+_MKC_USER!=	/usr/xpg4/bin/id -un
+_MKC_GROUP!=	/usr/xpg4/bin/id -gn
+.else
 _MKC_USER!=	id -un
 _MKC_GROUP!=	id -gn
+.endif
 
 .if ${_MKC_USER} != root
 ROOT_USER?=	${_MKC_USER}
