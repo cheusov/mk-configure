@@ -31,6 +31,13 @@ OPSYS!=			uname -s
 TARGET_OPSYS?=	${OPSYS}
 
 ###########
+#.if defined(MKC_SHELL)
+#.SHELL: name=${MKC_SHELL}
+#.elif ${OPSYS} == "SunOS"
+#.SHELL: name=/usr/xpg4/bin/sh
+#.endif
+
+###########
 
 .if defined(PROG)
 SRCS?=		${PROG}.c
@@ -135,9 +142,12 @@ mkc_cleandir:
 .PHONY: error-check
 all : error-check
 error-check:
-	@for msg in ${MKC_ERR_MSG}; do \
-		printf '%s\n' "$$msg"; ex=1; \
-	done; exit $$ex
+	@if test -n '${MKC_ERR_MSG}'; then \
+	    for msg in '' ${MKC_ERR_MSG}; do \
+		if test -n "$$msg"; then printf '%s\n' "$$msg"; ex=1; fi; \
+	    done; \
+	    exit $$ex; \
+	fi
 
 ###########
 
@@ -146,7 +156,11 @@ error-check:
 #test all distclean cleandir clean:
 
 ###########
+.if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
 .sinclude <mkc.ver.mk>
+.else
+.include <mkc.ver.mk>
+.endif
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)
 _mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
@@ -168,8 +182,8 @@ uninstall:
 
 .PHONY: installdirs
 installdirs:
-	for d in ${INSTALLDIRS:O:u}; do \
-		${INSTALL} -d "$$d"; \
+	for d in _ ${INSTALLDIRS:O:u}; do \
+		test "$$d" = _ || ${INSTALL} -d "$$d"; \
 	done
 
 test:
