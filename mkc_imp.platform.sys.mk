@@ -72,7 +72,7 @@ INSTALL?=		/bin/install
 INSTALL?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
 # The following line is for debugging only
-INSTALL=		mkc_install
+#INSTALL=		mkc_install
 
 ####################
 
