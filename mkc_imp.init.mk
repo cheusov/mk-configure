@@ -134,7 +134,10 @@ mkc_printobjdir:
 ###########
 
 distclean: cleandir
+.if !defined(SUBDIR) # && !defined(MKC_BOOTSTRAP)
 cleandir: clean mkc_cleandir
+.endif
+
 mkc_cleandir:
 	rm -f ${DISTCLEANFILES}
 	rm -rf ${DISTCLEANDIRS}
