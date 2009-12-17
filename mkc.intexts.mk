@@ -8,6 +8,9 @@
 # @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ with real
 # ${PREFIX}, ${SYSCONFDIR} etc. See examples/ projects.
 
+.ifndef _MKC_IMP_INTEXTS_MK
+_MKC_IMP_INTEXTS_MK:=1
+
 INTEXTS_SED+=	-e 's,@sysconfdir@,${SYSCONFDIR},g'
 INTEXTS_SED+=	-e 's,@libdir@,${LIBDIR},g'
 INTEXTS_SED+=	-e 's,@libexecdir@,${LIBEXECDIR},g'
@@ -35,3 +38,4 @@ ${i} : ${i}.in
 all : ${INSCRIPTS} ${INFILES}
 
 ######################################################################
+.endif # _MKC_IMP_INTEXTS_MK

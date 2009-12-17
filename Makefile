@@ -104,5 +104,4 @@ clean_tests: configure.mk
 		${MAKEFLAGS} clean
 
 ##################################################
-.include <mkc.intexts.mk>
 .include <mkc.prog.mk>
