@@ -21,7 +21,7 @@ VERSION=		0.12.9
 
 BIRTHDATE=		2009-02-21
 
-MKC_BOOTSTRAP=		1
+MKC_BOOTSTRAP=		${.CURDIR}
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
@@ -89,7 +89,7 @@ test: configure.mk mkc.ver.mk mkc_check_version
 cleandir: cleandir_tests
 cleandir_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	MKC_BOOTSTRAP=1; \
+	MKC_BOOTSTRAP=${.CURDIR}; \
 	export PATH MKC_BOOTSTRAP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
@@ -97,7 +97,7 @@ cleandir_tests: configure.mk
 clean: clean_tests
 clean_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	MKC_BOOTSTRAP=1; \
+	MKC_BOOTSTRAP=${.CURDIR}; \
 	export PATH MKC_BOOTSTRAP; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
