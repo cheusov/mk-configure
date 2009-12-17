@@ -9,8 +9,6 @@ Plan 1)
 
   = (u) and (d) markers for variables in mk-configure.7
 
-  = s/CUSTOM.xxx/BUILTIN.xxx/
-
   = remove hardcoded INSTALL=mkc_install
 
   = Online tutorial
