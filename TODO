@@ -3,8 +3,6 @@ Plan 1)
 
   = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
 
-  = MKC_BOOTSTRAP=1 for bootstrapping
-
   = README changes -> NEWS
 
   = (u) and (d) markers for variables in mk-configure.7
