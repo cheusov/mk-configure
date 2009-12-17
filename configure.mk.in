@@ -250,6 +250,10 @@ MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
 
+.for c in ${MKC_CHECK_BUILTINS} 
+BUILTIN.${c}=	${CUSTOM.${c}}
+.endfor
+
 # checking for declared #define
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
 prog_id:=	${MKC_PROG.id.${p:S|+|x|g}:U${p}:S|/|_|g}

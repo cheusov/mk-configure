@@ -870,8 +870,8 @@ Avalable values:
 .TP
 .BR prog_flex ", " prog_bison ", " prog_gawk ", " prog_gm4
 Find flex, bison, GNU awk or GNU m4 by analysing program's help and/or
-version messages. If found, CUSTOM.prog_<progname> is set to a path,
-otherwise it is unset. Note that
+version messages. If found, BUILTIN.prog_<progname> is set to a path,
+otherwise it is set to an empty string. Note that
 .I gawk
 may be found as
 .IR awk ,
@@ -887,9 +887,9 @@ as
 .IR lex .
 .TP
 .B endianess
-CUSTON.endianess variable is set to either
+BUILTIN.endianess variable is set to either
 .IR little ", " big " or " unknown
-depending on your hardware.
+depending on a hardware.
 .RE
 .IP MKC_CHECK_PROGS
 List of <progname>s to check.
