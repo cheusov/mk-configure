@@ -1,7 +1,19 @@
 ============================================================
 Plan 1)
 
-  = Update README
+  = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
+
+  = cleandir -> clean -> double removing
+
+  = MKC_BOOTSTRAP=1 for bootstrapping
+
+  = README changes -> NEWS
+
+  = (u) and (d) markers for variables in mk-configure.7
+
+  = s/CUSTOM.xxx/BUILTIN.xxx/
+
+  = remove hardcoded INSTALL=mkc_install
 
   = Online tutorial
 
