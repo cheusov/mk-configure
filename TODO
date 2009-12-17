@@ -3,8 +3,6 @@ Plan 1)
 
   = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
 
-  = cleandir -> clean -> double removing
-
   = MKC_BOOTSTRAP=1 for bootstrapping
 
   = README changes -> NEWS
