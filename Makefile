@@ -1,19 +1,21 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
-.PATH:			${.CURDIR}
 
 MKFILESDIR?=		${PREFIX}/share/mk
 EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 BUILTINSDIR?=		${PREFIX}/share/mk-configure/custom
 
-##################################################
+BMAKE?=			bmake
 
 .if exists(/usr/xpg4/bin/awk)
 AWK?=/usr/xpg4/bin/awk
 .else
 AWK?=/usr/bin/awk
 .endif
+
+##################################################
+.PATH:			${.CURDIR}
 
 PROJECTNAME=		mk-configure
 
@@ -28,7 +30,7 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_prog mkc_check_custom \
 			mkc_which mkc_check_version \
 			mkc_test_helper mkc_check_compiler \
-			mkc_install
+			mkc_install mkcmake
 
 SCRIPTS+=		${:!cd ${.CURDIR} && echo custom/*!:N*/CVS}
 
@@ -65,10 +67,11 @@ SCRIPTSDIR_${s:S|/|_|}=		${BUILTINSDIR}
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
 INFILES+=		configure.mk mkc.ver.mk
-INSCRIPTS+=		mkc_check_version
+INSCRIPTS+=		mkc_check_version mkcmake
 INTEXTS_SED+=		-e 's,@version@,${VERSION},g'
 INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
-INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
+INTEXTS_SED+=		-e 's,@BMAKE@,${BMAKE},g'
+INTEXTS_SED+=		-e 's,@mkfilesdir@,${MKFILESDIR},g'
 
 ##################################################
 

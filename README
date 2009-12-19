@@ -112,29 +112,32 @@ GOALS OF THE PROJECT
 -------------------------------------------------------------------------
 HOW TO USE MK-CONFIGURE?
 
- For developers:
+ Developers:
     - Install bmake and sys.mk to your system.
     - Install mk-configure to your system.
     - Develop your software using bmake and mkc.*.mk include files
       provided by mk-configure.
-    - Run 'bmake' or 'bmake all' for building your software.  You need
-      not autoconf/autoheader/automake/aclocal/config.guess/
-      /autoreconf/config.status/config.sub and blah-blah-blah.
+    - Run 'mkcmake' or 'mkcmake all' for building your software.
+      (mkcmake is a trivial wrapper over bmake).
+      You need not autoconf/autoheader/automake/aclocal/config.guess/
+      /autoreconf/config.status/config.sub and blah-blah-blah
 
-      BMAKE is magic enough! ;-)
+      BMAKE is magic enough ;-)
 
- For users and software packagers:
+ Users and software packagers:
     - Install bmake and sys.mk your system.
     - Install mk-configure to your system.
     - Run bmake for building a software and pass to it
       the building options, e.g.
 
          env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
-              bmake all install
+              mkcmake all install
+
+      (mkcmake is a trivial wrapper over bmake)
 
       There is no need for configure script and analogs.
 
-      BMAKE is magic enough! ;-)
+      BMAKE is magic enough ;-)
 
 -------------------------------------------------------------------------
 WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
