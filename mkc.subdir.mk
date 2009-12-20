@@ -12,9 +12,9 @@
 .PHONY: subdir-clean subdir-distclean
 clean: subdir-clean
 subdir-clean:
-	rm -f ${CLEANFILES}
+	if test -n "${CLEANFILES}"; then rm -f ${CLEANFILES}; fi
 cleandir: subdir-distclean
 subdir-distclean:
-	rm -f ${DISTCLEANFILES}
+	if test -n "${DISTCLEANFILES}"; then rm -f ${DISTCLEANFILES}; fi
 
 .endif # MKC_ERR_MSG
