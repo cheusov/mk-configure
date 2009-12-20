@@ -109,6 +109,10 @@ CPP.UnixWare=	${CC} -E
 CXX.OSF1=	cxx
 CPP.OSF1=	${CC} -E
 
+CC.QNX=		gcc
+CXX.QNX=	g++
+CPP.QNX=	${CC} -E
+
 CXX.IRIX=	CC
 
 CPP.AIX=	${CC} -E
