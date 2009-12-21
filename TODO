@@ -1,11 +1,11 @@
 ============================================================
 Plan 1)
 
-  = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
-
   = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
 
   = README changes -> NEWS
+
+  = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
   = (u) and (d) markers for variables in mk-configure.7
 
