@@ -22,6 +22,8 @@ Version 0.13.0, by Aleksey Cheusov, Sat, 12 Dec 2009 14:04:33 +0200
 
       - Interix. Tested under Interix-3.5/x86 with native gcc.
 
+      - QNX. Tested under QNX-6.3/x86 with gcc.
+
       - Partial support for AIX and HP-UX and their native compilers
         and linkers. Support is not complete because I have no access
         to "big iron". Any help? ;-)

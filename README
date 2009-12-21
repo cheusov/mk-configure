@@ -88,6 +88,8 @@ GOALS OF THE PROJECT
 
     - Interix. Tested under Interix-3.5/x86 with native gcc.
 
+    - QNX. Tested under QNX-6.3/x86 with gcc.
+
     - Partial support for AIX and HP-UX and their native
       compilers. Support is not complete because I have no access to
       "big iron" :-( .
