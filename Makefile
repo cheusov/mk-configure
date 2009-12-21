@@ -2,7 +2,7 @@
 
 ##################################################
 
-MKFILESDIR?=		${PREFIX}/share/mk
+MKFILESDIR?=		${PREFIX}/share/mkc-mk
 EXTRAFILESDIR?=		${PREFIX}/share/doc/mk-configure
 BUILTINSDIR?=		${PREFIX}/share/mk-configure/custom
 
@@ -52,13 +52,17 @@ FILES+= mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 
 FILES+=			${EXTRAFILES}
 
+.if !defined(NOSYSMK)
+FILES+=			sys.mk
+.endif
+
 .for i in ${EXTRAFILES}
 FILESDIR_${i}=		${EXTRAFILESDIR}
 .endfor
 
 FILESDIR_mkc_check_common.sh=	${BINDIR}
 
-FILESDIR=		${MKFILESDIR}
+FILESDIR=			${MKFILESDIR}
 
 .for s in ${SCRIPTS:Mcustom/*}
 SCRIPTSDIR_${s:S|/|_|}=		${BUILTINSDIR}

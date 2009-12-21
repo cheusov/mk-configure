@@ -289,15 +289,7 @@ INSTALLATION:
         ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
         http://www.crufty.net/help/sjg/bmake.html
 
-   2) Install sys.mk to mk files directory. Under *BSD systems
-      /usr/share/mk/sys.mk is good enough. sys.mk is not required by
-      mk-configure but is required by bmake. Under non-BSD systems
-      including Linux and Solaris it makes sense to install sys.mk
-      provided by mk-configure. NOTE: "bmake install" will *NOT*
-      install sys.mk. For packagers: in my view it makes sense to make
-      sys.mk file a part of bmake package.
-
-   3)
+   2)
       cd  mk-configure-X.Y.Z/
       export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mk
       bmake all
@@ -321,9 +313,27 @@ INSTALLATION:
   a package for latest mk-configure in wip/mk-configure.
 
   NOTE: I'd recommend to use the latest stable version of bmake. Old
-  bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
-  not supported. pmake-1.111 (ancient version of NetBSD make) found in
-  some Linux distributions is not supported too.
+    bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
+    not supported. pmake-1.111 (an ancient version of NetBSD make)
+    found in some Linux distributions don't work too.
+
+  NOTE: In order to work properly bmake needs sys.mk file that defines
+    the default variables values and suffix rules. mk-configure
+    doesn't need it, but bmake always tries to load it. The problem is
+    that different mk libraries may conflict due to common
+    sys.mk. This is why mk-c's mk files are installed to the unique
+    ${PREFIX}/share/mkc-mk directory by default where an empty sys.mk
+    file is installed to. If your local/system sys.mk is correct, you
+    may install mk-configure like the following:
+
+        export PREFIX=/usr MKFILESDIR=/usr/share/mk NOSYSMK=1
+        bmake all
+        bmake installdirs install
+
+    In this example it is assumed that /usr/share/mk directory
+    already contains sys.mk file.  In either case use "mkcmake"
+    command to build your project based on mk-configure, not just
+    "bmake".
 
 -------------------------------------------------------------------------
 FEEDBACK
