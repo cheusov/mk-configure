@@ -3,6 +3,8 @@ Plan 1)
 
   = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
 
+  = regressions for indirect inclusion of mkc.configure.mk
+
   = README changes -> NEWS
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
