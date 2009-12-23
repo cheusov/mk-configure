@@ -7,7 +7,7 @@ Plan 1)
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
-  = (u) and (d) markers for variables in mk-configure.7
+  = (U/ser) and (D/eveloper) markers for variables in mk-configure.7
 
   = Online tutorial
 
