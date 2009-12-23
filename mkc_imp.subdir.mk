@@ -22,16 +22,17 @@ __REALSUBDIR+=${dir}
 
 __recurse: .USE
 	@targ=${.TARGET:C/-.*$//};dir=${.TARGET:C/^[^-]*-//};		\
+	set -e;								\
 	echo ==================================================;	\
 	case "$$dir" in /*)						\
 		echo "$$targ ===> $$dir";				\
 		cd "$$dir";						\
-		${MAKE} "_THISDIR_=$$dir/" $$targ;		\
+		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
 		;;							\
 	*)								\
 		echo "$$targ ===> ${_THISDIR_}$$dir";			\
 		cd "${.CURDIR}/$$dir";					\
-		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;	\
+		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
 		;;							\
 	esac
 
