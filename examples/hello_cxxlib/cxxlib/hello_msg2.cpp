@@ -4,7 +4,7 @@
 std::string hello_msg2 ()
 {
 	std::string ret = "hello";
-	ret += "world";
-	ret += " 2!\n";
+	ret += " world";
+	ret += " 2!";
 	return ret;
 }
