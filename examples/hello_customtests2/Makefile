@@ -8,5 +8,4 @@ MKC_CHECK_CUSTOM+=	alloca_in_alloca_h
 MKC_REQD=		0.11.0
 
 .include "test.mk"
-.include <mkc.configure.mk>
 .include <mkc.prog.mk>
