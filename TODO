@@ -51,7 +51,8 @@ Plan 1)
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries really portable (just a fallback).
 
-  = Implement mkc.subprjs.mk supporting dependency graph...
+  = Implement mkc.subprjs.mk supporting a dependency graph instead of
+    list of subdirectories
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
