@@ -32,6 +32,10 @@ Version 0.13.0, by Aleksey Cheusov, Sat, 12 Dec 2009 14:04:33 +0200
       help me to improve mk-configure, feel free to contact
       me. mk-configure needs your help! ;-)
 
+  The default directory for mk-files is ${PREFIX}/share/mkc-mk, where
+  an empty sys.mk is installed unless NOSYSMK is defined whil
+  installation.  See an explanation about this in README.
+
   So called built-in checks are implemented. See MKC_CHECK_BUILTINS
   variable. Built-in checks are checks provided by mk-configure. At
   the moment the following checks are implemented: endianess,
@@ -79,6 +83,9 @@ Version 0.13.0, by Aleksey Cheusov, Sat, 12 Dec 2009 14:04:33 +0200
       unless MKHTML is set to "yes"
     - mkc_imp.lib.mk: .so build rule must use ${LDFLAGS}
 
+  ADDED: mkcmake utility (trivial wrapper over bmake) which should be
+  used for building a software instead of bmake.
+
   .c:, .f:, .l: and similar useless rules are removed. It is enough to
   have .c.o:, .f.o:, .l.c etc.
 
@@ -114,6 +121,9 @@ Version 0.13.0, by Aleksey Cheusov, Sat, 12 Dec 2009 14:04:33 +0200
 
   mkc_install: New utility for platforms having no BSD compatible
   install(1). INSTALL variable is set to mkc_install if needed.
+
+  mkc.intexts.mk is included from mkc.prog.mk and mkc.lib.mk
+  automatically just like mkc_imp.*.mk includes.
 
 ======================================================================
 Version 0.12.0, by Aleksey Cheusov, Thu, 12 Nov 2009 17:58:09 +0200
