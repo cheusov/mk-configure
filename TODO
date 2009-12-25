@@ -1,8 +1,6 @@
 ============================================================
 Plan 1)
 
-  = Recheck MKC_REQUIRE_CUSTOM and MKC_REQUIRE_BUILTINS
-
   = README changes -> NEWS
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
