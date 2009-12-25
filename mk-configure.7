@@ -833,12 +833,11 @@ filename.cpp, mychecks/filename.f or subdir/executable_script.
 
 .B mk-configure
 tries to compile or run the specified file and sets
-HAVE_CUSTOM.<custom_check_name> variable
-to 1 if succeeded or 0 otherwise.
-If unset MKC_CUSTOM_FN.<custom_check_name>
+CUSTOM.<custom_check_name> variable to 1, 0 or other value.
+If MKC_CUSTOM_FN.<custom_check_name> is unset, it
 defaults to custom_check_name.c
 
-Also -DHAVE_CUSTOM_<CUSTOM_CHECK_NAME>=1
+Also -DCUSTOM_<CUSTOM_CHECK_NAME>=1
 is added to CFLAGS if the specified check succeeded
 unless MKC_NOAUTO is set to 1.
 .br
@@ -847,16 +846,16 @@ unless MKC_NOAUTO is set to 1.
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
       MKC_CUSTOM_FN.script_check=      checks/script_check
- Res. HAVE_CUSTOM.nested_funcs=        1
-      HAVE_CUSTOM.script_check=        0
-      CFLAGS+= -DHAVE_CUSTOM_NESTED_FUNCS=1
+ Res. CUSTOM.nested_funcs=        1
+      CUSTOM.script_check=        0
+      CFLAGS+= -DCUSTOM_NESTED_FUNCS=1
 .VE
 Note that script for the check should be an executable file.
 .IP MKC_REQUIRE_CUSTOM
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
 .B error-check
-target.
+target. 0 and empty value of CUSTOM.xxx means failure.
 .IP MKC_CUSTOM_DIR
 Directory with custom checks source files.
 See MKC_CHECK_CUSTOM. It defaults to ${.CURDIR}.

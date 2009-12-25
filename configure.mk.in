@@ -239,13 +239,13 @@ MKC_CUSTOM_FN.${c}=${c}.c
 CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom \
 	${MKC_CUSTOM_FN.${c}:H:S|^.$|${MKC_CUSTOM_DIR}|}/${MKC_CUSTOM_FN.${c}:T}
 .endif
-.if ${CUSTOM.${c}}
+.if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 MKC_CFLAGS  +=  -DCUSTOM_${c:tu}=${CUSTOM.${c}}
 .endif
 .endfor
 
 .for c in ${MKC_REQUIRE_CUSTOM}
-.if !${CUSTOM.${c}}
+.if empty(CUSTOM.${c}) || ${CUSTOM.${c}} == 0
 MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
