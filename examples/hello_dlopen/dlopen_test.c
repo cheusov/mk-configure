@@ -7,8 +7,13 @@ int main (int argc, char **argv)
 	void *p = NULL;
 
 	p = dlopen (LIBC_FN, RTLD_LAZY);
-	printf ("returned address: %p\n", p);
-	dlclose (p);
+	if (p){
+		printf ("returned address: %p\n", p);
+		dlclose (p);
+	}else{
+		fprintf (stderr, "dlopen(3) failed\n");
+		return 1;
+	}
 
 	return 0;
 }
