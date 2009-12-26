@@ -5,6 +5,6 @@
 
 int main (int argc, char **argv)
 {
-	printf ("%s %s\n", msg1, msg2);
+	printf ("%s\n%s\n", msg1, msg2);
 	return 0;
 }
