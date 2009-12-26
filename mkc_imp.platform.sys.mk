@@ -136,6 +136,9 @@ CPPFLAGS+=	${CPPFLAGS.${TARGET_OPSYS}:U}
 #FFLAGS.pic?= -fPIC
 
 ####################
+CFLAGS.pic.gcc.Interix=		-DPIC
+CPPFLAGS.pic.gcc.Interix=	-DPIC
+
 CFLAGS.pic.gcc=		-fPIC -DPIC
 CPPFLAGS.pic.gcc=	-DPIC
 
@@ -158,9 +161,9 @@ CFLAGS.pic.ibmc=	-qpic=large # -qpic=small
 CPPFLAGS.pic.ibmc=
 
 
-CFLAGS.pic?=		${CFLAGS.pic.${CC_TYPE}:U}
-CXXFLAGS.pic?=		${CFLAGS.pic.${CXX_TYPE}:U}
-CPPFLAGS.pic?=		${CPPFLAGS.pic.${CC_TYPE}:U}
+CFLAGS.pic?=	  ${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:U}}
+CXXFLAGS.pic?=	 ${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
+CPPFLAGS.pic?=	${CPPFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CPPFLAGS.pic.${CC_TYPE}:U}}
 
 ####################
 RANLIB.IRIX=		true
@@ -178,6 +181,7 @@ LD_TYPE.AIX=			aixld
 LD_TYPE.HP-UX=			hpld
 LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
+LD_TYPE.Interix=		interixld
 
 LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 
@@ -203,8 +207,11 @@ LDFLAGS.soname.aixld=		#
 LDFLAGS.shared.irixld=		-shared
 LDFLAGS.soname.irixld=		#
 
+LDFLAGS.shared.interixld=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
+LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+LDFLAGS.shared.gcc.Interix=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
@@ -246,8 +253,6 @@ LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAG
 ############################################################
 ############################################################
 .if ${TARGET_OPSYS:Unone} == "Darwin"
-
-LDCOMPILE=	yes
 
 COMPILE.s?=	${AS} ${AFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c

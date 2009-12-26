@@ -53,6 +53,7 @@ LDCOMPILER=	yes
 LDREAL?=	${CXX}
 .endif
 
+LDCOMPILER.Interix=	yes
 LDCOMPILER.Darwin=	yes
 LDCOMPILER?=		${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
