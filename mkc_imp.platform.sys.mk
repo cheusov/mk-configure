@@ -56,6 +56,7 @@ INSTALL.DragonFlyBSD=	/usr/bin/install
 INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
+INSTALL.Interix=	mkc_install
 
 .if ${OPSYS:Unone} == "Linux"
 .if exists(/usr/bin/ginstall)
@@ -108,6 +109,10 @@ CPP.UnixWare=	${CC} -E
 
 CXX.OSF1=	cxx
 CPP.OSF1=	${CC} -E
+
+CC.Interix=	gcc
+CXX.Interix=	g++
+CPP.Interix=	cpp
 
 CC.QNX=		gcc
 CXX.QNX=	g++
