@@ -76,6 +76,7 @@ INTEXTS_SED+=		-e 's,@version@,${VERSION},g'
 INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
 INTEXTS_SED+=		-e 's,@BMAKE@,${BMAKE},g'
 INTEXTS_SED+=		-e 's,@mkfilesdir@,${MKFILESDIR},g'
+INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
 
 ##################################################
 
