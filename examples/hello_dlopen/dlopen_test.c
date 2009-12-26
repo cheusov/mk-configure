@@ -11,7 +11,7 @@ int main (int argc, char **argv)
 		printf ("returned address: %p\n", p);
 		dlclose (p);
 	}else{
-		fprintf (stderr, "dlopen(3) failed\n");
+		fprintf (stderr, "dlopen(3) failed: %s\n", dlerror ());
 		return 1;
 	}
 
