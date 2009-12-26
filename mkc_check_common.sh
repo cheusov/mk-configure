@@ -11,8 +11,8 @@ if test "$pathpart" = ''; then
     exit 1
 fi
 
-MKC_CACHEDIR=${MKC_CACHEDIR:=.}
-CC=${CC:=cc}
+MKC_CACHEDIR=${MKC_CACHEDIR:-.}
+CC=${CC:-cc}
 
 tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
 tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
