@@ -6,7 +6,7 @@ int main (int argc, char **argv)
 {
 	void *p = NULL;
 
-	p = dlopen (LIBC_FN, RTLD_LAZY);
+	p = dlopen (NULL, RTLD_LAZY);
 	if (p){
 		printf ("returned address: %p\n", p);
 		dlclose (p);
