@@ -76,17 +76,18 @@ GOALS OF THE PROJECT
     - NetBSD. Tested under NetBSD-5.0/x86 and NetBSD-2.0/alpha with
       gcc and pcc (Portable C compiler).
 
-    - FreeBSD. Tested under FreeBSD-6.2/x86, FreeBSD-7.1/spark64 and
-      FreeBSD-7.1/x86 with gcc.
+    - FreeBSD. Tested under FreeBSD-6.2/x86, 7.1/spark64 and 7.1/x86
+      with gcc.
 
-    - OpenBSD. Tested under OpenBSD-4.6/x86 with gcc.
+    - OpenBSD. Tested under OpenBSD-3.8/x86 and 4.5/x86 with gcc.
 
-    - Solaris. Tested under Solaris-10/x86 with Sun Studio 11 and gcc.
+    - Solaris. Tested under Solaris-10/x86 and Solaris-10/spark64
+      with sunpro-11, sunpro-12 and gcc.
 
     - Darwin (MacOS-X). Tested under Darwin-8.11.0/ppc (MacOS-X Tiger)
       with native gcc.
 
-    - Interix. Tested under Interix-3.5/x86 with native gcc.
+    - Interix. Tested under Interix-3.5/x86 with gcc.
 
     - QNX. Tested under QNX-6.3/x86 with gcc.
 
