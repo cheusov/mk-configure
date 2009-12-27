@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.13.0, by Aleksey Cheusov, Sat, 26 Dec 2009 19:55:55 +0200
+Version 0.13.0, by Aleksey Cheusov, Sun, 27 Dec 2009 17:06:06 +0200
 
   CC, CXX and LD types are automatically detected and options passed
   to them (e.g. options for generating a position independent code or
