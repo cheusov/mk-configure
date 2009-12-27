@@ -5,7 +5,8 @@ test_output:
 	@set -e; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
-	export LD_LIBRARY_PATH; \
+	DYLD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
+	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
 	${.CURDIR}/hello/hello_subprojects; \
 	\
 	echo =========== all ============; \
