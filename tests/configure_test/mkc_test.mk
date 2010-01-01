@@ -39,7 +39,7 @@ MKC_CHECK_FUNCS5+=	mkc_test_func:include/mkc_test.h
 MKC_CHECK_SIZEOF+=	int long-long void* size_t:string.h
 MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 
-MKC_CHECK_TYPES+=	size_t:string.h mbstate_t:wchar.h
+MKC_CHECK_TYPES+=	size_t:string.h
 MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
 
 MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:time.h
@@ -60,7 +60,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
-	HAVE_TYPE.size_t.string_h HAVE_TYPE.mbstate_t.wchar_h \
+	HAVE_TYPE.size_t.string_h \
 	HAVE_TYPE.bad_type \
 	HAVE_HEADER.bad_header_h HAVE_HEADER.bad_dir_bad_header_h \
 	HAVE_FUNCLIB.bad_func HAVE_FUNCLIB.bad_func.bad_lib \
