@@ -173,6 +173,7 @@ RANLIB?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
 
 ####################
 NROFF_MAN2CAT.SunOS?=		-man
+NROFF_MAN2CAT.HP-UX?=		-man
 
 NROFF_MAN2CAT?=			${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
 
