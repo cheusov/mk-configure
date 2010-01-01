@@ -10,21 +10,6 @@
 .ifndef _MKC_PLATFORM_MK
 _MKC_PLATFORM_MK=1
 
-############################################################
-# CC compiler type
-.if make(cleandir) || make(distclean) || make(clean)
-DISTCLEANFILES+=	_mkc_compiler_type.res
-.elif !defined(SKIP_CONFIGURE_MK) && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
-mkc.cc_type.environ= CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
-.if !empty(src_type:Mc)
-CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler
-.elif !empty(src_type:Mcxx)
-CXX_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler -x
-.endif
-.endif
-
-CC_TYPE?=	unknown
-
 ####################
 SHLIB_EXT.Darwin=	.dylib
 SHLIB_EXT.HP-UX=	.sl
@@ -131,6 +116,22 @@ CPPFLAGS.Interix=	-D_ALL_SOURCE
 CPPFLAGS.UnixWare=	-DUNIXWARE
 
 CPPFLAGS+=	${CPPFLAGS.${TARGET_OPSYS}:U}
+
+############################################################
+# CC compiler type
+.if make(cleandir) || make(distclean) || make(clean)
+DISTCLEANFILES+=	_mkc_compiler_type.res
+.elif !defined(SKIP_CONFIGURE_MK) && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
+mkc.cc_type.environ= CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
+.if !empty(src_type:Mc)
+CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler
+.elif !empty(src_type:Mcxx)
+CXX_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler -x
+.endif # src_type
+.endif # cleandir|distclean|...
+
+CC_TYPE?=	unknown
+CXX_TYPE?=	unknown
 
 ####################
 #FFLAGS.pic?= -fPIC
