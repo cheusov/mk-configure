@@ -6,6 +6,7 @@ MKC_COMMON_DEFINES.Linux=	-DSYSTEM_Linux
 MKC_COMMON_DEFINES.Darwin=	-DSYSTEM_Darwin
 MKC_COMMON_DEFINES.Interix=	-DSYSTEM_Interix
 MKC_COMMON_DEFINES.QNX=		-DSYSTEM_QNX
+MKC_COMMON_DEFINES.HP-UX=	-DSYSTEM_HPUX
 
 MKC_COMMON_DEFINES=		-DMKC_COMMON_DEFINES_WORKS_FINE
 
@@ -107,6 +108,6 @@ all:
 .endfor
 	@echo ''
 	@printf "%s\n" "${CPPFLAGS}" | \
-		sed "s/^.*-DSYSTEM_`uname -s`.*$$/KNOWN_SYSTEM/"
+		sed "s/^.*-DSYSTEM_.*$$/KNOWN_SYSTEM/"
 	@printf "%s\n" "${CPPFLAGS}" | \
 		sed 's/^.*\(MKC_COMMON_DEFINES_WORKS_FINE\).*$$/\1/'
