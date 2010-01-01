@@ -20,7 +20,7 @@ test: all
 	else \
 		expect=${.CURDIR}/expect.out; \
 	fi; \
-	diff -u $$expect $$tmp_out && \
+	diff $$expect $$tmp_out && \
 	echo '      succeeded' 1>&2 || \
 	{ echo '      FAILED' 1>&2; false; }
 
