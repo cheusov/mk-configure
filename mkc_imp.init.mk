@@ -129,6 +129,12 @@ print-values :
 	@printf "%s=%s\n" ${v} ${${v}:Q}
 .endfor
 
+.PHONY : print-values2
+print-values2 :
+.for v in ${VARS}
+	@printf "%s\n" ${${v}:Q}
+.endfor
+
 ###########
 .PHONY : all mkc_printobjdir
 mkc_printobjdir:
