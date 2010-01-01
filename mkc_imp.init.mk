@@ -3,11 +3,19 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
+.ifndef OPSYS
+OPSYS!=                 uname -s
+.endif
+TARGET_OPSYS?=  ${OPSYS}
+
 ###########
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
 DPLIBDIRS.${_dir:T}!= 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir SKIP_CONFIGURE_MK=1
+.if ${TARGET_OPSYS} == "HP-UX"
+LDFLAGS+=		${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
+.endif
 LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 .endif
 .endfor
@@ -24,13 +32,6 @@ __initialized__=1
 
 ###########
 
-.ifndef OPSYS
-OPSYS!=			uname -s
-.endif
-
-TARGET_OPSYS?=	${OPSYS}
-
-###########
 #.if defined(MKC_SHELL)
 #.SHELL: name=${MKC_SHELL}
 #.elif ${OPSYS} == "SunOS"
@@ -55,6 +56,7 @@ LDREAL?=	${CXX}
 
 LDCOMPILER.Interix=	yes
 LDCOMPILER.Darwin=	yes
+LDCOMPILER.HP-UX=	yes
 LDCOMPILER?=		${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)

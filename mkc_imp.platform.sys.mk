@@ -201,7 +201,7 @@ LDFLAGS.shared.gnuld=		-shared
 LDFLAGS.soname.gnuld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared.hpld=		-b
-LDFLAGS.soname.hpld=		#
+LDFLAGS.soname.hpld=		+h lib${LIB}.sl.${SHLIB_MAJOR} +b ${LIBDIR}	
 
 LDFLAGS.shared.aixld=		-G
 LDFLAGS.soname.aixld=		#
