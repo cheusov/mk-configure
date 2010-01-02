@@ -56,7 +56,7 @@ LDREAL?=	${CXX}
 
 LDCOMPILER.Interix=	yes
 LDCOMPILER.Darwin=	yes
-LDCOMPILER.HP-UX=	yes
+#LDCOMPILER.HP-UX=	yes
 LDCOMPILER?=		${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)

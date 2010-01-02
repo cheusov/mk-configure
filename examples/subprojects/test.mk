@@ -38,11 +38,8 @@ basic:
 CLEANDIRS+=	${.CURDIR}/usr
 auto_rpath:
 	echo == library dependencies ====; \
-	LD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
-	DYLD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
-	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
-	${MAKE} ${MAKEFLAGS} all installdirs install > /dev/null; \
+	${MAKE} ${MAKEFLAGS} all installdirs install >&2; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	${.CURDIR}/usr/bin/hello_subprojects
 .else
