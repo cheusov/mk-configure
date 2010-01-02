@@ -34,7 +34,7 @@ basic:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
-.if ${TARGET_OPSYS} != "FreeBSD"
+.if ${TARGET_OPSYS} != "NetBSD" && ${TARGET_OPSYS} != "FreeBSD" && ${TARGET_OPSYS} != "DragonFlyBSD" && ${TARGET_OPSYS} != "OpenBSD" && ${TARGET_OPSYS} != "Linux" && 
 CLEANDIRS+=	${.CURDIR}/usr
 auto_rpath:
 	echo == library dependencies ====; \
