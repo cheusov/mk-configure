@@ -46,7 +46,8 @@ check_itself (){
     for i in $checks; do
 	define=`echo $i | cut -d: -f1`
 	cctype=`echo $i | cut -d: -f2`
-	ret=`env MKC_VERBOSE= MKC_NOCACHE=1 mkc_check_decl define "$define"`
+	ret=`env CFLAGS= CPPFLAGS= CXXFLAGS= MKC_VERBOSE= MKC_NOCACHE=1 \
+	    mkc_check_decl define "$define"`
 	if test _1 = "_$ret"; then
 	    type=$cctype
 	    break
