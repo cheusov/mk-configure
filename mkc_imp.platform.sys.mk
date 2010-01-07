@@ -29,6 +29,7 @@ ROOT_GROUP.OpenBSD=		wheel
 ROOT_GROUP.FreeBSD=		wheel
 ROOT_GROUP.Darwin=		wheel
 ROOT_GROUP.DragonFly=		wheel
+ROOT_GROUP.MirBSD=		wheel
 
 ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
 ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}
@@ -38,6 +39,7 @@ INSTALL.NetBSD=		/usr/bin/install
 INSTALL.OpenBSD=	/usr/bin/install
 INSTALL.FreeBSD=	/usr/bin/install
 INSTALL.DragonFly=	/usr/bin/install
+INSTALL.MirBSD=		/usr/bin/install
 INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install

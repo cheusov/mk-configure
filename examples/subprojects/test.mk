@@ -34,8 +34,7 @@ basic:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
-.if ${TARGET_OPSYS} != "NetBSD" && ${TARGET_OPSYS} != "FreeBSD" && ${TARGET_OPSYS} != "DragonFly" && ${TARGET_OPSYS} != "OpenBSD" && ${TARGET_OPSYS} != "Linux" 
-CLEANDIRS+=	${.CURDIR}/usr
+.if ${TARGET_OPSYS} != "NetBSD" && ${TARGET_OPSYS} != "FreeBSD" && ${TARGET_OPSYS} != "DragonFly" && ${TARGET_OPSYS} != "OpenBSD" && ${TARGET_OPSYS} != "MirBSD" && ${TARGET_OPSYS} != "Linux" 
 auto_rpath:
 	echo == library dependencies ====; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
@@ -46,4 +45,5 @@ auto_rpath:
 auto_rpath:
 .endif
 
+CLEANDIRS+=	${.CURDIR}/usr
 .include <mkc.minitest.mk>
