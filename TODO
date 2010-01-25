@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = MKINSTALL for mkc.subdir.mk
+
   = 644 permission in mkc.lib.mk
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
