@@ -9,6 +9,8 @@ BUILTINSDIR?=		${PREFIX}/share/mk-configure/custom
 BMAKE?=			bmake
 
 .if exists(/usr/xpg4/bin/awk)
+# Solaris' /usr/bin/awk is completely broken,
+# /usr/xpg4/bin/awk sucks too but sucks less.
 AWK?=/usr/xpg4/bin/awk
 .else
 AWK?=/usr/bin/awk
@@ -19,7 +21,7 @@ AWK?=/usr/bin/awk
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.13.0
+VERSION=		0.13.90
 
 BIRTHDATE=		2009-02-21
 
