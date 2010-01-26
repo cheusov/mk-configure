@@ -33,7 +33,7 @@ Version 0.13.0, by Aleksey Cheusov, Sun, 27 Dec 2009 17:06:06 +0200
       me. mk-configure needs your help! ;-)
 
   The default directory for mk-files is ${PREFIX}/share/mkc-mk, where
-  an empty sys.mk is installed unless NOSYSMK is defined whil
+  an empty sys.mk is installed unless NOSYSMK is defined while
   installation.  See an explanation about this in README.
 
   So called built-in checks are implemented. See MKC_CHECK_BUILTINS
