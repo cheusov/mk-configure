@@ -23,6 +23,10 @@ NONBINMODE.Interix=	664
 BINMODE?=		${BINMODE.${TARGET_OPSYS}:U755}
 NONBINMODE?=		${BINMODE.${TARGET_OPSYS}:U644}
 
+SHLIBMODE.HP-UX=	${BINMODE}
+SHLIBMODE.OSF1=		${BINMODE}
+SHLIBMODE?=		${SHLIBMODE.${TARGET_OPSYS}:U${NONBINMODE}}
+
 ####################
 ROOT_GROUP.NetBSD=		wheel
 ROOT_GROUP.OpenBSD=		wheel
@@ -49,7 +53,7 @@ INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
 INSTALL.HP-UX=		/usr/ucb/install
-INSTALL.OSF1=		/usr/ucb/install
+INSTALL.OSF1=		mkc_install
 INSTALL.Interix=	mkc_install
 
 .if ${OPSYS:Unone} == "Linux"
@@ -101,7 +105,8 @@ CC.UnixWare=	gcc
 CXX.UnixWare=	g++
 CPP.UnixWare=	${CC} -E
 
-CXX.OSF1=	cxx
+CC.OSF1=	gcc 
+CXX.OSF1=	g++	
 CPP.OSF1=	${CC} -E
 
 CC.Interix=	gcc
