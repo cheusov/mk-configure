@@ -30,6 +30,11 @@ ROOT_GROUP.FreeBSD=		wheel
 ROOT_GROUP.Darwin=		wheel
 ROOT_GROUP.DragonFly=		wheel
 ROOT_GROUP.MirBSD=		wheel
+ROOT_GROUP.HP-UX=		bin
+ROOT_GROUP.OSF1=		bin
+
+ROOT_USER.HP-UX=		bin
+ROOT_USER.OSF1=			bin
 
 ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
 ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}
@@ -43,6 +48,8 @@ INSTALL.MirBSD=		/usr/bin/install
 INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
+INSTALL.HP-UX=		/usr/ucb/install
+INSTALL.OSF1=		/usr/ucb/install
 INSTALL.Interix=	mkc_install
 
 .if ${OPSYS:Unone} == "Linux"
@@ -163,6 +170,8 @@ CPPFLAGS.pic.hpc=
 CFLAGS.pic.ibmc=	-qpic=large # -qpic=small
 CPPFLAGS.pic.ibmc=
 
+CFLAGS.pic.decc=	# ?
+CPPFLAGS.pic.decc=	# ?
 
 CFLAGS.pic?=	  ${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:U}}
 CXXFLAGS.pic?=	 ${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
@@ -176,6 +185,7 @@ RANLIB?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
 ####################
 NROFF_MAN2CAT.SunOS?=		-man
 NROFF_MAN2CAT.HP-UX?=		-man
+NROFF_MAN2CAT.OSF1?=		-man
 
 NROFF_MAN2CAT?=			${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
 
@@ -186,6 +196,7 @@ LD_TYPE.HP-UX=			hpld
 LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
 LD_TYPE.Interix=		interixld
+LD_TYPE.OSF1=			osf1ld
 
 LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 
@@ -211,8 +222,12 @@ LDFLAGS.soname.aixld=		#
 LDFLAGS.shared.irixld=		-shared
 LDFLAGS.soname.irixld=		#
 
+LDFLAGS.shared.osf1ld=		-shared
+LDFLAGS.soname.osf1ld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
+
 LDFLAGS.shared.interixld=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
+
 
 LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 LDFLAGS.shared.gcc.Interix=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
@@ -223,6 +238,7 @@ LDFLAGS.shared.hpc=		-b
 LDFLAGS.shared.imbc=		-qmkshrobj
 LDFLAGS.shared.mipspro=		-shared
 LDFLAGS.shared.sunpro=		-G
+LDFLAGS.shared.decc=		-shared
 
 .if ${TARGET_OPSYS:Unone} == "Darwin"
 SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR:U0}
@@ -230,16 +246,10 @@ LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MI
 LDFLAGS.soname.gcc+=		-compatibility_version ${SHLIB_MAJORp1}
 .endif
 
-CFLAGS.cctold.gcc=		-Wl,
-CFLAGS.cctold.pcc=		-Wl,
-CFLAGS.cctold.icc=		-Wl,
-CFLAGS.cctold.mipspro=		-Wl,
-CFLAGS.cctold.sunpro=		-Wl,
-CFLAGS.cctold.hpc=		-Wl,
-CFLAGS.cctold.ibmc=		-Wl,
+#CFLAGS.cctold.gcc=		-Wl,
 
-CFLAGS.cctold?=			${CFLAGS.cctold.${CC_TYPE}:U-Wrong-option}
-CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wrong-option}
+CFLAGS.cctold?=			${CFLAGS.cctold.${CC_TYPE}:U-Wl,}
+CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wl,}
 
 LDFLAGS.soname.ld=		${LDFLAGS.soname.${LD_TYPE}:U}
 
