@@ -36,6 +36,7 @@ __INTEL_COMPILER:icc
     __BORLANDC__:bcc
   __WATCOMC__:watcom
        __COMO__:como
+         __DECC:decc
        __DECCXX:decc
 _COMPILER_VERSION:mipspro
 '
