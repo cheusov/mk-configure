@@ -218,7 +218,7 @@ LDFLAGS.soname.darwinld=	#
 LDFLAGS.shared.gnuld=		-shared
 LDFLAGS.soname.gnuld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
-LDFLAGS.shared.hpld=		-b
+LDFLAGS.shared.hpld=		-b +b ${LIBDIR}
 LDFLAGS.soname.hpld=		+h lib${LIB}.sl.${SHLIB_MAJOR}
 
 LDFLAGS.shared.aixld=		-G
