@@ -16,6 +16,7 @@ _MKC_IMP_LIB_MK=1
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 realinstall:	libinstall
 INSTALLDIRS+=	${DESTDIR}${LIBDIR}
+UNINSTALLFILES+=${UNINSTALLFILES.lib}
 .endif # MKINSTALL
 
 # add additional suffixes not exported.
@@ -178,7 +179,7 @@ libinstall::
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
-UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}.a
+UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 
@@ -186,7 +187,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
@@ -195,7 +196,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
 .if ${MKPICLIB} == "no"
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a:
@@ -210,7 +211,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-UNINSTALLFILES+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL} \
+UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL} \
 		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
 		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 

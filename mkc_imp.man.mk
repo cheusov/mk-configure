@@ -104,14 +104,13 @@ realall: ${CATPAGES}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
+UNINSTALLFILES+=	${destination_capages}
+INSTALLDIRS+=		${destination_capages:H}
 .endif # MKINSTALL
 
 catpages:: ${destination_capages}
 .PRECIOUS: ${destination_capages}
 .PHONY:    ${destination_capages}
-
-UNINSTALLFILES+=	${destination_capages}
-INSTALLDIRS+=		${destination_capages:H}
 
 .for P in ${CATPAGES:O:u}
 ${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}: ${P} __installpage
@@ -126,14 +125,13 @@ catpages::
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
+UNINSTALLFILES+=	${destination_manpages}
+INSTALLDIRS+=		${destination_manpages:H}
 .endif # MKINSTALL
 
 manpages:: ${destination_manpages}
 .PRECIOUS: ${destination_manpages}
 .PHONY:    ${destination_manpages}
-
-UNINSTALLFILES+=	${destination_manpages}
-INSTALLDIRS+=		${destination_manpages:H}
 
 .for P in ${MANPAGES:O:u}
 ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __installpage

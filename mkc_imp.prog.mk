@@ -49,7 +49,9 @@ MAN=		${PROG}.1
 PROGNAME?=${PROG}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
-destination_prog=${DESTDIR}${BINDIR}/${PROGNAME}
+destination_prog=	${DESTDIR}${BINDIR}/${PROGNAME}
+UNINSTALLFILES+=	${destination_prog}
+INSTALLDIRS+=		${destination_prog:H}
 .endif
 
 proginstall:: ${destination_prog}
@@ -61,9 +63,6 @@ __proginstall: .USE
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
-
-UNINSTALLFILES+=	${destination_prog}
-INSTALLDIRS+=		${destination_prog:H}
 
 .else # defined(PROG)
 proginstall:
@@ -85,6 +84,8 @@ afterdepend: .depend
 .if defined(SCRIPTS)
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
+UNINSTALLFILES+=	${destination_scripts}
+INSTALLDIRS+=		${destination_scripts:H}
 .endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}
@@ -101,9 +102,6 @@ __scriptinstall: .USE
 .for S in ${SCRIPTS:O:u}
 ${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}: ${S} __scriptinstall
 .endfor
-
-UNINSTALLFILES+=	${destination_scripts}
-INSTALLDIRS+=		${destination_scripts:H}
 
 .else # defined(SCRIPTS)
 scriptsinstall:
