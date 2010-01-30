@@ -50,6 +50,8 @@ PROGNAME?=${PROG}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_prog=	${DESTDIR}${BINDIR}/${PROGNAME}
+UNINSTALLFILES+=	${destination_scripts}
+INSTALLDIRS+=		${destination_scripts:H}
 UNINSTALLFILES+=	${destination_prog}
 INSTALLDIRS+=		${destination_prog:H}
 .endif
@@ -84,8 +86,6 @@ afterdepend: .depend
 .if defined(SCRIPTS)
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
-UNINSTALLFILES+=	${destination_scripts}
-INSTALLDIRS+=		${destination_scripts:H}
 .endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}
