@@ -25,8 +25,9 @@ Plan 1)
 
   = support for cross-compilation
 
-  = shared libraries support for HP-UX, AIX, UnixWare,
-    OSF1, Hurd and other exotic platforms.
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
+
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
 
   = improve support for different compilers, OSes, linkers,
     hardware etc.
