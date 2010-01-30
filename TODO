@@ -1,6 +1,10 @@
 ============================================================
 Plan 1)
 
+  = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
+    implementation is taken from mk-c.
+    Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
+
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
   = (U/ser) and (D/eveloper) markers for variables in mk-configure.7
