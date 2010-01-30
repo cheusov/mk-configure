@@ -22,6 +22,7 @@ __REALSUBDIR+=${dir}
 
 __recurse: .USE
 	@targ=${.TARGET:C/-.*$//};dir=${.TARGET:C/^[^-]*-//};		\
+	test "$${targ}_${MKINSTALL:tl}" = 'install_no' && exit 0;       \
 	set -e;								\
 	echo ==================================================;	\
 	case "$$dir" in /*)						\
