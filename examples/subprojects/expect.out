@@ -122,3 +122,6 @@ Hello v.1.2.3
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
 /objdir/version.mk
+== library dependencies ====
+Hello1
+Hello v.1.2.3
