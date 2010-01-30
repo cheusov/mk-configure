@@ -4,8 +4,7 @@ WHAT IS MK-CONFIGURE?
 mk-configure is a lightweight replacement for GNU autotools, written
 in and for bmake (portable version of NetBSD make) and UNIX tools
 (shell, awk etc.).  FreeBSD and OpenBSD make are not good. They are
-incompatible with NetBSD bmake. GNU make is not good too, it is
-completely incompatible with NetBSD bmake.
+incompatible with NetBSD bmake. GNU make is not good too.
 
 mk-configure provides a number of include files written in and for
 bmake and a number of standalone programs that should be installed to
@@ -73,25 +72,29 @@ GOALS OF THE PROJECT
  - Portability. At the moment the following systems and compilers are
    supported:
 
-    - NetBSD. Tested under NetBSD-5.0/x86 and NetBSD-2.0/alpha with
+    - NetBSD. Tested on NetBSD-5.0/x86 and NetBSD-2.0/alpha with
       gcc and pcc (Portable C compiler).
 
-    - FreeBSD. Tested under FreeBSD-6.2/x86, 7.1/spark64 and 7.1/x86
+    - FreeBSD. Tested on FreeBSD-6.2/x86, 7.1/spark64 and 7.1/x86
       with gcc.
 
-    - OpenBSD. Tested under OpenBSD-3.8/x86 and 4.5/x86 with gcc.
+    - OpenBSD. Tested on OpenBSD-3.8/x86 and 4.5/x86 with gcc.
 
-    - Solaris. Tested under Solaris-10/x86 and Solaris-10/spark64
+    - Solaris. Tested on Solaris-10/x86 and Solaris-10/spark64
       with sunpro-11, sunpro-12 and gcc.
 
-    - Darwin (MacOS-X). Tested under Darwin-8.11.0/ppc (MacOS-X Tiger)
+    - Darwin (MacOS-X). Tested on Darwin-8.11.0/ppc (MacOS-X Tiger)
       with native gcc.
 
-    - Interix. Tested under Interix-3.5/x86 with gcc.
+    - Interix. Tested on Interix-3.5/x86 with gcc.
 
-    - QNX. Tested under QNX-6.3/x86 with gcc.
+    - QNX. Tested on QNX-6.3/x86 with gcc.
 
-    - Partial support for AIX and HP-UX and their native
+    - OSF1. Tested on Tru64-5.1/alpha with gcc and DEC C compiler.
+
+    - HP-UX. Tested on HP-UX-11.0/hppa with gcc.
+
+    - Partial support for AIX and their native
       compilers. Support is not complete because I have no access to
       "big iron" :-( .
 
