@@ -19,12 +19,8 @@ Plan 1)
 
   = support for cross-compilation
 
-  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
-
-  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
-
-  = improve support for different compilers, OSes, linkers,
-    hardware etc.
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku and other OSes
+    as well as for different compilers and linkers.
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
