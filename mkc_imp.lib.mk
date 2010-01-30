@@ -15,6 +15,7 @@ _MKC_IMP_LIB_MK=1
 .PHONY:		libinstall
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 realinstall:	libinstall
+INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 .endif # MKINSTALL
 
 # add additional suffixes not exported.
@@ -124,8 +125,7 @@ __archivebuild: .USE
 
 __archiveinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
-	    -g ${LIBGRP} -m 600 ${.ALLSRC} ${.TARGET}
-	chmod ${LIBMODE} ${.TARGET}
+	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 
 DPSRCS+=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
 CLEANFILES+=	${DPSRCS}
@@ -232,8 +232,6 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 .endif
 .endif
 .endif
-
-INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 
 .include <mkc_imp.man.mk>
 #.include <mkc_imp.nls.mk>
