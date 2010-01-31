@@ -80,6 +80,10 @@ GOALS OF THE PROJECT
 
     - OpenBSD. Tested on OpenBSD-3.8/x86 and 4.5/x86 with gcc.
 
+    - DragonFlyBSD. Tested on DragonFly-2.4.1-RELEASE/x86 with gcc.
+
+    - MirOS BSD. Tested on MirBSD-10/x86 with gcc.
+
     - Solaris. Tested on Solaris-10/x86 and Solaris-10/spark64
       with sunpro-11, sunpro-12 and gcc.
 
