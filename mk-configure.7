@@ -473,7 +473,9 @@ is run by an unprivileged user, it defaults to
 .IR "`id -g`" .
 .IP LIBMODE
 Library mode.
-.RI [ ${BINMODE} ]
+.RI [ ${NONBINMODE} ]
+.IP SHLIBMODE
+Shared library mode.
 .\" .IP LIBISMODULE
 .\" If not "no", install as ${LIB}.so (without the "lib" prefix).
 .\" .\" and act as "MKDEBUGLIB=no MKPICINSTALL=no
