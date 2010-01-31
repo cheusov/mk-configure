@@ -52,7 +52,7 @@ INSTALL.MirBSD=		/usr/bin/install
 INSTALL.Darwin=		/usr/bin/install
 INSTALL.SunOS=		/usr/ucb/install
 INSTALL.UnixWare=	/usr/ucb/install
-INSTALL.HP-UX=		/usr/ucb/install
+INSTALL.HP-UX=		mkc_install
 INSTALL.OSF1=		mkc_install
 INSTALL.Interix=	mkc_install
 
