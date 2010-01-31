@@ -1,4 +1,36 @@
 ======================================================================
+Version 0.14.0, by Aleksey Cheusov, Sun, 31 Jan 2010 16:37:21 +0200
+
+  Support for OSF1. Tested on Tru64-5.1/alpha with gcc and DEC C
+  compiler.
+
+  Support for HP-UX. Tested on HP-UX-11.0/hppa with gcc.
+
+  Support for DragonFlyBSD. Tested on DragonFlyBSD-2.4.1/x86 with gcc.
+
+  Support for MirOS BSD. Tested on MirOS-2.4.1/x86 with gcc.
+
+  SHLIBMODE variable is introduced which sets a shared library mode.
+
+  FIX: mkc.subdir.mk now takes into account MKINSTALL variable.
+  Thanks to Mikolaj Golub for pointing out.
+
+  FIX: targets "installdirs" and "uninstall" now takes into account
+  MKINSTALL variable.
+
+  fix in mkc.minitest.mk: HP-UX's diff doesn't have -u flag, so I
+  remove it.
+
+  fix in mkc_imp.platform.sys.mk: CC/CXX type should be detected AFTER
+  setting CC/CXX variables.
+
+  mkc_check_compiler:
+     - support for DEC C compiler (OSF1/Tru64)
+     - minor fixes.
+
+  More regression tests.
+
+======================================================================
 Version 0.13.0, by Aleksey Cheusov, Sun, 27 Dec 2009 17:06:06 +0200
 
   CC, CXX and LD types are automatically detected and options passed
