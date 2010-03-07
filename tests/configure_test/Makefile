@@ -1,6 +1,7 @@
 .PHONY: test_output
 test_output:
 	@set -e; cd ${.CURDIR}; \
+	OPSYS=${OPSYS}; export OPSYS; \
 	env CPPFLAGS="${CPPFLAGS} -I${.CURDIR}" ${MAKE} ${MAKEFLAGS} \
 		-f mkc_test.mk; \
 	echo ===============================; \
