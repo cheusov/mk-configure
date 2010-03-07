@@ -4,7 +4,8 @@
 ############################################################
 
 .ifndef OPSYS
-OPSYS!=                 uname -s
+OPSYS!=		uname -s
+OPSYS:=		${OPSYS:C/^CYGWIN.*$/Cygwin/}
 .endif
 TARGET_OPSYS?=  ${OPSYS}
 
@@ -93,6 +94,7 @@ MKC_PROG.id.${YACC:[1]:S/+/x/g}=	yacc
 
 .if !empty(SRCS:U:M*.l)
 MKC_REQUIRE_PROGS+=			${LEX:[1]}
+MKC_CHECK_FUNCLIBS+=			main:l main:fl
 MKC_PROG.id.${LEX:[1]:S/+/x/g}=		lex
 .endif
 

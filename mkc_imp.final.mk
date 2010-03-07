@@ -9,7 +9,11 @@ MKC_IMP.FINAL.MK=1
 LDADD+=		${DPLIBS}
 
 .if !empty(SRCS:U:M*.l)
+.if ${HAVE_FUNCLIB.main.l:U0}
 LDADD+=		-ll
+.elif ${HAVE_FUNCLIB.main.fl:U0}
+LDADD+=		-lfl
+.endif
 .endif
 
 .if !empty(SRCS:U:M*.y)
