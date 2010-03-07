@@ -61,12 +61,21 @@ fi
 
 check_itself (){
     # preparations
+    echo zzz=$funcname 1>&2
+    if test "$funcname" = main; then
+    	fname=__fake__
+    else
+    	fname="$funcname"
+    fi
+
     cat > "$tmpc" <<EOF
-void $funcname ();
+static void __fake__ () {}
+
+void $fname ();
 
 int main ()
 {
-   $funcname ();
+   $fname ();
    return 0;
 }
 EOF
