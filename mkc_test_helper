@@ -17,7 +17,10 @@ export LC_ALL
 
 grep -v CVS |
 grep -v '~$' |
-sed -e "s,$objdir,/objdir," -e "s,$prefix,/prefix," \
-    -e 's/\([.][^ ]*\)[.]dylib/.so\1/' -e 's/[.]dylib/.so/' \
+sed -e "s,$objdir,/objdir," \
+    -e "s,$prefix,/prefix," \
+    -e 's/\([.][^ ]*\)[.]dylib/.so\1/' \
+    -e 's/[.]dylib/.so/' \
+    -e 's/[.]exe//' \
     -e 's/[.]sl/.so/' -e /so_locations/d|
 sort
