@@ -3,9 +3,7 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.ifndef OPSYS
-OPSYS != uname -s
-.endif
+.include <mkc_imp.init.mk>
 
 .PHONY : test
 test: all
