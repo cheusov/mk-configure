@@ -61,7 +61,6 @@ fi
 
 check_itself (){
     # preparations
-    echo zzz=$funcname 1>&2
     if test "$funcname" = main; then
     	fname=__fake__
     else
