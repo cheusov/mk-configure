@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #define YYSTYPE int
+void yyerror (char const *s);
 %}
 
 %token NUMBER
