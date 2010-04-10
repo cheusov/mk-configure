@@ -88,13 +88,8 @@ COPY?=		-c
 PRESERVE?=
 STRIPFLAG?=	-s
 
-TARGETS+=	all clean cleandir depend includes \
-		install obj regress tags html installhtml cleanhtml \
-		installdirs uninstall
-.PHONY:		all clean cleandir depend distclean includes \
-		install obj regress tags \
-		realinstall realall \
-		html installhtml cheanhtml
+.PHONY:		all install realall realinstall \
+		clean cleandir depend installdirs uninstall
 
 install:	.NOTMAIN realinstall subdir-install
 subdir-install: .NOTMAIN
