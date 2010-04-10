@@ -90,15 +90,15 @@ STRIPFLAG?=	-s
 
 .PHONY:		${TARGETS}
 
-install:	.NOTMAIN realinstall
-subdir-install: .NOTMAIN
-realinstall:	.NOTMAIN
+install:	realinstall
+subdir-install:
+realinstall:
 
-all:		.NOTMAIN realall
-subdir-all:	.NOTMAIN
-realall:	.NOTMAIN
+all:		realall
+subdir-all:
+realall:
 
-distclean:	.NOTMAIN cleandir
+distclean:	cleandir
 
 PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 
