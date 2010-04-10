@@ -88,27 +88,22 @@ COPY?=		-c
 PRESERVE?=
 STRIPFLAG?=	-s
 
-TARGETS+=	all clean cleandir depend dependall includes \
+TARGETS+=	all clean cleandir depend includes \
 		install obj regress tags html installhtml cleanhtml \
 		installdirs uninstall
-.PHONY:		all clean cleandir depend dependall distclean includes \
-		install obj regress tags beforedepend afterdepend \
-		beforeinstall afterinstall realinstall realdepend realall \
+.PHONY:		all clean cleandir depend distclean includes \
+		install obj regress tags \
+		realinstall realall \
 		html installhtml cheanhtml
 
 .if !target(install)
-install:	.NOTMAIN beforeinstall subdir-install realinstall afterinstall
-beforeinstall:	.NOTMAIN
-subdir-install:	.NOTMAIN beforeinstall
-realinstall:	.NOTMAIN beforeinstall
-afterinstall:	.NOTMAIN subdir-install realinstall
+install:	.NOTMAIN subdir-install realinstall
+subdir-install:	.NOTMAIN
+realinstall:	.NOTMAIN
 .endif
 all:		.NOTMAIN realall subdir-all
 subdir-all:	.NOTMAIN
 realall:	.NOTMAIN
-depend:		.NOTMAIN realdepend subdir-depend
-subdir-depend:	.NOTMAIN
-realdepend:	.NOTMAIN
 distclean:	.NOTMAIN cleandir
 
 PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-

@@ -50,8 +50,6 @@ PROGNAME?=${PROG}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_prog=	${DESTDIR}${BINDIR}/${PROGNAME}
-UNINSTALLFILES+=	${destination_scripts}
-INSTALLDIRS+=		${destination_scripts:H}
 UNINSTALLFILES+=	${destination_prog}
 INSTALLDIRS+=		${destination_prog:H}
 .endif
@@ -75,17 +73,11 @@ realall: ${PROG} ${SCRIPTS}
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	    ${PROG} ${OBJS}
 
-.if defined(SRCS) && !target(afterdepend)
-afterdepend: .depend
-	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o:/' \
-	      < .depend > $$TMP; \
-	    mv $$TMP .depend)
-.endif
-
 .if defined(SCRIPTS)
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
 destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
+UNINSTALLFILES+=	${destination_scripts}
+INSTALLDIRS+=		${destination_scripts:H}
 .endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}
@@ -113,7 +105,7 @@ scriptsinstall:
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
 .include <mkc.intexts.mk>
-#.include <mkc_imp.dep.mk>
+.include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
 
 .include <mkc_imp.final.mk>

@@ -164,14 +164,6 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
 
-.if defined(SRCS)
-afterdepend: .depend
-	@(TMP=/tmp/_depend$$$$; \
-	    sed -e 's/^\([^\.]*\).o[ ]*:/\1.o \1.op \1.os:/' \
-	      < .depend > $$TMP; \
-	    mv $$TMP .depend)
-.endif
-
 .if !target(libinstall)
 # Make sure it gets defined, in case MKPIC==no
 libinstall::
@@ -239,7 +231,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 .include <mkc_imp.files.mk>
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
-#.include <mkc_imp.dep.mk>
+.include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
 
 .include <mkc_imp.final.mk>
