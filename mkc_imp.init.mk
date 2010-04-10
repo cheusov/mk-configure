@@ -83,7 +83,6 @@ MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 .include <mkc_imp.own.mk>
-#.include <mkc_imp.obj.mk>
 
 ###########
 .if !empty(SRCS:U:M*.y)
