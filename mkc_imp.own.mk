@@ -96,14 +96,14 @@ TARGETS+=	all clean cleandir depend includes \
 		realinstall realall \
 		html installhtml cheanhtml
 
-.if !target(install)
-install:	.NOTMAIN subdir-install realinstall
-subdir-install:	.NOTMAIN
+install:	.NOTMAIN realinstall subdir-install
+subdir-install: .NOTMAIN
 realinstall:	.NOTMAIN
-.endif
+
 all:		.NOTMAIN realall subdir-all
 subdir-all:	.NOTMAIN
 realall:	.NOTMAIN
+
 distclean:	.NOTMAIN cleandir
 
 PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
