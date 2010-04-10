@@ -203,6 +203,8 @@ test:
 
 .endif # SUBDIR
 
+TARGETS+=	all install \
+		clean cleandir depend installdirs uninstall
 ${TARGETS}:
 
 .endif # __initialized__

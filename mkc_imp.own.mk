@@ -88,14 +88,13 @@ COPY?=		-c
 PRESERVE?=
 STRIPFLAG?=	-s
 
-.PHONY:		all install realall realinstall \
-		clean cleandir depend installdirs uninstall
+.PHONY:		${TARGETS}
 
-install:	.NOTMAIN realinstall subdir-install
+install:	.NOTMAIN realinstall
 subdir-install: .NOTMAIN
 realinstall:	.NOTMAIN
 
-all:		.NOTMAIN realall subdir-all
+all:		.NOTMAIN realall
 subdir-all:	.NOTMAIN
 realall:	.NOTMAIN
 
