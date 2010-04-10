@@ -30,7 +30,8 @@ MKCATPAGES=no
 
 .include <mkc_imp.init.mk>
 
-.PHONY:		catinstall maninstall catpages manpages catlinks manlinks html installhtml
+.PHONY:		catinstall maninstall catpages manpages catlinks \
+		manlinks html installhtml
 .if ${MKMAN} != "no"
 realinstall:	${MANINSTALL}
 .endif
@@ -184,6 +185,7 @@ manlinks: manpages
 .endif
 
 # Html rules
+.PHONY: html
 html: ${HTMLPAGES}
 
 .if defined(HTMLPAGES) && !empty(HTMLPAGES)
