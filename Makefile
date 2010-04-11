@@ -50,7 +50,7 @@ FILES=			configure.mk mkc.configure.mk mkc.files.mk \
 FILES+= mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
 	mkc_imp.subdir.mk mkc_imp.sys.mk mkc_imp.init.mk mkc_imp.final.mk \
-	mkc_imp.platform.sys.mk
+	mkc_imp.platform.sys.mk mkc_imp.dep.mk
 
 FILES+=			${EXTRAFILES}
 
