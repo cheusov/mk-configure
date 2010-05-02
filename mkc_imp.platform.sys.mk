@@ -210,7 +210,7 @@ OBJECT_FMT?=			ELF
 
 ####################
 LDFLAGS.shared.sunld=		-G
-LDFLAGS.soname.sunld=		#-h lib${LIB}.so.${SHLIB_MAJOR}
+LDFLAGS.soname.sunld=		-h lib${LIB}.so.${SHLIB_MAJOR}
 
 LDFLAGS.shared.darwinld=	-dylib
 LDFLAGS.soname.darwinld=	#
