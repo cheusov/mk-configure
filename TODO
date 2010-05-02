@@ -1,6 +1,9 @@
 ============================================================
 Plan 1)
 
+  = save defines to config.h and set HAVE_CONFIG_H to 1
+    for compiling.
+
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
     - list of variables to export for subprojects
