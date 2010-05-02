@@ -42,7 +42,16 @@ UNINSTALLFILES+=${UNINSTALLFILES.lib}
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
-MKPICLIB?= yes
+MKPIC?=		yes
+MKPICLIB?=	${MKPIC}
+MKPICINSTALL?=	${MKPICLIB}
+
+MKSTATICLIB?=	yes
+.if defined(SHLIB_MAJOR)
+MKSHLIB?=	yes
+.else
+MKSHLIB?=	no
+.endif
 
 CFLAGS+=	${COPTS}
 FFLAGS+=	${FOPTS}
@@ -92,32 +101,29 @@ FFLAGS+=	${FOPTS}
 .S.os .s.os:
 	${COMPILE.S} ${CAFLAGS.pic} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
-_LIBS=lib${LIB}.a
-
 OBJS+=${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
+SOBJS=${OBJS:.o=.os}
+POBJS=${OBJS:.o=.op}
+
+.if ${MKSTATICLIB} != "no"
+_LIBS+=lib${LIB}.a
+.endif
 
 .if ${MKPROFILE} != "no"
 _LIBS+=lib${LIB}_p.a
-POBJS+=${OBJS:.o=.op}
 .endif
 
-.if ${MKPIC} != "no"
-.if ${MKPICLIB} == "no"
-SOLIB=lib${LIB}.a
-.else
-SOLIB=lib${LIB}_pic.a
-_LIBS+=${SOLIB}
-SOBJS+=${OBJS:.o=.os}
-.endif
-.if defined(SHLIB_FULLVERSION)
+.if ${MKPICLIB} != "no"
+_LIBS+=lib${LIB}_pic.a
+.endif # MKPICLIB
+
+.if ${MKSHLIB} != "no"
 _LIBS+=lib${LIB}${SHLIB_EXTFULL}
 .endif
-.endif
 
-ALLOBJS=${OBJS} ${POBJS} ${SOBJS}
-.NOPATH: ${ALLOBJS} ${_LIBS}
+.NOPATH: ${_LIBS}
 
-realall: ${SRCS} ${ALLOBJS:O} ${_LIBS}
+realall: ${SRCS} ${_LIBS}
 
 __archivebuild: .USE
 	@rm -f ${.TARGET}
@@ -143,7 +149,7 @@ lib${LIB}_p.a:: ${POBJS} __archivebuild
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 	@echo building shared object ${LIB} library
 
-lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
+lib${LIB}${SHLIB_EXTFULL}: ${SOBJS} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
 	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
@@ -159,8 +165,7 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOLIB} ${DPADD}
 .endif # !commands(...)
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
-	lib${LIB}.a ${OBJS} lib${LIB}_p.a ${POBJS} \
-	lib${LIB}_pic.a ${SOBJS} \
+	${OBJS} ${POBJS} ${SOBJS} \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
 
@@ -168,38 +173,44 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 # Make sure it gets defined, in case MKPIC==no
 libinstall::
 
+   # MKSTATICLIB
+.if ${MKSTATICLIB} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}.a
+CLEANFILES+=lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
+.endif
 
+   # MKPROFILE
 .if ${MKPROFILE} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+CLEANFILES+=	lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
 
-.if ${MKPIC} != "no" && ${MKPICINSTALL} != "no"
+   # MKPICLIB
+.if ${MKPICLIB} != "no"
+CLEANFILES+=lib${LIB}_pic.a
+.endif
+
+.if ${MKPICINSTALL} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
-.if ${MKPICLIB} == "no"
-${DESTDIR}${LIBDIR}/lib${LIB}_pic.a:
-	rm -f ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-	ln -s lib${LIB}.a ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-.else
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
-.endif
 
-.if ${MKPIC} != "no" && defined(SHLIB_FULLVERSION)
+   # MKSHLIB
+.if ${MKSHLIB} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
