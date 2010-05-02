@@ -8,7 +8,7 @@ Version 0.14.0, by Aleksey Cheusov, Sun, 31 Jan 2010 16:37:21 +0200
 
   Support for DragonFlyBSD. Tested on DragonFlyBSD-2.4.1/x86 with gcc.
 
-  Support for MirOS BSD. Tested on MirOS-2.4.1/x86 with gcc.
+  Support for MirOS BSD. Tested on MirBSD-10/x86 with gcc.
 
   SHLIBMODE variable is introduced which sets a shared library mode.
 
