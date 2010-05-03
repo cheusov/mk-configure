@@ -44,7 +44,6 @@ UNINSTALLFILES+=${UNINSTALLFILES.lib}
 
 MKPIC?=		yes
 MKPICLIB?=	no
-MKPICINSTALL?=	${MKPICLIB}
 
 MKSTATICLIB?=	yes
 .if defined(SHLIB_MAJOR)
@@ -200,7 +199,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 CLEANFILES+=lib${LIB}_pic.a
 .endif
 
-.if ${MKPICINSTALL} != "no"
+.if ${MKPICLIB} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
