@@ -9,7 +9,6 @@
 /objdir/hello_msg2.o
 /objdir/libcxxlib.a
 /objdir/mkshlib.test.out.tmp
-/objdir/test.mk
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/include
@@ -28,9 +27,7 @@
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
 /objdir/mkshlib.test.out.tmp
-/objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/mkshlib.test.out.tmp
-/objdir/test.mk

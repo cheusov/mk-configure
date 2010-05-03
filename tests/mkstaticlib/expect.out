@@ -9,7 +9,6 @@
 /objdir/hello_msg2.os
 /objdir/libcxxlib.so.1.0.5
 /objdir/mkstaticlib.test.out.tmp
-/objdir/test.mk
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/include
@@ -30,9 +29,7 @@
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp
-/objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp
-/objdir/test.mk

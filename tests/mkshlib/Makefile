@@ -3,4 +3,4 @@
 MKSHLIB=	no
 
 .include "../../examples/hello_cxxlib/cxxlib/Makefile"
-.include "test.mk"
+.include "../mkpiclib/test.mk"
