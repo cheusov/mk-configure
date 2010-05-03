@@ -26,7 +26,6 @@ hello world 2!
 /objdir/cxxlib/include/impl/hello_msg2.h
 /objdir/cxxlib/libcxxlib.a
 /objdir/cxxlib/libcxxlib.so.1.0.5
-/objdir/cxxlib/libcxxlib_pic.a
 /objdir/cxxlib/linkme.mk
 /objdir/expect.out
 /objdir/hello_cxxlib.test.out.tmp

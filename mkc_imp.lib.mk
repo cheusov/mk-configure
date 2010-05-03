@@ -43,7 +43,7 @@ UNINSTALLFILES+=${UNINSTALLFILES.lib}
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
 MKPIC?=		yes
-MKPICLIB?=	${MKPIC}
+MKPICLIB?=	no
 MKPICINSTALL?=	${MKPICLIB}
 
 MKSTATICLIB?=	yes

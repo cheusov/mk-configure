@@ -118,7 +118,6 @@ MKOBJ?=yes
 MKOBJDIRS?=no
 
 MKPIC?=yes
-MKPICINSTALL?=no
 
 MKPROFILE?=no
 
