@@ -117,10 +117,18 @@ MKMAN?=yes
 MKOBJ?=yes
 MKOBJDIRS?=no
 
-MKPIC?=yes
+MKSHARE?=yes
+
+MKPICLIB?=	no
+
+MKSTATICLIB?=	yes
+
+.if defined(SHLIB_MAJOR)
+MKSHLIB?=	yes
+.else
+MKSHLIB?=	no
+.endif
 
 MKPROFILE?=no
-
-MKSHARE?=yes
 
 .endif		# _BSD_OWN_MK_

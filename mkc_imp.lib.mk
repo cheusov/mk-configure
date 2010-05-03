@@ -42,16 +42,6 @@ UNINSTALLFILES+=${UNINSTALLFILES.lib}
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
-MKPIC?=		yes
-MKPICLIB?=	no
-
-MKSTATICLIB?=	yes
-.if defined(SHLIB_MAJOR)
-MKSHLIB?=	yes
-.else
-MKSHLIB?=	no
-.endif
-
 CFLAGS+=	${COPTS}
 FFLAGS+=	${FOPTS}
 
@@ -169,7 +159,7 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
 
 .if !target(libinstall)
-# Make sure it gets defined, in case MKPIC==no
+# Make sure it gets defined
 libinstall::
 
    # MKSTATICLIB
