@@ -481,18 +481,6 @@ Shared library mode.
 .\" .\" and act as "MKDEBUGLIB=no MKPICINSTALL=no
 .\" .\" MKPROFILE=no MKSTATICLIB=no".
 .\" Default: no
-.\" .IP LIBISPRIVATE
-.\" If not "no", act as MKPIC=no and
-.\" , act as "MKDEBUGLIB=no MKPIC=no
-.\" MKPROFILE=no", and
-.\" don't install the (.a) library.
-.\" This is useful for "build only" helper libraries.
-.\" Default: no
-.\" .IP LIBISCXX
-.\" If not "no", Use ${CXX} instead of ${CC} to link
-.\" shared libraries.
-.\" This is useful for C++ libraries.
-.\" Default: no
 .IP LDADD
 Additional objects. See LDADD in
 .B mkc.prog.mk
