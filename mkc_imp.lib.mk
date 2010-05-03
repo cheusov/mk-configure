@@ -146,10 +146,8 @@ lib${LIB}${SHLIB_EXTFULL}: ${SOBJS} ${DPADD}
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
 
 .if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
-	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT}
-	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}.tmp
-	mv -f lib${LIB}.tmp lib${LIB}${SHLIB_EXT1}
+	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}${SHLIB_EXT}
+	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}${SHLIB_EXT1}
 .endif # ELF
 .endif # !commands(...)
 
@@ -215,12 +213,8 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 .endif
 .if ${OBJECT_FMT} == "ELF"
 	ln -sf lib${LIB}${SHLIB_EXTFULL}\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
-	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 	ln -sf lib${LIB}${SHLIB_EXTFULL}\
-	    ${DESTDIR}${LIBDIR}/lib${LIB}.tmp
-	mv -f ${DESTDIR}${LIBDIR}/lib${LIB}.tmp\
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .endif
 .endif
