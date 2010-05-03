@@ -551,11 +551,16 @@ CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 If "yes", ${CC} is used for linking instead of ${LD}.
 For C++ sources ${CXX} is used for linking.
 .RI [ no ]
-.\" .IP MKPIC
-.\" If "no", don't build or install shared libraries, and
-.\" also acts as "MKPICLIB=no".
-.\" .RI [ yes ]
-.\" (for MACHINE_ARCHs that support it)
+.IP MKSHLIB
+If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
+.RI [ yes ]
+(for MACHINE_ARCHs that support it)
+.IP MKSTATICLIB
+If not "no", build and install static library.
+.RI [ yes ]
+.IP MKPICLIB
+If not "no", build and install *_pic.a library.
+.RI [ no ]
 .IP MKPROFILE
 If "no", don't build or install the profiling (*_p.a) libraries.
 .RI [ no ]
