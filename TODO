@@ -31,13 +31,15 @@ Plan 1)
 
     Sometimes it is easier...
 
-  = support for cross-compilation
+  = better support for cross-compilation
 
-  = shared libraries support for AIX, UnixWare, Hurd, Haiku and other OSes
-    as well as for different compilers and linkers.
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
+  = shared libraries support for nwcc, mipspro and other compilers.
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
+
+  = MKPIE
 
   = MLINKS?
 
