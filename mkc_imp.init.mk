@@ -119,8 +119,8 @@ MKC_PROG.id.${PC:[1]:S/+/x/g}=		pc
 ###########
 .PHONY: clean
 clean:
-	if test -n "${CLEANFILES}"; then rm -f ${CLEANFILES}; fi
-	if test -n "${CLEANDIRS}";  then rm -rf ${CLEANDIRS}; fi
+	${RM} -f ${CLEANFILES}
+	${RM} -rf ${CLEANDIRS}
 
 ###########
 .PHONY : print-values
@@ -148,8 +148,8 @@ cleandir: clean mkc_cleandir
 .endif
 
 mkc_cleandir:
-	if test -n "${DISTCLEANFILES}"; then rm -f ${DISTCLEANFILES}; fi
-	if test -n "${DISTCLEANDIRS}";  then rm -rf ${DISTCLEANDIRS}; fi
+	${RM} -f ${DISTCLEANFILES}
+	${RM} -rf ${DISTCLEANDIRS}
 
 .PHONY: error-check
 all : error-check
@@ -190,7 +190,7 @@ LDLIBS=		${LDFLAGS} ${LDADD}
 
 .PHONY: uninstall
 uninstall:
-	if test -n "${UNINSTALLFILES}"; then rm -f ${UNINSTALLFILES}; fi
+	${RM} -f ${UNINSTALLFILES}
 
 .PHONY: installdirs
 installdirs:

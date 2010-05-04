@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Some system doesn't accept 'rm -f' without arguments
+if test $# -ne 0; then
+    rm "$@"
+fi

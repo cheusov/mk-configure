@@ -10,6 +10,9 @@
 .ifndef _MKC_PLATFORM_MK
 _MKC_PLATFORM_MK=1
 
+RM.QNX=			a=${defined(MKC_BOOTSTRAP):?mkc_rm:${MKC_LIBEXECDIR}/mkc_rm}
+RM?=			${RM.${OPSYS}:Urm}
+
 ####################
 SHLIB_EXT.Darwin=	.dylib
 SHLIB_EXT.HP-UX=	.sl

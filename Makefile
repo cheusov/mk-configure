@@ -36,6 +36,9 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 
 SCRIPTS+=		${:!cd ${.CURDIR} && echo custom/*!:N*/CVS}
 
+SCRIPTS+=		mkc_rm # for QNX
+SCRIPTSDIR_mkc_rm=	${LIBEXECDIR}
+
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
 			mkc_check_prog.1 mkc_check_custom.1 \
@@ -79,6 +82,7 @@ INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
 INTEXTS_SED+=		-e 's,@BMAKE@,${BMAKE},g'
 INTEXTS_SED+=		-e 's,@mkfilesdir@,${MKFILESDIR},g'
 INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
+INTEXTS_SED+=		-e 's,@mkc_libexecdir@,${LIBEXECDIR},g'
 
 ##################################################
 
