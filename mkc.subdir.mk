@@ -12,9 +12,9 @@
 .PHONY: subdir-clean subdir-distclean
 clean: subdir-clean
 subdir-clean:
-	${RM} -f ${CLEANFILES}
+	-rm -f ${CLEANFILES} 2>/dev/null
 cleandir: subdir-distclean
 subdir-distclean:
-	${RM} -f ${DISTCLEANFILES}
+	-rm -f ${DISTCLEANFILES} 2>/dev/null
 
 .endif # MKC_ERR_MSG

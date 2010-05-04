@@ -36,9 +36,6 @@ SCRIPTS=		mkc_check_funclib mkc_check_header \
 
 SCRIPTS+=		${:!cd ${.CURDIR} && echo custom/*!:N*/CVS}
 
-SCRIPTS+=		mkc_rm # for QNX
-SCRIPTSDIR_mkc_rm=	${LIBEXECDIR}
-
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
 			mkc_check_prog.1 mkc_check_custom.1 \
