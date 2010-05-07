@@ -7,7 +7,9 @@
 /objdir/expect.out
 /objdir/hello_msg1.os
 /objdir/hello_msg2.os
+/objdir/libcxxlib.a
 /objdir/libcxxlib.so.1.0.5
+/objdir/libcxxlib_p.a
 /objdir/mkstaticlib.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -17,9 +19,11 @@
 /objdir/prefix/include/impl/hello_msg1.h
 /objdir/prefix/include/impl/hello_msg2.h
 /objdir/prefix/lib
+/objdir/prefix/lib/libcxxlib.a
 /objdir/prefix/lib/libcxxlib.so
 /objdir/prefix/lib/libcxxlib.so.1
 /objdir/prefix/lib/libcxxlib.so.1.0.5
+/objdir/prefix/lib/libcxxlib_p.a
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
