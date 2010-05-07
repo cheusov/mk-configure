@@ -98,7 +98,7 @@ POBJS=${OBJS:.o=.op}
 _LIBS+=lib${LIB}.a
 .endif
 
-.if ${MKPROFILE} != "no"
+.if ${MKPROFILELIB} != "no"
 _LIBS+=lib${LIB}_p.a
 .endif
 
@@ -171,8 +171,8 @@ CLEANFILES+=lib${LIB}.a
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 .endif
 
-   # MKPROFILE
-.if ${MKPROFILE} != "no"
+   # MKPROFILELIB
+.if ${MKPROFILELIB} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a

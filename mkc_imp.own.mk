@@ -129,6 +129,6 @@ MKSHLIB?=	yes
 MKSHLIB?=	no
 .endif
 
-MKPROFILE?=no
+MKPROFILELIB?=	no
 
 .endif		# _BSD_OWN_MK_
