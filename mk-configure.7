@@ -155,7 +155,7 @@ that cause warnings to be fatal, such as:
 -Werror -Wa,--fatal-warnings
 (The latter being for as(1).)
 .IP WARNS
-Crank up GCC warning options; the distinct levels are (the higher the
+Crank up warning options; the distinct levels are (the higher the
 more strict):
 .VS
     WARNS=1
@@ -163,6 +163,7 @@ more strict):
     WARNS=3
     WARNS=4
 .VE
+At the moment only gcc is supported.
 .IP PREFIX
 Target directory.
 .RI [ /usr/local ]
@@ -215,6 +216,9 @@ Required version of
 If a required version is not found,
 .B bmake
 fails.
+.IP SHRTOUT
+If not "no", output messages about compiling, linking and creating libraries
+are shortened and formatted.
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
