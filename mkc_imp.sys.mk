@@ -14,31 +14,48 @@
 
 .LIBS:		.a
 
+SHRTOUT?=	no
+
+.if ${SHRTOUT} != "no"
+_MESSAGE?=	echo
+_MESSAGE_V?=	:
+_V?=		@
+.else
+_MESSAGE?=	:
+_MESSAGE_V?=	echo
+_V?=
+.endif
+
 AR?=		ar
 ARFLAGS?=	rl
 RANLIB?=	ranlib
+MESSAGE.ar?=	@${_MESSAGE} "AR: ${.TARGET}"
 
 AS?=		as
 AFLAGS?=
-COMPILE.s?=	${CC} ${AFLAGS} -c
-LINK.s?=	${CC} ${AFLAGS} ${LDFLAGS}
-COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
-LINK.S?=	${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.s?=	${_V} ${CC} ${AFLAGS} -c
+LINK.s?=	${_V} ${CC} ${AFLAGS} ${LDFLAGS}
+MESSAGE.s?=	@${_MESSAGE} "AS: ${.IMPSRC}"
+COMPILE.S?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
+LINK.S?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.S?=	${MESSAGE.s}
 
 CC?=		cc
 CFLAGS?=
-COMPILE.c?=	${CC} ${CFLAGS} ${CPPFLAGS} -c
-LINK.c?=	${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
-
+COMPILE.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} -c
+LINK.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.c?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 CXX?=		c++
 CXXFLAGS?=	${CFLAGS}
-COMPILE.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} -c
-LINK.cc?=	${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} -c
+LINK.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.cc?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 OBJC?=		${CC}
 OBJCFLAGS?=	${CFLAGS}
-COMPILE.m?=	${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
-LINK.m?=	${OBJC} ${OBJCFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.m?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
+LINK.m?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.m?=	@${_MESSAGE} "OBJC: ${.IMPSRC}"
 
 CPP?=		cpp
 CPPFLAGS?=	
@@ -46,18 +63,24 @@ CPPFLAGS?=
 FC?=		f77
 FFLAGS?=	-O
 RFLAGS?=
-COMPILE.f?=	${FC} ${FFLAGS} -c
-LINK.f?=	${FC} ${FFLAGS} ${LDFLAGS}
-COMPILE.F?=	${FC} ${FFLAGS} ${CPPFLAGS} -c
-LINK.F?=	${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
-COMPILE.r?=	${FC} ${FFLAGS} ${RFLAGS} -c
-LINK.r?=	${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
+COMPILE.f?=	${_V} ${FC} ${FFLAGS} -c
+LINK.f?=	${_V} ${FC} ${FFLAGS} ${LDFLAGS}
+MESSAGE.f?=	@${_MESSAGE} "FC: ${.IMPSRC}"
+COMPILE.F?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} -c
+LINK.F?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.F?=	${MESSAGE.f}
+COMPILE.r?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} -c
+LINK.r?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
+MESSAGE.r?=	${MESSAGE.f}
+
+MESSAGE.ld?=	@${_MESSAGE} "LD: ${.TARGET}"
 
 INSTALL?=	install
 
 LEX?=		lex
 LFLAGS?=
-LEX.l?=		${LEX} ${LFLAGS}
+LEX.l?=		${_V} ${LEX} ${LFLAGS}
+MESSAGE.l?=	@${_MESSAGE} "LEX: ${.IMPSRC}"
 
 LD?=		ld
 LDFLAGS?=
@@ -68,8 +91,9 @@ NM?=		nm
 
 PC?=		pc
 PFLAGS?=
-COMPILE.p?=	${PC} ${PFLAGS} ${CPPFLAGS} -c
-LINK.p?=	${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
+COMPILE.p?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} -c
+LINK.p?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.p?=	@${_MESSAGE} "PC: ${.IMPSRC}"
 
 SHELL?=		sh
 
@@ -79,47 +103,58 @@ TSORT?= 	tsort -q
 
 YACC?=		yacc
 YFLAGS?=
-YACC.y?=	${YACC} ${YFLAGS}
+YACC.y?=	${_V} ${YACC} ${YFLAGS}
+MESSAGE.y?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
 # C
 .c.o:
+	${MESSAGE.c}
 	${COMPILE.c} ${.IMPSRC}
 
 # C++
 .cc.o .cpp.o .cxx.o .C.o:
+	${MESSAGE.cc}
 	${COMPILE.cc} ${.IMPSRC}
 
 # Fortran/Ratfor
 .f.o:
+	${MESSAGE.f}
 	${COMPILE.f} ${.IMPSRC}
 
 #.F:
 .F.o:
+	${MESSAGE.F}
 	${COMPILE.F} ${.IMPSRC}
 
 #.r:
 .r.o:
+	${MESSAGE.r}
 	${COMPILE.r} ${.IMPSRC}
 
 # Pascal
 .p.o:
+	${MESSAGE.p}
 	${COMPILE.p} ${.IMPSRC}
 
 # Assembly
 .s.o:
+	${MESSAGE.s}
 	${COMPILE.s} ${.IMPSRC}
 .S.o:
+	${MESSAGE.S}
 	${COMPILE.S} ${.IMPSRC}
 
 # Lex
 .l.c:
+	${MESSAGE.l}
 	${LEX.l} ${.IMPSRC}
-	mv lex.yy.c ${.TARGET}
+	${_V}mv lex.yy.c ${.TARGET}
 
 # Yacc
 .y.c:
+	${MESSAGE.y}
 	${YACC.y} ${.IMPSRC}
-	mv y.tab.c ${.TARGET}
+	${_V}mv y.tab.c ${.TARGET}
 
 # Shell
 .sh:

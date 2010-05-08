@@ -116,7 +116,8 @@ realall: ${SRCS} ${_LIBS}
 
 __archivebuild: .USE
 	@rm -f ${.TARGET}
-	${AR} cq ${.TARGET} ${.ALLSRC}
+	${MESSAGE.ar}
+	${_V} ${AR} cq ${.TARGET} ${.ALLSRC}
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
@@ -130,19 +131,20 @@ CLEANFILES+=	${SRCS:M*.y:.y=.h}
 .endif
 
 lib${LIB}.a:: ${OBJS} __archivebuild
-	@echo building standard ${LIB} library
+	@${_MESSAGE_V} "building standard ${LIB} library"
 
 lib${LIB}_p.a:: ${POBJS} __archivebuild
-	@echo building profiled ${LIB} library
+	@${_MESSAGE_V} "building profiled ${LIB} library"
 
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
-	@echo building shared object ${LIB} library
+	@${_MESSAGE_V} "building shared object ${LIB} library"
 
 lib${LIB}${SHLIB_EXTFULL}: ${SOBJS} ${DPADD}
 .if !commands(lib${LIB}${SHLIB_EXTFULL})
-	@echo building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
+	@${_MESSAGE_V} building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f lib${LIB}.${SHLIB_EXTFULL}
-	$(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
+	@${_MESSAGE} "LD: ${.TARGET}"
+	${_V} $(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
 
 .if ${OBJECT_FMT} == "ELF"

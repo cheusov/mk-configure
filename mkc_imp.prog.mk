@@ -37,7 +37,8 @@ OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 
 ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
 .if !commands(${PROG})
-	${LDREAL} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} ${OBJS} ${LDADD}
+	${MESSAGE.ld}
+	${_V}${LDREAL} ${LDFLAGS} ${LDSTATIC} -o ${.TARGET} ${OBJS} ${LDADD}
 .endif
 
 .endif	# defined(OBJS) && !empty(OBJS)
