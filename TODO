@@ -1,7 +1,7 @@
 ============================================================
 Plan 1)
 
-  = WARNS
+  = WARNS for compilers other than gcc
 
   = save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
