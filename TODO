@@ -44,15 +44,6 @@ Plan 1)
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
     MagicMakefiles etc.
 
-  = Formatted output
-     CC: source.c
-     CXX: source.cc
-     FC: source.f
-     PC: source.p
-     LD: source.a, source.so, source.dylib
-     nroff: source.a, source.so, source.dylib
-     ...
-
   = Improve mkc.pkg-config.mk
 
   = Implement mkc_imp.libtool.mk to make building
