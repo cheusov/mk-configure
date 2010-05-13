@@ -5,12 +5,16 @@
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
+/objdir/hello_msg1.o
+/objdir/hello_msg1.op
 /objdir/hello_msg1.os
+/objdir/hello_msg2.o
+/objdir/hello_msg2.op
 /objdir/hello_msg2.os
 /objdir/libcxxlib.a
 /objdir/libcxxlib.so.1.0.5
 /objdir/libcxxlib_p.a
-/objdir/mkstaticlib.test.out.tmp
+/objdir/mkprofilelib.test.out.tmp
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/include
@@ -32,8 +36,8 @@
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
-/objdir/mkstaticlib.test.out.tmp
+/objdir/mkprofilelib.test.out.tmp
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
-/objdir/mkstaticlib.test.out.tmp
+/objdir/mkprofilelib.test.out.tmp
