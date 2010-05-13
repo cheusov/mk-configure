@@ -1,6 +1,6 @@
 LIB=	hello2
 SRCS=	hello2.cc
-MAN=	hello2.1
+MAN=	hello2.3
 
 INCS!=	echo include/*.h
 
