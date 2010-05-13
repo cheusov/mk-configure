@@ -40,6 +40,8 @@ Hello v.1.2.3
 /objdir/libhello2/_mkc_cxx_type.res
 /objdir/libhello2/_mkc_prog_cxx.err
 /objdir/libhello2/_mkc_prog_cxx.res
+/objdir/libhello2/hello2.1
+/objdir/libhello2/hello2.cat1
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
@@ -95,6 +97,7 @@ Hello v.1.2.3
 /objdir/libhello2/_mkc_cxx_type.res
 /objdir/libhello2/_mkc_prog_cxx.err
 /objdir/libhello2/_mkc_prog_cxx.res
+/objdir/libhello2/hello2.1
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/linkme.mk
@@ -115,6 +118,7 @@ Hello v.1.2.3
 /objdir/libhello1/hello1.h
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
+/objdir/libhello2/hello2.1
 /objdir/libhello2/hello2.cc
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/linkme.mk
