@@ -50,6 +50,14 @@ Hello v.1.2.3
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
 /objdir/version.mk
+========= installdirs ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/include
+/objdir/prefix/lib
+/objdir/prefix/man
+/objdir/prefix/man/cat1
+/objdir/prefix/man/man1
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin

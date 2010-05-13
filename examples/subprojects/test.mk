@@ -11,8 +11,14 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= installdirs ==========; \
+	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} \
+		> /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} installdirs install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
