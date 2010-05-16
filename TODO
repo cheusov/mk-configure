@@ -58,6 +58,8 @@ Plan 1)
 ============================================================
 Plan2)
 
+  = mkc.subdir.mk, mkc.subprjs.mk: reimplement ${dir}.${MACHINE}
+
   = WARNS for compilers other than gcc
 
   = MKC_CHECK_CUSTOM:
