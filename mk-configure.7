@@ -46,7 +46,7 @@ install programs, libraries, files, include files, manual pages etc.
 to the target directories
 .IP uninstall
 remove installed files
-.IP error-check
+.IP errorcheck
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .SS "Common variables"
@@ -625,7 +625,7 @@ is added to CFLAGS unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_HEADERS
 The same as MKC_CHECK_HEADERS, but absense of header is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_FUNCLIBS
 List of <function>:<library> pairs to be checked,
@@ -664,7 +664,7 @@ MKC_NOAUTO is set to 1
 .IP MKC_REQUIRE_FUNCLIBS
 The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_SOURCE_FUNCLIBS
 The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
@@ -703,7 +703,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_DEFINES
 The same as MKC_CHECK_DEFINES, but absense of the define is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_TYPES
 List of type:header to check. <header> part is optional.
@@ -729,7 +729,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_TYPES
 The same as MKC_CHECK_TYPES, but absense of the type declaration is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_VARS
 List of variable:header to check. <header> part is optional.
@@ -754,7 +754,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_VARS
 The same as MKC_CHECK_VARS, but absense of the variable declaration is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_MEMBERS
 List of <type>.<member>:<header> to check.
@@ -789,7 +789,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_MEMBERS
 The same as MKC_CHECK_MEMBERS, but absense of the member is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_FUNCS<N>
 List of <func>:<header> to be check. <header> part is optional.
@@ -817,7 +817,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_FUNCS<N>
 The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target.
 .IP MKC_CHECK_CUSTOM
 A list of custom checks (list of names).
@@ -850,7 +850,7 @@ Note that script for the check should be an executable file.
 .IP MKC_REQUIRE_CUSTOM
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target. 0 and empty value of CUSTOM.xxx means failure.
 .IP MKC_CUSTOM_DIR
 Directory with custom checks source files.
@@ -908,7 +908,7 @@ MKC_PROG.id.<progname> also changes cache file names.
 .IP MKC_REQUIRE_PROGS
 The same as MKC_CHECK_PROGS, but absense of program is
 treated as a fatal error (See
-.B error-check
+.B errorcheck
 target).
 .IP MKC_CHECK_SIZEOF
 List of <type>:<header> to check. <header> part is optional.

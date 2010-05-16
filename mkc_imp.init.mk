@@ -151,9 +151,9 @@ mkc_cleandir:
 	-rm -f ${DISTCLEANFILES} 2>/dev/null
 	-rm -rf ${DISTCLEANDIRS} 2>/dev/null
 
-.PHONY: error-check
-all : error-check
-error-check:
+.PHONY: errorcheck
+all : errorcheck
+errorcheck:
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
 		if test -n "$$msg"; then printf '%s\n' "$$msg"; ex=1; fi; \
@@ -203,7 +203,7 @@ test:
 .endif # SUBDIR
 
 TARGETS+=	all install \
-		clean cleandir depend installdirs uninstall
+		clean cleandir depend installdirs uninstall errorcheck
 ${TARGETS}:
 
 .endif # __initialized__

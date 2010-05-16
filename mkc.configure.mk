@@ -14,4 +14,4 @@
 .endif
 
 .PHONY: configure
-configure: error-check
+configure: errorcheck
