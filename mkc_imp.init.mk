@@ -144,12 +144,12 @@ mkc_printobjdir:
 
 distclean: cleandir
 .if !defined(SUBDIR) && !commands(cleandir)
-cleandir: clean mkc_cleandir
+cleandir: mkc_cleandir
 .endif
 
 mkc_cleandir:
-	-rm -f ${DISTCLEANFILES} 2>/dev/null
-	-rm -rf ${DISTCLEANDIRS} 2>/dev/null
+	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
+	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
 .PHONY: errorcheck
 all : errorcheck
