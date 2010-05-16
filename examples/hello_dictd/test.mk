@@ -15,14 +15,12 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= installdirs ==========; \
-	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} \
-		> /dev/null; \
+	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
-		> /dev/null; \
+	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -38,6 +36,34 @@ test_output :
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo ======= all-dict ==========; \
+	${MAKE} ${MAKEFLAGS} all-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo ========= installdirs-dict ==========; \
+	${MAKE} ${MAKEFLAGS} installdirs-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= install-dict ==========; \
+	${MAKE} ${MAKEFLAGS} install-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ======= uninstall-dict ==========; \
+	${MAKE} ${MAKEFLAGS} uninstall-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ========== clean-dict ===========; \
+	${MAKE} ${MAKEFLAGS} clean-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ======= cleandir-dict ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir-dict DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
