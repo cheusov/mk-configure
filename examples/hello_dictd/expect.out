@@ -1,0 +1,241 @@
+dict: fake1=1
+dict: fake2=2
+dict: fake4=4
+dict: fake5=5
+dict: fake6=6
+dictd: fake1=1
+dictd: fake2=2
+dictd: fake4=4
+dictd: fake5=5
+dictd: fake6=6
+dictfmt: fake1=1
+dictfmt: fake2=2
+dictfmt: fake4=4
+dictfmt: fake5=5
+dictfmt: fake6=6
+dictzip: fake1=1
+dictzip: fake2=2
+dictzip: fake3=3
+dictzip: fake4=4
+dictzip: fake5=5
+dictzip: fake6=6
+=========== all ============
+/objdir/Makefile
+/objdir/dict/Makefile
+/objdir/dict/_mkc_compiler_type.err
+/objdir/dict/_mkc_compiler_type.res
+/objdir/dict/_mkc_prog_cc.err
+/objdir/dict/_mkc_prog_cc.res
+/objdir/dict/dict
+/objdir/dict/dict.1
+/objdir/dict/dict.c
+/objdir/dict/dict.o
+/objdir/dictd/Makefile
+/objdir/dictd/_mkc_compiler_type.err
+/objdir/dictd/_mkc_compiler_type.res
+/objdir/dictd/_mkc_prog_cc.err
+/objdir/dictd/_mkc_prog_cc.res
+/objdir/dictd/dictd
+/objdir/dictd/dictd.8
+/objdir/dictd/dictd.c
+/objdir/dictd/dictd.o
+/objdir/dictfmt/Makefile
+/objdir/dictfmt/_mkc_compiler_type.err
+/objdir/dictfmt/_mkc_compiler_type.res
+/objdir/dictfmt/_mkc_prog_cc.err
+/objdir/dictfmt/_mkc_prog_cc.res
+/objdir/dictfmt/dictfmt
+/objdir/dictfmt/dictfmt.1
+/objdir/dictfmt/dictfmt.c
+/objdir/dictfmt/dictfmt.o
+/objdir/dictzip/Makefile
+/objdir/dictzip/_mkc_compiler_type.err
+/objdir/dictzip/_mkc_compiler_type.res
+/objdir/dictzip/_mkc_prog_cc.err
+/objdir/dictzip/_mkc_prog_cc.res
+/objdir/dictzip/dictzip
+/objdir/dictzip/dictzip.1
+/objdir/dictzip/dictzip.c
+/objdir/dictzip/dictzip.o
+/objdir/expect.out
+/objdir/hello_dictd.test.out.tmp
+/objdir/libcommon/Makefile
+/objdir/libcommon/_mkc_compiler_type.err
+/objdir/libcommon/_mkc_compiler_type.res
+/objdir/libcommon/_mkc_prog_cc.err
+/objdir/libcommon/_mkc_prog_cc.res
+/objdir/libcommon/iswalnum.c
+/objdir/libcommon/iswalnum.o
+/objdir/libcommon/libcommon.a
+/objdir/libcommon/linkme.mk
+/objdir/libcommon/str.c
+/objdir/libcommon/str.o
+/objdir/libdz/Makefile
+/objdir/libdz/_mkc_compiler_type.err
+/objdir/libdz/_mkc_compiler_type.res
+/objdir/libdz/_mkc_funclib_deflate.c
+/objdir/libdz/_mkc_funclib_deflate.err
+/objdir/libdz/_mkc_funclib_deflate.res
+/objdir/libdz/_mkc_funclib_deflate_z.c
+/objdir/libdz/_mkc_funclib_deflate_z.err
+/objdir/libdz/_mkc_funclib_deflate_z.res
+/objdir/libdz/_mkc_header_zlib_h.c
+/objdir/libdz/_mkc_header_zlib_h.err
+/objdir/libdz/_mkc_header_zlib_h.res
+/objdir/libdz/_mkc_prog_cc.err
+/objdir/libdz/_mkc_prog_cc.res
+/objdir/libdz/dz.c
+/objdir/libdz/dz.o
+/objdir/libdz/dz.os
+/objdir/libdz/libdz.a
+/objdir/libdz/libdz.so
+/objdir/libdz/libdz.so.1
+/objdir/libdz/libdz.so.1.0
+/objdir/libdz/linkme.mk
+/objdir/libmaa/Makefile
+/objdir/libmaa/_mkc_compiler_type.err
+/objdir/libmaa/_mkc_compiler_type.res
+/objdir/libmaa/_mkc_prog_cc.err
+/objdir/libmaa/_mkc_prog_cc.res
+/objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.so
+/objdir/libmaa/libmaa.so.1
+/objdir/libmaa/libmaa.so.1.2.0
+/objdir/libmaa/linkme.mk
+/objdir/libmaa/log.c
+/objdir/libmaa/log.o
+/objdir/libmaa/log.os
+/objdir/libmaa/prime.c
+/objdir/libmaa/prime.o
+/objdir/libmaa/prime.os
+/objdir/libmaa/set.c
+/objdir/libmaa/set.o
+/objdir/libmaa/set.os
+/objdir/test.mk
+========= installdirs ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/lib
+/objdir/prefix/man
+/objdir/prefix/man/man1
+/objdir/prefix/man/man8
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/dict
+/objdir/prefix/bin/dictd
+/objdir/prefix/bin/dictfmt
+/objdir/prefix/bin/dictzip
+/objdir/prefix/lib
+/objdir/prefix/lib/libdz.a
+/objdir/prefix/lib/libdz.so
+/objdir/prefix/lib/libdz.so.1
+/objdir/prefix/lib/libdz.so.1.0
+/objdir/prefix/lib/libmaa.a
+/objdir/prefix/lib/libmaa.so
+/objdir/prefix/lib/libmaa.so.1
+/objdir/prefix/lib/libmaa.so.1.2.0
+/objdir/prefix/man
+/objdir/prefix/man/man1
+/objdir/prefix/man/man1/dict.1
+/objdir/prefix/man/man1/dictfmt.1
+/objdir/prefix/man/man1/dictzip.1
+/objdir/prefix/man/man8
+/objdir/prefix/man/man8/dictd.8
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/dict/Makefile
+/objdir/dict/_mkc_compiler_type.err
+/objdir/dict/_mkc_compiler_type.res
+/objdir/dict/_mkc_prog_cc.err
+/objdir/dict/_mkc_prog_cc.res
+/objdir/dict/dict.1
+/objdir/dict/dict.c
+/objdir/dictd/Makefile
+/objdir/dictd/_mkc_compiler_type.err
+/objdir/dictd/_mkc_compiler_type.res
+/objdir/dictd/_mkc_prog_cc.err
+/objdir/dictd/_mkc_prog_cc.res
+/objdir/dictd/dictd.8
+/objdir/dictd/dictd.c
+/objdir/dictfmt/Makefile
+/objdir/dictfmt/_mkc_compiler_type.err
+/objdir/dictfmt/_mkc_compiler_type.res
+/objdir/dictfmt/_mkc_prog_cc.err
+/objdir/dictfmt/_mkc_prog_cc.res
+/objdir/dictfmt/dictfmt.1
+/objdir/dictfmt/dictfmt.c
+/objdir/dictzip/Makefile
+/objdir/dictzip/_mkc_compiler_type.err
+/objdir/dictzip/_mkc_compiler_type.res
+/objdir/dictzip/_mkc_prog_cc.err
+/objdir/dictzip/_mkc_prog_cc.res
+/objdir/dictzip/dictzip.1
+/objdir/dictzip/dictzip.c
+/objdir/expect.out
+/objdir/hello_dictd.test.out.tmp
+/objdir/libcommon/Makefile
+/objdir/libcommon/_mkc_compiler_type.err
+/objdir/libcommon/_mkc_compiler_type.res
+/objdir/libcommon/_mkc_prog_cc.err
+/objdir/libcommon/_mkc_prog_cc.res
+/objdir/libcommon/iswalnum.c
+/objdir/libcommon/linkme.mk
+/objdir/libcommon/str.c
+/objdir/libdz/Makefile
+/objdir/libdz/_mkc_compiler_type.err
+/objdir/libdz/_mkc_compiler_type.res
+/objdir/libdz/_mkc_funclib_deflate.c
+/objdir/libdz/_mkc_funclib_deflate.err
+/objdir/libdz/_mkc_funclib_deflate.res
+/objdir/libdz/_mkc_funclib_deflate_z.c
+/objdir/libdz/_mkc_funclib_deflate_z.err
+/objdir/libdz/_mkc_funclib_deflate_z.res
+/objdir/libdz/_mkc_header_zlib_h.c
+/objdir/libdz/_mkc_header_zlib_h.err
+/objdir/libdz/_mkc_header_zlib_h.res
+/objdir/libdz/_mkc_prog_cc.err
+/objdir/libdz/_mkc_prog_cc.res
+/objdir/libdz/dz.c
+/objdir/libdz/linkme.mk
+/objdir/libmaa/Makefile
+/objdir/libmaa/_mkc_compiler_type.err
+/objdir/libmaa/_mkc_compiler_type.res
+/objdir/libmaa/_mkc_prog_cc.err
+/objdir/libmaa/_mkc_prog_cc.res
+/objdir/libmaa/linkme.mk
+/objdir/libmaa/log.c
+/objdir/libmaa/prime.c
+/objdir/libmaa/set.c
+/objdir
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/dict/Makefile
+/objdir/dict/dict.1
+/objdir/dict/dict.c
+/objdir/dictd/Makefile
+/objdir/dictd/dictd.8
+/objdir/dictd/dictd.c
+/objdir/dictfmt/Makefile
+/objdir/dictfmt/dictfmt.1
+/objdir/dictfmt/dictfmt.c
+/objdir/dictzip/Makefile
+/objdir/dictzip/dictzip.1
+/objdir/dictzip/dictzip.c
+/objdir/expect.out
+/objdir/hello_dictd.test.out.tmp
+/objdir/libcommon/Makefile
+/objdir/libcommon/iswalnum.c
+/objdir/libcommon/linkme.mk
+/objdir/libcommon/str.c
+/objdir/libdz/Makefile
+/objdir/libdz/dz.c
+/objdir/libdz/linkme.mk
+/objdir/libmaa/Makefile
+/objdir/libmaa/linkme.mk
+/objdir/libmaa/log.c
+/objdir/libmaa/prime.c
+/objdir/libmaa/set.c
+/objdir/test.mk

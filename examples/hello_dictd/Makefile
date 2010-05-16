@@ -9,4 +9,6 @@ SUBPRJS+=	libmaa:dictfmt
 SUBPRJS+=	libdz:dictzip
 SUBPRJS+=	dict dictd dictfmt dictzip # useless here but allowed
 
+.include <mkc.own.mk>
+.include "test.mk"
 .include <mkc.subprjs.mk>
