@@ -13,11 +13,7 @@ _MKC_IMP_SUBDIR_MK=1
 .include <mkc_imp.init.mk>
 
 .for dir in ${SUBDIR}
-.if exists(${dir}.${MACHINE})
-__REALSUBDIR+=${dir}.${MACHINE}
-.else
 __REALSUBDIR+=${dir}
-.endif
 .endfor
 
 __recurse: .USE
