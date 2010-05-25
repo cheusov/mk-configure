@@ -1,4 +1,44 @@
 ======================================================================
+Version 0.15.0, by Aleksey Cheusov, Tue, 25 May 2010 22:52:28 +0300
+
+  New presentation for mk-configure is in doc/ subdirectory.
+
+  New top-level include file "mkc.subprjs.mk", more powerful
+  replacement for mkc.subdir.mk. It handles subprojects organized as a
+  dependency graph.
+
+  New variables are added: MKPICLIB, MKSHLIB, MKSTATICLIB and
+  MKPROFILELIB for building PIC, shared, static and profile libraries.
+  See mk-configure.7 for details.
+
+  MKPIC, MKPROFILE and MKPICINSTALL variables are removed. Use
+  MKPICLIB, MKSHLIB, MKPROFILELIB and MKINSTALL variables instead.
+
+  Implementation for variable "WARNS" (currently only for gcc).
+
+  New variable "SHRTOUT". If it is not "no", shortened formatted
+  messages are output about compiling, linking etc.
+
+  Manual page for mkcmake(1).
+
+  -h option is passed to the linker under Solaris while building a
+  shared library.
+
+  Target "depend" is added for generating .depend file.
+
+  Minor fixes in mkc_check_funclib.
+
+  Support for Cygwin is added (no support for shared libraries yet).
+
+  Clean-ups in target "clean".
+
+  More regression tests and examples.
+
+  Minor fix in mkc_imp.subdir.mk: do not run "installdirs" if MKINSTALL=no.
+
+  Internal target "error-check" is renamed to "errorcheck".
+
+======================================================================
 Version 0.14.0, by Aleksey Cheusov, Sun, 31 Jan 2010 16:37:21 +0200
 
   Support for OSF1. Tested on Tru64-5.1/alpha with gcc and DEC C

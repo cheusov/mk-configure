@@ -584,7 +584,11 @@ subdirectories.  It has the same targets as
 For all of
 the directories listed in the variable SUBDIR, the specified directory 
 will be visited and the target made.  There is also a default target which
-allows the command "bmake subdir" where subdir is any directory listed in
+allows the command
+.I "bmake <subdir>"
+where
+.I "<subdir>"
+ is any directory listed in
 the variable SUBDIR.
 As a special case, the use of a token .WAIT
 as an entry in SUBDIR acts

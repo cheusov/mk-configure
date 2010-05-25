@@ -326,7 +326,7 @@ INSTALLATION:
 
       env INSTALL=`pwd`/mkc_install bmake installdirs install
 
-   3) You can also build a simple presentation by either of the
+   3) You can also build a simple presentation by running either of the
       following commands:
 
           bmake doc
