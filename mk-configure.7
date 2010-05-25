@@ -33,12 +33,12 @@ include files provide the following targets:
 build everything
 .IP clean
 clean temporary files created while building
-.IP distclean
+.IP cleandir
 remove all of the files removed by the target clean, as
 well as cache files created by
 .B mkc.configure.mk
-.IP cleandir
-synonym for target "distclean"
+.IP distclean
+synonym for target "cleandir"
 .IP installdirs
 create target directories
 .IP install
@@ -49,6 +49,29 @@ remove installed files
 .IP errorcheck
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
+.IP depend
+create .depend file containing list of dependencies (see mkdep(1))
+.IP <subdir>
+<subdir> is a subdirectory listed in SUBDIR or SUBPRJS.
+This target is equivalent to all-<subdir> and is provided by
+.BR mkc.subdir.mk " and " mkc.subprjs.mk
+only. For details see
+.BR mkc.subdir.mk " or " mkc.subprjs.mk
+sections below.
+.IP <target>-<subdir>
+runs the specified <target> for the specified <subdir>.
+This target is provided by
+.BR mkc.subdir.mk " and " mkc.subprjs.mk
+only. For details see
+.BR mkc.subdir.mk " or " mkc.subprjs.mk
+sections below.
+.IP nodeps-<target>-<subdir>
+runs the specified <target> for the specified <subdir> without dependencies.
+This target is provided by
+.BR mkc.subprjs.mk
+only. For details see
+.BR mkc.subprjs.mk
+section below.
 .SS "Common variables"
 The following variables control how various files are compiled/built.
 .IP AR
@@ -1100,5 +1123,6 @@ Look at the sources.
 .BR mkc_check_sizeof (1),
 .BR mkc_check_custom (1),
 .BR bmake (1),
+.BR mkdep (1),
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
