@@ -42,7 +42,7 @@ Plan 1)
   = Improve mkc.pkg-config.mk
 
   = Implement mkc_imp.libtool.mk to make building
-    the shared libraries really portable (just a fallback).
+    the shared libraries using GNU libtool(1).
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
