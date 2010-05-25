@@ -326,18 +326,12 @@ INSTALLATION:
 
       env INSTALL=`pwd`/mkc_install bmake installdirs install
 
-  NOTE: If you use pkgsrc (cross platforms packaging system developped
-  mainly by NetBSD team), you may find package for latest mk-configure
-  in wip/mk-configure.
+   3) You can also build a simple presentation by either of the
+      following commands:
 
-  NOTE: Debian/Ubuntu Linux users may install mk-configure by adding
-    the following lines
-
-        deb     http://mova.org/~cheusov/pub/debian       lenny    main
-        deb-src http://mova.org/~cheusov/pub/debian       lenny    main
-
-    to /etc/apt/sources.list and then using apt or aptitude commands.
-    Binary packages are available only for Debian/Lenny/i386.
+          bmake doc
+          bmake -C doc presentation.pdf
+          bmake -C doc presentation.ps
 
   NOTE: I'd recommend to use the latest stable version of bmake. Old
     bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
@@ -362,6 +356,24 @@ INSTALLATION:
     command to build your projects, not just "bmake".
 
     I STRONGLY RECOMEND TO INSTALL MK-FILES AND SYS.MK TO ITS OWN DIRECTORY.
+
+-------------------------------------------------------------------------
+PACKAGES
+
+  If you use pkgsrc (cross platforms packaging system developped
+  mainly by NetBSD team), you may find package for latest mk-configure
+  in wip/mk-configure.
+
+  Debian/Ubuntu Linux users may install mk-configure by adding
+    the following lines
+
+        deb     http://mova.org/~cheusov/pub/debian       lenny    main
+        deb-src http://mova.org/~cheusov/pub/debian       lenny    main
+
+    to /etc/apt/sources.list and then using apt or aptitude commands.
+    Binary packages are available only for Debian/Lenny/i386.
+
+  mk-configure is also packaged in FreeBSD.
 
 -------------------------------------------------------------------------
 FEEDBACK
