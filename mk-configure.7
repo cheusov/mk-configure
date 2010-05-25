@@ -27,7 +27,7 @@ is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .SS "Targets"
-.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk " and " mkc.subdir.mk
+.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprjs.mk
 include files provide the following targets:
 .IP all
 build everything
@@ -575,6 +575,53 @@ Libraries are ranlib'd when made.
 includes
 .B mkc.files.mk
 and therefore supports all variables supported by it.
+.SS "mkc.subprjs.mk"
+The include file
+.B mkc.subprjs.mk
+handles subprojects (subdirectories)
+organized as a dependency graph.
+It provides all targets provided by
+.BR mkc.prog.mk .
+Variable SUBPRJS contains a list of pairs
+.I depdir:dir
+which mean that subproject
+.I dir
+depends on
+.IR depdir.
+.B mkcmake all
+command will build all subprojects listed in SUBPRJS in a correct
+order (starting with subprojects having no dependencies and so on).
+There is also a target which allows the command
+.I "bmake <subdir>"
+where
+<subdir>
+is any directory listed in
+the variable SUBPRJS.
+The following targets are also provided:
+<target>-<subdir>
+where
+<target>
+is either of the following:
+all, clean, cleandir, depend, installdirs, installuninstall.
+Also provided are: targets
+nodeps-<target>-<subdir>.
+Difference between
+<target>-<subdir>
+and
+nodeps-<target>-<subdir>
+is that 
+.B "mkcmake <target>-<subdir>"
+runs the specified
+<target>
+for
+<subdir>
+and all its dependencies while 
+.B "mkcmake <target>-<subdir>"
+-- only for
+<subdir> .
+See
+.I examples/hello_dictd
+subdirectory for the sample of use.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
