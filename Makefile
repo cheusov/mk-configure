@@ -81,6 +81,8 @@ INTEXTS_SED+=		-e 's,@mkfilesdir@,${MKFILESDIR},g'
 INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
 INTEXTS_SED+=		-e 's,@mkc_libexecdir@,${LIBEXECDIR},g'
 
+CVSDIST_TARGETS=	doc
+
 ##################################################
 .PHONY: doc
 doc:
