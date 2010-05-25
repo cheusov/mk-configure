@@ -62,6 +62,11 @@ ${targ}: subdir-${targ}
 
 .endfor # targ
 
+.for dir in ${__REALSUBDIR}
+.PHONY: ${dir}
+${dir}: all-${dir}
+.endfor # dir
+
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
 
