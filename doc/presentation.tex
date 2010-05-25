@@ -1,0 +1,644 @@
+\documentclass[hyperref={colorlinks=true}]{beamer}
+
+\usepackage{fancyvrb,relsize}
+
+\setbeamertemplate{navigation symbols}{}
+
+%\usetheme{Boadilla}
+%\usetheme{CambridgeUS}
+%\usetheme{Malmoe}
+%\usetheme{Singapore}
+%\usetheme{boxes}
+
+%\usecolortheme{crane}
+%\usecolortheme{dove}
+\usecolortheme{seagull} % very cool with \usetheme{default}
+%\usefonttheme{professionalfonts}
+%\useinnertheme{rectangles}
+
+\mode<presentation>
+\title{MK-CONFIGURE -- lightweight easy to use replacement for GNU Autotools}
+\author{Aleksey Cheusov \\ \texttt{vle@gmx.net}}
+\date{Minsk, Belarus, 2010}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{Code}[1]%
+               {\Verbatim[label=\bf{#1},frame=single,%
+                   fontsize=\small,%
+                   commandchars=\\\{\}]}%
+               {\endVerbatim}
+
+\newenvironment{CodeNoLabel}%
+               {\Verbatim[frame=single,%
+                   fontsize=\small,%
+                   commandchars=\\\{\}]}%
+               {\endVerbatim}
+
+%\newcommand{\prompt}[1]{\textcolor{blue}{#1}}
+%\newcommand{\prompt}[1]{\textbf{#1}\textnormal{}}
+\newcommand{\prompt}[1]{\bf{#1}\textnormal{}}
+\newcommand{\highlight}[1]{\bf{#1}\textnormal{}}
+\newcommand{\URL}[1]{\textbf{#1}}
+\newcommand{\AutohellFile}[1]{\textcolor{red}{#1}}
+\newcommand{\MKCfile}[1]{\textcolor{green}{#1}}
+\newcommand{\ModuleName}[1]{\textbf{#1}\textnormal{}}
+\newcommand{\ProgName}[1]{\textbf{#1}\textnormal{}}
+\newcommand{\ProjectName}[1]{\textbf{#1}\textnormal{}}
+\newcommand{\PackageName}[1]{\textbf{#1}\textnormal{}}
+\newcommand{\MKC}[1]{\large\textsf{#1}\textnormal{}\normalsize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{frame}
+%%   \frametitle{qqq}
+%%   \begin{code}{files in the directory}
+%%     bla bla bla
+%%   \end{code}
+%% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Concepts behind mk-configure}
+  \begin{block}{Design principles and goals}
+    \begin{itemize}
+    \item The same way of building projects both for developers and users.
+    \item The only file describing the project is(are) Makefile(s).
+    \item The only command
+      required for building is bmake (portable version of NetBSD make).
+    \item Declarative approach of writing Makefile(s). Build and
+      installation process is controlled with a help of special
+      variables.
+    \item No code generation. Library approach is used instead.
+    \item No need to ``reinvent'' rules for compiling, linking,
+      installing, uninstalling etc. again and again.
+    \item KISS. Less than 4000 lines of code.
+      No heavy dependencies.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Concepts behind mk-configure}
+  \begin{block}{Design principles and goals}
+    \begin{itemize}
+    \item Cross-compilation.
+    \item Portability to all UNIX-like systems.
+    \item Modular approach. Extensions to mk-configure are implemented
+      using bmake include files and standard POSIX tools, e.g. shell,
+      awk, sed, grep and so on.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+  \frametitle{Concepts behind mk-configure}
+  \begin{block}{Negative side-effects}
+    \begin{itemize}
+    \item End-users/packagers have to install bmake and
+      mk-configure to build applications based on mk-configure.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 1: Hello world application}
+
+  \begin{block}{Source code}
+    % files
+%%     \begin{code}{files in the directory}
+%% \prompt{\$} ls -l
+%% total 8
+%% -rw-r--r--  1 cheusov  users  68 May  2 14:16 Makefile
+%% -rw-r--r--  1 cheusov  users  92 May  2 14:18 hello.c
+%% \prompt{\$}
+%%     \end{code}
+
+%    \begin{columns}[t]
+
+    % column1
+%      \column{0.5\textwidth}
+      \begin{Code}{Makefile}
+PROG=      hello
+
+.include <mkc.prog.mk>
+      \end{Code}
+
+    % column2
+%      \column{0.5\textwidth}
+      \begin{Code}{hello.c}
+#include <stdio.h>
+
+int main (int, char **)
+\{
+   puts ("Hello World!");
+   return 0;
+\}
+      \end{Code}
+%    \end{columns}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 1: Hello world application}
+
+%  \begin{block}
+\begin{block}{How it works}
+\begin{CodeNoLabel}
+\prompt{\$ export PREFIX=/usr SYSCONFDIR=/etc}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for program cc... /usr/bin/cc
+cc     -c hello.c
+cc   -o hello hello.o
+\prompt{\$ ./hello}
+Hello World!
+\prompt{\$ DESTDIR=/tmp/fakeroot mkcmake installdirs install}
+for d in \_ /tmp/fakeroot/usr/bin; do  test "\$d" = \_ ||
+   install -d "\$d";  done
+install   -c -s  -o cheusov -g users -m 755
+   hello /tmp/fakeroot/usr/bin/hello
+\prompt{\$}
+\end{CodeNoLabel}
+\end{block}
+Supported targets: all, clean, cleandir (distclean), install,
+uninstall, installdirs, depend etc.
+%  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 2: Application using non-standard strlcpy(3)}
+
+\begin{block}{Source code}
+  % files
+  \begin{Code}{files in the directory}
+\prompt{\$ ls -l}
+total 12
+-rw-r--r--  1 cheusov  users  158 May  2 15:04 Makefile
+-rw-r--r--  1 cheusov  users  187 May  2 15:05 main.c
+-rw-r--r--  1 cheusov  users  332 May  2 15:09 strlcpy.c
+\prompt{\$}
+  \end{Code}
+
+% Makefile
+  \begin{Code}{Makefile}
+PROG=                 strlcpy_test
+SRCS=                 main.c
+
+MKC_SOURCE_FUNCLIBS=  strlcpy
+MKC_CHECK_FUNCS3=     strlcpy:string.h
+
+.include <mkc.prog.mk>
+  \end{Code}
+\end{block}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 2: Application using non-standard strlcpy(3)}
+
+\begin{block}{Source code}
+\begin{Code}{main.c}
+#include <string.h>
+
+#ifndef HAVE_FUNC3_STRLCPY_STRING_H
+size_t strlcpy(char *dst, const char *src, size_t siz);
+#endif
+
+int main (int argc, char** argv)
+\{
+    /*    Use strlcpy(3) here    */
+    return 0;
+\}
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 2: Application using non-standard strlcpy(3)}
+
+  \begin{block}{How it works on Linux}
+\begin{CodeNoLabel}
+\prompt{\$ CC='icc -no-gcc' mkcmake}
+checking for compiler type... icc
+checking for function strlcpy... no
+checking for func strlcpy ( string.h )... no
+checking for program icc... /opt/intel/cc/10.1.008/bin/icc
+icc -no-gcc -c main.c
+icc -no-gcc -c strlcpy.c
+icc -no-gcc   -o strlcpy_test main.o strlcpy.o
+\prompt{\$ echo \_mkc\_*}
+_mkc_compiler_type.err _mkc_compiler_type.res 
+_mkc_func3_strlcpy_string_h.c 
+_mkc_func3_strlcpy_string_h.err 
+_mkc_func3_strlcpy_string_h.res 
+_mkc_funclib_strlcpy.c _mkc_funclib_strlcpy.err 
+_mkc_funclib_strlcpy.res _mkc_prog_cc.err _mkc_prog_cc.res
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 2: Application using non-standard strlcpy(3)}
+
+  \begin{block}{How it works on NetBSD}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for function strlcpy... yes
+checking for func strlcpy ( string.h )... yes
+checking for program cc... /usr/bin/cc
+cc  -DHAVE_FUNC3_STRLCPY_STRING_H=1    -c main.c
+cc   -o strlcpy_test main.o
+\prompt{\$} 
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 3: Application using plugins}
+
+  \begin{block}{Source code}
+  \begin{Code}{Makefile}
+MKC_CHECK_FUNCLIBS=     dlopen:dl
+
+PROG=                   myapp
+
+.include <mkc.configure.mk>
+
+.if $\{HAVE_FUNCLIB.dlopen\} || $\{HAVE_FUNCLIB.dlopen.dl\}
+CFLAGS+=	-DPLUGINS_ENABLED=1
+.endif
+
+.include <mkc.prog.mk>
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 3: Application using plugins}
+
+  \begin{block}{How it works on Linux}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for function dlopen ( \highlight{-ldl} )... \highlight{yes}
+checking for function dlopen... \highlight{no}
+checking for program gcc... /usr/bin/gcc
+gcc -DPLUGINS_ENABLED=1    -c myapp.c
+gcc   -o myapp myapp.o \highlight{-ldl}
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 3: Application using plugins}
+
+  \begin{block}{How it works on OpenBSD}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for function dlopen ( \highlight{-ldl} )... \highlight{no}
+checking for function dlopen... \highlight{yes}
+checking for program cc... /usr/bin/cc
+cc  -DPLUGINS_ENABLED=1    -c myapp.c
+cc   -o myapp myapp.o
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 4: Support for shared libraries}
+
+  \begin{block}{Source code}
+  \begin{Code}{Makefile}
+LIB=                   foobar
+SRCS=                  foo.cc bar.cc baz.cc
+
+MKPICLIB?=             no
+MKSTATICLIB?=          no
+
+SHLIB_MAJOR=           1
+SHLIB_MINOR=           0
+
+.include <mkc.lib.mk>
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 4: Support for shared libraries}
+
+  \begin{block}{How it works on Solaris}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+/opt/SUNWspro/bin/CC    -c -KPIC foo.cc -o foo.os
+/opt/SUNWspro/bin/CC    -c -KPIC bar.cc -o bar.os
+/opt/SUNWspro/bin/CC    -c -KPIC baz.cc -o baz.os
+building shared foobar library (version 1.0)
+/opt/SUNWspro/bin/CC -G -Wl,-h -Wl,libfoobar.so.1 
+   -o libfoobar.so.1.0  foo.os bar.os baz.os
+ln -sf libfoobar.so.1.0 libfoobar.so
+ln -sf libfoobar.so.1.0 libfoobar.so.1
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 4: Support for shared libraries}
+
+  \begin{block}{How it works on Darwin}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for program c++... /usr/bin/c++
+c++    -c -fPIC -DPIC foo.cc -o foo.os
+c++    -c -fPIC -DPIC bar.cc -o bar.os
+c++    -c -fPIC -DPIC baz.cc -o baz.os
+building shared foobar library (version 1.0)
+c++ -dynamiclib -install_name 
+   /usr/local/lib/libfoobar.1.0.dylib 
+   -current_version 2.0 -compatibility_version 2 
+   -o libfoobar.1.0.dylib  foo.os bar.os baz.os
+ln -sf libfoobar.1.0.dylib libfoobar.dylib
+ln -sf libfoobar.1.0.dylib libfoobar.1.dylib
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Source code}
+  \begin{Code}{Makefile}
+# This project consists of several subprojects:
+# dict, dictd, dictfmt, dictzip, libdz, libmaa
+# and libcommon. libcommon contains common code
+# for executables and should not be installed.
+# SUBPRJS specifies a dependency graph
+# for all subprojects.
+
+SUBPRJS=   libcommon:dict   # dict depends on libcommon
+SUBPRJS+=  libcommon:dictd
+SUBPRJS+=  libcommon:dictzip
+SUBPRJS+=  libcommon:dictfmt
+SUBPRJS+=  libdz:dictzip
+SUBPRJS+=  libmaa:dict
+...
+.include <mkc.subprjs.mk>
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Source code}
+  \begin{Code}{libcommon/Makefile}
+# Internal static library that implements functions
+# common for dict, dictd, dictfmt
+# and dictzip applications
+
+LIB=            common
+SRCS=           str.c iswalnum.c # and others
+
+MKINSTALL=      no # Do not install it!
+
+.include <mkc.lib.mk>
+  \end{Code}
+  \begin{Code}{libcommon/linkme.mk}
+PATH.common:=      \$\{.PARSEDIR\}
+
+CPPFLAGS+=      -I\$\{PATH.common\}
+DPLIBDIRS+=     \$\{PATH.common\}
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Source code}
+  \begin{Code}{libmaa/Makefile}
+LIB=            maa
+SRCS=           set.c prime.c log.c # etc.
+
+SHLIB_MAJOR=    1
+SHLIB_MINOR=    2
+SHLIB_TEENY=    0
+
+.include <mkc.lib.mk>
+  \end{Code}
+  \begin{Code}{libmaa/linkme.mk}
+PATH.maa:=      \$\{.PARSEDIR\}
+
+CPPFLAGS+=      -I\$\{PATH.maa\}
+DPLIBDIRS+=     \$\{PATH.maa\}
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{How it works}
+  \begin{CodeNoLabel}
+\prompt{\$ mkcmake all-dictd}
+==================================================
+all ===> libcommon
+...
+==================================================
+all ===> libmaa
+...
+==================================================
+all ===> dictd
+...
+checking for program cc... /usr/bin/cc
+cc -I../libcommon -I../libmaa  -c dictd.c
+cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libmaa 
+    -o dictd dictd.o -lcommon -lmaa
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% \begin{frame}[fragile,t]
+%%   \frametitle{LMDBG: rather comples real life example}
+%%   LMDBG is lightweight modular malloc debuger written in C, shell and AWK.
+%%   It consists of numerous scripts and one LD\_PRELOAD'ed library written in C.
+%%   \begin{enumerate}
+%%   \end{enumerate}
+%% \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Features}
+  \begin{block}{}
+  \begin{enumerate}
+  \item Automatic detection of system configuration
+    (\ModuleName{mkc.configure.mk})
+    \begin{itemize}
+    \item header presence (MKC\_\{CHECK,REQUIRE\}\_HEADERS)
+    \item function declaration (MKC\_\{CHECK,REQUIRE\}\_FUNCS[n])
+    \item type declaration (MKC\_\{CHECK,REQUIRE\}\_TYPES)
+    \item structure member (MKC\_\{CHECK,REQUIRE\}\_MEMBERS)
+    \item variable declaration (MKC\_\{CHECK,REQUIRE\}\_VARS)
+    \item define declaration (MKC\_\{CHECK,REQUIRE\}\_DEFINES)
+    \item type size (MKC\_CHECK\_SIZEOF)
+    \item function implementation in the library
+      (MKC\_\{CHECK,REQUIRE\}\_FUNCLIBS and MKC\_SOURCE\_FUNCLIBS)
+    \item checks for programs (MKC\_\{CHECK,REQUIRE\}\_PROGS)
+    \item user's custom checks (MKC\_\{CHECK,REQUIRE\}\_CUSTOM)
+    \item built-in checks (MKC\_CHECK\_BUILTINS), e.g. endianess,
+      prog\_flex, prog\_bison, prog\_gawk or prog\_gm4)
+    \end{itemize}
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile,t]
+  \frametitle{Features}
+  \begin{block}{}
+  \begin{enumerate}
+  \setcounter{enumi}{1}
+  \item Building, installing, uninstalling, cleaning
+    etc. Supported targets: all, installdirs, install, uninstall,
+    clean, cleandir (distclean) and others.
+  \item Building standalone programs (\ModuleName{mkc.prog.mk}),
+    static and shared libraries (\ModuleName{mkc.lib.mk}) using C,
+    C++, Objective C, Pascal and Fortran compilers. Shared libraries
+    support is provided for numerous OSes: NetBSD, FreeBSD, OpenBSD,
+    DragonFlyBSD, MirOS BSD, Linux, Solaris, Darwin (MacOS-X), Tru64,
+    QNX, HP-UX, Cygwin (no support for shared object files yet) and
+    compilers: GCC, Intel C/C++ compilers, Portable C compiler aka
+    pcc, DEC C/C++ compiler, HP C/C++ compiler, Oracle SunPro and others.
+  \item Handling of man pages.
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{Features}
+  \begin{block}{}
+  \begin{enumerate}
+  \setcounter{enumi}{4}
+  \item Building info pages from texinfo sources.
+  \item Handling of scripts as well as plain text files,
+    i.e. installing or uninstalling.
+  \item Cross-building. mk-configure itself doesn't run produced
+    executables, so you can freely use cross-tools (compiler, linker
+    etc.).  Also you can override any variable initialized by mk-configure.
+  \item Partial support for pkg-config
+    (\ModuleName{mkc.pkg-config.mk}).
+  \item Support for yacc and lex.
+  \item Support for projects with multiple subprojects
+    (\ModuleName{mkc.subprjs.mk} and \ModuleName{mkc.subdir.mk}).
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{Features}
+  \begin{block}{}
+  \begin{enumerate}
+    \setcounter{enumi}{10}
+    \item Parts of mk-configure functionality is
+      accesible via individual programs, e.g.  \ProgName{mkc\_install},
+      \ProgName{mkc\_check\_compiler},
+      \ProgName{mkc\_check\_header}, \ProgName{mkc\_check\_funclib},
+      \ProgName{mkc\_check\_decl},
+      \ProgName{mkc\_check\_prog}, \ProgName{mkc\_check\_sizeof} and
+      \ProgName{mkc\_check\_custom}.
+  \end{enumerate}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{MK-CONFIGURE in real world}
+  \begin{block}{Packages in UNIX-like system and distributions}
+    NetBSD make (bmake) is packaged in the following OSes:
+    \begin{itemize}
+    \item FreeBSD, NetBSD
+    \item Gentoo Linux, Fedora Linux, AltLinux
+    \item Debian/Ubuntu\\
+      deb http://mova.org/\~{}cheusov/pub/debian lenny main
+      deb-src http://mova.org/\~{}cheusov/pub/debian lenny main
+    \end{itemize}
+    mk-configure is packaged in the following OSes
+    \begin{itemize}
+    \item FreeBSD, NetBSD
+    \item AltLinux
+    \item Debian/Ubuntu\\
+      deb http://mova.org/\~{}cheusov/pub/debian lenny main
+      deb-src http://mova.org/\~{}cheusov/pub/debian lenny main
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{MK-CONFIGURE in real world}
+  \begin{block}{Real life samples of use}
+  \begin{itemize}
+  \item Lightweight modular malloc Debugger.\\
+    \URL{http://sf.net/projects/lmdbg}
+  \item Any project based on traditional
+    \ModuleName{bsd.\{prog,lib,subdir\}.mk} can trivially be converted
+    to use \MKC{mk-configure}.
+    \begin{itemize}
+    \item \URL{http://sourceforge.net/projects/runawk}\\
+      Modules Framework for AWK programming language
+    \item \URL{http://sourceforge.net/projects/paexec}\\
+      Parallel Executer
+    \item \URL{http://mova.org/\~{}cheusov/pub/distbb/}\\
+      Distributed fault tolerant bulk build tool for pkgsrc
+      \URL{http://mova.org/\~{}cheusov/pub/pkg\_online/}\\
+      Client/server package search system for pkgsrc
+    \item NetBSD, FreeBSD and OpenBSD! ;-)
+    \item ...
+    \end{itemize}
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

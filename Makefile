@@ -82,6 +82,11 @@ INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
 INTEXTS_SED+=		-e 's,@mkc_libexecdir@,${LIBEXECDIR},g'
 
 ##################################################
+.PHONY: doc
+doc:
+	${MAKE} -C doc all ${MAKEFLAGS}
+
+##################################################
 
 .PHONY: test
 test: configure.mk mkc.ver.mk mkc_check_version
