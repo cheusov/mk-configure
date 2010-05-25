@@ -1,6 +1,10 @@
 ============================================================
 Plan 1)
 
+  = man page for mkc_check_compiler
+
+  = remove test programs from "all' targets
+
   = save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
 
