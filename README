@@ -123,7 +123,7 @@ GOALS OF THE PROJECT
 HOW TO USE MK-CONFIGURE?
 
  Developers:
-    - Install bmake and sys.mk to your system.
+    - Install bmake (and optionally sys.mk) to your system.
     - Install mk-configure to your system.
     - Develop your software using bmake and mkc.*.mk include files
       provided by mk-configure.
@@ -135,7 +135,7 @@ HOW TO USE MK-CONFIGURE?
       BMAKE is magic enough ;-)
 
  Users and software packagers:
-    - Install bmake and sys.mk your system.
+    - Install bmake (and optionally sys.mk) to your system.
     - Install mk-configure to your system.
     - Run bmake for building a software and pass to it
       the building options, e.g.
@@ -143,7 +143,7 @@ HOW TO USE MK-CONFIGURE?
          env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
               mkcmake all install
 
-      (mkcmake is a trivial wrapper over bmake)
+      (mkcmake is a wrapper for bmake)
 
       There is no need for configure script and analogs.
 
@@ -192,23 +192,24 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
 -------------------------------------------------------------------------
 WHAT MK-CONFIGURE CONSISTS OF?
 
-- mkc.{files,lib,prog,subdir}.mk files.
+- mkc.{files,lib,prog,subprjs,subdir}.mk files.
 
       These include files are responsible for building, installing and
-      uninstalling the applications, static and shared libraries,
-      scripts, plain files, mand and info pages, hard and soft links
-      etc...  Note for *BSD users: unlike well known mk files in *BSD
-      systems mkc.*.mk, files provide the following features.  THIS
-      LIST OF DIFFERENCES IS NOT COMPLETE, SEE mk-configure.7 FOR
-      DETAILS.
+      uninstalling applications, static and shared libraries, scripts,
+      plain files, man and info pages, hard and soft links etc...
+      NOTE FOR *BSD USERS: unlike well known Mk files from *BSD
+      systems mkc.*.mk files provide the following features (this list
+      is not complete, see mk-configure.7 for details).
 
-      - PREFIX, BINDIR, MANDIR etc. variables default to
-        /usr/local/xxx.  By default bsd.*.mk are set to /usr because
-        they are used mainly for *BSD's own code.
+      - PREFIX, BINDIR, MANDIR etc. variables default to directories
+        under /usr/local.  By default the same variables in bsd.*.mk
+        files are set to directories under /usr. This is because they
+        are used mainly for maintaining *BSD's own code while
+        mk-configure is targeted to all UNIX-like systems, not only *BSD.
 
       - BINOWN, BINGRP, MANOWN etc. variables are set to 'id -u' and
-        'id -g' if bmake is run under an unprivileged user.
-        By default bsd.*.mk use root and wheel by default.
+        'id -g' if mkcmake(1) is run under an unprivileged user.
+        By default bsd.*.mk use root:wheel by default.
 
       - A target 'install' installs include files, info pages and
         others not installed by default by bsd.*.mk files.
@@ -217,8 +218,8 @@ WHAT MK-CONFIGURE CONSISTS OF?
         directories. bsd.*.mk files do not create them at all.
 
       - A target 'uninstall' removes all installed files from
-        destination directories. bsd.*.mk files do not provide such a
-        target.
+        destination directories. bsd.*.mk files do not provide
+        this functionality.
 
       - A target 'test' of mkc.subdir.mk (by default) runs a "test"
         target for each subdirectory listed in SUBDIR. Other mkc.*.mk
@@ -230,13 +231,16 @@ WHAT MK-CONFIGURE CONSISTS OF?
         the libraries your project depends on. If this variable is
         set, LDFLAGS is modified accordingly. See examples/ projects.
 
-      - "cleandir" and "distclean" targets that removes all temporary
+      - "cleandir" and "distclean" targets that remove all temporary
         files and mk.configure.mk's cache files.
 
       - support for texinfo/info files. There is no need to .include
         a special include files such as <bsd.info.mk> file.
 
-      - other additions and improvements.
+      - mkc.subprjs.mk is a powerful replacement
+        for traditional bsd.subdir.mk.
+
+      - Tons of other additions and improvements.
 
 - mkc.intexts.in
 
@@ -247,7 +251,7 @@ WHAT MK-CONFIGURE CONSISTS OF?
   the samples.
 
 - mkc.configure.mk script which is a replacement for GNU autoconf. Its
-  documentation is large enough to describe here.  It short, it allows
+  functionality is large enough to describe here.  It short, it allows
   to check for presence of header files, function or variable
   declarations, presence of function in a particular library, defines,
   sizeof of data types and other useful things. Read the documentation
@@ -255,20 +259,23 @@ WHAT MK-CONFIGURE CONSISTS OF?
   use.
 
 - Standalone full-functional
-  mkc_check_{funclib,header,sizeof,decl,prog,custom} and other
-  programs that can be used without bmake and without mkc.*.mk files.
-  Read appropriate man pages.
+  mkc_check_{funclib,header,sizeof,decl,prog,custom,compiler} and
+  other programs that can be used without bmake and without mkc.*.mk
+  files.  Read appropriate man pages.
 
 -------------------------------------------------------------------------
 DOCUMENTATION:
 
+   - Presentation about mk-configure (basic ideas and simple samples of use).
+     See INSTALLATION section for build instructions.
+
    - Instead of screenshots :-) I've prepared lots of samples under
      examples/ subdirectory.
 
-   - Documentation for bmake's include files is in mk-configure(7).
+   - Documentation for include files is in mk-configure(7).
 
    - Most programs (mkc_check_{decl,header,funclib,sizeof,prog,custom})
-     have -h option and manual page.
+     have -h option and manual pages.
 
    - Read the FAQ document. It may be helpful.
 
@@ -276,7 +283,7 @@ DOCUMENTATION:
 
         http://sourceforge.net/projects/lmdbg
 
-     lightweight malloc(3) debugger.
+     This is a Lightweight Modular malloc(3) debugger.
 
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?
@@ -300,7 +307,7 @@ INSTALLATION:
         http://www.crufty.net/help/sjg/bmake.html
 
    2)
-      cd  mk-configure-X.Y.Z/
+      cd mk-configure-X.Y.Z/
       export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mk
       bmake all
       bmake test # For testing mk-configure, this step is optional.
@@ -308,32 +315,42 @@ INSTALLATION:
                  # pkg-config(1), glib2 library and other things
                  # that are not mandatory for using mk-configure.
                  # If "bmake test" fails on your platform, please let
-                 #  me know.
+                 # me know.
       bmake installdirs install
 
       Of course, you can change /usr/local to whatever you want.
-      PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mk
+      PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mkc-mk
 
       On platforms having no BSD compatible install(1)
       you may install mk-configure by running
 
-      env PATH=$PWD:$PATH bmake installdirs install
+      env INSTALL=`pwd`/mkc_install bmake installdirs install
 
-  If you use pkgsrc (cross platforms packaging system), you may find
-  a package for latest mk-configure in wip/mk-configure.
+  NOTE: If you use pkgsrc (cross platforms packaging system developped
+  mainly by NetBSD team), you may find package for latest mk-configure
+  in wip/mk-configure.
+
+  NOTE: Debian/Ubuntu Linux users may install mk-configure by adding
+    the following lines
+
+        deb     http://mova.org/~cheusov/pub/debian       lenny    main
+        deb-src http://mova.org/~cheusov/pub/debian       lenny    main
+
+    to /etc/apt/sources.list and then using apt or aptitude commands.
+    Binary packages are available only for Debian/Lenny/i386.
 
   NOTE: I'd recommend to use the latest stable version of bmake. Old
     bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
     not supported. pmake-1.111 (an ancient version of NetBSD make)
-    found in some Linux distributions don't work too.
+    found in some Linux distributions does't work too.
 
   NOTE: In order to work properly bmake needs sys.mk file that defines
-    the default variables values and suffix rules. mk-configure
-    doesn't need it, but bmake always tries to load it. The problem is
-    that different mk libraries may conflict due to common
-    sys.mk. This is why mk-c's mk files are installed to the unique
-    ${PREFIX}/share/mkc-mk directory by default where an empty sys.mk
-    file is installed to. If your local/system sys.mk is correct, you
+    default variable values and suffix rules. mk-configure
+    doesn't need them, but bmake always tries to load this file. The problem is
+    that different Mk-files libraries may conflict due to common
+    sys.mk. This is why mk-c's own Mk files are installed to its own
+    directory (${PREFIX}/share/mkc-mk) and the same for empty sys.mk file.
+    If you think your system-wide sys.mk is good enough for mk-configure, you
     may install mk-configure like the following:
 
         export PREFIX=/usr MKFILESDIR=/usr/share/mk NOSYSMK=1
@@ -341,9 +358,10 @@ INSTALLATION:
         bmake installdirs install
 
     In this example it is assumed that /usr/share/mk directory
-    already contains sys.mk file.  In either case use "mkcmake"
-    command to build your project based on mk-configure, not just
-    "bmake".
+    contains system-wide sys.mk file.  In either case use "mkcmake"
+    command to build your projects, not just "bmake".
+
+    I STRONGLY RECOMEND TO INSTALL MK-FILES AND SYS.MK TO ITS OWN DIRECTORY.
 
 -------------------------------------------------------------------------
 FEEDBACK
@@ -352,8 +370,9 @@ Send all your suggestions, bug reports etc.
 to Aleksey Cheusov <vle@gmx.net> or register them at project's site
 http://sourceforge.net/projects/mk-configure/
 
-For free subscription for mk-configure releases, visit
+For free e-mail subscription for mk-configure releases, visit
 http://freshmeat.net/projects/mk-configure/
+page.
 
 Feel free to notify me about spelling errors in the documentation.
 English is not my first language. If you want to participate the
