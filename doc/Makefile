@@ -22,6 +22,14 @@ dvi : presentation.dvi
 .tex.dvi:
 	latex "${.IMPSRC}" && latex "${.IMPSRC}"
 
-CLEANFILES+=	*.pdf *.ps *.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out
+.gz:
+	gzip ${.IMPSRC}
+
+GARBAGE=	*.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out
+CLEANFILES+=	${GARBAGE} *.pdf *.ps
+
+.PHONY: clean-garbage
+clean-garbage:
+	rm -f ${GARBAGE}
 
 ##################################################

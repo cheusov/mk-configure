@@ -86,7 +86,7 @@ CVSDIST_TARGETS=	doc
 ##################################################
 .PHONY: doc
 doc:
-	${MAKE} -C doc all ${MAKEFLAGS}
+	${MAKE} -C doc presentation.pdf clean-garbage ${MAKEFLAGS}
 
 ##################################################
 
