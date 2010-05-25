@@ -39,7 +39,7 @@ SCRIPTS+=		${:!cd ${.CURDIR} && echo custom/*!:N*/CVS}
 MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_sizeof.1  mkc_check_decl.1 \
 			mkc_check_prog.1 mkc_check_custom.1 \
-			mk-configure.7
+			mk-configure.7 mkcmake.1
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 FILES=			configure.mk mkc.configure.mk mkc.files.mk \

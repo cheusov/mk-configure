@@ -1,0 +1,43 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2010 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VB \" Verbatim Begin
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKCMAKE 1 "May 25, 2010" "" ""
+.SH NAME
+mkcmake \- wrapper for bmake using mk-configure's Mk files and sys.mk
+.SH SYNOPSIS
+.BI mkcmake " [bmake options]"
+.SH DESCRIPTION
+.B mkcmake
+is a trivial wrapper for NetBSD make
+.RB ( bmake )
+that uses
+and mk-configure's Mk files and sys.mk.
+In all other aspects it is full equivalent of
+.BR bmake .
+.SH OPTIONS
+See
+.BR bmake .
+.SH EXAMPLES
+.VB
+mkcmake
+mkcmake all
+mkcmake -f makefile cleandir
+.VE
+.SH SEE ALSO
+.BR bmake(1) ,
+.BR mk-configure(7)
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
