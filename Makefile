@@ -42,14 +42,16 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 			mk-configure.7 mkcmake.1
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
-FILES=			configure.mk mkc.configure.mk mkc.files.mk \
-			mkc.lib.mk mkc.prog.mk \
-			mkc.subdir.mk mkc.own.mk mkc.intexts.mk \
-			mkc_check_common.sh \
-			mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk
-FILES+= mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
+
+FILES=	configure.mk mkc.configure.mk mkc.files.mk \
+	mkc.lib.mk mkc.prog.mk \
+	mkc.subdir.mk mkc.subprjs.mk mkc.own.mk mkc.intexts.mk \
+	mkc_check_common.sh \
+	mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk \
+	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
-	mkc_imp.subdir.mk mkc_imp.sys.mk mkc_imp.init.mk mkc_imp.final.mk \
+	mkc_imp.subdir.mk mkc_imp.subprjs.mk mkc_imp.sys.mk \
+	mkc_imp.init.mk mkc_imp.final.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk
 
 FILES+=			${EXTRAFILES}
