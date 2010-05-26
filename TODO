@@ -8,6 +8,10 @@ Plan 1)
   = save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
 
+  = mkc.subdir.mk:
+    - continue bulding even if some subprojects failed
+    - list of variables to export for subprojects
+
   = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
     implementation is taken from mk-c.
     Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
