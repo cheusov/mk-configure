@@ -154,7 +154,9 @@ mkc_cleandir:
 	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
 .PHONY: errorcheck
+.if !defined(SUBDIR) && !defined(SUBPRJ)
 all : errorcheck
+.endif
 errorcheck:
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
