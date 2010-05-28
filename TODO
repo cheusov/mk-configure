@@ -1,16 +1,16 @@
 ============================================================
 Plan 1)
 
+  = Improve mkc.pkg-config.mk
+
+  = Implement mkc_imp.libtool.mk to make building
+    the shared libraries using GNU libtool(1).
+
   = man page for mkc_check_compiler
 
-  = remove test programs from "all' targets
-
-  = save defines to config.h and set HAVE_CONFIG_H to 1
+  = Environment may be limited in size.
+    Save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
-
-  = mkc.subdir.mk:
-    - continue bulding even if some subprojects failed
-    - list of variables to export for subprojects
 
   = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
     implementation is taken from mk-c.
@@ -36,17 +36,10 @@ Plan 1)
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
 
-  = MKPIE for building Position Independent Executables
-
   = MLINKS?
 
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
     MagicMakefiles etc.
-
-  = Improve mkc.pkg-config.mk
-
-  = Implement mkc_imp.libtool.mk to make building
-    the shared libraries using GNU libtool(1).
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
@@ -54,11 +47,13 @@ Plan 1)
 ============================================================
 Plan2)
 
+  = MKPIE for building Position Independent Executables
+
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
     - list of variables to export for subprojects
 
-  = mkc.subdir.mk, mkc.subprjs.mk: reimplement ${dir}.${MACHINE}
+  = mkc.subdir.mk, mkc.subprj.mk: reimplement ${dir}.${MACHINE}
 
   = WARNS for compilers other than gcc
 
@@ -82,8 +77,6 @@ Plan2)
   = Implement mkc.qt.mk
 
   = Implement mkc.doxygen.mk?
-
-  = ??? (environment is limited in size) ???
 
 ============================================================
 Plan 3)
