@@ -1,4 +1,16 @@
 ======================================================================
+Version 0.15.1, by Aleksey Cheusov, Fri, 28 May 2010 22:39:36 +0300
+
+  FIX: in version 0.15.0 mkc.subprjs.mk was added, but it was not
+      installed because I forgot to add it to Makefile. Now it is
+      installed just like all other *.mk files.
+
+  FIX: 'all : errorcheck' is not for bsd.subdir.mk and bsd.subprj.mk
+
+  mkc.subprjs.mk has been renamed to mkc.subprj.mk.
+  mkc.subprjs.mk is installed as a symlink.
+
+======================================================================
 Version 0.15.0, by Aleksey Cheusov, Tue, 25 May 2010 22:52:28 +0300
 
   New presentation for mk-configure is in doc/ subdirectory.
