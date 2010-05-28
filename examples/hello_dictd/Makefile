@@ -1,14 +1,14 @@
-SUBPRJS=	libcommon:dict
-SUBPRJS+=	libcommon:dictd
-SUBPRJS+=	libcommon:dictzip
-SUBPRJS+=	libcommon:dictfmt
-SUBPRJS+=	libmaa:dict
-SUBPRJS+=	libmaa:dictd
-SUBPRJS+=	libmaa:dictzip
-SUBPRJS+=	libmaa:dictfmt
-SUBPRJS+=	libdz:dictzip
-SUBPRJS+=	dict dictd dictfmt dictzip # useless here but allowed
+SUBPRJ=		libcommon:dict
+SUBPRJ+=	libcommon:dictd
+SUBPRJ+=	libcommon:dictzip
+SUBPRJ+=	libcommon:dictfmt
+SUBPRJ+=	libmaa:dict
+SUBPRJ+=	libmaa:dictd
+SUBPRJ+=	libmaa:dictzip
+SUBPRJ+=	libmaa:dictfmt
+SUBPRJ+=	libdz:dictzip
+SUBPRJ+=	dict dictd dictfmt dictzip # useless here but allowed
 
 .include <mkc.own.mk>
 .include "test.mk"
-.include <mkc.subprjs.mk>
+.include <mkc.subprj.mk>

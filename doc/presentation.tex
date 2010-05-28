@@ -401,17 +401,17 @@ ln -sf libfoobar.1.0.dylib libfoobar.1.dylib
 # dict, dictd, dictfmt, dictzip, libdz, libmaa
 # and libcommon. libcommon contains common code
 # for executables and should not be installed.
-# SUBPRJS specifies a dependency graph
+# SUBPRJ specifies a dependency graph
 # for all subprojects.
 
-SUBPRJS=   libcommon:dict   # dict depends on libcommon
-SUBPRJS+=  libcommon:dictd
-SUBPRJS+=  libcommon:dictzip
-SUBPRJS+=  libcommon:dictfmt
-SUBPRJS+=  libdz:dictzip
-SUBPRJS+=  libmaa:dict
+SUBPRJ=   libcommon:dict   # dict depends on libcommon
+SUBPRJ+=  libcommon:dictd
+SUBPRJ+=  libcommon:dictzip
+SUBPRJ+=  libcommon:dictfmt
+SUBPRJ+=  libdz:dictzip
+SUBPRJ+=  libmaa:dict
 ...
-.include <mkc.subprjs.mk>
+.include <mkc.subprj.mk>
   \end{Code}
   \end{block}
 \end{frame}
@@ -565,7 +565,7 @@ cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libmaa
     (\ModuleName{mkc.pkg-config.mk}).
   \item Support for yacc and lex.
   \item Support for projects with multiple subprojects
-    (\ModuleName{mkc.subprjs.mk} and \ModuleName{mkc.subdir.mk}).
+    (\ModuleName{mkc.subprj.mk} and \ModuleName{mkc.subdir.mk}).
   \end{enumerate}
   \end{block}
 \end{frame}

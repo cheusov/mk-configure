@@ -7,14 +7,14 @@
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.include <mkc_imp.subprjs.mk>
+.include <mkc_imp.subprj.mk>
 
-.PHONY: subprjs-clean subprjs-distclean
-clean: subprjs-clean
-subprjs-clean:
+.PHONY: subprj-clean subprj-distclean
+clean: subprj-clean
+subprj-clean:
 	-rm -f ${CLEANFILES} 2>/dev/null
-cleandir: subprjs-distclean
-subprjs-distclean:
+cleandir: subprj-distclean
+subprj-distclean:
 	-rm -f ${DISTCLEANFILES} 2>/dev/null
 
 .endif # MKC_ERR_MSG

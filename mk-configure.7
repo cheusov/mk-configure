@@ -27,7 +27,7 @@ is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .SS "Targets"
-.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprjs.mk
+.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprj.mk
 include files provide the following targets:
 .IP all
 build everything
@@ -52,25 +52,25 @@ an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1))
 .IP <subdir>
-<subdir> is a subdirectory listed in SUBDIR or SUBPRJS.
+<subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
 This target is equivalent to all-<subdir> and is provided by
-.BR mkc.subdir.mk " and " mkc.subprjs.mk
+.BR mkc.subdir.mk " and " mkc.subprj.mk
 only. For details see
-.BR mkc.subdir.mk " or " mkc.subprjs.mk
+.BR mkc.subdir.mk " or " mkc.subprj.mk
 sections below.
 .IP <target>-<subdir>
 runs the specified <target> for the specified <subdir>.
 This target is provided by
-.BR mkc.subdir.mk " and " mkc.subprjs.mk
+.BR mkc.subdir.mk " and " mkc.subprj.mk
 only. For details see
-.BR mkc.subdir.mk " or " mkc.subprjs.mk
+.BR mkc.subdir.mk " or " mkc.subprj.mk
 sections below.
 .IP nodeps-<target>-<subdir>
 runs the specified <target> for the specified <subdir> without dependencies.
 This target is provided by
-.BR mkc.subprjs.mk
+.BR mkc.subprj.mk
 only. For details see
-.BR mkc.subprjs.mk
+.BR mkc.subprj.mk
 section below.
 .SS "Common variables"
 The following variables control how various files are compiled/built.
@@ -598,28 +598,28 @@ Libraries are ranlib'd when made.
 includes
 .B mkc.files.mk
 and therefore supports all variables supported by it.
-.SS "mkc.subprjs.mk"
+.SS "mkc.subprj.mk"
 The include file
-.B mkc.subprjs.mk
+.B mkc.subprj.mk
 handles subprojects (subdirectories)
 organized as a dependency graph.
 It provides all targets provided by
 .BR mkc.prog.mk .
-Variable SUBPRJS contains a list of pairs
+Variable SUBPRJ contains a list of pairs
 .I depdir:dir
 which mean that subproject
 .I dir
 depends on
 .IR depdir.
 .B mkcmake all
-command will build all subprojects listed in SUBPRJS in a correct
+command will build all subprojects listed in SUBPRJ in a correct
 order (starting with subprojects having no dependencies and so on).
 There is also a target which allows the command
 .I "bmake <subdir>"
 where
 <subdir>
 is any directory listed in
-the variable SUBPRJS.
+the variable SUBPRJ.
 The following targets are also provided:
 <target>-<subdir>
 where

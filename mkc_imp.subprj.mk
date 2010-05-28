@@ -7,17 +7,17 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_SUBPRJS_MK)
-_MKC_IMP_SUBPRJS_MK=1
+.if !defined(_MKC_IMP_SUBPRJ_MK)
+_MKC_IMP_SUBPRJ_MK=1
 
 .include <mkc_imp.init.mk>
 
-.for dir in ${SUBPRJS:S/:/ /g}
-___REALSUBPRJS+=${dir}
+.for dir in ${SUBPRJ:S/:/ /g}
+___REALSUBPRJ+=${dir}
 .endfor
 
-__REALSUBPRJS := ${___REALSUBPRJS:O:u}
-.undef ___REALSUBPRJS
+__REALSUBPRJ := ${___REALSUBPRJ:O:u}
+.undef ___REALSUBPRJ
 
 __recurse: .USE
 	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\
@@ -45,21 +45,21 @@ test_target=
 .endif
 
 .for targ in ${TARGETS} ${test_target}
-.for dir in ${__REALSUBPRJS}
+.for dir in ${__REALSUBPRJ}
 .PHONY: nodeps-${targ}-${dir} ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
 ${targ}-${dir}: .MAKE __recurse
 ${targ}: ${targ}-${dir}
 .endfor # dir
 
-.for dir in ${SUBPRJS:M*\:*}
+.for dir in ${SUBPRJ:M*\:*}
 .PHONY: ${targ}-${dir:C/^[^:]*://} ${targ}-${dir:C/:.*$//}
 ${targ}-${dir:C/^[^:]*://}: ${targ}-${dir:C/:.*$//}
 .endfor
 
 .endfor # targ
 
-.for dir in ${__REALSUBPRJS}
+.for dir in ${__REALSUBPRJ}
 .PHONY: ${dir}
 ${dir}: all-${dir}
 .endfor # dir
@@ -67,4 +67,4 @@ ${dir}: all-${dir}
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
 
-.endif # _MKC_IMP_SUBPRJS_MK
+.endif # _MKC_IMP_SUBPRJ_MK
