@@ -1,6 +1,11 @@
 ============================================================
 Plan 1)
 
+  = mkc.subprj.mk:
+    - SUBPRJ_DFLT - list of subprojects for target "all".
+
+  = mkc.subdir.mk - get changes from NetBSD-current.
+
   = Improve mkc.pkg-config.mk
 
   = Implement mkc_imp.libtool.mk to make building
