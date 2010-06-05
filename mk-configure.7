@@ -196,9 +196,6 @@ Target directory for utilities.
 .IP SBINDIR
 Target directory for administration utilities.
 .RI [ ${PREFIX}/sbin ]
-.IP MANDIR
-Target directory for man pages.
-.RI [ ${PREFIX}/man ]
 .IP LIBDIR
 Target directory for libraries.
 .RI [ ${PREFIX}/lib ]
@@ -221,14 +218,6 @@ Target directory for .info files.
 Installation prefix. []
 .IP MKC_ERR_MSG
 If set, keep an error message. []
-.IP USETBL
-If not "no", preprocess man pages using
-.B tbl(1)
-while generating cat pages.
-.RI [ no ]
-.IP MANZ
-If not "no", compress manual pages at installation time.
-.RI [ no ]
 .IP MKINSTALL
 If not "yes", build everything but do not install. This option is useful
 for e.g. internal libraries.
@@ -418,22 +407,6 @@ ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
 The list of symbolic links; should be full pathnames.
 Syntax is identical to LINKS. Note that DESTDIR is not
 automatically included in the link.
-.IP MAN
-Manual pages (should end in .1 - .9).  If no MAN variable is
-defined, "MAN=${PROG}.1" is assumed if it exists.
-.IP MKMAN
-If "no", don't build or install the man pages,
-and also acts as "MKCATPAGES=no MKHTML=no".
-.RI [ yes ]
-.IP MKCATPAGES
-If "no", don't build or install the catman pages.
-.RI [ no ]
-.IP MKHTML
-If "no", don't build or install the HTML man pages.
-.RI [ no ]
-.IP HTMLDIR
-Target directory for html pages generated from man pages.
-.RI [ ${MANDIR} ]
 .IP MKSHARE
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
@@ -1085,7 +1058,7 @@ expanding the following @@ patterns:
 .B mkc_imp.info.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
-Do not use it directly.
+Do not use it directly!
 This module provides creation of .info files from .txi, .texi and .texinfo sources
 and provides the following variables:
 .IP MKINFO
@@ -1101,6 +1074,40 @@ List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
 .IP INFOFLAGS
 Flags to pass to makeinfo. []
+.SS "mkc_imp.man.mk"
+.B mkc_imp.man.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
+Do not use it directly!
+This module provides installation of manual pages and creation of catpages
+and HTML pages and provides the following variables:
+.IP MANDIR
+Target directory for man pages.
+.RI [ ${PREFIX}/man ]
+.IP USETBL
+If not "no", preprocess man pages using
+.B tbl(1)
+while generating cat pages.
+.RI [ no ]
+.IP MANZ
+If not "no", compress manual pages at installation time.
+.RI [ no ]
+.IP MAN
+Manual pages (should end in .1 - .9).  If no MAN variable is
+defined, "MAN=${PROG}.1" is assumed if it exists.
+.IP MKMAN
+If "no", don't build or install the man pages,
+and also acts as "MKCATPAGES=no MKHTML=no".
+.RI [ yes ]
+.IP MKCATPAGES
+If "no", don't build or install the catman pages.
+.RI [ no ]
+.IP MKHTML
+If "no", don't build or install the HTML man pages.
+.RI [ no ]
+.IP HTMLDIR
+Target directory for html pages generated from man pages.
+.RI [ ${MANDIR} ]
 .SS
 .B mkc.intexts.mk
 supports the following variables:
