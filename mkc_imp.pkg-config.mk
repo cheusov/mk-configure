@@ -3,8 +3,6 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-################### THIS MODULE IS INCOMPLETE!!! #######################
-
 #
 # Sample of Makefile:
 #    PKG_CONFIG_DEPS                 = glib-2.0>=2.22
@@ -17,7 +15,7 @@
 #    .include <mkc.prog.mk>
 #
 
-########################################################################
+############################################################
 
 # .endif for the next line is in the end of file
 .if defined(PKG_CONFIG_DEPS) && !make(clean) && !make(cleandir) && !make(distclean)
