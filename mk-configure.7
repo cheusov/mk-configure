@@ -984,6 +984,18 @@ expanding the following @@ patterns:
 @sysconfdir@   ${SYSCONFDIR}
 @incsdir@      ${INCSDIR}
 .VE
+The following variables are provided:
+.IP INFILES
+List of files to generate.
+.IP INSCRIPTS
+List of scripts to generate.
+.IP INTEXTS_SED
+List of additional
+.B sed(1)
+expressions for expanding, e.g.
+.VS
+    INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
+.VE
 .SS "mkc_imp.info.mk"
 .B mkc_imp.info.mk
 is internal include file which is included from
@@ -1126,20 +1138,6 @@ File mode of the specific file <fn>.
 Optional name to install each file as.
 .IP FILESNAME_<fn>
 Optional name to install <fn> as.
-.SS
-.B mkc.intexts.mk
-supports the following variables:
-.IP INFILES
-List of files to generate.
-.IP INSCRIPTS
-List of scripts to generate.
-.IP INTEXTS_SED
-List of additional
-.B sed(1)
-expressions for expanding, e.g.
-.VS
-    INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
-.VE
 .SS "mkc.minitest.mk"
 .B mkc.minitest.mk
 is an auxiliary include file that implement simple framework for unit
