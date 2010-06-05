@@ -151,9 +151,9 @@ mkc_cleandir:
 	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
 	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
-.PHONY: errorcheck
+.PHONY: errorcheck realall all
 .if !defined(SUBDIR) && !defined(SUBPRJ)
-all : errorcheck
+realall : errorcheck
 .endif
 errorcheck:
 	@if test -n '${MKC_ERR_MSG}'; then \
