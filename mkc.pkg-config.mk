@@ -18,7 +18,8 @@
 
 ########################################################################
 
-.if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
+# .endif for the next line is in the end of file
+.if defined(PKG_CONFIG_DEPS) && !make(clean) && !make(cleandir) && !make(distclean)
 
 MKC_REQUIRE_PROGS+=	pkg-config
 .include <configure.mk>

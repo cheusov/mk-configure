@@ -106,6 +106,7 @@ scriptsinstall:
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
 .include <mkc.intexts.mk>
+.include <mkc.pkg-config.mk>
 .include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
 
