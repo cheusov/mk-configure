@@ -12,6 +12,8 @@ _MKC_IMP_SUBPRJ_MK=1
 
 .include <mkc_imp.init.mk>
 
+SUBPRJ+=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
+
 .for dir in ${SUBPRJ:S/:/ /g}
 ___REALSUBPRJ+=${dir}
 .endfor

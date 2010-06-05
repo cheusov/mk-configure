@@ -41,8 +41,6 @@ __initialized__=1
 
 ###########
 
-SUBPRJ+=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
-
 .if defined(PROG)
 SRCS?=		${PROG}.c
 .endif
