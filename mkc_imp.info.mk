@@ -7,7 +7,7 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.ifndef _MKC_IMP_INFO_MK
+.if !defined(_MKC_IMP_INFO_MK) && defined(TEXINFO)
 _MKC_IMP_INFO_MK=1
 
 .include <mkc_imp.init.mk>

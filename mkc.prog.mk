@@ -15,8 +15,4 @@
 
 .include <mkc_imp.prog.mk>
 
-.if defined(TEXINFO)
-.include <mkc_imp.info.mk>
-.endif # TEXINFO
-
 .endif # MKC_ERR_MSG

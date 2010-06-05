@@ -101,6 +101,7 @@ scriptsinstall:
 .endif # defined(SCRIPTS)
 
 .include <mkc_imp.man.mk>
+.include <mkc_imp.info.mk>
 #.include <mkc_imp.nls.mk>
 .include <mkc_imp.files.mk>
 .include <mkc_imp.inc.mk>
