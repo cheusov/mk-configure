@@ -1007,10 +1007,6 @@ and provides the following variables:
 If "no", don't build or install Info documentation from
 Texinfo source files.
 .RI [ yes ]
-.IP MKINFO
-If "no", don't build or install Info documentation from
-Texinfo source files.
-.RI [ yes ]
 .IP TEXINFO
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
@@ -1050,8 +1046,8 @@ If "no", don't build or install the HTML man pages.
 .IP HTMLDIR
 Target directory for html pages generated from man pages.
 .RI [ ${MANDIR} ]
-.SS "mkc_imp.man.mk"
-.B mkc_imp.info.mk
+.SS "mkc_imp.links.mk"
+.B mkc_imp.links.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly! This module provides creation of hard and symbolic
@@ -1069,7 +1065,7 @@ The list of symbolic links; should be full pathnames.
 Syntax is identical to LINKS. Note that DESTDIR is not
 automatically included in the link.
 .SS "mkc_imp.inc.mk"
-.B mkc_imp.man.mk
+.B mkc_imp.inc.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly!
