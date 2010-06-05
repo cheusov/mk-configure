@@ -29,7 +29,7 @@ MKC_REQUIRE_PROGS+=	pkg-config
 
 .for l in ${PKG_CONFIG_DEPS}
 #_ln := ${l:C/[><=].*$//}
-_lp := ${l:C/(>=|<=|=|>|<)/ & /}
+_lp := ${l:C/(>=|<=|=|>|<)/ & /g}
 PKG_CONFIG.exists != echo ok; ${PROG.pkg-config} --print-errors --exists "${_lp}" 2>&1 | sed -e "s/'//g" -eq
 
 .if ${PKG_CONFIG.exists} != "ok"
