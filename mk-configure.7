@@ -434,10 +434,6 @@ If "no", don't build or install the HTML man pages.
 .IP HTMLDIR
 Target directory for html pages generated from man pages.
 .RI [ ${MANDIR} ]
-.IP MKINFO
-If "no", don't build or install Info documentation from
-Texinfo source files.
-.RI [ yes ]
 .IP MKSHARE
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
@@ -453,11 +449,6 @@ documentation,...
 .\" For example, if COPTS.foobar is
 .\" set to "-g", "-g" will be added to COPTS only when compiling
 .\" the "foobar" application.
-.IP TEXINFO
-List of Texinfo source files.  Info documentation will
-consist of single files with the extension replaced by .info.
-.IP INFOFLAGS
-Flags to pass to makeinfo. []
 .PP
 .B mkc.prog.mk
 includes
@@ -586,12 +577,6 @@ If "no", don't build or install the profiling (*_p.a) libraries.
 .\" For example, if COPTS.libfoobar is
 .\" set to "-g", "-g" will be added to COPTS only when compiling
 .\" the "libfoobar" library.
-.IP TEXINFO
-The same as in
-.B mkc.prog.mk
-.IP INFOFLAGS
-The same as in
-.B mkc.prog.mk
 .PP
 Libraries are ranlib'd when made.
 .B mkc.lib.mk
@@ -1059,9 +1044,12 @@ If set to 1, temporary files are removed.
 .IP MKC_NOCACHE
 All results are cached unless MKC_NOCACHE variable is set
 non-empty value
-.SS "mkc.intexts.mk"
-.B mkc.intexts.mk
-is an auxiliary include file that converts <fn>.in files to <fn> by
+.SS "mkc_imp.intexts.mk"
+.B mkc_imp.intexts.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.lib.mk .
+Do not use it directly.
+It provides conversion of <fn>.in files to <fn> by
 expanding the following @@ patterns:
 .\" .TS
 .\" tab(:), center, box;
@@ -1093,6 +1081,27 @@ expanding the following @@ patterns:
 @sysconfdir@   ${SYSCONFDIR}
 @incsdir@      ${INCSDIR}
 .VE
+.SS "mkc_imp.info.mk"
+.B mkc_imp.info.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
+Do not use it directly.
+This module provides creation of .info files from .txi, .texi and .texinfo sources
+and provides the following variables:
+.IP MKINFO
+If "no", don't build or install Info documentation from
+Texinfo source files.
+.RI [ yes ]
+.IP MKINFO
+If "no", don't build or install Info documentation from
+Texinfo source files.
+.RI [ yes ]
+.IP TEXINFO
+List of Texinfo source files.  Info documentation will
+consist of single files with the extension replaced by .info.
+.IP INFOFLAGS
+Flags to pass to makeinfo. []
+.SS
 .B mkc.intexts.mk
 supports the following variables:
 .IP INFILES
