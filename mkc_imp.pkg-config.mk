@@ -7,7 +7,8 @@
 
 #
 # Sample of Makefile:
-#    PKG_CONFIG_DEPS = glib-2.0
+#    PKG_CONFIG_DEPS                 = glib-2.0>=2.22
+#
 #    PROG            = main
 #
 #    CFLAGS+=		-DG_DISABLE_DEPRECATED=1
@@ -27,26 +28,31 @@ MKC_REQUIRE_PROGS+=	pkg-config
 .if ${HAVE_PROG.pkg-config}
 
 .for l in ${PKG_CONFIG_DEPS}
+#_ln := ${l:C/[><=].*$//}
+_lp := ${l:C/(>=|<=|=|>|<)/ & /}
+PKG_CONFIG.exists != echo ok; ${PROG.pkg-config} --print-errors --exists "${_lp}" 2>&1 | sed "s/'//g"
 
-PKG-CONFIG.module.exists !=	${PROG.pkg-config} --exists ${l}; echo $$?
-.if ${PKG-CONFIG.module.exists} != 0
-MKC_ERR_MSG=	"ERROR: pkg-config module ${l} cannot be found"
+.if ${PKG_CONFIG.exists} != "ok"
+MKC_ERR_MSG+="ERROR: ${PKG_CONFIG.exists:[2..-1]}"
 .else
 
-.if !defined(CPPFLAGS.pkg-config.${l})
-CPPFLAGS.pkg-config.${l} !=	${PROG.pkg-config} --cflags ${l}
+.if !defined(CPPFLAGS.pkg-config.${_ln})
+CPPFLAGS.pkg-config.${_ln} !=	${PROG.pkg-config} --cflags '${_lp}'
 .endif # CPPFLAGS.pkg-config.${l}
 
-.if !defined(LDADD.pkg-config.${l})
-LDADD.pkg-config.${l}    !=	${PROG.pkg-config} --libs ${l}
+.if !defined(LDADD.pkg-config.${_ln})
+LDADD.pkg-config.${_ln}    !=	${PROG.pkg-config} --libs '${_lp}'
 .endif # LDADD.pkg-config.${l}
 
-CPPFLAGS+=	${CPPFLAGS.pkg-config.${l}}
-LDADD+=		${LDADD.pkg-config.${l}}
+CPPFLAGS+=	${CPPFLAGS.pkg-config.${_ln}}
+LDADD+=		${LDADD.pkg-config.${_ln}}
 
 .endif # PKG-CONFIG.module.exists
 
 .endfor # .for l
+
+.undef _ln
+.undef _lp
 
 .endif # HAVE_PROG.pkg-config
 
