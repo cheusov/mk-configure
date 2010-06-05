@@ -45,9 +45,9 @@ EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 
 FILES=	configure.mk mkc.configure.mk mkc.files.mk \
 	mkc.lib.mk mkc.prog.mk \
-	mkc.subdir.mk mkc.subprj.mk mkc.own.mk mkc.intexts.mk \
+	mkc.subdir.mk mkc.subprj.mk mkc.own.mk mkc_imp.intexts.mk \
 	mkc_check_common.sh \
-	mkc.minitest.mk mkc.pkg-config.mk mkc.ver.mk \
+	mkc.minitest.mk mkc_imp.pkg-config.mk mkc.ver.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
 	mkc_imp.subdir.mk mkc_imp.subprj.mk mkc_imp.sys.mk \
@@ -72,7 +72,9 @@ FILESDIR=			${MKFILESDIR}
 SCRIPTSDIR_${s:S|/|_|}=		${BUILTINSDIR}
 .endfor
 
-SYMLINKS=	${MKFILESDIR}/mkc.subprj.mk ${MKFILESDIR}/mkc.subprjs.mk
+SYMLINKS=	mkc.subprj.mk ${MKFILESDIR}/mkc.subprjs.mk
+SYMLINKS+=	mkc_imp.pkg-config.mk ${MKFILESDIR}/mkc.pkg-config.mk
+SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
