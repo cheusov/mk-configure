@@ -202,9 +202,6 @@ Target directory for libraries.
 .IP LIBEXECDIR
 Target directory for system utilities.
 .RI [ ${PREFIX}/libexec ]
-.IP INCSDIR
-Target directory for includes.
-.RI [ ${PREFIX}/include ]
 .IP DATADIR
 Target directory for architecture-independent text files.
 .RI [ ${PREFIX}/share ]
@@ -499,21 +496,6 @@ List of source files to build the library.  Suffix types
 .\" 
 .\" It has rules for building profiled objects; profiled libraries are
 .\" built by default.
-.IP INCS
-The list of include files.
-.IP INCSDIR
-The location to install the include files.
-.IP INCSNAME
-Target name of the include file, if only one; same as
-FILESNAME, but for include files.
-.IP INCSNAME_<file>
-The name file <file> should be installed as, if not <file>,
-same as FILESNAME_<file>, but for include files.
-.IP INCSSRCDIR
-Source directory for include files. This variable have an influence on
-CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
-(paths in ${INCS} are relative to ${INCSSRCDIR}).
-.RI [ . ]
 .IP LDCOMPILER
 If "yes", ${CC} is used for linking instead of ${LD}.
 For C++ sources ${CXX} is used for linking.
@@ -1114,6 +1096,29 @@ ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
 The list of symbolic links; should be full pathnames.
 Syntax is identical to LINKS. Note that DESTDIR is not
 automatically included in the link.
+.SS "mkc_imp.inc.mk"
+.B mkc_imp.man.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
+Do not use it directly!
+This modules provides installation of header files and provides
+the following variables:
+.IP INCSDIR
+Target directory for includes.
+.RI [ ${PREFIX}/include ]
+.IP INCS
+The list of include files.
+.IP INCSNAME
+Target name of the include file, if only one; same as
+FILESNAME, but for include files.
+.IP INCSNAME_<file>
+The name file <file> should be installed as, if not <file>,
+same as FILESNAME_<file>, but for include files.
+.IP INCSSRCDIR
+Source directory for include files. This variable have an influence on
+CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
+(paths in ${INCS} are relative to ${INCSSRCDIR}).
+.RI [ . ]
 .SS
 .B mkc.intexts.mk
 supports the following variables:
