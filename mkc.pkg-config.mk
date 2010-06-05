@@ -21,27 +21,29 @@
 
 ########################################################################
 
-MKC_REQUIRE_PROGS+=	pkg-config
-DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
+#MKC_REQUIRE_PROGS+=	pkg-config
+#DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
 
 .if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
-.if defined(PROG.pkg-config)
-.if !empty(PROG.pkg-config)
+MKC_REQUIRE_PROGS+=	pkg-config
+.include <mkc.configure.mk>
+
+.if ${HAVE_PROG.pkg-config}
 
 .for l in ${PKG_CONFIG_DEPS}
 
-PKG-CONFIG.module.exists !=	pkg-config --exists ${l}; echo $$?
+PKG-CONFIG.module.exists !=	${PROG.pkg-config} --exists ${l}; echo $$?
 .if ${PKG-CONFIG.module.exists} != 0
 MKC_ERR_MSG=	"ERROR: pkg-config module ${l} cannot be found"
 .else
 
 .if !defined(CPPFLAGS.pkg-config.${l})
-CPPFLAGS.pkg-config.${l} !=	pkg-config --cflags ${l}
+CPPFLAGS.pkg-config.${l} !=	${PROG.pkg-config} --cflags ${l}
 .endif # CPPFLAGS.pkg-config.${l}
 
 .if !defined(LDADD.pkg-config.${l})
-LDADD.pkg-config.${l}    !=	pkg-config --libs   ${l}
+LDADD.pkg-config.${l}    !=	${PROG.pkg-config} --libs   ${l}
 .endif # LDADD.pkg-config.${l}
 
 CPPFLAGS+=	${CPPFLAGS.pkg-config.${l}}
@@ -51,10 +53,6 @@ LDADD+=		${LDADD.pkg-config.${l}}
 
 .endfor # .for l
 
-.endif # PROG.pkg-config
-
-.else
-MKC_ERR_MSG+= "ERROR: pkg-config is not initialized properly, read mkc.pkg-config.mk"
-.endif #defined(PROG.pkg-config)
+.endif # HAVE_PROG.pkg-config
 
 .endif # !make(clean) && !make(cleandir) && !make(distclean)
