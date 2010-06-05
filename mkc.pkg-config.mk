@@ -6,28 +6,22 @@
 ################### THIS MODULE IS INCOMPLETE!!! #######################
 
 #
-# In order to activate this module youn MUST:
-#   1) Add
-#        MKC_REQUIRE_PROGS += pkg-config
-#      line before 
-#        .include <mkc.configure.mk>
-#      in Makefile
-#   2) Write in
-#        .include <mkc.pkg-config.mk>
-#      after
-#        .include <mkc.configure.mk>
-#      in Makefile
+# Sample of Makefile:
+#    PKG_CONFIG_DEPS = glib-2.0
+#    PROG            = main
+#
+#    CFLAGS+=		-DG_DISABLE_DEPRECATED=1
+#    CFLAGS+=		-DG_DISABLE_SINGLE_INCLUDES
+#
+#    .include <mkc.prog.mk>
 #
 
 ########################################################################
 
-#MKC_REQUIRE_PROGS+=	pkg-config
-#DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
-
 .if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
 
 MKC_REQUIRE_PROGS+=	pkg-config
-.include <mkc.configure.mk>
+.include <configure.mk>
 
 .if ${HAVE_PROG.pkg-config}
 

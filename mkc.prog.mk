@@ -5,7 +5,11 @@
 
 .include <mkc_imp.init.mk>
 
-.include <mkc.configure.mk>
+.if defined(MKC_BOOTSTRAP)
+.sinclude <configure.mk>
+.else
+.include <configure.mk>
+.endif
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 

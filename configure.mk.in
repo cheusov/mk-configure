@@ -34,9 +34,13 @@ MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
+.ifndef _mkc_file_in_distcleanfiles
+_mkc_file_in_distcleanfiles:=1
 DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
+.endif
 
-.if !make(clean) && !make(cleandir) && !make(distclean) # .endif is in the end of file
+# .endif for the next .if is in the end of file
+.if !defined(SKIP_CONFIGURE_MK) && !make(clean) && !make(cleandir) && !make(distclean)
 
 #
 .undef MKC_SRCS

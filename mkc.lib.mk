@@ -5,7 +5,7 @@
 
 .include <mkc_imp.init.mk>
 
-.include <mkc.configure.mk>
+.include <configure.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
