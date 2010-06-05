@@ -235,46 +235,6 @@ handles the FILES variables and is included
 from
 .BR mkc.lib.mk " and " mkc.prog.mk .
 List of supported variables:
-.IP FILES
-The list of files to install.
-.\" .IP CONFIGFILES Similar semantics to FILES, except that the files
-.\"  are installed by the `configinstall' target,
-.\"  not the `install' target.
-.\"  The FILES* variables documented below also apply.
-.IP FILESDIR
-The location to install the files.
-.RI [ ${PREFIX}/bin ]
-.IP FILESDIR_<fn>
-The location to install the specific file <fn>.
-.IP FILESOWN
-File owner. If
-.B bmake
-is run with root privileges, it defaults to
-.I ${BINOWN}
-or to
-.I "`id -u`"
-otherwise.
-.IP FILESOWN_<fn>
-File owner of the specific file <fn>.
-.IP FILESGRP
-File group. If
-.B bmake
-is run with root privileges, it defaults to
-.I ${BINGRP}
-or to
-.I "`id -g`"
-otherwise.
-.IP FILESGRP_<fn>
-File group of the specific file <fn>.
-.IP FILESMODE
-File mode.
-.RI [ ${NONBINMODE} ]
-.IP FILESMODE_<fn>
-File mode of the specific file <fn>.
-.IP FILESNAME
-Optional name to install each file as.
-.IP FILESNAME_<fn>
-Optional name to install <fn> as.
 .IP CLEANFILES
 Additional files to remove for the
 .IR clean ", " cleandir " and " distclean
@@ -1082,7 +1042,7 @@ Target directory for html pages generated from man pages.
 .B mkc_imp.info.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
-Do not use it directly! This modules provides creation of hard and symbolic
+Do not use it directly! This module provides creation of hard and symbolic
 links and provides the following variables: 
 .IP LINKS
 The list of binary links; should be full pathnames, the
@@ -1101,7 +1061,7 @@ automatically included in the link.
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly!
-This modules provides installation of header files and provides
+This module provides installation of header files and provides
 the following variables:
 .IP INCSDIR
 Target directory for includes.
@@ -1119,6 +1079,53 @@ Source directory for include files. This variable have an influence on
 CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 (paths in ${INCS} are relative to ${INCSSRCDIR}).
 .RI [ . ]
+.SS "mkc_imp.files.mk"
+.B mkc_imp.files.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
+Do not use it directly!
+This module provides installation of files and scripts and provides
+the following variables:
+.IP FILES
+The list of files to install.
+.\" .IP CONFIGFILES Similar semantics to FILES, except that the files
+.\"  are installed by the `configinstall' target,
+.\"  not the `install' target.
+.\"  The FILES* variables documented below also apply.
+.IP FILESDIR
+The location to install the files.
+.RI [ ${PREFIX}/bin ]
+.IP FILESDIR_<fn>
+The location to install the specific file <fn>.
+.IP FILESOWN
+File owner. If
+.B bmake
+is run with root privileges, it defaults to
+.I ${BINOWN}
+or to
+.I "`id -u`"
+otherwise.
+.IP FILESOWN_<fn>
+File owner of the specific file <fn>.
+.IP FILESGRP
+File group. If
+.B bmake
+is run with root privileges, it defaults to
+.I ${BINGRP}
+or to
+.I "`id -g`"
+otherwise.
+.IP FILESGRP_<fn>
+File group of the specific file <fn>.
+.IP FILESMODE
+File mode.
+.RI [ ${NONBINMODE} ]
+.IP FILESMODE_<fn>
+File mode of the specific file <fn>.
+.IP FILESNAME
+Optional name to install each file as.
+.IP FILESNAME_<fn>
+Optional name to install <fn> as.
 .SS
 .B mkc.intexts.mk
 supports the following variables:
