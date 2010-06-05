@@ -38,7 +38,7 @@ CPPFLAGS.pkg-config.${l} !=	${PROG.pkg-config} --cflags ${l}
 .endif # CPPFLAGS.pkg-config.${l}
 
 .if !defined(LDADD.pkg-config.${l})
-LDADD.pkg-config.${l}    !=	${PROG.pkg-config} --libs   ${l}
+LDADD.pkg-config.${l}    !=	${PROG.pkg-config} --libs ${l}
 .endif # LDADD.pkg-config.${l}
 
 CPPFLAGS+=	${CPPFLAGS.pkg-config.${l}}

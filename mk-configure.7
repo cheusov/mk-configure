@@ -1135,8 +1135,18 @@ tests.  Idea: application provides the target test_output and
 expect.out file that contains ideal output. "bmake test" runs "bmake
 test_output" and compare generated output with expect.out.
 Look at the sources.
-.\" .SS "mkc.pkg-config.mk"
-.\" lalala
+.SS "mkc_imp.pkg-config.mk"
+.B mkc_imp.pkg-config.mk
+is internal include file which is included from
+.BR mkc.prog.mk " and " mkc.lib.mk .
+Do not use it directly!
+This module supports devendencies controlled by
+.B pkg-config
+program. As a result CPPFLAGS and LDADD variables are modified according
+to "pkg-config --cflags ..." and "pkg-config --libs ...".
+The following variables are provided:
+.IP PKG_CONFIG_DEPS
+List of libraries.
 .SH "SEE ALSO"
 .BR mkc_check_header (1),
 .BR mkc_check_prog (1),
