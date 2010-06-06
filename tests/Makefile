@@ -6,5 +6,6 @@ SUBDIR  +=	mkpiclib
 SUBDIR  +=	mkprofilelib
 SUBDIR  +=	pkg-config-0
 SUBDIR  +=	pkg-config-1
+SUBDIR  +=	pkg-config-2
 
 .include <mkc.subdir.mk>
