@@ -1,14 +1,13 @@
 ============================================================
 Plan 1)
 
-  = All yes/no values must be case insensitive! :-tl
-
-  = mkc.subprj.mk:
-    - SUBPRJ_DFLT - list of subprojects for target "all".
+  = Support for Lua (building C-based libraries (pkg-config))
 
   = mkc.subdir.mk - get changes from NetBSD-current.
 
   = Improve mkc.pkg-config.mk
+    - Checking for glib-2.0>=2.22... [yes|no]
+    - Caching
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
