@@ -7,7 +7,11 @@ SUBPRJ+=	libmaa:dictd
 SUBPRJ+=	libmaa:dictzip
 SUBPRJ+=	libmaa:dictfmt
 SUBPRJ+=	libdz:dictzip
-SUBPRJ+=	dict dictd dictfmt dictzip # useless here but allowed
+
+# Subproject "doc" has no dependencies
+SUBPRJ+=	doc
+# and is not built by default
+SUBPRJ_DFLT=	dict dictd dictzip dictfmt
 
 .include <mkc.own.mk>
 .include "test.mk"

@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = All yes/no values must be case insensitive! :-tl
+
   = mkc.subprj.mk:
     - SUBPRJ_DFLT - list of subprojects for target "all".
 

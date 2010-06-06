@@ -65,6 +65,22 @@ test_output :
 	echo ======= cleandir-dict ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir-dict DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= installdirs-doc ==========; \
+	rm -rf ${.OBJDIR}${PREFIX}; \
+	${MAKE} ${MAKEFLAGS} installdirs-doc DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= install-doc ==========; \
+	${MAKE} ${MAKEFLAGS} install-doc DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ======= uninstall-doc ==========; \
+	${MAKE} ${MAKEFLAGS} uninstall-doc DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
 CLEANDIRS+=	${.CURDIR}/usr

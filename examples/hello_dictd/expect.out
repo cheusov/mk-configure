@@ -61,6 +61,8 @@ dictzip: fake6=6
 /objdir/dictzip/dictzip.c
 /objdir/dictzip/dictzip.cat1
 /objdir/dictzip/dictzip.o
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -185,6 +187,8 @@ dictzip: fake6=6
 /objdir/dictzip/_mkc_prog_cc.res
 /objdir/dictzip/dictzip.1
 /objdir/dictzip/dictzip.c
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -235,6 +239,8 @@ dictzip: fake6=6
 /objdir/dictzip/Makefile
 /objdir/dictzip/dictzip.1
 /objdir/dictzip/dictzip.c
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -271,6 +277,8 @@ dictzip: fake6=6
 /objdir/dictzip/Makefile
 /objdir/dictzip/dictzip.1
 /objdir/dictzip/dictzip.c
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -347,6 +355,8 @@ dictzip: fake6=6
 /objdir/dictzip/Makefile
 /objdir/dictzip/dictzip.1
 /objdir/dictzip/dictzip.c
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -384,6 +394,8 @@ dictzip: fake6=6
 /objdir/dictzip/Makefile
 /objdir/dictzip/dictzip.1
 /objdir/dictzip/dictzip.c
+/objdir/doc/Makefile
+/objdir/doc/doc.txt
 /objdir/expect.out
 /objdir/hello_dictd.test.out.tmp
 /objdir/libcommon/Makefile
@@ -399,3 +411,15 @@ dictzip: fake6=6
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
 /objdir/test.mk
+========= installdirs-doc ==========
+/objdir/prefix
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/dict
+========= install-doc ==========
+/objdir/prefix
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/dict
+/objdir/prefix/share/doc/dict/doc.txt
+======= uninstall-doc ==========

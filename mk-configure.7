@@ -574,6 +574,11 @@ and all its dependencies while
 See
 .I examples/hello_dictd
 subdirectory for the sample of use.
+.IP SUBPRJ
+Subprojects and dependencies
+.IP SUBPRJ_DFLT
+List of projects built and installed by default.
+The default is all projects listed in SUBPRJ.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -598,6 +603,8 @@ started.  See
 .B bmake(1)
 for some caveats on use of .WAIT and other
 special sources.
+.IP SUBDIR
+List of subdirectories
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
 is an auxiliary include file for checking platform's individualities

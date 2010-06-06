@@ -46,13 +46,18 @@ test_target=test
 test_target=
 .endif
 
+SUBPRJ_DFLT?=	${__REALSUBPRJ}
+
 .for targ in ${TARGETS} ${test_target}
 .for dir in ${__REALSUBPRJ}
 .PHONY: nodeps-${targ}-${dir} ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
 ${targ}-${dir}: .MAKE __recurse
-${targ}: ${targ}-${dir}
 .endfor # dir
+
+.for dir in ${SUBPRJ_DFLT}
+${targ}: ${targ}-${dir}
+.endfor
 
 .for dir in ${SUBPRJ:M*\:*}
 .PHONY: ${targ}-${dir:C/^[^:]*://} ${targ}-${dir:C/:.*$//}
