@@ -94,19 +94,19 @@ OBJS+=${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 SOBJS=${OBJS:.o=.os}
 POBJS=${OBJS:.o=.op}
 
-.if ${MKSTATICLIB} != "no"
+.if ${MKSTATICLIB:tl} != "no"
 _LIBS+=lib${LIB}.a
 .endif
 
-.if ${MKPROFILELIB} != "no"
+.if ${MKPROFILELIB:tl} != "no"
 _LIBS+=lib${LIB}_p.a
 .endif
 
-.if ${MKPICLIB} != "no"
+.if ${MKPICLIB:tl} != "no"
 _LIBS+=lib${LIB}_pic.a
 .endif # MKPICLIB
 
-.if ${MKSHLIB} != "no"
+.if ${MKSHLIB:tl} != "no"
 _LIBS+=lib${LIB}${SHLIB_EXTFULL}
 .endif
 
@@ -163,7 +163,7 @@ CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 libinstall::
 
    # MKSTATICLIB
-.if ${MKSTATICLIB} != "no"
+.if ${MKSTATICLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
@@ -174,7 +174,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 .endif
 
    # MKPROFILELIB
-.if ${MKPROFILELIB} != "no"
+.if ${MKPROFILELIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
@@ -185,11 +185,11 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
 
    # MKPICLIB
-.if ${MKPICLIB} != "no"
+.if ${MKPICLIB:tl} != "no"
 CLEANFILES+=lib${LIB}_pic.a
 .endif
 
-.if ${MKPICLIB} != "no"
+.if ${MKPICLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
@@ -199,7 +199,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
 
    # MKSHLIB
-.if ${MKSHLIB} != "no"
+.if ${MKSHLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}

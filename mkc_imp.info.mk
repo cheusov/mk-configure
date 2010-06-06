@@ -27,7 +27,7 @@ INSTALL_INFO?=	install-info
 INFOFILES=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
-.if ${MKINFO} != "no"
+.if ${MKINFO:tl} != "no"
 realall: ${INFOFILES}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])

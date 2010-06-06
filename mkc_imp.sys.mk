@@ -16,7 +16,7 @@
 
 SHRTOUT?=	no
 
-.if ${SHRTOUT} != "no"
+.if ${SHRTOUT:tl} != "no"
 _MESSAGE?=	echo
 _MESSAGE_V?=	:
 _V?=		@

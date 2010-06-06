@@ -10,13 +10,13 @@
 .if !defined(_MKC_IMP_MAN_MK)
 _MKC_IMP_MAN_MK=1
 
-.if ${MKSHARE} == "no"
+.if ${MKSHARE:tl} == "no"
 MKCATPAGES=no
 MKDOC=no
 MKINFO=no
 MKMAN=no
 .endif
-.if ${MKMAN} == "no"
+.if ${MKMAN:tl} == "no"
 MKCATPAGES=no
 .endif
 
@@ -32,7 +32,7 @@ MKCATPAGES=no
 
 .PHONY:		catinstall maninstall catpages manpages catlinks \
 		manlinks html installhtml
-.if ${MKMAN} != "no"
+.if ${MKMAN:tl} != "no"
 realinstall:	${MANINSTALL}
 .endif
 
@@ -100,7 +100,7 @@ __installpage: .USE
 
 
 # Rules for cat'ed man page installation
-.if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES} != "no"
+.if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES:tl} != "no"
 realall: ${CATPAGES}
 
 .if !empty(MKINSTALL:M[Yy][Ee][Ss])
@@ -142,7 +142,7 @@ ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __insta
 manpages::
 .endif # MANPAGES
 
-.if ${MKCATPAGES} != "no"
+.if ${MKCATPAGES:tl} != "no"
 catlinks: catpages
 .if defined(MLINKS) && !empty(MLINKS)
 	@set ${MLINKS}; \
