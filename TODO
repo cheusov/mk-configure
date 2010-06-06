@@ -1,6 +1,9 @@
 ============================================================
 Plan 1)
 
+  = mkc_imp.intexts.mk
+    - INTEXTS_REPLS - simplification for INTEXTS_SED.
+
   = Support for Lua (building C-based libraries (pkg-config))
 
   = mkc.subdir.mk - get changes from NetBSD-current.
