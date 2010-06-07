@@ -6,7 +6,8 @@ MAN=		hello_subprojects.1
 INFILES=	hello_subprojects.1
 INSCRIPTS=	hello_subprojects2
 
-INTEXTS_SED+=	-e 's,@HELLO_VERSION@,${VERSION},'
+INTEXTS_REPLS+=	HELLO_VERSION ${VERSION}
+INTEXTS_REPLS+=	MYEMAIL       vle@gmx.net
 
 MKC_CHECK_HEADERS+=	stdio.h
 
@@ -22,5 +23,4 @@ DPLIBS+=	-lhello1 -lhello2
 .include "../version.mk"
 
 .include "test.mk"
-.include <mkc.intexts.mk>
 .include <mkc.prog.mk>

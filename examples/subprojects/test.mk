@@ -6,6 +6,7 @@ test_output :
 	DYLD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
 	${.CURDIR}/hello/hello_subprojects; \
+	${.CURDIR}/hello/hello_subprojects2; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \

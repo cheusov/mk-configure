@@ -1037,6 +1037,12 @@ The following variables are provided:
 List of files to generate.
 .IP INSCRIPTS
 List of scripts to generate.
+.IP INTEXTS_REPLS
+List of Pattern/Replacement pairs separated by space, e.g.
+.VS
+    INTEXTS_REPLS+=   version ${VERSION}
+    INTEXTS_REPLS+=   author_email ${AUTHOR_EMAIL}
+.VE
 .IP INTEXTS_SED
 List of additional
 .B sed(1)

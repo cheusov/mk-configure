@@ -1,3 +1,5 @@
 #!/bin/sh
 
+echo 'Hello2'
 echo 'Hello World! version @HELLO_VERSION@'
+echo 'My email is @MYEMAIL@'

@@ -5,8 +5,8 @@
 
 # Given a list of files in INFILES or INSCRIPTS mkc.intexts.mk
 # generates them from appropriate *.in files replacing @prefix@,
-# @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ with real
-# ${PREFIX}, ${SYSCONFDIR} etc. See examples/ projects.
+# @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ etc. with
+# real ${PREFIX}, ${SYSCONFDIR} etc. See examples/ projects.
 
 .ifndef _MKC_IMP_INTEXTS_MK
 _MKC_IMP_INTEXTS_MK:=1
@@ -20,6 +20,10 @@ INTEXTS_SED+=	-e 's,@sbindir@,${SBINDIR},g'
 INTEXTS_SED+=	-e 's,@datadir@,${DATADIR},g'
 INTEXTS_SED+=	-e 's,@mandir@,${MANDIR},g'
 INTEXTS_SED+=	-e 's,@incsdir@,${INCSDIR},g'
+
+.for _pattern _repl in ${INTEXTS_REPLS}
+INTEXTS_SED+=	-e 's @${_pattern}@ ${_repl} g'
+.endfor
 
 CLEANFILES+=	${INSCRIPTS} ${INFILES}
 
