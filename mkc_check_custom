@@ -14,7 +14,7 @@ export LC_ALL
 ##################################################
 # options
 usage (){
-    cat <<EOF
+    cat <<'EOF'
 mkc_check_custom - tries to compile source file specified by user,
    optionally builds and runs an application, and
    returns the result (1 - build succeded, 0 - build failed,
@@ -25,7 +25,10 @@ Usage:
 
 OPTIONS:
    -h|--help            display this help
-   -r                   build an application and run it
+   -r                   build application and run it
+   -p                   a part of cache filename, defaults to "custom"
+   -n                   a part of cache filename, defaults to
+                        `basename <source_file>` without extension
 Examples:
    mkc_check_custom my_custom_test.c
    mkc_check_custom -r mmap_works_perfectly.c
@@ -40,20 +43,37 @@ if test "$1" = '-h' -o "$1" = '--help'; then
     usage
     exit 0
 fi
-if test "$1" = '-r'; then
-    runit=1
+
+while test $# -ne 0; do
+    case "$1" in
+	-r)
+	    runit=1;;
+	-p)
+	    pref="$2"
+	    shift;;
+	-n)
+	    basefn="$2"
+	    shift;;
+	-*)
+	    echo "Bad option $1" 1>&2
+	    exit 1;;
+	*)
+	    break;
+    esac
     shift
-fi
-if test $# -ne 1; then
+done
+
+if test $# -lt 1; then
     usage
     exit 1
 fi
 
 ##################################################
 # initializing
-basefn=`basename $1`
-basefn=`echo ${basefn} | sed 's|[.]c$||'`
-pathpart=custom_"$basefn"
+if test -z "$basefn"; then
+    basefn=`basename $1 | sed 's|[.]c$||'`
+fi
+pathpart="${pref-custom}_$basefn"
 
 . mkc_check_common.sh
 
