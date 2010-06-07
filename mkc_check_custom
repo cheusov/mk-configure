@@ -71,7 +71,7 @@ fi
 ##################################################
 # initializing
 if test -z "$basefn"; then
-    basefn=`basename $1 | sed 's|[.]c$||'`
+    basefn=`basename $1 | sed 's|[.][^.]*$||'`
 fi
 pathpart="${pref-custom}_$basefn"
 
