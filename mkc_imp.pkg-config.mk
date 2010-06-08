@@ -45,8 +45,9 @@ CPPFLAGS.pkg-config.${_ln} !=	${PROG.pkg-config} --cflags '${_lp}'
 LDADD.pkg-config.${_ln}    !=	${PROG.pkg-config} --libs '${_lp}'
 .endif # LDADD.pkg-config.${l}
 
-CPPFLAGS+=	${CPPFLAGS.pkg-config.${_ln}}
-LDADD+=		${LDADD.pkg-config.${_ln}}
+# _ln does not work in the following two lines :-(
+CPPFLAGS+=	${CPPFLAGS.pkg-config.${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}}
+LDADD+=		${LDADD.pkg-config.${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}}
 
 .endif # PKG-CONFIG.module.exists
 
