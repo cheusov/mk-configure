@@ -3,7 +3,7 @@ Plan 1)
 
   = Special variable always set for mkc.*.mk
 
-  = Support for Lua (building C-based libraries (pkg-config))
+  = Support for Lua (building C-based module)
 
   = mkc.subdir.mk - get changes from NetBSD-current.
 
