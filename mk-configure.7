@@ -26,6 +26,13 @@ mk-configure \- lightweight replacement for GNU autotools
 is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
+.P
+To get system-specific configuration parameters, mkc.*.mk include
+files will try to include the file specified by the "MAKECONF"
+variable.  If MAKECONF is not set, or no such file exists, the system
+make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf is
+included.  These files may define any of the variables described
+below.
 .SS "Targets"
 .BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprj.mk
 include files provide the following targets:

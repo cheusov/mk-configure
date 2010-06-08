@@ -32,6 +32,11 @@ __initialized__=1
 .MAIN:		all
 
 ###########
+.if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
+.sinclude <mkc.ver.mk>
+.else
+.include <mkc.ver.mk>
+.endif
 
 #.if defined(MKC_SHELL)
 #.SHELL: name=${MKC_SHELL}
@@ -174,11 +179,6 @@ errorcheck:
 #test all distclean cleandir clean:
 
 ###########
-.if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
-.sinclude <mkc.ver.mk>
-.else
-.include <mkc.ver.mk>
-.endif
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)
 _mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}

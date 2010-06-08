@@ -12,8 +12,8 @@ _BSD_OWN_MK_=1
 
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
-.elif exists(@SYSCONFDIR@/mk.conf)
-.include "@SYSCONFDIR@/mk.conf"
+.elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)
+.include "${MKC_SYSCONFDIR}/mk.conf"
 .elif exists(/etc/mk.conf)
 .include "/etc/mk.conf"
 .endif
