@@ -37,7 +37,6 @@ Examples:
 EOF
 }
 
-echo "=================================! $@"  1>/dev/tty
 if test $# -eq 0; then
     usage
     exit 1
@@ -60,6 +59,8 @@ while test $# -ne 0; do
 	-m)
 	    msg="$2"
 	    shift;;
+	-s)
+	    check_status=1;;
 	-*)
 	    echo "Bad option $1" 1>&2
 	    exit 1;;
@@ -107,17 +108,18 @@ compile (){
 }
 
 check_itself (){
-    printf 'CMD: $src_or_exe %s\n' "$cmd" > /dev/tty
     if test -x "$src_or_exe"; then
-	set | grep MKC 1>/dev/tty
-#	set +e
-	eval "$cmd"
-#	if eval "$cmd"; then
-#	    :
-#	else
-#	    echo 'no'
-#	fi
-#	set -e
+	if test -n "$check_status"; then
+	    set +e # workaround for buggy FreeBSD shell
+	    if eval "$cmd"; then
+		echo 1
+	    else
+		echo 0
+	    fi
+	    set -e # workaround for buggy FreeBSD shell
+	else
+	    eval "$cmd"
+	fi
 	return 0
     else
 	case "$src_or_exe" in
