@@ -6,6 +6,8 @@ glib_micro_version=N
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
@@ -25,6 +27,8 @@ glib_micro_version=N
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
