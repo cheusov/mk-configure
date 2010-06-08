@@ -143,7 +143,7 @@ mkc_printobjdir:
 ###########
 
 distclean: cleandir
-.if !defined(SUBDIR) && !commands(cleandir)
+.if !defined(SUBDIR) && !defined(SUBPRJ) && !commands(cleandir)
 cleandir: mkc_cleandir
 .endif
 
@@ -192,7 +192,9 @@ MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is
 LDLIBS=		${LDFLAGS} ${LDADD}
 
 ###########
-.ifndef SUBDIR # skip the following for mkc.subdir.mk
+# skip uninstalling files and creating destination dirs
+# for mkc.subdir.mk and mkc.subprj.mk
+.if !defined(SUBDIR) && !defined(SUBPRJ)
 
 .PHONY: uninstall
 uninstall:
@@ -208,8 +210,8 @@ test:
 
 .endif # SUBDIR
 
-TARGETS+=	all install \
-		clean cleandir depend installdirs uninstall errorcheck
+TARGETS+=	all install clean cleandir depend \
+		installdirs uninstall errorcheck
 ${TARGETS}:
 
 .endif # __initialized__
