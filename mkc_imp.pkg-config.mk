@@ -34,7 +34,7 @@ PKG_CONFIG.exists != env ${mkc.environ} mkc_check_custom \
     ${PROG.pkg-config} --print-errors --exists "${_lp}"
 
 .if !${PKG_CONFIG.exists}
-MKC_ERR_MSG+="%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}.err"
+MKC_ERR_MSG:= ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .else
 
 .if !defined(CPPFLAGS.pkg-config.${_ln})
