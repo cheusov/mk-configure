@@ -1,6 +1,10 @@
 ============================================================
 Plan 1)
 
+  MAKECONF, @sysconfigdir@/mk.conf, /etc/mk.conf
+
+  = Special variable always set for mkc.*.mk
+
   = Support for Lua (building C-based libraries (pkg-config))
 
   = mkc.subdir.mk - get changes from NetBSD-current.
