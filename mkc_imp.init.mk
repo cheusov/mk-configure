@@ -33,9 +33,9 @@ __initialized__=1
 
 ###########
 .if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
-.sinclude <mkc.ver.mk>
+.sinclude <mkc_imp.vars.mk>
 .else
-.include <mkc.ver.mk>
+.include <mkc_imp.vars.mk>
 .endif
 
 #.if defined(MKC_SHELL)

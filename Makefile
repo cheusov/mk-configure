@@ -47,7 +47,7 @@ FILES=	configure.mk mkc.configure.mk mkc.files.mk \
 	mkc.lib.mk mkc.prog.mk \
 	mkc.subdir.mk mkc.subprj.mk mkc.own.mk mkc_imp.intexts.mk \
 	mkc_check_common.sh \
-	mkc.minitest.mk mkc_imp.pkg-config.mk mkc.ver.mk \
+	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.vars.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
 	mkc_imp.subdir.mk mkc_imp.subprj.mk mkc_imp.sys.mk \
@@ -78,7 +78,7 @@ SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
 
-INFILES+=		configure.mk mkc.ver.mk
+INFILES+=		configure.mk mkc_imp.vars.mk
 INSCRIPTS+=		mkc_check_version mkcmake
 INTEXTS_SED+=		-e 's,@version@,${VERSION},g'
 INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
@@ -97,7 +97,7 @@ doc:
 ##################################################
 
 .PHONY: test
-test: configure.mk mkc.ver.mk mkc_check_version
+test: configure.mk mkc_imp.vars.mk mkc_check_version
 	@set -e; \
 	PATH=${.CURDIR}:${.OBJDIR}:$$PATH; \
 	BUILTINSDIR=${.CURDIR}/custom; \
