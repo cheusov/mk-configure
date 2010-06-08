@@ -26,14 +26,15 @@ MKC_REQUIRE_PROGS+=	pkg-config
 .if ${HAVE_PROG.pkg-config}
 
 .for l in ${PKG_CONFIG_DEPS}
-#_ln := ${l:C/[><=].*$//}
-_lp := ${l:C/(>=|<=|=|>|<)/ & /g}
+_lp= ${l:C/(>=|<=|=|>|<)/ & /g}
+_ln= ${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}
 
-PKG_CONFIG.exists != env ${mkc.environ} MKC_VERBOSE=1 mkc_check_custom -p pkgconfig -m '[pkg-config] ${_lp}' \
-    ${PROG.pkg-config} --print-errors --exists "${_lp}" 2>&1 | sed -e "s/'//g" -eq
+PKG_CONFIG.exists != env ${mkc.environ} mkc_check_custom \
+    -p pkgconfig -s -n ${_ln} -m '[pkg-config] ${_lp}' \
+    ${PROG.pkg-config} --print-errors --exists "${_lp}"
 
-.if ${PKG_CONFIG.exists} != ""
-MKC_ERR_MSG+="ERROR: ${PKG_CONFIG.exists:[2..-1]}"
+.if !${PKG_CONFIG.exists}
+MKC_ERR_MSG+="%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}.err"
 .else
 
 .if !defined(CPPFLAGS.pkg-config.${_ln})
