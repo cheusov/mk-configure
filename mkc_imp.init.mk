@@ -158,7 +158,11 @@ realall : errorcheck
 errorcheck:
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
-		if test -n "$$msg"; then printf '%s\n' "$$msg"; ex=1; fi; \
+		fn=`printf '%s\n' "$$msg" | sed -n 's/^%%%: //p'`; \
+		if test -n "$$fn"; then \
+		    awk '{print "ERROR: " $$0}' "$$fn"; \
+		elif test -n "$$msg"; then printf '%s\n' "$$msg"; ex=1; \
+		fi; \
 	    done; \
 	    exit $$ex; \
 	fi
