@@ -1,4 +1,46 @@
 ======================================================================
+Version 0.16.0, by Aleksey Cheusov, Tue,  8 Jun 2010 23:50:45 +0300
+
+  mkc.pkg-config.mk becomes an internal include file and therefore
+  has been renamed to mkc_imp.pkg-config.mk.
+  Symlink mkc.pkg-config.mk is provided for backward compatibility.
+  mkc_imp.pkg-config.mk is included by mkc.prog.mk and mkc.lib.mk.
+
+  Significant improvements to mkc_imp.pkg-config.mk.
+  See examples/hello_glib2 for the sample and mk-configure(7).
+
+  mkc.intexts.mk becomes an internal include file and therefore
+  has been renamed to mkc_imp.intexts.mk.
+  Symlink mkc.intexts.mk is provided for backward compatibility.
+
+  mkc.lib.mk:
+    - include mkc_imp.intexts.mk
+
+  mk-configure.7 is reorganized. Several internal include files
+  document their own variables.
+  Further improvements of man page are needed.
+
+  mkc_imp.subprj.mk:
+    - New variable SUBPRJ_DFLT. See mk-configure(7).
+
+  All boolean variables becomes case-insensitive.
+  That is "no", "No", "NO" and "nO" are equal.
+  The same for "yes", "Yes"...
+
+  mkc_imp.intexts.mk:
+    - New variable INTEXTS_REPLS. See mk-configure(7).
+
+  mkc.*.mk try to open ${MAKECONF}, @sysconfdir@/mk.conf and /etc/mk.conf.
+  This is now documented.
+
+  mkc_check_custom(1):
+    - New options: -p, -n, -m and -s.
+
+  Minor fixes and clean-ups in .mk files and regression tests.
+
+  New regression tests and examples.
+
+======================================================================
 Version 0.15.1, by Aleksey Cheusov, Fri, 28 May 2010 22:39:36 +0300
 
   FIX: in version 0.15.0 mkc.subprjs.mk was added, but it was not
