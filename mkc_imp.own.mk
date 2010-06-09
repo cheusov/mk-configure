@@ -119,6 +119,14 @@ MKOBJDIRS?=no
 
 MKSHARE?=yes
 
+MKDLL?=		no
+.if ${MKDLL:tl} == "yes"
+MKSHLIB?=	yes
+MKSTATICLIB?=	no
+MKPICLIB?=	no
+SHLIB_MAJOR?=	0
+SHLIB_MINOR?=	0
+.else
 MKPICLIB?=	no
 
 MKSTATICLIB?=	yes
@@ -127,6 +135,7 @@ MKSTATICLIB?=	yes
 MKSHLIB?=	yes
 .else
 MKSHLIB?=	no
+.endif
 .endif
 
 MKPROFILELIB?=	no
