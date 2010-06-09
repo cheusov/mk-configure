@@ -51,7 +51,6 @@ LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
     ${PROG.pkg-config} --libs "${_lp}"
 .endif # LDADD.pkg-config.${l}
 
-# _ln does not work in the following two lines :-(
 CPPFLAGS:=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
 LDADD:=		${LDADD}    ${LDADD.pkg-config.${_ln}}
 .endif # PROG || LIB
