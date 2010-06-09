@@ -31,6 +31,7 @@ OPTIONS:
    -n                   a part of cache filename, defaults to
                         `basename <source_file>` without extension
    -m                   A part of verbose message, defaults to -n args
+   -s                   exit status of executable will be check
 Examples:
    mkc_check_custom my_custom_test.c
    mkc_check_custom -r mmap_works_perfectly.c
