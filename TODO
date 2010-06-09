@@ -1,6 +1,18 @@
 ============================================================
 Plan 1)
 
+  = HELP!
+
+  = New example for MKDLL=yes, improve documentation for MKDLL
+
+  = MKDLL -> mk-configure(7)
+
+  = mkc_imp.lua.mk
+
+  = PKG_CONFIG.exists.<module>, PKG_CONFIG_VARS -> mk-configure(7)
+
+  = symlink to executables and/or libraries
+
   = Support for Lua (building C-based module)
 
   = mkc.subdir.mk - get changes from NetBSD-current.
