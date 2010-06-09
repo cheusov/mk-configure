@@ -6,8 +6,7 @@ Plan 1)
   = mkc.subdir.mk - get changes from NetBSD-current.
 
   = Improve mkc.pkg-config.mk
-    - Checking for glib-2.0>=2.22... [yes|no]
-    - Caching
+    - cross building (PKG_CONFIG_SYSROOT_DIR)
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
@@ -17,6 +16,9 @@ Plan 1)
   = Command line may be limited in size.
     Save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
+
+  = Single cache file as an automatically loaded (if exists)
+    bmake makefile.
 
   = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
     implementation is taken from mk-c.
@@ -36,7 +38,7 @@ Plan 1)
 
   = better support for cross-compilation
 
-  = shared libraries support for AIX, UnixWare, Hurd, Haiku and others.
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku.
   = shared libraries support for nwcc, mipspro and other compilers.
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
