@@ -3,6 +3,7 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
+.include <mkc_imp.lua.mk>
 .include <mkc_imp.init.mk>
 
 .if defined(MKC_BOOTSTRAP)
