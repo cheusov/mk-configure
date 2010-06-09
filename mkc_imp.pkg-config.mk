@@ -37,6 +37,7 @@ PKG_CONFIG.exists != env ${mkc.environ} mkc_check_custom \
 MKC_ERR_MSG:= ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .else
 
+.if defined(PROG) || defined(LIB)
 .if !defined(CPPFLAGS.pkg-config.${_ln})
 CPPFLAGS.pkg-config.${_ln} !=	${PROG.pkg-config} --cflags '${_lp}'
 .endif # CPPFLAGS.pkg-config.${l}
@@ -44,6 +45,7 @@ CPPFLAGS.pkg-config.${_ln} !=	${PROG.pkg-config} --cflags '${_lp}'
 .if !defined(LDADD.pkg-config.${_ln})
 LDADD.pkg-config.${_ln}    !=	${PROG.pkg-config} --libs '${_lp}'
 .endif # LDADD.pkg-config.${l}
+.endif # PROG || LIB
 
 # _ln does not work in the following two lines :-(
 CPPFLAGS+=	${CPPFLAGS.pkg-config.${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}}
