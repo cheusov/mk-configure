@@ -37,6 +37,7 @@ PKG_CONFIG.exists != env ${mkc.environ} mkc_check_custom \
 MKC_ERR_MSG:= ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .else
 
+# --cflags and --libs
 .if defined(PROG) || defined(LIB)
 .if !defined(CPPFLAGS.pkg-config.${_ln})
 CPPFLAGS.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
@@ -49,11 +50,17 @@ LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -n '${_ln}_libs' -m '[pkg-config] ${_lp} --libs' \
     ${PROG.pkg-config} --libs "${_lp}"
 .endif # LDADD.pkg-config.${l}
-.endif # PROG || LIB
 
 # _ln does not work in the following two lines :-(
-CPPFLAGS+=	${CPPFLAGS.pkg-config.${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}}
-LDADD+=		${LDADD.pkg-config.${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}}
+CPPFLAGS:=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
+LDADD:=		${LDADD}    ${LDADD.pkg-config.${_ln}}
+.endif # PROG || LIB
+
+.if !defined(LDADD.pkg-config.${_ln})
+LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
+    -p pkgconfig -n '${_ln}_libs' -m '[pkg-config] ${_lp} --libs' \
+    ${PROG.pkg-config} --libs "${_lp}"
+.endif # LDADD.pkg-config.${l}
 
 .endif # PKG-CONFIG.module.exists
 
