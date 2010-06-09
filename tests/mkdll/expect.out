@@ -1,0 +1,33 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/cxxlib.so
+/objdir/expect.out
+/objdir/hello_msg1.os
+/objdir/hello_msg2.os
+/objdir/mkdll.test.out.tmp
+========= install ==========
+/objdir/prefix
+/objdir/prefix/include
+/objdir/prefix/include/hello_msg.h
+/objdir/prefix/include/impl
+/objdir/prefix/include/impl/hello_msg1.h
+/objdir/prefix/include/impl/hello_msg2.h
+/objdir/prefix/lib
+/objdir/prefix/lib/cxxlib.so
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/expect.out
+/objdir/mkdll.test.out.tmp
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/mkdll.test.out.tmp
