@@ -106,8 +106,15 @@ _LIBS+=lib${LIB}_p.a
 _LIBS+=lib${LIB}_pic.a
 .endif # MKPICLIB
 
+MKDLL?=		no
+
 .if ${MKSHLIB:tl} != "no"
-_LIBS+=lib${LIB}${SHLIB_EXTFULL}
+.if ${MKDLL:tl} == "no"
+SHLIBFN=	lib${LIB}${SHLIB_EXTFULL}
+.else
+SHLIBFN=	${LIB}${SHLIB_EXT}
+.endif
+_LIBS+=		${SHLIBFN}
 .endif
 
 .NOPATH: ${_LIBS}
@@ -139,24 +146,23 @@ lib${LIB}_p.a:: ${POBJS} __archivebuild
 lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 	@${_MESSAGE_V} "building shared object ${LIB} library"
 
-lib${LIB}${SHLIB_EXTFULL}: ${SOBJS} ${DPADD}
-.if !commands(lib${LIB}${SHLIB_EXTFULL})
+${SHLIBFN}: ${SOBJS} ${DPADD}
+.if !commands(${SHLIBFN})
 	@${_MESSAGE_V} building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
-	@rm -f lib${LIB}.${SHLIB_EXTFULL}
+	@rm -f ${.TARGET}
 	@${_MESSAGE} "LD: ${.TARGET}"
 	${_V} $(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
-
-.if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}${SHLIB_EXT}
-	ln -sf lib${LIB}${SHLIB_EXTFULL} lib${LIB}${SHLIB_EXT1}
+.if ${OBJECT_FMT} == "ELF" && ${MKDLL} == "no"
+	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT}
+	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT1}
 .endif # ELF
 .endif # !commands(...)
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	${OBJS} ${POBJS} ${SOBJS} \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
-	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3}
+	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SHLIBFN}
 
 .if !target(libinstall)
 # Make sure it gets defined
@@ -200,23 +206,25 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 
    # MKSHLIB
 .if ${MKSHLIB:tl} != "no"
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-.PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-.PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL} \
-		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
-		${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
+libinstall:: ${DESTDIR}${LIBDIR}/${SHLIBFN}
+.PRECIOUS: ${DESTDIR}${LIBDIR}/${SHLIBFN}
+.PHONY: ${DESTDIR}${LIBDIR}/${SHLIBFN}
+UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/${SHLIBFN}
+.if ${MKDLL:tl} == "no"
+UNINSTALLFILES.lib+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
+			${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
+.endif
 
-${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
+${DESTDIR}${LIBDIR}/${SHLIBFN}: ${SHLIBFN}
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${SHLIBMODE} ${.ALLSRC} ${.TARGET}
-.if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR)
+.if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR) && ${MKDLL:tl} == "no"
 	/sbin/ldconfig -m ${LIBDIR}
 .endif
-.if ${OBJECT_FMT} == "ELF"
-	ln -sf lib${LIB}${SHLIB_EXTFULL}\
+.if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
+	ln -sf ${SHLIBFN} \
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
-	ln -sf lib${LIB}${SHLIB_EXTFULL}\
+	ln -sf ${SHLIBFN} \
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
 .endif
 .endif
@@ -224,7 +232,6 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 
 .include <mkc_imp.man.mk>
 .include <mkc_imp.info.mk>
-#.include <mkc_imp.nls.mk>
 .include <mkc_imp.files.mk>
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
@@ -234,5 +241,6 @@ ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}: lib${LIB}${SHLIB_EXTFULL}
 .include <mkc_imp.sys.mk>
 
 .include <mkc_imp.final.mk>
+#.include <mkc_imp.prog.mk> # dirty hack to support SCRIPTS, will be fixed soon
 
 .endif #_MKC_IMP_LIB_MK
