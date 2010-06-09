@@ -8,6 +8,10 @@ glib_micro_version=N
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.err
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_cflags.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_cflags.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_libs.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
@@ -29,6 +33,10 @@ glib_micro_version=N
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.err
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.10.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_cflags.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_cflags.res
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_libs.err
+/objdir/_mkc_pkgconfig_glib-2.0_ge_2.10_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_pkg-config.err
