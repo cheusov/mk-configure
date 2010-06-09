@@ -106,8 +106,6 @@ _LIBS+=lib${LIB}_p.a
 _LIBS+=lib${LIB}_pic.a
 .endif # MKPICLIB
 
-MKDLL?=		no
-
 .if ${MKSHLIB:tl} != "no"
 .if ${MKDLL:tl} == "no"
 SHLIBFN=	lib${LIB}${SHLIB_EXTFULL}
