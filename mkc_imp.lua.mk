@@ -4,7 +4,6 @@
 ############################################################
 
 # .endif for the next line is in the end of file
-.if !make(clean) && !make(cleandir) && !make(distclean)
 .if defined(LUA_LMODULES) || defined(LUA_CMODULE)
 
 PKG_CONFIG_DEPS+=	lua
@@ -38,4 +37,4 @@ MKC_REQUIRE_HEADERS+=	lua.h
 
 .endif # !empty(MKC_ERR_MSG)
 .endif # LUA_LMODULES) || LUA_CMODULE
-.endif # !make(clean) && !make(cleandir) && !make(distclean)
+
