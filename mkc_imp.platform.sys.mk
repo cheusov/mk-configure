@@ -322,9 +322,7 @@ SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
 ############################################################
 ############################################################
 
-.if defined(SHLIB_EXT) && !empty(SHLIB_EXT)
-
-.if ${SHLIB_EXT} == ".so" || ${SHLIB_EXT} == ".sl"
+.if ${SHLIB_EXT:U} == ".so" || ${SHLIB_EXT:U} == ".sl"
 
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1=	${SHLIB_EXT}.${SHLIB_MAJOR}
@@ -344,8 +342,6 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 SHLIB_EXTFULL=	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 
 .endif # SHLIB_EXT
-
-.endif # defined(SHLIB_EXT)
 
 ############################################################
 ############################################################

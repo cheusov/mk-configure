@@ -13,8 +13,8 @@ PKG_CONFIG_VARS.lua+=	INSTALL_LMOD
 FILES+=			${LUA_LMODULES}
 .for i in ${LUA_LMODULES}
 FILESDIR_${i}=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
-.endfor
-.endif
+.endfor # i
+.endif # defined(LUA_LMODULES)
 
 .if defined(LUA_CMODULE)
 PKG_CONFIG_VARS.lua+=	INSTALL_CMOD
@@ -27,7 +27,7 @@ MKSHLIB=		Yes
 MKDLL=			Yes
 LDCOMPILER=		Yes
 LIBDIR=			${PKG_CONFIG.var.lua.INSTALL_CMOD}
-.endif
+.endif # defined(LUA_LMODULES)
 
 .include <mkc_imp.pkg-config.mk>
 
@@ -37,4 +37,3 @@ MKC_REQUIRE_HEADERS+=	lua.h
 
 .endif # !empty(MKC_ERR_MSG)
 .endif # LUA_LMODULES) || LUA_CMODULE
-
