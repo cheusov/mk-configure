@@ -4,3 +4,4 @@ LUA_CMODULE=	baz
 SCRIPTS=	foobar
 
 .include <mkc.lib.mk>
+.include "test.mk"
