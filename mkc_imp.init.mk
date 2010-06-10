@@ -71,7 +71,7 @@ src_type+=	c
 
 src_type?=	0
 
-.if !empty(LDCOMPILER:M[Yy][Ye][Ss])
+.if ${LDCOMPILER:tl} == "yes"
 LDREAL?=	${CC}
 .endif
 
