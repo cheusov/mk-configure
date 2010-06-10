@@ -3,9 +3,7 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.include <mkc_imp.init.mk>
-
-.PHONY : test
+.PHONY : test all
 test: all
 	@echo 'Testing ${.CURDIR}... ' 1>&2; \
 	set -e; cd ${.CURDIR}; \
