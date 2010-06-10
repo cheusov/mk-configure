@@ -1,0 +1,33 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/hello_dll.test.out.tmp
+/objdir/plugin_foo.c
+/objdir/plugin_foo.os
+/objdir/plugin_foo.so
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/lib
+/objdir/prefix/lib/plugin_foo.so
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/hello_dll.test.out.tmp
+/objdir/plugin_foo.c
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello_dll.test.out.tmp
+/objdir/plugin_foo.c
+/objdir/test.mk

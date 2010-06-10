@@ -17,6 +17,7 @@ SUBDIR+=	hello_reqd
 SUBDIR+=	hello_cxx
 SUBDIR+=	hello_cxxlib
 SUBDIR+=	hello_dictd
+SUBDIR+=	hello_dll
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools
