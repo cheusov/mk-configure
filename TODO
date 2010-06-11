@@ -5,9 +5,6 @@ Plan 1)
 
   = Targets tgz, tbz, deb, rpm
 
-  = presentation.pdf:
-    - mk-c is extensible (slide for mkc_imp.lua.mk)
-
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
