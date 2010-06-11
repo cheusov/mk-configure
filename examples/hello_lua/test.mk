@@ -3,7 +3,7 @@ DISTCLEANDIRS+=	${.CURDIR}/usr
 .PHONY : test_output
 test_output:
 	@set -e; \
-	rm -rf ${.OBJDIR}${PREFIX}; \
+	rm -rf ${.OBJDIR}/usr; \
 	./foobar; \
 	\
 	echo =========== all ============; \
@@ -13,12 +13,12 @@ test_output:
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
-	find ${.OBJDIR}${PREFIX} -type f -o -type d | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	find ${.OBJDIR}/usr -type f -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \
 	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR}${PREFIX} -type f | \
+	find ${.OBJDIR}/usr -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
