@@ -103,7 +103,7 @@ __installpage: .USE
 .if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES:tl} != "no"
 realall: ${CATPAGES}
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
 UNINSTALLFILES+=	${destination_capages}
 INSTALLDIRS+=		${destination_capages:H}
@@ -124,7 +124,7 @@ catpages::
 # Rules for source page installation
 .if defined(MANPAGES) && !empty(MANPAGES)
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 UNINSTALLFILES+=	${destination_manpages}
 INSTALLDIRS+=		${destination_manpages:H}
@@ -194,14 +194,14 @@ ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 .endif
 
 installhtml:            ${destination_htmls}
 CLEANFILES+=		${HTMLPAGES}
 
-.if !empty(MKHTML:M[Yy][Ee][Ss])
+.if ${MKHTML:tl} == "yes"
 realinstall: installhtml
 realall: ${HTMLPAGES}
 UNINSTALLFILES+=	${destination_htmls}

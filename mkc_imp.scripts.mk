@@ -16,7 +16,7 @@ realinstall:	scriptsinstall
 realall: ${SCRIPTS}
 
 .if defined(SCRIPTS)
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
 UNINSTALLFILES+=	${destination_scripts}
 INSTALLDIRS+=		${destination_scripts:H}

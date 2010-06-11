@@ -13,7 +13,7 @@ _MKC_IMP_LIB_MK=1
 .include <mkc_imp.init.mk>
 
 .PHONY:		libinstall
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 realinstall:	libinstall
 INSTALLDIRS+=	${DESTDIR}${LIBDIR}
 UNINSTALLFILES+=${UNINSTALLFILES.lib}

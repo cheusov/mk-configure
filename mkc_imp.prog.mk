@@ -49,7 +49,7 @@ MAN=		${PROG}.1
 
 PROGNAME?=${PROG}
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_prog=	${DESTDIR}${BINDIR}/${PROGNAME}
 UNINSTALLFILES+=	${destination_prog}
 INSTALLDIRS+=		${destination_prog:H}

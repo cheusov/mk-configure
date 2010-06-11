@@ -10,7 +10,7 @@
 .PHONY:		linksinstall
 realinstall:	linksinstall
 
-.if defined(SYMLINKS) && !empty(SYMLINKS) && !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if defined(SYMLINKS) && !empty(SYMLINKS) && ${MKINSTALL:tl} == "yes"
 linksinstall::
 	@(set ${SYMLINKS}; \
 	 while test $$# -ge 2; do \
@@ -33,7 +33,7 @@ INSTALLDIRS +=    ${DESTDIR}${r:H}
 .endfor
 .endif
 
-.if defined(LINKS) && !empty(LINKS) && !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if defined(LINKS) && !empty(LINKS) && ${MKINSTALL:tl} == "yes"
 linksinstall::
 	@(set ${LINKS}; \
 	 echo ".include <mkc.own.mk>"; \

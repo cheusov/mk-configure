@@ -30,7 +30,7 @@ INFOFILES=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .if ${MKINFO:tl} != "no"
 realall: ${INFOFILES}
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 realinstall: infoinstall
 
 CLEANFILES+=	${INFOFILES}

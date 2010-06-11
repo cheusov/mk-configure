@@ -14,7 +14,7 @@ realinstall:	incinstall
 INCSSRCDIR?=	.
 CPPFLAGS+=	-I${INCSSRCDIR}
 
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
+.if ${MKINSTALL:tl} == "yes"
 destination_incs=${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
 incinstall:: ${destination_incs}
