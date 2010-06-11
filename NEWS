@@ -1,42 +1,49 @@
 ======================================================================
 Version 0.16.0, by Aleksey Cheusov, Tue,  8 Jun 2010 23:50:45 +0300
 
-  mkc.pkg-config.mk becomes an internal include file and therefore
-  has been renamed to mkc_imp.pkg-config.mk.
-  Symlink mkc.pkg-config.mk is provided for backward compatibility.
-  mkc_imp.pkg-config.mk is included by mkc.prog.mk and mkc.lib.mk.
+  Support for Lua programming language. See documentation for
+  mkc_imp.lua.mk in mk-configure(7).
 
-  Significant improvements to mkc_imp.pkg-config.mk.
-  See examples/hello_glib2 for the sample and mk-configure(7).
+  mkc.pkg-config.mk:
+    - Significant improvements! For details see
+      mk-configure(7) manual page and examples/hello_glib2 example.
+      New supported variables: PKG_CONFIG.exists.<lib>, PKG_CONFIG_VARS.<lib>
+      and PKG_CONFIG.var.<lib>.<var>.
+    - becomes internal include file and therefore
+      renamed to mkc_imp.pkg-config.mk.  Symlink mkc.pkg-config.mk is
+      provided for backward compatibility.  mkc_imp.pkg-config.mk is
+      included by mkc.prog.mk and mkc.lib.mk.
 
-  mkc.intexts.mk becomes an internal include file and therefore
-  has been renamed to mkc_imp.intexts.mk.
-  Symlink mkc.intexts.mk is provided for backward compatibility.
+  mkc.intexts.mk:
+    - becomes internal include file and therefore
+      renamed to mkc_imp.intexts.mk.
+      Symlink mkc.intexts.mk is provided for backward compatibility.
+      It is included from mkc.prog.mk, mkc.lib.mk and mkc.files.mk.
+    - New variable INTEXTS_REPLS. See mk-configure(7).
 
   mkc.lib.mk:
-    - include mkc_imp.intexts.mk
-
-  mk-configure.7 is reorganized. Several internal include files
-  document their own variables.
-  Further improvements of man page are needed.
+    - includes mkc_imp.intexts.mk
+    - supports SCRIPTS* variables (includes newly created mkc_imp.scripts.mk)
+    - New variable MKDLL for creating dinamically loaded libraries (<lib>.so).
 
   mkc_imp.subprj.mk:
     - New variable SUBPRJ_DFLT. See mk-configure(7).
+
+  mkc.*.mk try to open ${MAKECONF}, @sysconfdir@/mk.conf and /etc/mk.conf.
+  This is now documented.
+
+  mk-configure.7 is reorganized. Several internal include files
+  document their own variables.  Further improvements of man page are
+  needed.
 
   All boolean variables becomes case-insensitive.
   That is "no", "No", "NO" and "nO" are equal.
   The same for "yes", "Yes"...
 
-  mkc_imp.intexts.mk:
-    - New variable INTEXTS_REPLS. See mk-configure(7).
-
-  mkc.*.mk try to open ${MAKECONF}, @sysconfdir@/mk.conf and /etc/mk.conf.
-  This is now documented.
-
   mkc_check_custom(1):
     - New options: -p, -n, -m and -s.
 
-  Minor fixes and clean-ups in .mk files and regression tests.
+  Minor fixes and clean-ups in .mk files, tools and regression tests.
 
   New regression tests and examples.
 
