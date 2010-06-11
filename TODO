@@ -7,7 +7,6 @@ Plan 1)
     - mk-c is extensible (slide for mkc_imp.lua.mk)
     - slide for lua_alt_getopt.awk
     - Lua slides.
-    - mkc_imp.scripts.mk!!!
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
@@ -16,8 +15,6 @@ Plan 1)
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
-
-  = man page for mkc_check_compiler
 
   = Command line may be limited in size.
     Save defines to config.h and set HAVE_CONFIG_H to 1
@@ -62,6 +59,8 @@ Plan 1)
 
 ============================================================
 Plan2)
+
+  = man page for mkc_check_compiler
 
   = MKPIE for building Position Independent Executables
 
