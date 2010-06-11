@@ -14,9 +14,6 @@ Plan 1)
 
   = symlinks to executables and libraries
 
-  = Improve mkc.pkg-config.mk
-    - cross building (PKG_CONFIG_SYSROOT_DIR)
-
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
 
@@ -46,6 +43,8 @@ Plan 1)
     Sometimes it is easier...
 
   = better support for cross-compilation
+    - lalala
+    - mkc_imp.pkg-config.mk (PKG_CONFIG_SYSROOT_DIR)
 
   = shared libraries support for AIX, UnixWare, Hurd, Haiku.
   = shared libraries support for nwcc, mipspro and other compilers.
