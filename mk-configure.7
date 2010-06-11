@@ -376,30 +376,6 @@ is run by an unprivileged user, it defaults to
 .IP STRIPFLAG
 The flag passed to the install program to cause the binary
 to be stripped.
-.IP SCRIPTS
-A list of interpreter scripts (written in shell, awk, lua etc).
-These are installed like programs.
-.IP SCRIPTSNAME
-The name that the above program will be installed as, if
-different from ${SCRIPTS}.
-.IP SCRIPTSNAME_<script>
-Optional name to install <script> as. If <script> has a form
-<subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
-.IP SCRIPTSDIR
-Target directory for scripts.
-.IP SCRIPTSDIR_<script>
-Optional directory to install <script> to. If <script> has a form
-<subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
-.RI [ ${BINDIR} ]
-.IP SCRIPTSOWN
-Script files owner.
-.RI [ ${BINOWN} ]
-.IP SCRIPTSGRP
-Script file group.
-.RI [ ${BINGRP} ]
-.IP SCRIPTSMODE
-Script file mode.
-.RI [ ${BINMODE} ]
 .IP MKSHARE
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
@@ -1006,10 +982,41 @@ If set to 1, temporary files are removed.
 .IP MKC_NOCACHE
 All results are cached unless MKC_NOCACHE variable is set
 non-empty value
+.SS "mkc_imp.scripts.mk"
+.B mkc_imp.scripts.mk
+is internal include file which is included from
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
+Do not use it directly!
+It provides installing and uninstalling the scripts.
+The following variables are provided:
+.IP SCRIPTS
+A list of interpreter scripts (written in shell, awk, lua etc).
+These are installed like programs.
+.IP SCRIPTSNAME
+The name that the above program will be installed as, if
+different from ${SCRIPTS}.
+.IP SCRIPTSNAME_<script>
+Optional name to install <script> as. If <script> has a form
+<subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
+.IP SCRIPTSDIR
+Target directory for scripts.
+.IP SCRIPTSDIR_<script>
+Optional directory to install <script> to. If <script> has a form
+<subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
+.RI [ ${BINDIR} ]
+.IP SCRIPTSOWN
+Script files owner.
+.RI [ ${BINOWN} ]
+.IP SCRIPTSGRP
+Script file group.
+.RI [ ${BINGRP} ]
+.IP SCRIPTSMODE
+Script file mode.
+.RI [ ${BINMODE} ]
 .SS "mkc_imp.intexts.mk"
 .B mkc_imp.intexts.mk
 is internal include file which is included from
-.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.lib.mk .
+.BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly.
 It provides conversion of <fn>.in files to <fn> by
 expanding the following @@ patterns:
