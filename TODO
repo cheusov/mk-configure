@@ -10,8 +10,6 @@ Plan 1)
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
-  = mkc_imp.lua.mk
-
   = PKG_CONFIG.exists.<module>, PKG_CONFIG_VARS -> mk-configure(7)
 
   = symlink to executables and/or libraries
