@@ -14,8 +14,6 @@ Plan 1)
 
   = symlinks to executables and libraries
 
-  = Support for Lua (building C-based module)
-
   = Improve mkc.pkg-config.mk
     - cross building (PKG_CONFIG_SYSROOT_DIR)
 
