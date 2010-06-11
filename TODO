@@ -10,8 +10,6 @@ Plan 1)
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
-  = New example for MKDLL=yes, improve documentation for MKDLL
-
   = MKDLL -> mk-configure(7)
 
   = mkc_imp.lua.mk
