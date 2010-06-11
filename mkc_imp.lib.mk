@@ -231,6 +231,7 @@ ${DESTDIR}${LIBDIR}/${SHLIBFN}: ${SHLIBFN}
 .include <mkc_imp.man.mk>
 .include <mkc_imp.info.mk>
 .include <mkc_imp.files.mk>
+.include <mkc_imp.scripts.mk>
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
 .include <mkc_imp.intexts.mk>

@@ -12,8 +12,8 @@ _MKC_IMP_PROG_MK=1
 
 .include <mkc_imp.init.mk>
 
-.PHONY:		proginstall scriptsinstall
-realinstall:	proginstall scriptsinstall
+.PHONY:		proginstall
+realinstall:	proginstall
 
 CFLAGS+=	${COPTS}
 
@@ -69,40 +69,15 @@ ${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
 proginstall:
 .endif # defined(PROG)
 
-realall: ${PROG} ${SCRIPTS}
+realall: ${PROG}
 
 CLEANFILES+= a.out [Ee]rrs mklog core *.core \
 	    ${PROG} ${OBJS}
 
-.if defined(SCRIPTS)
-.if !empty(MKINSTALL:M[Yy][Ee][Ss])
-destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
-UNINSTALLFILES+=	${destination_scripts}
-INSTALLDIRS+=		${destination_scripts:H}
-.endif # MKINSTALL
-
-scriptsinstall:: ${destination_scripts}
-.PRECIOUS:       ${destination_scripts}
-.PHONY:          ${destination_scripts}
-
-__scriptinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
-	    -o ${SCRIPTSOWN_${.ALLSRC:T}:U${SCRIPTSOWN}} \
-	    -g ${SCRIPTSGRP_${.ALLSRC:T}:U${SCRIPTSGRP}} \
-	    -m ${SCRIPTSMODE_${.ALLSRC:T}:U${SCRIPTSMODE}} \
-	    ${.ALLSRC} ${.TARGET}
-
-.for S in ${SCRIPTS:O:u}
-${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}: ${S} __scriptinstall
-.endfor
-
-.else # defined(SCRIPTS)
-scriptsinstall:
-.endif # defined(SCRIPTS)
-
 .include <mkc_imp.man.mk>
 .include <mkc_imp.info.mk>
 .include <mkc_imp.files.mk>
+.include <mkc_imp.scripts.mk>
 .include <mkc_imp.inc.mk>
 .include <mkc_imp.links.mk>
 .include <mkc_imp.intexts.mk>
