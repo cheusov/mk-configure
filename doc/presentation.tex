@@ -492,13 +492,80 @@ cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libmaa
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% \begin{frame}[fragile,t]
-%%   \frametitle{LMDBG: rather comples real life example}
-%%   LMDBG is lightweight modular malloc debuger written in C, shell and AWK.
-%%   It consists of numerous scripts and one LD\_PRELOAD'ed library written in C.
-%%   \begin{enumerate}
-%%   \end{enumerate}
-%% \end{frame}
+\begin{frame}[fragile]
+  \frametitle{Example 6: Support for Lua programming language}
+
+  \begin{block}{Source code}
+  \begin{Code}{Makefile}
+SCRIPTS=  foobar foobarbaz # scripts written in Lua
+LUA\_LMODULES=  foo bar # modules written in Lua
+LUA\_CMODULE= baz # Lua module written in C
+
+.include <mkc.lib.mk>
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 6: Support for Lua programming language}
+
+  \begin{block}{How it works}
+  \begin{CodeNoLabel}
+\prompt{\$ mkcmake errorcheck}
+checking for program pkg-config...
+   /usr/pkg/bin/pkg-config
+checking for [pkg-config] lua... 1 (yes)
+checking for [pkg-config] lua --cflags...
+   -I/usr/pkg/include
+checking for [pkg-config] lua --libs...
+   -Wl,-R/usr/pkg/lib -L/usr/pkg/lib -llua -lm
+checking for [pkg-config] lua --variable=INSTALL_LMOD...
+   /usr/pkg/share/lua/5.1
+checking for [pkg-config] lua --variable=INSTALL_CMOD...
+   /usr/pkg/lib/lua/5.1
+checking for compiler type... gcc
+checking for program cc... /usr/bin/cc
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 6: Support for Lua programming language}
+
+  \begin{block}{How it works}
+  \begin{CodeNoLabel}
+\prompt{\$ export PREFIX=/usr/pkg}
+\prompt{\$ mkcmake all}
+cc    -I/usr/pkg/include  -I/usr/pkg/include -c
+   -fPIC -DPIC baz.c -o baz.os
+building shared baz library (version 1.0)
+cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
+   -Wl,-R/usr/pkg/lib -L/usr/pkg/lib -llua -lm
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 6: Support for Lua programming language}
+
+  \begin{block}{How it works}
+  \begin{CodeNoLabel}
+\prompt{\$ mkcmake installdirs install DESTDIR=/tmp/fakeroot}
+    ...
+\prompt{\$ find /tmp/fakeroot -type f}
+/tmp/fakeroot/usr/pkg/bin/foobar
+/tmp/fakeroot/usr/pkg/lib/lua/5.1/baz.so
+/tmp/fakeroot/usr/pkg/share/lua/5.1/foo.lua
+/tmp/fakeroot/usr/pkg/share/lua/5.1/bar.lua
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
