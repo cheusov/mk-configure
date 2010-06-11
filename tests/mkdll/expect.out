@@ -6,8 +6,11 @@
 /objdir/_mkc_prog_cxx.res
 /objdir/cxxlib.so
 /objdir/expect.out
+/objdir/hello_msg1.o
 /objdir/hello_msg1.os
+/objdir/hello_msg2.o
 /objdir/hello_msg2.os
+/objdir/libcxxlib.a
 /objdir/mkdll.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -18,6 +21,7 @@
 /objdir/prefix/include/impl/hello_msg2.h
 /objdir/prefix/lib
 /objdir/prefix/lib/cxxlib.so
+/objdir/prefix/lib/libcxxlib.a
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile

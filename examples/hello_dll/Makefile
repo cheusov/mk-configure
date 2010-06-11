@@ -1,6 +1,6 @@
 LIB=	plugin_foo
 
-MKDLL=	Yes
+MKDLL=	only
 
 .include "test.mk"
 .include <mkc.lib.mk>

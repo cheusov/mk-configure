@@ -120,24 +120,25 @@ MKOBJDIRS?=no
 MKSHARE?=yes
 
 MKDLL?=		no
-.if ${MKDLL:tl} == "yes"
-MKSHLIB?=	yes
+.if ${MKDLL:tl} == "only"
+MKDLL=		yes
 MKSTATICLIB?=	no
-MKPICLIB?=	no
+.else
+MKSTATICLIB?=	yes
+.endif # MKDLL
+
+.if ${MKDLL:tl} != "no"
 SHLIB_MAJOR?=	0
 SHLIB_MINOR?=	0
-.else
-MKPICLIB?=	no
-
-MKSTATICLIB?=	yes
+.endif # MKDLL
 
 .if defined(SHLIB_MAJOR)
 MKSHLIB?=	yes
 .else
 MKSHLIB?=	no
-.endif
-.endif
+.endif # SHLIB_MAJOR
 
+MKPICLIB?=	no
 MKPROFILELIB?=	no
 
 .endif		# _BSD_OWN_MK_
