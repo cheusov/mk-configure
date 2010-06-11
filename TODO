@@ -1,14 +1,12 @@
 ============================================================
 Plan 1)
 
-  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
-
   = Targets tgz, tbz, deb, rpm
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
-  = symlinks to executables and libraries
+  = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
@@ -26,15 +24,9 @@ Plan 1)
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
-  = (U/ser) and (D/eveloper) markers for variables in mk-configure.7
+  = (U/ser, D/eveloper, M/akefile) markers for variables in mk-configure.7
 
   = Online tutorial
-
-  = PROGS= a b c d
-    SRCS.a = ...
-    SRCS.b = ...
-
-    Sometimes it is easier...
 
   = better support for cross-compilation
     - lalala
@@ -54,8 +46,14 @@ Plan 1)
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
 
+  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
+
 ============================================================
 Plan2)
+
+  = PROGS= a b c d
+    SRCS.a = ...
+    SRCS.b = ...
 
   = man page for mkc_check_compiler
 
