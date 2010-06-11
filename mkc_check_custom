@@ -153,8 +153,7 @@ check_itself (){
 
 ##################################################
 # test
-
-msg=${msg-custom test $basefn}
+msg=${msg-"custom test $basefn"}
 check_and_cache "checking for ${msg}" "$cache"
 
 ##################################################
