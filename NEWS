@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.16.0, by Aleksey Cheusov, Tue,  8 Jun 2010 23:50:45 +0300
+Version 0.16.0, by Aleksey Cheusov, Sat, 12 Jun 2010 01:58:47 +0300
 
   Support for Lua programming language. See documentation for
   mkc_imp.lua.mk in mk-configure(7).
