@@ -15,9 +15,6 @@ realinstall:	proginstall
 
 CFLAGS+=	${COPTS}
 
-# here is where you can define what LIB* are
-.-include <libnames.mk>
-
 .if defined(PROG)
 
 DPSRCS+=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
