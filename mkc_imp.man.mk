@@ -20,11 +20,11 @@ MKMAN=no
 MKCATPAGES=no
 .endif
 
-.if defined(USETBL) && !empty(USETBL:M[Nn][Oo])
+.if defined(USETBL) && ${USETBL:U:tl} == "no"
 .undef USETBL
 .endif
 
-.if defined(MANZ) && !empty(MANZ:M[Nn][Oo])
+.if defined(MANZ) && ${MANZ:U:tl} == "no"
 .undef MANZ
 .endif
 
