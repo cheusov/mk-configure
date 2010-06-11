@@ -12,11 +12,9 @@ Plan 1)
 
   = PKG_CONFIG.exists.<module>, PKG_CONFIG_VARS -> mk-configure(7)
 
-  = symlink to executables and/or libraries
+  = symlinks to executables and libraries
 
   = Support for Lua (building C-based module)
-
-  = mkc.subdir.mk - get changes from NetBSD-current.
 
   = Improve mkc.pkg-config.mk
     - cross building (PKG_CONFIG_SYSROOT_DIR)
