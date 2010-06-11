@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
+
   = presentation.pdf:
     - mk-c is extensible (slide for mkc_imp.lua.mk)
     - slide for lua_alt_getopt.awk

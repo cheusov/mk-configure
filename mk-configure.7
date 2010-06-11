@@ -1191,7 +1191,15 @@ program. As a result CPPFLAGS and LDADD variables are modified according
 to "pkg-config --cflags ..." and "pkg-config --libs ...".
 The following variables are provided:
 .IP PKG_CONFIG_DEPS
-List of libraries.
+List of dependency libraries. Spaces around <=, >=, =, < and > are not allowed.
+.IP PKG_CONFIG.exists.<lib>
+If "1", <lib> exists, "0" otherwise.
+Inside <lib> <=, >=, =, < and > and replaced with
+_le_, _ge_, _eq_, _lt_ and _gt_ respectively.
+.IP PKG_CONFIG_VARS.<lib>
+List of variables to check for library <lib>.
+.IP PKG_CONFIG.var.<lib>.<var>
+Variable value (pkg-config --variable=<var> <lib>).
 .SH "SEE ALSO"
 .BR mkc_check_header (1),
 .BR mkc_check_prog (1),

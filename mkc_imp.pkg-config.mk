@@ -27,7 +27,7 @@ MKC_REQUIRE_PROGS+=	pkg-config
 
 .for l in ${PKG_CONFIG_DEPS}
 _lp= ${l:C/(>=|<=|=|>|<)/ & /g}
-_ln= ${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/}
+_ln= ${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
 PKG_CONFIG.exists.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -s -n '${_ln}' -m '[pkg-config] ${_lp}' \
