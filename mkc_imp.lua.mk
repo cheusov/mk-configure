@@ -22,6 +22,8 @@ LIB=			${LUA_CMODULE}
 SRCS?=			${LUA_CMODULE}.c
 MKDLL=			Only
 LDCOMPILER=		Yes
+# The following Line is for Darwin
+#SHLIB_EXT=		.so
 LIBDIR=			${PKG_CONFIG.var.lua.INSTALL_CMOD}
 .endif # defined(LUA_LMODULES)
 
