@@ -8,6 +8,9 @@ Plan 1)
 
   = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
 
+  = presentartion.pdf:
+    - graph of tools based on mk files and mk-c
+
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
 

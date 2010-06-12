@@ -628,8 +628,10 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
   \item Cross-building. mk-configure itself doesn't run produced
     executables, so you can freely use cross-tools (compiler, linker
     etc.).  Also you can override any variable initialized by mk-configure.
-  \item Partial support for pkg-config
-    (\ModuleName{mkc.pkg-config.mk}).
+  \item Support for pkg-config
+    (\ModuleName{mkc\_imp.pkg-config.mk}).
+  \item Support for Lua programming language
+    (\ModuleName{mkc\_imp.lua.mk}).
   \item Support for yacc and lex.
   \item Support for projects with multiple subprojects
     (\ModuleName{mkc.subprj.mk} and \ModuleName{mkc.subdir.mk}).
@@ -643,7 +645,7 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
   \frametitle{Features}
   \begin{block}{}
   \begin{enumerate}
-    \setcounter{enumi}{10}
+    \setcounter{enumi}{11}
     \item Parts of mk-configure functionality is
       accesible via individual programs, e.g.  \ProgName{mkc\_install},
       \ProgName{mkc\_check\_compiler},
