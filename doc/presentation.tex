@@ -2,6 +2,8 @@
 
 \usepackage{fancyvrb,relsize}
 
+\usepackage{graphicx}
+
 \setbeamertemplate{navigation symbols}{}
 
 %\usetheme{Boadilla}
@@ -705,6 +707,18 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
     \item ...
     \end{itemize}
   \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{MK-CONFIGURE in real world}
+  \begin{block}{Real life samples of use (my software projects using
+      mk-configure and Mk files)}
+    \begin{figure}
+      \includegraphics[width=\textwidth, keepaspectratio=false]{my_prjs.eps}
+    \end{figure}
   \end{block}
 \end{frame}
 

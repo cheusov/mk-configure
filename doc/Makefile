@@ -8,13 +8,18 @@ pdf : presentation.pdf
 ps  : presentation.ps
 dvi : presentation.dvi
 
-.SUFFIXES: .ps .pdf .dvi .tex
+.SUFFIXES: .ps .eps .pdf .dvi .tex .dot
 
-#.ps.pdf:
-#	ps2pdf "$<" "$@"
+presentation.ps presentation.pdf presentation.dvi: my_prjs.eps
 
-.tex.pdf:
-	pdflatex "$<" && pdflatex "$<"
+.ps.pdf:
+	ps2pdf "$<" "$@"
+
+#.tex.pdf:
+#	pdflatex "$<" && pdflatex "$<"
+
+.dot.eps:
+	dot -Tps ${.IMPSRC} > ${.TARGET}
 
 .dvi.ps:
 	dvips $<
@@ -31,5 +36,8 @@ CLEANFILES+=	${GARBAGE} *.pdf *.ps
 .PHONY: clean-garbage
 clean-garbage:
 	rm -f ${GARBAGE}
+
+clean:
+	-rm -f *.toc *.vrb *.ps *.pdf *.eps *.out *.nav *.log *.dvi *.aux *.snm
 
 ##################################################

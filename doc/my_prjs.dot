@@ -1,0 +1,15 @@
+digraph FSA {
+   graph [ ratio=compress layout=dot rankdir=UB ];
+   node [ shape = diamond style=filled ];
+   "mk-configure" -> "lmdbg";
+   node [ shape = box ];
+   "runawk" -> "pkg_summary-utils";
+   "runawk" -> "lmdbg";
+   "awk-pkgsrc-dewey" -> "pkg_summary-utils";
+   "pkg_summary-utils" -> "distbb";
+   "paexec"            -> "distbb";
+   "pkg_summary-utils" -> "pkg_online";
+   "pkg_summary-utils" -> "pkg_conflicts";
+   "pkg_summary-utils" -> "pkg_status";
+   "lua-alt-getopt";
+}
