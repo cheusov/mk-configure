@@ -1,6 +1,10 @@
 ============================================================
 Plan 1)
 
+  = support for POD?
+
+  = mkclint?
+
   = Targets tgz, tbz, deb, rpm
 
   = mkc_imp.sub{dir,prj}.mk
@@ -37,6 +41,13 @@ Plan 1)
 
   = shared libraries support for AIX, UnixWare, Hurd, Haiku.
   = shared libraries support for nwcc, mipspro and other compilers.
+
+  = CFLAGS.warns.<cctype>.<warn-level> and
+    CXXFLAGS.warns.<cxxtype>.<warn-level>?
+
+  = CC_TYPE, CXX_TYPE and LD_TYPE
+
+  = xxxDIR variable for /var
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
