@@ -80,12 +80,12 @@ CLEANFILES+=		configure.mk *.cat1 *.html1
 
 INFILES+=		configure.mk mkc_imp.vars.mk
 INSCRIPTS+=		mkc_check_version mkcmake
-INTEXTS_SED+=		-e 's,@version@,${VERSION},g'
-INTEXTS_SED+=		-e 's,@AWK@,${AWK},g'
-INTEXTS_SED+=		-e 's,@BMAKE@,${BMAKE},g'
-INTEXTS_SED+=		-e 's,@mkfilesdir@,${MKFILESDIR},g'
-INTEXTS_SED+=		-e 's,@syscustomdir@,${BUILTINSDIR},g'
-INTEXTS_SED+=		-e 's,@mkc_libexecdir@,${LIBEXECDIR},g'
+INTEXTS_REPLS+=		version        ${VERSION}
+INTEXTS_REPLS+=		AWK            ${AWK}
+INTEXTS_REPLS+=		BMAKE          ${BMAKE}
+INTEXTS_REPLS+=		mkfilesdir     ${MKFILESDIR}
+INTEXTS_REPLS+=		syscustomdir   ${BUILTINSDIR}
+INTEXTS_REPLS+=		mkc_libexecdir ${LIBEXECDIR}
 
 CVSDIST_TARGETS=	doc
 
