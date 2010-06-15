@@ -46,9 +46,11 @@ Q: You say that portability is one of the main goal of your
 A: I know very well how broken POSIX tools may be on some OSes and
    hardware platforms.  At the moment mk-configure supports the
    following platforms: NetBSD, Linux, FreeBSD, DragonFlyBSD, Darwin,
-   and Solaris.  If you find a bug please let me know. Also note that
-   mk-configure has regression tests. I don't make releases without
-   testing on all platforms available to me.
+   HP-UX, Tru64, QNX, OpenBSD, Interix, Cygwin, MirOS BSD and Solaris.
+   If you find a bug please let me know. Also note that
+   mk-configure has lots of regression tests.
+   I don't make releases without testing on all platforms
+   available to me.
 
 ----------------------------------------------------------------------
 Q: You just didn't read autobook and don't know how to use GNU
@@ -70,12 +72,11 @@ A: bmake is a portable version of NetBSD make that supports at least
    AIX, HP-UX, QNX, A/UX, OSF/1, Darwin, Interix, UnixWare and IRIX.
 
 ----------------------------------------------------------------------
-Q: NetBSD make? Then why not to support FreeBSD/OpenBSD makes? Are they
-   different?
+Q: NetBSD make? Then why not to support FreeBSD/OpenBSD makes?
 
-A: Yes, they are different and NetBSD make provides much more useful
-   features. More over, NetBSD and Free/OpenBSD are incompatible in
-   some aspects and have very different mk-files.
+A: OpenBSD and FreeBSD make(1)s are different and NetBSD make
+   is more powerful. More over, NetBSD and Free/OpenBSD make(1)s are
+   incompatible in some aspects and have very different mk-files.
 
 ----------------------------------------------------------------------
 Q: Learning yet another make doesn't look like a good idea to me.
@@ -86,10 +87,10 @@ A: First, bmake is easy. Learning it doesn't require too much time.
    bmake is MUCH simplier than e.g. Python (see scons).  I also
    assume that every UNIX programmer knows the basic make
    concepts. Second, software building rules are usually rather simple
-   and therefore you need not be an expert in bmake for writing them.
+   and therefore you need not be an expert in bmake for writing Makefiles.
    If building rules for your project are extremely complex, maybe the
-   problem is with your project, try to simplify them ;-)
-   Moreover, mk-configure distribution provides several examples in
+   problem is with your project, try to simplify it ;-)
+   Moreover, mk-configure provides several examples in
    examples/ subdirectory.  I hope they simplify learning mk-configure
    significantly.
 
@@ -98,9 +99,9 @@ Q: Yet another build automation software makes a packager's life
    harder.
 
 A: Not a big problem. First, packagers are specialists. They should
-   learn new things every time ;-) . Second, adding support for
-   mk-configure is not a problem because it works on top of well-known
-   mk-files.  Look at pkgsrc (www.pkgsrc.org) for example. Makefiles
+   learn new things every time ;-) . Adding support for
+   mk-configure into your packaging system should not be a problem.
+   Have a look at pkgsrc (www.pkgsrc.org) for examples. Makefiles
    for projects based on GNU autotools require the line
 
      GNU_CONFIGURE = yes
@@ -109,7 +110,7 @@ A: Not a big problem. First, packagers are specialists. They should
 
      USE_CMAKE = yes
 
-   Projects using mk-files or mk-configure require
+   Projects using mk-files require
 
      USE_BSD_MAKEFILE = yes
 
@@ -122,11 +123,11 @@ Q: Why NetBSD bmake was chosen? Why not "standard" GNU make?  Today
    course NetBSD. Most programmers using Linux use GNU make. Without
    support of Linux developers your project is dead.
 
-A: NetBSD make was chosen for the following reasons: when I started
+A: NetBSD make was chosen for the following reasons: 1) when I started
    mk-configure I could not find good analogs for mk-files written for
-   GNU make; in my view bmake is simpler and more convenient for use
-   than GNU make; I hate gmake's foreach/eval/call construct, bmake's
-   .for/.endfor is MUCH more convenient and easier; gmake
+   GNU make; 2) in my view bmake is simpler and more convenient for use
+   than GNU make; 3) I hate gmake's foreach/eval/call construct, bmake's
+   .for/.endfor is MUCH more convenient and easier to use; 4) gmake
    starts finding includes starting from CWD, this is terrible, bmake
    starts searching for "includes" starting from the including
    makefile's directory. Note that mk-configure and mk-files widely use
@@ -138,9 +139,9 @@ A: NetBSD make was chosen for the following reasons: when I started
 
 ----------------------------------------------------------------------
 Q: It's time to bury ALL make-like programs.
-   Use modern make replacement, Luke.
+   Use modern make replacements, Luke.
 
-A: It's true that make-like programs do have some limitations.
+A: It's true that make-like programs have some limitations.
    But none of them seem critical to me.
    I'm quite happy with traditional makes (NetBSD make and GNU make).
 
@@ -160,15 +161,15 @@ A: Yes, I don't see significant difference between setting paths and
 
      .sinclude "my_local_settings.mk"
 
-   to the Makefile and write your settings down to that file. Then
+   to Makefile and write your settings down to that file. Then
    your local build options will take effect every time you run
    bmake. Easy?
 
-   If you don't like .sinclude the way described above you can use
+   If you don't like .sinclude you can use
 
      bmake -f my_local_settings.mk -f Makefile
 
-   The interactive shell's aliases and functions might help to make
+   command. Interactive shell's aliases and functions might help to make
    things easier.
 
 ----------------------------------------------------------------------
@@ -203,10 +204,12 @@ A: *** THIS IS NOT IMPLEMENTED YET ***
 Q: It's known that libxxx has different places in different Linux
    distributions. Can mk-configure find it automatically?
 
-A: No. In my opinion software build tools MUST NOT have an artificial
+A: No. Software build tools MUST NOT have an artificial
    intelligence inside.  If you need libxxx tell mk-configure correct
    CPPFLAGS (-I/headers/here) and LDFLAGS (-L/libraries/here).
-   This is how it works.
+   This is how it works. mk-configure will not search for includes
+   in /usr/local, /opt/sfw or anywhere unless you ask it to do so
+   explicitely.
 
 ----------------------------------------------------------------------
 Q: As far as I can see your mk-configure doesn't support ALL features
@@ -228,10 +231,10 @@ Q: GNU autotools provides two-phase project builds and this is a good
    idea. mk-configure lacks support for it.
 
 A: I personally don't like two-phase ideology. I see one phase
-   "build the software taking into account my platform's features". BTW,
-   if you need a separate "configuration" stage, run
+   "build the software taking into account my platform's features".
+   If you want to check for errors first, run
 
-    bmake configure
+    bmake errorcheck
 
 ----------------------------------------------------------------------
 Q: Does mk-configure support caching?
@@ -239,10 +242,10 @@ Q: Does mk-configure support caching?
 A: If you mean caching of the platform features, my answer is YES.
    Look at _mkc_* files and documentation for MKC_CACHEDIR variable.
    If you mean caching of object files, then NO. This is not
-   mk-configure task. For this use distcc(1) or similar projects.
+   mk-configure's task. For this use distcc(1) or similar projects.
 
 ----------------------------------------------------------------------
-Q: mk-configure lacks support for pkg-config, Qt/KDE etc.
+Q: mk-configure lacks support for Qt/KDE etc.
 
 A: Software is developed step-by-step. If you need something, let me
    know. I'll implement missed features in future releases of
@@ -254,10 +257,10 @@ Q: mk-configure lacks support for my favourite
 
 A: First, let me know about it. Second, nobody prevents you from
    creating rules for your language directly in Makefile or in your
-   own (local to your project) module.
+   own (local to your project) include file.
 
 ----------------------------------------------------------------------
-Q: How about integration of mk-configure with Eclipse or...
+Q: How about integration of mk-configure to Eclipse or...
 
 A: I don't use such IDEs but I agree it whould be nice to have such
    support. We are humans and therefore we can talk to each
@@ -270,6 +273,7 @@ Q: I want to build many executables in one subdirectory.
 A: mk-configure works like this: at most one compilable application or
    library per directory. At first sight this is limitation but in my
    view this makes a project cleaner and easier maintainable.
+   Have a look at mkc.subprj.mk and mkc.subdir.mk include files.
 
 ----------------------------------------------------------------------
 Q: It looks like mk-configure is suitable for small-sized projects
