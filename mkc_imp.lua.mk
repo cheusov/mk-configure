@@ -29,7 +29,7 @@ LIBDIR=			${PKG_CONFIG.var.lua.INSTALL_CMOD}
 
 .include <mkc_imp.pkg-config.mk>
 
-.if !empty(MKC_ERR_MSG)
+.if empty(MKC_ERR_MSG)
 
 MKC_REQUIRE_HEADERS+=	lua.h
 

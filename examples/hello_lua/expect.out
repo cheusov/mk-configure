@@ -3,6 +3,9 @@ foobarbaz
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_lua_h.c
+/objdir/_mkc_header_lua_h.err
+/objdir/_mkc_header_lua_h.res
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
 /objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.err
@@ -44,6 +47,9 @@ foobarbaz
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_lua_h.c
+/objdir/_mkc_header_lua_h.err
+/objdir/_mkc_header_lua_h.res
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
 /objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.err
