@@ -21,4 +21,8 @@ digraph FSA {
 
    "dictd" -> "pkg_online";
    "pipestatus" -> "pkg_summary-utils";
+
+ node [ skew=-0.5 ];
+
+   "judyhash";
 }
