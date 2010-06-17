@@ -149,7 +149,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 	@${_MESSAGE} "LD: ${.TARGET}"
 	${_V} $(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
-.if ${OBJECT_FMT} == "ELF" && ${MKDLL} == "no"
+.if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
 	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT}
 	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT1}
 .endif # ELF
