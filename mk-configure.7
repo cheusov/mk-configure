@@ -232,6 +232,40 @@ Required version of
 If a required version is not found,
 .B bmake
 fails.
+.IP CC_TYPE
+C compiler type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the following values:
+.VS
+Value     Description
+----------------------
+gcc       GNU C/C++ compiler
+pcc       Portable C compiler
+icc       Intel C/C++ compiler
+msc       Microsoft C/C++ compiler
+hpc       HP-UX C/C++ compiler
+sunpro    SUNWspro C/C++ compiler
+ibmc      IBM C/C++ compiler (Visual Age for C/C++?)
+bcc       Borland C/C++ compiler
+watcom    Watcom C/C++ compiler
+como      COMO C/C++ compiler
+decc      DEC C
+mipspro   MIPSpro C compiler
+.VE
+.IP CXX_TYPE
+C++ compiler type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the same values as CC_TYPE variable.
+.IP LD_TYPE
+Linker type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the following values:
+.VS
+Value     Description
+----------------------
+scold
+aixld
+.VE
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
