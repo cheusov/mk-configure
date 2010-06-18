@@ -1,3 +1,5 @@
 #!/bin/sh
 
-@BMAKE@ -m @mkfilesdir@ "$@"
+BMAKE=${MKC_BMAKE-@BMAKE@}
+
+$BMAKE -m @mkfilesdir@ "$@"
