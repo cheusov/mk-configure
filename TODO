@@ -15,9 +15,6 @@ Plan 1)
   = mkcmake:
     environment variable for BMAKE.
 
-  = presentartion.pdf:
-    - graph of tools based on mk files and mk-c
-
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
 
