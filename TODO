@@ -12,6 +12,9 @@ Plan 1)
 
   = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
 
+  = mkcmake:
+    environment variable for BMAKE.
+
   = presentartion.pdf:
     - graph of tools based on mk files and mk-c
 
