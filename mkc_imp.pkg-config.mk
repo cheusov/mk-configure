@@ -65,7 +65,8 @@ PKG_CONFIG.var.${_ln}.${i} != env ${mkc.environ} mkc_check_custom \
 
 .endif # PKG-CONFIG.exists
 
-.endfor # .for l
+.endfor # .for l in PKG_CONFIG_DEPS
+.undef PKG_CONFIG_DEPS
 
 .undef _ln
 .undef _lp
