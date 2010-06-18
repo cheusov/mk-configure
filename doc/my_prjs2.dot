@@ -1,0 +1,12 @@
+digraph FSA {
+ graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
+
+ node [ shape = box style=filled fonsize=18 ];
+
+   "lua-alt-getopt";
+
+ node [ shape=oval style=solid ];
+
+   "judyhash";
+   "dictem";
+}

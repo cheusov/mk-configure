@@ -7,7 +7,6 @@ digraph FSA {
 
  node [ shape = box ];
 
-   "lua-alt-getopt";
    "runawk" -> "pkg_summary-utils";
    "runawk" -> "lmdbg";
    "awk-pkgsrc-dewey" -> "pkg_summary-utils";
@@ -22,7 +21,4 @@ digraph FSA {
    "dictd" -> "pkg_online";
    "pipestatus" -> "pkg_summary-utils";
 
- node [ skew=-0.5 ];
-
-   "judyhash";
 }
