@@ -1,6 +1,11 @@
 ============================================================
 Plan 1)
 
+  = mkc_imp.lua.mk
+    INSTALL_LMOD and INSTALL_CMOD must not be empty!
+
+  = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
+
   = support for POD?
 
   = mkclint?
@@ -11,9 +16,6 @@ Plan 1)
     - subprojects to exclude from target "all:".
 
   = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
-
-  = mkcmake:
-    environment variable for BMAKE.
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
