@@ -45,8 +45,6 @@ Plan 1)
   = CFLAGS.warns.<cctype>.<warn-level> and
     CXXFLAGS.warns.<cxxtype>.<warn-level>?
 
-  = CC_TYPE, CXX_TYPE and LD_TYPE
-
   = xxxDIR variable for /var
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
