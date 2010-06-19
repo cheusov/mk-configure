@@ -1,6 +1,16 @@
 ============================================================
 Plan 1)
 
+  mk-configure.7:
+    MAKECONF, /etc/mk.conf, @sysconfdir@/mk-configure
+
+  = xxxDIR variable for /var
+  = SBINDIR variable
+  = variable for switch on/off gcc's -Werror
+
+  = README/INSTALL
+    - section REQUIREMENTS (mkdep, pkg-config, ar, tar, gzip, bzip2...)
+
   = mkc_imp.lua.mk
     INSTALL_LMOD and INSTALL_CMOD must not be empty!
 
@@ -46,8 +56,6 @@ Plan 1)
 
   = CFLAGS.warns.<cctype>.<warn-level> and
     CXXFLAGS.warns.<cxxtype>.<warn-level>?
-
-  = xxxDIR variable for /var
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
