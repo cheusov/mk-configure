@@ -1240,6 +1240,14 @@ _le_, _ge_, _eq_, _lt_ and _gt_ respectively.
 List of variables to check for library <lib>.
 .IP PKG_CONFIG.var.<lib>.<var>
 Variable value (pkg-config --variable=<var> <lib>).
+.SH "ENVIRONMENT VARIABLES"
+.IP MAKECONF
+Path to mk.conf file .include-d by mkc.*.mk files
+.SH "FILES"
+.IP @sysconfdir@/mk.conf
+ .include-d by mkc.*.mk if exists
+.IP /etc/mk.conf
+ .include-d by mkc.*.mk if exists
 .SH "SEE ALSO"
 .BR mkc_check_header (1),
 .BR mkc_check_prog (1),

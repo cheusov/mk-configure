@@ -1,9 +1,6 @@
 ============================================================
 Plan 1)
 
-  mk-configure.7:
-    MAKECONF, /etc/mk.conf, @sysconfdir@/mk-configure
-
   = xxxDIR variable for /var
   = SBINDIR variable
   = variable for switch on/off gcc's -Werror
