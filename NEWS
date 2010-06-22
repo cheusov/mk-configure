@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.17.0, by Aleksey Cheusov, Tue, 22 Jun 2010 19:24:07 +0300
+Version 0.17.0, by Aleksey Cheusov, Tue, 22 Jun 2010 23:44:08 +0300
 
   mkc_imp.pkg-config.mk:
     - FIXED: double applying -L, -l and -I options got from pkg-config.
