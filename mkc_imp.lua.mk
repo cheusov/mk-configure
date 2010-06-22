@@ -30,11 +30,11 @@ LIBDIR=			${PKG_CONFIG.var.lua.INSTALL_CMOD}
 .include <mkc_imp.pkg-config.mk>
 
 .if empty(PKG_CONFIG.var.lua.INSTALL_LMOD)
-MKC_ERR_MSG+=	"ERROR: pkg-config --variable INSTALL_LMOD lua failed"
+MKC_ERR_MSG+=	"ERROR: pkg-config --variable=INSTALL_LMOD lua failed"
 .endif
 
 .if empty(PKG_CONFIG.var.lua.INSTALL_CMOD)
-MKC_ERR_MSG+=	"ERROR: pkg-config --variable INSTALL_CMOD lua failed"
+MKC_ERR_MSG+=	"ERROR: pkg-config --variable=INSTALL_CMOD lua failed"
 .endif
 
 .if empty(MKC_ERR_MSG)
