@@ -4,6 +4,8 @@ Version 0.17.0, by Aleksey Cheusov, Tue, 22 Jun 2010 19:24:07 +0300
   mkc_imp.pkg-config.mk:
     - FIXED: double applying -L, -l and -I options got from pkg-config.
       Solution: .unset PKG_CONFIG_DEPS
+    - Additional checks for INSTALL_{C,L}MOD pkg-config variables,
+      they must be defined.
 
   CC_TYPE, CXX_TYPE and LD_TYPE variables are a part of mk-c's API,
   now they are documented.
