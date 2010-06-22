@@ -1,4 +1,33 @@
 ======================================================================
+Version 0.17.0, by Aleksey Cheusov, Tue, 22 Jun 2010 19:24:07 +0300
+
+  mkc_imp.pkg-config.mk:
+    - FIXED: double applying -L, -l and -I options got from pkg-config.
+      Solution: .unset PKG_CONFIG_DEPS
+
+  CC_TYPE, CXX_TYPE and LD_TYPE variables are a part of mk-c's API,
+  now they are documented.
+
+  mkcmake:
+    - MKC_BMAKE environment variable is introduced. See mkcmake.1
+
+  Documentation for /etc/mk.conf, @sysconfdir@/mk.conf and MAKECONF.
+
+  doc/presentation.pdf: New slides and updates
+
+  FAQ: updates
+
+  mkc_imp.lua.mk:
+    - Check for lua.h header if other checks succeeded.
+
+  mkc_imp.lib.mk:
+    - MKDLL is also case-insensitive.
+
+  Makefile:
+    - make shipped with NetBSD-5 does not have option -C,
+      so I remove it.
+
+======================================================================
 Version 0.16.0, by Aleksey Cheusov, Sat, 12 Jun 2010 15:06:10 +0300
 
   Support for Lua programming language. See documentation for
