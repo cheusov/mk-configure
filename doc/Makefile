@@ -30,7 +30,7 @@ presentation.ps presentation.pdf presentation.dvi: my_prjs.eps my_prjs2.eps
 .gz:
 	gzip ${.IMPSRC}
 
-GARBAGE=	*.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out
+GARBAGE=	*.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out *.eps *.ps
 CLEANFILES+=	${GARBAGE} *.pdf *.ps
 
 .PHONY: clean-garbage
