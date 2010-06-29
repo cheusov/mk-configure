@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = LUA_LMODDIR, LUA_CMODDIR
+
   = xxxDIR variable for /var
   = SBINDIR variable
   = variable for switch on/off gcc's -Werror
