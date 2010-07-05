@@ -1,7 +1,14 @@
 ============================================================
 Plan 1)
 
-  = LUA_LMODDIR, LUA_CMODDIR
+  = Shorter synomyms for
+    PKG_CONFIG.var.lua.INSTALL_LMOD and
+    PKG_CONFIG.var.lua.INSTALL_CMOD
+
+    LUA_LMODDIR, LUA_CMODDIR
+
+  = mk-configure.7: mkc.configure.mk is included
+    by mkc.{prog,lib}.mk
 
   = xxxDIR variable for /var
   = SBINDIR variable
