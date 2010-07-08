@@ -1,6 +1,10 @@
 ============================================================
 Plan 1)
 
+  = list variables for cross-build in mk-configure.7
+
+  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk
+
   = Shorter synomyms for
     PKG_CONFIG.var.lua.INSTALL_LMOD and
     PKG_CONFIG.var.lua.INSTALL_CMOD
