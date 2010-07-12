@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = mkc_imp.{sys,local}.mk - for local editing
+
   = list variables for cross-build in mk-configure.7
 
   = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk
@@ -27,7 +29,7 @@ Plan 1)
 
   = mkclint?
 
-  = Targets tgz, tbz, deb, rpm
+  = Targets {bin,src}-{tgz,tbz,deb,rpm}
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
