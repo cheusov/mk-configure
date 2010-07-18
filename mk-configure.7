@@ -634,9 +634,13 @@ special sources.
 List of subdirectories
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
-is an auxiliary include file for checking platform's individualities
+is an auxiliary include file for checking platform's features
 like headers, function or variable declarations, function implementation
 in a particular libraries, data types sizes etc.
+This include file is included by
+.BR mkc.prog.mk " and " mkc.lib.mk
+automatically
+but in many cases it makes sense to include it explicitly.
 .B mkc.configure.mk
 supports the following variables.
 .IP MKC_CHECK_HEADERS
