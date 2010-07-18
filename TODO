@@ -1,8 +1,6 @@
 ============================================================
 Plan 1)
 
-  = OpenSolaris has no /usr/ucb/install
-
   = OpenSolaris may have tools everywhere,
     make a note about this fact in README.
 
