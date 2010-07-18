@@ -3,10 +3,12 @@ Plan 1)
 
   = Example for cross-build in mk-configure.7
 
-  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk
+  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
 
   = xxxDIR variable for /var
-  = SBINDIR variable
+
+  = SBINDIR variable + Makeile.inc + examples/hello_mysuperfs = happyness
+
   = variable for switch on/off gcc's -Werror
 
   = README/INSTALL
