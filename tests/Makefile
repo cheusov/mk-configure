@@ -8,5 +8,6 @@ SUBDIR  +=	mkdll
 SUBDIR  +=	pkg-config-0
 SUBDIR  +=	pkg-config-1
 SUBDIR  +=	pkg-config-2
+SUBDIR  +=	lua_dirs
 
 .include <mkc.subdir.mk>

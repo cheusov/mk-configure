@@ -1,0 +1,62 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_lua_h.c
+/objdir/_mkc_header_lua_h.err
+/objdir/_mkc_header_lua_h.res
+/objdir/_mkc_pkgconfig_lua.err
+/objdir/_mkc_pkgconfig_lua.res
+/objdir/_mkc_pkgconfig_lua_cflags.err
+/objdir/_mkc_pkgconfig_lua_cflags.res
+/objdir/_mkc_pkgconfig_lua_libs.err
+/objdir/_mkc_pkgconfig_lua_libs.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
+/objdir/baz.c
+/objdir/baz.os
+/objdir/baz.so
+/objdir/expect.out
+/objdir/lua_dirs.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/foobar
+/objdir/prefix/lib
+/objdir/prefix/lib/luamods_c
+/objdir/prefix/lib/luamods_c/baz.so
+/objdir/prefix/share
+/objdir/prefix/share/luamods_l
+/objdir/prefix/share/luamods_l/bar.lua
+/objdir/prefix/share/luamods_l/foo.lua
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_lua_h.c
+/objdir/_mkc_header_lua_h.err
+/objdir/_mkc_header_lua_h.res
+/objdir/_mkc_pkgconfig_lua.err
+/objdir/_mkc_pkgconfig_lua.res
+/objdir/_mkc_pkgconfig_lua_cflags.err
+/objdir/_mkc_pkgconfig_lua_cflags.res
+/objdir/_mkc_pkgconfig_lua_libs.err
+/objdir/_mkc_pkgconfig_lua_libs.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
+/objdir/baz.c
+/objdir/expect.out
+/objdir/lua_dirs.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/baz.c
+/objdir/expect.out
+/objdir/lua_dirs.test.out.tmp
+/objdir/test.mk
