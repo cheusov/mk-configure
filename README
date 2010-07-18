@@ -309,6 +309,7 @@ INSTALLATION:
    2)
       cd mk-configure-X.Y.Z/
       export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mk
+      emacs sys.mk # if needed
       bmake all
       bmake test # For testing mk-configure, this step is optional.
                  # Note that testing requires lex(1), yacc(1),

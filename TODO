@@ -1,9 +1,6 @@
 ============================================================
 Plan 1)
 
-  = OpenSolaris may have tools everywhere,
-    make a note about this fact in README.
-
   = mkc_imp.{sys,local}.mk - for local editing
 
   = Example for cross-build in mk-configure.7
