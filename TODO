@@ -9,7 +9,7 @@ Plan 1)
 
   = xxxDIR variable for /var
 
-  = SBINDIR variable + Makeile.inc + examples/hello_mysuperfs = happyness
+  = documentation for Makeile.inc
 
   = variable for switch on/off gcc's -Werror
 
