@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
+
   = MKC_VERSION - for defining mk-c sections in mk.conf
 
   = support for gettext
@@ -20,7 +22,7 @@ Plan 1)
 
   = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
 
-  = support for POD?
+  = support for POD -- PODFILES.
 
   = mkclint?
 
