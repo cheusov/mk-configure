@@ -5,8 +5,6 @@ Plan 1)
 
   = support for gettext
 
-  = custom test for egrep
-
   = OpenSolaris has no /usr/ucb/install
 
   = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
