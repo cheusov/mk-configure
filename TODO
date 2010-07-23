@@ -1,6 +1,8 @@
 ============================================================
 Plan 1)
 
+  = support for gettext
+
   = custom test for egrep
 
   = OpenSolaris has no /usr/ucb/install
@@ -65,7 +67,7 @@ Plan 1)
   = MLINKS?
 
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
-    MagicMakefiles etc.
+    MagicMakefiles, bjam, pymake etc.
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
