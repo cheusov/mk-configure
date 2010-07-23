@@ -1,7 +1,9 @@
 ============================================================
 Plan 1)
 
-  = Example for cross-build in mk-configure.7
+  = custom test for egrep
+
+  = OpenSolaris has no /usr/ucb/install
 
   = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
 
