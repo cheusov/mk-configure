@@ -206,6 +206,8 @@ installdirs:
 		test "$$d" = _ || ${INSTALL} -d "$$d"; \
 	done
 
+.ORDER: installdirs install
+
 test:
 
 .endif # SUBDIR
