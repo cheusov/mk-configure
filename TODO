@@ -26,7 +26,7 @@ Plan 1)
 
   = mkclint?
 
-  = Targets {bin,src}-{tgz,tbz,deb,rpm}
+  = Targets {bin,src}-{tar,tgz,tbz,deb,rpm}
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
