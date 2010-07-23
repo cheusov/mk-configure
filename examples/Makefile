@@ -19,6 +19,7 @@ SUBDIR+=	hello_cxxlib
 SUBDIR+=	hello_dictd
 SUBDIR+=	hello_dll
 SUBDIR+=	hello_lua
+SUBDIR+=	hello_superfs
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools
