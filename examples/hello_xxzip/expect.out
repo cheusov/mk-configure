@@ -7,6 +7,8 @@
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
 /objdir/test.mk
+/objdir/tutorial.html
+/objdir/tutorial.pod
 /objdir/xxzip
 /objdir/xxzip.1
 /objdir/xxzip.c
@@ -28,6 +30,10 @@
 /objdir/prefix/man/man1/xxunzip.1
 /objdir/prefix/man/man1/xxzcat.1
 /objdir/prefix/man/man1/xxzip.1
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/xxzip
+/objdir/prefix/share/doc/xxzip/tutorial.html
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
@@ -38,6 +44,7 @@
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
 /objdir/test.mk
+/objdir/tutorial.pod
 /objdir/xxzip.c
 /objdir/xxzip.pod
 ======= distclean ==========
@@ -45,5 +52,6 @@
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
 /objdir/test.mk
+/objdir/tutorial.pod
 /objdir/xxzip.c
 /objdir/xxzip.pod

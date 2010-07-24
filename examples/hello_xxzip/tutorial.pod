@@ -1,0 +1,17 @@
+=head1 NAME
+
+xxzip - super-puper compression utility
+
+=head1 INTRODCTION
+
+lalala
+
+=head1 STEP1
+
+bla bla bla
+
+=head1 STEP2
+
+bla bla bla
+
+=head1 BYE

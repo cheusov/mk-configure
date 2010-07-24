@@ -1313,7 +1313,9 @@ is internal include file which is included from
 .BR mkc.prog.mk " and " mkc.lib.mk .
 Do not use it directly!
 It provides support for POD (Plain Old Documentation) markup language,
-i.e. convertion of POD documents to MAN pages and HTMLs.
+i.e. convertion of POD documents to MAN pages
+(suffix rules: .pod.1, ... , .pod.9) and HTMLs
+(.pod.html).
 The following variables are provided:
 .IP POD2MAN
 Path to POD to MAN conversion utility
@@ -1321,6 +1323,12 @@ Path to POD to MAN conversion utility
 .IP POD2MAN_FLAGS
 Flags passed to ${POD2MAN}
 .RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
+.IP POD2HTML
+Path to POD to HTML conversion utility
+.RI [ pod2html ].
+.IP POD2HTML_FLAGS
+Flags passed to ${POD2HTML}
+.RI [ "" ].
 .SH "CROSS BUILD"
 .B mk-configure
 is ready for cross-build. For it you may need to set up
