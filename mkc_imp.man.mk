@@ -69,6 +69,7 @@ TBL?=		tbl
 .endif
 
 .if defined(MAN) && !empty(MAN)
+realall: ${MAN}
 MANPAGES=	${MAN}
 CATPAGES=	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
 CLEANFILES+=	${CATPAGES}

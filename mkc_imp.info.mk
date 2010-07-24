@@ -24,6 +24,7 @@ INSTALL_INFO?=	install-info
 	${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
 
 .if defined(TEXINFO) && !empty(TEXINFO)
+realall: ${TEXINFO}
 INFOFILES=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
