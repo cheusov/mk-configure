@@ -1,6 +1,6 @@
 DISTCLEANDIRS+=	${.CURDIR}/usr *.tar *.tar.gz *.tar.bz2
 
-tartf_cleanup=	sed -e 's,^[.]/,,' -e '/^[.]*$$/ d'
+tartf_cleanup=	sed -e 's,^[.]/,,' -e 's,/$$,,' -e '/^[.]*$$/ d'
 
 .PHONY : test_output
 test_output:
