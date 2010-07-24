@@ -58,9 +58,9 @@ check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1))
-.IP "bin_tar, bin_targz, bin_tarbz2, bin_deb"
+.IP "bin_tar, bin_targz, bin_tarbz2, bin_zip, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
-and create .tar/.tar.gz/.tar.bz2 archive
+and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
 containing all installed files.
 The target
 .I bin_deb
@@ -188,6 +188,9 @@ gzip copression tool.
 .IP BZIP2
 bzip2 copression tool.
 .RI [ bzip2 ]
+.IP ZIP
+zip copression tool.
+.RI [ zip ]
 .IP YFLAGS
 Options to ${YACC}.  []
 .IP YHEADER

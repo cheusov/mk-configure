@@ -26,6 +26,10 @@ bin_targz: bin_tar
 bin_tarbz2: bin_tar
 	${BZIP2} ${basefile}.tar
 
+bin_zip: bin_cleanup
+	set -e; rm -f ${basefile}.zip; cd ${destdir}; \
+	${ZIP} -r ${basefile}.zip .; rm -rf ${destdir}
+
 bin_deb: DEBIAN/control bin_cleanup
 	set -e; cp -rp DEBIAN ${destdir}; rm -rf ${destdir}/DEBIAN/CVS; \
 	dpkg-deb -b ${destdir} ${.CURDIR:T:S/_/-/g}.deb; \

@@ -110,6 +110,7 @@ MESSAGE.y?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 TAR?=		tar
 GZIP?=		gzip
 BZIP2?=		bzip2
+ZIP?=		zip
 
 # C
 .c.o:

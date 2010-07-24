@@ -30,9 +30,6 @@ Plan 1)
 
   = mkclint?
 
-  = Targets {src}-{tar}
-  = Targets {bin}-{rpm}
-
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
@@ -87,6 +84,9 @@ Plan2)
   = PROGS= a b c d
     SRCS.a = ...
     SRCS.b = ...
+
+  = Targets bin_rpm, bin_epm
+  = Targets src_tar, src_targz, src_tarbz2
 
   = man page for mkc_check_compiler
 
