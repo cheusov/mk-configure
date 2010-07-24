@@ -55,8 +55,8 @@ Plan 1)
     - lalala
     - mkc_imp.pkg-config.mk (PKG_CONFIG_SYSROOT_DIR)
 
-  = shared libraries support for AIX, UnixWare, Hurd, Haiku.
-  = shared libraries support for nwcc, mipspro and other compilers.
+  = shared libraries support for IRIX, AIX, UnixWare, Hurd, Haiku.
+  = shared libraries support for clang, nwcc, mipspro and other compilers.
 
   = CFLAGS.warns.<cctype>.<warn-level> and
     CXXFLAGS.warns.<cxxtype>.<warn-level>?
