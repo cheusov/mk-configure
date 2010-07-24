@@ -206,11 +206,11 @@ installdirs:
 		test "$$d" = _ || ${INSTALL} -d "$$d"; \
 	done
 
-.ORDER: installdirs install
-
 test:
 
 .endif # SUBDIR
+
+.ORDER: installdirs install
 
 TARGETS+=	all install clean cleandir depend \
 		installdirs uninstall errorcheck
