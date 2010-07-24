@@ -1307,6 +1307,20 @@ _le_, _ge_, _eq_, _lt_ and _gt_ respectively.
 List of variables to check for library <lib>.
 .IP PKG_CONFIG.var.<lib>.<var>
 Variable value (pkg-config --variable=<var> <lib>).
+.SS "mkc_imp.pod.mk"
+.B mkc_imp.pod.mk
+is internal include file which is included from
+.BR mkc.prog.mk " and " mkc.lib.mk .
+Do not use it directly!
+It provides support for POD (Plain Old Documentation) markup language,
+i.e. convertion of POD documents to MAN pages and HTMLs.
+The following variables are provided:
+.IP POD2MAN
+Path to POD to MAN conversion utility
+.RI [ pod2man ].
+.IP POD2MAN_FLAGS
+Flags passed to ${POD2MAN}
+.RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
 .SH "CROSS BUILD"
 .B mk-configure
 is ready for cross-build. For it you may need to set up
