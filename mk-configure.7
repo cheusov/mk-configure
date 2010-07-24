@@ -363,6 +363,10 @@ The include file
 handles building program from one or
 more source files, along with their manual pages.  It has a limited
 number of suffixes.
+The include file
+.B mkc.prog.mk
+includes the file named "../Makefile.inc"
+if it exists.
 List of supported variables:
 .IP PROG
 The name of the program to build.  If not supplied, nothing
@@ -443,6 +447,10 @@ The include file
 .B mkc.lib.mk
 has support for building a static or dynanic library.  It has a
 limited number of suffixes.
+The include file
+.B mkc.lib.mk
+includes the file named "../Makefile.inc"
+if it exists.
 .B mkc.lib.mk
 uses the following variables:
 .IP LIB
@@ -559,7 +567,9 @@ The include file
 .B mkc.subprj.mk
 handles subprojects (subdirectories)
 organized as a dependency graph.
-It provides all targets provided by
+It includes the file named "../Makefile.inc"
+if it exists,
+and provides all targets provided by
 .BR mkc.prog.mk .
 Variable SUBPRJ contains a list of pairs
 .I depdir:dir
@@ -610,7 +620,10 @@ The default is all projects listed in SUBPRJ.
 The include file
 .B mkc.subdir.mk
 contains the default targets for building
-subdirectories.  It has the same targets as
+subdirectories.
+It includes the file named "../Makefile.inc"
+if it exists,
+and provides the same targets as
 .BR mkc.prog.mk .
 For all of
 the directories listed in the variable SUBDIR, the specified directory 
