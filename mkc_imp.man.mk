@@ -145,53 +145,19 @@ manpages::
 
 .if ${MKCATPAGES:tl} != "no"
 .for s d in ${MLINKS}
-#LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX}
+LINKS+=			${MANDIR}/cat${s:T:E}${MANSUBDIR}/${s:R}.0${MCOMPRESSSUFFIX} \
+			${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
 UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
 .endfor
 catlinks: catpages
-.if defined(MLINKS) && !empty(MLINKS)
-	@set ${MLINKS}; \
-	while test $$# -ge 2; do \
-		name=$$1; \
-		shift; \
-		dir=${DESTDIR}${MANDIR}/cat$${name##*.}; \
-		l=$${dir}${MANSUBDIR}/$${name%.*}.0${MCOMPRESSSUFFIX}; \
-		name=$$1; \
-		shift; \
-		dir=${DESTDIR}${MANDIR}/cat$${name##*.}; \
-		t=$${dir}${MANSUBDIR}/$${name%.*}.0${MCOMPRESSSUFFIX}; \
-		if test $$l -nt $$t -o ! -f $$t; then \
-			echo $$t -\> $$l; \
-			ln -f $$l $$t; \
-		fi; \
-	done
-.endif
-.else
-catlinks:
 .endif
 
 .for s d in ${MLINKS}
-#LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX}
+LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX} \
+		${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
 UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
 .endfor
 manlinks: manpages
-.if defined(MLINKS) && !empty(MLINKS)
-	@set ${MLINKS}; \
-	while test $$# -ge 2; do \
-		name=$$1; \
-		shift; \
-		dir=${DESTDIR}${MANDIR}/man$${name##*.}; \
-		l=$${dir}${MANSUBDIR}/$${name}${MCOMPRESSSUFFIX}; \
-		name=$$1; \
-		shift; \
-		dir=${DESTDIR}${MANDIR}/man$${name##*.}; \
-		t=$${dir}${MANSUBDIR}/$${name}${MCOMPRESSSUFFIX}; \
-		if test $$l -nt $$t -o ! -f $$t; then \
-			echo $$t -\> $$l; \
-			ln -f $$l $$t; \
-		fi; \
-	done
-.endif
 
 # Html rules
 .PHONY: html

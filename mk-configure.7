@@ -1235,6 +1235,10 @@ If "no", don't build or install the HTML man pages.
 .IP HTMLDIR
 Target directory for html pages generated from man pages.
 .RI [ ${MANDIR} ]
+.IP MLINKS
+List of manual page links (using a .1 - .9 suffix).  The
+linked-to file must come first, the linked file second,
+and there may be multiple pairs.  The files are hard-linked.
 .SS "mkc_imp.links.mk"
 .B mkc_imp.links.mk
 is internal include file which is included from
