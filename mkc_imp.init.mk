@@ -122,7 +122,6 @@ MKC_PROG.id.${PC:[1]:S/+/x/g}=		pc
 .endif
 
 ###########
-.PHONY: clean
 clean:
 	-rm -f ${CLEANFILES} 2>/dev/null
 	-rm -rf ${CLEANDIRS} 2>/dev/null
@@ -141,7 +140,7 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY : all mkc_printobjdir
+.PHONY : mkc_printobjdir
 mkc_printobjdir:
 	@echo ${.OBJDIR}
 
@@ -156,7 +155,7 @@ mkc_cleandir:
 	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
 	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
-.PHONY: errorcheck realall all
+.PHONY: realall
 .if !defined(SUBDIR) && !defined(SUBPRJ)
 realall : errorcheck
 .endif
@@ -171,12 +170,6 @@ errorcheck:
 	    done; \
 	    exit $$ex; \
 	fi
-
-###########
-
-# Make sure all of the standard targets are defined, even if they do nothing.
-#.PHONY : test all distclean cleandir clean
-#test all distclean cleandir clean:
 
 ###########
 
@@ -196,11 +189,9 @@ LDLIBS=		${LDFLAGS} ${LDADD}
 # for mkc.subdir.mk and mkc.subprj.mk
 .if !defined(SUBDIR) && !defined(SUBPRJ)
 
-.PHONY: uninstall
 uninstall:
 	-rm -f ${UNINSTALLFILES} 2>/dev/null
 
-.PHONY: installdirs
 installdirs:
 	for d in _ ${INSTALLDIRS:O:u}; do \
 		test "$$d" = _ || ${INSTALL} -d "$$d"; \
@@ -214,6 +205,9 @@ test:
 
 TARGETS+=	all install clean cleandir depend \
 		installdirs uninstall errorcheck
+
+# Make sure all of the standard targets are defined, even if they do nothing.
+.PHONY: ${TARGETS}
 ${TARGETS}:
 
 .endif # __initialized__
