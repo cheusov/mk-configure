@@ -1,0 +1,8 @@
+Package: hello_files
+Version: 0.1.0-1
+Architecture: all
+Depends:
+Maintainer: Aleksey Cheusov <vle@gmx.net>
+Description: Collection of fake scripts
+ This is a demo of mk-configure project.
+
