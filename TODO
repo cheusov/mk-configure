@@ -66,8 +66,6 @@ Plan 1)
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
 
-  = MLINKS?
-
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
     MagicMakefiles, bjam, pymake etc.
 
