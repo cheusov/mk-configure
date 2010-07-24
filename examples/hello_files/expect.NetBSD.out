@@ -1,4 +1,5 @@
 =========== all ============
+/objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
@@ -12,6 +13,7 @@
 /objdir/shell_func3
 /objdir/test.mk
 ======== all+html ==========
+/objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
@@ -50,6 +52,7 @@
 /objdir/prefix/share/files3/shell_func3.sh
 ======== uninstall =========
 ========== clean ===========
+/objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
@@ -61,6 +64,7 @@
 /objdir/shell_func3
 /objdir/test.mk
 ======= distclean ==========
+/objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
@@ -72,6 +76,7 @@
 /objdir/shell_func3
 /objdir/test.mk
 ==== install MKINSTALL=no ====
+/objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
