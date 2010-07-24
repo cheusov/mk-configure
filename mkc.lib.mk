@@ -22,6 +22,7 @@
 .include <mkc_imp.pkg-config.mk>
 .include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
+.include <mkc_imp.arch.mk>
 
 .include <mkc_imp.final.mk>
 

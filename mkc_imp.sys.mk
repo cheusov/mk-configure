@@ -107,6 +107,10 @@ YFLAGS?=
 YACC.y?=	${_V} ${YACC} ${YFLAGS}
 MESSAGE.y?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
+TAR?=		tar
+GZIP?=		gzip
+BZIP2?=		bzip2
+
 # C
 .c.o:
 	${MESSAGE.c}

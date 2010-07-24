@@ -8,6 +8,7 @@
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
 .include <mkc_imp.subprj.mk>
+.include <mkc_imp.arch.mk>
 
 .PHONY: subprj-clean subprj-distclean
 clean: subprj-clean
