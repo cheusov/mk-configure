@@ -247,11 +247,25 @@ If not "yes", build everything but do not install. This option is useful
 for e.g. internal libraries.
 .RI [ yes ]
 .IP MKC_REQD
-Required version of
+Minimal required version of
 .BR mk-configure .
-If a required version is not found,
-.B bmake
+If required version is not found,
+the target
+.I errorcheck
 fails.
+.IP MKC_VERSION
+Version of
+.IR mk-configure .
+This variable is always set to non-empty value when mkc.*.mk include files are used,
+so you can use it to initialize mk-c variables in mk.conf. For example:
+.VS
+/etc/mk.conf:
+   ...
+   .ifdef MKC_VERSION
+   COPTS?=      -O2 -Werror
+   SHRTOUT=    yes
+   .endif MKC_VERSION
+.VE
 .IP CC_TYPE
 C compiler type. This variable is set by
 .B mk-configure
