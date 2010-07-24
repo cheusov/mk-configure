@@ -27,7 +27,8 @@ bin_tarbz2: bin_tar
 	${BZIP2} ${basefile}.tar
 
 bin_deb: DEBIAN/control bin_cleanup
-	set -e; cp -rp DEBIAN ${destdir}; \
-	dpkg-deb -b ${destdir}
+	set -e; cp -rp DEBIAN ${destdir}; rm -rf ${destdir}/DEBIAN/CVS; \
+	dpkg-deb -b ${destdir} ${.CURDIR:T:S/_/-/g}.deb; \
+	rm -rf ${destdir}
 
 .endif # _MKC_IMP_ARCH_MK

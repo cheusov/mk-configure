@@ -1,4 +1,4 @@
-Package: hello_files
+Package: hello-files
 Version: 0.1.0-1
 Architecture: all
 Depends:
