@@ -4,6 +4,7 @@
 ############################################################
 
 .include <mkc_imp.lua.mk>
+.include <mkc_imp.pod.mk>
 .include <mkc_imp.init.mk>
 
 .include <configure.mk>

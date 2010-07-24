@@ -151,6 +151,7 @@ UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESS
 .endfor
 catlinks: catpages
 .endif
+catlinks:
 
 .for s d in ${MLINKS}
 LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX} \
