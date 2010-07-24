@@ -16,6 +16,7 @@ MKDOC=no
 MKINFO=no
 MKMAN=no
 .endif
+
 .if ${MKMAN:tl} == "no"
 MKCATPAGES=no
 .endif
@@ -40,7 +41,6 @@ MANTARGET?=	cat
 NROFF?=		nroff
 GROFF?=		groff
 TBL?=		tbl
-
 
 .SUFFIXES: .1 .2 .3 .4 .5 .6 .7 .8 .9 \
 	   .cat1 .cat2 .cat3 .cat4 .cat5 .cat6 .cat7 .cat8 .cat9 \
@@ -144,6 +144,10 @@ manpages::
 .endif # MANPAGES
 
 .if ${MKCATPAGES:tl} != "no"
+.for s d in ${MLINKS}
+#LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX}
+UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
+.endfor
 catlinks: catpages
 .if defined(MLINKS) && !empty(MLINKS)
 	@set ${MLINKS}; \
@@ -166,6 +170,10 @@ catlinks: catpages
 catlinks:
 .endif
 
+.for s d in ${MLINKS}
+#LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX}
+UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
+.endfor
 manlinks: manpages
 .if defined(MLINKS) && !empty(MLINKS)
 	@set ${MLINKS}; \
