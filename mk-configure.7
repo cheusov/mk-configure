@@ -58,10 +58,14 @@ check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1))
-.IP "bin_tar, bin_targz, bin_tarbz2"
+.IP "bin_tar, bin_targz, bin_tarbz2, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
 and create .tar/.tar.gz/.tar.bz2 archive
 containing all installed files.
+The target
+.I bin_deb
+expects debian control files in DEBIAN subdirectory, see examples/hello_files
+for the sample.
 .IP <subdir>
 <subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
 This target is equivalent to all-<subdir> and is provided by
