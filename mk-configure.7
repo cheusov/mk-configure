@@ -58,6 +58,10 @@ check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1))
+.IP "bin_tar, bin_targz, bin_tarbz2"
+build software, install it to a temporary directory (using DESTDIR)
+and create .tar/.tar.gz/.tar.bz2 archive
+containing all installed files.
 .IP <subdir>
 <subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
 This target is equivalent to all-<subdir> and is provided by
@@ -171,6 +175,15 @@ Topological sort of a directed graph.
 .IP YACC
 LALR(1) parser generator.
 .RI [ yacc ]
+.IP TAR
+tar archiver.
+.RI [ tar ]
+.IP GZIP
+gzip copression tool.
+.RI [ gzip ]
+.IP BZIP2
+bzip2 copression tool.
+.RI [ bzip2 ]
 .IP YFLAGS
 Options to ${YACC}.  []
 .IP YHEADER
