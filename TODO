@@ -1,33 +1,41 @@
 ============================================================
-Plan 1)
-
-  = marker for user's curstom tests that
-    run generated executables, i.e. not ready
-    for cross-compilation
-
-  = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
-
-  = support for gettext
-
-  = OpenSolaris has no /usr/ucb/install
-
-  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
-
-  = xxxDIR variable for /var
+Plan 0)
 
   = variable for switch on/off gcc's -Werror
 
   = README/INSTALL
     - section REQUIREMENTS (mkdep, pkg-config, ar, tar, gzip, bzip2...)
 
-  = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
+  = shared libraries support for IRIX
 
-  = mkclint?
+  = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
+
+  = marker for user's curstom tests that
+    run generated executables, i.e. not ready
+    for cross-compilation
+
+  = (U/ser, D/eveloper, M/akefile) markers for variables in mk-configure.7
+
+  = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
+  = CFLAGS.warns.<cctype>.<warn-level> and
+    CXXFLAGS.warns.<cxxtype>.<warn-level>?
+
+============================================================
+Plan 1)
+
   = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
+
+  = support for gettext
+
+  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
+
+  = xxxDIR variable for /var
+
+  = mkclint?
 
   = Implement mkc_imp.libtool.mk to make building
     the shared libraries using GNU libtool(1).
@@ -45,19 +53,14 @@ Plan 1)
 
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
-  = (U/ser, D/eveloper, M/akefile) markers for variables in mk-configure.7
-
   = Online tutorial
 
   = better support for cross-compilation
     - lalala
     - mkc_imp.pkg-config.mk (PKG_CONFIG_SYSROOT_DIR)
 
-  = shared libraries support for IRIX, AIX, UnixWare, Hurd, Haiku.
+  = shared libraries support for AIX, UnixWare, Hurd, Haiku.
   = shared libraries support for clang, nwcc, mipspro and other compilers.
-
-  = CFLAGS.warns.<cctype>.<warn-level> and
-    CXXFLAGS.warns.<cxxtype>.<warn-level>?
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
