@@ -192,7 +192,7 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
 -------------------------------------------------------------------------
 WHAT MK-CONFIGURE CONSISTS OF?
 
-- mkc.{files,lib,prog,subprjs,subdir}.mk files.
+- mkc.{files,lib,prog,subprj,subdir}.mk files.
 
       These include files are responsible for building, installing and
       uninstalling applications, static and shared libraries, scripts,
@@ -237,7 +237,7 @@ WHAT MK-CONFIGURE CONSISTS OF?
       - support for texinfo/info files. There is no need to .include
         a special include files such as <bsd.info.mk> file.
 
-      - mkc.subprjs.mk is a powerful replacement
+      - mkc.subprj.mk is a powerful replacement
         for traditional bsd.subdir.mk.
 
       - Tons of other additions and improvements.
@@ -357,6 +357,15 @@ INSTALLATION:
     command to build your projects, not just "bmake".
 
     I STRONGLY RECOMEND TO INSTALL MK-FILES AND SYS.MK TO ITS OWN DIRECTORY.
+
+   4) Usage
+
+    For use mk-configure for real-life development you may need the
+    following programs: C/C++/Fortran/Pascal/Objective-C compilers and
+    linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
+    pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, BSD-compatible
+    install, lorder, nm, tsort, pkg-config, zip and maybe others.  Of
+    course you'll need awk, sed, grep and other POSIX tools too.
 
 -------------------------------------------------------------------------
 PACKAGES

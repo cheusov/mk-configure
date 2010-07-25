@@ -3,9 +3,6 @@ Plan 0)
 
   = variable for switch on/off gcc's -Werror
 
-  = README/INSTALL
-    - section REQUIREMENTS (mkdep, pkg-config, ar, tar, gzip, bzip2...)
-
   = shared libraries support for IRIX
 
   = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
