@@ -456,6 +456,9 @@ SHLIB_MAJOR=    1
 SHLIB_MINOR=    2
 SHLIB_TEENY=    0
 
+# list of exported symbols
+EXPORT_SYMBOLS= libmaa.sym
+
 .include <mkc.lib.mk>
   \end{Code}
   \begin{Code}{libmaa/linkme.mk}
@@ -471,22 +474,70 @@ DPLIBDIRS+=     \$\{PATH.maa\}
 \begin{frame}[fragile]
   \frametitle{Example 5: Big project consisting of several subprojects}
 
+  \begin{block}{Source code}
+  \begin{Code}{libdz/Makefile}
+LIB=            dz
+SRCS=           dz.c
+
+MKC_REQUIRE_HEADERS=    zlib.h
+MKC_REQUIRE_FUNCLIBS=   deflate:z
+
+EXPORT_SYMBOLS=         libdz.sym
+SHLIB_MAJOR=            1
+SHLIB_MINOR=            0
+
+.include <mkc.lib.mk>
+  \end{Code}
+  \begin{Code}{libdz/linkme.mk}
+PATH.dz:=       \$\{.PARSEDIR\}
+
+CPPFLAGS+=      -I\$\{PATH.dz\}
+DPLIBDIRS+=     \$\{PATH.dz\}
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Source code}
+  \begin{Code}{dictzip/Makefile}
+PROG=   dictzip
+MAN=    dictzip.1
+
+.include "../libcommon/linkme.mk"
+.include "../libdz/linkme.mk"
+.include "../libmaa/linkme.mk"
+
+DPLIBS+=        -lcommon -ldz -lmaa
+
+.include <mkc.prog.mk>
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
   \begin{block}{How it works}
   \begin{CodeNoLabel}
-\prompt{\$ mkcmake all-dictd}
+\prompt{\$ mkcmake dictzip}
 ==================================================
 all ===> libcommon
 ...
 ==================================================
-all ===> libmaa
+all ===> libdz
 ...
 ==================================================
-all ===> dictd
+all ===> dictzip
 ...
 checking for program cc... /usr/bin/cc
-cc -I../libcommon -I../libmaa  -c dictd.c
-cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libmaa 
-    -o dictd dictd.o -lcommon -lmaa
+cc   -I../libcommon -I../libdz -I../libmaa  -c dictzip.c
+cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libdz
+   -L/tmp/hello_dictd/libmaa  -o dictzip
+   dictzip.o -lcommon -lmaa -ldz
 \prompt{\$}
   \end{CodeNoLabel}
   \end{block}
@@ -498,9 +549,9 @@ cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libmaa
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-SCRIPTS=  foobar       # scripts written in Lua
+SCRIPTS=       foobar  # scripts written in Lua
 LUA\_LMODULES=  foo bar # modules written in Lua
-LUA\_CMODULE= baz       # Lua module written in C
+LUA\_CMODULE=   baz     # Lua module written in C
 
 .include <mkc.lib.mk>
   \end{Code}
@@ -526,6 +577,7 @@ checking for [pkg-config] lua --variable=INSTALL_LMOD...
 checking for [pkg-config] lua --variable=INSTALL_CMOD...
    /usr/pkg/lib/lua/5.1
 checking for compiler type... gcc
+checking for header lua.h... yes
 checking for program cc... /usr/bin/cc
 \prompt{\$}
   \end{CodeNoLabel}
@@ -540,8 +592,8 @@ checking for program cc... /usr/bin/cc
   \begin{CodeNoLabel}
 \prompt{\$ export PREFIX=/usr/pkg}
 \prompt{\$ mkcmake all}
-cc    -I/usr/pkg/include  -I/usr/pkg/include -c
-   -fPIC -DPIC baz.c -o baz.os
+cc -DHAVE_HEADER_LUA_H=1 -I/usr/pkg/include
+   -c -fPIC -DPIC baz.c -o baz.os
 building shared baz library (version 1.0)
 cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
    -Wl,-R/usr/pkg/lib -L/usr/pkg/lib -llua -lm
