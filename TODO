@@ -1,8 +1,6 @@
 ============================================================
 Plan 1)
 
-  = presentation: Makefiles for {dictd,dict,dictzip,dictfmt}
-
   = marker for user's curstom tests that
     run generated executables, i.e. not ready
     for cross-compilation
