@@ -42,13 +42,13 @@ MESSAGE.S?=	${MESSAGE.s}
 
 CC?=		cc
 CFLAGS?=
-COMPILE.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} -c
+COMPILE.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
 LINK.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
 MESSAGE.c?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX?=		c++
 CXXFLAGS+=	${CFLAGS}
-COMPILE.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} -c
+COMPILE.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
 LINK.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
 MESSAGE.cc?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 

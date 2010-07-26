@@ -161,8 +161,8 @@ WARNERR?=	no
 .endif
 
 .if ${WARNERR:tl} == "yes"
-CFLAGS+=	${CFLAGS.warnerr.${CC_TYPE}}
-CXXFLAGS+=	${CFLAGS.warnerr.${CXX_TYPE}}
+CFLAGS.warnerr=		${CFLAGS.warnerr.${CC_TYPE}}
+CXXFLAGS.warnerr=	${CFLAGS.warnerr.${CXX_TYPE}}
 .endif
 
 ####################
