@@ -1,6 +1,8 @@
 PROG=		hello_world1
 SRCS=		main.c msg.c
 
+WARNS=		4
+
 SCRIPTS=	hello_world2 hello_world3
 SCRIPTS+=	${:!echo more_scripts/*!:N*/CVS}
 

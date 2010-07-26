@@ -3,6 +3,8 @@
 LIB=		common
 SRCS=		str.c iswalnum.c # and others
 
+WARNS=		4
+
 MKINSTALL=	no
 
 .include <mkc.lib.mk>

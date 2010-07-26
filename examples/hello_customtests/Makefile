@@ -1,5 +1,7 @@
 PROG=			hello_customtests
 
+WARNS=			4
+
 MKC_CHECK_CUSTOM=	alloca_in_stdlib_h # C lang check
 MKC_CHECK_CUSTOM+=	alloca_in_alloca_h # C lang check
 MKC_CHECK_CUSTOM+=	cxx_with_templates # C++ lang check

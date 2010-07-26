@@ -1,5 +1,7 @@
 PROG=		hello_cxx
 
+WARNS=		4
+
 CPPFLAGS+=	-I.
 
 SRCS=		hello_msg.cc main.cc

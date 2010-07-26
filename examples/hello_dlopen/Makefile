@@ -2,6 +2,8 @@ MKC_REQUIRE_FUNCLIBS+=	dlopen:dl
 
 PROG=			dlopen_test
 
+WARNS=			4
+
 MKC_REQD=		0.10.0
 
 .include "test.mk"

@@ -3,6 +3,8 @@
 LIB=		dz
 SRCS=		dz.c
 
+WARNS=		4
+
 MKC_REQUIRE_HEADERS=	zlib.h
 MKC_REQUIRE_FUNCLIBS=	deflate:z
 

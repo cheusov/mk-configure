@@ -1,5 +1,7 @@
 PROG=		hello_reqs
 
+WARNS=		4
+
 MKC_REQUIRE_HEADERS+=	foobar.h string.h unistd.h
 MKC_REQUIRE_FUNCLIBS+=	strcasecmp foobar barbaz:z
 MKC_REQUIRE_DEFINES+=	FOOBAR

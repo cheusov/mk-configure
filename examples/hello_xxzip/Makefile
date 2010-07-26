@@ -2,6 +2,8 @@ PROG=		xxzip
 # manual page will be generated from xxzip.pod document
 MAN=		xxzip.1
 
+WARNS=		4
+
 DOCDIR?=	${DATADIR}/doc/${PROG}
 
 MLINKS=		xxzip.1 xxunzip.1
