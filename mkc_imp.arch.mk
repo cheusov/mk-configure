@@ -18,7 +18,7 @@ bin_cleanup:
 
 bin_tar: bin_cleanup
 	set -e; rm -f ${basefile}.tar; cd ${destdir}; \
-	${TAR} -cf ${basefile}.tar .; rm -rf ${destdir}
+	${TAR} -cf ${basefile}.tar .; cd /; rm -rf ${destdir}
 
 bin_targz: bin_tar
 	${GZIP} ${basefile}.tar
