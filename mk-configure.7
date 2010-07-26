@@ -309,6 +309,10 @@ osf1ld       OSF1 linker (Tru64)
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
+.IP CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>
+These variables are set by mk-configure and enable warning messages
+for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
+and warning level (WARNS).
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk

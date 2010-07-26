@@ -14,9 +14,6 @@ Plan 0)
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
-  = CFLAGS.warns.<cctype>.<warn-level> and
-    CXXFLAGS.warns.<cxxtype>.<warn-level>?
-
 ============================================================
 Plan 1)
 
