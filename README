@@ -360,7 +360,7 @@ INSTALLATION:
 
    4) Usage
 
-    For use mk-configure for real-life development you may need the
+    For use of mk-configure for real-life development you may need the
     following programs: C/C++/Fortran/Pascal/Objective-C compilers and
     linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
     pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, BSD-compatible
