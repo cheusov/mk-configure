@@ -147,7 +147,7 @@ mkc_printobjdir:
 ###########
 
 distclean: cleandir
-.if !defined(SUBDIR) && !defined(SUBPRJ) && !commands(cleandir)
+.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS) && !commands(cleandir)
 cleandir: mkc_cleandir
 .endif
 
@@ -156,7 +156,7 @@ mkc_cleandir:
 	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
 .PHONY: realall
-.if !defined(SUBDIR) && !defined(SUBPRJ)
+.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS)
 realall : errorcheck
 .endif
 errorcheck:
@@ -187,7 +187,7 @@ LDLIBS=		${LDFLAGS} ${LDADD}
 ###########
 # skip uninstalling files and creating destination dirs
 # for mkc.subdir.mk and mkc.subprj.mk
-.if !defined(SUBDIR) && !defined(SUBPRJ)
+.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS)
 
 uninstall:
 	-rm -f ${UNINSTALLFILES} 2>/dev/null
