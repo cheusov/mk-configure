@@ -4,7 +4,7 @@ tartf_cleanup=	sed -e 's,^[.]/,,' -e 's,/$$,,' -e '/^[.]*$$/ d'
 
 .PHONY : test_output
 test_output:
-	@set -e; \
+	@set -e; LC_ALL=C; export LC_ALL; \
 	${.OBJDIR}/hello_world; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
@@ -30,15 +30,17 @@ test_output:
 	\
 	echo ======== bin_tar ===========; \
 	${MAKE} ${MAKEFLAGS} bin_tar > /dev/null; \
-	${TAR} -tf ${.CURDIR:T}.tar | ${tartf_cleanup}; \
+	${TAR} -tf ${.CURDIR:T}.tar | sort | ${tartf_cleanup}; \
 	\
 	echo ======== bin_targz ===========; \
 	${MAKE} ${MAKEFLAGS} bin_targz > /dev/null; \
-	${GZIP} -dc ${.CURDIR:T}.tar.gz | ${TAR} -tf - | ${tartf_cleanup}; \
+	${GZIP} -dc ${.CURDIR:T}.tar.gz | \
+	${TAR} -tf - | sort | ${tartf_cleanup}; \
 	\
 	echo ======== bin_tarbz2 ===========; \
 	${MAKE} ${MAKEFLAGS} bin_tarbz2 > /dev/null; \
-	${BZIP2} -dc ${.CURDIR:T}.tar.bz2 | ${TAR} -tf - | ${tartf_cleanup}; \
+	${BZIP2} -dc ${.CURDIR:T}.tar.bz2 | \
+	${TAR} -tf - | sort | ${tartf_cleanup}; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
