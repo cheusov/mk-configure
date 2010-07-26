@@ -153,6 +153,13 @@ CFLAGS.warnerr.gcc=		-Werror
 CFLAGS.warnerr.icc=		-Werror
 CFLAGS.warnerr.sunpro=		-errwarn=%all
 
+#WARNERR?=	${${WARNS:U0}==4:?yes:no} # Eh, buggy bmake :-(
+.if ${WARNS:U0} == 4
+WARNERR?=	yes
+.else
+WARNERR?=	no
+.endif
+
 .if ${WARNERR:tl} == "yes"
 CFLAGS+=	${CFLAGS.warnerr.${CC_TYPE}}
 CXXFLAGS+=	${CFLAGS.warnerr.${CXX_TYPE}}

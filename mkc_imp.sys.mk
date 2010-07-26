@@ -7,8 +7,6 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-WARNERR?=	no
-
 .include <mkc_imp.platform.sys.mk>
 
 .SUFFIXES: .out .a .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
