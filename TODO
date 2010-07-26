@@ -1,16 +1,28 @@
 ============================================================
 Plan 0)
 
+  = Reimplement linkme.mk as a recommended way
+    to organize local linking. It is not flexible enough.
+
   = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
 
   = shared libraries support for IRIX
 
-  = (U/ser, D/eveloper, M/akefile) markers for variables in mk-configure.7
+  = (U/ser, D/eveloper, M/akefile) markers for variables in
+    mk-configure.7
 
   = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
 
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
+
+  = Automatically include Makefile.top from mkc.subdir.mk,
+    mkc.subprj.mk and all subdirectories recursively?
+
+  = Single cache file as an automatically loaded (if exists)
+    bmake makefile.
+
+  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
 
 ============================================================
 Plan 1)
@@ -36,9 +48,6 @@ Plan 1)
     Save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
 
-  = Single cache file as an automatically loaded (if exists)
-    bmake makefile.
-
   = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
     implementation is taken from mk-c.
     Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
@@ -62,8 +71,6 @@ Plan 1)
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
-
-  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
 
 ============================================================
 Plan2)
