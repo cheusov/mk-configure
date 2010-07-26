@@ -1,9 +1,9 @@
 ============================================================
 Plan 0)
 
-  = shared libraries support for IRIX
-
   = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
+
+  = shared libraries support for IRIX
 
   = (U/ser, D/eveloper, M/akefile) markers for variables in mk-configure.7
 

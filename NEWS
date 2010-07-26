@@ -1,4 +1,48 @@
 ======================================================================
+Version 0.18.0, by Aleksey Cheusov, Mon, 26 Jul 2010 20:10:31 +0300
+
+  Several new variables are introduced:
+    - LUA_LMODDIR and LUA_CMODDIR - installation directories
+      for Lua modules written in Lua and C.
+    - MKC_VERSION is now documented.
+    - MLINKS now works just like in NetBSD.
+    - CFLAGS.warns.<cctype>.<warn-level> and
+      CXXFLAGS.warns.<cctype>.<warn-level> are now documented.
+      Feel free to set them in sys.mk before installation.
+    - WARNERR for forcing warnings to be reported as errors.
+
+  New targets are introduced: bin_tar, bin_targz, bin_tarbz2,
+     bin_zip and bin_deb for creating archive files or .deb
+     package containing an installation image (Ex:
+     examples/hello_files).  This also introduces new variables: TAR,
+     GZIP, BZIP2 and ZIP.
+
+  Documentation:
+    - Just a few notes about cross-compilation in mk-configure.7
+    - New slides, fixes and improvements in doc/presentation.pdf
+    - README: feel free to edit sys.mk before installation
+    - README: a few notes about tools used for development.
+
+  Support for POD (Plain Old Documentation) is added
+    (.pod.1, ..., .pod.9 and .pod.html suffix rules).
+    New variables for this: POD2MAN, POD2MAN_FLAGS, POD2HTML
+    and POD2HTML_FLAGS. Ex: examples/hello_xxzip
+
+  ../Makefile.inc is included automatically if exists just like
+      in NetBSD. Ex: hello_superfs.
+
+  .ORDER: installdirs install. This should fix -j<N> problem.
+     Thanks to FreeBSD buys,
+     swell.k at gmail.com and Mikolaj Golub
+
+  WARNS: add support for HP-UX C/C++
+
+  all:${FILES} ${MAN} etc. for the case when FILES are generated.
+     Thanks to Jan Smydke.
+
+  New examples (regression tests): hello_superfs, hello_xxzip.
+
+======================================================================
 Version 0.17.0, by Aleksey Cheusov, Tue, 22 Jun 2010 23:44:08 +0300
 
   mkc_imp.pkg-config.mk:
