@@ -1,8 +1,6 @@
 ============================================================
 Plan 0)
 
-  = variable for switch on/off gcc's -Werror
-
   = shared libraries support for IRIX
 
   = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP

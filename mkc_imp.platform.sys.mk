@@ -148,7 +148,18 @@ CC_TYPE?=	unknown
 CXX_TYPE?=	unknown
 
 ####################
-# C warns (gcc)
+# Warnings as error
+CFLAGS.warnerr.gcc=		-Werror
+CFLAGS.warnerr.icc=		-Werror
+CFLAGS.warnerr.sunpro=		-errwarn=%all
+
+.if ${WARNERR:tl} == "yes"
+CFLAGS+=	${CFLAGS.warnerr.${CC_TYPE}}
+CXXFLAGS+=	${CFLAGS.warnerr.${CXX_TYPE}}
+.endif
+
+####################
+# C warns for gcc
 CFLAGS.warns.gcc.1=		-Wall -Wstrict-prototypes -Wmissing-prototypes \
 				-Wpointer-arith
 CFLAGS.warns.gcc.2=		${CFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
@@ -158,7 +169,7 @@ CFLAGS.warns.gcc.4=		${CFLAGS.warns.gcc.3}
 
 CFLAGS+=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
 
-# C++ warns (gcc)
+# C++ warns for gcc
 CXXFLAGS.warns.gcc.1=		-Wabi -Wold-style-cast -Wctor-dtor-privacy \
 				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
 				-Wno-non-template-friend -Woverloaded-virtual \
@@ -169,6 +180,19 @@ CXXFLAGS.warns.gcc.3=		${CXXFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 CXXFLAGS.warns.gcc.4=		${CXXFLAGS.warns.gcc.3}
 
 CXXFLAGS+=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
+
+# C/C++ warns for HP-UX C/C++
+CFLAGS.warns.hpc.0=		-w3
+CFLAGS.warns.hpc.1=		-w2
+CFLAGS.warns.hpc.2=		-w2
+CFLAGS.warns.hpc.3=		-w2
+CFLAGS.warns.hpc.4=		-w2
+
+CXXFLAGS.warns.hpc.0=		${CFLAGS.warns.hpc.0}
+CXXFLAGS.warns.hpc.1=		${CFLAGS.warns.hpc.1}
+CXXFLAGS.warns.hpc.2=		${CFLAGS.warns.hpc.2}
+CXXFLAGS.warns.hpc.3=		${CFLAGS.warns.hpc.3}
+CXXFLAGS.warns.hpc.4=		${CFLAGS.warns.hpc.4}
 
 ####################
 

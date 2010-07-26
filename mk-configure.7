@@ -199,21 +199,23 @@ from <file>.y to <file>.h and <file>.c, and add
 <foo>.h to CLEANFILES.
 .IP YPREFIX
 If defined, add "-p ${YPREFIX}" to YFLAGS.
-.IP NOGCCERROR
-If defined, prevents passing certain ${CFLAGS} to GCC
-that cause warnings to be fatal, such as:
--Werror -Wa,--fatal-warnings
-(The latter being for as(1).)
+.IP WARNERR
+If "yes", force warnings to be reported as errors.
+At the moment this is supported for GCC, Intel C/C++ and Sun's C/C++ compilers.
+.RI [ no ]
 .IP WARNS
 Crank up warning options; the distinct levels are (the higher the
 more strict):
 .VS
+    WARNS=0
     WARNS=1
     WARNS=2
     WARNS=3
     WARNS=4
 .VE
-At the moment only gcc is supported.
+At the moment WARNS is supported for GCC and HP-UX C/C++ only.
+WARNS=0 means disabling all warnings if such feature is provided by compiler
+and mk-configure.
 .IP PREFIX
 Target directory.
 .RI [ /usr/local ]
