@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.18.0, by Aleksey Cheusov, Mon, 26 Jul 2010 20:10:31 +0300
+Version 0.18.0, by Aleksey Cheusov, Tue, 27 Jul 2010 21:06:56 +0300
 
   Several new variables are introduced:
     - LUA_LMODDIR and LUA_CMODDIR - installation directories
