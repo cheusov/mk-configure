@@ -19,10 +19,11 @@ Plan 0)
   = Automatically include Makefile.top from mkc.subdir.mk,
     mkc.subprj.mk and all subdirectories recursively?
 
-  = Single cache file as an automatically loaded (if exists)
-    bmake makefile.
-
   = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
+
+  = MKINSTALLDIRS="yes" by default => install : installdirs
+
+  = {A,C{,XX}}FLAGS.warnerr
 
 ============================================================
 Plan 1)
@@ -72,8 +73,13 @@ Plan 1)
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
 
+  = implement MANBZ2?
+
 ============================================================
 Plan2)
+
+  = Single cache file as an automatically loaded (if exists)
+    bmake makefile.
 
   = PROGS= a b c d
     SRCS.a = ...
@@ -108,8 +114,6 @@ Plan2)
     - optional .f tests
     - optional .p tests
     - optional(!) glib2 tests
-
-  = implement MANBZ2?
 
   = Improve support for C++, Objective-C, Fortran and Pascal
 
