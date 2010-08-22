@@ -80,9 +80,9 @@ This target is provided by
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
 sections below.
-.IP nodeps-<target>-<subdir>
+.IP subdir-<target>-<subdir> and nodeps-<target>-<subdir>
 runs the specified <target> for the specified <subdir> without dependencies.
-This target is provided by
+These targets are provided by
 .BR mkc.subprj.mk
 only. For details see
 .BR mkc.subprj.mk
@@ -639,11 +639,11 @@ where
 is either of the following:
 all, clean, cleandir, depend, installdirs, installuninstall.
 Also provided are: targets
-nodeps-<target>-<subdir>.
+nodeps-<target>-<subdir> and subdir-<target>-<subdir>.
 Difference between
 <target>-<subdir>
 and
-nodeps-<target>-<subdir>
+nodeps-<target>-<subdir> (subdir-<target>-<subdir>)
 is that 
 .B "mkcmake <target>-<subdir>"
 runs the specified
@@ -651,7 +651,7 @@ runs the specified
 for
 <subdir>
 and all its dependencies while 
-.B "mkcmake <target>-<subdir>"
+.B "mkcmake nodeps-<target>-<subdir>"
 -- only for
 <subdir> .
 See

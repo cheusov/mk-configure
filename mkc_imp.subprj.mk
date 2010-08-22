@@ -46,9 +46,10 @@ SUBPRJ_DFLT?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS} ${test_target}
 .for dir in ${__REALSUBPRJ}
-.PHONY: nodeps-${targ}-${dir} ${targ}-${dir}
+.PHONY: nodeps-${targ}-${dir} subdir-${targ}-${dir} ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
-${targ}-${dir}: .MAKE __recurse
+       ${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
+subdir-${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
 .endfor # dir
 
 .for dir in ${SUBPRJ_DFLT}
