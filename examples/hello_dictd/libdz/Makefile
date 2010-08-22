@@ -5,6 +5,8 @@ SRCS=		dz.c
 
 WARNS=		4
 
+EXPORT_SYMBOLS=		export.sym
+
 MKC_REQUIRE_HEADERS=	zlib.h
 MKC_REQUIRE_FUNCLIBS=	deflate:z
 

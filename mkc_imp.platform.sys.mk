@@ -325,6 +325,18 @@ LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared
 LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
 
+####################
+
+.ifdef EXPORT_SYMBOLS
+LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
+.endif
+
+.if ${LDREAL:U0} == ${LD:U0}
+LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}}
+.else
+LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
+.endif
+
 ############################################################
 ############################################################
 .if ${TARGET_OPSYS:Unone} == "Darwin"
@@ -374,6 +386,11 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 SHLIB_EXTFULL=	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 
 .endif # SHLIB_EXT
+
+############################################################
+############################################################
+
+LDFLAGS.shlib=	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
 
 ############################################################
 ############################################################

@@ -147,7 +147,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 	@${_MESSAGE_V} building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
 	@rm -f ${.TARGET}
 	@${_MESSAGE} "LD: ${.TARGET}"
-	${_V} $(LDREAL) ${LDFLAGS.shared} ${LDFLAGS.soname} -o ${.TARGET} \
+	${_V} $(LDREAL) ${LDFLAGS.shlib} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
 .if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
 	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT}

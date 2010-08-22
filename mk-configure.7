@@ -80,7 +80,7 @@ This target is provided by
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
 sections below.
-.IP subdir-<target>-<subdir> and nodeps-<target>-<subdir>
+.IP "subdir-<target>-<subdir> and nodeps-<target>-<subdir>"
 runs the specified <target> for the specified <subdir> without dependencies.
 These targets are provided by
 .BR mkc.subprj.mk
@@ -317,7 +317,7 @@ osf1ld       OSF1 linker (Tru64)
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
-.IP CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>
+.IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
 These variables are set by mk-configure and enable warning messages
 for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
 and warning level (WARNS).
@@ -595,6 +595,10 @@ If "no", don't build or install the profiling (*_p.a) libraries.
 If "yes", build and install the dynamically loaded library (<lib>.so)
 instead of shared library. If "only", do not make static library.
 .RI [ no ]
+.IP EXPORT_SYMBOLS
+Only symbols listed in a specified file (one symbol per line) are
+exported. This variable has no effect on some platforms.  By default
+all symbols are exported.
 .\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
