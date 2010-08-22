@@ -11,7 +11,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} installdirs install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type d | \
 	grep -v 'strlcpy[.]o' | \

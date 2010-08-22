@@ -4,6 +4,7 @@ test_output :
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
+	MKINSTALLDIRS=no; \
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
 	${.CURDIR}/hello/hello_subprojects; \
 	${.CURDIR}/hello/hello_subprojects2; \

@@ -201,6 +201,10 @@ test:
 
 .endif # SUBDIR
 
+.if ${MKINSTALLDIRS:tl} == "yes"
+realinstall: installdirs
+.endif
+
 .ORDER: installdirs install
 
 TARGETS+=	all install clean cleandir depend \

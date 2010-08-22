@@ -141,4 +141,6 @@ MKSHLIB?=	no
 MKPICLIB?=	no
 MKPROFILELIB?=	no
 
+MKINSTALLDIRS?=	yes
+
 .endif		# _BSD_OWN_MK_

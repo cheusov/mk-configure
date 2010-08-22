@@ -213,6 +213,8 @@ WHAT MK-CONFIGURE CONSISTS OF?
 
       - A target 'install' installs include files, info pages and
         others not installed by default by bsd.*.mk files.
+        It also creates target directories by default
+        (see target 'installdirs' and MKINSTALLDIRS variable).
 
       - A target 'installdirs' creates all required destination
         directories. bsd.*.mk files do not create them at all.
@@ -317,7 +319,7 @@ INSTALLATION:
                  # that are not mandatory for using mk-configure.
                  # If "bmake test" fails on your platform, please let
                  # me know.
-      bmake installdirs install
+      bmake install
 
       Of course, you can change /usr/local to whatever you want.
       PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mkc-mk
@@ -325,7 +327,7 @@ INSTALLATION:
       On platforms having no BSD compatible install(1)
       you may install mk-configure by running
 
-      env INSTALL=`pwd`/mkc_install bmake installdirs install
+      env INSTALL=`pwd`/mkc_install bmake install
 
    3) You can also build a simple presentation by running either of the
       following commands:
@@ -350,7 +352,7 @@ INSTALLATION:
 
         export PREFIX=/usr MKFILESDIR=/usr/share/mk NOSYSMK=1
         bmake all
-        bmake installdirs install
+        bmake install
 
     In this example it is assumed that /usr/share/mk directory
     contains system-wide sys.mk file.  In either case use "mkcmake"
