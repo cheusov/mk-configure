@@ -55,6 +55,7 @@ INSTALL.UnixWare=	/usr/ucb/install
 INSTALL.HP-UX=		mkc_install
 INSTALL.OSF1=		mkc_install
 INSTALL.Interix=	mkc_install
+INSTALL.QNX=		mkc_install
 
 .if ${OPSYS:Unone} == "Linux"
 .if exists(/usr/bin/ginstall)
