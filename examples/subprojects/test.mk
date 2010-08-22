@@ -40,6 +40,13 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= libhello1 ==========; \
+	${MAKE} ${MAKEFLAGS} libhello1 DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	\
 	echo == library dependencies ====; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
 	${MAKE} ${MAKEFLAGS} all installdirs install >&2; \
