@@ -53,9 +53,7 @@ SUBDIR_${targ} += ${targ}-${dir}
 .endfor # dir
 
 .if defined(__REALSUBDIR)
-.PHONY: subdir-${targ}
-subdir-${targ}: ${SUBDIR_${targ}}
-${targ}: subdir-${targ}
+${targ}: ${SUBDIR_${targ}}
 .endif
 
 .endfor # targ
