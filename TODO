@@ -1,6 +1,10 @@
 ============================================================
 Plan 0)
 
+  = mkc.sub{dir,prj}.mk:
+    - continue bulding even if some subprojects failed
+    - list of variables to export for subprojects
+
   = Reimplement linkme.mk as a recommended way
     to organize local linking. It is not flexible enough.
 
