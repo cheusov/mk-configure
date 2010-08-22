@@ -6,6 +6,7 @@ SUBDIR+=	hello_lex
 SUBDIR+=	hello_yacc
 SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
+SUBDIR+=	hello_plugins
 SUBDIR+=	hello_dlopen
 SUBDIR+=	hello_glib2
 SUBDIR+=	hello_subdirs
