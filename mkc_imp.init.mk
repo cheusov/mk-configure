@@ -31,6 +31,26 @@ __initialized__=1
 
 .MAIN:		all
 
+### for mkc.subdir.mk and mkc.subprj.mk
+__recurse: .USE
+	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\
+	dir=${.TARGET:S/^nodeps-//:C/^[^-]*-//};			\
+	test "$${targ}_${MKINSTALL:tl}" = 'install_no' && exit 0;       \
+	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;   \
+	set -e;								\
+	echo ==================================================;	\
+	case "$$dir" in /*)						\
+		echo "$$targ ===> $$dir";				\
+		cd "$$dir";						\
+		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
+		;;							\
+	*)								\
+		echo "$$targ ===> ${_THISDIR_}$$dir";			\
+		cd "${.CURDIR}/$$dir";					\
+		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
+		;;							\
+	esac
+
 ###########
 .if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
 .sinclude <mkc_imp.vars.mk>

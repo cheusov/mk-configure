@@ -14,24 +14,6 @@ _MKC_IMP_SUBDIR_MK=1
 __REALSUBDIR+=${dir}
 .endfor
 
-__recurse: .USE
-	@targ=${.TARGET:C/-.*$//};dir=${.TARGET:C/^[^-]*-//};		\
-	test "$${targ}_${MKINSTALL:tl}" = 'install_no' && exit 0;       \
-	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;   \
-	set -e;								\
-	echo ==================================================;	\
-	case "$$dir" in /*)						\
-		echo "$$targ ===> $$dir";				\
-		cd "$$dir";						\
-		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
-		;;							\
-	*)								\
-		echo "$$targ ===> ${_THISDIR_}$$dir";			\
-		cd "${.CURDIR}/$$dir";					\
-		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
-		;;							\
-	esac
-
 .if !target(test)
 test_target=test
 .else
