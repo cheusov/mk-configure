@@ -10,8 +10,6 @@
 .if !defined(_MKC_IMP_SUBDIR_MK)
 _MKC_IMP_SUBDIR_MK=1
 
-.include <mkc_imp.init.mk>
-
 .for dir in ${SUBDIR}
 __REALSUBDIR+=${dir}
 .endfor

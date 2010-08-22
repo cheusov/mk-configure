@@ -3,6 +3,8 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
+SUBPRJ+=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
+
 .include <mkc_imp.init.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
