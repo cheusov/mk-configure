@@ -29,6 +29,11 @@ test_output :
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
+	echo ========== nodeps-cleandir-dictfmt subdir-clean-dictzip ===========; \
+	${MAKE} ${MAKEFLAGS} nodeps-cleandir-dictfmt nodeps-clean-dictzip > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
