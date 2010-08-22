@@ -8,7 +8,7 @@ Plan 0)
   = Reimplement linkme.mk as a recommended way
     to organize local linking. It is not flexible enough.
 
-  = EXPORT_SYMBOLS, EXPORT_SYMBOLS_REGEXP
+  = EXPORT_SYMBOLS for Solaris and others, EXPORT_SYMBOLS_REGEXP
 
   = shared libraries support for IRIX
 
