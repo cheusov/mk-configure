@@ -17,7 +17,6 @@ SUBDIR+=	hello_reqd
 SUBDIR+=	hello_cxx
 SUBDIR+=	hello_cxxlib
 SUBDIR+=	hello_dictd
-SUBDIR+=	hello_dll
 SUBDIR+=	hello_lua
 SUBDIR+=	hello_superfs
 SUBDIR+=	hello_xxzip
