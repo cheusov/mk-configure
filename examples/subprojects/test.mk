@@ -45,9 +45,19 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= all-libhello2 ==========; \
+	${MAKE} ${MAKEFLAGS} all-libhello2 DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= cleandir-libhello1 ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir-libhello1 DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	\
-	echo == library dependencies ====; \
+	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
 	${MAKE} ${MAKEFLAGS} all installdirs install >&2; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
