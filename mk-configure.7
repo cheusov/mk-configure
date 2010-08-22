@@ -643,7 +643,7 @@ nodeps-<target>-<subdir> and subdir-<target>-<subdir>.
 Difference between
 <target>-<subdir>
 and
-nodeps-<target>-<subdir> (subdir-<target>-<subdir>)
+nodeps-<target>-<subdir>
 is that 
 .B "mkcmake <target>-<subdir>"
 runs the specified
@@ -653,7 +653,7 @@ for
 and all its dependencies while 
 .B "mkcmake nodeps-<target>-<subdir>"
 -- only for
-<subdir> .
+<subdir>. A target subdir-<target>-<subdir> is a synonym for nodeps-<target>-<subdir>
 See
 .I examples/hello_dictd
 subdirectory for the sample of use.
