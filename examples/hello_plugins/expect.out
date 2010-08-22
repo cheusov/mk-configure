@@ -1,0 +1,93 @@
+dlopen(3) returned address: 0xF00DBEAF
+dlopen(3) returned address: 0xF00DBEAF
+
+dlsym(3) returned address: 0xF00DBEAF
+Plugin1 sucessfully activated
+dlsym(3) returned address: 0xF00DBEAF
+Plugin1 sucessfully activated
+
+Plugin1 sucessfully activated
+Plugin1 sucessfully activated
+=========== all ============
+/objdir/Makefile
+/objdir/app/Makefile
+/objdir/app/_mkc_compiler_type.err
+/objdir/app/_mkc_compiler_type.res
+/objdir/app/_mkc_funclib_dlopen.c
+/objdir/app/_mkc_funclib_dlopen.err
+/objdir/app/_mkc_funclib_dlopen.res
+/objdir/app/_mkc_funclib_dlopen_dl.c
+/objdir/app/_mkc_funclib_dlopen_dl.err
+/objdir/app/_mkc_funclib_dlopen_dl.res
+/objdir/app/_mkc_prog_cc.err
+/objdir/app/_mkc_prog_cc.res
+/objdir/app/app
+/objdir/app/app.c
+/objdir/app/app.o
+/objdir/expect.out
+/objdir/hello_plugins.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/_mkc_compiler_type.err
+/objdir/plugin1/_mkc_compiler_type.res
+/objdir/plugin1/_mkc_prog_cc.err
+/objdir/plugin1/_mkc_prog_cc.res
+/objdir/plugin1/plugin1.c
+/objdir/plugin1/plugin1.os
+/objdir/plugin1/plugin1.so
+/objdir/plugin2/Makefile
+/objdir/plugin2/_mkc_compiler_type.err
+/objdir/plugin2/_mkc_compiler_type.res
+/objdir/plugin2/_mkc_prog_cc.err
+/objdir/plugin2/_mkc_prog_cc.res
+/objdir/plugin2/plugin2.c
+/objdir/plugin2/plugin2.os
+/objdir/plugin2/plugin2.so
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/app
+/objdir/prefix/lib
+/objdir/prefix/lib/plugin1.so
+/objdir/prefix/lib/plugin2.so
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/app/Makefile
+/objdir/app/_mkc_compiler_type.err
+/objdir/app/_mkc_compiler_type.res
+/objdir/app/_mkc_funclib_dlopen.c
+/objdir/app/_mkc_funclib_dlopen.err
+/objdir/app/_mkc_funclib_dlopen.res
+/objdir/app/_mkc_funclib_dlopen_dl.c
+/objdir/app/_mkc_funclib_dlopen_dl.err
+/objdir/app/_mkc_funclib_dlopen_dl.res
+/objdir/app/_mkc_prog_cc.err
+/objdir/app/_mkc_prog_cc.res
+/objdir/app/app.c
+/objdir/expect.out
+/objdir/hello_plugins.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/_mkc_compiler_type.err
+/objdir/plugin1/_mkc_compiler_type.res
+/objdir/plugin1/_mkc_prog_cc.err
+/objdir/plugin1/_mkc_prog_cc.res
+/objdir/plugin1/plugin1.c
+/objdir/plugin2/Makefile
+/objdir/plugin2/_mkc_compiler_type.err
+/objdir/plugin2/_mkc_compiler_type.res
+/objdir/plugin2/_mkc_prog_cc.err
+/objdir/plugin2/_mkc_prog_cc.res
+/objdir/plugin2/plugin2.c
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/app/Makefile
+/objdir/app/app.c
+/objdir/expect.out
+/objdir/hello_plugins.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/plugin1.c
+/objdir/plugin2/Makefile
+/objdir/plugin2/plugin2.c
+/objdir/test.mk

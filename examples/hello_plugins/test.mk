@@ -4,6 +4,8 @@ DISTCLEANDIRS+=	${.CURDIR}/usr
 test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	app/app plugin1/plugin1${SHLIB_EXT} plugin1/plugin1${SHLIB_EXT} | \
+	awk '$$3 == "address:" {$$4 = "0xF00DBEAF"} {print}'; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \
