@@ -83,7 +83,8 @@ LFLAGS?=
 LEX.l?=		${_V} ${LEX} ${LFLAGS}
 MESSAGE.l?=	@${_MESSAGE} "LEX: ${.IMPSRC}"
 
-LD?=		ld
+LD.SunOS?=	/usr/ccs/bin/ld
+LD?=		${LD.${TARGET_OPSYS}:Uld}
 LDFLAGS?=
 
 LORDER?=	lorder
