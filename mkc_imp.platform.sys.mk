@@ -325,18 +325,6 @@ LDFLAGS.shared?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared
 LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
 
-####################
-
-.ifdef EXPORT_SYMBOLS
-LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
-.endif
-
-.if ${LDREAL:U0} == ${LD:U0}
-LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}}
-.else
-LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
-.endif
-
 ############################################################
 ############################################################
 .if ${TARGET_OPSYS:Unone} == "Darwin"
@@ -386,6 +374,30 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 SHLIB_EXTFULL=	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 
 .endif # SHLIB_EXT
+
+############################################################
+############################################################
+
+.ifdef EXPORT_SYMBOLS
+.if ${LD_TYPE} == "sunld"
+CLEANFILES+=	${EXPORT_SYMBOLS}.tmp
+lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
+${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
+	awk 'BEGIN {print "{ global:"} \
+	     {print $$0 ";"} \
+	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}.tmp && \
+	mv ${.TARGET}.tmp ${.TARGET}
+.endif
+
+LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
+LDFLAGS.expsym.sunld=		-M ${EXPORT_SYMBOLS}.tmp
+.endif
+
+.if ${LDREAL:U0} == ${LD:U0}
+LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}}
+.else
+LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
+.endif
 
 ############################################################
 ############################################################

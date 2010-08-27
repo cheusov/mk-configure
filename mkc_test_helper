@@ -24,6 +24,7 @@ sed -e "s,$objdir,/objdir," \
     -e 's/\([.][^ ]*\)[.]dylib/.so\1/' \
     -e 's/[.]dylib/.so/' \
     -e 's/[.]exe//' \
+    -e '/export[.]sym[.]tmp/ d' \
     -e '/pod2htmd.tmp/ d' \
     -e '/pod2htmi.tmp/ d' \
     -e 's,lua/[0-9]*[.][0-9]*,lua/X.Y,' \
