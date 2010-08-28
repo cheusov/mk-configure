@@ -167,10 +167,6 @@ Symbol prefix for ${LEX} (see -P option in lex(1)).
 Linker.
 .RI [[ Iu ]]
 .RI [ ld ]
-.IP LDFLAGS
-Options to ${LD} during the link process.
-.RI [[ Iu ]]
-.RI [ "" ]
 .IP LORDER
 List dependencies for object files.
 .RI [[ Iu ]]
@@ -214,6 +210,10 @@ List section sizes and total size.
 Discard symbols from object files.
 .RI [[ Iu ]]
 .RI [ strip ]
+.IP STRIPFLAG
+The flag passed to the install program to cause the binary
+to be stripped.
+.RI [[ Iu ]]
 .IP TSORT
 Topological sort of a directed graph.
 .RI [[ Iu ]]
@@ -512,18 +512,24 @@ is built.
 .\" causes mkc.prog.mk to link the program with the C++
 .\" compiler rather than the C compiler.  PROG_CXX overrides
 .\" the value of PROG if PROG is also set.
+.RI [[ "M" ]]
 .IP PROGNAME
 The name that the above program will be installed as, if
 different from ${PROG}.
+.RI [[ "Mu" ]]
 .IP SRCS
 List of source files to build the program.  If SRCS is not
  defined, it's assumed to be ${PROG}.c.
+.RI [[ "M" ]]
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
+.RI [[ "Iu" ]]
 .IP CPPFLAGS
 Additional flags to the C pre-processor.
+.RI [[ "Iu" ]]
 .IP COPTS
 Additional flags to the compiler when creating C objects.
+.RI [[ "U" ]]
 .IP LDADD
 Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
@@ -531,35 +537,22 @@ libraries, use:
 .VS
     LDADD+=  -lutil -lcompat
 .VE
+.RI [[ "U" ]]
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VS
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
-.IP BINDIR
-Target directory for program.
-.RI [ ${PREFIX}/bin ]
-.IP BINMODE
-Binary mode.
-.IP BINOWN
-File owner. If
-.B bmake
-is run by an unprivileged user, it defaults to
-.IR "`id -u`" .
-.IP BINGRP
-File group. If
-.B bmake
-is run by an unprivileged user, it defaults to
-.IR "`id -g`" .
-.\"  .IP COPTS
-.\"  Additional flags to the compiler when creating C objects.
-.IP STRIPFLAG
-The flag passed to the install program to cause the binary
-to be stripped.
+.RI [[ "Mu I" ]]
+.IP "BINDIR, BINMODE, BINOWN and BINGRP"
+See
+.IR "Common variables " and " mkc.files.mk"
+sections.
 .IP MKSHARE
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
 documentation,...
+.RI [[ "Iu" ]]
 .RI [ yes ]
 .\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
 .\" These provide a way to specify additions to the associated
