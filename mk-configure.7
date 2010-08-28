@@ -751,16 +751,21 @@ See
 subdirectory for the sample of use.
 .IP SUBPRJ
 Subprojects and dependencies
+.RI [[ "M" ]]
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
 The default is all projects listed in SUBPRJ.
+.RI [[ "IMu" ]]
 .IP EXPORT_VARNAMES
 List of variables to export before running make for subdirectories.
 By default MKC_CACHEDIR variable is exported. As a result cache files
 for subprojects are created in a top-level directory.
+.RI [[ "Mu" ]]
 .RI [ MKC_CACHEDIR ] 
 .IP NOEXPORT_VARNAMES
-List of variables excluded from EXPORT_VARNAMES. []
+List of variables excluded from EXPORT_VARNAMES.
+.RI [[ "Mu" ]]
+.RI [ "" ]
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -790,6 +795,7 @@ for some caveats on use of .WAIT and other
 special sources.
 .IP SUBDIR
 List of subdirectories
+.RI [[ "M" ]]
 .IP "EXPORT_VARNAMES and NOEXPORT_VARNAMES"
 The same as in mkc.subprj.mk include file.
 .SS "mkc.configure.mk"
