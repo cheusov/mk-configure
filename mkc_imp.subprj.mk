@@ -12,12 +12,11 @@ _MKC_IMP_SUBPRJ_MK=1
 
 .for dir in ${SUBPRJ:S/:/ /g}
 .if empty(NOSUBDIR:U:M${dir})
-___REALSUBPRJ+=${dir}
+__REALSUBPRJ+=${dir}
 .endif
 .endfor
 
-__REALSUBPRJ := ${___REALSUBPRJ:O:u}
-.undef ___REALSUBPRJ
+__REALSUBPRJ := ${__REALSUBPRJ:O:u}
 
 .if !target(test)
 test_target=test
