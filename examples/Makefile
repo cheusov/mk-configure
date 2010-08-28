@@ -1,3 +1,5 @@
+NOEXPORT_VARNAMES=	MKC_CACHEDIR
+
 SUBDIR+=	hello_world
 SUBDIR+=	hello_scripts
 SUBDIR+=	hello_files

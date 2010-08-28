@@ -3,10 +3,6 @@ Hello World1-2
 Hello World1-3
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/prog1
 /objdir/prog1.awk
@@ -22,10 +18,6 @@ Hello World1-3
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/prog1.awk
 /objdir/prog1.c

@@ -1,12 +1,12 @@
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
-/objdir/fsck_superfs/_mkc_compiler_type.err
-/objdir/fsck_superfs/_mkc_compiler_type.res
-/objdir/fsck_superfs/_mkc_prog_cc.err
-/objdir/fsck_superfs/_mkc_prog_cc.res
 /objdir/fsck_superfs/fsck_superfs
 /objdir/fsck_superfs/fsck_superfs.8
 /objdir/fsck_superfs/fsck_superfs.c
@@ -14,10 +14,6 @@
 /objdir/fsck_superfs/fsck_superfs.o
 /objdir/hello_superfs.test.out.tmp
 /objdir/mkfs_superfs/Makefile
-/objdir/mkfs_superfs/_mkc_compiler_type.err
-/objdir/mkfs_superfs/_mkc_compiler_type.res
-/objdir/mkfs_superfs/_mkc_prog_cc.err
-/objdir/mkfs_superfs/_mkc_prog_cc.res
 /objdir/mkfs_superfs/mkfs_superfs
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
@@ -40,20 +36,16 @@
 ========== clean ===========
 /objdir/Makefile
 /objdir/Makefile.inc
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
-/objdir/fsck_superfs/_mkc_compiler_type.err
-/objdir/fsck_superfs/_mkc_compiler_type.res
-/objdir/fsck_superfs/_mkc_prog_cc.err
-/objdir/fsck_superfs/_mkc_prog_cc.res
 /objdir/fsck_superfs/fsck_superfs.8
 /objdir/fsck_superfs/fsck_superfs.c
 /objdir/hello_superfs.test.out.tmp
 /objdir/mkfs_superfs/Makefile
-/objdir/mkfs_superfs/_mkc_compiler_type.err
-/objdir/mkfs_superfs/_mkc_compiler_type.res
-/objdir/mkfs_superfs/_mkc_prog_cc.err
-/objdir/mkfs_superfs/_mkc_prog_cc.res
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
 /objdir/test.mk
@@ -72,12 +64,12 @@
 ==== install MKINSTALL=no ====
 /objdir/Makefile
 /objdir/Makefile.inc
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
-/objdir/fsck_superfs/_mkc_compiler_type.err
-/objdir/fsck_superfs/_mkc_compiler_type.res
-/objdir/fsck_superfs/_mkc_prog_cc.err
-/objdir/fsck_superfs/_mkc_prog_cc.res
 /objdir/fsck_superfs/fsck_superfs
 /objdir/fsck_superfs/fsck_superfs.8
 /objdir/fsck_superfs/fsck_superfs.c
@@ -85,10 +77,6 @@
 /objdir/fsck_superfs/fsck_superfs.o
 /objdir/hello_superfs.test.out.tmp
 /objdir/mkfs_superfs/Makefile
-/objdir/mkfs_superfs/_mkc_compiler_type.err
-/objdir/mkfs_superfs/_mkc_compiler_type.res
-/objdir/mkfs_superfs/_mkc_prog_cc.err
-/objdir/mkfs_superfs/_mkc_prog_cc.res
 /objdir/mkfs_superfs/mkfs_superfs
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c

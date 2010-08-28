@@ -1,10 +1,6 @@
 Hello World2
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/prog2
 /objdir/prog2.c
@@ -16,10 +12,6 @@ Hello World2
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/prog2.c
 /objdir/prog2.test.out.tmp

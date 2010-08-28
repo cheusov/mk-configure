@@ -2,19 +2,15 @@ Hello world 1!
 hello world 2!
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
 /objdir/cxxapp/Makefile
-/objdir/cxxapp/_mkc_cxx_type.err
-/objdir/cxxapp/_mkc_cxx_type.res
-/objdir/cxxapp/_mkc_prog_cxx.err
-/objdir/cxxapp/_mkc_prog_cxx.res
 /objdir/cxxapp/cxxapp
 /objdir/cxxapp/cxxapp.cc
 /objdir/cxxapp/cxxapp.o
 /objdir/cxxlib/Makefile
-/objdir/cxxlib/_mkc_cxx_type.err
-/objdir/cxxlib/_mkc_cxx_type.res
-/objdir/cxxlib/_mkc_prog_cxx.err
-/objdir/cxxlib/_mkc_prog_cxx.res
 /objdir/cxxlib/hello_msg1.cpp
 /objdir/cxxlib/hello_msg1.o
 /objdir/cxxlib/hello_msg1.os
@@ -47,17 +43,13 @@ hello world 2!
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
 /objdir/cxxapp/Makefile
-/objdir/cxxapp/_mkc_cxx_type.err
-/objdir/cxxapp/_mkc_cxx_type.res
-/objdir/cxxapp/_mkc_prog_cxx.err
-/objdir/cxxapp/_mkc_prog_cxx.res
 /objdir/cxxapp/cxxapp.cc
 /objdir/cxxlib/Makefile
-/objdir/cxxlib/_mkc_cxx_type.err
-/objdir/cxxlib/_mkc_cxx_type.res
-/objdir/cxxlib/_mkc_prog_cxx.err
-/objdir/cxxlib/_mkc_prog_cxx.res
 /objdir/cxxlib/hello_msg1.cpp
 /objdir/cxxlib/hello_msg2.cpp
 /objdir/cxxlib/include/hello_msg.h

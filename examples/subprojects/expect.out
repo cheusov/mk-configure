@@ -5,15 +5,15 @@ Hello World! version 1.2.3
 My email is vle@gmx.net
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_stdio_h.c
+/objdir/_mkc_header_stdio_h.err
+/objdir/_mkc_header_stdio_h.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello/Makefile
-/objdir/hello/_mkc_compiler_type.err
-/objdir/hello/_mkc_compiler_type.res
-/objdir/hello/_mkc_header_stdio_h.c
-/objdir/hello/_mkc_header_stdio_h.err
-/objdir/hello/_mkc_header_stdio_h.res
-/objdir/hello/_mkc_prog_cc.err
-/objdir/hello/_mkc_prog_cc.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects
 /objdir/hello/hello_subprojects.1
@@ -25,10 +25,6 @@ My email is vle@gmx.net
 /objdir/hello/hello_subprojects2.in
 /objdir/hello/test.mk
 /objdir/libhello1/Makefile
-/objdir/libhello1/_mkc_compiler_type.err
-/objdir/libhello1/_mkc_compiler_type.res
-/objdir/libhello1/_mkc_prog_cc.err
-/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/hello1.o
@@ -39,10 +35,6 @@ My email is vle@gmx.net
 /objdir/libhello1/libhello1.so.1.0
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
-/objdir/libhello2/_mkc_compiler_type.err
-/objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_cc.err
-/objdir/libhello2/_mkc_prog_cc.res
 /objdir/libhello2/hello2.3
 /objdir/libhello2/hello2.c
 /objdir/libhello2/hello2.cat3
@@ -81,33 +73,25 @@ My email is vle@gmx.net
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_header_stdio_h.c
+/objdir/_mkc_header_stdio_h.err
+/objdir/_mkc_header_stdio_h.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello/Makefile
-/objdir/hello/_mkc_compiler_type.err
-/objdir/hello/_mkc_compiler_type.res
-/objdir/hello/_mkc_header_stdio_h.c
-/objdir/hello/_mkc_header_stdio_h.err
-/objdir/hello/_mkc_header_stdio_h.res
-/objdir/hello/_mkc_prog_cc.err
-/objdir/hello/_mkc_prog_cc.res
 /objdir/hello/expect.out
 /objdir/hello/hello_subprojects.1.in
 /objdir/hello/hello_subprojects.c
 /objdir/hello/hello_subprojects2.in
 /objdir/hello/test.mk
 /objdir/libhello1/Makefile
-/objdir/libhello1/_mkc_compiler_type.err
-/objdir/libhello1/_mkc_compiler_type.res
-/objdir/libhello1/_mkc_prog_cc.err
-/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/linkme.mk
 /objdir/libhello2/Makefile
-/objdir/libhello2/_mkc_compiler_type.err
-/objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_cc.err
-/objdir/libhello2/_mkc_prog_cc.res
 /objdir/libhello2/hello2.3
 /objdir/libhello2/hello2.c
 /objdir/libhello2/include/hello2.h
@@ -139,6 +123,10 @@ My email is vle@gmx.net
 ========= libhello1 ==========
 /objdir
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello
 /objdir/hello/Makefile
@@ -149,10 +137,6 @@ My email is vle@gmx.net
 /objdir/hello/test.mk
 /objdir/libhello1
 /objdir/libhello1/Makefile
-/objdir/libhello1/_mkc_compiler_type.err
-/objdir/libhello1/_mkc_compiler_type.res
-/objdir/libhello1/_mkc_prog_cc.err
-/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/hello1.o
@@ -175,6 +159,10 @@ My email is vle@gmx.net
 ========= all-libhello2 ==========
 /objdir
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello
 /objdir/hello/Makefile
@@ -185,10 +173,6 @@ My email is vle@gmx.net
 /objdir/hello/test.mk
 /objdir/libhello1
 /objdir/libhello1/Makefile
-/objdir/libhello1/_mkc_compiler_type.err
-/objdir/libhello1/_mkc_compiler_type.res
-/objdir/libhello1/_mkc_prog_cc.err
-/objdir/libhello1/_mkc_prog_cc.res
 /objdir/libhello1/hello1.c
 /objdir/libhello1/hello1.h
 /objdir/libhello1/hello1.o
@@ -200,10 +184,6 @@ My email is vle@gmx.net
 /objdir/libhello1/linkme.mk
 /objdir/libhello2
 /objdir/libhello2/Makefile
-/objdir/libhello2/_mkc_compiler_type.err
-/objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_cc.err
-/objdir/libhello2/_mkc_prog_cc.res
 /objdir/libhello2/hello2.3
 /objdir/libhello2/hello2.c
 /objdir/libhello2/hello2.cat3
@@ -233,10 +213,6 @@ My email is vle@gmx.net
 /objdir/libhello1/linkme.mk
 /objdir/libhello2
 /objdir/libhello2/Makefile
-/objdir/libhello2/_mkc_compiler_type.err
-/objdir/libhello2/_mkc_compiler_type.res
-/objdir/libhello2/_mkc_prog_cc.err
-/objdir/libhello2/_mkc_prog_cc.res
 /objdir/libhello2/hello2.3
 /objdir/libhello2/hello2.c
 /objdir/libhello2/hello2.cat3
