@@ -409,11 +409,14 @@ The list of files to install.
 .\"  are installed by the `configinstall' target,
 .\"  not the `install' target.
 .\"  The FILES* variables documented below also apply.
+.RI [[ "M" ]]
 .IP FILESDIR
 The location to install the files.
+.RI [[ "Mu" ]]
 .RI [ ${PREFIX}/bin ]
 .IP FILESDIR_<fn>
 The location to install the specific file <fn>.
+.RI [[ "Mu" ]]
 .IP FILESOWN
 File owner. If
 .B bmake
@@ -422,43 +425,56 @@ is run with root privileges, it defaults to
 or to
 .I "`id -u`"
 otherwise.
+.RI [[ "Mu" ]]
 .IP FILESOWN_<fn>
 File owner of the specific file <fn>.
+.RI [[ "Mu" ]]
 .IP FILESGRP
 File group. If
 .B bmake
 is run with root privileges, it defaults to
+.RI [[ "Mu" ]]
 .I ${BINGRP}
 or to
 .I "`id -g`"
 otherwise.
+.RI [[ "Mu" ]]
 .IP FILESGRP_<fn>
 File group of the specific file <fn>.
+.RI [[ "Mu" ]]
 .IP FILESMODE
 File mode.
+.RI [[ "Mu" ]]
 .RI [ ${NONBINMODE} ]
 .IP FILESMODE_<fn>
 File mode of the specific file <fn>.
+.RI [[ "Mu" ]]
 .IP FILESNAME
 Optional name to install each file as.
+.RI [[ "Mu" ]]
 .IP FILESNAME_<fn>
 Optional name to install <fn> as.
+.RI [[ "Mu" ]]
 .IP CLEANFILES
 Additional files to remove for the
 .IR clean ", " cleandir " and " distclean
 targets.
+.RI [[ "I M" ]]
 .IP DISTCLEANFILES
 Additional files to remove for the
 .IR cleandir " and " distclean
 targets.
+.RI [[ "I M" ]]
 .IP CLEANDIRS
 Additional directories to remove (recursively) for the
 .IR clean ", " cleandir " and " distclean
 targets.
+.RI [[ "I M" ]]
 .IP DISTCLEANDIRS
 Additional directories to remove (recursively) for the
 .IR cleandir " and " distclean
 targets.
+.RI [[ "I M" ]]
 .\" .IP FILESBUILD_<fn> A value different from "no" will add the file
  \" to the list of
 .\" targets to be built by `realall'.  Users of that variable
