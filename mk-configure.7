@@ -34,14 +34,16 @@ make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf is
 included.  These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
 In double square brackets -- typical way of use, where
+.I I
+means \"Initialized by mk-configure\",
 .I Iu
-means \"Initialized by mk-configure but may be overriden by user\",
+means \"Initialized by mk-configure but may be initialized or overriden by user\",
 .I U
 means \"Usually set by user\",
 .I M
-means \"Usually set in project's Makefile\" and
+means \"May be set or changed in project's Makefile\" and
 .I Mu
-means \"Usually set in projects's Makefile but may be overriden by user\".
+means \"May be set in project's Makefile but may be initialized or overriden by user\".
 .SS "Targets"
 .BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprj.mk
 include files provide the following targets:
@@ -249,6 +251,7 @@ If defined, add "-p ${YPREFIX}" to YFLAGS.
 .IP WARNERR
 If "yes", force warnings to be reported as errors.
 At the moment this is supported for GCC, Intel C/C++ and Sun's C/C++ compilers.
+.RI [[ "Iu" ]]
 .RI [ yes " if WARNS=4, " no " otherwise ]"
 .IP WARNS
 Crank up warning options; the distinct levels are (the higher the
@@ -263,43 +266,59 @@ more strict):
 At the moment WARNS is supported for GCC and HP-UX C/C++ only.
 WARNS=0 means disabling all warnings if such feature is provided by compiler
 and mk-configure.
+.RI [[ Mu ]]
+.RI [ 0 ]
 .IP PREFIX
 Target directory.
+.RI [[ "U" ]]
 .RI [ /usr/local ]
 .IP BINDIR
 Target directory for utilities.
+.RI [[ "Iu Mu" ]]
 .RI [ ${PREFIX}/bin ]
 .IP SBINDIR
 Target directory for administration utilities.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/sbin ]
 .IP LIBDIR
 Target directory for libraries.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/lib ]
 .IP LIBEXECDIR
 Target directory for system utilities.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/libexec ]
 .IP DATADIR
 Target directory for architecture-independent text files.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/share ]
 .IP SYSCONFDIR
 Target directory for configuration files.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/etc ]
 .IP INFODIR
 Target directory for .info files.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/info ]
 .IP DESTDIR
-Installation prefix. []
+Installation prefix.
+.RI [[ "U" ]]
+.RI [ "" ]
 .IP MKC_ERR_MSG
-If set, keep an error message. []
+If set, keep an error message.
+.RI [[ "I M" ]]
+.RI [ "" ]
 .IP MKINSTALL
 If not "yes", build everything but do not install. This option is useful
 for e.g. internal libraries.
+.RI [[ "Mu" ]]
 .RI [ yes ]
 .IP MKINSTALLDIRS
 If "yes", install target directories (target
 .IR installdirs )
 before installing files (target 
 .IR install ).
+.RI [[ "Iu" ]]
 .RI [ yes ]
 .IP MKC_REQD
 Minimal required version of
@@ -308,6 +327,7 @@ If required version is not found,
 the target
 .I errorcheck
 fails.
+.RI [[ "M" ]]
 .IP MKC_VERSION
 Version of
 .IR mk-configure .
@@ -321,6 +341,7 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
    SHRTOUT=    yes
    .endif MKC_VERSION
 .VE
+.RI [[ "I" ]]
 .IP CC_TYPE
 C compiler type. This variable is set by
 .B mk-configure
@@ -341,10 +362,12 @@ como      COMO C/C++ compiler
 decc      DEC C
 mipspro   MIPSpro C compiler
 .VE
+.RI [[ "Iu" ]]
 .IP CXX_TYPE
 C++ compiler type. This variable is set by
 .B mk-configure
 and can be overriden by user. It can get the same values as CC_TYPE variable.
+.RI [[ "Iu" ]]
 .IP LD_TYPE
 Linker type. This variable is set by
 .B mk-configure
@@ -361,13 +384,17 @@ scold        SCO linker
 sunld        SunOS linker
 osf1ld       OSF1 linker (Tru64)
 .VE
+.RI [[ "Iu" ]]
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
+.RI [[ "Iu" ]]
+.RI [ no ]
 .IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
 These variables are set by mk-configure and enable warning messages
 for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
 and warning level (WARNS).
+.RI [[ "Iu" ]]
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
