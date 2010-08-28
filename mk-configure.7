@@ -1202,26 +1202,34 @@ The following variables are provided:
 .IP SCRIPTS
 A list of interpreter scripts (written in shell, awk, lua etc).
 These are installed like programs.
+.RI [[ "M" ]]
 .IP SCRIPTSNAME
 The name that the above program will be installed as, if
 different from ${SCRIPTS}.
+.RI [[ "Mu" ]]
 .IP SCRIPTSNAME_<script>
 Optional name to install <script> as. If <script> has a form
 <subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
+.RI [[ "Mu" ]]
 .IP SCRIPTSDIR
 Target directory for scripts.
+.RI [[ "Iu" ]]
+.RI [ ${BINDIR} ]
 .IP SCRIPTSDIR_<script>
 Optional directory to install <script> to. If <script> has a form
 <subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
-.RI [ ${BINDIR} ]
+.RI [[ "Mu" ]]
 .IP SCRIPTSOWN
 Script files owner.
+.RI [[ "Iu" ]]
 .RI [ ${BINOWN} ]
 .IP SCRIPTSGRP
 Script file group.
+.RI [[ "Iu" ]]
 .RI [ ${BINGRP} ]
 .IP SCRIPTSMODE
 Script file mode.
+.RI [[ "Iu" ]]
 .RI [ ${BINMODE} ]
 .SS "mkc_imp.lua.mk"
 .B mkc_imp.lua.mk
@@ -1235,20 +1243,24 @@ The following variables are provided:
 List of .lua modules. They are installed to
 .I ${LUA_LMODDIR}
 directory.
+.RI [[ "M" ]]
 .IP LUA_CMODULE
 Compiled Lua module written in, e.g., C or C++. It is installed to
 .I ${LUA_CMODDIR}
 directory.
+.RI [[ "M" ]]
 .IP LUA_LMODDIR
 Directory for Lua modules written in Lua. It is assigned
 with a help of
 .I "pkg-config --variable=INSTALL_LMOD lua"
 command and can be overriden by user.
+.RI [[ "Iu" ]]
 .IP LUA_CMODDIR
 Directory for compiled Lua modules written in, e.g., C or C++.
 It is assigned with a help of
 .I "pkg-config --variable=INSTALL_CMOD lua"
 command and can be overriden by user.
+.RI [[ "Iu" ]]
 .SS "mkc_imp.intexts.mk"
 .B mkc_imp.intexts.mk
 is internal include file which is included from
@@ -1289,14 +1301,17 @@ expanding the following @@ patterns:
 The following variables are provided:
 .IP INFILES
 List of files to generate.
+.RI [[ "M" ]]
 .IP INSCRIPTS
 List of scripts to generate.
+.RI [[ "M" ]]
 .IP INTEXTS_REPLS
 List of Pattern/Replacement pairs separated by space, e.g.
 .VS
     INTEXTS_REPLS+=   version ${VERSION}
     INTEXTS_REPLS+=   author_email ${AUTHOR_EMAIL}
 .VE
+.RI [[ "M" ]]
 .IP INTEXTS_SED
 List of additional
 .B sed(1)
@@ -1304,6 +1319,7 @@ expressions for expanding, e.g.
 .VS
     INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
 .VE
+.RI [[ "M" ]]
 .SS "mkc_imp.info.mk"
 .B mkc_imp.info.mk
 is internal include file which is included from
@@ -1314,12 +1330,15 @@ and provides the following variables:
 .IP MKINFO
 If "no", don't build or install Info documentation from
 Texinfo source files.
+.RI [[ "Iu" ]]
 .RI [ yes ]
 .IP TEXINFO
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
+.RI [[ "M" ]]
 .IP INFOFLAGS
 Flags to pass to makeinfo. []
+.RI [[ "Iu" ]]
 .SS "mkc_imp.man.mk"
 .B mkc_imp.man.mk
 is internal include file which is included from
@@ -1329,35 +1348,44 @@ This module provides installation of manual pages and creation of catpages
 and HTML pages and provides the following variables:
 .IP MANDIR
 Target directory for man pages.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/man ]
 .IP USETBL
 If not "no", preprocess man pages using
 .B tbl(1)
 while generating cat pages.
+.RI [[ "IM" ]]
 .RI [ no ]
 .IP MANZ
 If not "no", compress manual pages at installation time.
+.RI [[ "Iu" ]]
 .RI [ no ]
 .IP MAN
 Manual pages (should end in .1 - .9).  If no MAN variable is
 defined, "MAN=${PROG}.1" is assumed if it exists.
+.RI [[ "M" ]]
 .IP MKMAN
 If "no", don't build or install the man pages,
 and also acts as "MKCATPAGES=no MKHTML=no".
+.RI [[ "Iu" ]]
 .RI [ yes ]
 .IP MKCATPAGES
 If "no", don't build or install the catman pages.
+.RI [[ "Iu" ]]
 .RI [ no ]
 .IP MKHTML
 If "no", don't build or install the HTML man pages.
+.RI [[ "Iu" ]]
 .RI [ no ]
 .IP HTMLDIR
 Target directory for html pages generated from man pages.
+.RI [[ "Iu" ]]
 .RI [ ${MANDIR} ]
 .IP MLINKS
 List of manual page links (using a .1 - .9 suffix).  The
 linked-to file must come first, the linked file second,
 and there may be multiple pairs.  The files are hard-linked.
+.RI [[ "M" ]]
 .SS "mkc_imp.links.mk"
 .B mkc_imp.links.mk
 is internal include file which is included from
