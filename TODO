@@ -3,15 +3,11 @@ Plan 0)
 
   = mkc.sub{dir,prj}.mk:
     - continue bulding even if some subprojects failed
-    - list of variables to export for subprojects
 
   = Reimplement linkme.mk as a recommended way
     to organize local linking. It is not flexible enough.
 
   = shared libraries support for IRIX
-
-  = mkc_imp.sub{dir,prj}.mk
-    - subprojects to exclude from target "all:".
 
   = Automatically include Makefile.top from mkc.subdir.mk,
     mkc.subprj.mk and all subdirectories recursively?

@@ -766,6 +766,9 @@ for subprojects are created in a top-level directory.
 List of variables excluded from EXPORT_VARNAMES.
 .RI < "Mu" >
 .RI [ "" ]
+.IP NOSUBDIR
+The same as in
+.B mkc.subdir.mk
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -798,6 +801,11 @@ List of subdirectories
 .RI < "M" >
 .IP "EXPORT_VARNAMES and NOEXPORT_VARNAMES"
 The same as in mkc.subprj.mk include file.
+.IP NOSUBDIR
+If for some reason you want to exclude some subdirectories from build,
+list them in this variable.
+.RI < "U" >
+.RI [ "" ]
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
 is an auxiliary include file for checking platform's features

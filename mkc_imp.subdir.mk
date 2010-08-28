@@ -11,7 +11,9 @@
 _MKC_IMP_SUBDIR_MK=1
 
 .for dir in ${SUBDIR}
+.if empty(NOSUBDIR:U:M${dir})
 __REALSUBDIR+=${dir}
+.endif
 .endfor
 
 .if !target(test)

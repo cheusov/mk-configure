@@ -11,7 +11,9 @@
 _MKC_IMP_SUBPRJ_MK=1
 
 .for dir in ${SUBPRJ:S/:/ /g}
+.if empty(NOSUBDIR:U:M${dir})
 ___REALSUBPRJ+=${dir}
+.endif
 .endfor
 
 __REALSUBPRJ := ${___REALSUBPRJ:O:u}

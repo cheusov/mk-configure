@@ -40,11 +40,11 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ======= all-dict ==========; \
-	${MAKE} ${MAKEFLAGS} all-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} all-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ========= installdirs-dict ==========; \
@@ -63,12 +63,12 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== clean-dict ===========; \
-	${MAKE} ${MAKEFLAGS} clean-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= cleandir-dict ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -86,7 +86,14 @@ test_output :
 	echo ======= uninstall-doc ==========; \
 	${MAKE} ${MAKEFLAGS} uninstall-doc DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo =========== all with NOSUBDIR ============; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	NOSUBDIR='dictfmt dictzip'; export NOSUBDIR; \
+	${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 
 CLEANDIRS+=	${.CURDIR}/usr
 .include <mkc.minitest.mk>
