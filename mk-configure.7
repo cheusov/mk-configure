@@ -32,7 +32,16 @@ files will try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
 make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf is
 included.  These files may define any of the variables described
-below.
+below. Below in square brackets the default value for variables are specified.
+In double square brackets -- typical way of use, where
+.I Iu
+means \"Initialized by mk-configure but may be overriden by user\",
+.I U
+means \"Usually set by user\",
+.I M
+means \"Usually set in project's Makefile\" and
+.I Mu
+means \"Usually set in projects's Makefile but may be overriden by user\".
 .SS "Targets"
 .BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk, mkc.subdir.mk " and " mkc.subprj.mk
 include files provide the following targets:
@@ -91,108 +100,146 @@ section below.
 The following variables control how various files are compiled/built.
 .IP AR
 Create, modify, and extract from archives.
+.RI [[ Iu ]]
 .RI [ ar ]
 .IP ARFLAGS
 Options to ${AR}.
+.RI [[ Iu ]]
 .RI [ rl ]
 .IP AS
 Assembler.
+.RI [[ Iu ]]
 .RI [ as ]
 .IP AFLAGS
 Options to ${CC} when compiling or linking .s or .S
 assembly source files.  []
 .IP CC
 C compiler.
+.RI [[ Iu ]]
 .RI [ cc ]
 .IP CFLAGS
 Options to ${CC}.
+.RI [[ U ]]
 .RI "[Usually " -O " or " -O2 ]
 .IP CPP
 C Pre-Processor.
+.RI [[ Iu ]]
 .RI [ cpp ]
 .IP CPPFLAGS
-Options to ${CPP}.  []
+Options to ${CPP}.
+.RI [[ U ]]
+.RI [ "" ]
 .IP CXX
 C++ compiler.
+.RI [[ Iu ]]
 .RI [ c++ ]
 .IP CXXFLAGS
 Options to ${CXX}.
+.RI [[ U ]]
 .RI [ ${CFLAGS} ]
 .IP FC
 Fortran compiler.
+.RI [[ Iu ]]
 .RI [ f77 ]
 .IP FFLAGS
 Options to {$FC}.
+.RI [[ Iu ]]
 .RI [ -O ]
 .IP INSTALL
 install(1) command.
-.RI [ install ]
+.RI [[ Iu ]]
+.RI [ install " or " mkc_install ]
 .IP LEX
 Lexical analyzer.
+.RI [[ Iu ]]
 .RI [ lex ]
 .IP LFLAGS
-Options to ${LEX}.  []
+Options to ${LEX}.
+.RI [[ Iu ]]
+.RI [ "" ]
 .IP LPREFIX
 Symbol prefix for ${LEX} (see -P option in lex(1)).
+.RI [[ Iu ]]
 .RI [ yy ]
 .IP LD
 Linker.
+.RI [[ Iu ]]
 .RI [ ld ]
 .IP LDFLAGS
-Options to ${LD} during the link process.  []
+Options to ${LD} during the link process.
+.RI [[ Iu ]]
+.RI [ "" ]
 .IP LORDER
 List dependencies for object files.
+.RI [[ Iu ]]
 .RI [ lorder ]
 .IP MAKE
 bmake(1).
-.RI [ bmake ]
+.RI [ bmake " or " make " on NetBSD]"
 .IP NM
 List symbols from object files.
+.RI [[ Iu ]]
 .RI [ nm ]
 .IP PC
 Pascal compiler.
+.RI [[ Iu ]]
 .RI [ pc ]
 .IP PFLAGS
-Options to ${PC}.  []
+Options to ${PC}.
+.RI [[ Iu ]]
+.RI [ "" ]
 .\" .IP OBJC
 .\" Objective C compiler.  [${CC}]
 .\" .IP OBJCFLAGS
 .\" Options to ${OBJC}.  [${CFLAGS}]
 .IP OBJCOPY
 Copy and translate object files.
+.RI [[ Iu ]]
 .RI [ objcopy ]
 .IP OBJDUMP
 Display information from object files.
+.RI [[ Iu ]]
 .RI [ objdump ]
 .IP RANLIB
 Generate index to archive.
+.RI [[ Iu ]]
 .RI [ ranlib ]
 .IP SIZE
 List section sizes and total size.
+.RI [[ Iu ]]
 .RI [ size ]
 .IP STRIP
 Discard symbols from object files.
+.RI [[ Iu ]]
 .RI [ strip ]
 .IP TSORT
 Topological sort of a directed graph.
+.RI [[ Iu ]]
 .RI [ "tsort -q" ]
 .IP YACC
 LALR(1) parser generator.
+.RI [[ Iu ]]
 .RI [ yacc ]
 .IP TAR
 tar archiver.
+.RI [[ Iu ]]
 .RI [ tar ]
 .IP GZIP
 gzip copression tool.
+.RI [[ Iu ]]
 .RI [ gzip ]
 .IP BZIP2
 bzip2 copression tool.
+.RI [[ Iu ]]
 .RI [ bzip2 ]
 .IP ZIP
 zip copression tool.
+.RI [[ Iu ]]
 .RI [ zip ]
 .IP YFLAGS
-Options to ${YACC}.  []
+Options to ${YACC}.
+.RI [[ Iu ]]
+.RI [ "" ]
 .IP YHEADER
 If defined, add "-d" to YFLAGS, and add dependencies
 from <file>.y to <file>.h and <file>.c, and add
