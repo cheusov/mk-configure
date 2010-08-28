@@ -13,8 +13,6 @@ Plan 0)
   = (U/ser, D/eveloper, M/akefile) markers for variables in
     mk-configure.7
 
-  = mkc.subprj.mk, mkc.subdir.mk and MKCCACHEDIR
-
   = mkc_imp.sub{dir,prj}.mk
     - subprojects to exclude from target "all:".
 
