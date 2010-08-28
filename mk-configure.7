@@ -584,58 +584,55 @@ if it exists.
 uses the following variables:
 .IP LIB
 The name of the library to build.
+.RI [[ "M" ]]
 .IP LIBDIR
-Target directory for libraries.
-.RI [ ${PREFIX}/lib ]
-.\" .IP SHLIBINSTALLDIR Target directory for shared libraries if
-.\" ${USE_SHLIBDIR}
-.\" is not "no".
-.\" USE_SHLIBDIR If not "no", use ${SHLIBINSTALLDIR} instead of ${LIBDIR}
-.\" as the path to install shared libraries to.
-.\" USE_SHLIBDIR must be defined before <bsd.own.mk> is included.
-.\" Default: no
+See
+.IR "Common variables " and " mkc.files.mk"
+sections.
 .IP SHLIB_MAJOR
 Major shared library number. If unset, shared library is not built.
+.RI [[ "M" ]]
 .IP SHLIB_MINOR
 Minor shared library number.
+.RI [[ "M" ]]
+.IP SHLIB_TEENY
+Minor shared library number.
+.RI [[ "M" ]]
 .IP LIBOWN
 Library owner. If
 .B bmake
 is run by an unprivileged user, it defaults to
 .IR "`id -u`" .
+.RI [[ "Iu" ]]
 .IP LIBGRP
 Library group. If
 .B bmake
 is run by an unprivileged user, it defaults to
 .IR "`id -g`" .
+.RI [[ "Iu" ]]
 .IP LIBMODE
 Library mode.
+.RI [[ "Iu" ]]
 .RI [ ${NONBINMODE} ]
 .IP SHLIBMODE
 Shared library mode.
-.\" .IP LIBISMODULE
-.\" If not "no", install as ${LIB}.so (without the "lib" prefix).
-.\" .\" and act as "MKDEBUGLIB=no MKPICINSTALL=no
-.\" .\" MKPROFILE=no MKSTATICLIB=no".
-.\" Default: no
+.RI [[ "Iu" ]]
 .IP LDADD
 Additional objects. See LDADD in
 .B mkc.prog.mk
+.RI [[ "Mu" ]]
 .IP LDFLAGS
 Additional linker flags. See LDFLAGS in
 .B mkc.prog.mk
+.RI [[ "Mu" ]]
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
-.\" NOCHECKVER_<library>
-.\" NOCHECKVER	If set, disables checking for installed shared object
-.\" 		libraries with versions greater than the source.  A
-.\" 		particular library name, without the "lib" prefix, may
-.\" 		be appended to the variable name to disable the check for
-.\" 		only that library.
+.RI [[ "M" ]]
 .IP SRCS
 List of source files to build the library.  Suffix types
  .s, .c, and .f are supported.  Note, .s files are preferred
  to .c files of the same name.
+.RI [[ "M" ]]
 .\" (This is not the default for
 .\"  versions of make.)
 .\" LIBDPLIBS	A list of the tuples:
@@ -660,28 +657,36 @@ List of source files to build the library.  Suffix types
 .IP LDCOMPILER
 If "yes", ${CC} is used for linking instead of ${LD}.
 For C++ sources ${CXX} is used for linking.
+.RI [[ "Iu" ]]
 .RI [ no ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
+.RI [[ "IMu" ]]
 .RI [ yes ]
 (for MACHINE_ARCHs that support it)
 .IP MKSTATICLIB
 If not "no", build and install static library.
+.RI [[ "IMu" ]]
 .RI [ yes ]
 .IP MKPICLIB
 If not "no", build and install *_pic.a library.
+.RI [[ "IMu" ]]
 .RI [ no ]
 .IP MKPROFILELIB
 If "no", don't build or install the profiling (*_p.a) libraries.
+.RI [[ "Iu" ]]
 .RI [ no ]
 .IP MKDLL
 If "yes", build and install the dynamically loaded library (<lib>.so)
 instead of shared library. If "only", do not make static library.
+.RI [[ "M" ]]
 .RI [ no ]
 .IP EXPORT_SYMBOLS
 Only symbols listed in a specified file (one symbol per line) are
 exported. This variable has no effect on some platforms.  By default
-all symbols are exported. []
+all symbols are exported.
+.RI [[ "M" ]]
+[]
 .\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
