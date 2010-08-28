@@ -33,7 +33,7 @@ variable.  If MAKECONF is not set, or no such file exists, the system
 make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf is
 included.  These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
-In double square brackets -- typical way of use, where
+In triangle brackets -- typical way of use, where
 .I I
 means \"Initialized by mk-configure\",
 .I Iu
@@ -102,89 +102,89 @@ section below.
 The following variables control how various files are compiled/built.
 .IP AR
 Create, modify, and extract from archives.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ ar ]
 .IP ARFLAGS
 Options to ${AR}.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ rl ]
 .IP AS
 Assembler.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ as ]
 .IP AFLAGS
 Options to ${CC} when compiling or linking .s or .S
 assembly source files.  []
 .IP CC
 C compiler.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ cc ]
 .IP CFLAGS
 Options to ${CC}.
-.RI [[ U ]]
+.RI < U >
 .RI "[Usually " -O " or " -O2 ]
 .IP CPP
 C Pre-Processor.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ cpp ]
 .IP CPPFLAGS
 Options to ${CPP}.
-.RI [[ U ]]
+.RI < U >
 .RI [ "" ]
 .IP CXX
 C++ compiler.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ c++ ]
 .IP CXXFLAGS
 Options to ${CXX}.
-.RI [[ U ]]
+.RI < U >
 .RI [ ${CFLAGS} ]
 .IP FC
 Fortran compiler.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ f77 ]
 .IP FFLAGS
 Options to {$FC}.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ -O ]
 .IP INSTALL
 install(1) command.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ install " or " mkc_install ]
 .IP LEX
 Lexical analyzer.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ lex ]
 .IP LFLAGS
 Options to ${LEX}.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ "" ]
 .IP LPREFIX
 Symbol prefix for ${LEX} (see -P option in lex(1)).
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ yy ]
 .IP LD
 Linker.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ ld ]
 .IP LORDER
 List dependencies for object files.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ lorder ]
 .IP MAKE
 bmake(1).
 .RI [ bmake " or " make " on NetBSD]"
 .IP NM
 List symbols from object files.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ nm ]
 .IP PC
 Pascal compiler.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ pc ]
 .IP PFLAGS
 Options to ${PC}.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ "" ]
 .\" .IP OBJC
 .\" Objective C compiler.  [${CC}]
@@ -192,55 +192,55 @@ Options to ${PC}.
 .\" Options to ${OBJC}.  [${CFLAGS}]
 .IP OBJCOPY
 Copy and translate object files.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ objcopy ]
 .IP OBJDUMP
 Display information from object files.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ objdump ]
 .IP RANLIB
 Generate index to archive.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ ranlib ]
 .IP SIZE
 List section sizes and total size.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ size ]
 .IP STRIP
 Discard symbols from object files.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ strip ]
 .IP STRIPFLAG
 The flag passed to the install program to cause the binary
 to be stripped.
-.RI [[ Iu ]]
+.RI < Iu >
 .IP TSORT
 Topological sort of a directed graph.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ "tsort -q" ]
 .IP YACC
 LALR(1) parser generator.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ yacc ]
 .IP TAR
 tar archiver.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ tar ]
 .IP GZIP
 gzip copression tool.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ gzip ]
 .IP BZIP2
 bzip2 copression tool.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ bzip2 ]
 .IP ZIP
 zip copression tool.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ zip ]
 .IP YFLAGS
 Options to ${YACC}.
-.RI [[ Iu ]]
+.RI < Iu >
 .RI [ "" ]
 .IP YHEADER
 If defined, add "-d" to YFLAGS, and add dependencies
@@ -251,7 +251,7 @@ If defined, add "-p ${YPREFIX}" to YFLAGS.
 .IP WARNERR
 If "yes", force warnings to be reported as errors.
 At the moment this is supported for GCC, Intel C/C++ and Sun's C/C++ compilers.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ yes " if WARNS=4, " no " otherwise ]"
 .IP WARNS
 Crank up warning options; the distinct levels are (the higher the
@@ -266,59 +266,59 @@ more strict):
 At the moment WARNS is supported for GCC and HP-UX C/C++ only.
 WARNS=0 means disabling all warnings if such feature is provided by compiler
 and mk-configure.
-.RI [[ Mu ]]
+.RI < Mu >
 .RI [ 0 ]
 .IP PREFIX
 Target directory.
-.RI [[ "U" ]]
+.RI < "U" >
 .RI [ /usr/local ]
 .IP BINDIR
 Target directory for utilities.
-.RI [[ "Iu Mu" ]]
+.RI < "Iu Mu" >
 .RI [ ${PREFIX}/bin ]
 .IP SBINDIR
 Target directory for administration utilities.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/sbin ]
 .IP LIBDIR
 Target directory for libraries.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/lib ]
 .IP LIBEXECDIR
 Target directory for system utilities.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/libexec ]
 .IP DATADIR
 Target directory for architecture-independent text files.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/share ]
 .IP SYSCONFDIR
 Target directory for configuration files.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/etc ]
 .IP INFODIR
 Target directory for .info files.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/info ]
 .IP DESTDIR
 Installation prefix.
-.RI [[ "U" ]]
+.RI < "U" >
 .RI [ "" ]
 .IP MKC_ERR_MSG
 If set, keep an error message.
-.RI [[ "I M" ]]
+.RI < "I M" >
 .RI [ "" ]
 .IP MKINSTALL
 If not "yes", build everything but do not install. This option is useful
 for e.g. internal libraries.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .RI [ yes ]
 .IP MKINSTALLDIRS
 If "yes", install target directories (target
 .IR installdirs )
 before installing files (target 
 .IR install ).
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ yes ]
 .IP MKC_REQD
 Minimal required version of
@@ -327,7 +327,7 @@ If required version is not found,
 the target
 .I errorcheck
 fails.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP MKC_VERSION
 Version of
 .IR mk-configure .
@@ -341,7 +341,7 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
    SHRTOUT=    yes
    .endif MKC_VERSION
 .VE
-.RI [[ "I" ]]
+.RI < "I" >
 .IP CC_TYPE
 C compiler type. This variable is set by
 .B mk-configure
@@ -362,12 +362,12 @@ como      COMO C/C++ compiler
 decc      DEC C
 mipspro   MIPSpro C compiler
 .VE
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP CXX_TYPE
 C++ compiler type. This variable is set by
 .B mk-configure
 and can be overriden by user. It can get the same values as CC_TYPE variable.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP LD_TYPE
 Linker type. This variable is set by
 .B mk-configure
@@ -384,17 +384,17 @@ scold        SCO linker
 sunld        SunOS linker
 osf1ld       OSF1 linker (Tru64)
 .VE
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
 These variables are set by mk-configure and enable warning messages
 for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
 and warning level (WARNS).
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -409,14 +409,14 @@ The list of files to install.
 .\"  are installed by the `configinstall' target,
 .\"  not the `install' target.
 .\"  The FILES* variables documented below also apply.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP FILESDIR
 The location to install the files.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .RI [ ${PREFIX}/bin ]
 .IP FILESDIR_<fn>
 The location to install the specific file <fn>.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESOWN
 File owner. If
 .B bmake
@@ -425,56 +425,56 @@ is run with root privileges, it defaults to
 or to
 .I "`id -u`"
 otherwise.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESOWN_<fn>
 File owner of the specific file <fn>.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESGRP
 File group. If
 .B bmake
 is run with root privileges, it defaults to
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .I ${BINGRP}
 or to
 .I "`id -g`"
 otherwise.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESGRP_<fn>
 File group of the specific file <fn>.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESMODE
 File mode.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .RI [ ${NONBINMODE} ]
 .IP FILESMODE_<fn>
 File mode of the specific file <fn>.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESNAME
 Optional name to install each file as.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP FILESNAME_<fn>
 Optional name to install <fn> as.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP CLEANFILES
 Additional files to remove for the
 .IR clean ", " cleandir " and " distclean
 targets.
-.RI [[ "I M" ]]
+.RI < "I M" >
 .IP DISTCLEANFILES
 Additional files to remove for the
 .IR cleandir " and " distclean
 targets.
-.RI [[ "I M" ]]
+.RI < "I M" >
 .IP CLEANDIRS
 Additional directories to remove (recursively) for the
 .IR clean ", " cleandir " and " distclean
 targets.
-.RI [[ "I M" ]]
+.RI < "I M" >
 .IP DISTCLEANDIRS
 Additional directories to remove (recursively) for the
 .IR cleandir " and " distclean
 targets.
-.RI [[ "I M" ]]
+.RI < "I M" >
 .\" .IP FILESBUILD_<fn> A value different from "no" will add the file
  \" to the list of
 .\" targets to be built by `realall'.  Users of that variable
@@ -512,24 +512,24 @@ is built.
 .\" causes mkc.prog.mk to link the program with the C++
 .\" compiler rather than the C compiler.  PROG_CXX overrides
 .\" the value of PROG if PROG is also set.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP PROGNAME
 The name that the above program will be installed as, if
 different from ${PROG}.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP SRCS
 List of source files to build the program.  If SRCS is not
  defined, it's assumed to be ${PROG}.c.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP CPPFLAGS
 Additional flags to the C pre-processor.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP COPTS
 Additional flags to the compiler when creating C objects.
-.RI [[ "U" ]]
+.RI < "U" >
 .IP LDADD
 Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
@@ -537,13 +537,13 @@ libraries, use:
 .VS
     LDADD+=  -lutil -lcompat
 .VE
-.RI [[ "U" ]]
+.RI < "U" >
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VS
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
-.RI [[ "Mu I" ]]
+.RI < "Mu I" >
 .IP "BINDIR, BINMODE, BINOWN and BINGRP"
 See
 .IR "Common variables " and " mkc.files.mk"
@@ -552,7 +552,7 @@ sections.
 If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
 I.e, don't build catman pages, man pages, info
 documentation,...
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ yes ]
 .\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
 .\" These provide a way to specify additions to the associated
@@ -584,55 +584,55 @@ if it exists.
 uses the following variables:
 .IP LIB
 The name of the library to build.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP LIBDIR
 See
 .IR "Common variables " and " mkc.files.mk"
 sections.
 .IP SHLIB_MAJOR
 Major shared library number. If unset, shared library is not built.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SHLIB_MINOR
 Minor shared library number.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SHLIB_TEENY
 Minor shared library number.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP LIBOWN
 Library owner. If
 .B bmake
 is run by an unprivileged user, it defaults to
 .IR "`id -u`" .
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP LIBGRP
 Library group. If
 .B bmake
 is run by an unprivileged user, it defaults to
 .IR "`id -g`" .
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP LIBMODE
 Library mode.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${NONBINMODE} ]
 .IP SHLIBMODE
 Shared library mode.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP LDADD
 Additional objects. See LDADD in
 .B mkc.prog.mk
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP LDFLAGS
 Additional linker flags. See LDFLAGS in
 .B mkc.prog.mk
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SRCS
 List of source files to build the library.  Suffix types
  .s, .c, and .f are supported.  Note, .s files are preferred
  to .c files of the same name.
-.RI [[ "M" ]]
+.RI < "M" >
 .\" (This is not the default for
 .\"  versions of make.)
 .\" LIBDPLIBS	A list of the tuples:
@@ -657,35 +657,35 @@ List of source files to build the library.  Suffix types
 .IP LDCOMPILER
 If "yes", ${CC} is used for linking instead of ${LD}.
 For C++ sources ${CXX} is used for linking.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
-.RI [[ "IMu" ]]
+.RI < "IMu" >
 .RI [ yes ]
 (for MACHINE_ARCHs that support it)
 .IP MKSTATICLIB
 If not "no", build and install static library.
-.RI [[ "IMu" ]]
+.RI < "IMu" >
 .RI [ yes ]
 .IP MKPICLIB
 If not "no", build and install *_pic.a library.
-.RI [[ "IMu" ]]
+.RI < "IMu" >
 .RI [ no ]
 .IP MKPROFILELIB
 If "no", don't build or install the profiling (*_p.a) libraries.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP MKDLL
 If "yes", build and install the dynamically loaded library (<lib>.so)
 instead of shared library. If "only", do not make static library.
-.RI [[ "M" ]]
+.RI < "M" >
 .RI [ no ]
 .IP EXPORT_SYMBOLS
 Only symbols listed in a specified file (one symbol per line) are
 exported. This variable has no effect on some platforms.  By default
 all symbols are exported.
-.RI [[ "M" ]]
+.RI < "M" >
 []
 .\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
@@ -751,20 +751,20 @@ See
 subdirectory for the sample of use.
 .IP SUBPRJ
 Subprojects and dependencies
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
 The default is all projects listed in SUBPRJ.
-.RI [[ "IMu" ]]
+.RI < "IMu" >
 .IP EXPORT_VARNAMES
 List of variables to export before running make for subdirectories.
 By default MKC_CACHEDIR variable is exported. As a result cache files
 for subprojects are created in a top-level directory.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .RI [ MKC_CACHEDIR ] 
 .IP NOEXPORT_VARNAMES
 List of variables excluded from EXPORT_VARNAMES.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .RI [ "" ]
 .SS "mkc.subdir.mk"
 The include file
@@ -795,7 +795,7 @@ for some caveats on use of .WAIT and other
 special sources.
 .IP SUBDIR
 List of subdirectories
-.RI [[ "M" ]]
+.RI < "M" >
 .IP "EXPORT_VARNAMES and NOEXPORT_VARNAMES"
 The same as in mkc.subprj.mk include file.
 .SS "mkc.configure.mk"
@@ -1202,34 +1202,34 @@ The following variables are provided:
 .IP SCRIPTS
 A list of interpreter scripts (written in shell, awk, lua etc).
 These are installed like programs.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SCRIPTSNAME
 The name that the above program will be installed as, if
 different from ${SCRIPTS}.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP SCRIPTSNAME_<script>
 Optional name to install <script> as. If <script> has a form
 <subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP SCRIPTSDIR
 Target directory for scripts.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${BINDIR} ]
 .IP SCRIPTSDIR_<script>
 Optional directory to install <script> to. If <script> has a form
 <subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP SCRIPTSOWN
 Script files owner.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${BINOWN} ]
 .IP SCRIPTSGRP
 Script file group.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${BINGRP} ]
 .IP SCRIPTSMODE
 Script file mode.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${BINMODE} ]
 .SS "mkc_imp.lua.mk"
 .B mkc_imp.lua.mk
@@ -1243,24 +1243,24 @@ The following variables are provided:
 List of .lua modules. They are installed to
 .I ${LUA_LMODDIR}
 directory.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP LUA_CMODULE
 Compiled Lua module written in, e.g., C or C++. It is installed to
 .I ${LUA_CMODDIR}
 directory.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP LUA_LMODDIR
 Directory for Lua modules written in Lua. It is assigned
 with a help of
 .I "pkg-config --variable=INSTALL_LMOD lua"
 command and can be overriden by user.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP LUA_CMODDIR
 Directory for compiled Lua modules written in, e.g., C or C++.
 It is assigned with a help of
 .I "pkg-config --variable=INSTALL_CMOD lua"
 command and can be overriden by user.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .SS "mkc_imp.intexts.mk"
 .B mkc_imp.intexts.mk
 is internal include file which is included from
@@ -1301,17 +1301,17 @@ expanding the following @@ patterns:
 The following variables are provided:
 .IP INFILES
 List of files to generate.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INSCRIPTS
 List of scripts to generate.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INTEXTS_REPLS
 List of Pattern/Replacement pairs separated by space, e.g.
 .VS
     INTEXTS_REPLS+=   version ${VERSION}
     INTEXTS_REPLS+=   author_email ${AUTHOR_EMAIL}
 .VE
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INTEXTS_SED
 List of additional
 .B sed(1)
@@ -1319,7 +1319,7 @@ expressions for expanding, e.g.
 .VS
     INTEXTS_SED+=   -e 's,@version@,${VERSION},g'
 .VE
-.RI [[ "M" ]]
+.RI < "M" >
 .SS "mkc_imp.info.mk"
 .B mkc_imp.info.mk
 is internal include file which is included from
@@ -1330,15 +1330,15 @@ and provides the following variables:
 .IP MKINFO
 If "no", don't build or install Info documentation from
 Texinfo source files.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ yes ]
 .IP TEXINFO
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INFOFLAGS
 Flags to pass to makeinfo. []
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .SS "mkc_imp.man.mk"
 .B mkc_imp.man.mk
 is internal include file which is included from
@@ -1348,44 +1348,44 @@ This module provides installation of manual pages and creation of catpages
 and HTML pages and provides the following variables:
 .IP MANDIR
 Target directory for man pages.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/man ]
 .IP USETBL
 If not "no", preprocess man pages using
 .B tbl(1)
 while generating cat pages.
-.RI [[ "IM" ]]
+.RI < "IM" >
 .RI [ no ]
 .IP MANZ
 If not "no", compress manual pages at installation time.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP MAN
 Manual pages (should end in .1 - .9).  If no MAN variable is
 defined, "MAN=${PROG}.1" is assumed if it exists.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP MKMAN
 If "no", don't build or install the man pages,
 and also acts as "MKCATPAGES=no MKHTML=no".
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ yes ]
 .IP MKCATPAGES
 If "no", don't build or install the catman pages.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP MKHTML
 If "no", don't build or install the HTML man pages.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ no ]
 .IP HTMLDIR
 Target directory for html pages generated from man pages.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${MANDIR} ]
 .IP MLINKS
 List of manual page links (using a .1 - .9 suffix).  The
 linked-to file must come first, the linked file second,
 and there may be multiple pairs.  The files are hard-linked.
-.RI [[ "M" ]]
+.RI < "M" >
 .SS "mkc_imp.links.mk"
 .B mkc_imp.links.mk
 is internal include file which is included from
@@ -1400,12 +1400,12 @@ ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
 .VS
     LINKS=   ${DESTDIR}/bin/gzip ${DESTDIR}${BINDIR}/gunzip
 .VE
-.RI [[ "M" ]]
+.RI < "M" >
 .IP SYMLINKS
 The list of symbolic links; should be full pathnames.
 Syntax is identical to LINKS. Note that DESTDIR is not
 automatically included in the link.
-.RI [[ "M" ]]
+.RI < "M" >
 .SS "mkc_imp.inc.mk"
 .B mkc_imp.inc.mk
 is internal include file which is included from
@@ -1415,24 +1415,24 @@ This module provides installation of header files and provides
 the following variables:
 .IP INCSDIR
 Target directory for includes.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ ${PREFIX}/include ]
 .IP INCS
 The list of include files.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INCSNAME
 Target name of the include file, if only one; same as
 FILESNAME, but for include files.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP INCSNAME_<file>
 The name file <file> should be installed as, if not <file>,
 same as FILESNAME_<file>, but for include files.
-.RI [[ "Mu" ]]
+.RI < "Mu" >
 .IP INCSSRCDIR
 Source directory for include files. This variable have an influence on
 CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 (paths in ${INCS} are relative to ${INCSSRCDIR}).
-.RI [[ "M" ]]
+.RI < "M" >
 .RI [ . ]
 .SS "mkc.minitest.mk"
 .B mkc.minitest.mk
@@ -1453,18 +1453,18 @@ to "pkg-config --cflags ..." and "pkg-config --libs ...".
 The following variables are provided:
 .IP PKG_CONFIG_DEPS
 List of dependency libraries. Spaces around <=, >=, =, < and > are not allowed.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
 Inside <lib> <=, >=, =, < and > and replaced with
 _le_, _ge_, _eq_, _lt_ and _gt_ respectively.
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .IP PKG_CONFIG_VARS.<lib>
 List of variables to check for library <lib>.
-.RI [[ "M" ]]
+.RI < "M" >
 .IP PKG_CONFIG.var.<lib>.<var>
 Variable value (pkg-config --variable=<var> <lib>).
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .SS "mkc_imp.pod.mk"
 .B mkc_imp.pod.mk
 is internal include file which is included from
@@ -1477,19 +1477,19 @@ i.e. convertion of POD documents to MAN pages
 The following variables are provided:
 .IP POD2MAN
 Path to POD to MAN conversion utility
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ pod2man ].
 .IP POD2MAN_FLAGS
 Flags passed to ${POD2MAN}
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
 .IP POD2HTML
 Path to POD to HTML conversion utility
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ pod2html ].
 .IP POD2HTML_FLAGS
 Flags passed to ${POD2HTML}
-.RI [[ "Iu" ]]
+.RI < "Iu" >
 .RI [ "" ].
 .SH "CROSS BUILD"
 .B mk-configure
