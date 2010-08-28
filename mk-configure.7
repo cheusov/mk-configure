@@ -1400,10 +1400,12 @@ ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
 .VS
     LINKS=   ${DESTDIR}/bin/gzip ${DESTDIR}${BINDIR}/gunzip
 .VE
+.RI [[ "M" ]]
 .IP SYMLINKS
 The list of symbolic links; should be full pathnames.
 Syntax is identical to LINKS. Note that DESTDIR is not
 automatically included in the link.
+.RI [[ "M" ]]
 .SS "mkc_imp.inc.mk"
 .B mkc_imp.inc.mk
 is internal include file which is included from
@@ -1413,19 +1415,24 @@ This module provides installation of header files and provides
 the following variables:
 .IP INCSDIR
 Target directory for includes.
+.RI [[ "Iu" ]]
 .RI [ ${PREFIX}/include ]
 .IP INCS
 The list of include files.
+.RI [[ "M" ]]
 .IP INCSNAME
 Target name of the include file, if only one; same as
 FILESNAME, but for include files.
+.RI [[ "M" ]]
 .IP INCSNAME_<file>
 The name file <file> should be installed as, if not <file>,
 same as FILESNAME_<file>, but for include files.
+.RI [[ "Mu" ]]
 .IP INCSSRCDIR
 Source directory for include files. This variable have an influence on
 CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 (paths in ${INCS} are relative to ${INCSSRCDIR}).
+.RI [[ "M" ]]
 .RI [ . ]
 .SS "mkc.minitest.mk"
 .B mkc.minitest.mk
@@ -1446,14 +1453,18 @@ to "pkg-config --cflags ..." and "pkg-config --libs ...".
 The following variables are provided:
 .IP PKG_CONFIG_DEPS
 List of dependency libraries. Spaces around <=, >=, =, < and > are not allowed.
+.RI [[ "M" ]]
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
 Inside <lib> <=, >=, =, < and > and replaced with
 _le_, _ge_, _eq_, _lt_ and _gt_ respectively.
+.RI [[ "Iu" ]]
 .IP PKG_CONFIG_VARS.<lib>
 List of variables to check for library <lib>.
+.RI [[ "M" ]]
 .IP PKG_CONFIG.var.<lib>.<var>
 Variable value (pkg-config --variable=<var> <lib>).
+.RI [[ "Iu" ]]
 .SS "mkc_imp.pod.mk"
 .B mkc_imp.pod.mk
 is internal include file which is included from
@@ -1466,21 +1477,25 @@ i.e. convertion of POD documents to MAN pages
 The following variables are provided:
 .IP POD2MAN
 Path to POD to MAN conversion utility
+.RI [[ "Iu" ]]
 .RI [ pod2man ].
 .IP POD2MAN_FLAGS
 Flags passed to ${POD2MAN}
+.RI [[ "Iu" ]]
 .RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
 .IP POD2HTML
 Path to POD to HTML conversion utility
+.RI [[ "Iu" ]]
 .RI [ pod2html ].
 .IP POD2HTML_FLAGS
 Flags passed to ${POD2HTML}
+.RI [[ "Iu" ]]
 .RI [ "" ].
 .SH "CROSS BUILD"
 .B mk-configure
 is ready for cross-build. For it you may need to set up
 cross-tools by setting the following variables:
-CC, CPPFLAGS, LDFLAGS, CXX, LD, AR, STRIP
+CC, CPPFLAGS, LDFLAGS, CXX, LD, LD_TYPE, AR, STRIP
 and maybe others.
 Also note that all variables set by 
 .I configure.mk
