@@ -316,7 +316,8 @@ INSTALLATION:
       bmake test # For testing mk-configure, this step is optional.
                  # Note that testing requires lex(1), yacc(1),
                  # pkg-config(1), glib2 library and other things
-                 # that are not mandatory for using mk-configure.
+                 # that are not mandatory for using mk-configure
+                 # and may be not available on your system.
                  # If "bmake test" fails on your platform, please let
                  # me know. If for some reason you want to exclude some
                  # regression tests (they are in "tests" and "examples"
