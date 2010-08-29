@@ -8,7 +8,7 @@ LPREFIX=	calc_
 
 MKC_CHECK_BUILTINS=	prog_bison prog_flex
 
-YACC=		${BUILTIN.prog_bison}
+YACC=		${BUILTIN.prog_bison} -y
 LEX=		${BUILTIN.prog_flex}
 
 lex.o: parser.h

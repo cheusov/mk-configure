@@ -156,7 +156,9 @@ ZIP?=		zip
 
 # Lex
 LPREFIX?=	yy
+.if ${LPREFIX} != "yy"
 LFLAGS+=	-P${LPREFIX}
+.endif
 
 .l.c:
 	${MESSAGE.l}
@@ -168,7 +170,11 @@ YFLAGS+=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
 .y.h: ${.TARGET:R}.c
 .y.c:
 	${MESSAGE.y}
-	${YACC.y} -o ${.TARGET} ${.IMPSRC}
+	${YACC.y} ${.IMPSRC}
+	${_V}mv y.tab.c ${.TARGET}
+.ifdef YHEADER
+	${_V}mv y.tab.h ${.TARGET:R}.h
+.endif
 
 # Shell
 .sh:
