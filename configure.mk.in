@@ -262,7 +262,16 @@ BUILTIN.${c}=	${CUSTOM.${c}}
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
 prog_id:=	${MKC_PROG.id.${p:S|+|x|g}:U${p}:S|/|_|g}
 .if !defined(PROG.${prog_id})
+p_=${p:M/*}
+.if !empty(p_)
+.  if exists(${p})
+PROG.${prog_id}=${p}
+.  else
+PROG.${prog_id}=
+.  endif # exists(${p})
+.else
 PROG.${prog_id} != env ${mkc.environ} mkc_check_prog -i '${prog_id}' '${p}'
+.endif # p matches /*
 .endif # !defined(PROG.${prog_id})
 .if !empty(PROG.${prog_id})
 HAVE_PROG.${prog_id}=		1
