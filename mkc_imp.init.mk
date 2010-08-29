@@ -81,12 +81,22 @@ LDREAL?=	${CC}
 LDREAL?=	${LD}
 .endif
 
-###########
 MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
+
+###########
+.if exists(${.CURDIR}/Makefile.rec)
+REC_MAKEFILES+=	${.CURDIR}/Makefile.rec
+.endif
+.for dir in ${REC_MAKEFILES}
+.include "${dir}"
+.endfor
 
 .if exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
+
+###########
+
 .include <mkc_imp.own.mk>
 
 ###########
@@ -222,6 +232,7 @@ export_cmd+=	${i}=${${i}:Q}; export ${i};
 .endif
 .endfor
 
+VERBOSE_ECHO?=echo
 ### for mkc.subdir.mk and mkc.subprj.mk
 __recurse: .USE
 	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\
@@ -230,14 +241,14 @@ __recurse: .USE
 	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;	\
 	${export_cmd}							\
 	set -e;								\
-	echo ==================================================;	\
+	${VERBOSE_ECHO} ==================================================;	\
 	case "$$dir" in /*)						\
-		echo "$$targ ===> $$dir";				\
+		${VERBOSE_ECHO} "$$targ ===> $$dir";				\
 		cd "$$dir";						\
 		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
 		;;							\
 	*)								\
-		echo "$$targ ===> ${_THISDIR_}$$dir";			\
+		${VERBOSE_ECHO} "$$targ ===> ${_THISDIR_}$$dir";			\
 		cd "${.CURDIR}/$$dir";					\
 		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
 		;;							\

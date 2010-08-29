@@ -6,9 +6,6 @@ Plan 0)
 
   = shared libraries support for IRIX
 
-  = Automatically include Makefile.top from mkc.subdir.mk,
-    mkc.subprj.mk and all subdirectories recursively?
-
   = {A,C{,XX}}FLAGS.warnerr
 
   = MKSTRIP?

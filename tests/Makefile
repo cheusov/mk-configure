@@ -11,5 +11,6 @@ SUBDIR  +=	pkg-config-0
 SUBDIR  +=	pkg-config-1
 SUBDIR  +=	pkg-config-2
 SUBDIR  +=	lua_dirs
+SUBDIR  +=	rec_makefiles
 
 .include <mkc.subdir.mk>

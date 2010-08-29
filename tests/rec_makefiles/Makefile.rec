@@ -1,0 +1,8 @@
+.PHONY: print-values
+print-values:
+	@echo =========== ${.CURDIR:T} =============
+.for i in A B C D
+	@echo ${i}=${${i}}
+.endfor
+
+A=1
