@@ -6,6 +6,7 @@ SUBDIR+=	hello_files
 SUBDIR+=	hello_sizeof
 SUBDIR+=	hello_lex
 SUBDIR+=	hello_yacc
+SUBDIR+=	hello_calc2
 SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
 SUBDIR+=	hello_plugins
