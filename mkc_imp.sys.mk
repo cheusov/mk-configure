@@ -7,6 +7,9 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
+.ifndef _MKC_IMP_SYS_MK
+_MKC_IMP_SYS_MK:=1
+
 .include <mkc_imp.platform.sys.mk>
 
 .SUFFIXES: .out .a .o .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
@@ -152,18 +155,24 @@ ZIP?=		zip
 	${COMPILE.S} ${.IMPSRC}
 
 # Lex
+LPREFIX?=	yy
+LFLAGS+=	-P${LPREFIX}
+
 .l.c:
 	${MESSAGE.l}
-	${LEX.l} ${.IMPSRC}
-	${_V}mv lex.yy.c ${.TARGET}
+	${LEX.l} -t ${.IMPSRC} > ${.TARGET}
 
 # Yacc
+YFLAGS+=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
+
+.y.h: ${.TARGET:R}.c
 .y.c:
 	${MESSAGE.y}
-	${YACC.y} ${.IMPSRC}
-	${_V}mv y.tab.c ${.TARGET}
+	${YACC.y} -o ${.TARGET} ${.IMPSRC}
 
 # Shell
 .sh:
 	rm -f ${.TARGET}
 	cp ${.IMPSRC} ${.TARGET}
+
+.endif
