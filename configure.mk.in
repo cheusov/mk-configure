@@ -270,6 +270,7 @@ PROG.${prog_id}=${p}
 PROG.${prog_id}=
 .  endif # exists(${p})
 .else
+.undef p_
 PROG.${prog_id} != env ${mkc.environ} mkc_check_prog -i '${prog_id}' '${p}'
 .endif # p matches /*
 .endif # !defined(PROG.${prog_id})
