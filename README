@@ -318,7 +318,11 @@ INSTALLATION:
                  # pkg-config(1), glib2 library and other things
                  # that are not mandatory for using mk-configure.
                  # If "bmake test" fails on your platform, please let
-                 # me know.
+                 # me know. If for some reason you want to exclude some
+                 # regression tests (they are in "tests" and "examples"
+                 # subdirectories), you may list them in NOSUBDIR variable,
+                 # e.g.
+                 # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
       bmake install
 
       Of course, you can change /usr/local to whatever you want.
