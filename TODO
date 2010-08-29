@@ -9,8 +9,6 @@ Plan 0)
   = Automatically include Makefile.top from mkc.subdir.mk,
     mkc.subprj.mk and all subdirectories recursively?
 
-  = Example for bison/flex + MKC_REQUIRE_BUILTINS=bison flex
-
   = {A,C{,XX}}FLAGS.warnerr
 
   = MKSTRIP?
