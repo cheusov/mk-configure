@@ -18,7 +18,9 @@ Version 0.19.0, by Aleksey Cheusov, Sun, 29 Aug 2010 18:37:21 +0300
 
   mkc.subdir.mk and mkc.subprj.mk:
     - Two new variables: EXPORT_VARNAMES and NOEXPORT_VARNAMES for
-      exporting variables before building subprojects.
+      exporting variables before building subprojects. By default
+      MKC_CACHEDIR is exported. As a result _mkc_* cache files will
+      be placed in one directory for all subprojects.
     - New variable NOSUBDIR for excluding specified subprojects from
       build. Useful side effect: by using this variable you may
       disable some regression tests while running "bmake test".
