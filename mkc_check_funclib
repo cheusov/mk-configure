@@ -32,7 +32,7 @@ if test $# -eq 0; then
     usage
     exit 1
 fi
-if test "$1" = '-h' -o "$1" = '--help'; then
+if test "_$1" = '_-h' -o "_$1" = '_--help'; then
     usage
     exit 0
 fi
