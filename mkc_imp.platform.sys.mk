@@ -301,6 +301,8 @@ LDFLAGS.shared.mipspro=		-shared
 LDFLAGS.shared.sunpro=		-G
 LDFLAGS.shared.decc=		-shared
 
+LDFLAGS.soname.sunpro=		${LDFLAGS.soname.sunld}
+
 .if ${TARGET_OPSYS:Unone} == "Darwin"
 SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
