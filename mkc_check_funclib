@@ -83,6 +83,11 @@ EOF
     if $CC -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr"; then
 	echo 1
     else
+	# SunPro may leave object files in current directory.
+	# We need not this garbage. Also we cannot use smart shell
+	# expansions because of crappy Solaris' /bin/sh.
+	tmpbase=`basename "$tmpc" | sed 's/[.][^.]*$//'`
+	rm -f ${tmpbase}.o
 	echo 0
     fi
 }
