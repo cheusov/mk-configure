@@ -12,7 +12,9 @@ Plan 0)
 
   = pod2man, pod2html -> MKC_REQUIRE_PROGS
 
-  = sample for home-made module (Ocaml? Pike?)
+  = sample for home-made .mk file (Ocaml? Pike?)
+
+  = OSF1: location_file -> ${.OBJDIR}
 
 ============================================================
 Plan 1)
