@@ -283,8 +283,9 @@ LDFLAGS.soname.aixld=		#
 LDFLAGS.shared.irixld=		-shared
 LDFLAGS.soname.irixld=		#
 
-LDFLAGS.shared.osf1ld=		-shared
-LDFLAGS.soname.osf1ld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
+LDFLAGS.shared.osf1ld=		-shared -msym -expect_unresolved '*'
+LDFLAGS.soname.osf1ld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
+                      		-set_version ${SHLIB_MAJOR}.${SHLIB_MINOR}
 
 LDFLAGS.shared.interixld=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
