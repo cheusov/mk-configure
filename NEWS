@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.19.0, by Aleksey Cheusov, Sun, 29 Aug 2010 18:37:21 +0300
+Version 0.19.0, by Aleksey Cheusov, Fri,  3 Sep 2010 23:19:44 +0300
 
   FIX: LPREFIX, YPREFIX and YHEADER now works as
   documented. Regression test for them is added.
