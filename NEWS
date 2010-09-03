@@ -38,7 +38,7 @@ Version 0.19.0, by Aleksey Cheusov, Sun, 29 Aug 2010 18:37:21 +0300
   mk-configure.7 shows in <> typical place where variables shall be used.
 
   On Solaris LD=/usr/ccs/bin/ld by default.
-
+  On OSF1 LD=/usr/bin/ld by default.
   On QNX mkc_install is used as install program by default.
 
   mkc_check_custom:
