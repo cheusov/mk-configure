@@ -1,0 +1,47 @@
+foobar
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_pkgconfig_lua.err
+/objdir/_mkc_pkgconfig_lua.res
+/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
+/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
+/objdir/bar.lua
+/objdir/expect.out
+/objdir/foo.lua
+/objdir/foobar
+/objdir/hello_lua2.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/foobar
+/objdir/prefix/share
+/objdir/prefix/share/lua
+/objdir/prefix/share/lua/X.Y
+/objdir/prefix/share/lua/X.Y/bar.lua
+/objdir/prefix/share/lua/X.Y/foo.lua
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_pkgconfig_lua.err
+/objdir/_mkc_pkgconfig_lua.res
+/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
+/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
+/objdir/_mkc_prog_pkg-config.err
+/objdir/_mkc_prog_pkg-config.res
+/objdir/bar.lua
+/objdir/expect.out
+/objdir/foo.lua
+/objdir/foobar
+/objdir/hello_lua2.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/bar.lua
+/objdir/expect.out
+/objdir/foo.lua
+/objdir/foobar
+/objdir/hello_lua2.test.out.tmp
+/objdir/test.mk

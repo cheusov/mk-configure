@@ -21,6 +21,7 @@ SUBDIR+=	hello_cxx
 SUBDIR+=	hello_cxxlib
 SUBDIR+=	hello_dictd
 SUBDIR+=	hello_lua
+SUBDIR+=	hello_lua2
 SUBDIR+=	hello_superfs
 SUBDIR+=	hello_xxzip
 

@@ -1,0 +1,6 @@
+#!/usr/bin/env lua
+
+require "foo"
+require "bar"
+
+io.write (foo.get () .. bar.get () .. "\n")

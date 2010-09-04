@@ -38,10 +38,11 @@ LIBDIR=			${LUA_CMODDIR}
 ######################
 .include <mkc_imp.pkg-config.mk>
 
-.if empty(LUA_LMODDIR)
+.if defined(LUA_LMODULES) && empty(LUA_LMODDIR)
 MKC_ERR_MSG+=	"ERROR: pkg-config --variable=INSTALL_LMOD lua failed"
-.endif
+.endif # LUA_LMODULES
 
+.ifdef LUA_CMODULE
 .if empty(LUA_CMODDIR)
 MKC_ERR_MSG+=	"ERROR: pkg-config --variable=INSTALL_CMOD lua failed"
 .endif
@@ -49,5 +50,6 @@ MKC_ERR_MSG+=	"ERROR: pkg-config --variable=INSTALL_CMOD lua failed"
 .if empty(MKC_ERR_MSG)
 MKC_REQUIRE_HEADERS+=	lua.h
 .endif # !empty(MKC_ERR_MSG)
+.endif # LUA_CMODULE
 
 .endif # LUA_LMODULES) || LUA_CMODULE
