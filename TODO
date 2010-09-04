@@ -12,8 +12,6 @@ Plan 0)
 
   = sample for home-made .mk file (Ocaml? Pike?)
 
-  = OSF1: location_file -> ${.OBJDIR}
-
 ============================================================
 Plan 1)
 
