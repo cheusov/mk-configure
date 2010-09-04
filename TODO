@@ -8,8 +8,6 @@ Plan 0)
 
   = {A,C{,XX}}FLAGS.warnerr
 
-  = EXPORT_SYMBOLS on Darwin and OSF1.
-
   = pod2man, pod2html -> MKC_REQUIRE_PROGS
 
   = sample for home-made .mk file (Ocaml? Pike?)

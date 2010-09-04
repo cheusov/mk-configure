@@ -390,10 +390,17 @@ ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	     {print $$0 ";"} \
 	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}.tmp && \
 	mv ${.TARGET}.tmp ${.TARGET}
+.elif ${LD_TYPE} == "darwinld"
+CLEANFILES+=	${EXPORT_SYMBOLS}.tmp
+lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
+${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
+	awk '{print "_" $$0}' ${.ALLSRC} > ${.TARGET}.tmp && \
+	mv ${.TARGET}.tmp ${.TARGET}
 .endif
 
 LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
 LDFLAGS.expsym.sunld=		-M ${EXPORT_SYMBOLS}.tmp
+LDFLAGS.expsym.darwinld=	-exported_symbols_list ${EXPORT_SYMBOLS}.tmp
 .endif
 
 .if ${LDREAL:U0} == ${LD:U0}
