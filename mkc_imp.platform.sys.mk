@@ -309,6 +309,8 @@ LDFLAGS.soname.sunpro=		${LDFLAGS.soname.sunld}
 SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
 LDFLAGS.soname.gcc+=		-compatibility_version ${SHLIB_MAJORp1}
+.elif ${TARGET_OPSYS:Unone} == "OSF1" && defined(LIB)
+CLEANFILES+=			${.OBJDIR}/${LIB}_so_locations
 .endif
 
 #CFLAGS.cctold.gcc=		-Wl,
