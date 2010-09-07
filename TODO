@@ -12,6 +12,11 @@ Plan 0)
 
   = sample for home-made .mk file (Ocaml? Pike?)
 
+  = initializing PROJECTNAME -> before including mk.conf.
+    Comment about using it in mk.conf in mk-configure.7
+
+  = Autodetecting yacc,bison,byacc lex,flex
+
 ============================================================
 Plan 1)
 
