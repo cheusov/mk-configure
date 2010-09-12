@@ -1,3 +1,5 @@
+PROJECTNAME=	hello_cxx
+
 SUBDIR+=	cxxlib
 SUBDIR+=	.WAIT
 SUBDIR+=	cxxapp
