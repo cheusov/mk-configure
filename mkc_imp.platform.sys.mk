@@ -256,7 +256,7 @@ LD_TYPE.AIX=			aixld
 LD_TYPE.HP-UX=			hpld
 LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
-LD_TYPE.Interix=		gnuld
+LD_TYPE.Interix=		interixld
 LD_TYPE.OSF1=			osf1ld
 
 LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
@@ -418,6 +418,7 @@ LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 .if ${EXPORT_DYNAMIC:U:tl} == "yes"
 LDFLAGS.expdyn.gnuld?=		-Wl,-E
 LDFLAGS.expdyn.hpld?=		-Wl,-E
+LDFLAGS.expdyn.interixld?=	-Wl,-E
 LDFLAGS.expdyn.gcc?=		-rdynamic
 .ifndef LDFLAGS.expdyn
 .if defined(LDFLAGS.expdyn.${LD_TYPE})
