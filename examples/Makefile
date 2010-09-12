@@ -10,6 +10,7 @@ SUBDIR+=	hello_calc2
 SUBDIR+=	subprojects
 SUBDIR+=	hello_compilers
 SUBDIR+=	hello_plugins
+SUBDIR+=	hello_plugins2
 SUBDIR+=	hello_glib2
 SUBDIR+=	hello_subdirs
 SUBDIR+=	hello_strlcpy

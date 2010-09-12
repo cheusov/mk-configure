@@ -46,13 +46,13 @@ MESSAGE.S?=	${MESSAGE.s}
 CC?=		cc
 CFLAGS?=
 COMPILE.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
-LINK.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS}
+LINK.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
 MESSAGE.c?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX?=		c++
 CXXFLAGS+=	${CFLAGS}
 COMPILE.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
-LINK.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS}
+LINK.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
 MESSAGE.cc?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 OBJC?=		${CC}

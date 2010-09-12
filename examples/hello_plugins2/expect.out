@@ -1,0 +1,69 @@
+Plugin1 sucessfully activated
+Plugin2 sucessfully activated
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_funclib_dlopen.c
+/objdir/_mkc_funclib_dlopen.err
+/objdir/_mkc_funclib_dlopen.res
+/objdir/_mkc_funclib_dlopen_dl.c
+/objdir/_mkc_funclib_dlopen_dl.err
+/objdir/_mkc_funclib_dlopen_dl.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/app/Makefile
+/objdir/app/app
+/objdir/app/app.c
+/objdir/app/app.o
+/objdir/expect.out
+/objdir/hello_plugins2.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/plugin1.c
+/objdir/plugin1/plugin1.os
+/objdir/plugin1/plugin1.so
+/objdir/plugin2/Makefile
+/objdir/plugin2/plugin2.c
+/objdir/plugin2/plugin2.os
+/objdir/plugin2/plugin2.so
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/app
+/objdir/prefix/lib
+/objdir/prefix/lib/plugin1.so
+/objdir/prefix/lib/plugin2.so
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_funclib_dlopen.c
+/objdir/_mkc_funclib_dlopen.err
+/objdir/_mkc_funclib_dlopen.res
+/objdir/_mkc_funclib_dlopen_dl.c
+/objdir/_mkc_funclib_dlopen_dl.err
+/objdir/_mkc_funclib_dlopen_dl.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/app/Makefile
+/objdir/app/app.c
+/objdir/expect.out
+/objdir/hello_plugins2.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/plugin1.c
+/objdir/plugin2/Makefile
+/objdir/plugin2/plugin2.c
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/app/Makefile
+/objdir/app/app.c
+/objdir/expect.out
+/objdir/hello_plugins2.test.out.tmp
+/objdir/plugin1/Makefile
+/objdir/plugin1/plugin1.c
+/objdir/plugin2/Makefile
+/objdir/plugin2/plugin2.c
+/objdir/test.mk

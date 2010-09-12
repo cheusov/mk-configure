@@ -399,24 +399,41 @@ lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	awk '{print "_" $$0}' ${.ALLSRC} > ${.TARGET}.tmp && \
 	mv ${.TARGET}.tmp ${.TARGET}
-.endif
+.endif # sunld or darwinld
 
 LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
 LDFLAGS.expsym.sunld=		-M ${EXPORT_SYMBOLS}.tmp
 LDFLAGS.expsym.darwinld=	-exported_symbols_list ${EXPORT_SYMBOLS}.tmp
-.endif
+.endif # EXPORT_SYMBOLS
 
 .if ${LDREAL:U0} == ${LD:U0}
 LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}}
 .else
 LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
-.endif
+.endif # LDREAL == LD
+
+############################################################
+############################################################
+
+.if ${EXPORT_DYNAMIC:U:tl} == "yes"
+LDFLAGS.expdyn.gnuld?=		-Wl,-E
+LDFLAGS.expdyn.gcc?=		-rdynamic
+.ifndef LDFLAGS.expdyn
+.if defined(LDFLAGS.expdyn.${CC_TYPE}) && ${LDREAL:U0} == ${CC:U0}
+LDFLAGS.expdyn=		${LDFLAGS.expdyn.${CC_TYPE}}
+.elif defined(LDFLAGS.expdyn.${CXX_TYPE}) && ${LDREAL:U0} == ${CXX:U0}
+LDFLAGS.expdyn=		${LDFLAGS.expdyn.${CXX_TYPE}}
+.elif defined(LDFLAGS.expdyn.${LD_TYPE})
+LDFLAGS.expdyn=		${LDFLAGS.expdyn.${LD_TYPE}}
+.endif # LDFLAGS.expdyn.xxx
+.endif # LDFLAGS.expdyn
+.endif # EXPORT_DYNAMIC
 
 ############################################################
 ############################################################
 
 LDFLAGS.shlib=	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
-
+LDFLAGS.prog=	${LDFLAGS.expdyn}
 ############################################################
 ############################################################
 
