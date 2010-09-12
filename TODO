@@ -12,7 +12,7 @@ Plan 0)
 
   = Fix for -ll vs. -lfl
 
-  = EXPORT_DYNAMIC (-export-dynamic for GNU ld)
+  = EXPORT_DYNAMIC for Darwin
 
   = Autodetecting yacc,bison,byacc lex,flex
 
