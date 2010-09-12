@@ -8,5 +8,4 @@ CFLAGS+=		-DG_DISABLE_SINGLE_INCLUDES
 MKC_REQD=		0.11.0
 
 .include "test.mk"
-
 .include <mkc.prog.mk>

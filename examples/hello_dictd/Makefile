@@ -13,6 +13,5 @@ SUBPRJ+=	doc
 # and is not built by default
 SUBPRJ_DFLT=	dict dictd dictzip dictfmt
 
-.include <mkc.own.mk>
 .include "test.mk"
 .include <mkc.subprj.mk>
