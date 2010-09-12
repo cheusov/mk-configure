@@ -256,7 +256,7 @@ LD_TYPE.AIX=			aixld
 LD_TYPE.HP-UX=			hpld
 LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
-LD_TYPE.Interix=		interixld
+LD_TYPE.Interix=		gnuld
 LD_TYPE.OSF1=			osf1ld
 
 LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
