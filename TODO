@@ -8,11 +8,11 @@ Plan 0)
 
   = {A,C{,XX}}FLAGS.warnerr
 
-  = pod2man, pod2html -> MKC_REQUIRE_PROGS
-
   = sample for home-made .mk file (Ocaml? Pike?)
 
   = Fix for -ll vs. -lfl
+
+  = EXPORT_DYNAMIC (-export-dynamic for GNU ld)
 
   = Autodetecting yacc,bison,byacc lex,flex
 

@@ -1,6 +1,9 @@
 PROG=		xxzip
-# manual page will be generated from xxzip.pod document
 MAN=		xxzip.1
+
+# manual page and tutorial will be generated from .pod documents, so
+# we need pod2man and pod2html.
+MKC_REQUIRE_PROGS=	${POD2MAN} ${POD2HTML}
 
 WARNS=		4
 

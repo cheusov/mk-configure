@@ -4,6 +4,10 @@
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pod2html.err
+/objdir/_mkc_prog_pod2html.res
+/objdir/_mkc_prog_pod2man.err
+/objdir/_mkc_prog_pod2man.res
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
 /objdir/test.mk
@@ -41,6 +45,10 @@
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pod2html.err
+/objdir/_mkc_prog_pod2html.res
+/objdir/_mkc_prog_pod2man.err
+/objdir/_mkc_prog_pod2man.res
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
 /objdir/test.mk
