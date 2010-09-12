@@ -38,6 +38,8 @@ In triangle brackets -- typical way of use, where
 means \"Initialized by mk-configure\",
 .I Iu
 means \"Initialized by mk-configure but may be initialized or overriden by user\",
+.I Im
+means \"Initialized by mk-configure but may be set in Makefile\",
 .I U
 means \"Usually set by user\",
 .I M
@@ -339,9 +341,29 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
    .ifdef MKC_VERSION
    COPTS?=      -O2 -Werror
    SHRTOUT=    yes
-   .endif MKC_VERSION
+   .endif # MKC_VERSION
 .VE
 .RI < "I" >
+.IP PROJECTNAME
+The name of a project. By default it is set to ${PROG}, ${LIB} or ${.CURDIR:T}.
+For a top-level project using either mkc.subdir.mk or mkc.subprj.mk
+it makes sense to set this variable explicitely in project's Makefile.
+This variable is initialized before including mk.conf, so you can use it
+to change build options, e.g. during development process.
+.VS
+/etc/mk.conf:
+   ...
+   .ifdef MKC_VERSION
+   ...
+   .if ${PROJECTNAME} == "foo"
+   SHRTOUT=    yes
+   PROG.gcc=   /usr/bin/gcc
+   CC_TYPE=    gcc
+   COPTS=      -O0 -g
+   .endif
+   .endif # MKC_VERSION
+.VE
+.RI < "Im" >
 .IP CC_TYPE
 C compiler type. This variable is set by
 .B mk-configure

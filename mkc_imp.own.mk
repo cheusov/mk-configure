@@ -10,6 +10,8 @@
 .if !defined(_BSD_OWN_MK_)
 _BSD_OWN_MK_=1
 
+PROJECTNAME?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
+
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)

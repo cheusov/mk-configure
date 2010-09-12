@@ -4,6 +4,7 @@ DISTCLEANDIRS+=	${.CURDIR}/usr
 test_output:
 	@set -e; \
 	rm -rf ${.OBJDIR}/usr; \
+	echo PROJECTNAME=${PROJECTNAME}; \
 	./foobar; \
 	\
 	echo =========== all ============; \

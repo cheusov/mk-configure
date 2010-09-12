@@ -1,3 +1,4 @@
+PROJECTNAME=hello_lua
 foobarbaz
 =========== all ============
 /objdir/Makefile

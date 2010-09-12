@@ -1,6 +1,7 @@
 .PHONY : test_output
 test_output :
 	@set -e; \
+	echo PROJECTNAME=${PROJECTNAME}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/libhello1:${.CURDIR}/libhello2:$$LD_LIBRARY_PATH; \
