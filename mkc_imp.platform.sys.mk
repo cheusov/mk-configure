@@ -417,6 +417,7 @@ LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 
 .if ${EXPORT_DYNAMIC:U:tl} == "yes"
 LDFLAGS.expdyn.gnuld?=		-Wl,-E
+LDFLAGS.expdyn.hpld?=		-Wl,-E
 LDFLAGS.expdyn.gcc?=		-rdynamic
 .ifndef LDFLAGS.expdyn
 .if defined(LDFLAGS.expdyn.${LD_TYPE})
