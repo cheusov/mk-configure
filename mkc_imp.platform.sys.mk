@@ -419,12 +419,12 @@ LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 LDFLAGS.expdyn.gnuld?=		-Wl,-E
 LDFLAGS.expdyn.gcc?=		-rdynamic
 .ifndef LDFLAGS.expdyn
-.if defined(LDFLAGS.expdyn.${CC_TYPE}) && ${LDREAL:U0} == ${CC:U0}
+.if defined(LDFLAGS.expdyn.${LD_TYPE})
+LDFLAGS.expdyn=		${LDFLAGS.expdyn.${LD_TYPE}}
+.elif defined(LDFLAGS.expdyn.${CC_TYPE}) && ${LDREAL:U0} == ${CC:U0}
 LDFLAGS.expdyn=		${LDFLAGS.expdyn.${CC_TYPE}}
 .elif defined(LDFLAGS.expdyn.${CXX_TYPE}) && ${LDREAL:U0} == ${CXX:U0}
 LDFLAGS.expdyn=		${LDFLAGS.expdyn.${CXX_TYPE}}
-.elif defined(LDFLAGS.expdyn.${LD_TYPE})
-LDFLAGS.expdyn=		${LDFLAGS.expdyn.${LD_TYPE}}
 .endif # LDFLAGS.expdyn.xxx
 .endif # LDFLAGS.expdyn
 .endif # EXPORT_DYNAMIC
