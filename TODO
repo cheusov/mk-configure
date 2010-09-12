@@ -12,6 +12,8 @@ Plan 0)
 
   = sample for home-made .mk file (Ocaml? Pike?)
 
+  = Fix for -ll vs. -lfl
+
   = initializing PROJECTNAME -> before including mk.conf.
     Comment about using it in mk.conf in mk-configure.7
 
