@@ -22,25 +22,6 @@ INSTALL.OpenBSD=	/usr/bin/install
 INSTALL.FreeBSD=	/usr/bin/install
 INSTALL.DragonFly=	/usr/bin/install
 INSTALL.MirBSD=		/usr/bin/install
-INSTALL.Darwin=		/usr/bin/install
-INSTALL.SunOS=		/usr/ucb/install
-INSTALL.UnixWare=	/usr/ucb/install
-INSTALL.HP-UX=		mkc_install
-INSTALL.OSF1=		mkc_install
-INSTALL.Interix=	mkc_install
-INSTALL.QNX=		mkc_install
-
-.if ${OPSYS:Unone} == "Linux"
-.if exists(/usr/bin/ginstall)
-INSTALL?=		/usr/bin/ginstall
-.elif exists(/bin/ginstall)
-INSTALL?=		/bin/ginstall
-.elif exists(/usr/bin/install)
-INSTALL?=		/usr/bin/install
-.elif exists(/bin/install)
-INSTALL?=		/bin/install
-.endif
-.endif
 
 INSTALL?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
