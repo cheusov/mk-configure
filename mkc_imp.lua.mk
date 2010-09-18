@@ -30,8 +30,7 @@ LIB=			${LUA_CMODULE}
 SRCS?=			${LUA_CMODULE}.c
 MKDLL=			Only
 LDCOMPILER=		Yes
-# The following Line is for Darwin
-#SHLIB_EXT=		.so
+DLL_EXT=		.so
 LIBDIR=			${LUA_CMODDIR}
 .endif # defined(LUA_LMODULES)
 
