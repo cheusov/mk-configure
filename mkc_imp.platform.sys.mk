@@ -17,33 +17,6 @@ SHLIB_EXT.HP-UX=	.sl
 SHLIB_EXT?=		${SHLIB_EXT.${TARGET_OPSYS}:U.so}
 
 ####################
-BINMODE.Interix=	775
-NONBINMODE.Interix=	664
-
-BINMODE?=		${BINMODE.${TARGET_OPSYS}:U755}
-NONBINMODE?=		${BINMODE.${TARGET_OPSYS}:U644}
-
-SHLIBMODE.HP-UX=	${BINMODE}
-SHLIBMODE.OSF1=		${BINMODE}
-SHLIBMODE?=		${SHLIBMODE.${TARGET_OPSYS}:U${NONBINMODE}}
-
-####################
-ROOT_GROUP.NetBSD=		wheel
-ROOT_GROUP.OpenBSD=		wheel
-ROOT_GROUP.FreeBSD=		wheel
-ROOT_GROUP.Darwin=		wheel
-ROOT_GROUP.DragonFly=		wheel
-ROOT_GROUP.MirBSD=		wheel
-ROOT_GROUP.HP-UX=		bin
-ROOT_GROUP.OSF1=		bin
-
-ROOT_USER.HP-UX=		bin
-ROOT_USER.OSF1=			bin
-
-ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
-ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}
-
-####################
 INSTALL.NetBSD=		/usr/bin/install
 INSTALL.OpenBSD=	/usr/bin/install
 INSTALL.FreeBSD=	/usr/bin/install
