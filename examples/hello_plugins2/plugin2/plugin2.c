@@ -1,4 +1,4 @@
-void putter (const char*);
+extern void putter (const char*);
 void print_message (void);
 
 void print_message (void)
