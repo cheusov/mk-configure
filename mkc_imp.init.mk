@@ -204,7 +204,7 @@ uninstall:
 
 installdirs:
 	for d in _ ${INSTALLDIRS:O:u}; do \
-		test "$$d" = _ || ${INSTALL} -d "$$d"; \
+		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
 	done
 
 test:
