@@ -291,8 +291,6 @@ LDFLAGS.soname.osf1ld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
 LDFLAGS.shared.interixld=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
-
-LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 LDFLAGS.shared.gcc.Interix=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.shared.gcc=		-shared
 LDFLAGS.shared.pcc=		-shared
@@ -306,9 +304,14 @@ LDFLAGS.shared.decc=		-shared
 LDFLAGS.soname.sunpro=		${LDFLAGS.soname.sunld}
 
 .if ${TARGET_OPSYS:Unone} == "Darwin"
+.if ${MKDLL:U} == "no"
+LDFLAGS.shared.gcc.Darwin=	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 SHLIB_MAJORp1!=			expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname.gcc=		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
 LDFLAGS.soname.gcc+=		-compatibility_version ${SHLIB_MAJORp1}
+.else
+LDFLAGS.shared.gcc.Darwin=	-flat_namespace -bundle -undefined suppress
+.endif
 .elif ${TARGET_OPSYS:Unone} == "OSF1" && defined(LIB)
 CLEANFILES+=			${.OBJDIR}/${LIB}_so_locations
 .endif
@@ -338,6 +341,12 @@ LDFLAGS.soname?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAG
 COMPILE.s?=	${AS} ${AFLAGS}
 COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
 
+.if ${MKDLL:U} != "no"
+
+SHLIB_EXTFULL?=	.dylib
+
+.else # MKDLL
+
 .if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1?=	.${SHLIB_MAJOR}.dylib
 .if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
@@ -354,6 +363,7 @@ SHLIB_FULLVERSION=${SHLIB_MAJOR}
 .endif # SHLIB_MAJOR
 
 SHLIB_EXTFULL?=	.${SHLIB_FULLVERSION}.dylib
+.endif
 
 .endif # Darwin!
 
@@ -419,6 +429,7 @@ LDFLAGS.expsym?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 LDFLAGS.expdyn.gnuld?=		-Wl,-E
 LDFLAGS.expdyn.hpld?=		-Wl,-E
 LDFLAGS.expdyn.interixld?=	-Wl,-E
+LDFLAGS.expdyn.darwinld?=
 LDFLAGS.expdyn.gcc?=		-rdynamic
 .ifndef LDFLAGS.expdyn
 .if defined(LDFLAGS.expdyn.${LD_TYPE})
