@@ -108,7 +108,7 @@ _LIBS+=lib${LIB}_pic.a
 .if ${MKDLL:tl} == "no"
 SHLIBFN=	lib${LIB}${SHLIB_EXTFULL}
 .else
-SHLIBFN=	${LIB}${SHLIB_EXT}
+SHLIBFN=	${LIB}${DLL_EXT}
 .endif
 _LIBS+=		${SHLIBFN}
 .endif

@@ -16,6 +16,9 @@ SHLIB_EXT.HP-UX=	.sl
 
 SHLIB_EXT?=		${SHLIB_EXT.${TARGET_OPSYS}:U.so}
 
+DLL_EXT.Darwin=		.bundle
+DLL_EXT?=		${DLL_EXT.${TARGET_OPSYS}:U${SHLIB_EXT}}
+
 ####################
 INSTALL.NetBSD=		/usr/bin/install
 INSTALL.OpenBSD=	/usr/bin/install
@@ -297,7 +300,7 @@ COMPILE.S?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
 
 .if ${MKDLL:U} != "no"
 
-SHLIB_EXTFULL?=	.dylib
+SHLIB_EXTFULL?=	.bundle
 
 .else # MKDLL
 
