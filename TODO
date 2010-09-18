@@ -12,7 +12,13 @@ Plan 0)
 
   = Fix for -ll vs. -lfl
 
+  = pass -O1 to gnu linker
+
+  = provide a way to override -fPIC with -fpic
+
   = Autodetecting yacc,bison,byacc lex,flex
+
+  = Permissions on Interix
 
 ============================================================
 Plan 1)
