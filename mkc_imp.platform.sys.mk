@@ -368,7 +368,7 @@ SHLIB_EXTFULL=	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 ############################################################
 
 .ifdef EXPORT_SYMBOLS
-.if ${LD_TYPE} == "sunld"
+.if ${LD_TYPE} == "sunld" || ${LD_TYPE} == "gnuld"
 CLEANFILES+=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
@@ -384,7 +384,7 @@ ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	mv ${.TARGET}.tmp ${.TARGET}
 .endif # sunld or darwinld
 
-LDFLAGS.expsym.gnuld=		-retain-symbols-file ${EXPORT_SYMBOLS}
+LDFLAGS.expsym.gnuld=		--version-script ${EXPORT_SYMBOLS}.tmp
 LDFLAGS.expsym.sunld=		-M ${EXPORT_SYMBOLS}.tmp
 LDFLAGS.expsym.darwinld=	-exported_symbols_list ${EXPORT_SYMBOLS}.tmp
 .endif # EXPORT_SYMBOLS
