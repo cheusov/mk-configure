@@ -165,35 +165,17 @@ CXXFLAGS.warns.hpc.4=		${CFLAGS.warns.hpc.4}
 
 ####################
 CFLAGS.pic.gcc.Interix=		-DPIC
-CPPFLAGS.pic.gcc.Interix=	-DPIC
-
 CFLAGS.pic.gcc=		-fPIC -DPIC
-CPPFLAGS.pic.gcc=	-DPIC
-
 CFLAGS.pic.icc=		-fPIC -DPIC
-CPPFLAGS.pic.icc=	-DPIC
-
 CFLAGS.pic.pcc=		-k
-CPPFLAGS.pic.pcc=
-
 CFLAGS.pic.mipspro=	-KPIC
-CPPFLAGS.pic.mipspro=
-
 CFLAGS.pic.sunpro=	-KPIC # -xcode=pic32
-CPPFLAGS.pic.sunpro=
-
 CFLAGS.pic.hpc=		+Z # +z
-CPPFLAGS.pic.hpc=
-
 CFLAGS.pic.ibmc=	-qpic=large # -qpic=small
-CPPFLAGS.pic.ibmc=
-
 CFLAGS.pic.decc=	# ?
-CPPFLAGS.pic.decc=	# ?
 
 CFLAGS.pic?=	  ${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:U}}
 CXXFLAGS.pic?=	 ${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
-CPPFLAGS.pic?=	${CPPFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CPPFLAGS.pic.${CC_TYPE}:U}}
 
 ####################
 RANLIB.IRIX=		true
