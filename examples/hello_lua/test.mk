@@ -1,9 +1,9 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr
+DISTCLEANDIRS+=	${.CURDIR}/usr ${.CURDIR}/opt
 
 .PHONY : test_output
 test_output:
 	@set -e; \
-	rm -rf ${.OBJDIR}/usr; \
+	rm -rf ${.OBJDIR}/usr ${.OBJDIR}/opt; \
 	echo PROJECTNAME=${PROJECTNAME}; \
 	./foobar; \
 	\
