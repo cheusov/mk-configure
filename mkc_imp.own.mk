@@ -33,8 +33,6 @@ ROOT_USER?=	${_MKC_USER}
 ROOT_GROUP?=	${_MKC_GROUP}
 .endif
 
-.include <mkc_imp.sys.mk>
-
 # Define MANZ to have the man pages compressed (gzip)
 #MANZ=		1
 
@@ -130,8 +128,8 @@ MKSTATICLIB?=	yes
 .endif # MKDLL
 
 .if ${MKDLL:tl} != "no"
-SHLIB_MAJOR=	1
-SHLIB_MINOR=	0
+SHLIB_MAJOR?=	1
+SHLIB_MINOR?=	0
 .endif # MKDLL
 
 .if defined(SHLIB_MAJOR)
@@ -148,5 +146,7 @@ MKINSTALLDIRS?=	yes
 EXPORT_VARNAMES+=	MKC_CACHEDIR REC_MAKEFILES
 
 EXPORT_DYNAMIC?=	no
+
+.include <mkc_imp.sys.mk>
 
 .endif		# _BSD_OWN_MK_
