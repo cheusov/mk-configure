@@ -592,6 +592,13 @@ documentation,...
 .\" For example, if COPTS.foobar is
 .\" set to "-g", "-g" will be added to COPTS only when compiling
 .\" the "foobar" application.
+.IP EXPORT_DYNAMIC
+If "yes", add all symbols to the dynamic symbol table, that is make
+all symbols visible from dynamic objects at run time (e.g. dlopen-ed
+objects), otherwise only symbols referenced by some object file will
+be exported.
+.RI < "Mu" >
+.RI [ no ]
 .PP
 .B mkc.prog.mk
 includes
