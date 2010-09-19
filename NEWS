@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.20.0, by Aleksey Cheusov, Sun, 19 Sep 2010 13:38:46 +0300
+Version 0.20.0, by Aleksey Cheusov, Sun, 19 Sep 2010 21:46:25 +0300
 
   New variable PROJECTNAME, see the manual page.
 
@@ -33,6 +33,10 @@ Version 0.20.0, by Aleksey Cheusov, Sun, 19 Sep 2010 13:38:46 +0300
 
   OSF1:
      - better handling the so_location files.
+
+  mkc_imp.arch.mk:
+     - PROJECTNAME variable is used for creating archives and .deb
+       package.
 
 ======================================================================
 Version 0.19.0, by Aleksey Cheusov, Fri,  3 Sep 2010 23:19:44 +0300
