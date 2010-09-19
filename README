@@ -281,11 +281,14 @@ DOCUMENTATION:
 
    - Read the FAQ document. It may be helpful.
 
-   - Real life project based on mk-configure is here
-
-        http://sourceforge.net/projects/lmdbg
-
-     This is a Lightweight Modular malloc(3) debugger.
+   - Real life projects based on mk-configure:
+      - Lightweight Modular malloc(3) debugger.
+        http://sourceforge.net/projects/lmdbg/
+      - AWK interpreter from NetBSD cvs tree,
+                 ported to Darwin, Solaris, Linux and other BSD.
+        http://mova.org/~cheusov/pub/mk-configure/nbawk/
+      - getopt_long(3) like module for Lua programming language (>=0.8.0)
+        http://luaforge.net/projects/alt-getopt/
 
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?
