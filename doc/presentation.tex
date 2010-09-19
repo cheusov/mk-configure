@@ -38,6 +38,12 @@
                    commandchars=\\\{\}]}%
                {\endVerbatim}
 
+\newenvironment{CodeNoLabelSmallest}%
+               {\Verbatim[frame=single,%
+                   fontsize=\footnotesize,%
+                   commandchars=\\\{\}]}%
+               {\endVerbatim}
+
 %\newcommand{\prompt}[1]{\textcolor{blue}{#1}}
 %\newcommand{\prompt}[1]{\textbf{#1}\textnormal{}}
 \newcommand{\prompt}[1]{\bf{#1}\textnormal{}}
@@ -164,7 +170,7 @@ cc     -c hello.c
 cc   -o hello hello.o
 \prompt{\$ ./hello}
 Hello World!
-\prompt{\$ DESTDIR=/tmp/fakeroot mkcmake installdirs install}
+\prompt{\$ DESTDIR=/tmp/fakeroot mkcmake install}
 for d in \_ /tmp/fakeroot/usr/bin; do  test "\$d" = \_ ||
    install -d "\$d";  done
 install   -c -s  -o cheusov -g users -m 755
@@ -359,7 +365,7 @@ SHLIB_MINOR=           0
 /opt/SUNWspro/bin/CC    -c -KPIC bar.cc -o bar.os
 /opt/SUNWspro/bin/CC    -c -KPIC baz.cc -o baz.os
 building shared foobar library (version 1.0)
-/opt/SUNWspro/bin/CC -G -Wl,-h -Wl,libfoobar.so.1 
+/opt/SUNWspro/bin/CC -G -h libfoobar.so.1 
    -o libfoobar.so.1.0  foo.os bar.os baz.os
 ln -sf libfoobar.so.1.0 libfoobar.so
 ln -sf libfoobar.so.1.0 libfoobar.so.1
@@ -608,7 +614,7 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
 
   \begin{block}{How it works}
   \begin{CodeNoLabel}
-\prompt{\$ mkcmake installdirs install DESTDIR=/tmp/fakeroot}
+\prompt{\$ mkcmake install DESTDIR=/tmp/fakeroot}
     ...
 \prompt{\$ find /tmp/fakeroot -type f}
 /tmp/fakeroot/usr/pkg/bin/foobar
@@ -618,6 +624,100 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
 \prompt{\$}
   \end{CodeNoLabel}
   \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+\begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
+\begin{CodeNoLabelSmallest}
+PROG=	awk
+SRCS=	awkgram.y b.c lex.c lib.c main.c parse.c
+        proctab.c run.c tran.c
+YHEADER=	yes
+MKC\_COMMON\_DEFINES.Linux=	-D\_GNU\_SOURCE
+MKC\_COMMON\_HEADERS=		ctype.h stdio.h string.h
+MKC\_CHECK\_FUNCS1=		\_\_fpurge:stdio\_ext.h fpurge isblank
+MKC\_CHECK\_FUNCS3=		strlcat
+MKC\_SOURCE\_FUNCLIBS=		fpurge strlcat
+.include <mkc.configure.mk>
+.if \$\{HAVE\_FUNC1.isblank:U0\}
+CPPFLAGS+=	-DHAS\_ISBLANK
+.endif
+.if !\$\{HAVE\_FUNC1.fpurge:U1\} && !\$\{HAVE_FUNC1.\_\_fpurge.stdio\_ext\_h:U1\}
+MKC\_ERR\_MSG+=	"fpurge(3) cannot be found"
+.endif
+CPPFLAGS+=	-I.
+LDADD+=		-lm
+.include <mkc.prog.mk>
+\end{CodeNoLabelSmallest}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+\begin{block}{run.c}
+\begin{CodeNoLabelSmallest}
+--- nbawk-20100903/run.c.orig
++++ nbawk-20100903/run.c
+@@ -40,6 +40,14 @@
+ #include "awk.h"
+ #include "awkgram.h"
+ 
++#ifndef HAVE_FUNC1_FPURGE
++int fpurge (FILE *stream);
++#endif
++
++#ifndef HAVE\_FUNC3\_STRLCAT
++size\_t strlcat(char *dst, const char *src, size_t size);
++#endif
++
+ #define tempfree(x)    if (istemp(x)) tfree(x); else
+ 
+ void stdinit(void);
+\end{CodeNoLabelSmallest}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+\begin{block}{fpurge.c}
+\begin{CodeNoLabelSmallest}
+#include <stdio.h>
+
+#if HAVE\_FUNC1\_\_\_FPURGE\_STDIO\_EXT\_H
+#include <stdio\_ext.h>
+#endif
+
+int fpurge(FILE *stream);
+
+int fpurge(FILE *stream)
+\{
+#if HAVE\_FUNC1\_\_\_FPURGE\_STDIO\_EXT\_H
+  \_\_fpurge (stream);
+  return 0;
+#else
+#error "cannot find fpurge(3), sorry"
+#endif
+\}
+\end{CodeNoLabelSmallest}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+\begin{block}{strlcpy.c}
+\begin{CodeNoLabel}
+If you want this code, you know where to get it! ;-)
+\end{CodeNoLabel}
+\end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -699,6 +799,9 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
   \begin{block}{}
   \begin{enumerate}
     \setcounter{enumi}{11}
+    \item Special targets bin\_tar, bin\_targz, bin\_tarbz2, bin\_zip,
+      bin\_deb creates .tar, .tar.gz, .tar.bz2, .zip archives and .deb
+      package (on Debian Linux).
     \item Parts of mk-configure functionality is
       accesible via individual programs, e.g.  \ProgName{mkc\_install},
       \ProgName{mkc\_check\_compiler},
@@ -741,20 +844,21 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
   \begin{block}{Real life samples of use}
   \begin{itemize}
   \item Lightweight modular malloc Debugger.\\
-    \URL{http://sf.net/projects/lmdbg}
+    \URL{http://sf.net/projects/lmdbg/}
+  \item NetBSD version of AWK programming language.\\
+    \URL{http://mova.org/~cheusov/pub/mk-configure/nbawk/}
   \item Any project based on traditional
-    \ModuleName{bsd.\{prog,lib,subdir\}.mk} can trivially be converted
+    \ModuleName{bsd.\{prog,lib,subdir\}.mk} can easily be converted
     to use \MKC{mk-configure}.
     \begin{itemize}
-    \item \URL{http://sourceforge.net/projects/runawk}\\
+    \item \URL{http://sourceforge.net/projects/runawk/}\\
       Modules Framework for AWK programming language
-    \item \URL{http://sourceforge.net/projects/paexec}\\
+    \item \URL{http://sourceforge.net/projects/paexec/}\\
       Parallel Executer
     \item \URL{http://mova.org/\~{}cheusov/pub/distbb/}\\
       Distributed fault tolerant bulk build tool for pkgsrc
       \URL{http://mova.org/\~{}cheusov/pub/pkg\_online/}\\
       Client/server package search system for pkgsrc
-    \item NetBSD, FreeBSD and OpenBSD! ;-)
     \item ...
     \end{itemize}
   \end{itemize}
@@ -771,7 +875,7 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
       \includegraphics[width=\textwidth, keepaspectratio=false]{my_prjs.eps}
     \end{figure}
     \begin{figure}
-      \includegraphics[width=0.5\textwidth, keepaspectratio=false]{my_prjs2.eps}
+      \includegraphics[width=0.9\textwidth, keepaspectratio=false]{my_prjs2.eps}
     \end{figure}
   \end{block}
 \end{frame}

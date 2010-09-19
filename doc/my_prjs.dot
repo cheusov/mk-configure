@@ -5,13 +5,18 @@ digraph FSA {
 
    "mk-configure" -> "lmdbg";
 
+ node [ shape = oval style=solid ];
+
+   "dictd";
+   "dictem";
+
  node [ shape = box ];
 
-   "runawk" -> "pkg_summary-utils";
-   "runawk" -> "lmdbg";
-   "awk-pkgsrc-dewey" -> "pkg_summary-utils";
+   "runawk"            -> "pkg_summary-utils";
+   "runawk"            -> "lmdbg";
    "pkg_summary-utils" -> "distbb";
    "paexec"            -> "distbb";
+   "dictd"             -> "dictem";
    "pkg_summary-utils" -> "pkg_online";
    "pkg_summary-utils" -> "pkg_conflicts";
    "pkg_summary-utils" -> "pkg_status";
