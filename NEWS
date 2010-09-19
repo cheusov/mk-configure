@@ -1,4 +1,40 @@
 ======================================================================
+Version 0.20.0, by Aleksey Cheusov, Sun, 19 Sep 2010 13:38:46 +0300
+
+  New variable PROJECTNAME, see the manual page.
+
+  New variable EXPORT_DYNAMIC for making all symbols in executable
+  visible to linked or dlopen'ed libraries. It is supported on *BSD,
+  Linux, SunOS, QNX, Interix, OSF1, HP-UX.
+
+  New variable CFLAGS.pic. See the manual page.
+
+  EXPORT_SYMBOLS: On systems using GNU ld, i.e. *BSD, Linux, QNX
+     etc. 'ld --version-script' is used in order to specify a list of
+     exported symbols instead of --retain-symbols-file
+
+  Lua support:
+     - Lua support didn't work properly if only one of LUA_LMODULES or
+       LUA_CMODULE were specified. Now it is fixed.
+     - New regression test examples/hello_lua2.
+     - Force building Lua modules with .so extension.
+
+  Darwin:
+     - support for EXPORT_SYMBOLS was added
+     - DLLs (MKDLL=yes) are built as bundles and have .bundle extension
+
+  /usr/bin/install is used as INSTALL only on *BSD platforms.  On all
+  others mkc_install is used.
+
+  Interix:
+     - 775:664 permissions are used only for +Administrator user.
+     - "installdirs" target creates directories with 775 permission if
+       needed.
+
+  OSF1:
+     - better handling the so_location files.
+
+======================================================================
 Version 0.19.0, by Aleksey Cheusov, Fri,  3 Sep 2010 23:19:44 +0300
 
   FIX: LPREFIX, YPREFIX and YHEADER now works as
