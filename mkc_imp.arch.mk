@@ -8,7 +8,7 @@ _MKC_IMP_ARCH_MK:=1
 
 rnd!=		echo $$$$
 destdir=	${TMPDIR:U/tmp}/mkc.${rnd}
-basefile=	${.CURDIR}/${.CURDIR:T}
+basefile=	${.CURDIR}/${PROJECTNAME}
 
 .PHONY: bin_cleanup bin_tar bin_targz bin_tarbz2
 
