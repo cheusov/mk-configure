@@ -1,6 +1,11 @@
 ============================================================
 Plan 0)
 
+  - disable caching for "negative" results
+    for MKC_REQUIRE_xxx features.
+
+  - better support for ICC. Warnings, errors, compiler type.
+
   = Reimplement linkme.mk as a recommended way
     to organize local linking. It is not flexible enough.
 
