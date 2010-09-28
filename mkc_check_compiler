@@ -22,10 +22,10 @@ fi
 
 ##################################################
 checks='
+           __ICC:icc
         __GNUC__:gcc
          __PCC__:pcc
 __INTEL_COMPILER:icc
-           __ICC:icc
         _MSC_VER:msc
         __HP_aCC:hpc
          __HP_cc:hpc
