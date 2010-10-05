@@ -177,9 +177,4 @@ YFLAGS+=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
 	${_V}mv y.tab.h ${.TARGET:R}.h
 .endif
 
-# Shell
-.sh:
-	rm -f ${.TARGET}
-	cp ${.IMPSRC} ${.TARGET}
-
 .endif
