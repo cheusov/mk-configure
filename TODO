@@ -1,6 +1,10 @@
 ============================================================
 Plan 0)
 
+  - Fix bug in hello_calc2 if bison/flex are not found.
+
+  - list of installed files (for subsequent deletion)
+
   - disable caching for "negative" results
     for MKC_REQUIRE_xxx features.
 
