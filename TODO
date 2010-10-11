@@ -1,6 +1,10 @@
 ============================================================
 Plan 0)
 
+  - Support for Haiku and HURD
+
+  - Document SKIP_CONFIGURE_MK?
+
   - Fix bug in hello_calc2 if bison/flex are not found.
 
   - list of installed files (for subsequent deletion)
