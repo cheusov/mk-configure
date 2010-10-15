@@ -29,6 +29,7 @@
 # user defined variables
 MKC_SHOW_CACHED?=0       # set it to `1' to show "...(cached)..." lines
 MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
+MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
@@ -274,7 +275,7 @@ HAVE_PROG.${prog_id}=		1
 HAVE_PROG.${prog_id}=		0
 .endif
 
-.if !${HAVE_PROG.${prog_id}}
+.if !${HAVE_PROG.${prog_id}} && !empty(MKC_REQUIRE_PROGS:U1:M${p})
 MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 .endif
 .endfor # p
