@@ -90,6 +90,8 @@ INTEXTS_REPLS+=		mkc_libexecdir ${LIBEXECDIR}
 
 CVSDIST_TARGETS=	doc
 
+INSTALL=		${.CURDIR}/mkc_install
+
 ##################################################
 .PHONY: doc
 doc:

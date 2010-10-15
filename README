@@ -313,7 +313,7 @@ INSTALLATION:
 
    2)
       cd mk-configure-X.Y.Z/
-      export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mk
+      export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mkc-mk
       emacs sys.mk # if needed
       bmake all
       bmake test # For testing mk-configure, this step is optional.
@@ -332,10 +332,10 @@ INSTALLATION:
       Of course, you can change /usr/local to whatever you want.
       PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mkc-mk
 
-      On platforms having no BSD compatible install(1)
-      you may install mk-configure by running
-
-      env INSTALL=`pwd`/mkc_install bmake install
+      Sample:
+          export PREFIX=/usr
+	  export SYSCONFDIR=/etc
+          bmake install
 
    3) You can also build a simple presentation by running either of the
       following commands:
@@ -350,32 +350,21 @@ INSTALLATION:
     found in some Linux distributions does't work too.
 
   NOTE: In order to work properly bmake needs sys.mk file that defines
-    default variable values and suffix rules. mk-configure
-    doesn't need them, but bmake always tries to load this file. The problem is
-    that different Mk-files libraries may conflict due to common
-    sys.mk. This is why mk-c's own Mk files are installed to its own
-    directory (${PREFIX}/share/mkc-mk) and the same for empty sys.mk file.
-    If you think your system-wide sys.mk is good enough for mk-configure, you
-    may install mk-configure like the following:
-
-        export PREFIX=/usr MKFILESDIR=/usr/share/mk NOSYSMK=1
-        bmake all
-        bmake install
-
-    In this example it is assumed that /usr/share/mk directory
-    contains system-wide sys.mk file.  In either case use "mkcmake"
-    command to build your projects, not just "bmake".
-
-    I STRONGLY RECOMEND TO INSTALL MK-FILES AND SYS.MK TO ITS OWN DIRECTORY.
+    default variable values and suffix rules. mk-configure doesn't
+    need them, but bmake always tries to load this file. The problem
+    is that different Mk-files libraries may conflict due to common
+    sys.mk. This is why mk-c's own mk files are installed to its own
+    directory (${PREFIX}/share/mkc-mk by default) and the same for
+    empty sys.mk file.
 
    4) Usage
 
     For use of mk-configure for real-life development you may need the
     following programs: C/C++/Fortran/Pascal/Objective-C compilers and
     linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
-    pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, BSD-compatible
-    install, lorder, nm, tsort, pkg-config, zip and maybe others.  Of
-    course you'll need awk, sed, grep and other POSIX tools too.
+    pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
+    nm, tsort, pkg-config, zip and maybe others.  Of course you'll
+    need awk, sed, grep and some other POSIX tools too.
 
 -------------------------------------------------------------------------
 PACKAGES
