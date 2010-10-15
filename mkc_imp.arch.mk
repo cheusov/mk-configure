@@ -14,7 +14,7 @@ basefile=	${.CURDIR}/${PROJECTNAME}
 
 bin_cleanup:
 	set -e; rm -rf ${destdir}; mkdir -m 0700 ${destdir}; \
-	${MAKE} ${MAKEFLAGS} all installdirs install DESTDIR=${destdir}
+	${MAKE} ${MAKEFLAGS} all install DESTDIR=${destdir}
 
 bin_tar: bin_cleanup
 	set -e; rm -f ${basefile}.tar; cd ${destdir}; \
