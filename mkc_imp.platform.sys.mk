@@ -92,7 +92,7 @@ CPPFLAGS+=	${CPPFLAGS.${TARGET_OPSYS}:U}
 ############################################################
 # CC compiler type
 .if make(cleandir) || make(distclean) || make(clean)
-.elif ${MKCHECKS:tl} == "yes" && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
+.elif ${MKCHECKS:Uno:tl} == "yes" && !defined(CC_TYPE) && (defined(PROG) || defined(LIB))
 mkc.cc_type.environ= CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 .if !empty(src_type:Mc)
 CC_TYPE!=	env ${mkc.cc_type.environ} mkc_check_compiler

@@ -91,7 +91,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	\
 	MKC_AUTO_CFLAGS MKC_AUTO_SRCS MKC_AUTO_LDADD
 
-.include <configure.mk>
+.include <mkc.configure.mk>
 
 MKC_AUTO_SRCS:=		${MKC_SRCS}
 MKC_AUTO_CFLAGS:=	${MKC_CFLAGS}
