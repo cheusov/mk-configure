@@ -11,4 +11,4 @@ test_output:
 
 .include <mkc.minitest.mk>
 .include <mkc.configure.mk>
-.include <mkc.prog.mk>
+.include <mkc.mk>

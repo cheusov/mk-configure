@@ -30,4 +30,4 @@ SUBDIR+=	hello_xxzip
 SUBDIR+=	hello_require_tools
 .endif
 
-.include <mkc.subdir.mk>
+.include <mkc.mk>

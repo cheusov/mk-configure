@@ -26,6 +26,7 @@ VERSION=		0.20.0
 BIRTHDATE=		2009-02-21
 
 MKC_BOOTSTRAP=		${.CURDIR}
+MKCHECKS=		no
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \
@@ -43,9 +44,8 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 
-FILES=	configure.mk mkc.configure.mk mkc.files.mk \
-	mkc.lib.mk mkc.prog.mk \
-	mkc.subdir.mk mkc.subprj.mk mkc.own.mk mkc_imp.intexts.mk \
+FILES=	configure.mk mkc.configure.mk mkc.files.mk mkc.mk \
+	mkc.own.mk mkc_imp.intexts.mk \
 	mkc_check_common.sh \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.vars.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
@@ -78,6 +78,7 @@ SYMLINKS+=	mkc_imp.pkg-config.mk ${MKFILESDIR}/mkc.pkg-config.mk
 SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
+CLEANFILES+=		mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk
 
 INFILES+=		configure.mk mkc_imp.vars.mk
 INSCRIPTS+=		mkc_check_version mkcmake
@@ -96,6 +97,16 @@ INSTALL=		${.CURDIR}/mkc_install
 .PHONY: doc
 doc:
 	cd doc && ${MAKE} presentation.pdf clean-garbage ${MAKEFLAGS}
+
+all: mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk
+mkc.prog.mk:
+	ln -f -s mkc.mk mkc.prog.mk
+mkc.lib.mk:
+	ln -f -s mkc.mk mkc.lib.mk
+mkc.subdir.mk:
+	ln -f -s mkc.mk mkc.subdir.mk
+mkc.subprj.mk:
+	ln -f -s mkc.mk mkc.subprj.mk
 
 ##################################################
 
@@ -131,4 +142,4 @@ clean_tests: configure.mk
 		${MAKEFLAGS} clean
 
 ##################################################
-.include <mkc.prog.mk>
+.include <mkc.mk>
