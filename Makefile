@@ -25,7 +25,6 @@ VERSION=		0.20.0
 
 BIRTHDATE=		2009-02-21
 
-MKC_BOOTSTRAP=		${.CURDIR}
 MKCHECKS=		no
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
@@ -78,7 +77,6 @@ SYMLINKS+=	mkc_imp.pkg-config.mk ${MKFILESDIR}/mkc.pkg-config.mk
 SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
 CLEANFILES+=		configure.mk *.cat1 *.html1
-CLEANFILES+=		mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk
 
 INFILES+=		configure.mk mkc_imp.vars.mk
 INSCRIPTS+=		mkc_check_version mkcmake
@@ -100,6 +98,7 @@ doc:
 
 .for i in mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk mkc.files.mk
 SYMLINKS+=	mkc.mk ${MKFILESDIR}/${i}
+CLEANFILES+=	${i}
 all: ${i}
 ${i}:
 	ln -f -s mkc.mk ${i}
@@ -124,16 +123,14 @@ test: configure.mk mkc_imp.vars.mk mkc_check_version
 cleandir: cleandir_tests
 cleandir_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	MKC_BOOTSTRAP=${.CURDIR}; \
-	export PATH MKC_BOOTSTRAP; \
+	export PATH; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} cleandir
 clean: clean_tests
 clean_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
-	MKC_BOOTSTRAP=${.CURDIR}; \
-	export PATH MKC_BOOTSTRAP; \
+	export PATH; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} clean

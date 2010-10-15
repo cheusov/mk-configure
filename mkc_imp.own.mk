@@ -174,6 +174,9 @@ EXPORT_VARNAMES+=	MKC_CACHEDIR REC_MAKEFILES
 
 EXPORT_DYNAMIC?=	no
 
+MKC_CACHEDIR?=		${.OBJDIR} # directory for cache and intermediate files
+DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
+
 .include <mkc_imp.sys.mk>
 
 .endif		# _BSD_OWN_MK_

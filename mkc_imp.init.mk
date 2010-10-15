@@ -32,7 +32,7 @@ __initialized__=1
 .MAIN:		all
 
 ###########
-.if defined(MKC_BOOTSTRAP) || defined(SKIP_CONFIGURE_MK)
+.if ${PROJECTNAME:U1} == "mk-configure" || defined(SKIP_CONFIGURE_MK)
 .sinclude <mkc_imp.vars.mk>
 .else
 .include <mkc_imp.vars.mk>

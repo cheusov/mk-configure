@@ -29,15 +29,9 @@
 # user defined variables
 MKC_SHOW_CACHED?=0       # set it to `1' to show "...(cached)..." lines
 MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
-MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
-
-.ifndef _mkc_file_in_distcleanfiles
-_mkc_file_in_distcleanfiles:=1
-DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
-.endif
 
 # .endif for the next .if is in the end of file
 .if !defined(SKIP_CONFIGURE_MK) && !make(clean) && !make(cleandir) && !make(distclean)
