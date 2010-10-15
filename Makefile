@@ -43,7 +43,7 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 
-FILES=	configure.mk mkc.configure.mk mkc.mk \
+FILES=	sys.mk configure.mk mkc.configure.mk mkc.mk \
 	mkc.own.mk mkc_imp.intexts.mk \
 	mkc_check_common.sh \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.vars.mk \
@@ -55,10 +55,6 @@ FILES=	configure.mk mkc.configure.mk mkc.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk
 
 FILES+=			${EXTRAFILES}
-
-.if !defined(NOSYSMK)
-FILES+=			sys.mk
-.endif
 
 .for i in ${EXTRAFILES}
 FILESDIR_${i}=		${EXTRAFILESDIR}
