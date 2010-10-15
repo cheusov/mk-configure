@@ -44,7 +44,7 @@ MAN=			mkc_check_funclib.1 mkc_check_header.1 \
 
 EXTRAFILES?=		README NEWS TODO COPYRIGHT FAQ
 
-FILES=	configure.mk mkc.configure.mk mkc.files.mk mkc.mk \
+FILES=	configure.mk mkc.configure.mk mkc.mk \
 	mkc.own.mk mkc_imp.intexts.mk \
 	mkc_check_common.sh \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.vars.mk \
@@ -98,15 +98,12 @@ INSTALL=		${.CURDIR}/mkc_install
 doc:
 	cd doc && ${MAKE} presentation.pdf clean-garbage ${MAKEFLAGS}
 
-all: mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk
-mkc.prog.mk:
-	ln -f -s mkc.mk mkc.prog.mk
-mkc.lib.mk:
-	ln -f -s mkc.mk mkc.lib.mk
-mkc.subdir.mk:
-	ln -f -s mkc.mk mkc.subdir.mk
-mkc.subprj.mk:
-	ln -f -s mkc.mk mkc.subprj.mk
+.for i in mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk mkc.files.mk
+SYMLINKS+=	mkc.mk ${MKFILESDIR}/${i}
+all: ${i}
+${i}:
+	ln -f -s mkc.mk ${i}
+.endfor
 
 ##################################################
 
