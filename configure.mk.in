@@ -34,7 +34,7 @@ MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
 # .endif for the next .if is in the end of file
-.if !defined(SKIP_CONFIGURE_MK) && !make(clean) && !make(cleandir) && !make(distclean)
+.if ${MKCHECKS:Uno:tl} == "yes"
 
 #
 .undef MKC_SRCS

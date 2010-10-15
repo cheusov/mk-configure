@@ -3,8 +3,8 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.if !defined(SKIP_CONFIGURE_MK) && !make(clean) && !make(cleandir) && !make(distclean)
+.if !make(clean) && !make(cleandir) && !make(distclean) && !make(mkc_printobjdir)
 MKCHECKS?=	yes
 .else
 MKCHECKS?=	no
-.endif # SKIP_CONFIGURE_MK or special targets
+.endif # clean/cleandir/distclean

@@ -13,7 +13,7 @@ TARGET_OPSYS?=  ${OPSYS}
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T}!= 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir SKIP_CONFIGURE_MK=1
+DPLIBDIRS.${_dir:T}!= 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} mkc_printobjdir
 .if ${TARGET_OPSYS} == "HP-UX"
 LDFLAGS+=		${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif
@@ -32,7 +32,7 @@ __initialized__=1
 .MAIN:		all
 
 ###########
-.if ${PROJECTNAME:U1} == "mk-configure" || defined(SKIP_CONFIGURE_MK)
+.if ${PROJECTNAME:U1} == "mk-configure"
 .sinclude <mkc_imp.vars.mk>
 .else
 .include <mkc_imp.vars.mk>
