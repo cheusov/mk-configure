@@ -71,6 +71,12 @@ check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1))
+.IP filelist
+output a list of destination files of the project, one per line, e.g.
+.VS
+  /usr/local/bin/hello
+  /usr/local/man/man1/hello.1
+.VE
 .IP "bin_tar, bin_targz, bin_tarbz2, bin_zip, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
 and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
@@ -764,7 +770,7 @@ The following targets are also provided:
 where
 <target>
 is either of the following:
-all, clean, cleandir, depend, installdirs, installuninstall.
+all, clean, cleandir, depend, installdirs, install, uninstall and filelist.
 Also provided are: targets
 nodeps-<target>-<subdir> and subdir-<target>-<subdir>.
 Difference between

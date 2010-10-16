@@ -66,6 +66,10 @@ usr/local/share/doc
 usr/local/share/doc/hello_world
 usr/local/share/doc/hello_world/COPYRIGHT
 usr/local/share/doc/hello_world/README
+======= filelist ===========
+/usr/local/bin/hello_world
+/usr/local/share/doc/hello_world/COPYRIGHT
+/usr/local/share/doc/hello_world/README
 ======= distclean ==========
 /objdir/COPYRIGHT
 /objdir/Makefile

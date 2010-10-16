@@ -33,10 +33,11 @@ presentation.ps presentation.pdf presentation.dvi: my_prjs.eps my_prjs2.eps
 GARBAGE=	*.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out *.eps *.ps
 CLEANFILES+=	${GARBAGE} *.pdf *.ps
 
-.PHONY: clean-garbage
+.PHONY: clean-garbage clean cleandir
 clean-garbage:
 	rm -f ${GARBAGE}
 
+cleandir: clean
 clean:
 	-rm -f *.toc *.vrb *.ps *.pdf *.eps *.out *.nav *.log *.dvi *.aux *.snm
 

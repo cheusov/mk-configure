@@ -43,6 +43,10 @@ Plugin1 sucessfully activated
 /objdir/prefix/lib/plugin1.so
 /objdir/prefix/lib/plugin2.so
 ======== uninstall =========
+======== filelist ==========
+/usr/local/bin/app
+/usr/local/lib/plugin1.so
+/usr/local/lib/plugin2.so
 ========== clean ===========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err

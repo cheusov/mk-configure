@@ -207,6 +207,11 @@ installdirs:
 		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
 	done
 
+filelist:
+	@for d in ${UNINSTALLFILES:O:u}; do \
+		echo $$d; \
+	done
+
 test:
 
 .endif # SUBDIR
@@ -218,7 +223,7 @@ realinstall: installdirs
 .ORDER: installdirs install
 
 TARGETS+=	all install clean cleandir depend \
-		installdirs uninstall errorcheck
+		installdirs uninstall errorcheck filelist
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 .PHONY: ${TARGETS}
@@ -241,14 +246,14 @@ __recurse: .USE
 	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;	\
 	${export_cmd}							\
 	set -e;								\
-	${VERBOSE_ECHO} ==================================================;	\
+	${VERBOSE_ECHO} ================================================== 1>&2;\
 	case "$$dir" in /*)						\
-		${VERBOSE_ECHO} "$$targ ===> $$dir";				\
+		${VERBOSE_ECHO} "$$targ ===> $$dir" 1>&2;		\
 		cd "$$dir";						\
 		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
 		;;							\
 	*)								\
-		${VERBOSE_ECHO} "$$targ ===> ${_THISDIR_}$$dir";			\
+		${VERBOSE_ECHO} "$$targ ===> ${_THISDIR_}$$dir" 1>&2;	\
 		cd "${.CURDIR}/$$dir";					\
 		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
 		;;							\

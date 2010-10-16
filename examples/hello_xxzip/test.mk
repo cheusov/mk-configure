@@ -25,6 +25,9 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
+	echo ======== filelist ==========; \
+	${MAKE} ${MAKEFLAGS} filelist; \
+	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \

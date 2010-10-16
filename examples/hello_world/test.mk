@@ -43,6 +43,9 @@ test_output:
 	${BZIP2} -dc ${.CURDIR:T}.tar.bz2 | \
 	${TAR} -tf - | sort | ${tartf_cleanup}; \
 	\
+	echo ======= filelist ===========; \
+	${MAKE} ${MAKEFLAGS} filelist; \
+	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \

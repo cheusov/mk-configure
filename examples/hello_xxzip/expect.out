@@ -55,6 +55,17 @@
 /objdir/tutorial.pod
 /objdir/xxzip.c
 /objdir/xxzip.pod
+======== filelist ==========
+/usr/local/bin/xxunzip
+/usr/local/bin/xxzcat
+/usr/local/bin/xxzip
+/usr/local/man/cat1/xxunzip.0
+/usr/local/man/cat1/xxzcat.0
+/usr/local/man/cat1/xxzip.0
+/usr/local/man/man1/xxunzip.1
+/usr/local/man/man1/xxzcat.1
+/usr/local/man/man1/xxzip.1
+/usr/local/share/doc/xxzip/tutorial.html
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
