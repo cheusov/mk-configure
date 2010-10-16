@@ -4,6 +4,8 @@ digraph FSA {
  node [ shape = diamond style=filled fonsize=18 ];
 
    "mk-configure" -> "lmdbg";
+   "paexec";
+   "distbb";
 
  node [ shape = oval style=solid ];
 
