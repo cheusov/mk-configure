@@ -72,7 +72,7 @@ SYMLINKS=	mkc.subprj.mk ${MKFILESDIR}/mkc.subprjs.mk
 SYMLINKS+=	mkc_imp.pkg-config.mk ${MKFILESDIR}/mkc.pkg-config.mk
 SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
-CLEANFILES+=		configure.mk *.cat1 *.html1
+CLEANFILES+=		configure.mk *.cat1 *.html1 ChangeLog
 
 INFILES+=		configure.mk mkc_imp.vars.mk
 INSCRIPTS+=		mkc_check_version mkcmake
@@ -123,6 +123,7 @@ cleandir_tests: configure.mk
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} cleandir
+	cd doc && ${MAKE} ${MAKEFLAGS} cleandir
 clean: clean_tests
 clean_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
@@ -130,6 +131,7 @@ clean_tests: configure.mk
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
 		${MAKEFLAGS} clean
+	cd doc && ${MAKE} ${MAKEFLAGS} clean
 
 ##################################################
 .include <mkc.mk>
