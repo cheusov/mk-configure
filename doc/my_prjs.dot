@@ -6,6 +6,7 @@ digraph FSA {
    "mk-configure" -> "lmdbg";
    "paexec";
    "distbb";
+   "pkg_online";
 
  node [ shape = oval style=solid ];
 
