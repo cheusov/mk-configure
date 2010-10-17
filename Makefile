@@ -97,7 +97,7 @@ SYMLINKS+=	mkc.mk ${MKFILESDIR}/${i}
 CLEANFILES+=	${i}
 all: ${i}
 ${i}:
-	ln -f -s mkc.mk ${i}
+	ln -f -s ${.CURDIR}/mkc.mk ${i}
 .endfor
 
 ##################################################
