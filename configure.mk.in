@@ -37,6 +37,8 @@ MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 # .endif for the next .if is in the end of file
 .if ${MKCHECKS:Uno:tl} == "yes"
 
+HAVE_FUNCLIB.main ?=	1
+
 #
 .undef MKC_SRCS
 .undef MKC_LDADD

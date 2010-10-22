@@ -3,9 +3,6 @@
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
-/objdir/_mkc_funclib_main.c
-/objdir/_mkc_funclib_main.err
-/objdir/_mkc_funclib_main.res
 /objdir/_mkc_funclib_main_fl.c
 /objdir/_mkc_funclib_main_fl.err
 /objdir/_mkc_funclib_main_fl.res
@@ -33,9 +30,6 @@
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
-/objdir/_mkc_funclib_main.c
-/objdir/_mkc_funclib_main.err
-/objdir/_mkc_funclib_main.res
 /objdir/_mkc_funclib_main_fl.c
 /objdir/_mkc_funclib_main_fl.err
 /objdir/_mkc_funclib_main_fl.res

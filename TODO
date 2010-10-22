@@ -1,8 +1,6 @@
 ============================================================
 Plan 0)
 
-  = MKC_CHECK_FUNCLIBS: main:lib: Do not check with libc.
-
   - Support for Haiku and HURD
 
   - Document SKIP_CONFIGURE_MK?
