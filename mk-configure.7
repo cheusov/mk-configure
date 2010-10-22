@@ -855,9 +855,12 @@ in a particular libraries, data types sizes etc.
 This include file is included by
 .BR mkc.prog.mk " and " mkc.lib.mk
 automatically
-but in many cases it makes sense to include it explicitly.
+but in some cases it makes sense to include it explicitly.
 .B mkc.configure.mk
 supports the following variables.
+.IP MKCHECKS
+If "no", none of the checks are performed. It is set to "yes" unless target
+is "clean", "cleandir or distclean".
 .IP MKC_CHECK_HEADERS
 List of headers to be checked.
 As a result of the check bmake's variable
