@@ -160,6 +160,7 @@ LPREFIX?=	yy
 .if ${LPREFIX} != "yy"
 LFLAGS+=	-P${LPREFIX}
 .endif
+LEXLIB?=		-ll
 
 .l.c:
 	${MESSAGE.l}

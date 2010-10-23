@@ -13,6 +13,5 @@ pathpart=' ' # fake
 . mkc_check_common.sh
 
 find_n_match bison --version 'bison'
-find_n_match  yacc --version 'bison'
 
 echo ''

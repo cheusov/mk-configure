@@ -14,12 +14,6 @@
 /objdir/_mkc_custom_prog_bison.res
 /objdir/_mkc_custom_prog_flex.err
 /objdir/_mkc_custom_prog_flex.res
-/objdir/_mkc_funclib_main_fl.c
-/objdir/_mkc_funclib_main_fl.err
-/objdir/_mkc_funclib_main_fl.res
-/objdir/_mkc_funclib_main_l.c
-/objdir/_mkc_funclib_main_l.err
-/objdir/_mkc_funclib_main_l.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/calc
@@ -47,12 +41,6 @@
 /objdir/_mkc_custom_prog_bison.res
 /objdir/_mkc_custom_prog_flex.err
 /objdir/_mkc_custom_prog_flex.res
-/objdir/_mkc_funclib_main_fl.c
-/objdir/_mkc_funclib_main_fl.err
-/objdir/_mkc_funclib_main_fl.res
-/objdir/_mkc_funclib_main_l.c
-/objdir/_mkc_funclib_main_l.err
-/objdir/_mkc_funclib_main_l.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
