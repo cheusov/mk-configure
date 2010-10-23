@@ -109,6 +109,7 @@ CXX_TYPE?=	unknown
 CFLAGS.warnerr.gcc=		-Werror
 CFLAGS.warnerr.icc=		-Werror
 CFLAGS.warnerr.sunpro=		-errwarn=%all
+CFLAGS.warnerr.clang=		-Werror
 
 #WARNERR?=	${${WARNS:U0}==4:?yes:no} # Eh, buggy bmake :-(
 .if ${WARNS:U0} == 4
@@ -123,20 +124,13 @@ CXXFLAGS.warnerr=	${CFLAGS.warnerr.${CXX_TYPE}}
 .endif
 
 ####################
-# C warns
+# C warns for GCC
 CFLAGS.warns.gcc.1=		-Wall -Wstrict-prototypes -Wmissing-prototypes \
 				-Wpointer-arith
 CFLAGS.warns.gcc.2=		${CFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
 CFLAGS.warns.gcc.3=		${CFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wextra -Wno-unused-parameter
 CFLAGS.warns.gcc.4=		${CFLAGS.warns.gcc.3}
-
-CFLAGS.warns.icc.1=		-Wall -we1011
-CFLAGS.warns.icc.2=		${CFLAGS.warns.icc.1}
-CFLAGS.warns.icc.3=		${CFLAGS.warns.icc.2}
-CFLAGS.warns.icc.4=		${CFLAGS.warns.icc.3}
-
-CFLAGS+=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
 
 # C++ warns
 CXXFLAGS.warns.gcc.1=		-Wabi -Wold-style-cast -Wctor-dtor-privacy \
@@ -148,20 +142,40 @@ CXXFLAGS.warns.gcc.3=		${CXXFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wextra -Wno-unused-parameter
 CXXFLAGS.warns.gcc.4=		${CXXFLAGS.warns.gcc.3}
 
+####################
+# C warns for ICC
+CFLAGS.warns.icc.1=		-Wall -we1011
+CFLAGS.warns.icc.2=		${CFLAGS.warns.icc.1}
+CFLAGS.warns.icc.3=		${CFLAGS.warns.icc.2}
+CFLAGS.warns.icc.4=		${CFLAGS.warns.icc.3}
+
+# C++ warns
 CXXFLAGS.warns.icc.1=		${CFLAGS.warns.icc.1}
 CXXFLAGS.warns.icc.2=		${CFLAGS.warns.icc.2}
 CXXFLAGS.warns.icc.3=		${CFLAGS.warns.icc.3}
 CXXFLAGS.warns.icc.4=		${CFLAGS.warns.icc.4}
 
-CXXFLAGS+=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
+####################
+# C warns for clang
+CFLAGS.warns.clang.1=		-Wall
+CFLAGS.warns.clang.2=		${CFLAGS.warns.clang.1}
+CFLAGS.warns.clang.3=		${CFLAGS.warns.clang.2}
+CFLAGS.warns.clang.4=		${CFLAGS.warns.clang.3}
 
-# C/C++ warns for HP-UX C/C++
+CXXFLAGS.warns.clang.1=		${CFLAGS.warns.clang.1}
+CXXFLAGS.warns.clang.2=		${CFLAGS.warns.clang.2}
+CXXFLAGS.warns.clang.3=		${CFLAGS.warns.clang.3}
+CXXFLAGS.warns.clang.4=		${CFLAGS.warns.clang.4}
+
+####################
+# C warns for HP-UX
 CFLAGS.warns.hpc.0=		-w3
 CFLAGS.warns.hpc.1=		-w2
 CFLAGS.warns.hpc.2=		-w2
 CFLAGS.warns.hpc.3=		-w2
 CFLAGS.warns.hpc.4=		-w2
 
+# C++ warns
 CXXFLAGS.warns.hpc.0=		${CFLAGS.warns.hpc.0}
 CXXFLAGS.warns.hpc.1=		${CFLAGS.warns.hpc.1}
 CXXFLAGS.warns.hpc.2=		${CFLAGS.warns.hpc.2}
@@ -170,13 +184,15 @@ CXXFLAGS.warns.hpc.4=		${CFLAGS.warns.hpc.4}
 
 ####################
 
-#FFLAGS.pic?= -fPIC
+CFLAGS+=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
+CXXFLAGS+=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
 
 ####################
-CFLAGS.pic.gcc.Interix=		-DPIC
+CFLAGS.pic.gcc.Interix=	-DPIC
 CFLAGS.pic.gcc=		-fPIC -DPIC
 CFLAGS.pic.icc=		-fPIC -DPIC
-CFLAGS.pic.pcc=		-k
+CFLAGS.pic.clang=	-fPIC -DPIC
+CFLAGS.pic.pcc=		-k -DPIC
 CFLAGS.pic.mipspro=	-KPIC
 CFLAGS.pic.sunpro=	-KPIC # -xcode=pic32
 CFLAGS.pic.hpc=		+Z # +z
@@ -241,6 +257,7 @@ LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared.gcc.Interix=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.shared.gcc=		-shared
+LDFLAGS.shared.clang=		-shared
 LDFLAGS.shared.pcc=		-shared
 LDFLAGS.shared.icc=		-shared
 LDFLAGS.shared.hpc=		-b
@@ -263,8 +280,6 @@ LDFLAGS.shared.gcc.Darwin=	-flat_namespace -bundle -undefined suppress
 .elif ${TARGET_OPSYS:Unone} == "OSF1" && defined(LIB)
 CLEANFILES+=			${.OBJDIR}/${LIB}_so_locations
 .endif
-
-#CFLAGS.cctold.gcc=		-Wl,
 
 CFLAGS.cctold?=			${CFLAGS.cctold.${CC_TYPE}:U-Wl,}
 CXXFLAGS.cctold?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wl,}
@@ -379,6 +394,7 @@ LDFLAGS.expdyn.hpld?=		-Wl,-E
 LDFLAGS.expdyn.interixld?=	-Wl,-E
 LDFLAGS.expdyn.darwinld?=
 LDFLAGS.expdyn.gcc?=		-rdynamic
+LDFLAGS.expdyn.clang?=		-rdynamic
 .ifndef LDFLAGS.expdyn
 .if defined(LDFLAGS.expdyn.${LD_TYPE})
 LDFLAGS.expdyn=		${LDFLAGS.expdyn.${LD_TYPE}}

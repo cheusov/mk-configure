@@ -22,6 +22,7 @@ fi
 
 ##################################################
 checks='
+       __clang__:clang
            __ICC:icc
         __GNUC__:gcc
          __PCC__:pcc

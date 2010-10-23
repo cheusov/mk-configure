@@ -56,7 +56,7 @@ Plan 1)
     - mkc_imp.pkg-config.mk (PKG_CONFIG_SYSROOT_DIR)
 
   = shared libraries support for AIX, UnixWare, Hurd, Haiku.
-  = shared libraries support for clang, nwcc, mipspro and other compilers.
+  = shared libraries support for nwcc, mipspro and other compilers.
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
