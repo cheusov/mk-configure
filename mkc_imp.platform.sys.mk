@@ -123,7 +123,7 @@ CXXFLAGS.warnerr=	${CFLAGS.warnerr.${CXX_TYPE}}
 .endif
 
 ####################
-# C warns for gcc
+# C warns
 CFLAGS.warns.gcc.1=		-Wall -Wstrict-prototypes -Wmissing-prototypes \
 				-Wpointer-arith
 CFLAGS.warns.gcc.2=		${CFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
@@ -131,9 +131,14 @@ CFLAGS.warns.gcc.3=		${CFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wextra -Wno-unused-parameter
 CFLAGS.warns.gcc.4=		${CFLAGS.warns.gcc.3}
 
+CFLAGS.warns.icc.1=		-Wall -we1011
+CFLAGS.warns.icc.2=		${CFLAGS.warns.icc.1}
+CFLAGS.warns.icc.3=		${CFLAGS.warns.icc.2}
+CFLAGS.warns.icc.4=		${CFLAGS.warns.icc.3}
+
 CFLAGS+=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
 
-# C++ warns for gcc
+# C++ warns
 CXXFLAGS.warns.gcc.1=		-Wabi -Wold-style-cast -Wctor-dtor-privacy \
 				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
 				-Wno-non-template-friend -Woverloaded-virtual \
@@ -142,6 +147,11 @@ CXXFLAGS.warns.gcc.2=		${CXXFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
 CXXFLAGS.warns.gcc.3=		${CXXFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wextra -Wno-unused-parameter
 CXXFLAGS.warns.gcc.4=		${CXXFLAGS.warns.gcc.3}
+
+CXXFLAGS.warns.icc.1=		${CFLAGS.warns.icc.1}
+CXXFLAGS.warns.icc.2=		${CFLAGS.warns.icc.2}
+CXXFLAGS.warns.icc.3=		${CFLAGS.warns.icc.3}
+CXXFLAGS.warns.icc.4=		${CFLAGS.warns.icc.4}
 
 CXXFLAGS+=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
 
