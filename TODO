@@ -17,8 +17,6 @@ Plan 0)
 
   = pass -O1 to gnu linker
 
-  = Autodetecting yacc,bison,byacc lex,flex
-
 ============================================================
 Plan 1)
 
@@ -34,13 +32,11 @@ Plan 1)
 
   = support for gettext
 
-  = mkc.lib.mk, mkc.prog.mk and mkc.files.mk -> mkc.mk?
-
   = xxxDIR variable for /var
 
   = mkclint?
 
-  = Implement mkc_imp.libtool.mk to make building
+  = Implement mkc_imp.libtool.mk to build
     the shared libraries using GNU libtool(1).
 
   = Command line may be limited in size.
