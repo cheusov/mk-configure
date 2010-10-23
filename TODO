@@ -19,8 +19,6 @@ Plan 0)
 
   = sample for home-made .mk file (Ocaml? Pike?)
 
-  = Fix for -ll vs. -lfl
-
   = pass -O1 to gnu linker
 
   = Autodetecting yacc,bison,byacc lex,flex
