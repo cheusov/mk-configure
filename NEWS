@@ -1,4 +1,38 @@
 ======================================================================
+Version 0.21.0, by Aleksey Cheusov, Sun, 24 Oct 2010 17:47:19 +0300
+
+  Support for clang compiler was implemented.
+
+  Documentation and presentation were updated. There are new projects
+  using mk-configure.
+
+  mkc_install is always used for installing mk-configure.
+  This simplifies an installation process on non-BSD platforms.
+
+  WARNS variable: support for icc was added.
+
+  New variable LEXLIB library responsible for -ll/-lfl was introduced.
+  See examples/hello_calc2.
+
+  mkc_check_compiler: in order to differentiate icc from gcc, the
+  check for Intel C/C++ compiler is run first.
+
+  New target "filelist" that outputs a list of files for the whole
+  project was introduced.
+
+  Makefile: mk-configure's mk files are unconditionally installed to
+  its own directory in order to avoid potential conflicts with
+  system-wide sys.mk on BSD platforms.
+
+  mkc.configure.mk: HAVE_FUNCLIB.main is always set to  1.
+  mkc_check_funclibs is not run for checking presense of function
+  "main" in libc.
+
+  New variable MKCHECKS was introduced.
+
+  Useless rule ".sh:" was removed.
+
+======================================================================
 Version 0.20.0, by Aleksey Cheusov, Sun, 19 Sep 2010 21:46:25 +0300
 
   New variable PROJECTNAME, see the manual page.
