@@ -73,7 +73,7 @@ GOALS OF THE PROJECT
    supported:
 
     - NetBSD. Tested on NetBSD-5.0/x86 and NetBSD-2.0/alpha with
-      gcc and pcc (Portable C compiler).
+      gcc, pcc and clang.
 
     - FreeBSD. Tested on FreeBSD-6.2/x86, 7.1/spark64 and 7.1/x86
       with gcc.
@@ -84,8 +84,10 @@ GOALS OF THE PROJECT
 
     - MirOS BSD. Tested on MirBSD-10/x86 with gcc.
 
+    - Linux. Tested on Linux/{x86,x86-64} with gcc, icc, sunstudio-12.
+
     - Solaris. Tested on Solaris-10/x86 and Solaris-10/spark64
-      with sunpro-11, sunpro-12 and gcc.
+      with sunstudio-11, sunstudio-12 and gcc.
 
     - Darwin (MacOS-X). Tested on Darwin-8.11.0/ppc (MacOS-X Tiger)
       with native gcc.
