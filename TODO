@@ -88,15 +88,11 @@ Plan2)
 
   = MKPIE for building Position Independent Executables
 
-  = mkc_imp.lib.mk: list of exported symbols
-
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
     - list of variables to export for subprojects
 
   = mkc.subdir.mk, mkc.subprj.mk: reimplement ${dir}.${MACHINE}
-
-  = WARNS for compilers other than gcc
 
   = MKC_CHECK_CUSTOM:
     - MKC_CUSTOM_FN=xxx.f
