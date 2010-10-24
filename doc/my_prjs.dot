@@ -1,12 +1,13 @@
 digraph FSA {
  graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
 
- node [ shape = diamond style=filled fonsize=18 ];
+ node [ shape = hexagon style=filled fontsize=20 ];
 
    "mk-configure" -> "lmdbg";
    "paexec";
    "distbb";
    "pkg_online";
+   "runawk";
 
  node [ shape = oval style=solid ];
 

@@ -1,7 +1,7 @@
 digraph FSA {
  graph [ ratio=compress layout=dot rankdir=UB ];
 
- node [ shape = diamond style=filled ];
+ node [ shape = hexagon style=filled fontsize=20 ];
 
    "lua-alt-getopt";
    "nbawk (NetBSD awk)";

@@ -844,23 +844,36 @@ If you want this code, you know where to get it! ;-)
   \begin{block}{Real life samples of use}
   \begin{itemize}
   \item Lightweight modular malloc Debugger.\\
-    \URL{http://sf.net/projects/lmdbg/}
+    \URL{http://sourceforge.net/projects/lmdbg/}
+    \URL{http://pkgsrc.se/wip/lmdbg/}\\
   \item NetBSD version of AWK programming language.\\
-    \URL{http://mova.org/~cheusov/pub/mk-configure/nbawk/}
+    \URL{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
+  \item Modules support for AWK programming language\\
+    \URL{http://sourceforge.net/projects/runawk/}
+    \URL{http://pkgsrc.se/wip/runawk/}\\
+  \item Parallel Executor\\
+    \URL{http://sourceforge.net/projects/paexec/}
+    \URL{http://pkgsrc.se/wip/paexec/}\\
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{MK-CONFIGURE in real world}
+  \begin{block}{Real life samples of use}
+  \begin{itemize}
+  \item Distributed fault tolerant bulk build tool for pkgsrc\\
+    \URL{http://mova.org/\~{}cheusov/pub/distbb/}\\
+    \URL{http://pkgsrc.se/wip/distbb/}\\
+  \item Client/server package search system for pkgsrc\\
+    \URL{http://mova.org/\~{}cheusov/pub/pkg\_online/}
+    \URL{http://pkgsrc.se/wip/pkg\_online-client/}\\
+    \URL{http://pkgsrc.se/wip/pkg\_online-server/}\\
   \item Any project based on traditional
     \ModuleName{bsd.\{prog,lib,subdir\}.mk} can easily be converted
-    to use \MKC{mk-configure}.
-    \begin{itemize}
-    \item \URL{http://sourceforge.net/projects/runawk/}\\
-      Modules Framework for AWK programming language
-    \item \URL{http://sourceforge.net/projects/paexec/}\\
-      Parallel Executer
-    \item \URL{http://mova.org/\~{}cheusov/pub/distbb/}\\
-      Distributed fault tolerant bulk build tool for pkgsrc
-      \URL{http://mova.org/\~{}cheusov/pub/pkg\_online/}\\
-      Client/server package search system for pkgsrc
-    \item ...
-    \end{itemize}
+    to \MKC{mk-configure}.
   \end{itemize}
   \end{block}
 \end{frame}
@@ -870,7 +883,7 @@ If you want this code, you know where to get it! ;-)
 \begin{frame}[fragile,t]
   \frametitle{MK-CONFIGURE in real world}
   \begin{block}{My opensource software projects using
-      mk-configure (romb), Mk files (box) and others (oval)}
+      mk-configure (hexagon), Mk files (box) and others (oval)}
     \begin{figure}
       \includegraphics[width=\textwidth, keepaspectratio=false]{my_prjs.eps}
     \end{figure}
