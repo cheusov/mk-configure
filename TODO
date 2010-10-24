@@ -11,8 +11,6 @@ Plan 0)
 
   = shared libraries support for IRIX
 
-  = {A,C{,XX}}FLAGS.warnerr
-
   = sample for home-made .mk file (Ocaml? Pike?)
 
   = pass -O1 to gnu linker
