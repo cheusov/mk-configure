@@ -90,7 +90,6 @@ Plan2)
 
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
-    - list of variables to export for subprojects
 
   = mkc.subdir.mk, mkc.subprj.mk: reimplement ${dir}.${MACHINE}
 
@@ -99,8 +98,6 @@ Plan2)
     - MKC_CUSTOM_FN=xxx.objc
 
   = user-defined postinstall and preinstall?
-
-  = preinstall : installdirs?
 
   = Regression tests:
     - optional .f tests
