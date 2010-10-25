@@ -42,3 +42,7 @@ clean:
 	-rm -f *.toc *.vrb *.ps *.pdf *.eps *.out *.nav *.log *.dvi *.aux *.snm
 
 ##################################################
+myprojects.tex : presentation.tex
+	awk '/^%%%begin-myprojects/, /^%%%end-myprojects/' \
+		${.ALLSRC} > ${.TARGET}
+myprojects.ps myprojects.pdf myprojects.dvi: my_prjs.eps my_prjs2.eps
