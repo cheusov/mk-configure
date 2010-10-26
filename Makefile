@@ -12,8 +12,10 @@ BMAKE?=			bmake
 # Solaris' /usr/bin/awk is completely broken,
 # /usr/xpg4/bin/awk sucks too but sucks less.
 AWK?=/usr/xpg4/bin/awk
-.else
+.elif exists(/usr/bin/awk)
 AWK?=/usr/bin/awk
+.else
+AWK?=/bin/awk
 .endif
 
 ##################################################
