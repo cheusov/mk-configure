@@ -71,10 +71,12 @@ ROOT_GROUP.MirBSD=		wheel
 ROOT_GROUP.HP-UX=		bin
 ROOT_GROUP.OSF1=		bin
 ROOT_GROUP.Interix=		+Administrators
+ROOR_GROUP.Haiku=		root
 
 ROOT_USER.HP-UX=		bin
 ROOT_USER.OSF1=			bin
 ROOT_USER.Interix=		Administrator
+ROOT_USER.Haiku=		user
 
 ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
 ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}

@@ -25,6 +25,7 @@ INSTALL.OpenBSD=	/usr/bin/install
 INSTALL.FreeBSD=	/usr/bin/install
 INSTALL.DragonFly=	/usr/bin/install
 INSTALL.MirBSD=		/usr/bin/install
+INSTALL.Haiku=		/bin/install
 
 INSTALL?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
