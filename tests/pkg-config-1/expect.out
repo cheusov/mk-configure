@@ -1,4 +1,0 @@
-ERROR: Package mkc_fake-2.0 was not found in the pkg-config search path.
-ERROR: Perhaps you should add the directory containing `mkc_fake-2.0.pc'
-ERROR: to the PKG_CONFIG_PATH environment variable
-ERROR: No package 'mkc_fake-2.0' found
