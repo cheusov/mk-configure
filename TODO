@@ -1,10 +1,20 @@
 ============================================================
 Plan -1)
+
+  - mkc_check_compiler - run it once for detecting
+    C and C++ compiler type
+  - PCNAME.lua or LUA_PCNAME?
+  - recheck documentation for Makefile.rec
+  - latest version of mkc_presentation.pdf is available
+    here and there
   - SPROG?
   - Syllable, Haiku OSes
   - lcc and tcc compilers
   - epm -> rpm, SVR4 pkg etc.
   - more powerful link.me
+  - mkc_imp.filelist.mk
+    - FL_NOPREFIX
+    - FL_PERSUBPRJ
 
 ============================================================
 Plan 0)
