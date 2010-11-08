@@ -22,7 +22,7 @@ INTEXTS_SED+=	-e 's,@mandir@,${MANDIR},g'
 INTEXTS_SED+=	-e 's,@incsdir@,${INCSDIR},g'
 
 .for _pattern _repl in ${INTEXTS_REPLS}
-INTEXTS_SED+=	-e 's @${_pattern}@ ${_repl} g'
+INTEXTS_SED+=	-e 's,@${_pattern}@,${_repl},g'
 .endfor
 
 CLEANFILES+=	${INSCRIPTS} ${INFILES}
