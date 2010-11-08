@@ -3,7 +3,8 @@ digraph FSA {
 
  node [ shape = hexagon style=filled fontsize=20 ];
 
-   "mk-configure" -> "lmdbg";
+   "mk-configure";
+   "lmdbg";
    "paexec";
    "distbb";
    "pkg_online";
@@ -18,6 +19,7 @@ digraph FSA {
 
    "runawk"            -> "pkg_summary-utils";
    "runawk"            -> "lmdbg";
+   "runawk"            -> "paexec";
    "pkg_summary-utils" -> "distbb";
    "paexec"            -> "distbb";
    "dictd"             -> "dictem";
