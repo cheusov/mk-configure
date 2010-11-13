@@ -1,7 +1,7 @@
 ##################################################
 
 .PHONE : all
-all : presentation.pdf
+all : presentation.pdf myprojects.pdf
 
 .PHONY : pdf dvi rtf
 pdf : presentation.pdf
@@ -10,7 +10,7 @@ dvi : presentation.dvi
 
 .SUFFIXES: .ps .eps .pdf .dvi .tex .dot
 
-presentation.ps presentation.pdf presentation.dvi: my_prjs.eps my_prjs2.eps
+presentation.ps presentation.pdf presentation.dvi: my_prjs.eps
 
 .ps.pdf:
 	ps2pdf "$<" "$@"
@@ -45,4 +45,4 @@ clean:
 myprojects.tex : presentation.tex
 	awk '/^%%%begin-myprojects/, /^%%%end-myprojects/' \
 		${.ALLSRC} > ${.TARGET}
-myprojects.ps myprojects.pdf myprojects.dvi: my_prjs.eps my_prjs2.eps
+myprojects.ps myprojects.pdf myprojects.dvi: my_prjs.eps
