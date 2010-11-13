@@ -9,6 +9,9 @@ digraph FSA {
    "distbb";
    "pkg_online";
    "runawk";
+   "pkg_summary-utils";
+   "pkgnih";
+   "nbawk (NetBSD awk)";
 
  node [ shape = oval style=solid ];
 
@@ -26,10 +29,24 @@ digraph FSA {
    "pkg_summary-utils" -> "pkg_online";
    "pkg_summary-utils" -> "pkg_conflicts";
    "pkg_summary-utils" -> "pkg_status";
+   "pkg_summary-utils" -> "pkgnih";
+   "pkg_status"        -> "pkgnih";
+   "distbb"            -> "pkgnih";
+   "pkg_online"        -> "pkgnih";
 
  node [ shape = oval style=solid ];
 
    "dictd" -> "pkg_online";
    "pipestatus" -> "pkg_summary-utils";
 
+}
+
+digraph FSA {
+ graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
+
+ node [ shape = hexagon style=filled fontsize=20 ];
+   "lua-alt-getopt";
+
+ node [ shape = oval style=solid ];
+   "judyhash";
 }
