@@ -1,8 +1,8 @@
 ============================================================
 Plan -1)
 
-  - mkc_check_compiler - run it once for detecting
-    C and C++ compiler type
+  - Slide "donations"
+  - mkc_check_compiler: ${CC} -E
   - PCNAME.lua or LUA_PCNAME?
   - recheck documentation for Makefile.rec
   - latest version of mkc_presentation.pdf is available
