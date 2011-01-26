@@ -28,10 +28,14 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \newenvironment{Code}[1]%
-               {\Verbatim[label=\bf{#1},frame=single,%
-                   fontsize=\small,%
-                   commandchars=\\\{\}]}%
-               {\endVerbatim}
+              {\Verbatim[label=\bf{#1},frame=single,%
+                  fontsize=\small,%
+                  commandchars=\\\{\}]}%
+              {\endVerbatim}
+
+%\newenvironment{Code}[1]%
+%               {\semiverbatim[]}%
+%               {\endsemiverbatim}
 
 \newenvironment{CodeNoLabel}%
                {\Verbatim[frame=single,%
@@ -47,8 +51,10 @@
 
 %\newcommand{\prompt}[1]{\textcolor{blue}{#1}}
 %\newcommand{\prompt}[1]{\textbf{#1}\textnormal{}}
-\newcommand{\prompt}[1]{\bf{#1}\textnormal{}}
-\newcommand{\highlight}[1]{\bf{#1}\textnormal{}}
+\newcommand{\prompt}[1]{\bf{#1}\tt{}}
+%\newcommand{\h}[1]{\textbf{#1}}
+%\newcommand{\h}[1]{\bf{#1}\textnormal{}}
+\newcommand{\h}[1]{\bf{#1}\tt{}}
 \newcommand{\URL}[1]{\textbf{#1}}
 \newcommand{\AutohellFile}[1]{\textcolor{red}{#1}}
 \newcommand{\MKCfile}[1]{\textcolor{green}{#1}}
@@ -124,27 +130,11 @@
   \frametitle{Example 1: Hello world application}
 
   \begin{block}{Source code}
-    % files
-%%     \begin{code}{files in the directory}
-%% \prompt{\$} ls -l
-%% total 8
-%% -rw-r--r--  1 cheusov  users  68 May  2 14:16 Makefile
-%% -rw-r--r--  1 cheusov  users  92 May  2 14:18 hello.c
-%% \prompt{\$}
-%%     \end{code}
-
-%    \begin{columns}[t]
-
-    % column1
-%      \column{0.5\textwidth}
       \begin{Code}{Makefile}
 PROG=      hello
 
-.include <mkc.prog.mk>
+.include <\h{mkc.prog.mk}>
       \end{Code}
-
-    % column2
-%      \column{0.5\textwidth}
       \begin{Code}{hello.c}
 #include <stdio.h>
 
@@ -197,7 +187,7 @@ uninstall, installdirs, depend etc.
 total 12
 -rw-r--r--  1 cheusov  users  158 May  2 15:04 Makefile
 -rw-r--r--  1 cheusov  users  187 May  2 15:05 main.c
--rw-r--r--  1 cheusov  users  332 May  2 15:09 strlcpy.c
+-rw-r--r--  1 cheusov  users  332 May  2 15:09 \h{strlcpy.c}
 \prompt{\$}
   \end{Code}
 
@@ -206,8 +196,8 @@ total 12
 PROG=                 strlcpy_test
 SRCS=                 main.c
 
-MKC_SOURCE_FUNCLIBS=  strlcpy
-MKC_CHECK_FUNCS3=     strlcpy:string.h
+\h{MKC\_SOURCE\_FUNCLIBS}=  strlcpy
+\h{MKC\_CHECK\_FUNCS3}=     strlcpy:string.h
 
 .include <mkc.prog.mk>
   \end{Code}
@@ -223,7 +213,7 @@ MKC_CHECK_FUNCS3=     strlcpy:string.h
 \begin{Code}{main.c}
 #include <string.h>
 
-#ifndef HAVE_FUNC3_STRLCPY_STRING_H
+#ifndef \h{HAVE\_FUNC3\_STRLCPY\_STRING\_H}
 size_t strlcpy(char *dst, const char *src, size_t siz);
 #endif
 
@@ -244,12 +234,12 @@ int main (int argc, char** argv)
 \begin{CodeNoLabel}
 \prompt{\$ CC='icc -no-gcc' mkcmake}
 checking for compiler type... icc
-checking for function strlcpy... no
-checking for func strlcpy ( string.h )... no
+checking for function strlcpy... \h{no}
+checking for func strlcpy ( string.h )... \h{no}
 checking for program icc... /opt/intel/cc/10.1.008/bin/icc
 icc -no-gcc -c main.c
 icc -no-gcc -c strlcpy.c
-icc -no-gcc   -o strlcpy_test main.o strlcpy.o
+icc -no-gcc   -o strlcpy_test main.o \h{strlcpy.o}
 \prompt{\$ echo \_mkc\_*}
 _mkc_compiler_type.err _mkc_compiler_type.res 
 _mkc_func3_strlcpy_string_h.c 
@@ -270,11 +260,11 @@ _mkc_funclib_strlcpy.res _mkc_prog_cc.err _mkc_prog_cc.res
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
 checking for compiler type... gcc
-checking for function strlcpy... yes
-checking for func strlcpy ( string.h )... yes
+checking for function strlcpy... \h{yes}
+checking for func strlcpy ( string.h )... \h{yes}
 checking for program cc... /usr/bin/cc
-cc  -DHAVE_FUNC3_STRLCPY_STRING_H=1    -c main.c
-cc   -o strlcpy_test main.o
+cc -D\h{HAVE\_FUNC3\_STRLCPY\_STRING\_H}=1    -c main.c
+cc -o strlcpy_test main.o
 \prompt{\$} 
 \end{CodeNoLabel}
   \end{block}
@@ -286,13 +276,14 @@ cc   -o strlcpy_test main.o
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-MKC_CHECK_FUNCLIBS=     dlopen:dl
+\h{MKC\_CHECK\_FUNCLIBS}=     dlopen:dl
 
-PROG=                   myapp
+PROG=   myapp
 
-.include <mkc.configure.mk>
+.include <\h{mkc.configure.mk}>
 
-.if $\{HAVE_FUNCLIB.dlopen\} || $\{HAVE_FUNCLIB.dlopen.dl\}
+.if $\{\h{HAVE\_FUNCLIB.dlopen}:U0\} || \ {}
+    $\{\h{HAVE\_FUNCLIB.dlopen.dl}:U0\}
 CFLAGS+=	-DPLUGINS_ENABLED=1
 .endif
 
@@ -305,15 +296,16 @@ CFLAGS+=	-DPLUGINS_ENABLED=1
 \begin{frame}[fragile]
   \frametitle{Example 3: Application using plugins}
 
-  \begin{block}{How it works on Linux}
+  \begin{block}{How it works on QNX}
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
 checking for compiler type... gcc
-checking for function dlopen ( \highlight{-ldl} )... \highlight{yes}
-checking for function dlopen... \highlight{no}
-checking for program gcc... /usr/bin/gcc
+checking for function dlopen ( \h{-ldl} )... \h{yes}
+checking for function dlopen... \h{no}
+checking for program gcc...
+      /usr/qnx650/host/qnx6/x86/usr/bin/gcc
 gcc -DPLUGINS_ENABLED=1    -c myapp.c
-gcc   -o myapp myapp.o \highlight{-ldl}
+gcc   -o myapp myapp.o \h{-ldl}
 \prompt{\$}
 \end{CodeNoLabel}
   \end{block}
@@ -327,8 +319,8 @@ gcc   -o myapp myapp.o \highlight{-ldl}
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
 checking for compiler type... gcc
-checking for function dlopen ( \highlight{-ldl} )... \highlight{no}
-checking for function dlopen... \highlight{yes}
+checking for function dlopen ( \h{-ldl} )... \h{no}
+checking for function dlopen... \h{yes}
 checking for program cc... /usr/bin/cc
 cc  -DPLUGINS_ENABLED=1    -c myapp.c
 cc   -o myapp myapp.o
@@ -349,10 +341,10 @@ SRCS=                  foo.cc bar.cc baz.cc
 MKPICLIB?=             no
 MKSTATICLIB?=          no
 
-SHLIB_MAJOR=           1
-SHLIB_MINOR=           0
+\h{SHLIB\_MAJOR}=           1
+\h{SHLIB\_MINOR}=           0
 
-.include <mkc.lib.mk>
+.include <\h{mkc.lib.mk}>
   \end{Code}
   \end{block}
 \end{frame}
@@ -361,14 +353,14 @@ SHLIB_MINOR=           0
 \begin{frame}[fragile]
   \frametitle{Example 4: Support for shared libraries}
 
-  \begin{block}{How it works on Solaris}
+  \begin{block}{How it works on Solaris with SunStudio compiler}
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
-/opt/SUNWspro/bin/CC    -c -KPIC foo.cc -o foo.os
-/opt/SUNWspro/bin/CC    -c -KPIC bar.cc -o bar.os
-/opt/SUNWspro/bin/CC    -c -KPIC baz.cc -o baz.os
-building shared foobar library (version 1.0)
-/opt/SUNWspro/bin/CC -G -h libfoobar.so.1 
+/opt/SUNWspro/bin/CC    -c \h{-KPIC} foo.cc -o foo.os
+/opt/SUNWspro/bin/CC    -c \h{-KPIC} bar.cc -o bar.os
+/opt/SUNWspro/bin/CC    -c \h{-KPIC} baz.cc -o baz.os
+building shared foobar library (version \h{1.0})
+/opt/SUNWspro/bin/CC \h{-G} \h{-h libfoobar.so.1}
    -o libfoobar.so.1.0  foo.os bar.os baz.os
 ln -sf libfoobar.so.1.0 libfoobar.so
 ln -sf libfoobar.so.1.0 libfoobar.so.1
@@ -386,13 +378,13 @@ ln -sf libfoobar.so.1.0 libfoobar.so.1
 \prompt{\$ mkcmake}
 checking for compiler type... gcc
 checking for program c++... /usr/bin/c++
-c++    -c -fPIC -DPIC foo.cc -o foo.os
-c++    -c -fPIC -DPIC bar.cc -o bar.os
-c++    -c -fPIC -DPIC baz.cc -o baz.os
+c++    -c \h{-fPIC -DPIC} foo.cc -o foo.os
+c++    -c \h{-fPIC -DPIC} bar.cc -o bar.os
+c++    -c \h{-fPIC -DPIC} baz.cc -o baz.os
 building shared foobar library (version 1.0)
-c++ -dynamiclib -install_name 
-   /usr/local/lib/libfoobar.1.0.dylib 
-   -current_version 2.0 -compatibility_version 2 
+c++ \h{-dynamiclib -install\_name}
+   /usr/local/lib/libfoobar.1.0.\h{dylib}
+   \h{-current\_version 2.0 -compatibility\_version 2} 
    -o libfoobar.1.0.dylib  foo.os bar.os baz.os
 ln -sf libfoobar.1.0.dylib libfoobar.dylib
 ln -sf libfoobar.1.0.dylib libfoobar.1.dylib
@@ -421,7 +413,7 @@ SUBPRJ+=  libcommon:dictfmt
 SUBPRJ+=  libdz:dictzip
 SUBPRJ+=  libmaa:dict
 ...
-.include <mkc.subprj.mk>
+.include <\h{mkc.subprj.mk}>
   \end{Code}
   \end{block}
 \end{frame}
@@ -439,7 +431,7 @@ SUBPRJ+=  libmaa:dict
 LIB=            common
 SRCS=           str.c iswalnum.c # and others
 
-MKINSTALL=      no # Do not install it!
+\h{MKINSTALL}=      no # Do not install it!
 
 .include <mkc.lib.mk>
   \end{Code}
@@ -466,7 +458,7 @@ SHLIB_MINOR=    2
 SHLIB_TEENY=    0
 
 # list of exported symbols
-EXPORT_SYMBOLS= libmaa.sym
+\h{EXPORT\_SYMBOLS}= libmaa.sym
 
 .include <mkc.lib.mk>
   \end{Code}
@@ -488,13 +480,14 @@ DPLIBDIRS+=     \$\{PATH.maa\}
 LIB=            dz
 SRCS=           dz.c
 
-MKC_REQUIRE_HEADERS=    zlib.h
-MKC_REQUIRE_FUNCLIBS=   deflate:z
+\h{MKC\_REQUIRE\_HEADERS}=    zlib.h
+\h{MKC\_REQUIRE\_FUNCLIBS}=   deflate:z
 
 EXPORT_SYMBOLS=         libdz.sym
 SHLIB_MAJOR=            1
 SHLIB_MINOR=            0
 
+\h{LDADD}=              -lz
 .include <mkc.lib.mk>
   \end{Code}
   \begin{Code}{libdz/linkme.mk}
@@ -515,9 +508,9 @@ DPLIBDIRS+=     \$\{PATH.dz\}
 PROG=   dictzip
 MAN=    dictzip.1
 
-.include "../libcommon/linkme.mk"
-.include "../libdz/linkme.mk"
-.include "../libmaa/linkme.mk"
+\h{.include} "../libcommon/linkme.mk"
+\h{.include} "../libdz/linkme.mk"
+\h{.include} "../libmaa/linkme.mk"
 
 DPLIBS+=        -lcommon -ldz -lmaa
 
@@ -543,9 +536,9 @@ all ===> libdz
 all ===> dictzip
 ...
 checking for program cc... /usr/bin/cc
-cc   -I../libcommon -I../libdz -I../libmaa  -c dictzip.c
+cc \h{-I../libcommon -I../libdz -I../libmaa} -c dictzip.c
 cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libdz
-   -L/tmp/hello_dictd/libmaa  -o dictzip
+   \h{-L/tmp/hello\_dictd/libmaa}  -o dictzip
    dictzip.o -lcommon -lmaa -ldz
 \prompt{\$}
   \end{CodeNoLabel}
