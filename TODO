@@ -1,3 +1,15 @@
+Plan -2)
+  Slides for:
+    - I need help, shell accounts, regression tests
+    - 2 mailing lists
+    - plans, untested platforms
+    - AIX, HP-UX, Hurd, other exotic platforms.
+    - Sample of cross-compilation
+    - Sample for user-defined tests written in .c and shell script.
+    - Slide "extensibility" about Lua module.
+    - latest version of mkc_presentation.pdf is available
+      here and there
+
 ============================================================
 Plan -1)
 
@@ -9,8 +21,6 @@ Plan -1)
   - mkc_check_compiler: ${CC} -E
   - PCNAME.lua or LUA_PCNAME?
   - recheck documentation for Makefile.rec
-  - latest version of mkc_presentation.pdf is available
-    here and there
   - SPROG?
   - Syllable, Haiku OSes
   - lcc and tcc compilers
