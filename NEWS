@@ -14,8 +14,8 @@ Version 0.21.0, by Aleksey Cheusov, Sun, 24 Oct 2010 17:47:19 +0300
   New variable LEXLIB library responsible for -ll/-lfl was introduced.
   See examples/hello_calc2.
 
-  mkc_check_compiler: in order to differentiate icc from gcc, the
-  check for Intel C/C++ compiler is run first.
+  mkc_check_compiler: in order to differentiate icc from gcc, a check
+  for Intel C/C++ compiler is run first.
 
   New target "filelist" that outputs a list of files for the whole
   project was introduced.

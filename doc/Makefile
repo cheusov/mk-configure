@@ -10,7 +10,7 @@ dvi : presentation.dvi
 
 .SUFFIXES: .ps .eps .pdf .dvi .tex .dot
 
-presentation.ps presentation.pdf presentation.dvi: my_prjs.eps
+presentation.ps presentation.pdf presentation.dvi: my_prjs.eps dep_graph.eps
 
 .ps.pdf:
 	ps2pdf "$<" "$@"

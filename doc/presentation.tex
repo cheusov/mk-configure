@@ -131,7 +131,7 @@
 
   \begin{block}{Source code}
       \begin{Code}{Makefile}
-PROG=      hello
+PROG =      hello
 
 .include <\h{mkc.prog.mk}>
       \end{Code}
@@ -193,11 +193,11 @@ total 12
 
 % Makefile
   \begin{Code}{Makefile}
-PROG=                 strlcpy_test
-SRCS=                 main.c
+PROG =                 strlcpy_test
+SRCS =                 main.c
 
-\h{MKC\_SOURCE\_FUNCLIBS}=  strlcpy
-\h{MKC\_CHECK\_FUNCS3}=     strlcpy:string.h
+\h{MKC\_SOURCE\_FUNCLIBS} =  strlcpy
+\h{MKC\_CHECK\_FUNCS3} =     strlcpy:string.h
 
 .include <mkc.prog.mk>
   \end{Code}
@@ -233,13 +233,13 @@ int main (int argc, char** argv)
   \begin{block}{How it works on Linux}
 \begin{CodeNoLabel}
 \prompt{\$ CC='icc -no-gcc' mkcmake}
-checking for compiler type... icc
+checking for compiler type... \h{icc}
 checking for function strlcpy... \h{no}
 checking for func strlcpy ( string.h )... \h{no}
 checking for program icc... /opt/intel/cc/10.1.008/bin/icc
 icc -no-gcc -c main.c
 icc -no-gcc -c strlcpy.c
-icc -no-gcc   -o strlcpy_test main.o \h{strlcpy.o}
+icc -no-gcc -o strlcpy_test main.o \h{strlcpy.o}
 \prompt{\$ echo \_mkc\_*}
 _mkc_compiler_type.err _mkc_compiler_type.res 
 _mkc_func3_strlcpy_string_h.c 
@@ -276,15 +276,15 @@ cc -o strlcpy_test main.o
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-\h{MKC\_CHECK\_FUNCLIBS}=     dlopen:dl
+PROG =   myapp
 
-PROG=   myapp
+\h{MKC\_CHECK\_FUNCLIBS} =     dlopen:dl
 
 .include <\h{mkc.configure.mk}>
 
 .if $\{\h{HAVE\_FUNCLIB.dlopen}:U0\} || \ {}
     $\{\h{HAVE\_FUNCLIB.dlopen.dl}:U0\}
-CFLAGS+=	-DPLUGINS_ENABLED=1
+CFLAGS +=	-DPLUGINS_ENABLED=1
 .endif
 
 .include <mkc.prog.mk>
@@ -335,14 +335,14 @@ cc   -o myapp myapp.o
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-LIB=                   foobar
-SRCS=                  foo.cc bar.cc baz.cc
+LIB =                   foobar
+SRCS =                  foo.cc bar.cc baz.cc
 
-MKPICLIB?=             no
-MKSTATICLIB?=          no
+MKPICLIB ?=             no
+MKSTATICLIB ?=          no
 
-\h{SHLIB\_MAJOR}=           1
-\h{SHLIB\_MINOR}=           0
+\h{SHLIB\_MAJOR} =           1
+\h{SHLIB\_MINOR} =           0
 
 .include <\h{mkc.lib.mk}>
   \end{Code}
@@ -397,22 +397,55 @@ ln -sf libfoobar.1.0.dylib libfoobar.1.dylib
 \begin{frame}[fragile]
   \frametitle{Example 5: Big project consisting of several subprojects}
 
+  \begin{block}{Dependency graph for all subprojects}
+This project consists of several subprojects: dict, dictd, dictfmt,
+dictzip, libdz, libmaa and libcommon. libcommon contains common code
+for executables and should not be installed.
+    \begin{figure}
+      \includegraphics[width=\textwidth, height=0.50\textheight, keepaspectratio=false]{dep_graph.eps}
+    \end{figure}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Files and directories}
+    \begin{CodeNoLabel}
+\prompt{\$ ls -l}
+total 4
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dict
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictd
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictfmt
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictzip
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:03 doc
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libcommon
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libdz
+drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libmaa
+-rw-r--r-- 1 cheusov users 306 ﬂÌ‚ 26 12:03 \h{Makefile}
+\prompt{\$}
+    \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-# This project consists of several subprojects:
-# dict, dictd, dictfmt, dictzip, libdz, libmaa
-# and libcommon. libcommon contains common code
-# for executables and should not be installed.
-# SUBPRJ specifies a dependency graph
-# for all subprojects.
+SUBPRJ =   libcommon:dict   # dict depends on libcommon
+SUBPRJ +=  libcommon:dictd
+SUBPRJ +=  libcommon:dictzip
+SUBPRJ +=  libcommon:dictfmt
+SUBPRJ +=  libmaa:dict
+SUBPRJ +=  libmaa:dictd
+SUBPRJ +=  libmaa:dictfmt
+SUBPRJ +=  libmaa:dictzip
+SUBPRJ +=  libdz:dictzip
+SUBPRJ +=  doc
 
-SUBPRJ=   libcommon:dict   # dict depends on libcommon
-SUBPRJ+=  libcommon:dictd
-SUBPRJ+=  libcommon:dictzip
-SUBPRJ+=  libcommon:dictfmt
-SUBPRJ+=  libdz:dictzip
-SUBPRJ+=  libmaa:dict
-...
 .include <\h{mkc.subprj.mk}>
   \end{Code}
   \end{block}
@@ -425,21 +458,20 @@ SUBPRJ+=  libmaa:dict
   \begin{block}{Source code}
   \begin{Code}{libcommon/Makefile}
 # Internal static library that implements functions
-# common for dict, dictd, dictfmt
-# and dictzip applications
+# common for dict, dictd, dictfmt and dictzip applications
 
-LIB=            common
-SRCS=           str.c iswalnum.c # and others
+LIB =            common
+SRCS =           str.c iswalnum.c # and others
 
-\h{MKINSTALL}=      no # Do not install it!
+\h{MKINSTALL} =   no # Do not install internal library!
 
 .include <mkc.lib.mk>
   \end{Code}
   \begin{Code}{libcommon/linkme.mk}
-PATH.common:=      \$\{.PARSEDIR\}
+PATH.common :=      \$\{.PARSEDIR\}
 
-CPPFLAGS+=      -I\$\{PATH.common\}
-DPLIBDIRS+=     \$\{PATH.common\}
+CPPFLAGS +=      -I\$\{PATH.common\}\h{/include}
+DPLIBDIRS +=     \$\{PATH.common\}
   \end{Code}
   \end{block}
 \end{frame}
@@ -450,23 +482,24 @@ DPLIBDIRS+=     \$\{PATH.common\}
 
   \begin{block}{Source code}
   \begin{Code}{libmaa/Makefile}
-LIB=            maa
-SRCS=           set.c prime.c log.c # etc.
+LIB =            maa
+SRCS =           set.c prime.c log.c # etc.
 
-SHLIB_MAJOR=    1
-SHLIB_MINOR=    2
-SHLIB_TEENY=    0
+INCS =           maa.h
+
+SHLIB_MAJOR =    1
+SHLIB_MINOR =    2
+SHLIB_TEENY =    0
 
 # list of exported symbols
-\h{EXPORT\_SYMBOLS}= libmaa.sym
+\h{EXPORT\_SYMBOLS} = libmaa.sym
 
 .include <mkc.lib.mk>
   \end{Code}
   \begin{Code}{libmaa/linkme.mk}
-PATH.maa:=      \$\{.PARSEDIR\}
-
-CPPFLAGS+=      -I\$\{PATH.maa\}
-DPLIBDIRS+=     \$\{PATH.maa\}
+PATH.maa :=      \$\{.PARSEDIR\}
+CPPFLAGS +=      -I\$\{PATH.maa\}
+DPLIBDIRS +=     \$\{PATH.maa\}
   \end{Code}
   \end{block}
 \end{frame}
@@ -477,24 +510,24 @@ DPLIBDIRS+=     \$\{PATH.maa\}
 
   \begin{block}{Source code}
   \begin{Code}{libdz/Makefile}
-LIB=            dz
-SRCS=           dz.c
+LIB =            dz
+SRCS =           dz.c
 
-\h{MKC\_REQUIRE\_HEADERS}=    zlib.h
-\h{MKC\_REQUIRE\_FUNCLIBS}=   deflate:z
+INCS =           dz.h
 
-EXPORT_SYMBOLS=         libdz.sym
-SHLIB_MAJOR=            1
-SHLIB_MINOR=            0
+\h{MKC\_REQUIRE\_HEADERS} =    zlib.h
+\h{MKC\_REQUIRE\_FUNCLIBS} =   deflate:z
+EXPORT_SYMBOLS =         dz.sym
+SHLIB_MAJOR =            1
+SHLIB_MINOR =            0
+LDADD =                  -lz
 
-\h{LDADD}=              -lz
 .include <mkc.lib.mk>
   \end{Code}
   \begin{Code}{libdz/linkme.mk}
-PATH.dz:=       \$\{.PARSEDIR\}
-
-CPPFLAGS+=      -I\$\{PATH.dz\}
-DPLIBDIRS+=     \$\{PATH.dz\}
+PATH.dz :=       \$\{.PARSEDIR\}
+CPPFLAGS +=      -I\$\{PATH.dz\}
+DPLIBDIRS +=     \$\{PATH.dz\}
   \end{Code}
   \end{block}
 \end{frame}
@@ -505,14 +538,14 @@ DPLIBDIRS+=     \$\{PATH.dz\}
 
   \begin{block}{Source code}
   \begin{Code}{dictzip/Makefile}
-PROG=   dictzip
-MAN=    dictzip.1
+PROG =   dictzip
+MAN =    dictzip.1
 
 \h{.include} "../libcommon/linkme.mk"
 \h{.include} "../libdz/linkme.mk"
 \h{.include} "../libmaa/linkme.mk"
 
-DPLIBS+=        -lcommon -ldz -lmaa
+DPLIBS +=        -lcommon -ldz -lmaa
 
 .include <mkc.prog.mk>
   \end{Code}
@@ -527,17 +560,17 @@ DPLIBS+=        -lcommon -ldz -lmaa
   \begin{CodeNoLabel}
 \prompt{\$ mkcmake dictzip}
 ==================================================
-all ===> libcommon
+all ===> \h{libcommon}
 ...
 ==================================================
-all ===> libdz
+all ===> \h{libdz}
 ...
 ==================================================
-all ===> dictzip
+all ===> \h{dictzip}
 ...
 checking for program cc... /usr/bin/cc
 cc \h{-I../libcommon -I../libdz -I../libmaa} -c dictzip.c
-cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libdz
+cc \h{-L/tmp/hello\_dictd/libcommon -L/tmp/hello\_dictd/libdz}
    \h{-L/tmp/hello\_dictd/libmaa}  -o dictzip
    dictzip.o -lcommon -lmaa -ldz
 \prompt{\$}
@@ -551,9 +584,9 @@ cc -L/tmp/hello_dictd/libcommon -L/tmp/hello_dictd/libdz
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
-SCRIPTS=       foobar  # scripts written in Lua
-LUA\_LMODULES=  foo bar # modules written in Lua
-LUA\_CMODULE=   baz     # Lua module written in C
+SCRIPTS =       foobar  # scripts written in Lua
+LUA\_LMODULES =  foo bar # modules written in Lua
+LUA\_CMODULE =   baz     # Lua module written in C
 
 .include <mkc.lib.mk>
   \end{Code}
@@ -627,27 +660,47 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
   \frametitle{Example 7: Portable version of AWK from NetBSD}
 
 \begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
-\begin{CodeNoLabelSmallest}
-PROG=	awk
-SRCS=	awkgram.y b.c lex.c lib.c main.c parse.c
+\begin{Code}{Makefile (part 1)}
+PROG =	awk
+SRCS =	awkgram.y b.c lex.c lib.c main.c parse.c
         proctab.c run.c tran.c
-YHEADER=	yes
-MKC\_COMMON\_DEFINES.Linux=	-D\_GNU\_SOURCE
-MKC\_COMMON\_HEADERS=		ctype.h stdio.h string.h
-MKC\_CHECK\_FUNCS1=		\_\_fpurge:stdio\_ext.h fpurge isblank
-MKC\_CHECK\_FUNCS3=		strlcat
-MKC\_SOURCE\_FUNCLIBS=		fpurge strlcat
-.include <mkc.configure.mk>
-.if \$\{HAVE\_FUNC1.isblank:U0\}
-CPPFLAGS+=	-DHAS\_ISBLANK
-.endif
-.if !\$\{HAVE\_FUNC1.fpurge:U1\} && !\$\{HAVE_FUNC1.\_\_fpurge.stdio\_ext\_h:U1\}
+YHEADER =	yes
+
+MKC\_COMMON\_DEFINES.Linux =	-D\_GNU\_SOURCE
+MKC\_COMMON\_HEADERS =		ctype.h stdio.h string.h
+
+MKC\_CHECK\_FUNCS1 =		\_\_fpurge:stdio\_ext.h fpurge isblank
+MKC\_CHECK\_FUNCS3 =		strlcat
+
+MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
+
+\h{.include} <mkc.configure.mk>
+... # to be continued on the next slide
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+\begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
+\begin{Code}{Makefile (part 2)}
+... # beginning is on the previous slide
+\h{.if} \$\{HAVE\_FUNC1.isblank:U0\}
+CPPFLAGS +=	-DHAS\_ISBLANK
+\h{.endif}
+
+\h{.if} !\$\{HAVE\_FUNC1.fpurge:U1\} &&
+   !\$\{HAVE_FUNC1.\_\_fpurge.stdio\_ext\_h:U1\}
 MKC\_ERR\_MSG+=	"fpurge(3) cannot be found"
-.endif
-CPPFLAGS+=	-I.
-LDADD+=		-lm
-.include <mkc.prog.mk>
-\end{CodeNoLabelSmallest}
+\h{.endif}
+
+CPPFLAGS +=     -I.
+LDADD +=        -lm
+
+\h{.include} <mkc.prog.mk>
+\end{Code}
 \end{block}
 \end{frame}
 
@@ -711,7 +764,7 @@ int fpurge(FILE *stream)
 
 \begin{block}{strlcpy.c}
 \begin{CodeNoLabel}
-If you want this code, you know where to get it from! ;-)
+If you need this code, you know where to get it from! ;-)
 \end{CodeNoLabel}
 \end{block}
 \end{frame}
@@ -721,21 +774,21 @@ If you want this code, you know where to get it from! ;-)
   \frametitle{Features}
   \begin{block}{}
   \begin{enumerate}
-  \item Automatic detection of system configuration
+  \item Automatic detection of OS features
     (\ModuleName{mkc.configure.mk})
     \begin{itemize}
-    \item header presence (MKC\_\{CHECK,REQUIRE\}\_HEADERS)
-    \item function declaration (MKC\_\{CHECK,REQUIRE\}\_FUNCS[n])
-    \item type declaration (MKC\_\{CHECK,REQUIRE\}\_TYPES)
-    \item structure member (MKC\_\{CHECK,REQUIRE\}\_MEMBERS)
-    \item variable declaration (MKC\_\{CHECK,REQUIRE\}\_VARS)
-    \item define declaration (MKC\_\{CHECK,REQUIRE\}\_DEFINES)
-    \item type size (MKC\_CHECK\_SIZEOF)
-    \item function implementation in the library
+    \item \h{header presence} (MKC\_\{CHECK,REQUIRE\}\_HEADERS)
+    \item \h{function declaration} (MKC\_\{CHECK,REQUIRE\}\_FUNCS[n])
+    \item \h{type declaration} (MKC\_\{CHECK,REQUIRE\}\_TYPES)
+    \item \h{structure member} (MKC\_\{CHECK,REQUIRE\}\_MEMBERS)
+    \item \h{variable declaration} (MKC\_\{CHECK,REQUIRE\}\_VARS)
+    \item \h{define declaration} (MKC\_\{CHECK,REQUIRE\}\_DEFINES)
+    \item \h{type size} (MKC\_CHECK\_SIZEOF)
+    \item \h{function} implementation \h{in the library}
       (MKC\_\{CHECK,REQUIRE\}\_FUNCLIBS and MKC\_SOURCE\_FUNCLIBS)
-    \item checks for programs (MKC\_\{CHECK,REQUIRE\}\_PROGS)
-    \item user's custom checks (MKC\_\{CHECK,REQUIRE\}\_CUSTOM)
-    \item built-in checks (MKC\_CHECK\_BUILTINS), e.g. endianess,
+    \item \h{checks for programs} (MKC\_\{CHECK,REQUIRE\}\_PROGS)
+    \item \h{user's custom checks} (MKC\_\{CHECK,REQUIRE\}\_CUSTOM)
+    \item \h{built-in checks} (MKC\_CHECK\_BUILTINS), e.g. endianess,
       prog\_flex, prog\_bison, prog\_gawk or prog\_gm4)
     \end{itemize}
   \end{enumerate}
@@ -749,17 +802,23 @@ If you want this code, you know where to get it from! ;-)
   \begin{enumerate}
   \setcounter{enumi}{1}
   \item Building, installing, uninstalling, cleaning
-    etc. Supported targets: all, installdirs, install, uninstall,
-    clean, cleandir (distclean) and others.
-  \item Building standalone programs (\ModuleName{mkc.prog.mk}),
-    static and shared libraries (\ModuleName{mkc.lib.mk}) using C,
-    C++, Objective C, Pascal and Fortran compilers. Shared libraries
-    support is provided for numerous OSes: NetBSD, FreeBSD, OpenBSD,
-    DragonFlyBSD, MirOS BSD, Linux, Solaris, Darwin (MacOS-X), Tru64,
-    QNX, HP-UX, Cygwin (no support for shared object files yet) and
-    compilers: GCC, Intel C/C++ compilers, Portable C compiler aka
-    pcc, DEC C/C++ compiler, HP C/C++ compiler, Oracle SunPro and others.
-  \item Handling of man pages.
+    etc. Supported targets: \h{all}, \h{install},
+    \h{uninstall},
+    \h{clean}, \h{cleandir} (\h{distclean}), \h{installdirs} and others.
+  \item Building \h{standalone programs} (\ModuleName{mkc.prog.mk}),
+    \h{static, shared and dynamically loaded libraries}
+    (\ModuleName{mkc.lib.mk}) using \h{C},
+    \h{C++}, \h{Objective C}, \h{Pascal} and \h{Fortran} compilers.
+    Shared libraries
+    support is provided for numerous OSes: \h{NetBSD}, \h{FreeBSD},
+    \h{OpenBSD},
+    \h{DragonFlyBSD}, \h{MirOS BSD}, \h{Linux}, \h{Solaris}, \h{Darwin}
+    (MacOS-X), \h{Interix}, \h{Tru64},
+    \h{QNX}, \h{HP-UX}, \h{Cygwin} (no support for shared libraries
+    and DLLs yet) and
+    compilers: \h{GCC}, \h{Intel C/C++} compilers, \h{Portable C compiler} AKA
+    \h{pcc}, \h{DEC C/C++ compiler}, \h{HP C/C++ compiler},
+    \h{Oracle SunStudio} and others.
   \end{enumerate}
   \end{block}
 \end{frame}
@@ -770,20 +829,18 @@ If you want this code, you know where to get it from! ;-)
   \frametitle{Features}
   \begin{block}{}
   \begin{enumerate}
-  \setcounter{enumi}{4}
-  \item Building info pages from texinfo sources.
-  \item Handling of scripts as well as plain text files,
-    i.e. installing or uninstalling.
-  \item Cross-building. mk-configure itself doesn't run produced
+  \setcounter{enumi}{3}
+  \item Handling \h{man} pages, \h{info} manuals and \h{POD} documents.
+  \item Handling \h{scripts} as well as \h{plain text files},
+    i.e. installing, uninstalling and handling \h{.in files}
+    (replacing, for example, \h{@bindir@}, \h{@sysconfdir@}, \h{@version@}
+    fragments with real values).
+  \item \h{Cross-building}. mk-configure itself doesn't run produced
     executables, so you can freely use cross-tools (compiler, linker
     etc.).  Also you can override any variable initialized by mk-configure.
-  \item Support for pkg-config
-    (\ModuleName{mkc\_imp.pkg-config.mk}).
-  \item Support for Lua programming language
-    (\ModuleName{mkc\_imp.lua.mk}).
-  \item Support for yacc and lex.
-  \item Support for projects with multiple subprojects
-    (\ModuleName{mkc.subprj.mk} and \ModuleName{mkc.subdir.mk}).
+  \item Support for \h{pkg-config}.
+  \item Support for \h{Lua} programming language.
+  \item Support for \h{yacc} and \h{lex}.
   \end{enumerate}
   \end{block}
 \end{frame}
@@ -794,7 +851,9 @@ If you want this code, you know where to get it from! ;-)
   \frametitle{Features}
   \begin{block}{}
   \begin{enumerate}
-    \setcounter{enumi}{11}
+    \setcounter{enumi}{10}
+    \item Support for projects with multiple subprojects
+    (\ModuleName{mkc.subprj.mk} and \ModuleName{mkc.subdir.mk}).
     \item Special targets bin\_tar, bin\_targz, bin\_tarbz2, bin\_zip,
       bin\_deb creates .tar, .tar.gz, .tar.bz2, .zip archives and .deb
       package (on Debian Linux).
@@ -814,19 +873,20 @@ If you want this code, you know where to get it from! ;-)
 \begin{frame}[fragile,t]
   \frametitle{MK-CONFIGURE in real world}
   \begin{block}{Packages in UNIX-like system and distributions}
+    \small
     NetBSD make (bmake) is packaged in the following OSes:
     \begin{itemize}
-    \item FreeBSD, NetBSD
+    \item FreeBSD, NetBSD (\h{devel/bmake})
     \item Gentoo Linux, Fedora Linux, AltLinux
     \item Debian/Ubuntu\\
-      deb http://mova.org/\~{}cheusov/pub/debian lenny main
+      deb http://mova.org/\~{}cheusov/pub/debian lenny main\\
       deb-src http://mova.org/\~{}cheusov/pub/debian lenny main
     \end{itemize}
     mk-configure is packaged in the following OSes
     \begin{itemize}
-    \item FreeBSD, NetBSD
+    \item FreeBSD, NetBSD (\h{devel/mk-configure})
     \item Debian/Ubuntu\\
-      deb http://mova.org/\~{}cheusov/pub/debian lenny main
+      deb http://mova.org/\~{}cheusov/pub/debian lenny main\\
       deb-src http://mova.org/\~{}cheusov/pub/debian lenny main
     \end{itemize}
   \end{block}
@@ -846,7 +906,7 @@ If you want this code, you know where to get it from! ;-)
     \URL{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
   \item Modules support for AWK programming language\\
     \URL{http://sourceforge.net/projects/runawk/}
-    \URL{http://pkgsrc.se/wip/runawk/}\\
+    \URL{http://pkgsrc.se/lang/runawk/}\\
   \item Tool for distributing tasks over network or CPUs\\
     \URL{http://sourceforge.net/projects/paexec/}
     \URL{http://pkgsrc.se/wip/paexec/}\\
