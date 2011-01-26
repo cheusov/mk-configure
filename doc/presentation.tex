@@ -21,7 +21,7 @@
 \mode<presentation>
 \title{MK-CONFIGURE -- lightweight easy to use replacement for GNU Autotools}
 \author{Aleksey Cheusov \\ \texttt{vle@gmx.net}}
-\date{Minsk, Belarus, 2010}
+\date{Minsk, Belarus, 2011}
 
 \begin{document}
 
@@ -84,18 +84,17 @@
   \frametitle{Concepts behind mk-configure}
   \begin{block}{Design principles and goals}
     \begin{itemize}
-    \item The same way of building projects both for developers and users.
-    \item The only file describing the project is(are) Makefile(s).
-    \item The only command
-      required for building is bmake (portable version of NetBSD make).
-    \item Declarative approach of writing Makefile(s). Build and
-      installation process is controlled with a help of special
-      variables.
-    \item No code generation. Library approach is used instead.
-    \item No need to ``reinvent'' rules for compiling, linking,
-      installing, uninstalling etc. again and again.
-    \item KISS. Less than 4000 lines of code.
-      No heavy dependencies.
+    \item I detest code generation as in Autotools and CMake! Library
+      approach is used instead.
+    \item Basic principles are very close to the
+      traditional \mbox{bsd.*.mk} files.
+      Actually mk-c contains heavily reworked Mk files from NetBSD.
+    \item Portability to all UNIX-like systems.
+    \item Written in bmake, portable version of NetBSD make(1),
+      and UNIX tools. No heavy dependencies like python, ruby and perl.
+      bmake is not as powerful as RuPyPe, but \mbox{bmake+sh} combination
+      is just good enough.
+    \item KISS.  mk-c consists of about 4000 lines of code.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -105,10 +104,16 @@
   \frametitle{Concepts behind mk-configure}
   \begin{block}{Design principles and goals}
     \begin{itemize}
+    \item mk-configure is not only for end-users and packagers
+      but for developers too.
+      So, one of the main goal is to provide a convenient \h{tool for
+        development}.
+    \item Declarative approach of writing Makefile(s). Build and
+      installation process are controlled with a help of special
+      variables and bmake's include files.
     \item Cross-compilation.
-    \item Portability to all UNIX-like systems.
     \item Modular approach. Extensions to mk-configure are implemented
-      using bmake include files and standard POSIX tools, e.g. shell,
+      using bmake include files and standard UNIX tools, i.e. shell,
       awk, sed, grep and so on.
     \end{itemize}
   \end{block}
