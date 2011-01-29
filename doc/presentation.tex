@@ -19,7 +19,7 @@
 %\useinnertheme{rectangles}
 
 \mode<presentation>
-\title{MK-CONFIGURE -- lightweight easy to use replacement for GNU Autotools}
+\title{MK-CONFIGURE (MK-C) -- lightweight easy to use replacement for GNU Autotools}
 \author{Aleksey Cheusov \\ \texttt{vle@gmx.net}}
 \date{Minsk, Belarus, 2011}
 
@@ -84,16 +84,16 @@
   \frametitle{Concepts behind mk-configure}
   \begin{block}{Design principles and goals}
     \begin{itemize}
-    \item I detest code generation as in Autotools and CMake! Library
-      approach is used instead.
+    \item I detest code generation as in Autotools and CMake!\\
+      Library approach is used instead.
+    \item Written in bmake, portable version of NetBSD make(1),
+      and UNIX tools. No heavy dependencies like python, ruby and perl.
+      bmake is not as powerful as RuPyPe, but\\
+      \h{\mbox{bmake+sh} is good enough} for this task.
     \item Basic principles are very close to the
       traditional \mbox{bsd.*.mk} files.
       Actually mk-c contains heavily reworked Mk files from NetBSD.
     \item Portability to all UNIX-like systems.
-    \item Written in bmake, portable version of NetBSD make(1),
-      and UNIX tools. No heavy dependencies like python, ruby and perl.
-      bmake is not as powerful as RuPyPe, but \mbox{bmake+sh} combination
-      is just good enough.
     \item KISS.  mk-c consists of about 4000 lines of code.
     \end{itemize}
   \end{block}
@@ -112,9 +112,9 @@
       installation process are controlled with a help of special
       variables and bmake's include files.
     \item Cross-compilation.
-    \item Modular approach. Extensions to mk-configure are implemented
+    \item Extensibility. Extensions to mk-configure are implemented
       using bmake include files and standard UNIX tools, i.e. shell,
-      awk, sed, grep and so on.
+      awk, sed, grep etc. when needed.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -237,14 +237,14 @@ int main (int argc, char** argv)
 
   \begin{block}{How it works on Linux}
 \begin{CodeNoLabel}
-\prompt{\$ CC='icc -no-gcc' mkcmake}
+\prompt{\$ CC=icc mkcmake}
 checking for compiler type... \h{icc}
 checking for function strlcpy... \h{no}
 checking for func strlcpy ( string.h )... \h{no}
 checking for program icc... /opt/intel/cc/10.1.008/bin/icc
-icc -no-gcc -c main.c
-icc -no-gcc -c strlcpy.c
-icc -no-gcc -o strlcpy_test main.o \h{strlcpy.o}
+icc -c main.c
+icc -c strlcpy.c
+icc -o strlcpy_test main.o \h{strlcpy.o}
 \prompt{\$ echo \_mkc\_*}
 _mkc_compiler_type.err _mkc_compiler_type.res 
 _mkc_func3_strlcpy_string_h.c 
@@ -309,8 +309,8 @@ checking for function dlopen ( \h{-ldl} )... \h{yes}
 checking for function dlopen... \h{no}
 checking for program gcc...
       /usr/qnx650/host/qnx6/x86/usr/bin/gcc
-gcc -DPLUGINS_ENABLED=1    -c myapp.c
-gcc   -o myapp myapp.o \h{-ldl}
+gcc \h{-DPLUGINS\_ENABLED=1}    -c myapp.c
+gcc -o myapp myapp.o \h{-ldl}
 \prompt{\$}
 \end{CodeNoLabel}
   \end{block}
@@ -327,8 +327,8 @@ checking for compiler type... gcc
 checking for function dlopen ( \h{-ldl} )... \h{no}
 checking for function dlopen... \h{yes}
 checking for program cc... /usr/bin/cc
-cc  -DPLUGINS_ENABLED=1    -c myapp.c
-cc   -o myapp myapp.o
+cc \h{-DPLUGINS\_ENABLED=1}    -c myapp.c
+cc -o myapp myapp.o
 \prompt{\$}
 \end{CodeNoLabel}
   \end{block}
@@ -341,7 +341,7 @@ cc   -o myapp myapp.o
   \begin{block}{Source code}
   \begin{Code}{Makefile}
 LIB =                   foobar
-SRCS =                  foo.cc bar.cc baz.cc
+SRCS =                  foo.\h{cc} bar.\h{cc} baz.\h{cc}
 
 MKPICLIB ?=             no
 MKSTATICLIB ?=          no
@@ -361,9 +361,9 @@ MKSTATICLIB ?=          no
   \begin{block}{How it works on Solaris with SunStudio compiler}
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
-/opt/SUNWspro/bin/CC    -c \h{-KPIC} foo.cc -o foo.os
-/opt/SUNWspro/bin/CC    -c \h{-KPIC} bar.cc -o bar.os
-/opt/SUNWspro/bin/CC    -c \h{-KPIC} baz.cc -o baz.os
+/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} foo.cc -o foo.os
+/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} bar.cc -o bar.os
+/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} baz.cc -o baz.os
 building shared foobar library (version \h{1.0})
 /opt/SUNWspro/bin/CC \h{-G} \h{-h libfoobar.so.1}
    -o libfoobar.so.1.0  foo.os bar.os baz.os
@@ -487,10 +487,10 @@ DPLIBDIRS +=     \$\{PATH.common\}
 
   \begin{block}{Source code}
   \begin{Code}{libmaa/Makefile}
-LIB =            maa
-SRCS =           set.c prime.c log.c # etc.
+LIB =       maa
+SRCS =      set.c prime.c log.c # etc.
 
-INCS =           maa.h
+\h{INCS} =      maa.h
 
 SHLIB_MAJOR =    1
 SHLIB_MINOR =    2
@@ -561,19 +561,46 @@ DPLIBS +=        -lcommon -ldz -lmaa
 \begin{frame}[fragile]
   \frametitle{Example 5: Big project consisting of several subprojects}
 
+  \begin{block}{How it fails ;-)}
+  \begin{CodeNoLabel}
+\prompt{\$ mkcmake errorcheck-dictzip}
+==================================================
+errorcheck ===> \h{libcommon}
+...
+errorcheck ===> \h{libmaa}
+...
+==================================================
+errorcheck ===> \h{libdz}
+checking for header zlib.h... \h{no}
+checking for function deflate ( -lz )... \h{no}
+checking for function deflate... \h{no}
+ERROR: cannot find header zlib.h
+ERROR: cannot find function deflate:z
+...
+\prompt{\$ echo \$?}
+1
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
   \begin{block}{How it works}
   \begin{CodeNoLabel}
 \prompt{\$ mkcmake dictzip}
-==================================================
-all ===> \h{libcommon}
 ...
 ==================================================
 all ===> \h{libdz}
 ...
+checking for header zlib.h... \h{yes}
+checking for function deflate ( -lz )... \h{yes}
+...
 ==================================================
 all ===> \h{dictzip}
 ...
-checking for program cc... /usr/bin/cc
 cc \h{-I../libcommon -I../libdz -I../libmaa} -c dictzip.c
 cc \h{-L/tmp/hello\_dictd/libcommon -L/tmp/hello\_dictd/libdz}
    \h{-L/tmp/hello\_dictd/libmaa}  -o dictzip
@@ -679,7 +706,7 @@ MKC\_CHECK\_FUNCS3 =		strlcat
 
 MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
 
-\h{.include} <mkc.configure.mk>
+MKC\_REQD=       0.19.0
 ... # to be continued on the next slide
 \end{Code}
 \end{block}
@@ -692,6 +719,8 @@ MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
 \begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
 \begin{Code}{Makefile (part 2)}
 ... # beginning is on the previous slide
+\h{.include} <mkc.configure.mk>
+
 \h{.if} \$\{HAVE\_FUNC1.isblank:U0\}
 CPPFLAGS +=	-DHAS\_ISBLANK
 \h{.endif}
@@ -772,6 +801,38 @@ int fpurge(FILE *stream)
 If you need this code, you know where to get it from! ;-)
 \end{CodeNoLabel}
 \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Portable version of AWK from NetBSD}
+
+%  \begin{block}
+\begin{block}{How it works on Linux}
+\begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for function fpurge... \h{no}
+checking for function strlcat... \h{no}
+checking for func __fpurge ( stdio_ext.h )... \h{yes}
+checking for func fpurge... \h{no}
+checking for func isblank... \h{yes}
+checking for func strlcat... \h{no}
+checking for program yacc... \h{/usr/bin/yacc}
+...
+cc \h{-Wall -Wstrict-prototypes ...} 
+    -I. \h{-D\_GNU\_SOURCE} -c awkgram.c
+...
+cc -o awk awkgram.o ... \h{fpurge.o strlcat.o} -lm
+\prompt{\$ ./awk}
+usage: ./awk [-F fs] [-v var=value] [-f progfile 
+    | 'prog'] [file ...]
+\prompt{\$}
+\end{CodeNoLabel}
+\end{block}
+Supported targets: all, clean, cleandir (distclean), install,
+uninstall, installdirs, depend etc.
+%  \end{block}
 \end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
