@@ -1,0 +1,16 @@
+digraph FSA {
+ graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
+
+ node [ shape = oval style=filled fontsize=18 ];
+
+   "libmaa"   -> "dict";
+   "libmaa"   -> "dictd";
+   "libmaa"   -> "dictfmt";
+   "libmaa"   -> "dictzip";
+   "libcommon"   -> "dict";
+   "libcommon"   -> "dictd";
+   "libcommon"   -> "dictfmt";
+   "libcommon"   -> "dictzip";
+   "libdz"       -> "dictzip";
+   "doc";
+}
