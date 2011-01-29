@@ -3,7 +3,7 @@ digraph FSA {
 
  node [ shape = hexagon style=filled fontsize=20 ];
 
-   "mk-configure";
+   "mk-configure" [ fillcolor = grey60, fontcolor = white ];
    "lmdbg";
    "paexec";
    "distbb";
@@ -33,6 +33,9 @@ digraph FSA {
    "distbb"            -> "pkgnih";
    "pkg_online"        -> "pkgnih";
 
+   "pkg_summary-utils";
+   "pkg_status";
+   "pkg_conflicts";
  node [ shape = oval style=solid ];
 
    "dictd" -> "pkg_online";

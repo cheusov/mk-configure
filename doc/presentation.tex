@@ -51,10 +51,10 @@
 
 %\newcommand{\prompt}[1]{\textcolor{blue}{#1}}
 %\newcommand{\prompt}[1]{\textbf{#1}\textnormal{}}
-\newcommand{\prompt}[1]{\bf{#1}\tt{}}
+\newcommand{\prompt}[1]{{\bf{#1}}}
 %\newcommand{\h}[1]{\textbf{#1}}
 %\newcommand{\h}[1]{\bf{#1}\textnormal{}}
-\newcommand{\h}[1]{\bf{#1}\tt{}}
+\newcommand{\h}[1]{{\bf{#1}}}
 \newcommand{\URL}[1]{\textbf{#1}}
 \newcommand{\AutohellFile}[1]{\textcolor{red}{#1}}
 \newcommand{\MKCfile}[1]{\textcolor{green}{#1}}
@@ -94,7 +94,7 @@
       traditional \mbox{bsd.*.mk} files.
       Actually mk-c contains heavily reworked Mk files from NetBSD.
     \item Portability to all UNIX-like systems.
-    \item KISS.  mk-c consists of about 4000 lines of code.
+    \item KISS.  Only about 4000 lines of code.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -361,11 +361,13 @@ MKSTATICLIB ?=          no
   \begin{block}{How it works on Solaris with SunStudio compiler}
 \begin{CodeNoLabel}
 \prompt{\$ mkcmake}
-/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} foo.cc -o foo.os
-/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} bar.cc -o bar.os
-/opt/SUNWspro/bin/\h{CC}    -c \h{-KPIC} baz.cc -o baz.os
+checking for compiler type... \h{sunpro}
+checking for program CC... /opt/SUNWspro/bin
+CC -c \h{-KPIC} foo.cc -o foo.os
+CC -c \h{-KPIC} bar.cc -o bar.os
+CC -c \h{-KPIC} baz.cc -o baz.os
 building shared foobar library (version \h{1.0})
-/opt/SUNWspro/bin/CC \h{-G} \h{-h libfoobar.so.1}
+CC \h{-G} \h{-h libfoobar.so.1}
    -o libfoobar.so.1.0  foo.os bar.os baz.os
 ln -sf libfoobar.so.1.0 libfoobar.so
 ln -sf libfoobar.so.1.0 libfoobar.so.1
@@ -574,8 +576,8 @@ errorcheck ===> \h{libdz}
 checking for header zlib.h... \h{no}
 checking for function deflate ( -lz )... \h{no}
 checking for function deflate... \h{no}
-ERROR: cannot find header zlib.h
-ERROR: cannot find function deflate:z
+\h{ERROR: cannot find header zlib.h}
+\h{ERROR: cannot find function deflate:z}
 ...
 \prompt{\$ echo \$?}
 1
@@ -700,11 +702,12 @@ YHEADER =	yes
 
 MKC\_COMMON\_DEFINES.Linux =	-D\_GNU\_SOURCE
 MKC\_COMMON\_HEADERS =		ctype.h stdio.h string.h
-
 MKC\_CHECK\_FUNCS1 =		\_\_fpurge:stdio\_ext.h fpurge isblank
 MKC\_CHECK\_FUNCS3 =		strlcat
-
 MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
+
+WARNS=           4
+WARNERR=         no # do not treat warnings as errors
 
 MKC\_REQD=       0.19.0
 ... # to be continued on the next slide
@@ -870,7 +873,8 @@ uninstall, installdirs, depend etc.
   \item Building, installing, uninstalling, cleaning
     etc. Supported targets: \h{all}, \h{install},
     \h{uninstall},
-    \h{clean}, \h{cleandir} (\h{distclean}), \h{installdirs} and others.
+    \h{clean}, \h{cleandir} (\h{distclean}), \h{installdirs}, \h{depend}
+    and others.
   \item Building \h{standalone programs} (\ModuleName{mkc.prog.mk}),
     \h{static, shared and dynamically loaded libraries}
     (\ModuleName{mkc.lib.mk}) using \h{C},
@@ -938,11 +942,11 @@ uninstall, installdirs, depend etc.
 
 \begin{frame}[fragile,t]
   \frametitle{MK-CONFIGURE in real world}
-  \begin{block}{Packages in UNIX-like system and distributions}
+  \begin{block}{Packagers are welcome! ;-)}
     \small
     NetBSD make (bmake) is packaged in the following OSes:
     \begin{itemize}
-    \item FreeBSD, NetBSD (\h{devel/bmake})
+    \item FreeBSD, pkgsrc (NetBSD, DragonFlyBSD...) (\h{devel/bmake})
     \item Gentoo Linux, Fedora Linux, AltLinux
     \item Debian/Ubuntu\\
       deb http://mova.org/\~{}cheusov/pub/debian lenny main\\
@@ -950,7 +954,7 @@ uninstall, installdirs, depend etc.
     \end{itemize}
     mk-configure is packaged in the following OSes
     \begin{itemize}
-    \item FreeBSD, NetBSD (\h{devel/mk-configure})
+    \item FreeBSD, pkgsrc (NetBSD, DragonFlyBSD...) (\h{devel/mk-configure})
     \item Debian/Ubuntu\\
       deb http://mova.org/\~{}cheusov/pub/debian lenny main\\
       deb-src http://mova.org/\~{}cheusov/pub/debian lenny main
@@ -1007,7 +1011,7 @@ uninstall, installdirs, depend etc.
 \begin{frame}[fragile,t]
   \frametitle{MK-CONFIGURE in real world}
   \begin{block}{My opensource software projects using
-      mk-configure (hexagon), Mk files (box) and others (oval)}
+      mk-configure (filled hexagon), Mk files (box) and others (oval)}
     \begin{figure}
       \includegraphics[width=\textwidth, height=0.60\textheight, keepaspectratio=false]{my_prjs.eps}
     \end{figure}
