@@ -1,5 +1,5 @@
 MKC_CHECK_DEFINES+=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__ __SUNPRO_C
-MKC_CHECK_DEFINES+=	__DECC
+MKC_CHECK_DEFINES+=	__DECC _COMPILER_VERSION
 
 PROG=			compiler_test
 
@@ -19,6 +19,8 @@ msg=	Portable C Compiler
 msg=	GNU C Compiler
 .elif ${HAVE_DEFINE.__SUNPRO_C:U1}
 msg=	SunPro C Compiler
+.elif ${HAVE_DEFINE._COMPILER_VERSION:U1}
+msg=	SGI MIPSPro C Compiler
 .else
 msg=	Unknown compiler
 .endif

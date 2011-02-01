@@ -72,11 +72,13 @@ CC.Interix=	gcc
 CXX.Interix=	g++
 CPP.Interix=	cpp
 
+CC.IRIX64=	cc
+CXX.IRIX64=	CC
+CPP.IRIX64=	${CC} -E
+
 CC.QNX=		gcc
 CXX.QNX=	g++
 CPP.QNX=	${CC} -E
-
-CXX.IRIX=	CC
 
 CPP.AIX=	${CC} -E
 
@@ -204,7 +206,7 @@ CFLAGS.pic?=	  ${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:
 CXXFLAGS.pic?=	 ${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
 
 ####################
-RANLIB.IRIX=		true
+RANLIB.IRIX64=		true
 
 RANLIB?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
 
@@ -223,6 +225,7 @@ LD_TYPE.SunOS=			sunld
 LD_TYPE.Darwin=			darwinld
 LD_TYPE.Interix=		interixld
 LD_TYPE.OSF1=			osf1ld
+LD_TYPE.IRIX64=			irixld
 
 LD_TYPE?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 
@@ -252,6 +255,9 @@ LDFLAGS.shared.osf1ld=		-shared -msym -expect_unresolved '*'
 LDFLAGS.soname.osf1ld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
 				-set_version ${SHLIB_MAJOR}.${SHLIB_MINOR} \
 				-update_registry ${.OBJDIR}/${LIB}_so_locations
+
+LDFLAGS.shared.irixld=		-shared
+LDFLAGS.soname.irixld=		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared.interixld=	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.soname.interixld=	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
@@ -394,6 +400,7 @@ LDFLAGS.expdyn.gnuld?=		-Wl,-E
 LDFLAGS.expdyn.hpld?=		-Wl,-E
 LDFLAGS.expdyn.interixld?=	-Wl,-E
 LDFLAGS.expdyn.darwinld?=
+LDFLAGS.expdyn.irixld?=
 LDFLAGS.expdyn.gcc?=		-rdynamic
 LDFLAGS.expdyn.clang?=		-rdynamic
 .ifndef LDFLAGS.expdyn
