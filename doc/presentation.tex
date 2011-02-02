@@ -106,10 +106,10 @@
     \begin{itemize}
     \item mk-configure is not only for end-users and packagers
       but for developers too.
-      So, one of the main goal is to provide a convenient \h{tool for
+      So, one of the main goals is to provide a convenient \h{tool for
         development}.
     \item Declarative approach of writing Makefile(s). Build and
-      installation process are controlled with a help of special
+      installation process is controlled with a help of special
       variables and bmake's include files.
     \item Cross-compilation.
     \item Extensibility. Extensions to mk-configure are implemented
@@ -691,7 +691,144 @@ cc -shared -Wl,-soname -Wl,libbaz.so.1 -o baz.so  baz.os
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+
+\begin{block}{Source code}
+\begin{Code}{Makefile}
+MKC\_CUSTOM\_DIR      = \h{\$\{.CURDIR\}/checks}
+
+# m4 supports -P flag (GNU, NetBSD)
+M4                 ?= m4 # overridable (\h{gm4})
+MKC\_REQUIRE\_CUSTOM += m4P
+MKC\_CUSTOM\_FN.m4P   = \h{m4P.sh}
+.export: M4
+
+# \_\_attribute ((\{con,de\}structor))
+MKC\_REQUIRE\_CUSTOM += \h{constructor destructor}
+
+# sizeof
+MKC\_CHECK\_SIZEOF    = char short int long void* long-long
+
+LIB                 = mylib
+CFLAGS             += -DM4\_CMD='"\$\{M4\}"'
+.include <mkc.lib.mk>
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+
+\begin{block}{Source code}
+\begin{Code}{Files in checks/ subdirectory}
+\prompt{\$ ls checks/}
+constructor.c
+destructor.c
+m4P.sh
+\prompt{\$}
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+
+\begin{block}{Source code}
+\begin{Code}{checks/m4P.sh}
+#!/bin/sh
+
+input ()\{
+    cat <<'EOF'
+m4\_define(fruit, apple)
+fruit
+EOF
+\}
+
+M4=\$\{M4-m4\}
+
+if input | \$\{M4\} -P | grep \^{}apple > /dev/null; then
+    echo 1
+else
+    echo 0
+fi
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+\begin{block}{Source code}
+\begin{Code}{checks/constructor.c}
+void __attribute ((constructor))
+        dummy (void)
+\{
+\}
+\end{Code}
+\begin{Code}{checks/destructor.c}
+void __attribute ((destructor))
+        dummy (void)
+\{
+\}
+\end{Code}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+
+  \begin{block}{How it works on FreeBSD}
+  \begin{CodeNoLabel}
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+checking for sizeof char... \h{1}
+checking for sizeof short... \h{2}
+checking for sizeof int... \h{4}
+checking for sizeof long... \h{4}
+checking for sizeof void*... \h{4}
+checking for sizeof long long... \h{8}
+checking for custom test \h{m4P... 0 (no)}
+checking for custom test constructor... \h{1 (yes)}
+checking for custom test destructor... \h{1 (yes)}
+checking for program cc... /usr/bin/cc
+\h{ERROR: custom test m4P failed}
+*** Error code 1
+...
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 7: Custom tests and sizeof of system types}
+
+  \begin{block}{How it works on FreeBSD with GNU m4}
+  \begin{CodeNoLabel}
+\prompt{\$ M4=gm4 mkcmake}
+checking for compiler type... gcc
+checking for sizeof char... 1
+checking for sizeof short... 2
+checking for sizeof int... 4
+checking for sizeof long... 4
+checking for sizeof void*... 4
+checking for sizeof long long... 8
+checking for custom test \h{m4P... 1 (yes)}
+checking for custom test constructor... 1 (yes)
+checking for custom test destructor... 1 (yes)
+checking for program cc... /usr/bin/cc
+...
+\prompt{\$}
+  \end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 \begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
 \begin{Code}{Makefile (part 1)}
@@ -709,7 +846,7 @@ MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
 WARNS=           4
 WARNERR=         no # do not treat warnings as errors
 
-MKC\_REQD=       0.19.0
+MKC\_REQD=       0.19.0 # mk-configure>=0.19.0 is required
 ... # to be continued on the next slide
 \end{Code}
 \end{block}
@@ -717,7 +854,7 @@ MKC\_REQD=       0.19.0
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 \begin{block}{http://mova.org/\~{}cheusov/pub/mk-configure/nbawk/}
 \begin{Code}{Makefile (part 2)}
@@ -743,7 +880,7 @@ LDADD +=        -lm
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 \begin{block}{run.c}
 \begin{CodeNoLabelSmallest}
@@ -770,7 +907,7 @@ LDADD +=        -lm
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 \begin{block}{fpurge.c}
 \begin{CodeNoLabelSmallest}
@@ -797,7 +934,7 @@ int fpurge(FILE *stream)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 \begin{block}{strlcpy.c}
 \begin{CodeNoLabel}
@@ -808,7 +945,7 @@ If you need this code, you know where to get it from! ;-)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 7: Portable version of AWK from NetBSD}
+  \frametitle{Example 8: Portable version of AWK from NetBSD}
 
 %  \begin{block}
 \begin{block}{How it works on Linux}
