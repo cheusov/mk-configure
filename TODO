@@ -1,23 +1,15 @@
 Plan -2)
   Slides for:
     - SYSCONFDIR -> hello_world example
-    - SunStudio on Linux
     - How it works section for EXPORT_SYMBOLS
-    - I need help, shell accounts, regression tests
-    - 2 mailing lists
-    - plans, untested platforms
-    - AIX, HP-UX, Hurd, other exotic platforms.
     - Sample of cross-compilation
-    - Sample for user-defined tests written in .c and shell script.
     - Slide "extensibility" about Lua module.
-    - latest version of mkc_presentation.pdf is available
-      here and there
 
 ============================================================
 Plan -1)
 
+  - MKC_REQUIRE_* -> no need for -DHAVE_*
   - ./configure written in shell?
-  - Slide "donations" about shell accounts
   - EXPORT_DYNAMIC_SYMBOLS - add the specified symbols to
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP

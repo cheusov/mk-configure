@@ -19,7 +19,8 @@
 %\useinnertheme{rectangles}
 
 \mode<presentation>
-\title{MK-CONFIGURE (MK-C) -- lightweight easy to use replacement for GNU Autotools}
+\title{MK-CONFIGURE (MK-C) -- lightweight,
+  easy to use alternative for GNU Autotools}
 \author{Aleksey Cheusov \\ \texttt{vle@gmx.net}}
 \date{Minsk, Belarus, 2011}
 
@@ -46,6 +47,11 @@
 \newenvironment{CodeNoLabelSmallest}%
                {\Verbatim[frame=single,%
                    fontsize=\footnotesize,%
+                   commandchars=\\\{\}]}%
+               {\endVerbatim}
+\newenvironment{CodeLarge}%
+               {\Verbatim[frame=single,%
+                   fontsize=\large,%
                    commandchars=\\\{\}]}%
                {\endVerbatim}
 
@@ -81,19 +87,39 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}
+  \frametitle{About this presentation}
+  \begin{block}{}
+    \begin{itemize}
+    \item It is a part of official documentation.
+      Latest version is available for download from here\\
+      \URL{http://mova.org/\~{}cheusov/pub/mk-c/mk-c.pdf}
+%    \item
+%      \URL{http://sourceforge.net/projects/mk-configure} \\
+%      \URL{http://freshmeat.net/projects/mk-configure}
+    \item I speak UNIX much better than English ;-)
+    \item part 1: Introduction
+    \item part 2: A number of samples of use
+    \item part 3: More complete list of features, TODO and more.
+    \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}
   \frametitle{Concepts behind mk-configure}
   \begin{block}{Design principles and goals}
     \begin{itemize}
-    \item I detest code generation as in Autotools and CMake!\\
-      Library approach is used instead.
-    \item Written in bmake, portable version of NetBSD make(1),
-      and UNIX tools. No heavy dependencies like python, ruby and perl.
+    \item \h{I detest code generation} as in Autotools and CMake!\\
+      \h{Library approach} is used instead.
+    \item Written in \h{bmake}, portable version of \h{NetBSD make(1)},
+      and UNIX tools. \h{No heavy dependencies} like python, ruby and perl.
+      As a programming language
       bmake is not as powerful as RuPyPe, but\\
       \h{\mbox{bmake+sh} is good enough} for this task.
-    \item Basic principles are very close to the
-      traditional \mbox{bsd.*.mk} files.
+    \item Basic principles are similar to the
+      \h{traditional \mbox{bsd.*.mk} files}.
       Actually mk-c contains heavily reworked Mk files from NetBSD.
-    \item Portability to all UNIX-like systems.
+    \item \h{Portability} to all UNIX-like systems.
     \item KISS.  Only about 4000 lines of code.
     \end{itemize}
   \end{block}
@@ -336,7 +362,7 @@ cc -o myapp myapp.o
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
-  \frametitle{Example 4: Support for shared libraries}
+  \frametitle{Example 4: Support for shared libraries and C++}
 
   \begin{block}{Source code}
   \begin{Code}{Makefile}
@@ -422,15 +448,15 @@ for executables and should not be installed.
     \begin{CodeNoLabel}
 \prompt{\$ ls -l}
 total 4
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dict
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictd
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictfmt
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 dictzip
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:03 doc
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libcommon
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libdz
-drwxr-xr-x 2 cheusov users   1 ﬂÌ‚ 26 12:01 libmaa
--rw-r--r-- 1 cheusov users 306 ﬂÌ‚ 26 12:03 \h{Makefile}
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 dict
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 dictd
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 dictfmt
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 dictzip
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:03 doc
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 libcommon
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 libdz
+drwxr-xr-x 2 cheusov users   1 Jan 26 12:01 libmaa
+-rw-r--r-- 1 cheusov users 306 Jan 26 12:03 \h{Makefile}
 \prompt{\$}
     \end{CodeNoLabel}
   \end{block}
@@ -499,7 +525,7 @@ SHLIB_MINOR =    2
 SHLIB_TEENY =    0
 
 # list of exported symbols
-\h{EXPORT\_SYMBOLS} = libmaa.sym
+\h{EXPORT\_SYMBOLS} = maa.sym
 
 .include <mkc.lib.mk>
   \end{Code}
@@ -507,6 +533,31 @@ SHLIB_TEENY =    0
 PATH.maa :=      \$\{.PARSEDIR\}
 CPPFLAGS +=      -I\$\{PATH.maa\}
 DPLIBDIRS +=     \$\{PATH.maa\}
+  \end{Code}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+  \frametitle{Example 5: Big project consisting of several subprojects}
+
+  \begin{block}{Source code}
+  \begin{Code}{libmaa/maa.sym}
+hsh_create
+hsh_destroy
+hsh_insert
+hsh_delete
+hsh_retrieve
+...
+lst_create
+lst_destroy
+lst_insert
+...
+set_create
+set_destroy
+set_add
+set_union
+...
   \end{Code}
   \end{block}
 \end{frame}
@@ -791,8 +842,8 @@ checking for sizeof long... \h{4}
 checking for sizeof void*... \h{4}
 checking for sizeof long long... \h{8}
 checking for custom test \h{m4P... 0 (no)}
-checking for custom test constructor... \h{1 (yes)}
-checking for custom test destructor... \h{1 (yes)}
+checking for custom test \h{constructor}... \h{1 (yes)}
+checking for custom test \h{destructor}... \h{1 (yes)}
 checking for program cc... /usr/bin/cc
 \h{ERROR: custom test m4P failed}
 *** Error code 1
@@ -1158,7 +1209,45 @@ uninstall, installdirs, depend etc.
   \end{block}
 \end{frame}
 
+%%%end-myprojects
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile,t]
+  \frametitle{MK-C needs your help ;-)}
+  \begin{block}{}
+  \begin{itemize}
+  \item Packagers are welcome (Linux distros, OpenBSD etc.)
+  \item MK-C distribution contains \h{a lot of regression tests and
+    samples of use} (samples are used for testing too).\\
+    \h{Shell accounts} on
+    "exotic" UNIX-like platforms are needed (AIX, HP-UX, non-ELF BSDs,
+    IRIX, Solaris, Hurd etc.) for testing and development.
+  \item Review of the documentation. At the moment only mk-configure(7),
+    samples/ and this presentation are available.
+  \item MK-C has no site yet (I'm thinking of ikiwiki).
+  \item sf.net provides two mailing lists:\\
+    \h{mk-configure-help} and \h{mk-configure-discuss}.
+  \item MK-C is not feature-rich yet, TODO file
+    in the distribution is full of tasks.
+  \end{itemize}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{}
+  \begin{block}{}
+    \begin{center}
+      \Huge{The END.}
+    \end{center}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%begin-myprojects
 
 \end{document}
 
