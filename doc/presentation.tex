@@ -116,8 +116,8 @@
       As a programming language
       bmake is not as powerful as RuPyPe, but\\
       \h{\mbox{bmake+sh} is good enough} for this task.
-    \item Basic principles are similar to the
-      \h{traditional \mbox{bsd.*.mk} files}.
+    \item Basic principles are \h{similar to
+      traditional \mbox{bsd.*.mk} files}.
       Actually mk-c contains heavily reworked Mk files from NetBSD.
     \item \h{Portability} to all UNIX-like systems.
     \item KISS.  Only about 4000 lines of code.
@@ -137,10 +137,13 @@
     \item Declarative approach of writing Makefile(s). Build and
       installation process is controlled with a help of special
       variables and bmake's include files.
-    \item Cross-compilation.
-    \item Extensibility. Extensions to mk-configure are implemented
+    \item \h{Cross-compilation}.
+    \item \h{Extensibility}. Extensions to mk-configure are implemented
       using bmake include files and standard UNIX tools, i.e. shell,
       awk, sed, grep etc. when needed.
+    \item MK-C is \h{Easy to use}. Only one command is needed to build
+      a project --- \h{mkcmake}.  \h{Only Makefile(s)} are needed for
+      specifying build instructions.
     \end{itemize}
   \end{block}
 \end{frame}
@@ -1093,9 +1096,10 @@ uninstall, installdirs, depend etc.
     i.e. installing, uninstalling and handling \h{.in files}
     (replacing, for example, \h{@bindir@}, \h{@sysconfdir@}, \h{@version@}
     fragments with real values).
-  \item \h{Cross-building}. mk-configure itself doesn't run produced
+  \item \h{Cross-building}. mk-configure itself doesn't run
+    target system
     executables, so you can freely use cross-tools (compiler, linker
-    etc.).  Also you can override any variable initialized by mk-configure.
+    etc.).  You can also override/set any variable initialized by mk-configure.
   \item Support for \h{pkg-config}.
   \item Support for \h{Lua} programming language.
   \item Support for \h{yacc} and \h{lex}.
@@ -1225,11 +1229,9 @@ uninstall, installdirs, depend etc.
     IRIX, Solaris, Hurd etc.) for testing and development.
   \item Review of the documentation. At the moment only mk-configure(7),
     samples/ and this presentation are available.
-  \item MK-C has no site yet (I'm thinking of ikiwiki).
   \item sf.net provides two mailing lists:\\
     \h{mk-configure-help} and \h{mk-configure-discuss}.
-  \item MK-C is not feature-rich yet, TODO file
-    in the distribution is full of tasks.
+  \item TODO file in the distribution is full of tasks.
   \end{itemize}
   \end{block}
 \end{frame}
