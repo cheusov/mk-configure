@@ -38,9 +38,9 @@ subdir-${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
 ${targ}: ${targ}-${dir}
 .endfor
 
-.for dir in ${SUBPRJ:M*\:*}
-.PHONY: ${targ}-${dir:C/^[^:]*://} ${targ}-${dir:C/:.*$//}
-${targ}-${dir:C/^[^:]*://}: ${targ}-${dir:C/:.*$//}
+.for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
+.PHONY: ${targ}-${prj} ${targ}-${dep}
+${targ}-${prj}: ${targ}-${dep}
 .endfor
 
 .endfor # targ
