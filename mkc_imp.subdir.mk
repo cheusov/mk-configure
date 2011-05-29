@@ -8,18 +8,18 @@
 ############################################################
 
 .if !defined(_MKC_IMP_SUBDIR_MK)
-_MKC_IMP_SUBDIR_MK=1
+_MKC_IMP_SUBDIR_MK := 1
 
 .for dir in ${SUBDIR}
 .if empty(NOSUBDIR:U:M${dir})
-__REALSUBDIR+=${dir}
+__REALSUBDIR += ${dir}
 .endif
 .endfor
 
 .if !target(test)
-test_target=test
+test_target = test
 .else
-test_target=
+test_target =
 .endif
 
 # for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"

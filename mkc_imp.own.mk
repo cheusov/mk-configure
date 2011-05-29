@@ -8,9 +8,9 @@
 ############################################################
 
 .if !defined(_BSD_OWN_MK_)
-_BSD_OWN_MK_=1
+_BSD_OWN_MK_ := 1
 
-PROJECTNAME?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
+PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
@@ -21,101 +21,101 @@ PROJECTNAME?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 .endif
 
 .if ${OPSYS:Ux} == "SunOS"
-_MKC_USER!=	/usr/xpg4/bin/id -un
-_MKC_GROUP!=	/usr/xpg4/bin/id -gn
+_MKC_USER   !=	/usr/xpg4/bin/id -un
+_MKC_GROUP  !=	/usr/xpg4/bin/id -gn
 .else
-_MKC_USER!=	id -un
-_MKC_GROUP!=	id -gn
+_MKC_USER   !=	id -un
+_MKC_GROUP  !=	id -gn
 .endif
 
 .if ${_MKC_USER} != root && ${OPSYS}${_MKC_USER} != "InterixAdministrator"
-ROOT_USER?=	${_MKC_USER}
-ROOT_GROUP?=	${_MKC_GROUP}
+ROOT_USER  ?=	${_MKC_USER}
+ROOT_GROUP ?=	${_MKC_GROUP}
 .endif
 
 # Define MANZ to have the man pages compressed (gzip)
 #MANZ=		1
 
-PREFIX?=	/usr/local
+PREFIX     ?=	/usr/local
 
-BINDIR?=	${PREFIX}/bin
-SBINDIR?=	${PREFIX}/sbin
-FILESDIR?=	${PREFIX}/bin
-LIBEXECDIR?=	${PREFIX}/libexec
-INCSDIR?=	${PREFIX}/include
-DATADIR?=	${PREFIX}/share
-SYSCONFDIR?=	${PREFIX}/etc
-INFODIR?=	${PREFIX}/info
-MANDIR?=	${PREFIX}/man
-LIBDIR?=	${PREFIX}/lib
-SCRIPTSDIR?=	${BINDIR}
+BINDIR     ?=	${PREFIX}/bin
+SBINDIR    ?=	${PREFIX}/sbin
+FILESDIR   ?=	${PREFIX}/bin
+LIBEXECDIR ?=	${PREFIX}/libexec
+INCSDIR    ?=	${PREFIX}/include
+DATADIR    ?=	${PREFIX}/share
+SYSCONFDIR ?=	${PREFIX}/etc
+INFODIR    ?=	${PREFIX}/info
+MANDIR     ?=	${PREFIX}/man
+LIBDIR     ?=	${PREFIX}/lib
+SCRIPTSDIR ?=	${BINDIR}
 
-DOCDIR?=	${DATADIR}/doc
-HTMLDOCDIR?=	${DOCDIR}/html
-HTMLDIR?=	${MANDIR}
+DOCDIR?     =	${DATADIR}/doc
+HTMLDOCDIR ?=	${DOCDIR}/html
+HTMLDIR    ?=	${MANDIR}
 
-BINGRP?=	${ROOT_GROUP}
-BINOWN?=	${ROOT_USER}
+BINGRP     ?=	${ROOT_GROUP}
+BINOWN     ?=	${ROOT_USER}
 
-SHLIBMODE.HP-UX=	${BINMODE}
-SHLIBMODE.OSF1=		${BINMODE}
-SHLIBMODE.Interix=	${BINMODE}
-SHLIBMODE?=		${SHLIBMODE.${TARGET_OPSYS}:U${NONBINMODE}}
+SHLIBMODE.HP-UX    =	${BINMODE}
+SHLIBMODE.OSF1     =	${BINMODE}
+SHLIBMODE.Interix  =	${BINMODE}
+SHLIBMODE         ?=	${SHLIBMODE.${TARGET_OPSYS}:U${NONBINMODE}}
 
-ROOT_GROUP.NetBSD=		wheel
-ROOT_GROUP.OpenBSD=		wheel
-ROOT_GROUP.FreeBSD=		wheel
-ROOT_GROUP.Darwin=		wheel
-ROOT_GROUP.DragonFly=		wheel
-ROOT_GROUP.MirBSD=		wheel
-ROOT_GROUP.HP-UX=		bin
-ROOT_GROUP.OSF1=		bin
-ROOT_GROUP.Interix=		+Administrators
-ROOR_GROUP.Haiku=		root
+ROOT_GROUP.NetBSD    =		wheel
+ROOT_GROUP.OpenBSD   =		wheel
+ROOT_GROUP.FreeBSD   =		wheel
+ROOT_GROUP.Darwin    =		wheel
+ROOT_GROUP.DragonFly =		wheel
+ROOT_GROUP.MirBSD    =		wheel
+ROOT_GROUP.HP-UX     =		bin
+ROOT_GROUP.OSF1      =		bin
+ROOT_GROUP.Interix   =		+Administrators
+ROOR_GROUP.Haiku     =		root
 
-ROOT_USER.HP-UX=		bin
-ROOT_USER.OSF1=			bin
-ROOT_USER.Interix=		Administrator
-ROOT_USER.Haiku=		user
+ROOT_USER.HP-UX   =		bin
+ROOT_USER.OSF1    = 		bin
+ROOT_USER.Interix =		Administrator
+ROOT_USER.Haiku   =		user
 
-ROOT_USER?=		${ROOT_USER.${OPSYS}:Uroot}
-ROOT_GROUP?=		${ROOT_GROUP.${OPSYS}:Uroot}
+ROOT_USER  ?=		${ROOT_USER.${OPSYS}:Uroot}
+ROOT_GROUP ?=		${ROOT_GROUP.${OPSYS}:Uroot}
 
-BINMODE.Interix.Administrator=		775
-NONBINMODE.Interix.Administrator=	664
+BINMODE.Interix.Administrator    =	775
+NONBINMODE.Interix.Administrator =	664
 
-BINMODE?=		${BINMODE.${TARGET_OPSYS}.${ROOT_USER}:U755}
-NONBINMODE?=		${BINMODE.${TARGET_OPSYS}.${ROOT_USER}:U644}
-DIRMODE?=		${BINMODE}
+BINMODE    ?=		${BINMODE.${TARGET_OPSYS}.${ROOT_USER}:U755}
+NONBINMODE ?=		${BINMODE.${TARGET_OPSYS}.${ROOT_USER}:U644}
+DIRMODE    ?=		${BINMODE}
 
-MANGRP?=	${ROOT_GROUP}
-MANOWN?=	${ROOT_USER}
-MANMODE?=	${NONBINMODE}
-MANINSTALL?=	maninstall catinstall
+MANGRP     ?=	${ROOT_GROUP}
+MANOWN     ?=	${ROOT_USER}
+MANMODE    ?=	${NONBINMODE}
+MANINSTALL ?=	maninstall catinstall
 
-INFOGRP?=	${ROOT_GROUP}
-INFOOWN?=	${ROOT_USER}
-INFOMODE?=	${NONBINMODE}
+INFOGRP    ?=	${ROOT_GROUP}
+INFOOWN    ?=	${ROOT_USER}
+INFOMODE   ?=	${NONBINMODE}
 
-LIBGRP?=	${BINGRP}
-LIBOWN?=	${BINOWN}
-LIBMODE?=	${NONBINMODE}
+LIBGRP     ?=	${BINGRP}
+LIBOWN     ?=	${BINOWN}
+LIBMODE    ?=	${NONBINMODE}
 
-DOCGRP?=	${ROOT_GROUP}
-DOCOWN?=	${ROOT_USER}
-DOCMODE?=	${NONBINMODE}
+DOCGRP     ?=	${ROOT_GROUP}
+DOCOWN     ?=	${ROOT_USER}
+DOCMODE    ?=	${NONBINMODE}
 
-FILESOWN?=	${BINOWN}
-FILESGRP?=	${BINGRP}
-FILESMODE?=	${NONBINMODE}
+FILESOWN   ?=	${BINOWN}
+FILESGRP   ?=	${BINGRP}
+FILESMODE  ?=	${NONBINMODE}
 
-SCRIPTSOWN?=	${BINOWN}
-SCRIPTSGRP?=	${BINGRP}
-SCRIPTSMODE?=	${BINMODE}
+SCRIPTSOWN  ?=	${BINOWN}
+SCRIPTSGRP  ?=	${BINGRP}
+SCRIPTSMODE ?=	${BINMODE}
 
-COPY?=		-c
-PRESERVE?=
-STRIPFLAG?=	-s
+COPY        ?=		-c
+PRESERVE    ?=
+STRIPFLAG   ?=	-s
 
 .PHONY:		${TARGETS}
 
@@ -129,55 +129,55 @@ realall:
 
 distclean:	cleandir
 
-PRINTOBJDIR=	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
+PRINTOBJDIR =	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 
-MKINSTALL?=yes
+MKINSTALL ?=	yes
 
-MKCATPAGES?=no
-MKHTML?=no
-MKDOC?=yes
-MKINFO?=yes
-MKMAN?=yes
+MKCATPAGES ?=	no
+MKHTML     ?=	no
+MKDOC      ?=	yes
+MKINFO     ?=	yes
+MKMAN      ?=	yes
 
 #
 # MKOBJDIRS controls whether object dirs are created during "make build".
 # MKOBJ controls whether the "make obj" rule does anything.
 #
-MKOBJ?=yes
-MKOBJDIRS?=no
+MKOBJ     ?=	yes
+MKOBJDIRS ?=	no
 
-MKSHARE?=yes
+MKSHARE   ?=	yes
 
-MKDLL?=		no
+MKDLL     ?=	no
 .if ${MKDLL:tl} == "only"
-MKDLL=		yes
-MKSTATICLIB?=	no
+MKDLL      =	yes
+MKSTATICLIB ?=	no
 .else
-MKSTATICLIB?=	yes
+MKSTATICLIB ?=	yes
 .endif # MKDLL
 
 .if ${MKDLL:tl} != "no"
-SHLIB_MAJOR?=	1
-SHLIB_MINOR?=	0
+SHLIB_MAJOR ?=	1
+SHLIB_MINOR ?=	0
 .endif # MKDLL
 
 .if defined(SHLIB_MAJOR)
-MKSHLIB?=	yes
+MKSHLIB  ?=	yes
 .else
-MKSHLIB?=	no
+MKSHLIB  ?=	no
 .endif # SHLIB_MAJOR
 
-MKPICLIB?=	no
-MKPROFILELIB?=	no
+MKPICLIB ?=	no
+MKPROFILELIB ?=	no
 
-MKINSTALLDIRS?=	yes
+MKINSTALLDIRS   ?=	yes
 
-EXPORT_VARNAMES+=	MKC_CACHEDIR REC_MAKEFILES
+EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES
 
-EXPORT_DYNAMIC?=	no
+EXPORT_DYNAMIC  ?=	no
 
-MKC_CACHEDIR?=		${.OBJDIR} # directory for cache and intermediate files
-DISTCLEANFILES+=	${MKC_CACHEDIR}/_mkc_*
+MKC_CACHEDIR    ?=	${.OBJDIR} # directory for cache and intermediate files
+DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 
 .include <mkc_imp.sys.mk>
 

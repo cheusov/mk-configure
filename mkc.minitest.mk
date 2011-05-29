@@ -20,5 +20,5 @@ test: all
 	echo '      succeeded' 1>&2 || \
 	{ echo '      FAILED' 1>&2; false; }
 
-CLEANFILES+=		${.OBJDIR}/${.CURDIR:T}.test.out
+CLEANFILES   +=		${.OBJDIR}/${.CURDIR:T}.test.out
 #DISTCLEANFILES+=	${.OBJDIR}/${.CURDIR:T}.test.out.tmp

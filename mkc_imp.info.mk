@@ -8,13 +8,13 @@
 ############################################################
 
 .if !defined(_MKC_IMP_INFO_MK) && defined(TEXINFO)
-_MKC_IMP_INFO_MK=1
+_MKC_IMP_INFO_MK := 1
 
 .include <mkc_imp.init.mk>
 
-MAKEINFO?=	makeinfo
-INFOFLAGS?=	
-INSTALL_INFO?=	install-info
+MAKEINFO     ?=	makeinfo
+INFOFLAGS    ?=	
+INSTALL_INFO ?=	install-info
 
 .PHONY:		infoinstall
 
@@ -25,7 +25,7 @@ INSTALL_INFO?=	install-info
 
 .if defined(TEXINFO) && !empty(TEXINFO)
 realall: ${TEXINFO}
-INFOFILES=	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
+INFOFILES =	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
 .if ${MKINFO:tl} != "no"
@@ -34,9 +34,9 @@ realall: ${INFOFILES}
 .if ${MKINSTALL:tl} == "yes"
 realinstall: infoinstall
 
-CLEANFILES+=	${INFOFILES}
+CLEANFILES +=	${INFOFILES}
 
-destination_infos=${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
+destination_infos = ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
 
 infoinstall:: ${destination_infos}
 .PRECIOUS: ${destination_infos}
@@ -55,8 +55,8 @@ __infoinstall: .USE
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor
 
-UNINSTALLFILES+=	${destination_infos}
-INSTALLDIRS+=		${destination_infos:H}
+UNINSTALLFILES  +=	${destination_infos}
+INSTALLDIRS     +=	${destination_infos:H}
 .endif # MKINSTALL
 .endif # MKINFO
 

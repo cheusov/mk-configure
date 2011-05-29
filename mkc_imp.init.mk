@@ -4,20 +4,20 @@
 ############################################################
 
 .ifndef OPSYS
-OPSYS!=		uname -s
-OPSYS:=		${OPSYS:C/^CYGWIN.*$/Cygwin/}
+OPSYS !=	uname -s
+OPSYS :=	${OPSYS:C/^CYGWIN.*$/Cygwin/}
 .endif
-TARGET_OPSYS?=  ${OPSYS}
+TARGET_OPSYS ?=	${OPSYS}
 
 ###########
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T}!= 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} -j1 mkc_printobjdir MKCHECKS=no
+DPLIBDIRS.${_dir:T} != 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} -j1 mkc_printobjdir MKCHECKS=no
 .if ${TARGET_OPSYS} == "HP-UX"
-LDFLAGS+=		${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
+LDFLAGS  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif
-LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
+LDFLAGS  +=	-L${DPLIBDIRS.${_dir:T}}
 .endif
 .endfor
 
@@ -27,7 +27,7 @@ LDFLAGS+=		-L${DPLIBDIRS.${_dir:T}}
 
 ######################################################################
 .ifndef __initialized__
-__initialized__=1
+__initialized__ := 1
 
 .MAIN:		all
 
@@ -47,45 +47,45 @@ __initialized__=1
 ###########
 
 .if defined(PROG)
-SRCS?=		${PROG}.c
+SRCS  ?=	${PROG}.c
 .endif
 
 .if defined(LIB)
-SRCS?=		${LIB}.c
+SRCS  ?=	${LIB}.c
 .endif
 
 .if !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cc)
-src_type+=	cxx
-LDCOMPILER=	yes
-LDREAL?=	${CXX}
+src_type   +=	cxx
+LDCOMPILER  =	yes
+LDREAL     ?=	${CXX}
 .endif
 
-LDCOMPILER.Interix=	yes
-LDCOMPILER.Darwin=	yes
+LDCOMPILER.Interix =	yes
+LDCOMPILER.Darwin  =	yes
 #LDCOMPILER.HP-UX=	yes
-LDCOMPILER?=		${LDCOMPILER.${TARGET_OPSYS}:Uno}
+LDCOMPILER        ?=	${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
-src_type+=	c
+src_type  +=	c
 .endif
 
-src_type?=	0
+src_type  ?=	0
 
 .if ${LDCOMPILER:tl} == "yes"
-LDREAL?=	${CC}
+LDREAL  ?=	${CC}
 .endif
 
 .if defined(PROG)
-LDREAL?=	${CC}
+LDREAL  ?=	${CC}
 .else
-LDREAL?=	${LD}
+LDREAL  ?=	${LD}
 .endif
 
-MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
+MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
 ###########
 .if exists(${.CURDIR}/Makefile.rec)
-REC_MAKEFILES+=	${.CURDIR}/Makefile.rec
+REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
 .endif
 .for dir in ${REC_MAKEFILES}
 .include "${dir}"
@@ -101,33 +101,33 @@ REC_MAKEFILES+=	${.CURDIR}/Makefile.rec
 
 ###########
 .if !empty(SRCS:U:M*.y)
-MKC_REQUIRE_PROGS+=			${YACC:[1]}
-MKC_PROG.id.${YACC:[1]:S/+/x/g}=	yacc
+MKC_REQUIRE_PROGS  +=			${YACC:[1]}
+MKC_PROG.id.${YACC:[1]:S/+/x/g}  =	yacc
 .endif
 
 .if !empty(SRCS:U:M*.l)
-MKC_REQUIRE_PROGS+=			${LEX:[1]}
-MKC_PROG.id.${LEX:[1]:S/+/x/g}=		lex
+MKC_REQUIRE_PROGS  +=			${LEX:[1]}
+MKC_PROG.id.${LEX:[1]:S/+/x/g}   =	lex
 .endif
 
 .if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y)
-MKC_REQUIRE_PROGS+=			${CC:[1]}
-MKC_PROG.id.${CC:[1]:S|+|x|g}=		cc
+MKC_REQUIRE_PROGS  +=			${CC:[1]}
+MKC_PROG.id.${CC:[1]:S|+|x|g}    =	cc
 .endif
 
 .if !empty(SRCS:U:M*.cc) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp)
-MKC_REQUIRE_PROGS+=			${CXX:[1]}
-MKC_PROG.id.${CXX:[1]:S/+/x/g}=		cxx
+MKC_REQUIRE_PROGS  +=			${CXX:[1]}
+MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
 .endif
 
 .if !empty(SRCS:U:M*.f)
-MKC_REQUIRE_PROGS+=			${FC:[1]}
-MKC_PROG.id.${FC:[1]:S/+/x/g}=		fc
+MKC_REQUIRE_PROGS  +=			${FC:[1]}
+MKC_PROG.id.${FC:[1]:S/+/x/g}    =	fc
 .endif
 
 .if !empty(SRCS:U:M*.p)
-MKC_REQUIRE_PROGS+=			${PC:[1]}
-MKC_PROG.id.${PC:[1]:S/+/x/g}=		pc
+MKC_REQUIRE_PROGS  +=			${PC:[1]}
+MKC_PROG.id.${PC:[1]:S/+/x/g}    =	pc
 .endif
 
 ###########
@@ -183,15 +183,15 @@ errorcheck:
 ###########
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)
-_mkc_version_ok!=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
+_mkc_version_ok  !=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
 .if !${_mkc_version_ok}
-MKC_ERR_MSG+=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
+MKC_ERR_MSG +=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
 .endif
 .endif
 
 ###########
 
-LDLIBS=		${LDFLAGS} ${LDADD}
+LDLIBS =	${LDFLAGS} ${LDADD}
 
 ###########
 # skip uninstalling files and creating destination dirs
@@ -221,7 +221,7 @@ realinstall: installdirs
 
 .ORDER: installdirs install
 
-TARGETS+=	all install clean cleandir depend \
+TARGETS  +=	all install clean cleandir depend \
 		installdirs uninstall errorcheck filelist
 
 # Make sure all of the standard targets are defined, even if they do nothing.
@@ -232,11 +232,11 @@ ${TARGETS}:
 
 .for i in ${EXPORT_VARNAMES}
 .if empty(NOEXPORT_VARNAMES:U:M${i})
-export_cmd+=	${i}=${${i}:Q}; export ${i};
+export_cmd  +=	${i}=${${i}:Q}; export ${i};
 .endif
 .endfor
 
-VERBOSE_ECHO?=echo
+VERBOSE_ECHO ?=	echo
 ### for mkc.subdir.mk and mkc.subprj.mk
 __recurse: .USE
 	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\

@@ -8,7 +8,7 @@
 ############################################################
 
 .if !defined(_BSD_FILES_MK)
-_BSD_FILES_MK:=	1
+_BSD_FILES_MK := 1
 
 .include <mkc_imp.init.mk>
 
@@ -20,7 +20,7 @@ realinstall:	filesinstall
 realall: ${FILES}
 
 .if ${MKINSTALL:tl} == "yes"
-destination_files= ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
+destination_files = ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
 
 filesinstall:: ${destination_files}
 .PRECIOUS: ${destination_files}
@@ -37,8 +37,8 @@ __fileinstall: .USE
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
 .endfor
 
-UNINSTALLFILES+=	${destination_files}
-INSTALLDIRS+=		${destination_files:H}
+UNINSTALLFILES  +=	${destination_files}
+INSTALLDIRS     +=	${destination_files:H}
 .endif # MKINSTALL
 .endif # FILES
 

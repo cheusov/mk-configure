@@ -42,6 +42,9 @@ __INTEL_COMPILER:icc
 _COMPILER_VERSION:mipspro
 '
 
+get_type (){
+}
+
 check_itself (){
     type=unknown
 

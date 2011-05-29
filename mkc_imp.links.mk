@@ -28,8 +28,8 @@ linksinstall::
 		rm -rf $$t; ln -s $$l $$t; \
 	 done; )
 .for l r in ${SYMLINKS}
-UNINSTALLFILES += ${DESTDIR}${r}
-INSTALLDIRS +=    ${DESTDIR}${r:H}
+UNINSTALLFILES +=	${DESTDIR}${r}
+INSTALLDIRS    +=	${DESTDIR}${r:H}
 .endfor
 .endif
 
@@ -50,8 +50,8 @@ linksinstall::
 	 done; \
 	) | ${MAKE} -f- all
 .for l r in ${LINKS}
-UNINSTALLFILES += ${DESTDIR}${r}
-INSTALLDIRS +=    ${DESTDIR}${r:H}
+UNINSTALLFILES +=	${DESTDIR}${r}
+INSTALLDIRS    +=	${DESTDIR}${r:H}
 .endfor
 .endif
 

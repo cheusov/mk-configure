@@ -8,23 +8,23 @@
 ############################################################
 
 .if !defined(_MKC_IMP_PROG_MK)
-_MKC_IMP_PROG_MK=1
+_MKC_IMP_PROG_MK := 1
 
 .PHONY:		proginstall
 realinstall:	proginstall
 
-CFLAGS+=	${COPTS}
+CFLAGS +=	${COPTS}
 
 .if defined(PROG)
 
-DPSRCS+=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
-CLEANFILES+=	${DPSRCS}
+DPSRCS +=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
+CLEANFILES +=	${DPSRCS}
 .if defined(YHEADER)
-CLEANFILES+=	${SRCS:M*.y:.y=.h}
+CLEANFILES +=	${SRCS:M*.y:.y=.h}
 .endif
 
 .if !empty(SRCS:N*.h:N*.sh:N*.fth)
-OBJS+=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
+OBJS +=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 .endif
 
 .if defined(OBJS) && !empty(OBJS)
@@ -40,15 +40,15 @@ ${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPAD
 .endif	# defined(OBJS) && !empty(OBJS)
 
 .if !defined(MAN) && exists(${PROG}.1)
-MAN=		${PROG}.1
+MAN =		${PROG}.1
 .endif
 
-PROGNAME?=${PROG}
+PROGNAME ?=	${PROG}
 
 .if ${MKINSTALL:tl} == "yes"
-destination_prog=	${DESTDIR}${BINDIR}/${PROGNAME}
-UNINSTALLFILES+=	${destination_prog}
-INSTALLDIRS+=		${destination_prog:H}
+destination_prog =	${DESTDIR}${BINDIR}/${PROGNAME}
+UNINSTALLFILES  +=	${destination_prog}
+INSTALLDIRS     +=	${destination_prog:H}
 .endif
 
 proginstall:: ${destination_prog}
@@ -67,7 +67,7 @@ proginstall:
 
 realall: ${PROG}
 
-CLEANFILES+= a.out [Ee]rrs mklog core *.core \
+CLEANFILES += a.out [Ee]rrs mklog core *.core \
 	    ${PROG} ${OBJS}
 
 .endif # _MKC_IMP_PROG_MK

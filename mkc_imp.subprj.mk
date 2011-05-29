@@ -8,23 +8,23 @@
 ############################################################
 
 .if !defined(_MKC_IMP_SUBPRJ_MK)
-_MKC_IMP_SUBPRJ_MK=1
+_MKC_IMP_SUBPRJ_MK := 1
 
 .for dir in ${SUBPRJ:S/:/ /g}
 .if empty(NOSUBDIR:U:M${dir})
-__REALSUBPRJ+=${dir}
+__REALSUBPRJ += ${dir}
 .endif
 .endfor
 
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
 
 .if !target(test)
-test_target=test
+test_target = test
 .else
-test_target=
+test_target =
 .endif
 
-SUBPRJ_DFLT?=	${__REALSUBPRJ}
+SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS} ${test_target}
 .for dir in ${__REALSUBPRJ}

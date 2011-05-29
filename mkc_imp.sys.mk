@@ -8,7 +8,7 @@
 ############################################################
 
 .ifndef _MKC_IMP_SYS_MK
-_MKC_IMP_SYS_MK:=1
+_MKC_IMP_SYS_MK := 1
 
 .include <mkc_imp.platform.sys.mk>
 
@@ -17,105 +17,105 @@ _MKC_IMP_SYS_MK:=1
 
 .LIBS:		.a
 
-SHRTOUT?=	no
+SHRTOUT ?=	no
 
 .if ${SHRTOUT:tl} != "no"
-_MESSAGE?=	echo
-_MESSAGE_V?=	:
-_V?=		@
+_MESSAGE   ?=	echo
+_MESSAGE_V ?=	:
+_V ?=		@
 .else
-_MESSAGE?=	:
-_MESSAGE_V?=	echo
-_V?=
+_MESSAGE   ?=	:
+_MESSAGE_V ?=	echo
+_V ?=
 .endif
 
-AR?=		ar
-ARFLAGS?=	rl
-RANLIB?=	ranlib
-MESSAGE.ar?=	@${_MESSAGE} "AR: ${.TARGET}"
+AR ?=		ar
+ARFLAGS ?=	rl
+RANLIB ?=	ranlib
+MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
-AS?=		as
-AFLAGS?=
-COMPILE.s?=	${_V} ${CC} ${AFLAGS} -c
-LINK.s?=	${_V} ${CC} ${AFLAGS} ${LDFLAGS}
-MESSAGE.s?=	@${_MESSAGE} "AS: ${.IMPSRC}"
-COMPILE.S?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
-LINK.S?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
-MESSAGE.S?=	${MESSAGE.s}
+AS        ?=	as
+AFLAGS    ?=
+COMPILE.s ?=	${_V} ${CC} ${AFLAGS} -c
+LINK.s    ?=	${_V} ${CC} ${AFLAGS} ${LDFLAGS}
+MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
+COMPILE.S ?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} -c -traditional-cpp
+LINK.S    ?=	${_V} ${CC} ${AFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.S ?=	${MESSAGE.s}
 
-CC?=		cc
-CFLAGS?=
-COMPILE.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
-LINK.c?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
-MESSAGE.c?=	@${_MESSAGE} "CC: ${.IMPSRC}"
+CC        ?=	cc
+CFLAGS    ?=
+COMPILE.c ?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+LINK.c    ?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
+MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
-CXX?=		c++
-CXXFLAGS+=	${CFLAGS}
-COMPILE.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
-LINK.cc?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
-MESSAGE.cc?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
+CXX        ?=		c++
+CXXFLAGS   +=	${CFLAGS}
+COMPILE.cc ?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+LINK.cc    ?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
+MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
-OBJC?=		${CC}
-OBJCFLAGS?=	${CFLAGS}
-COMPILE.m?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
-LINK.m?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} ${LDFLAGS}
-MESSAGE.m?=	@${_MESSAGE} "OBJC: ${.IMPSRC}"
+OBJC       ?=		${CC}
+OBJCFLAGS  ?=	${CFLAGS}
+COMPILE.m  ?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
+LINK.m     ?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.m  ?=	@${_MESSAGE} "OBJC: ${.IMPSRC}"
 
-CPP?=		cpp
-CPPFLAGS?=	
+CPP        ?=	cpp
+CPPFLAGS   ?=	
 
-FC?=		f77
-FFLAGS?=	-O
-RFLAGS?=
-COMPILE.f?=	${_V} ${FC} ${FFLAGS} -c
-LINK.f?=	${_V} ${FC} ${FFLAGS} ${LDFLAGS}
-MESSAGE.f?=	@${_MESSAGE} "FC: ${.IMPSRC}"
-COMPILE.F?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} -c
-LINK.F?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
-MESSAGE.F?=	${MESSAGE.f}
-COMPILE.r?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} -c
-LINK.r?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
-MESSAGE.r?=	${MESSAGE.f}
+FC         ?=	f77
+FFLAGS     ?=	-O
+RFLAGS     ?=
+COMPILE.f  ?=	${_V} ${FC} ${FFLAGS} -c
+LINK.f     ?=	${_V} ${FC} ${FFLAGS} ${LDFLAGS}
+MESSAGE.f  ?=	@${_MESSAGE} "FC: ${.IMPSRC}"
+COMPILE.F  ?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} -c
+LINK.F     ?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.F  ?=	${MESSAGE.f}
+COMPILE.r  ?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} -c
+LINK.r     ?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} ${LDFLAGS}
+MESSAGE.r  ?=	${MESSAGE.f}
 
-MESSAGE.ld?=	@${_MESSAGE} "LD: ${.TARGET}"
+MESSAGE.ld ?=	@${_MESSAGE} "LD: ${.TARGET}"
 
-INSTALL?=	install
+INSTALL    ?=	install
 
-LEX?=		lex
-LFLAGS?=
-LEX.l?=		${_V} ${LEX} ${LFLAGS}
-MESSAGE.l?=	@${_MESSAGE} "LEX: ${.IMPSRC}"
+LEX       ?=	lex
+LFLAGS    ?=
+LEX.l     ?=	${_V} ${LEX} ${LFLAGS}
+MESSAGE.l ?=	@${_MESSAGE} "LEX: ${.IMPSRC}"
 
-LD.SunOS?=	/usr/ccs/bin/ld
-LD.OSF1?=	/usr/bin/ld
-LD?=		${LD.${TARGET_OPSYS}:Uld}
-LDFLAGS?=
+LD.SunOS  ?=	/usr/ccs/bin/ld
+LD.OSF1   ?=	/usr/bin/ld
+LD        ?=	${LD.${TARGET_OPSYS}:Uld}
+LDFLAGS   ?=
 
-LORDER?=	lorder
+LORDER    ?=	lorder
 
-NM?=		nm
+NM ?=		nm
 
-PC?=		pc
-PFLAGS?=
-COMPILE.p?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} -c
-LINK.p?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
-MESSAGE.p?=	@${_MESSAGE} "PC: ${.IMPSRC}"
+PC        ?=	pc
+PFLAGS    ?=
+COMPILE.p ?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} -c
+LINK.p    ?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} ${LDFLAGS}
+MESSAGE.p ?=	@${_MESSAGE} "PC: ${.IMPSRC}"
 
-SHELL?=		sh
+SHELL     ?=	sh
 
-SIZE?=		size
+SIZE      ?=	size
 
-TSORT?= 	tsort -q
+TSORT     ?= 	tsort -q
 
-YACC?=		yacc
-YFLAGS?=
-YACC.y?=	${_V} ${YACC} ${YFLAGS}
-MESSAGE.y?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
+YACC      ?=	yacc
+YFLAGS    ?=
+YACC.y    ?=	${_V} ${YACC} ${YFLAGS}
+MESSAGE.y ?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
-TAR?=		tar
-GZIP?=		gzip
-BZIP2?=		bzip2
-ZIP?=		zip
+TAR       ?=	tar
+GZIP      ?=	gzip
+BZIP2     ?=	bzip2
+ZIP       ?=	zip
 
 # C
 .c.o:
@@ -156,18 +156,18 @@ ZIP?=		zip
 	${COMPILE.S} ${.IMPSRC}
 
 # Lex
-LPREFIX?=	yy
+LPREFIX ?=	yy
 .if ${LPREFIX} != "yy"
-LFLAGS+=	-P${LPREFIX}
+LFLAGS +=	-P${LPREFIX}
 .endif
-LEXLIB?=		-ll
+LEXLIB ?=		-ll
 
 .l.c:
 	${MESSAGE.l}
 	${LEX.l} -t ${.IMPSRC} > ${.TARGET}
 
 # Yacc
-YFLAGS+=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
+YFLAGS +=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
 
 .y.h: ${.TARGET:R}.c
 .y.c:

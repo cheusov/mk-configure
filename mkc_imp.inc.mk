@@ -11,11 +11,11 @@
 realinstall:	incinstall
 
 .if defined(INCS)
-INCSSRCDIR?=	.
-CPPFLAGS+=	-I${INCSSRCDIR}
+INCSSRCDIR  ?=	.
+CPPFLAGS    +=	-I${INCSSRCDIR}
 
 .if ${MKINSTALL:tl} == "yes"
-destination_incs=${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
+destination_incs =	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
 incinstall:: ${destination_incs}
 .PRECIOUS: ${destination_incs}
@@ -31,8 +31,8 @@ realall: ${INCSSRCDIR}/${I}
 ${DESTDIR}${INCSDIR}/$I: ${INCSSRCDIR}/$I __incinstall
 .endfor
 
-UNINSTALLFILES+=	${destination_incs}
-INSTALLDIRS+=		${destination_incs:H}
+UNINSTALLFILES  +=	${destination_incs}
+INSTALLDIRS     +=	${destination_incs:H}
 .endif # MKINSTALL
 .endif # INCS
 

@@ -26,15 +26,15 @@ MKC_REQUIRE_PROGS+=	pkg-config
 .if ${HAVE_PROG.pkg-config}
 
 .for l in ${PKG_CONFIG_DEPS}
-_lp= ${l:C/(>=|<=|=|>|<)/ & /g}
-_ln= ${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
+_lp =	${l:C/(>=|<=|=|>|<)/ & /g}
+_ln =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
 PKG_CONFIG.exists.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -s -n '${_ln}' -m '[pkg-config] ${_lp}' \
     ${PROG.pkg-config} --print-errors --exists "${_lp}"
 
 .if !${PKG_CONFIG.exists.${_ln}}
-MKC_ERR_MSG:= ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
+MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .else
 
 # --cflags and --libs
@@ -51,8 +51,8 @@ LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
     ${PROG.pkg-config} --libs "${_lp}"
 .endif # LDADD.pkg-config.${l}
 
-CPPFLAGS:=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
-LDADD:=		${LDADD}    ${LDADD.pkg-config.${_ln}}
+CPPFLAGS :=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
+LDADD    :=	${LDADD}    ${LDADD.pkg-config.${_ln}}
 .endif # PROG || LIB
 
 .for i in ${PKG_CONFIG_VARS.${_ln}}

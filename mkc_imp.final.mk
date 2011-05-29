@@ -4,12 +4,12 @@
 ############################################################
 
 .ifndef MKC_IMP.FINAL.MK
-MKC_IMP.FINAL.MK=1
+MKC_IMP.FINAL.MK = 1
 
-LDADD+=		${DPLIBS}
+LDADD +=	${DPLIBS}
 
 .if !empty(SRCS:U:M*.l)
-LDADD+=		${LEXLIB}
+LDADD +=	${LEXLIB}
 .endif
 
 .endif # MKC_IMP.FINAL.MK

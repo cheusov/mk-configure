@@ -1,24 +1,24 @@
 # Copyright (c) 2010 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 
-CLEANFILES+=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
+CLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
 
 ##### Basic targets
 depend: .depend
 .depend:
 
 ##### Default values
-MKDEP?=			mkdep
-MKDEP_SUFFIXES?=	.o
+MKDEP          ?=	mkdep
+MKDEP_SUFFIXES ?=	.o
 
 ##### Build rules
 # some of the rules involve .h sources, so remove them from mkdep line
 
 .if defined(SRCS)
-__DPSRCS.all=	${SRCS:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
+__DPSRCS.all  =	${SRCS:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
 		${DPSRCS:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
-__DPSRCS.d=	${__DPSRCS.all:O:u:M*.d}
-__DPSRCS.notd=	${__DPSRCS.all:O:u:N*.d}
+__DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
+__DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
 .NOPATH: .depend ${__DPSRCS.d}
 

@@ -8,7 +8,7 @@
 ############################################################
 
 .if !defined(_MKC_IMP_SCRIPTS_MK)
-_MKC_IMP_SCRIPTS_MK:=1
+_MKC_IMP_SCRIPTS_MK := 1
 
 .PHONY:		scriptsinstall
 realinstall:	scriptsinstall
@@ -17,9 +17,9 @@ realall: ${SCRIPTS}
 
 .if defined(SCRIPTS)
 .if ${MKINSTALL:tl} == "yes"
-destination_scripts=${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
-UNINSTALLFILES+=	${destination_scripts}
-INSTALLDIRS+=		${destination_scripts:H}
+destination_scripts = ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
+UNINSTALLFILES +=	${destination_scripts}
+INSTALLDIRS    +=	${destination_scripts:H}
 .endif # MKINSTALL
 
 scriptsinstall:: ${destination_scripts}

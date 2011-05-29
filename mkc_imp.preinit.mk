@@ -4,7 +4,7 @@
 ############################################################
 
 .if !make(clean) && !make(cleandir) && !make(distclean) && !make(mkc_printobjdir)
-MKCHECKS?=	yes
+MKCHECKS ?=	yes
 .else
-MKCHECKS?=	no
+MKCHECKS ?=	no
 .endif # clean/cleandir/distclean

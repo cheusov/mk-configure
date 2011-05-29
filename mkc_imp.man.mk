@@ -8,17 +8,17 @@
 ############################################################
 
 .if !defined(_MKC_IMP_MAN_MK)
-_MKC_IMP_MAN_MK=1
+_MKC_IMP_MAN_MK := 1
 
 .if ${MKSHARE:tl} == "no"
-MKCATPAGES=no
-MKDOC=no
-MKINFO=no
-MKMAN=no
+MKCATPAGES =	no
+MKDOC      =	no
+MKINFO     =	no
+MKMAN      =	no
 .endif
 
 .if ${MKMAN:tl} == "no"
-MKCATPAGES=no
+MKCATPAGES =	no
 .endif
 
 .if defined(USETBL) && ${USETBL:U:tl} == "no"
@@ -37,10 +37,10 @@ MKCATPAGES=no
 realinstall:	${MANINSTALL}
 .endif
 
-MANTARGET?=	cat
-NROFF?=		nroff
-GROFF?=		groff
-TBL?=		tbl
+MANTARGET ?=	cat
+NROFF     ?=	nroff
+GROFF     ?=	groff
+TBL       ?=	tbl
 
 .SUFFIXES: .1 .2 .3 .4 .5 .6 .7 .8 .9 \
 	   .cat1 .cat2 .cat3 .cat4 .cat5 .cat6 .cat7 .cat8 .cat9 \
@@ -70,20 +70,20 @@ TBL?=		tbl
 
 .if defined(MAN) && !empty(MAN)
 realall: ${MAN}
-MANPAGES=	${MAN}
-CATPAGES=	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
-CLEANFILES+=	${CATPAGES}
+MANPAGES    =	${MAN}
+CATPAGES    =	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
+CLEANFILES +=	${CATPAGES}
 .NOPATH:	${CATPAGES}
-HTMLPAGES=	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
+HTMLPAGES   =	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
 .endif
 
-MINSTALL=	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
+MINSTALL    =	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
 		    -o ${MANOWN} -g ${MANGRP} -m ${MANMODE}
 
 .if defined(MANZ)
 # chown and chmod are done afterward automatically
-MCOMPRESS=	gzip -cf
-MCOMPRESSSUFFIX= .gz
+MCOMPRESS       =	gzip -cf
+MCOMPRESSSUFFIX =	.gz
 .endif
 
 catinstall: catlinks
@@ -105,9 +105,9 @@ __installpage: .USE
 realall: ${CATPAGES}
 
 .if ${MKINSTALL:tl} == "yes"
-destination_capages=${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
-UNINSTALLFILES+=	${destination_capages}
-INSTALLDIRS+=		${destination_capages:H}
+destination_capages = ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
+UNINSTALLFILES  +=	${destination_capages}
+INSTALLDIRS     +=	${destination_capages:H}
 .endif # MKINSTALL
 
 catpages:: ${destination_capages}
@@ -126,9 +126,9 @@ catpages::
 .if defined(MANPAGES) && !empty(MANPAGES)
 
 .if ${MKINSTALL:tl} == "yes"
-destination_manpages=${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
-UNINSTALLFILES+=	${destination_manpages}
-INSTALLDIRS+=		${destination_manpages:H}
+destination_manpages = ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
+UNINSTALLFILES  +=	${destination_manpages}
+INSTALLDIRS     +=	${destination_manpages:H}
 .endif # MKINSTALL
 
 manpages:: ${destination_manpages}
@@ -145,18 +145,18 @@ manpages::
 
 .if ${MKCATPAGES:tl} != "no"
 .for s d in ${MLINKS}
-LINKS+=			${MANDIR}/cat${s:T:E}${MANSUBDIR}/${s:R}.0${MCOMPRESSSUFFIX} \
+LINKS          +=	${MANDIR}/cat${s:T:E}${MANSUBDIR}/${s:R}.0${MCOMPRESSSUFFIX} \
 			${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
-UNINSTALLFILES+=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
+UNINSTALLFILES +=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
 .endfor
 catlinks: catpages
 .endif
 catlinks:
 
 .for s d in ${MLINKS}
-LINKS+=		${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX} \
-		${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
-UNINSTALLFILES+=	${DESTDIR}${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
+LINKS          +=	${MANDIR}/man${s:T:E}${MANSUBDIR}/${s}${MCOMPRESSSUFFIX} \
+			${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
+UNINSTALLFILES +=	${DESTDIR}${MANDIR}/man${d:T:E}${MANSUBDIR}/${d}${MCOMPRESSSUFFIX}
 .endfor
 manlinks: manpages
 
@@ -171,17 +171,17 @@ ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 .endfor
 
 .if ${MKINSTALL:tl} == "yes"
-destination_htmls=${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
+destination_htmls = ${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
 .endif
 
 installhtml:            ${destination_htmls}
-CLEANFILES+=		${HTMLPAGES}
+CLEANFILES +=		${HTMLPAGES}
 
 .if ${MKHTML:tl} == "yes"
 realinstall: installhtml
 realall: ${HTMLPAGES}
-UNINSTALLFILES+=	${destination_htmls}
-INSTALLDIRS+=		${destination_htmls:H}
+UNINSTALLFILES +=	${destination_htmls}
+INSTALLDIRS    +=	${destination_htmls:H}
 .endif # MKHTML
 .endif # HTMLPAGES
 

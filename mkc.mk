@@ -5,11 +5,11 @@
 .include <mkc_imp.preinit.mk>
 
 .if defined(SUBPRJS)
-SUBPRJ+=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
+SUBPRJ   +=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
 .endif # defined(SUBPRJS)
 
 .if !defined(LIB) && !defined(SUBDIR) && !defined(SUBPRJ)
-_use_prog:=1
+_use_prog :=	1
 .endif
 
 .if defined(_use_prog) || defined(LIB)

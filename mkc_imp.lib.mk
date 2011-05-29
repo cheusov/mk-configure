@@ -8,13 +8,13 @@
 ############################################################
 
 .if !defined(_MKC_IMP_LIB_MK)
-_MKC_IMP_LIB_MK=1
+_MKC_IMP_LIB_MK := 1
 
 .PHONY:		libinstall
 .if ${MKINSTALL:tl} == "yes"
 realinstall:	libinstall
-INSTALLDIRS+=	${DESTDIR}${LIBDIR}
-UNINSTALLFILES+=${UNINSTALLFILES.lib}
+INSTALLDIRS    +=	${DESTDIR}${LIBDIR}
+UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 .endif # MKINSTALL
 
 # add additional suffixes not exported.
@@ -40,8 +40,8 @@ UNINSTALLFILES+=${UNINSTALLFILES.lib}
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
-CFLAGS+=	${COPTS}
-FFLAGS+=	${FOPTS}
+CFLAGS  +=	${COPTS}
+FFLAGS  +=	${FOPTS}
 
 .c.o:
 	${COMPILE.c} ${.IMPSRC}
@@ -88,29 +88,29 @@ FFLAGS+=	${FOPTS}
 .S.os .s.os:
 	${COMPILE.S} ${CAFLAGS.pic} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
-OBJS+=${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
-SOBJS=${OBJS:.o=.os}
-POBJS=${OBJS:.o=.op}
+OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
+SOBJS  =	${OBJS:.o=.os}
+POBJS  =	${OBJS:.o=.op}
 
 .if ${MKSTATICLIB:tl} != "no"
-_LIBS+=lib${LIB}.a
+_LIBS +=	lib${LIB}.a
 .endif
 
 .if ${MKPROFILELIB:tl} != "no"
-_LIBS+=lib${LIB}_p.a
+_LIBS +=	lib${LIB}_p.a
 .endif
 
 .if ${MKPICLIB:tl} != "no"
-_LIBS+=lib${LIB}_pic.a
+_LIBS +=	lib${LIB}_pic.a
 .endif # MKPICLIB
 
 .if ${MKSHLIB:tl} != "no"
 .if ${MKDLL:tl} == "no"
-SHLIBFN=	lib${LIB}${SHLIB_EXTFULL}
+SHLIBFN  =	lib${LIB}${SHLIB_EXTFULL}
 .else
-SHLIBFN=	${LIB}${DLL_EXT}
+SHLIBFN  =	${LIB}${DLL_EXT}
 .endif
-_LIBS+=		${SHLIBFN}
+_LIBS   +=	${SHLIBFN}
 .endif
 
 .NOPATH: ${_LIBS}
@@ -127,10 +127,10 @@ __archiveinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN} \
 	    -g ${LIBGRP} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 
-DPSRCS+=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
-CLEANFILES+=	${DPSRCS}
+DPSRCS     +=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
+CLEANFILES +=	${DPSRCS}
 .if defined(YHEADER)
-CLEANFILES+=	${SRCS:M*.y:.y=.h}
+CLEANFILES +=	${SRCS:M*.y:.y=.h}
 .endif
 
 lib${LIB}.a:: ${OBJS} __archivebuild
@@ -155,7 +155,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 .endif # ELF
 .endif # !commands(...)
 
-CLEANFILES+= a.out [Ee]rrs mklog core *.core \
+CLEANFILES += a.out [Ee]rrs mklog core *.core \
 	${OBJS} ${POBJS} ${SOBJS} \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SHLIBFN}
@@ -169,8 +169,8 @@ libinstall::
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
-UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}.a
-CLEANFILES+=lib${LIB}.a
+UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}.a
+CLEANFILES         +=	lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 .endif
@@ -180,22 +180,22 @@ ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-CLEANFILES+=	lib${LIB}_p.a
+UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+CLEANFILES +=		lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
 
    # MKPICLIB
 .if ${MKPICLIB:tl} != "no"
-CLEANFILES+=lib${LIB}_pic.a
+CLEANFILES +=	lib${LIB}_pic.a
 .endif
 
 .if ${MKPICLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
@@ -205,9 +205,9 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 libinstall:: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PHONY: ${DESTDIR}${LIBDIR}/${SHLIBFN}
-UNINSTALLFILES.lib+= ${DESTDIR}${LIBDIR}/${SHLIBFN}
+UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .if ${MKDLL:tl} == "no"
-UNINSTALLFILES.lib+=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
+UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
 			${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 .endif
 
