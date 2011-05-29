@@ -1,4 +1,9 @@
 Plan -2)
+
+  OBJDIR_<subprj> for mkc.sub{prj,dir}.mk
+
+  Do not cache negative results for MKC_REQUIRE_*
+
   Slides for:
     - SYSCONFDIR -> hello_world example
     - How it works section for EXPORT_SYMBOLS
