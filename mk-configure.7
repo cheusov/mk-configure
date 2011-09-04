@@ -1575,6 +1575,15 @@ Path to mk.conf file .include-d by mkc.*.mk files
  .include-d by mkc.*.mk if exists
 .IP /etc/mk.conf
  .include-d by mkc.*.mk if exists
+.SH "BUGS"
+Target
+.IR errorcheck " (" configure ")"
+doesn't support parallel builds. In order to build project in parallel,
+run it like the following
+.VS
+   mkcmake errorcheck
+   mkcmake -j4 all
+.VE
 .SH "SEE ALSO"
 .BR mkc_check_header (1),
 .BR mkc_check_prog (1),
