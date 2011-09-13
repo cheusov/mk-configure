@@ -23,7 +23,7 @@ AWK?=/bin/awk
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.21.0
+VERSION=		0.21.1
 
 BIRTHDATE=		2009-02-21
 

@@ -1,4 +1,18 @@
 ======================================================================
+Version 0.21.1, by Aleksey Cheusov, Tue, 13 Sep 2011 11:28:26 +0300
+
+  Target "errorcheck" ("configure") cannot work in parallel.
+
+  Fix bug appeared in parallel builds (make -j).
+     Thanks to Alexander Nasonov.
+
+  Support for IRIX64 and Haiku was implemented.
+
+  PDF presentation update
+
+  Minor clean-ups
+
+======================================================================
 Version 0.21.0, by Aleksey Cheusov, Sun, 24 Oct 2010 17:47:19 +0300
 
   Support for clang compiler was implemented.
