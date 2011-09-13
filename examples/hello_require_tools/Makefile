@@ -1,6 +1,6 @@
-MKC_REQUIRE_BUILTINS+=	prog_gawk prog_flex prog_gm4 prog_bison
+MKC_REQUIRE_BUILTINS +=	prog_gawk prog_flex prog_gm4 prog_bison
 
-SCRIPTS=	fake
+SCRIPTS = fake
 
 test: error-check
 	@echo ${CUSTOM.prog_gawk}

@@ -1,13 +1,13 @@
-LIB=	hello2
-SRCS=	hello2.c
-MAN=	hello2.3
+LIB  =	hello2
+SRCS =	hello2.c
+MAN  =	hello2.3
 
-INCS!=	echo include/*.h
+INCS !=	echo include/*.h
 
-MKINSTALL?=	no # This is internal library, do not install it.
+MKINSTALL ?=	no # This is internal library, do not install it.
 
-CPPFLAGS+=	-I${.CURDIR}/include
-CFLAGS+=	-DHELLO_VERSION='"${VERSION}"'
+CPPFLAGS +=	-I${.CURDIR}/include
+CFLAGS   +=	-DHELLO_VERSION='"${VERSION}"'
 
 .include "../version.mk"
 

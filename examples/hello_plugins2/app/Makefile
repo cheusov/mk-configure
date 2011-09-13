@@ -1,9 +1,9 @@
-MKC_REQUIRE_FUNCLIBS+=	dlopen:dl
+MKC_REQUIRE_FUNCLIBS +=	dlopen:dl
 
-PROG=			app
+PROG =		app
 
-EXPORT_DYNAMIC=		yes
+WARNS =		4
 
-WARNS=			4
+EXPORT_DYNAMIC = yes
 
 .include <mkc.prog.mk>

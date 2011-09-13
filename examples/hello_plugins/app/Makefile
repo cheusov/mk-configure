@@ -1,7 +1,7 @@
-MKC_REQUIRE_FUNCLIBS+=	dlopen:dl
+MKC_REQUIRE_FUNCLIBS +=	dlopen:dl
 
-PROG=			app
+PROG  =			app
 
-WARNS=			4
+WARNS =			4
 
 .include <mkc.prog.mk>

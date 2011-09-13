@@ -1,12 +1,12 @@
-PROG=	dictzip
-MAN=	dictzip.1
+PROG  =	dictzip
+MAN   =	dictzip.1
 
-WARNS=	4
+WARNS =	4
 
 .include "../libcommon/linkme.mk"
 .include "../libdz/linkme.mk"
 .include "../libmaa/linkme.mk"
 
-DPLIBS+=	-lcommon -lmaa -ldz
+DPLIBS +=	-lcommon -lmaa -ldz
 
 .include <mkc.prog.mk>

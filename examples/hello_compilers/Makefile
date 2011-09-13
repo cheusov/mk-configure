@@ -1,31 +1,31 @@
-MKC_CHECK_DEFINES+=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__ __SUNPRO_C
-MKC_CHECK_DEFINES+=	__DECC _COMPILER_VERSION
+MKC_CHECK_DEFINES +=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__ __SUNPRO_C
+MKC_CHECK_DEFINES +=	__DECC _COMPILER_VERSION
 
-PROG=			compiler_test
+PROG =			compiler_test
 
-MKC_REQD=		0.10.0
+MKC_REQD =		0.10.0
 
-WARNS=			4
+WARNS =			4
 
 .include <mkc.configure.mk>
 
 .if ${HAVE_DEFINE._MSC_VER:U0}
-msg=	Microsoft C Compiler
+msg =	Microsoft C Compiler
 .elif ${HAVE_DEFINE.__INTEL_COMPILER:U0}
-msg=	Intel C Compiler
+msg =	Intel C Compiler
 .elif ${HAVE_DEFINE.__PCC__:U0}
-msg=	Portable C Compiler
+msg =	Portable C Compiler
 .elif ${HAVE_DEFINE.__GNUC__:U1}
-msg=	GNU C Compiler
+msg =	GNU C Compiler
 .elif ${HAVE_DEFINE.__SUNPRO_C:U1}
-msg=	SunPro C Compiler
+msg =	SunPro C Compiler
 .elif ${HAVE_DEFINE._COMPILER_VERSION:U1}
-msg=	SGI MIPSPro C Compiler
+msg =	SGI MIPSPro C Compiler
 .else
-msg=	Unknown compiler
+msg =	Unknown compiler
 .endif
 
-CFLAGS+=	-DMSG='"${msg}"'
+CFLAGS +=	-DMSG='"${msg}"'
 
 .include "test.mk"
 .include <mkc.prog.mk>

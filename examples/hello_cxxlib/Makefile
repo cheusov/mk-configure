@@ -1,8 +1,8 @@
-PROJECTNAME=	hello_cxx
+PROJECTNAME =	hello_cxx
 
-SUBDIR+=	cxxlib
-SUBDIR+=	.WAIT
-SUBDIR+=	cxxapp
+SUBDIR +=	cxxlib
+SUBDIR +=	.WAIT
+SUBDIR +=	cxxapp
 
 .include "test.mk"
 .include <mkc.subdir.mk>

@@ -1,5 +1,5 @@
-LIB=	plugin1
+LIB   =	plugin1
 
-MKDLL=	only
+MKDLL =	only
 
 .include <mkc.lib.mk>

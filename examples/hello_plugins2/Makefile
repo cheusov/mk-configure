@@ -1,4 +1,4 @@
-SUBPRJ=		app plugin1 plugin2
+SUBPRJ =	app plugin1 plugin2
 
 .include "test.mk"
 .include <mkc.subprj.mk>
