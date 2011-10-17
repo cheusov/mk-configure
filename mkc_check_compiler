@@ -22,44 +22,35 @@ fi
 
 ##################################################
 checks='
-       __clang__:clang
-           __ICC:icc
-        __GNUC__:gcc
-         __PCC__:pcc
-__INTEL_COMPILER:icc
-        _MSC_VER:msc
-        __HP_aCC:hpc
-         __HP_cc:hpc
-   __SUNPRO_C:sunpro
-  __SUNPRO_CC:sunpro
-     __IBMCPP__:ibmc
-       __IBMC__:ibmc
-    __BORLANDC__:bcc
-  __WATCOMC__:watcom
-       __COMO__:como
-         __DECC:decc
-       __DECCXX:decc
-_COMPILER_VERSION:mipspro
+       __clang__   clang
+           __ICC   icc
+__INTEL_COMPILER   icc
+        __GNUC__   gcc
+         __PCC__   pcc
+        _MSC_VER   msc
+        __HP_aCC   hpc
+         __HP_cc   hpc
+   __SUNPRO_C      sunpro
+  __SUNPRO_CC      sunpro
+     __IBMCPP__    ibmc
+       __IBMC__    ibmc
+    __BORLANDC__   bcc
+  __WATCOMC__      watcom
+       __COMO__    como
+         __DECC    decc
+       __DECCXX    decc
+_COMPILER_VERSION  mipspro
 '
 
-get_type (){
-}
-
 check_itself (){
-    type=unknown
-
-    for i in $checks; do
-	define=`echo $i | cut -d: -f1`
-	cctype=`echo $i | cut -d: -f2`
-	ret=`env CFLAGS= CPPFLAGS= CXXFLAGS= MKC_VERBOSE= MKC_NOCACHE=1 \
-	    mkc_check_decl define "$define"`
-	if test _1 = "_$ret"; then
-	    type=$cctype
-	    break
-	fi
-    done
-
-    echo $type
+    awk '
+BEGIN {
+   printf "#"
+   for (i=1; i < ARGC; ++i){
+      printf "if defined(%s)\ncompiler %s\n#el", ARGV [i], ARGV [i+1]
+   }
+   printf "se\ncompiler unknown\n#endif\n"
+}' $checks | $CC -E - | awk '$1 == "compiler" {print $2}'
 }
 
 . mkc_check_common.sh
