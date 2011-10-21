@@ -25,8 +25,8 @@ checks='
        __clang__   clang
            __ICC   icc
 __INTEL_COMPILER   icc
-        __GNUC__   gcc
          __PCC__   pcc
+        __GNUC__   gcc
         _MSC_VER   msc
         __HP_aCC   hpc
          __HP_cc   hpc
