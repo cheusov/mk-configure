@@ -1,4 +1,11 @@
 ======================================================================
+Version 0.21.2, by Aleksey Cheusov, Sat, 22 Oct 2011 01:50:05 +0300
+
+  mkc_check_compiler has been reimplemented. This fixes problems
+  on system with /bin/sh == bash (affected versions: 0.21.1)
+  and makes it drammatically faster.
+
+======================================================================
 Version 0.21.1, by Aleksey Cheusov, Tue, 13 Sep 2011 11:28:26 +0300
 
   Target "errorcheck" ("configure") cannot work in parallel.
