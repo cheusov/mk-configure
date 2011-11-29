@@ -1,6 +1,6 @@
 LUA_LMODDIR_<fn>
-${OBJCOPY}
 @sysconfdir@ in mk-configure.7
+MAKEVERBOSE
 
 Plan -2)
 
