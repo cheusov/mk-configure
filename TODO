@@ -1,3 +1,7 @@
+LUA_LMODDIR_<fn>
+${OBJCOPY}
+@sysconfdir@ in mk-configure.7
+
 Plan -2)
 
   Compiler/linker specific HARDENING_CFLAGS/LDFLAGS!
