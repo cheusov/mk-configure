@@ -117,6 +117,8 @@ GZIP      ?=	gzip
 BZIP2     ?=	bzip2
 ZIP       ?=	zip
 
+OBJCOPY   ?=    objcopy
+
 # C
 .c.o:
 	${MESSAGE.c}
@@ -160,7 +162,7 @@ LPREFIX ?=	yy
 .if ${LPREFIX} != "yy"
 LFLAGS +=	-P${LPREFIX}
 .endif
-LEXLIB ?=		-ll
+LEXLIB ?=	-ll
 
 .l.c:
 	${MESSAGE.l}
