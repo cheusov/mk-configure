@@ -14,10 +14,15 @@ PKG_CONFIG_DEPS  +=	lua
 PKG_CONFIG_VARS.lua +=	INSTALL_LMOD
 LUA_LMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
 .endif
-FILES               +=	${LUA_LMODULES}
-.for i in ${LUA_LMODULES}
-FILESDIR_${i}        =	${LUA_LMODDIR}
+.for i in ${LUA_LMODULES:R}
+_name_path += ${i:S/./_/g}.lua ${i:S/./\//g}.lua
+.endfor
+.for _name _path in ${_name_path}
+FILES               +=	${_name}
+FILESNAME_${_name}  =	${_path}
+FILESDIR_${_name}   =	${LUA_LMODDIR}
 .endfor # i
+.undef _name_path
 .endif # defined(LUA_LMODULES)
 
 ### .c module
@@ -26,12 +31,15 @@ FILESDIR_${i}        =	${LUA_LMODDIR}
 PKG_CONFIG_VARS.lua +=	INSTALL_CMOD
 LUA_CMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_CMOD}
 .endif
-LIB        =		${LUA_CMODULE}
-SRCS      ?=		${LUA_CMODULE}.c
+LIB        =		${LUA_CMODULE:E}
+SRCS      ?=		${LUA_CMODULE:E}.c
 MKDLL      =		Only
 LDCOMPILER =		Yes
 DLL_EXT    =		.so
-LIBDIR     =		${LUA_CMODDIR}
+.if !empty(LUA_CMODULE:M*.*)
+LIBDIR     =		${LUA_CMODDIR}/${LUA_CMODULE:R:S/./\//g}
+.endif
+LIBDIR     ?=		${LUA_CMODDIR}
 .endif # defined(LUA_LMODULES)
 
 ######################
