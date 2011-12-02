@@ -1,6 +1,9 @@
 LUA_LMODDIR_<fn>
 @sysconfdir@ in mk-configure.7
 MAKEVERBOSE
+.lua.luac:
+${PRINTOBJDIR}
+LUA_LMODIR + LUA_CMODDIR -> No PKG_CONFIG_DEPS+=lua
 
 Plan -2)
 
