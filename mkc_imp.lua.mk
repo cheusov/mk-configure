@@ -31,7 +31,7 @@ FILESDIR_${_name}   =	${LUA_LMODDIR}
 PKG_CONFIG_VARS.lua +=	INSTALL_CMOD
 LUA_CMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_CMOD}
 .endif
-LIB        =		${LUA_CMODULE:E}
+LIB        =		${LUA_CMODULE:C/^.*[.]//}
 SRCS      ?=		${LUA_CMODULE:S/./_/g}.c
 MKDLL      =		Only
 LDCOMPILER =		Yes
