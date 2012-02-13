@@ -17,13 +17,6 @@ INSTALLDIRS    +=	${DESTDIR}${LIBDIR}
 UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 .endif # MKINSTALL
 
-# add additional suffixes not exported.
-# .op is used for profiling object files.
-# .os is used for PIC object files.
-.SUFFIXES: .out .a .so .os .po .op .o .s .S .c .cc .cpp .C .m .F .f .r .y .l .cl .p .h
-.SUFFIXES: .sh .m4 .m
-
-
 # Set PICFLAGS to cc flags for producing position-independent code,
 # if not already set.  Includes -DPIC, if required.
 
@@ -42,51 +35,6 @@ UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 
 CFLAGS  +=	${COPTS}
 FFLAGS  +=	${FOPTS}
-
-.c.o:
-	${COMPILE.c} ${.IMPSRC}
-
-.c.op:
-	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
-
-.c.os:
-	${COMPILE.c} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
-
-.cc.o .C.o .cpp.o:
-	${COMPILE.cc} ${.IMPSRC}
-
-.cc.op .C.op .cpp.op:
-	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
-
-.cc.os .C.os .cpp.os:
-	${COMPILE.cc} ${CXXFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
-
-.f.o:
-	${COMPILE.f} ${.IMPSRC}
-
-.f.op:
-	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
-
-.f.os:
-	${COMPILE.f} ${FFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
-
-.m.o:
-	${COMPILE.m} ${.IMPSRC}
-
-.m.op:
-	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
-
-.m.os:
-	${COMPILE.m} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
-
-.S.o .s.o:
-	${COMPILE.S} ${AINC} ${.IMPSRC} -o ${.TARGET}
-
-.S.op .s.op:
-	${COMPILE.S} ${PROFFLAGS} ${AINC} ${.IMPSRC} -o ${.TARGET}
-
-.S.os .s.os:
-	${COMPILE.S} ${CAFLAGS.pic} ${AINC} ${.IMPSRC} -o ${.TARGET}
 
 OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 SOBJS  =	${OBJS:.o=.os}
