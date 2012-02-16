@@ -11,7 +11,7 @@
 _MKC_IMP_PROG_MK := 1
 
 .PHONY:		proginstall
-realinstall:	proginstall
+proginstall:
 
 CFLAGS +=	${COPTS}
 
@@ -19,11 +19,9 @@ __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
-.ifndef PROGS
-#proginstall::
-.endif
-
 .for p in ${PROGS}
+realinstall:	proginstall
+
 DPSRCS.${p} =	${SRCS.${p}:M*.l:.l=.c} ${SRCS.${p}:M*.y:.y=.c}
 CLEANFILES +=	${DPSRCS.${p}}
 .if defined(YHEADER)
