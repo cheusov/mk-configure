@@ -546,8 +546,10 @@ includes the file named "../Makefile.inc"
 if it exists.
 List of supported variables:
 .IP PROG
-The name of the program to build.  If not supplied, nothing
-is built.
+The name of the program to build.
+.IP PROGS
+The names of the programs to build.  If neither PROG nor PROGS
+is not supplied, nothing is built.
 .\" .IP PROG_CXX
 .\" If defined, the name of the program to build.  Also
 .\" causes mkc.prog.mk to link the program with the C++
@@ -557,10 +559,17 @@ is built.
 .IP PROGNAME
 The name that the above program will be installed as, if
 different from ${PROG}.
-.RI < "Mu" >
+.RI < "M" >
 .IP SRCS
 List of source files to build the program.  If SRCS is not
  defined, it's assumed to be ${PROG}.c.
+.RI < "M" >
+.IP SRCS.<prog>
+List of source files to build the program
+.I prog
+listed in
+.IR PROGS .
+If SRCS.<prog> is not defined, it's assumed to be prog.c.
 .RI < "M" >
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
