@@ -47,14 +47,22 @@ __initialized__ := 1
 ###########
 
 .if defined(PROG)
-SRCS  ?=	${PROG}.c
-.endif
+SRCS          ?=	${PROG}.c
+PROGS         ?=	${PROG}
+SRCS.${PROG}  ?=	${SRCS}
+.endif # defined(PROG)
+
+.for p in ${PROGS}
+SRCS.${p} ?=	${p}.c ${SRCS} # SRCS may be changed by mkc_imp.configure.mk
+_srcsall +=	${SRCS.${p}}
+.endfor
 
 .if defined(LIB)
 SRCS  ?=	${LIB}.c
+_srcsall +=	${SRCS}
 .endif
 
-.if !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cc)
+.if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc)
 src_type   +=	cxx
 LDCOMPILER  =	yes
 LDREAL     ?=	${CXX}
@@ -65,7 +73,7 @@ LDCOMPILER.Darwin  =	yes
 #LDCOMPILER.HP-UX=	yes
 LDCOMPILER        ?=	${LDCOMPILER.${TARGET_OPSYS}:Uno}
 
-.if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
+.if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
 src_type  +=	c
 .endif
 
@@ -75,7 +83,7 @@ src_type  ?=	0
 LDREAL  ?=	${CC}
 .endif
 
-.if defined(PROG)
+.if defined(PROGS)
 LDREAL  ?=	${CC}
 .else
 LDREAL  ?=	${LD}
@@ -100,32 +108,32 @@ REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
 .include <mkc_imp.own.mk>
 
 ###########
-.if !empty(SRCS:U:M*.y)
+.if !empty(_srcsall:U:M*.y)
 MKC_REQUIRE_PROGS  +=			${YACC:[1]}
 MKC_PROG.id.${YACC:[1]:S/+/x/g}  =	yacc
 .endif
 
-.if !empty(SRCS:U:M*.l)
+.if !empty(_srcsall:U:M*.l)
 MKC_REQUIRE_PROGS  +=			${LEX:[1]}
 MKC_PROG.id.${LEX:[1]:S/+/x/g}   =	lex
 .endif
 
-.if !empty(SRCS:U:M*.c) || !empty(SRCS:U:M*.l) || !empty(SRCS:U:M*.y)
+.if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y)
 MKC_REQUIRE_PROGS  +=			${CC:[1]}
 MKC_PROG.id.${CC:[1]:S|+|x|g}    =	cc
 .endif
 
-.if !empty(SRCS:U:M*.cc) || !empty(SRCS:U:M*.C) || !empty(SRCS:U:M*.cxx) || !empty(SRCS:U:M*.cpp)
+.if !empty(_srcsall:U:M*.cc) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp)
 MKC_REQUIRE_PROGS  +=			${CXX:[1]}
 MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
 .endif
 
-.if !empty(SRCS:U:M*.f)
+.if !empty(_srcsall:U:M*.f)
 MKC_REQUIRE_PROGS  +=			${FC:[1]}
 MKC_PROG.id.${FC:[1]:S/+/x/g}    =	fc
 .endif
 
-.if !empty(SRCS:U:M*.p)
+.if !empty(_srcsall:U:M*.p)
 MKC_REQUIRE_PROGS  +=			${PC:[1]}
 MKC_PROG.id.${PC:[1]:S/+/x/g}    =	pc
 .endif

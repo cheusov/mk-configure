@@ -1,0 +1,45 @@
+I am a client
+I am a server
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client
+/objdir/client.c
+/objdir/client.o
+/objdir/common.c
+/objdir/common.o
+/objdir/expect.out
+/objdir/hello_progs.test.out.tmp
+/objdir/server
+/objdir/server.c
+/objdir/server.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/client
+/objdir/prefix/bin/server
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client.c
+/objdir/common.c
+/objdir/expect.out
+/objdir/hello_progs.test.out.tmp
+/objdir/server.c
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/client.c
+/objdir/common.c
+/objdir/expect.out
+/objdir/hello_progs.test.out.tmp
+/objdir/server.c
+/objdir/test.mk

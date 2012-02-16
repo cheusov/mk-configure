@@ -15,59 +15,59 @@ realinstall:	proginstall
 
 CFLAGS +=	${COPTS}
 
-.if defined(PROG)
-
-DPSRCS +=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
-CLEANFILES +=	${DPSRCS}
-.if defined(YHEADER)
-CLEANFILES +=	${SRCS:M*.y:.y=.h}
-.endif
-
-.if !empty(SRCS:N*.h:N*.sh:N*.fth)
-OBJS +=		${SRCS:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
-.endif
-
-.if defined(OBJS) && !empty(OBJS)
-.NOPATH: ${OBJS}
-
-${PROG}: ${LIBCRT0} ${DPSRCS} ${OBJS} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
-.if !commands(${PROG})
-	${MESSAGE.ld}
-	${_V}${LDREAL} ${LDFLAGS} ${LDFLAGS.prog} ${LDSTATIC} \
-		-o ${.TARGET} ${OBJS} ${LDADD}
-.endif
-
-.endif	# defined(OBJS) && !empty(OBJS)
-
-.if !defined(MAN) && exists(${PROG}.1)
-MAN =		${PROG}.1
-.endif
-
-PROGNAME ?=	${PROG}
-
-.if ${MKINSTALL:tl} == "yes"
-destination_prog =	${DESTDIR}${BINDIR}/${PROGNAME}
-UNINSTALLFILES  +=	${destination_prog}
-INSTALLDIRS     +=	${destination_prog:H}
-.endif
-
-proginstall:: ${destination_prog}
-.PRECIOUS:    ${destination_prog}
-.PHONY:       ${destination_prog}
-
 __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
-${DESTDIR}${BINDIR}/${PROGNAME}: ${PROG} __proginstall
+.ifndef PROGS
+#proginstall::
+.endif
 
-.else # defined(PROG)
-proginstall:
-.endif # defined(PROG)
+.for p in ${PROGS}
+DPSRCS.${p} =	${SRCS.${p}:M*.l:.l=.c} ${SRCS.${p}:M*.y:.y=.c}
+CLEANFILES +=	${DPSRCS.${p}}
+.if defined(YHEADER)
+CLEANFILES +=	${SRCS.${p}:M*.y:.y=.h}
+.endif # defined(YHEADER)
 
-realall: ${PROG}
+OBJS.${p} =	${SRCS.${p}:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 
-CLEANFILES += a.out [Ee]rrs mklog core *.core \
-	    ${PROG} ${OBJS}
+.if defined(OBJS.${p}) && !empty(OBJS.${p})
+.NOPATH: ${OBJS.${p}}
+
+${p}: ${LIBCRT0} ${DPSRCS.${p}} ${OBJS.${p}} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
+.if !commands(${p})
+	${MESSAGE.ld}
+	${_V}${LDREAL} ${LDFLAGS} ${LDFLAGS.prog} ${LDSTATIC} \
+		-o ${.TARGET} ${OBJS.${p}} ${LDADD}
+.endif # !commands(...)
+
+.endif	# defined(OBJS.${p}) && !empty(OBJS.${p})
+
+.if !defined(MAN) && exists(${p}.1)
+MAN +=		${p}.1
+.endif # !defined(MAN)
+
+PROGNAME.${p} ?=	${PROGNAME:U${p}}
+
+.if ${MKINSTALL:tl} == "yes"
+dest_prog.${p}   =	${DESTDIR}${BINDIR}/${PROGNAME.${p}}
+UNINSTALLFILES  +=	${dest_prog.${p}}
+INSTALLDIRS     +=	${dest_prog.${p}:H}
+
+proginstall: ${dest_prog.${p}}
+.PRECIOUS:    ${dest_prog.${p}}
+.PHONY:       ${dest_prog.${p}}
+.endif # ${MKINSTALL:tl} == "yes"
+
+${DESTDIR}${BINDIR}/${PROGNAME.${p}}: ${p} __proginstall
+
+CLEANFILES +=	${OBJS.${p}}
+
+.endfor # ${PROGS}
+
+realall: ${PROGS}
+
+CLEANFILES += a.out [Ee]rrs mklog core *.core ${PROGS}
 
 .endif # _MKC_IMP_PROG_MK

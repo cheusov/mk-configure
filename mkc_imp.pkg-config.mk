@@ -38,7 +38,7 @@ MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .else
 
 # --cflags and --libs
-.if defined(PROG) || defined(LIB)
+.if defined(PROGS) || defined(LIB)
 .if !defined(CPPFLAGS.pkg-config.${_ln})
 CPPFLAGS.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -n '${_ln}_cflags' -m '[pkg-config] ${_lp} --cflags' \
@@ -53,7 +53,7 @@ LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
 
 CPPFLAGS :=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
 LDADD    :=	${LDADD}    ${LDADD.pkg-config.${_ln}}
-.endif # PROG || LIB
+.endif # PROGS || LIB
 
 .for i in ${PKG_CONFIG_VARS.${_ln}}
 .if !defined(PKG_CONFIG.var.${_ln}.${i})
