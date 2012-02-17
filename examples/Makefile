@@ -25,6 +25,8 @@ SUBDIR+=	hello_lua
 SUBDIR+=	hello_lua2
 SUBDIR+=	hello_superfs
 SUBDIR+=	hello_xxzip
+SUBDIR+=	hello_progs
+SUBDIR+=	hello_progs2
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools

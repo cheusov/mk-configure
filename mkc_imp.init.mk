@@ -46,21 +46,21 @@ __initialized__ := 1
 
 ###########
 
-.if defined(PROG)
-SRCS          ?=	${PROG}.c
-PROGS         ?=	${PROG}
-SRCS.${PROG}  ?=	${SRCS}
-.endif # defined(PROG)
-
 .for p in ${PROGS}
-SRCS.${p} ?=	${p}.c ${SRCS} # SRCS may be changed by mkc_imp.configure.mk
+SRCS.${p} ?=	${p}.c
+SRCS.${p} +=	${SRCS} # SRCS may be changed by mkc_imp.configure.mk
 _srcsall +=	${SRCS.${p}}
 .endfor
 
-.if defined(LIB)
-SRCS  ?=	${LIB}.c
+.if defined(PROG)
+PROGS         ?=	${PROG}
+SRCS          ?=	${PROG}.c
+SRCS.${PROG}  ?=	${SRCS}
 _srcsall +=	${SRCS}
-.endif
+.elif defined(LIB)
+SRCS     ?=	${LIB}.c
+_srcsall +=	${SRCS}
+.endif # defined(PROG)
 
 .if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc)
 src_type   +=	cxx
