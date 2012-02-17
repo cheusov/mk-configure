@@ -23,7 +23,18 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ========== server ===========; \
+	${MAKE} ${MAKEFLAGS} server > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ========== client ===========; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} client > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\

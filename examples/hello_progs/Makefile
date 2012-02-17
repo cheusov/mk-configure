@@ -1,6 +1,6 @@
 PROGS =		client server
-SRCS.client =	client.c common.c
-SRCS.server =	server.c common.c
+SRCS.client =	client.c client_puts.c
+SRCS.server =	server.c server_puts.c
 
 WARNS =		4
 
