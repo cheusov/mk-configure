@@ -33,6 +33,13 @@
 /objdir/hello_lex.test.out.tmp
 /objdir/input.txt
 /objdir/test.mk
+==== SHRTOUT=yes ====
+checking for compiler type... nnn
+checking for program lex... nnn
+checking for program cc... nnn
+LEX: hello_lex.l
+CC: hello_lex.c
+LD: hello_lex
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

@@ -36,6 +36,10 @@
 /objdir/hello_yacc.test.out.tmp
 /objdir/input.txt
 /objdir/test.mk
+==== SHRTOUT=yes ====
+YACC: calc.y
+CC: calc.c
+LD: hello_calc
 ======= distclean ==========
 /objdir/Makefile
 /objdir/calc.y

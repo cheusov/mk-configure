@@ -26,6 +26,11 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
+	echo ==== SHRTOUT=yes ====; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	env MKCATPAGES=no MKHTML=no SHRTOUT=yes ${MAKE} ${MAKEFLAGS} all 2>&1 |\
+	mkc_test_helper2; \
+	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
