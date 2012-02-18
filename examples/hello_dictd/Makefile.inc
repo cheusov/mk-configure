@@ -3,3 +3,6 @@ MKPIE ?= 	yes
 
 # Enable SSP
 USE_SSP ?=	yes
+
+# Enable RELRO
+USE_RELRO ?=	yes

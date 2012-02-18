@@ -27,6 +27,10 @@ CFLAGS +=	${CFLAGS.ssp}
 CXXFLAGS +=	${CXXFLAGS.ssp}
 .endif
 
+.if ${USE_RELRO:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.relro}
+.endif
+
 SHRTOUT ?=	no
 
 .if ${SHRTOUT:tl} != "no"

@@ -5,8 +5,6 @@ ${PRINTOBJDIR}
 
 Plan -2)
 
-  Compiler/linker specific HARDENING_CFLAGS/LDFLAGS!
-
   OBJDIR_<subprj> for mkc.sub{prj,dir}.mk
 
   Do not cache negative results for MKC_REQUIRE_*

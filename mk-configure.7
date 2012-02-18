@@ -452,8 +452,6 @@ See USE_SSP variable for more information.
 If "yes", enables stack protection code, which detects stack overflows
 and aborts the program. This enhances security but imposes some
 performance penalty.
-.RI < "Iu" >
-.RI [ yes ]
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -637,6 +635,12 @@ create a regular executable.
 .\" For example, if COPTS.foobar is
 .\" set to "-g", "-g" will be added to COPTS only when compiling
 .\" the "foobar" application.
+.IP USE_RELRO
+If "yes", enables a technique to harden the data sections of an ELF
+binary/process.  For security reasons it makes sense to set it to YES, it
+may slow down application startup, though.
+.RI < "Iu" >
+.RI [ no ]
 .IP EXPORT_DYNAMIC
 If "yes", add all symbols to the dynamic symbol table, that is make
 all symbols visible from dynamic objects at run time (e.g. dlopen-ed

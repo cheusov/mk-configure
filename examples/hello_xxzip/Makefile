@@ -7,6 +7,7 @@ MKC_REQUIRE_PROGS =	${POD2MAN} ${POD2HTML}
 
 MKPIE ?=	yes
 USE_SSP ?=	yes
+USE_RELRO ?=	yes
 
 WARNS =		4
 
