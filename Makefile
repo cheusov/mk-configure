@@ -77,7 +77,7 @@ SYMLINKS+=	mkc_imp.intexts.mk ${MKFILESDIR}/mkc.intexts.mk
 
 CLEANFILES+=		configure.mk *.cat1 *.html1 ChangeLog
 
-INFILES+=		configure.mk mkc_imp.vars.mk
+INFILES+=		configure.mk mkc_imp.vars.mk mk-configure.7
 INSCRIPTS+=		mkc_check_version mkcmake
 INTEXTS_REPLS+=		version        ${VERSION}
 INTEXTS_REPLS+=		AWK            ${AWK}
