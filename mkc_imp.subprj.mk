@@ -53,4 +53,6 @@ ${dir}: all-${dir}
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
 
+.include <mkc_imp.objdir.mk>
+
 .endif # _MKC_IMP_SUBPRJ_MK

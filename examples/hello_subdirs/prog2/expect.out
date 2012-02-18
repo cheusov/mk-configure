@@ -1,4 +1,6 @@
 Hello World2
+OBJDIR_prog1=prog1
+OBJDIR_prog2=prog2
 =========== all ============
 /objdir/Makefile
 /objdir/expect.out

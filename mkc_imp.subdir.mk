@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2012 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
@@ -12,7 +12,7 @@ _MKC_IMP_SUBDIR_MK := 1
 
 .for dir in ${SUBDIR}
 .if empty(NOSUBDIR:U:M${dir})
-__REALSUBDIR += ${dir}
+__REALSUBPRJ += ${dir}
 .endif
 .endfor
 
@@ -25,7 +25,7 @@ test_target =
 # for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"
 # but have to assign to __TARGDIR first.
 .for targ in ${TARGETS} ${test_target}
-.for dir in ${__REALSUBDIR}
+.for dir in ${__REALSUBPRJ}
 __TARGDIR := ${dir}
 .if ${__TARGDIR} == ".WAIT"
 SUBDIR_${targ} += .WAIT
@@ -36,18 +36,20 @@ SUBDIR_${targ} += ${targ}-${dir}
 .endif # .WAIT
 .endfor # dir
 
-.if defined(__REALSUBDIR)
+.if defined(__REALSUBPRJ)
 ${targ}: ${SUBDIR_${targ}}
 .endif
 
 .endfor # targ
 
-.for dir in ${__REALSUBDIR}
+.for dir in ${__REALSUBPRJ}
 .PHONY: ${dir}
 ${dir}: all-${dir}
 .endfor # dir
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS} ${test_target}:
+
+.include <mkc_imp.objdir.mk>
 
 .endif # _MKC_IMP_SUBDIR_MK
