@@ -3,20 +3,23 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-# .endif for the next line is in the end of file
-.if defined(LUA_LMODULES) || defined(LUA_CMODULE)
+.ifdef LUA_LMODULES
+LUA_MODULES   +=	${LUA_LMODULES:R}
+.endif
 
+.if defined(LUA_MODULES) || defined(LUA_CMODULE)
 PKG_CONFIG_DEPS  +=	lua
 
 #### .lua modules
-.if defined(LUA_LMODULES)
+.if defined(LUA_MODULES)
 .if !defined(LUA_LMODDIR)
 PKG_CONFIG_VARS.lua +=	INSTALL_LMOD
 LUA_LMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
 .endif
-FILES               +=	${LUA_LMODULES}
-.for i in ${LUA_LMODULES}
-FILESDIR_${i}        =	${LUA_LMODDIR}
+.for i in ${LUA_MODULES}
+LUA_SRCS.${i}       ?=	${i:S/./_/g}.lua
+FILES               +=	${LUA_SRCS.${i}}
+FILESDIR_${LUA_SRCS.${i}} =	${LUA_LMODDIR}
 .endfor # i
 .endif # defined(LUA_LMODULES)
 
