@@ -21,6 +21,7 @@ dictzip: fake5=5
 dictzip: fake6=6
 =========== all ============
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_funclib_deflate.c
@@ -137,6 +138,7 @@ dictzip: fake6=6
 ======== uninstall =========
 ========== nodeps-cleandir-dictfmt subdir-clean-dictzip ===========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/dict/Makefile
 /objdir/dict/dict
 /objdir/dict/dict.1
@@ -195,6 +197,7 @@ dictzip: fake6=6
 /objdir/test.mk
 ========== clean ===========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
@@ -228,6 +231,7 @@ dictzip: fake6=6
 /objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
@@ -261,6 +265,7 @@ dictzip: fake6=6
 /objdir/test.mk
 ======= all-dict ==========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
@@ -336,6 +341,7 @@ dictzip: fake6=6
 ======= uninstall-dict ==========
 ========== clean-dict ===========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
@@ -373,6 +379,7 @@ dictzip: fake6=6
 /objdir/test.mk
 ======= cleandir-dict ==========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
@@ -418,6 +425,7 @@ dictzip: fake6=6
 ======= uninstall-doc ==========
 =========== all with NOSUBDIR ============
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_funclib_deflate.c

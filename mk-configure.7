@@ -604,6 +604,11 @@ I.e, don't build catman pages, man pages, info
 documentation,...
 .RI < "Iu" >
 .RI [ yes ]
+.IP MKPIE
+If "yes", create Position Independent Executable (PIE), otherwise
+create a regular executable.
+.RI < "Mu" >
+.RI [ no ]
 .\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
@@ -619,7 +624,7 @@ If "yes", add all symbols to the dynamic symbol table, that is make
 all symbols visible from dynamic objects at run time (e.g. dlopen-ed
 objects), otherwise only symbols referenced by some object file will
 be exported.
-.RI < "Mu" >
+.RI < "M" >
 .RI [ no ]
 .PP
 .B mkc.prog.mk

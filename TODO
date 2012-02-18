@@ -117,8 +117,6 @@ Plan2)
 
   = man page for mkc_check_compiler
 
-  = MKPIE for building Position Independent Executables
-
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
 

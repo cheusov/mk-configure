@@ -191,7 +191,7 @@ CFLAGS   +=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
 CXXFLAGS +=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
 
 ####################
-CFLAGS.pic.gcc.Interix =	-DPIC
+CFLAGS.pic.gcc.Interix =
 CFLAGS.pic.gcc =		-fPIC -DPIC
 CFLAGS.pic.icc =		-fPIC -DPIC
 CFLAGS.pic.clang =		-fPIC -DPIC
@@ -204,6 +204,10 @@ CFLAGS.pic.decc =		# ?
 
 CFLAGS.pic   ?=	${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:U}}
 CXXFLAGS.pic ?=	${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
+
+####################
+CFLAGS.pie   ?=	${CFLAGS.pic}
+CXXFLAGS.pie ?=	${CXXFLAGS.pic}
 
 ####################
 RANLIB.IRIX64 =		true
@@ -302,6 +306,15 @@ LDFLAGS.soname ?=		${LDFLAGS.soname.${CC_TYPE}:U${LDFLAGS.soname.ld:@v@${CFLAGS.
 .elif ${LDREAL:U0} == ${CXX:U0}
 LDFLAGS.shared ?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}:U-shared}}
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
+.endif
+
+####################
+LDFLAGS.pie.gnuld =		-pie
+
+LDFLAGS.pie ?=			${LDFLAGS.pie.${LD_TYPE}:U-pie}
+
+.if ${LDREAL:U0} != ${LD:U0}
+LDFLAGS.pie := ${LDFLAGS.pie:S/^/-Wl,/g}
 .endif
 
 ############################################################

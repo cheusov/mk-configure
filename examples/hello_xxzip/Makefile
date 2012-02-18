@@ -5,6 +5,8 @@ MAN  =		xxzip.1
 # we need pod2man and pod2html.
 MKC_REQUIRE_PROGS =	${POD2MAN} ${POD2HTML}
 
+MKPIE ?=	yes
+
 WARNS =		4
 
 DOCDIR ?=	${DATADIR}/doc/${PROG}

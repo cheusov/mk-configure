@@ -16,6 +16,12 @@ _MKC_IMP_SYS_MK := 1
 
 .LIBS:		.a
 
+.if ${MKPIE:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.pie}
+CFLAGS +=	${CFLAGS.pie}
+CXXFLAGS +=	${CXXFLAGS.pie}
+.endif
+
 SHRTOUT ?=	no
 
 .if ${SHRTOUT:tl} != "no"
