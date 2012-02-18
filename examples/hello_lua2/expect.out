@@ -45,3 +45,22 @@ foobar
 /objdir/foobar
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
+========= install2 ==========
+/objdir
+/objdir/Makefile
+/objdir/bar.lua
+/objdir/expect.out
+/objdir/foo.lua
+/objdir/foobar
+/objdir/hello_lua2.test.out.tmp
+/objdir/home
+/objdir/home/cheusov
+/objdir/home/cheusov/local
+/objdir/home/cheusov/local/bin
+/objdir/home/cheusov/local/bin/foobar
+/objdir/home/cheusov/local/share
+/objdir/home/cheusov/local/share/lua
+/objdir/home/cheusov/local/share/lua/X.Y
+/objdir/home/cheusov/local/share/lua/X.Y/bar.lua
+/objdir/home/cheusov/local/share/lua/X.Y/foo.lua
+/objdir/test.mk

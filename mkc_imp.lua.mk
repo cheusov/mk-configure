@@ -9,11 +9,11 @@ LUA_SRCS.${i:T:R}  =	${i}
 .endfor
 
 .if defined(LUA_MODULES) || defined(LUA_CMODULE)
-PKG_CONFIG_DEPS  +=	lua
 
 #### .lua modules
 .if defined(LUA_MODULES)
 .if !defined(LUA_LMODDIR)
+PKG_CONFIG_DEPS     +=	lua
 PKG_CONFIG_VARS.lua +=	INSTALL_LMOD
 LUA_LMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
 .endif
@@ -27,6 +27,8 @@ FILESNAME_${LUA_SRCS.${i}} =	${i:S|.|/|g:T}.lua
 
 ### .c module
 .if defined(LUA_CMODULE)
+PKG_CONFIG_DEPS     +=	lua
+
 .if !defined(LUA_CMODDIR)
 PKG_CONFIG_VARS.lua +=	INSTALL_CMOD
 LUA_CMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_CMOD}

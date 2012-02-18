@@ -1,4 +1,4 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr
+DISTCLEANDIRS+=	${.OBJDIR}/usr ${.OBJDIR}/home
 
 .PHONY : test_output
 test_output:
@@ -29,6 +29,16 @@ test_output:
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= install2 ==========; \
+	env PREFIX=/home/cheusov/local \
+	    LUA_LMODDIR=/home/cheusov/local/share/lua/5.1 \
+	    ${MAKE} ${MAKEFLAGS} all install DESTDIR=${.OBJDIR} \
+		> /dev/null; \
+	find ${.OBJDIR} -type f -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
+	rm -rf ${.OBJDIR}/home; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null
 
 .include <mkc.minitest.mk>
