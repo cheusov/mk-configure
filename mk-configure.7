@@ -435,12 +435,18 @@ Options for C and C++ compilers for generating position independent
 code.  On some platforms it makes sense to override these variables
 (initialized by mk-configure) for better performance, for example,
 one may use -fpic instead of -fPIC with GNU C/C++ compilers.
+See SHLIB_MAJOR, MKPIE etc. variables for more information.
 .RI < "Iu" >
 .IP "CFLAGS.pie, CXXFLAGS.pie"
 Options for C and C++ compilers for generating position independent
 executables.  On some platforms it makes sense to override these variables
 (initialized by mk-configure) for better performance, for example,
 one may use -fpic instead of -fPIC with GNU C/C++ compilers.
+See MKPIE variable for more information.
+.RI < "Iu" >
+.IP "CFLAGS.ssp, CXXFLAGS.ssp"
+Options for C and C++ compilers for generating stack protection code.
+See USE_SSP variable for more information.
 .RI < "Iu" >
 .IP USE_SSP
 If "yes", enables stack protection code, which detects stack overflows
