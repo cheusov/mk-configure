@@ -20,8 +20,11 @@ INSTALL_INFO ?=	install-info
 
 .SUFFIXES: .txi .texi .texinfo .info
 
+MESSAGE.texinfo ?=	@${_MESSAGE} "TEXINFO: ${.TARGET}"
+
 .txi.info .texi.info .texinfo.info:
-	${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
+	${MESSAGE.texinfo}
+	${_V}${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
 
 .if defined(TEXINFO) && !empty(TEXINFO)
 realall: ${TEXINFO}
@@ -30,9 +33,6 @@ INFOFILES =	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 
 .if ${MKINFO:tl} != "no"
 realall: ${INFOFILES}
-
-.if ${MKINSTALL:tl} == "yes"
-realinstall: infoinstall
 
 CLEANFILES +=	${INFOFILES}
 
@@ -51,13 +51,15 @@ __infoinstall: .USE
 	@${INSTALL_INFO} --remove --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 	${INSTALL_INFO} --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 
+.if ${MKINSTALL:tl} == "yes"
+realinstall: infoinstall
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
-.endfor
+.endfor # F
+.endif # MKINSTALL
 
 UNINSTALLFILES  +=	${destination_infos}
 INSTALLDIRS     +=	${destination_infos:H}
-.endif # MKINSTALL
 .endif # MKINFO
 
 .endif # TEXINFO

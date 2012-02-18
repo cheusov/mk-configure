@@ -12,7 +12,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== all+html ==========; \
-	${MAKE} ${MAKEFLAGS} all DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} all \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -29,12 +29,12 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -45,7 +45,12 @@ test_output:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ==== SHRTOUT=yes ====; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	env MKCATPAGES=no MKHTML=no SHRTOUT=yes ${MAKE} -dx ${MAKEFLAGS} all |\
+	mkc_test_helper2; \
+	\
 	true ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null
 
 .include <mkc.minitest.mk>

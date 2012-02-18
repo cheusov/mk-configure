@@ -86,3 +86,5 @@
 /objdir/shell_func2
 /objdir/shell_func3
 /objdir/test.mk
+==== SHRTOUT=yes ====
+TEXINFO: shell_func.info
