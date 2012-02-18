@@ -3,9 +3,10 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.ifdef LUA_LMODULES
-LUA_MODULES   +=	${LUA_LMODULES:R}
-.endif
+.for i in ${LUA_LMODULES}
+LUA_MODULES       +=	${i:T:R}
+LUA_SRCS.${i:T:R}  =	${i}
+.endfor
 
 .if defined(LUA_MODULES) || defined(LUA_CMODULE)
 PKG_CONFIG_DEPS  +=	lua
