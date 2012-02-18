@@ -210,6 +210,14 @@ CFLAGS.pie   ?=	${CFLAGS.pic}
 CXXFLAGS.pie ?=	${CXXFLAGS.pic}
 
 ####################
+CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param ssp-buffer-size=1
+CFLAGS.ssp.icc =		${CFLAGS.ssp.gcc}
+CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
+
+CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CC_TYPE}:U}}
+CXXFLAGS.ssp ?=	${CFLAGS.ssp.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CXX_TYPE}:U}}
+
+####################
 RANLIB.IRIX64 =		true
 
 RANLIB ?=		${RANLIB.${TARGET_OPSYS}:Uranlib}

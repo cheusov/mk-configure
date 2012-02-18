@@ -148,6 +148,9 @@ MKOBJDIRS ?=	no
 
 MKSHARE   ?=	yes
 
+MKPIE     ?=	no
+USE_SSP   ?=	no
+
 MKDLL     ?=	no
 .if ${MKDLL:tl} == "only"
 MKDLL      =	yes

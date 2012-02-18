@@ -6,6 +6,7 @@ MAN  =		xxzip.1
 MKC_REQUIRE_PROGS =	${POD2MAN} ${POD2HTML}
 
 MKPIE ?=	yes
+USE_SSP ?=	yes
 
 WARNS =		4
 

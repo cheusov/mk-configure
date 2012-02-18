@@ -432,10 +432,22 @@ and warning level (WARNS).
 .RI < "Iu" >
 .IP "CFLAGS.pic, CXXFLAGS.pic"
 Options for C and C++ compilers for generating position independent
-code.  On some platforms it makes sense to override this variable
+code.  On some platforms it makes sense to override these variables
 (initialized by mk-configure) for better performance, for example,
-one may use -fpic instead of -fPIC for GNU compiler.
+one may use -fpic instead of -fPIC with GNU C/C++ compilers.
 .RI < "Iu" >
+.IP "CFLAGS.pie, CXXFLAGS.pie"
+Options for C and C++ compilers for generating position independent
+executables.  On some platforms it makes sense to override these variables
+(initialized by mk-configure) for better performance, for example,
+one may use -fpic instead of -fPIC with GNU C/C++ compilers.
+.RI < "Iu" >
+.IP USE_SSP
+If "yes", enables stack protection code, which detects stack overflows
+and aborts the program. This enhances security but imposes some
+performance penalty.
+.RI < "Iu" >
+.RI [ yes ]
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk

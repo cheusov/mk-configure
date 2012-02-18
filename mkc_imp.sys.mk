@@ -22,6 +22,11 @@ CFLAGS +=	${CFLAGS.pie}
 CXXFLAGS +=	${CXXFLAGS.pie}
 .endif
 
+.if ${USE_SSP:U:tl} == "yes"
+CFLAGS +=	${CFLAGS.ssp}
+CXXFLAGS +=	${CXXFLAGS.ssp}
+.endif
+
 SHRTOUT ?=	no
 
 .if ${SHRTOUT:tl} != "no"
