@@ -1307,15 +1307,32 @@ Do not use it directly.
 It provides support for Lua programming language, i.e. building and installing
 Lua- and/or C-based modules.
 The following variables are provided:
+.IP LUA_MODULES
+List of Lua modules to build and install.
+Dot in the module name separates a dirname from basename, that is
+module
+.I mod
+is installed to
+.I ${LUA_LMODDIR}/${mod:S|.|/|g}.lua
+.RI < "M" >
+.\" .IP LUA_SRCS.<mod>
+.\" Sources for each module
+.\" .RI [ ${mod:S/./_/g}.lua ]
+.\" .RI < M >
 .IP LUA_LMODULES
-List of .lua modules. They are installed to
-.I ${LUA_LMODDIR}
-directory.
+Deprecated. The same as
+.I LUA_MODULES
+but with .lua extension.
 .RI < "M" >
 .IP LUA_CMODULE
-Compiled Lua module written in, e.g., C or C++. It is installed to
-.I ${LUA_CMODDIR}
-directory.
+Compiled Lua module written in, e.g., C or C++. Module is installed to
+.br
+.I ${LUA_CMODDIR}/${LUA_CMODULE:S|.|/|g}.so
+.RI < "M" >
+.IP SRCS
+List of source files to build the LUA_CMODULE. 
+SRCS defaults to 
+.IR ${LUA_CMODULE:S|.|_|g}.c .
 .RI < "M" >
 .IP LUA_LMODDIR
 Directory for Lua modules written in Lua. It is assigned

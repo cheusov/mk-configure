@@ -19,7 +19,8 @@ LUA_LMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
 .for i in ${LUA_MODULES}
 LUA_SRCS.${i}       ?=	${i:S/./_/g}.lua
 FILES               +=	${LUA_SRCS.${i}}
-FILESDIR_${LUA_SRCS.${i}} =	${LUA_LMODDIR}
+FILESDIR_${LUA_SRCS.${i}} =	${LUA_LMODDIR}/${i:S|.|/|g:H}
+FILESNAME_${LUA_SRCS.${i}} =	${i:S|.|/|g:T}.lua
 .endfor # i
 .endif # defined(LUA_LMODULES)
 
@@ -29,12 +30,12 @@ FILESDIR_${LUA_SRCS.${i}} =	${LUA_LMODDIR}
 PKG_CONFIG_VARS.lua +=	INSTALL_CMOD
 LUA_CMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_CMOD}
 .endif
-LIB        =		${LUA_CMODULE}
-SRCS      ?=		${LUA_CMODULE}.c
+LIB        =		${LUA_CMODULE:S|.|/|:T}
+SRCS      ?=		${LUA_CMODULE:S/./_/g}.c
 MKDLL      =		Only
 LDCOMPILER =		Yes
 DLL_EXT    =		.so
-LIBDIR     =		${LUA_CMODDIR}
+LIBDIR     =		${LUA_CMODDIR}/${LUA_CMODULE:S|.|/|g:H}
 .endif # defined(LUA_LMODULES)
 
 ######################
