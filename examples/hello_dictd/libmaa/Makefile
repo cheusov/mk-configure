@@ -9,6 +9,6 @@ SHLIB_MAJOR =	1
 SHLIB_MINOR =	2
 SHLIB_TEENY =	0
 
-WARN ?=		4
+WARNS ?=	4
 
 .include <mkc.lib.mk>
