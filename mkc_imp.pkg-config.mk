@@ -27,7 +27,7 @@ MKC_REQUIRE_PROGS+=	pkg-config
 
 .for l in ${PKG_CONFIG_DEPS}
 _lpair  =	${l:C/(>=|<=|=|>|<)/ & /g}
-_pcname =	${PCNAME.${_lpair:[1]:S/-/+/g:S/+/p/g:S/./_/g}:U${_lpair:[1]}}
+_pcname =	${PCNAME.${_lpair:[1]:S/-/_/g:S/+/p/g:S/./_/g}:U${_lpair:[1]}}
 _lp    :=	${_pcname} ${_lpair:[2]} ${_lpair:[3]}
 _ln     =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
