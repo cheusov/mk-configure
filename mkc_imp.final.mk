@@ -12,4 +12,10 @@ LDADD +=	${DPLIBS}
 LDADD +=	${LEXLIB}
 .endif
 
+.for i in ${EXPORT_VARNAMES}
+.if empty(NOEXPORT_VARNAMES:U:M${i})
+export_cmd  +=	${i}=${${i}:Q}; export ${i};
+.endif
+.endfor
+
 .endif # MKC_IMP.FINAL.MK

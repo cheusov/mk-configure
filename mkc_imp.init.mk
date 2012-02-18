@@ -238,12 +238,6 @@ ${TARGETS}:
 
 ###########
 
-.for i in ${EXPORT_VARNAMES}
-.if empty(NOEXPORT_VARNAMES:U:M${i})
-export_cmd  +=	${i}=${${i}:Q}; export ${i};
-.endif
-.endfor
-
 VERBOSE_ECHO ?=	echo
 ### for mkc.subdir.mk and mkc.subprj.mk
 __recurse: .USE
