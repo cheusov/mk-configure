@@ -37,6 +37,9 @@ test_output:
 	${MAKE} ${MAKEFLAGS} all installdirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	true ======= distclean ==========; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null
 
 .include <mkc.minitest.mk>
