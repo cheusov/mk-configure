@@ -1,5 +1,3 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr
-
 .PHONY : test_output
 test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \

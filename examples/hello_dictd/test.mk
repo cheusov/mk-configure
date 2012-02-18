@@ -95,5 +95,4 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 
-CLEANDIRS+=	${.CURDIR}/usr
 .include <mkc.minitest.mk>

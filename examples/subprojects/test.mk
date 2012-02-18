@@ -68,5 +68,4 @@ test_output :
 	${.CURDIR}/usr/bin/hello_subprojects; \
 	rm -rf ${.CURDIR}/usr
 
-CLEANDIRS+=	${.CURDIR}/usr
 .include <mkc.minitest.mk>

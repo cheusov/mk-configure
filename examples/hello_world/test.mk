@@ -1,4 +1,4 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr *.tar *.tar.gz *.tar.bz2
+DISTCLEANDIRS+=	*.tar *.tar.gz *.tar.bz2
 
 tartf_cleanup=	sed -e 's,^[.]/,,' -e 's,/$$,,' -e '/^[.]*$$/ d'
 
