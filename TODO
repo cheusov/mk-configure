@@ -23,7 +23,6 @@ Plan -1)
   - EXPORT_DYNAMIC_SYMBOLS - add the specified symbols to
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP
-  - mkc_check_compiler: ${CC} -E
   - recheck documentation for Makefile.rec
   - Syllable, Haiku OSes and HURD
   - lcc and tcc compilers
