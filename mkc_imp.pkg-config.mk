@@ -26,8 +26,10 @@ MKC_REQUIRE_PROGS+=	pkg-config
 .if ${HAVE_PROG.pkg-config}
 
 .for l in ${PKG_CONFIG_DEPS}
-_lp =	${l:C/(>=|<=|=|>|<)/ & /g}
-_ln =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
+_lpair  =	${l:C/(>=|<=|=|>|<)/ & /g}
+_pcname =	${PCNAME.${_lpair:[1]:S/-/+/g:S/+/p/g:S/./_/g}:U${_lpair:[1]}}
+_lp    :=	${_pcname} ${_lpair:[2]} ${_lpair:[3]}
+_ln     =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
 PKG_CONFIG.exists.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -s -n '${_ln}' -m '[pkg-config] ${_lp}' \
@@ -70,6 +72,8 @@ PKG_CONFIG.var.${_ln}.${i} != env ${mkc.environ} mkc_check_custom \
 
 .undef _ln
 .undef _lp
+.undef _pcname
+.undef _lpair
 
 .endif # HAVE_PROG.pkg-config
 

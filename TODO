@@ -26,7 +26,6 @@ Plan -1)
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP
   - mkc_check_compiler: ${CC} -E
-  - PCNAME.lua or LUA_PCNAME?
   - recheck documentation for Makefile.rec
   - Syllable, Haiku OSes and HURD
   - lcc and tcc compilers

@@ -1549,6 +1549,14 @@ List of variables to check for library <lib>.
 .IP PKG_CONFIG.var.<lib>.<var>
 Variable value (pkg-config --variable=<var> <lib>).
 .RI < "Iu" >
+.IP PCNAME.<lib>
+On some systems several versions of the same library may be installed
+to differet directories (for example liblua for Lua 5.1 and 5.2).
+In order to avoid conflicts between them pc name is changed
+(for example, lua5.1 and lua5.2 instead of lua).
+This variable is a map from library name to pc name.
+.RI < "Iu" >
+.RI [ ${lib} ]
 .SS "mkc_imp.pod.mk"
 .B mkc_imp.pod.mk
 is internal include file which is included from
