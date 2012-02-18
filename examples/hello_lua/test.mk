@@ -1,4 +1,4 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr ${.CURDIR}/opt
+DISTCLEANDIRS+=	${.OBJDIR}/usr ${.OBJDIR}/opt ${.OBJDIR}/home
 
 .PHONY : test_output
 test_output:
