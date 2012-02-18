@@ -42,8 +42,6 @@ _use_prog :=	1
 .include <mkc_imp.pkg-config.mk>
 .include <mkc_imp.dep.mk>
 .include <mkc_imp.sys.mk>
-
-.include <mkc_imp.final.mk>
 .endif # _use_prog || LIB
 
 .if defined(SUBDIR)
@@ -71,6 +69,7 @@ subprj-distclean:
 
 .endif # SUBDIR || SUBPRJ
 
+.include <mkc_imp.final.mk>
 .include <mkc_imp.arch.mk>
 #
 
