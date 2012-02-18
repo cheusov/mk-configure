@@ -1,4 +1,3 @@
-@sysconfdir@ in mk-configure.7
 MAKEVERBOSE
 .lua.luac:
 ${PRINTOBJDIR}

@@ -30,7 +30,7 @@ crossplatform development and software building.
 To get system-specific configuration parameters, mkc.*.mk include
 files will try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
-make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf is
+make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf, is
 included.  These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
 In triangle brackets -- typical way of use, where
@@ -348,7 +348,7 @@ Version of
 This variable is always set to non-empty value when mkc.*.mk include files are used,
 so you can use it to initialize mk-c variables in mk.conf. For example:
 .VS
-/etc/mk.conf:
+@sysconfdir@/mk.conf:
    ...
    .ifdef MKC_VERSION
    COPTS?=      -O2 -Werror
@@ -363,7 +363,7 @@ it makes sense to set this variable explicitely in project's Makefile.
 This variable is initialized before including mk.conf, so you can use it
 to change build options, e.g. during development process.
 .VS
-/etc/mk.conf:
+@sysconfdir@/mk.conf:
    ...
    .ifdef MKC_VERSION
    ...
@@ -1636,12 +1636,12 @@ $
 .VE
 .SH "ENVIRONMENT VARIABLES"
 .IP MAKECONF
-Path to mk.conf file .include-d by mkc.*.mk files
+Path to mk.conf file .include-ed by mkc.*.mk files
 .SH "FILES"
 .IP @sysconfdir@/mk.conf
- .include-d by mkc.*.mk if exists
+ .include-ed by mkc.*.mk if exists
 .IP /etc/mk.conf
- .include-d by mkc.*.mk if exists
+ .include-ed by mkc.*.mk if exists
 .SH "BUGS"
 Target
 .IR errorcheck " (" configure ")"
