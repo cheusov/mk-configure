@@ -183,7 +183,9 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t:S/;/:/g}"
 HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/;/ /g}
 .endif
 .if ${HAVE_VAR.${d:S/./_/g:S/;/./g:S|/|_|g}}
+.if empty(MKC_REQUIRE_VARS:U:S/:/;/g:M${d})
 MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
+.endif
 .endif
 .endfor
 

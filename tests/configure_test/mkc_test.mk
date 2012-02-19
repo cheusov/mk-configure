@@ -42,6 +42,8 @@ MKC_CHECK_VARS+=	errno:errno.h
 MKC_CHECK_VARS+=	bad_var:bar_header
 MKC_CHECK_VARS+=	mkc_test_var:include/mkc_test.h
 
+MKC_REQUIRE_VARS+=	mkc_test_var2:include/mkc_test.h
+
 MKC_CHECK_FUNCS2+=	strcmp:string.h
 MKC_CHECK_FUNCS3+=	strcpy
 MKC_CHECK_FUNCS1+=	bad_func bad_func:bad_header
