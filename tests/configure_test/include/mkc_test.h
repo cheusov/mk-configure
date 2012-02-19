@@ -10,4 +10,5 @@ struct mkc_test_t {
 	struct test_t {
 		int c;
 	} b;
+	int d;
 };
