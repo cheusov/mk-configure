@@ -141,7 +141,7 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|;|_|g:S|.|_|g:tu}=${SIZEO
 HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/;/ /g}
 .endif
 .if ${HAVE_DEFINE.${d:S/./_/g:S/;/./g:S|/|_|g}}
-.if empty(MKC_REQUIRE_DEFINES:U:M${d})
+.if empty(MKC_REQUIRE_DEFINES:U:S/:/;/g:M${d})
 MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
@@ -162,7 +162,9 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d:S/;/:/g}"
 HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/;/ /g}
 .endif
 .if ${HAVE_TYPE.${t:S/./_/g:S/;/./g:S|/|_|g}}
+.if empty(MKC_REQUIRE_TYPES:U:S/:/;/g:M${t})
 MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
+.endif
 .endif
 .endfor
 

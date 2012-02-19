@@ -53,6 +53,8 @@ MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 MKC_CHECK_TYPES+=	size_t:string.h
 MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
 
+MKC_REQUIRE_TYPES+=	size_t:stdlib.h
+
 MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:time.h
 MKC_CHECK_MEMBERS+=	struct-sockaddr_in.sin_addr.s_addr:arpa/inet.h:netinet/in.h
 MKC_CHECK_MEMBERS+=	bad.member
