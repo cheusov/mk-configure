@@ -61,11 +61,11 @@ test_output :
 	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
 	${MAKE} ${MAKEFLAGS} all installdirs install >&2; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	LD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
 	${.CURDIR}/usr/bin/hello_subprojects; \
-	rm -rf ${.CURDIR}/usr
+	\
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

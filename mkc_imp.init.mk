@@ -164,7 +164,7 @@ mkc_printobjdir:
 ###########
 
 distclean: cleandir
-.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS) && !commands(cleandir)
+.if !commands(cleandir)
 cleandir: mkc_cleandir
 .endif
 
