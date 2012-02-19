@@ -21,6 +21,8 @@ AWK?=/bin/awk
 ##################################################
 .PATH:			${.CURDIR}
 
+SHRTOUT=		yes
+
 PROJECTNAME=		mk-configure
 
 VERSION=		0.21.2
