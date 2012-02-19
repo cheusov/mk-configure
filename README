@@ -313,33 +313,44 @@ INSTALLATION:
         ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
         http://www.crufty.net/help/sjg/bmake.html
 
+      NOTE: Some versions of bmake (shipped with NetBSD-5.1, for
+      example) contains bugs which are critical for mk-configure.
+      Please make sure you install stable version of bmake and
+      'bmake test' succeeds (see section 3 below).
+
    2)
-      cd mk-configure-X.Y.Z/
-      export PREFIX=/usr/local MKFILESDIR=/usr/local/share/mkc-mk
-      emacs sys.mk # if needed
-      bmake all
-      bmake test # For testing mk-configure, this step is optional.
-                 # Note that testing requires lex(1), yacc(1),
-                 # pkg-config(1), glib2 library and other things
-                 # that are not mandatory for using mk-configure
-                 # and may be not available on your system.
-                 # If "bmake test" fails on your platform, please let
-                 # me know. If for some reason you want to exclude some
-                 # regression tests (they are in "tests" and "examples"
-                 # subdirectories), you may list them in NOSUBDIR variable,
-                 # e.g.
-                 # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
-      bmake install
+      # cd mk-configure-X.Y.Z/
 
-      Of course, you can change /usr/local to whatever you want.
-      PREFIX defaults to /usr/local, MKFILESDIR -- to /usr/local/share/mkc-mk
+      # export PREFIX=/usr/local (the default)
+        or
+      # export PREFIX=/usr SYSCONFDIR=/etc
 
-      Sample:
-          export PREFIX=/usr
-	  export SYSCONFDIR=/etc
-          bmake install
+      # emacs sys.mk # if needed
 
-   3) You can also build a simple presentation by running either of the
+      # bmake all
+
+      Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
+      to whatever you want. PREFIX defaults to /usr/local.
+
+   3)
+      # bmake test # For testing mk-configure, this step is optional.
+                   # Note that testing requires lex(1), yacc(1),
+                   # pkg-config(1), glib2 library and other things
+                   # that are not mandatory for using mk-configure
+                   # and may be not available on your system.
+                   # If "bmake test" fails on your platform, please let
+                   # me know. If for some reason you want to exclude some
+                   # regression tests (they are in "tests" and "examples"
+                   # subdirectories), you may list them in NOSUBDIR variable,
+                   # e.g.
+                   # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
+
+   4)
+      # bmake install
+        or
+      # env DESTDIR=/tmp/temproot bmake install
+
+   5) You can also build a simple presentation by running either of the
       following commands:
 
           bmake doc
@@ -359,21 +370,21 @@ INSTALLATION:
     directory (${PREFIX}/share/mkc-mk by default) and the same for
     empty sys.mk file.
 
-   4) Usage
+   6) Usage
 
     For use of mk-configure for real-life development you may need the
-    following programs: C/C++/Fortran/Pascal/Objective-C compilers and
+    following programs: C/C++/Fortran/Pascal/Objective-C compilers,
     linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
     pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
-    nm, tsort, pkg-config, zip and maybe others.  Of course you'll
+    nm, tsort, pkg-config, zip and others.  Of course you'll
     need awk, sed, grep and some other POSIX tools too.
 
 -------------------------------------------------------------------------
 PACKAGES
 
-  If you use pkgsrc (cross platforms packaging system developped
-  mainly by NetBSD team), you may find package for latest mk-configure
-  in wip/mk-configure.
+  If you use pkgsrc (cross platforms packaging system developped by
+  NetBSD team), you may find package for latest mk-configure in
+  devel/mk-configure.
 
   Debian/Ubuntu Linux users may install mk-configure by adding
     the following lines
@@ -384,7 +395,7 @@ PACKAGES
     to /etc/apt/sources.list and then using apt or aptitude commands.
     Binary packages are available only for Debian/Lenny/i386.
 
-  mk-configure is also packaged in FreeBSD.
+  mk-configure is also packaged in FreeBSD ports (devel/mk-configure).
 
 -------------------------------------------------------------------------
 FEEDBACK
