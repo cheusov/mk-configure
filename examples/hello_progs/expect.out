@@ -1,3 +1,4 @@
+PROJECTNAME=hello_progs
 client: I am a client
 server: I am a server
 =========== all ============

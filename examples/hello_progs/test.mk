@@ -1,6 +1,7 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
+	echo PROJECTNAME=${PROJECTNAME}; \
 	${.OBJDIR}/client; \
 	${.OBJDIR}/server; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
