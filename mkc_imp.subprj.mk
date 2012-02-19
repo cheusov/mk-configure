@@ -18,15 +18,9 @@ __REALSUBPRJ += ${dir}
 
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
 
-.if !target(test)
-test_target = test
-.else
-test_target =
-.endif
-
 SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
-.for targ in ${TARGETS} ${test_target}
+.for targ in ${TARGETS}
 .for dir in ${__REALSUBPRJ}
 .PHONY: nodeps-${targ}-${dir} subdir-${targ}-${dir} ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
@@ -35,7 +29,9 @@ subdir-${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
 .endfor # dir
 
 .for dir in ${SUBPRJ_DFLT}
+.if !commands(${targ})
 ${targ}: ${targ}-${dir}
+.endif
 .endfor
 
 .for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
@@ -51,7 +47,7 @@ ${dir}: all-${dir}
 .endfor # dir
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-${TARGETS} ${test_target}:
+${TARGETS}:
 
 .include <mkc_imp.objdir.mk>
 

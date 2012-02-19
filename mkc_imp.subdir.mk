@@ -16,15 +16,9 @@ __REALSUBPRJ += ${dir}
 .endif
 .endfor
 
-.if !target(test)
-test_target = test
-.else
-test_target =
-.endif
-
 # for obscure reasons, we can't do a simple .if ${dir} == ".WAIT"
 # but have to assign to __TARGDIR first.
-.for targ in ${TARGETS} ${test_target}
+.for targ in ${TARGETS}
 .for dir in ${__REALSUBPRJ}
 __TARGDIR := ${dir}
 .if ${__TARGDIR} == ".WAIT"
@@ -36,8 +30,8 @@ SUBDIR_${targ} += ${targ}-${dir}
 .endif # .WAIT
 .endfor # dir
 
-.if defined(__REALSUBPRJ)
-${targ}: ${SUBDIR_${targ}}
+.if !commands(${targ})
+${targ}: ${SUBDIR_${targ}:U}
 .endif
 
 .endfor # targ
@@ -48,7 +42,7 @@ ${dir}: all-${dir}
 .endfor # dir
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-${TARGETS} ${test_target}:
+${TARGETS}:
 
 .include <mkc_imp.objdir.mk>
 

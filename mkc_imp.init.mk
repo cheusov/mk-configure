@@ -139,11 +139,6 @@ MKC_PROG.id.${PC:[1]:S/+/x/g}    =	pc
 .endif
 
 ###########
-clean:
-	-rm -f ${CLEANFILES} 2>/dev/null
-	-rm -rf ${CLEANDIRS} 2>/dev/null
-
-###########
 .PHONY : print-values
 print-values :
 .for v in ${VARS}
@@ -162,7 +157,15 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 ###########
+.if !commands(clean)
+clean: mkc_clean
+.endif
 
+mkc_clean:
+	-rm -f ${CLEANFILES} 2>/dev/null
+	-rm -rf ${CLEANDIRS} 2>/dev/null
+
+###########
 distclean: cleandir
 .if !commands(cleandir)
 cleandir: mkc_cleandir
@@ -172,8 +175,9 @@ mkc_cleandir:
 	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
 	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 
+###########
 .PHONY: realall
-.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS)
+.if !defined(SUBDIR) && !defined(SUBPRJ)
 realall : errorcheck
 .endif
 errorcheck:
@@ -204,7 +208,7 @@ LDLIBS =	${LDFLAGS} ${LDADD}
 ###########
 # skip uninstalling files and creating destination dirs
 # for mkc.subdir.mk and mkc.subprj.mk
-.if !defined(SUBDIR) && !defined(SUBPRJ) && !defined(SUBPRJS)
+.if !defined(SUBDIR) && !defined(SUBPRJ)
 
 uninstall:
 	-rm -f ${UNINSTALLFILES} 2>/dev/null
@@ -229,7 +233,7 @@ realinstall: installdirs
 
 .ORDER: installdirs install
 
-TARGETS  +=	all install clean cleandir depend \
+TARGETS  +=	all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist
 
 # Make sure all of the standard targets are defined, even if they do nothing.

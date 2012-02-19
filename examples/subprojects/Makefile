@@ -5,7 +5,7 @@ SUBDIR +=	hello
 
 MKC_REQD =	0.11.0
 
-.include <mkc.own.mk>
-.include "version.mk"
 .include "test.mk"
+.include "version.mk"
+.include <mkc.own.mk>
 .include <mkc.subdir.mk>
