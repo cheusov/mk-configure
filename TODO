@@ -12,7 +12,6 @@ Plan -2)
 ============================================================
 Plan -1)
 
-  - MKC_REQUIRE_* -> no need for -DHAVE_*
   - ./configure written in shell?
   - EXPORT_DYNAMIC_SYMBOLS - add the specified symbols to
     dynamic symbol table (GNU ld)

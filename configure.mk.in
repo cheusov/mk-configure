@@ -226,7 +226,9 @@ MKC_ERR_MSG+=		"ERROR: cannot find member ${m:S/;/:/g}"
 HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/;/ /g}
 .endif
 .if ${HAVE_FUNC${n}.${d:S/./_/g:S/;/./g:S|/|_|g}}
+.if empty(MKC_REQUIRE_FUNCS${n}:U:S/:/;/g:M${d})
 MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/;/_/g:S/./_/g:S|/|_|g}=1
+.endif
 .endif
 .endfor # d
 

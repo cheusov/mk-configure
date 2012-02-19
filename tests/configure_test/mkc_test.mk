@@ -49,6 +49,8 @@ MKC_CHECK_FUNCS3+=	strcpy
 MKC_CHECK_FUNCS1+=	bad_func bad_func:bad_header
 MKC_CHECK_FUNCS5+=	mkc_test_func:include/mkc_test.h
 
+MKC_REQUIRE_FUNCS0+=	mkc_test_func2:include/mkc_test.h
+
 MKC_CHECK_SIZEOF+=	int long-long void* size_t:string.h
 MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 
