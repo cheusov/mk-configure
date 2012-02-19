@@ -4,8 +4,6 @@ ${PRINTOBJDIR}
 
 Plan -2)
 
-  Do not cache negative results for MKC_REQUIRE_*
-
   Slides for:
     - How it works section for EXPORT_SYMBOLS
     - Sample of cross-compilation
