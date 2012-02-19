@@ -25,6 +25,8 @@ MKC_CHECK_HEADERS+=	sys/time.h string.h
 MKC_CHECK_HEADERS+=	bad_dir/bad_header.h bad_header.h
 MKC_CHECK_HEADERS+=	include/mkc_test.h
 
+MKC_REQUIRE_HEADERS+=	stdio.h
+
 MKC_CHECK_FUNCLIBS+=	strcpy sqrt:m
 MKC_CHECK_FUNCLIBS+=	bad_func:bad_lib bad_func
 

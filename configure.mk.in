@@ -84,7 +84,9 @@ MKC_REQUIRE_CUSTOM+=	${MKC_REQUIRE_BUILTINS:M${i}}
 HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
 .endif
 .if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+.if empty(MKC_REQUIRE_HEADERS:U:M${h})
 MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+.endif
 .elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
 MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
 .endif
