@@ -45,6 +45,29 @@ My email is vle@gmx.net
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
 /objdir/version.mk
+===== all SHRTOUT=yes ======
+==================================================
+all ===> libhello1
+CC: hello1.c
+AR: libhello1.a
+ranlib libhello1.a
+CC: hello1.c
+LD: libhello1.so.1.0
+ln -sf libhello1.so.1.0 libhello1.so
+ln -sf libhello1.so.1.0 libhello1.so.1
+==================================================
+all ===> libhello2
+CC: hello2.c
+AR: libhello2.a
+ranlib libhello2.a
+NROFF: hello2.cat3
+==================================================
+all ===> hello
+CC: hello_subprojects.c
+LD: hello_subprojects
+GEN: hello_subprojects.1
+NROFF: hello_subprojects.cat1
+GEN: hello_subprojects2
 ========= installdirs ==========
 /objdir/prefix
 /objdir/prefix/bin

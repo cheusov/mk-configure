@@ -14,6 +14,11 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ===== all SHRTOUT=yes ======; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	env SHRTOUT=YES \
+		${MAKE} ${MAKEFLAGS} all 2>&1; \
+	\
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} \
 		> /dev/null; \

@@ -255,12 +255,12 @@ __recurse: .USE
 	case "$$dir" in /*)						\
 		${VERBOSE_ECHO} "$$targ ===> $$dir" 1>&2;		\
 		cd "$$dir";						\
-		${MAKE} "_THISDIR_=$$dir/" $$targ;			\
+		env "_THISDIR_=$$dir/" ${MAKE} $$targ;			\
 		;;							\
 	*)								\
 		${VERBOSE_ECHO} "$$targ ===> ${_THISDIR_}$$dir" 1>&2;	\
 		cd "${.CURDIR}/$$dir";					\
-		${MAKE} "_THISDIR_=${_THISDIR_}$$dir/" $$targ;		\
+		env "_THISDIR_=${_THISDIR_}$$dir/" ${MAKE} $$targ;		\
 		;;							\
 	esac
 

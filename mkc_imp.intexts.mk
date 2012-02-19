@@ -11,6 +11,8 @@
 .ifndef _MKC_IMP_INTEXTS_MK
 _MKC_IMP_INTEXTS_MK := 1
 
+MESSAGE.gen ?=	@${_MESSAGE} "GEN: ${.TARGET}"
+
 INTEXTS_SED  +=	-e 's,@sysconfdir@,${SYSCONFDIR},g'
 INTEXTS_SED  +=	-e 's,@libdir@,${LIBDIR},g'
 INTEXTS_SED  +=	-e 's,@libexecdir@,${LIBEXECDIR},g'
@@ -29,13 +31,15 @@ CLEANFILES   +=	${INSCRIPTS} ${INFILES}
 
 .for i in ${INFILES}
 ${i} : ${i}.in
-	sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
+	${MESSAGE.gen}
+	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
 	chmod 0644 ${.TARGET}
 .endfor
 
 .for i in ${INSCRIPTS}
 ${i} : ${i}.in
-	sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
+	${MESSAGE.gen}
+	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
 	chmod 0755 ${.TARGET}
 .endfor
 

@@ -1,5 +1,10 @@
-NOEXPORT_VARNAMES=	MKC_CACHEDIR
+# for regression tests
+NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
+_THISDIR_         =
+.export _THISDIR_
+
+# examples
 SUBDIR+=	hello_world
 SUBDIR+=	hello_scripts
 SUBDIR+=	hello_files

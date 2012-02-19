@@ -10,6 +10,8 @@
 .if !defined(_MKC_IMP_MAN_MK)
 _MKC_IMP_MAN_MK := 1
 
+MESSAGE.nroff ?=	@${_MESSAGE} "NROFF: ${.TARGET}"
+
 .if ${MKSHARE:tl} == "no"
 MKCATPAGES =	no
 MKDOC      =	no
@@ -47,13 +49,12 @@ TBL       ?=	tbl
 	   .html1 .html2 .html3 .html4 .html5 .html6 .html7 .html8 .html9
 
 .9.cat9 .8.cat8 .7.cat7 .6.cat6 .5.cat5 .4.cat4 .3.cat3 .2.cat2 .1.cat1:
+	${MESSAGE.nroff}
 .if !defined(USETBL)
-	@echo "${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET}"
-	@${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET} || \
+	${_V} ${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET} || \
 	 (rm -f ${.TARGET}; false)
 .else
-	@echo "${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET}"
-	@${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET} || \
+	${_V} ${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET} || \
 	 (rm -f ${.TARGET}; false)
 .endif
 
