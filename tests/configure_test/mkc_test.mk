@@ -75,6 +75,8 @@ MKC_CUSTOM_DIR=			${.CURDIR}/custom
 MKC_CHECK_CUSTOM+=		custom_check1 custom_check2
 MKC_CUSTOM_FN.custom_check2=	my_check2.c
 
+MKC_REQUIRE_CUSTOM+=		custom_check3
+
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
