@@ -12,3 +12,5 @@ test:
 	fi; \
 	${MAKE} ${MAKEFLAGS} cleandir 2>&1 | grep ERROR: > $$tmp_out || true; \
 	exit $$ex
+
+CLEANFILES   +=		${.OBJDIR}/${.CURDIR:T}.test.out
