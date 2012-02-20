@@ -1,6 +1,5 @@
 ##################################################
 
-.PHONE : all
 all : presentation.pdf myprojects.pdf
 
 .PHONY : pdf dvi rtf
@@ -31,18 +30,16 @@ presentation.ps presentation.pdf presentation.dvi: my_prjs.eps dep_graph.eps
 	gzip ${.IMPSRC}
 
 GARBAGE=	*.dvi *.aux *.vrb *.toc *.snm *.log *.nav *.out *.eps *.ps
-CLEANFILES+=	${GARBAGE} *.pdf *.ps
+CLEANFILES+=	${GARBAGE} *.pdf *.ps myprojects.tex
 
-.PHONY: clean-garbage clean cleandir
+.PHONY: clean-garbage
 clean-garbage:
 	rm -f ${GARBAGE}
-
-cleandir: clean
-clean:
-	-rm -f *.toc *.vrb *.ps *.pdf *.eps *.out *.nav *.log *.dvi *.aux *.snm
 
 ##################################################
 myprojects.tex : presentation.tex
 	awk '/^%%%begin-myprojects/, /^%%%end-myprojects/' \
 		${.ALLSRC} > ${.TARGET}
 myprojects.ps myprojects.pdf myprojects.dvi: my_prjs.eps
+
+.include <mkc.files.mk>

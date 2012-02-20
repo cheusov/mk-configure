@@ -94,8 +94,9 @@ INSTALL=		${.CURDIR}/mkc_install
 
 ##################################################
 .PHONY: doc
+doc: all
 doc:
-	cd doc && ${MAKE} presentation.pdf clean-garbage ${MAKEFLAGS}
+	cd doc && ${MAKE} -m ${.OBJDIR} presentation.pdf clean-garbage ${MAKEFLAGS}
 
 .for i in mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk mkc.files.mk
 SYMLINKS+=	mkc.mk ${MKFILESDIR}/${i}
@@ -125,18 +126,20 @@ cleandir: cleandir_tests
 cleandir_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
 	export PATH; \
-	cd ${.CURDIR}/tests; \
-	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
-		${MAKEFLAGS} cleandir
-	cd doc && ${MAKE} ${MAKEFLAGS} cleandir
+	for d in ${.CURDIR}/tests ${.CURDIR}/doc; do \
+	   cd $$d; \
+	   ${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
+		${MAKEFLAGS} cleandir; \
+	done
 clean: clean_tests
 clean_tests: configure.mk
 	PATH=${.CURDIR}:$$PATH; \
 	export PATH; \
-	cd ${.CURDIR}/tests; \
-	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
-		${MAKEFLAGS} clean
-	cd doc && ${MAKE} ${MAKEFLAGS} clean
+	for d in ${.CURDIR}/tests ${.CURDIR}/doc; do \
+	   cd $$d; \
+	   ${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
+		${MAKEFLAGS} clean; \
+	done
 
 ##################################################
 .include <mkc.mk>
