@@ -6,3 +6,6 @@ USE_SSP ?=	yes
 
 # Enable RELRO
 USE_RELRO ?=	yes
+
+# Fortify sources
+USE_FORT ?=	yes

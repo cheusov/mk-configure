@@ -31,6 +31,10 @@ CXXFLAGS +=	${CXXFLAGS.ssp}
 LDFLAGS.prog +=	${LDFLAGS.relro}
 .endif
 
+.if ${USE_FORT:U:tl} == "yes"
+CPPFLAGS +=	-D_FORTIFY_SOURCE=2
+.endif
+
 SHRTOUT ?=	no
 
 .if ${SHRTOUT:tl} != "no"

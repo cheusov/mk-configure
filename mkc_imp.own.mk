@@ -151,6 +151,7 @@ MKSHARE   ?=	yes
 MKPIE     ?=	no
 USE_SSP   ?=	no
 USE_RELRO ?=	no
+USE_FORT  ?=	no
 
 MKDLL     ?=	no
 .if ${MKDLL:tl} == "only"
