@@ -1,6 +1,14 @@
 MAKEVERBOSE
 .lua.luac:
 ${PRINTOBJDIR}
+USE_RPATH
+MKPIC for sunstudio
+MKPIC for icc
+
+cross-compilation:
+   TOOLDIR - dir to tools
+   SYSROOT - system root directory
+   
 
 Plan -2)
 
@@ -8,6 +16,12 @@ Plan -2)
     - How it works section for EXPORT_SYMBOLS
     - Sample of cross-compilation
     - Slide "extensibility" about Lua module.
+    - code specific to GNU ld(1) (.def?)
+
+
+Bug reports:
+  - .phonE: lalala
+  - :M*[./-]*
 
 ============================================================
 Plan -1)
