@@ -328,8 +328,12 @@ LDFLAGS.relro ?=		${LDFLAGS.relro.${LD_TYPE}}
 
 ####################
 .if ${LDREAL:U0} != ${LD:U0}
-LDFLAGS.pie   := ${LDFLAGS.pie:D${LDFLAGS.pie:S/^/-Wl,/g}}
+  .if empty(LDFLAGS.pie)
+LDFLAGS.pie   := ${LDFLAGS.pie:S/^/-Wl,/g}
+  .endif
+  .if empty(LDFLAGS.relro)
 LDFLAGS.relro := ${LDFLAGS.relro:D${LDFLAGS.relro:S/^/-Wl,/g}}
+  .endif
 .endif
 
 ############################################################
