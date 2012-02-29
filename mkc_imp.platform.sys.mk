@@ -328,8 +328,8 @@ LDFLAGS.relro ?=		${LDFLAGS.relro.${LD_TYPE}}
 
 ####################
 .if ${LDREAL:U0} != ${LD:U0}
-LDFLAGS.pie   := ${LDFLAGS.pie:S/^/-Wl,/g}
-LDFLAGS.relro := ${LDFLAGS.relro:S/^/-Wl,/g}
+LDFLAGS.pie   := ${LDFLAGS.pie:D${LDFLAGS.pie:S/^/-Wl,/g}}
+LDFLAGS.relro := ${LDFLAGS.relro:D${LDFLAGS.relro:S/^/-Wl,/g}}
 .endif
 
 ############################################################
@@ -416,7 +416,7 @@ LDFLAGS.expsym.darwinld =	-exported_symbols_list ${EXPORT_SYMBOLS}.tmp
 
 .if ${LDREAL:U0} == ${LD:U0}
 LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}}
-.else
+.elif defined(LDFLAGS.expsym.${LD_TYPE})
 LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 .endif # LDREAL == LD
 
