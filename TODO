@@ -2,13 +2,13 @@ MAKEVERBOSE
 .lua.luac:
 ${PRINTOBJDIR}
 USE_RPATH
-MKPIC for sunstudio
-MKPIC for icc
 
 cross-compilation:
    TOOLDIR - dir to tools
    SYSROOT - system root directory
    
+EXPORT_SYMBOLS:
+  - regression tests for Solaris, HP-UX etc.
 
 Plan -2)
 

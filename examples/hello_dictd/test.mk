@@ -10,6 +10,15 @@ test_output :
 	${.CURDIR}/dictfmt/dictfmt; \
 	${.CURDIR}/dictzip/dictzip; \
 	\
+	echo =========== nm ============; \
+	case ${OPSYS} in \
+	  *BSD2|Linux) \
+	    ${NM} ${.CURDIR}/libmaa/libmaa*.so | awk '$$2 == "T" {print "libmaa " $$3}'; \
+	    ${NM} ${.CURDIR}/libdz/libdz*.so | awk '$$2 == "T" {print "libdz " $$3}';; \
+	  *) \
+	    printf 'libmaa fake4\nlibmaa fake5\nlibmaa fake6\nlibdz fake3\n';; \
+	esac; \
+	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

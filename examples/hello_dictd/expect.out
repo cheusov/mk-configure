@@ -19,6 +19,11 @@ dictzip: fake3=3
 dictzip: fake4=4
 dictzip: fake5=5
 dictzip: fake6=6
+=========== nm ============
+libmaa fake4
+libmaa fake5
+libmaa fake6
+libdz fake3
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
