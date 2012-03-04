@@ -134,6 +134,14 @@ ZIP       ?=	zip
 
 OBJCOPY   ?=    objcopy
 
+OBJDUMP   ?=    objdump
+
+STRIP     ?=	strip
+
+#ADDR2LINE ?=	addr2line
+#READELF   ?=	readelf
+#STRINGS   ?=	strings
+
 # C
 .c.o:
 	${MESSAGE.c}

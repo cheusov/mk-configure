@@ -128,6 +128,8 @@ Assembler.
 .IP AFLAGS
 Options to ${CC} when compiling or linking .s or .S
 assembly source files.  []
+.\" .IP ADDR2LINE
+.\" Path to addr2line.  [addr2line]
 .IP CC
 C compiler.
 .RI < Iu >
@@ -1622,23 +1624,26 @@ Path to POD to HTML conversion utility
 Flags passed to ${POD2HTML}
 .RI < "Iu" >
 .RI [ "" ].
-.SH "CROSS BUILD"
-.B mk-configure
-is ready for cross-build. For it you may need to set up
-cross-tools by setting the following variables:
-CC, CPPFLAGS, LDFLAGS, CXX, LD, LD_TYPE, AR, STRIP
-and maybe others.
-Also note that all variables set by 
-.I configure.mk
-module can be overriden by you. Sample of use:
-.VS
-$ cat cross-setup.mk
-CC=/path/to/cross/bin/cc
-CXX=/path/to/cross/bin/cc
-LD=/path/to/cross/bin/ld
-$ mkcmake -f cross-setup.mk -f Makefile
-$
-.VE
+.SH "CROSS COMPILATION"
+The following variables are used for compiling software using cross-rools.
+.IP TOOLDIR
+Directory that contains cross-toolchain. If set, the following variables
+are set to ${TOOLDIR}/${TOOLCHAIN_PREFIX}<toolname>: AR, AS, CXX, CPP, CC,
+INSTALL, LD, NM, OBJCOPY, OBJDUMP, RANLIB, SIZE and STRIP.
+.RI < "U" >
+.RI [ "" ].
+.IP SYSROOT
+Root directory for headers and libraries.
+.RI < "U" >
+.RI [ "" ].
+.IP TOOLCHAIN_PREFIX
+See TOOLDIR.
+.RI < "U" >
+.RI [ "${MACHINE_GNU_PLATFORM}-" ].
+.IP MACHINE_GNU_PLATFORM
+See TOOLCHAIN_PREFIX and TOOLDIR.
+.RI < "U" >
+.RI [ "" ].
 .SH "ENVIRONMENT VARIABLES"
 .IP MAKECONF
 Path to mk.conf file .include-ed by mkc.*.mk files

@@ -18,6 +18,7 @@ Plan -2)
     - Slide "extensibility" about Lua module.
     - code specific to GNU ld(1) (.def?)
 
+mkc_install: use STRIP, not STRIPPROG
 
 Bug reports:
   - .phonE: lalala

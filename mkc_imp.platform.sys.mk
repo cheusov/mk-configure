@@ -11,6 +11,34 @@
 _MKC_PLATFORM_MK := 1
 
 ####################
+# cross tools
+.ifdef TOOLDIR
+CFLAGS.sysroot  ?=	--sysroot=${SYSROOT}
+LDFLAGS.sysroot ?=	--sysroot=${SYSROOT}
+CFLAGS   +=	${CFLAGS.sysroot}
+LDFLAGS  +=	${LDFLAGS.sysroot}
+
+TOOLCHAIN_PREFIX ?=	${MACHINE_GNU_PLATFORM}-
+
+NM        ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}nm
+#ADDR2LINE ?=    ${TOOLDIR}/${TOOLCHAIN_PREFIX}addr2line
+AR        ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}ar
+AS        ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}as
+CXX       ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}g++
+CPP       ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}cpp
+CC        ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}gcc
+INSTALL   ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}install
+LD        ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}ld
+OBJCOPY   ?=    ${TOOLDIR}/${TOOLCHAIN_PREFIX}objcopy
+OBJDUMP   ?=    ${TOOLDIR}/${TOOLCHAIN_PREFIX}objdump
+RANLIB    ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}ranlib
+#READELF   ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}readelf
+SIZE      ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}size
+#STRINGS   ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}strings
+STRIP     ?=	${TOOLDIR}/${TOOLCHAIN_PREFIX}strip
+.endif
+
+####################
 SHLIB_EXT.Darwin =	.dylib
 SHLIB_EXT.HP-UX  =	.sl
 
