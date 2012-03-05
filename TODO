@@ -3,10 +3,6 @@ MAKEVERBOSE
 ${PRINTOBJDIR}
 USE_RPATH
 
-cross-compilation:
-   TOOLDIR - dir to tools
-   SYSROOT - system root directory
-   
 EXPORT_SYMBOLS:
   - regression tests for Solaris, HP-UX etc.
 
