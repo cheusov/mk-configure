@@ -214,7 +214,7 @@ uninstall:
 	-rm -f ${UNINSTALLFILES} 2>/dev/null
 
 installdirs:
-	for d in _ ${INSTALLDIRS:O:u}; do \
+	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \
 		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
 	done
 
