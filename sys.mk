@@ -1,6 +1,6 @@
 #
-# mk-configure may not know everything about your platform.
-# This file is for setting for own system-wide default configuration.
+# mk-configure can not know everything about your platform.
+# This file is a system-wide default configuration file.
 # In addition, @sysconfdir@/etc/mk.conf and /etc/mk.conf
 # may be used by system administrator.
 #
