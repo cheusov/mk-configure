@@ -22,7 +22,6 @@ mkc_install: use STRIP, not STRIPPROG
 
 Bug reports:
   - .phonE: lalala
-  - :M*[./-]*
 
 ============================================================
 Plan -1)
