@@ -346,10 +346,13 @@ LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLA
 .endif
 
 ####################
-LDFLAGS.pie.gnuld =		-pie
+LDFLAGS.pie.gcc =		-pie
 
-LDFLAGS.pie ?=			${LDFLAGS.pie.${LD_TYPE}}
-
+.if ${LDREAL:U0} == ${CC:U0}
+LDFLAGS.pie ?=			${LDFLAGS.pie.${CC_TYPE}}
+.elif ${LDREAL:U0} == ${CXX:U0}
+LDFLAGS.pie ?=			${LDFLAGS.pie.${CXX_TYPE}}
+.endif
 ####################
 LDFLAGS.relro.gnuld =		-zrelro -znow
 
@@ -357,9 +360,6 @@ LDFLAGS.relro ?=		${LDFLAGS.relro.${LD_TYPE}}
 
 ####################
 .if ${LDREAL:U0} != ${LD:U0}
-.if !empty(LDFLAGS.pie)
-LDFLAGS.pie   := ${LDFLAGS.pie:S/^/-Wl,/g}
-.endif
 .if !empty(LDFLAGS.relro)
 LDFLAGS.relro := ${LDFLAGS.relro:S/^/-Wl,/g}
 .endif
