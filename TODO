@@ -44,8 +44,6 @@ Plan 0)
   = Reimplement linkme.mk as a recommended way
     to organize local linking. It is not flexible enough.
 
-  = shared libraries support for IRIX
-
   = sample for home-made .mk file (Ocaml? Pike?)
 
   = pass -O1 to gnu linker
