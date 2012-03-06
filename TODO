@@ -1,7 +1,8 @@
-MAKEVERBOSE
 .lua.luac:
 ${PRINTOBJDIR}
 USE_RPATH
+IRIX and "endianess"
+IRIX and EXPORT_SYMBOLS
 
 EXPORT_SYMBOLS:
   - regression tests for Solaris, HP-UX etc.
