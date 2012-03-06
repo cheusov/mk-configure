@@ -1,6 +1,12 @@
 #include <stdio.h>
 #include <string.h>
 
+#if defined(HAVE_DEFINE__COMPILER_VERSION) && defined(HAVE_DEFINE___GNUC__)
+#undef HAVE_DEFINE__COMPILER_VERSION
+#endif
+
+
+
 #ifndef HAVE_DEFINE__MSC_VER
 #define HAVE_DEFINE__MSC_VER 0
 #endif
