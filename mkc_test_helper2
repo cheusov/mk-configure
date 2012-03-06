@@ -11,4 +11,4 @@ set -e
 LC_ALL=C
 export LC_ALL
 
-awk '/^checking / {sub(/[.][.][.] +.*$/, "... nnn")} {print}' "$@"
+sed '/^checking / s|^\(.*\) [^ ]*[.][.][.].*$|\1 mmm... nnn|' "$@"
