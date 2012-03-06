@@ -50,7 +50,6 @@ My email is vle@gmx.net
 all ===> libhello1
 CC: hello1.c
 AR: libhello1.a
-ranlib libhello1.a
 CC: hello1.c
 LD: libhello1.so.1.0
 ln -sf libhello1.so.1.0 libhello1.so
@@ -59,7 +58,6 @@ ln -sf libhello1.so.1.0 libhello1.so.1
 all ===> libhello2
 CC: hello2.c
 AR: libhello2.a
-ranlib libhello2.a
 NROFF: hello2.cat3
 ==================================================
 all ===> hello

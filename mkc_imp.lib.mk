@@ -68,7 +68,7 @@ realall: ${SRCS} ${_LIBS}
 __archivebuild: .USE
 	@rm -f ${.TARGET}
 	${MESSAGE.ar}
-	${_V} ${AR} cq ${.TARGET} ${.ALLSRC}
+	${_V} ${AR} cq ${.TARGET} ${.ALLSRC}; \
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
