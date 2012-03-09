@@ -98,8 +98,8 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 	${_V} $(LDREAL) ${LDFLAGS.shlib} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}
 .if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
-	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT}
-	ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT1}
+	@ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT}
+	@ln -sf ${SHLIBFN} lib${LIB}${SHLIB_EXT1}
 .endif # ELF
 .endif # !commands(...)
 
