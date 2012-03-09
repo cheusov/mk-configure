@@ -1,4 +1,49 @@
 ======================================================================
+Version 0.22.0, by Aleksey Cheusov, Fri,  9 Mar 2012 20:26:34 +0300
+
+  Improvements in cross-compilation. The following variables were
+     introduced: TOOLDIR, SYSROOT, TOOLCHAIN_PREFIX and
+     MACHINE_GNU_PLATFORM.
+
+  PROGS variable was introduced (sf.net bug #3445658).
+
+  Support for Lua submodules was added (e.g. net.socket.lua ->
+  net/socket.lua). New variable LUA_MODULES was introduced for this
+  purpose.
+
+  MKPIE (Position Independent Executables), USE_SSP (Stack Smashing
+  Protection), USE_FORT and USE_RELRO variables were introduced for
+  security reasons.
+
+  Variable OBJDIR_<dir> was introduced.
+
+  mkc.subdir.mk and mkc.subprj.mk: Commands associated with targets
+  "all", "install", "clean", "cleandir", "depend", "test",
+  "installdirs", "uninstall", "errorcheck" and "filelist" in Makefile
+  override the standard behaviour.
+
+  MKC_REQUIRE_HEADERS, MKC_REQUIRE_DEFINES, MKC_REQUIRE_TYPES,
+  MKC_REQUIRE_VARS, MKC_REQUIRE_MEMBERS, MKC_REQUIRE_FUNCS<n> and
+  MKC_REQUIRE_CUSTOM do not change CFLAGS.
+
+  mkc.subdir.mk and mkc.subprj.mk: "cleandir" target takes into
+  account CLEANFILES, CLEANDIRS, DISTCLEANFILES and DISTCLEANDIRS
+  variables (removes files).
+
+  PCNAME.<lib> variable was introduced in mkc_imp.pkg-config.mk, this
+  is a map from library name to pcname (.pc).
+
+  Improvements for SHRTOUT.
+
+  New variable OBJCOPY was introduced.
+
+  Update of the presentation.
+
+  Fix in manual page (sf.net bug #3441610).
+
+  New regression tests (examples).
+
+======================================================================
 Version 0.21.2, by Aleksey Cheusov, Sat, 22 Oct 2011 01:50:05 +0300
 
   mkc_check_compiler has been reimplemented. This fixes problems
