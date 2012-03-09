@@ -1,13 +1,13 @@
-.lua.luac:
-${PRINTOBJDIR}
-USE_RPATH
-IRIX and "endianess"
-IRIX and EXPORT_SYMBOLS
-
-EXPORT_SYMBOLS:
-  - regression tests for Solaris, HP-UX etc.
-
 Plan -2)
+
+  - Reimplement linkme.mk. It is not flexible enough.
+  - USE_RPATH
+  - .lua.luac:
+  - disable caching for "negative" results
+    for MKC_REQUIRE_xxx features.
+  - Implement mkc_imp.libtool.mk to build
+    the shared libraries using GNU libtool(1).
+  - MKSTRIP, STRIP, mkc_install: use STRIP, not STRIPPROG
 
   Slides for:
     - How it works section for EXPORT_SYMBOLS
@@ -15,44 +15,32 @@ Plan -2)
     - Slide "extensibility" about Lua module.
     - code specific to GNU ld(1) (.def?)
 
-mkc_install: use STRIP, not STRIPPROG
-
-Bug reports:
-  - .phonE: lalala
-
 ============================================================
 Plan -1)
 
   - ./configure written in shell?
+
+  - regression tests for EXPORT_SYMBOLS (Solaris, HP-UX).
   - EXPORT_DYNAMIC_SYMBOLS - add the specified symbols to
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP
+
   - recheck documentation for Makefile.rec
-  - Syllable, Haiku OSes and HURD
+  - Syllable, Haiku, OpenServer/UnixWare and HURD
   - lcc and tcc compilers
   - epm -> rpm, SVR4 pkg etc.
-  - more powerful link.me
   - mkc_imp.filelist.mk
     - FL_NOPREFIX
     - FL_PERSUBPRJ
+  - IRIX: "endianess" and EXPORT_SYMBOLS
 
 ============================================================
 Plan 0)
 
-  - disable caching for "negative" results
-    for MKC_REQUIRE_xxx features.
-
-  = Reimplement linkme.mk as a recommended way
-    to organize local linking. It is not flexible enough.
-
   = sample for home-made .mk file (Ocaml? Pike?)
-
-  = pass -O1 to gnu linker
 
 ============================================================
 Plan 1)
-
-  = MKSTRIP?
 
   = marker for user's curstom tests that
     run generated executables, i.e. not ready
@@ -66,9 +54,6 @@ Plan 1)
 
   = mkclint?
 
-  = Implement mkc_imp.libtool.mk to build
-    the shared libraries using GNU libtool(1).
-
   = Command line may be limited in size.
     Save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
@@ -81,12 +66,8 @@ Plan 1)
 
   = Online tutorial
 
-  = better support for cross-compilation
-    - lalala
-    - mkc_imp.pkg-config.mk (PKG_CONFIG_SYSROOT_DIR)
-
   = shared libraries support for AIX, UnixWare, Hurd, Haiku.
-  = shared libraries support for nwcc, mipspro and other compilers.
+  = shared libraries support for nwcc and other compilers.
 
   =    COPTS.<prog> and COPTS.lib<lib> variables
     or COPTS_<prog> and COPTS_lib<lib>?
@@ -106,10 +87,6 @@ Plan2)
 
   = Single cache file as an automatically loaded (if exists)
     bmake makefile.
-
-  = PROGS= a b c d
-    SRCS.a = ...
-    SRCS.b = ...
 
   = Targets bin_rpm, bin_epm
   = Targets src_tar, src_targz, src_tarbz2
