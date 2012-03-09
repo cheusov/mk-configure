@@ -235,12 +235,16 @@ CFLAGS.pic   ?=	${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}
 CXXFLAGS.pic ?=	${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
 
 ####################
-CFLAGS.pie   ?=	${CFLAGS.pic}
-CXXFLAGS.pie ?=	${CXXFLAGS.pic}
+CFLAGS.pie.gcc.Interix =
+CFLAGS.pie.gcc =		-fPIE -DPIC
+CFLAGS.pie.icc =		-fPIE -DPIC
+CFLAGS.pie.clang =		-fPIE -DPIC
+
+CFLAGS.pie   ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}}:U${CFLAGS.pic}}
+CXXFLAGS.pie ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}}:U${CXXFLAGS.pic}}
 
 ####################
 CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param ssp-buffer-size=1
-CFLAGS.ssp.icc =		${CFLAGS.ssp.gcc}
 CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
 
 CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CC_TYPE}:U}}
