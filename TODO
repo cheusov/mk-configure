@@ -1,7 +1,24 @@
-Plan -2)
+============================================================
+Plan 0.23.0
 
   - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
+  - Slides for:
+    * Sample of cross-compilation
+    * How it works section for EXPORT_SYMBOLS
+  - COPTS_<proj> OBJCOPTS_<proj> LDADD_<proj> LDFLAGS_<proj>
+    CPPFLAGS_<proj> CXXFLAGS_<proj>
+  - regression tests for EXPORT_SYMBOLS (Solaris, HP-UX).
+  - Regression tests:
+    * optional .f tests
+    * optional .p tests
+    * optional .m tests
+    * optional(!) glib2 tests
+  - man page for mkc_check_compiler
+
+============================================================
+Plan 1)
+
   - .lua.luac:
   - disable caching for "negative" results
     for MKC_REQUIRE_xxx features.
@@ -10,17 +27,13 @@ Plan -2)
   - MKSTRIP, STRIP, mkc_install: use STRIP, not STRIPPROG
 
   Slides for:
-    - How it works section for EXPORT_SYMBOLS
-    - Sample of cross-compilation
     - Slide "extensibility" about Lua module.
     - code specific to GNU ld(1) (.def?)
 
 ============================================================
-Plan -1)
+Plan 2)
 
   - ./configure written in shell?
-
-  - regression tests for EXPORT_SYMBOLS (Solaris, HP-UX).
   - EXPORT_DYNAMIC_SYMBOLS - add the specified symbols to
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP
@@ -35,14 +48,10 @@ Plan -1)
   - IRIX: "endianess" and EXPORT_SYMBOLS
 
 ============================================================
-Plan 0)
+Plan 3)
 
   = sample for home-made .mk file (Ocaml? Pike?)
-
-============================================================
-Plan 1)
-
-  = marker for user's curstom tests that
+  = marker for user's custom tests that
     run generated executables, i.e. not ready
     for cross-compilation
 
@@ -69,9 +78,6 @@ Plan 1)
   = shared libraries support for AIX, UnixWare, Hurd, Haiku.
   = shared libraries support for nwcc and other compilers.
 
-  =    COPTS.<prog> and COPTS.lib<lib> variables
-    or COPTS_<prog> and COPTS_lib<lib>?
-
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
     MagicMakefiles, bjam, pymake etc.
 
@@ -81,7 +87,7 @@ Plan 1)
   = implement MANBZ2?
 
 ============================================================
-Plan2)
+Plan 4)
 
   = EXPORT_SYMBOLS for HP-UX, AIX, SCO etc.
 
@@ -90,8 +96,6 @@ Plan2)
 
   = Targets bin_rpm, bin_epm
   = Targets src_tar, src_targz, src_tarbz2
-
-  = man page for mkc_check_compiler
 
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
@@ -104,19 +108,12 @@ Plan2)
 
   = user-defined postinstall and preinstall?
 
-  = Regression tests:
-    - optional .f tests
-    - optional .p tests
-    - optional(!) glib2 tests
-
-  = Improve support for C++, Objective-C, Fortran and Pascal
-
   = Implement mkc.qt.mk
 
   = Implement mkc.doxygen.mk?
 
 ============================================================
-Plan 3)
+Plan 5)
 
   = mkc.configure.mk functionality but for bourne shell, e.g.
 
@@ -145,7 +142,7 @@ Plan 3)
   = MKC_DEFINE_01 - -DHAVE_XXX=0 or -DHAVE_XXX=1
 
 ============================================================
-Plan 4)
+Plan 6)
   = MKC_BUILTINS (from autoconf):
       broken_free_NULL,
       exit_ret_int,
