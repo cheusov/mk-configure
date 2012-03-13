@@ -66,6 +66,10 @@ _srcsall +=	${SRCS}
 src_type   +=	cxx
 LDCOMPILER  =	yes
 LDREAL     ?=	${CXX}
+.elif !empty(_srcsall:U:M*.pas) || !empty(_srcsall:U:M*.p)
+src_type   +=	pas
+LDCOMPILER  =	yes
+LDREAL     ?=	${PC}
 .endif
 
 LDCOMPILER.Interix =	yes
