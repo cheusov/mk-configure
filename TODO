@@ -14,7 +14,6 @@ Plan 0.23.0
     * optional .p tests
     * optional .m tests
     * optional(!) glib2 tests
-  - man page for mkc_check_compiler
 
 ============================================================
 Plan 1)
@@ -85,6 +84,8 @@ Plan 3)
     Support for MKPTHREAD=yes|no is needed.
 
   = implement MANBZ2?
+
+  = man page for mkc_check_compiler
 
 ============================================================
 Plan 4)
