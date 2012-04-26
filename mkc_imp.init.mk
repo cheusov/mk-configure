@@ -251,6 +251,7 @@ VERBOSE_ECHO ?=	echo
 __recurse: .USE
 	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\
 	dir=${.TARGET:S/^nodeps-//:C/^[^-]*-//};			\
+	if ! test -d $$dir; then exit 0; fi;				\
 	test "$${targ}_${MKINSTALL:tl}" = 'install_no' && exit 0;       \
 	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;	\
 	${export_cmd}							\

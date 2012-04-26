@@ -5,6 +5,10 @@
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
 /objdir/fsck_superfs/fsck_superfs
@@ -32,6 +36,12 @@
 /objdir/prefix/sbin
 /objdir/prefix/sbin/fsck_superfs
 /objdir/prefix/sbin/mkfs_superfs
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/dict
+/objdir/prefix/share/doc/dict/LICENSE
+/objdir/prefix/share/doc/dict/NEWS
+/objdir/prefix/share/doc/dict/README
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
@@ -40,6 +50,10 @@
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
 /objdir/fsck_superfs/fsck_superfs.8
@@ -52,6 +66,10 @@
 ======= distclean ==========
 /objdir/Makefile
 /objdir/Makefile.inc
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
 /objdir/fsck_superfs/fsck_superfs.8
@@ -68,6 +86,10 @@
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
 /objdir/expect.out
 /objdir/fsck_superfs/Makefile
 /objdir/fsck_superfs/fsck_superfs
