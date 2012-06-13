@@ -841,7 +841,9 @@ See
 .I examples/hello_dictd
 subdirectory for the sample of use.
 .IP SUBPRJ
-Subprojects and dependencies
+List of subprojects (subdirectories) and dependencies. If the
+subdirectory doesn't exist the subproject becomes "virtual" and may be
+used to group several subprojects into a new virtual one.
 .RI < "M" >
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
