@@ -4,7 +4,6 @@ Plan 0.23.0
   - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
   - Slides for:
-    * Sample of cross-compilation
     * How it works section for EXPORT_SYMBOLS
   - COPTS_<proj> OBJCOPTS_<proj> LDADD_<proj> LDFLAGS_<proj>
     CPPFLAGS_<proj> CXXFLAGS_<proj>

@@ -1030,6 +1030,32 @@ uninstall, installdirs, depend etc.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
+  \frametitle{Example 9: Cross-compilation}
+
+\begin{block}{How it works}
+\begin{CodeNoLabel}
+\prompt{\$ export SYSROOT=/tmp/destdir.sparc64}
+\prompt{\$ export TOOLCHAIN\_PREFIX=sparc64--netbsd-}
+\prompt{\$ export TOOLCHAIN\_DIR=/tmp/tooldir.sparc64/bin}
+\prompt{\$ uname -srm}
+NetBSD 5.99.56 amd64
+\prompt{\$ mkcmake}
+checking for compiler type... gcc
+/tmp/tooldir.sparc64/bin/sparc64--netbsd-gcc
+   --sysroot=/tmp/destdir.sparc64 -c hello.c -o hello.o
+/tmp/tooldir.sparc64/bin/sparc64--netbsd-gcc
+   --sysroot=/tmp/destdir.sparc64 -o hello hello.o
+\prompt{\$ file hello}
+hello: ELF 64-bit MSB executable, SPARC V9, relaxed
+   memory ordering, (SYSV), dynamically linked (uses
+   shared libs), for NetBSD 5.99.56, not stripped
+\prompt{\$ }
+\end{CodeNoLabel}
+\end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
   \frametitle{Features}
   \begin{block}{}
   \begin{enumerate}
@@ -1095,7 +1121,7 @@ uninstall, installdirs, depend etc.
     i.e. installing, uninstalling and handling \h{.in files}
     (replacing, for example, \h{@bindir@}, \h{@sysconfdir@}, \h{@version@}
     fragments with real values).
-  \item \h{Cross-building}. mk-configure itself doesn't run
+  \item \h{Cross-compilation}. mk-configure itself doesn't run
     target system
     executables, so you can freely use cross-tools (compiler, linker
     etc.).  You can also override/set any variable initialized by mk-configure.
