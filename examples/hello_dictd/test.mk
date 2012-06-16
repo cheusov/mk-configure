@@ -12,7 +12,7 @@ test_output :
 	\
 	echo =========== nm ============; \
 	case ${OPSYS} in \
-	  *BSD2|Linux) \
+	  *BSD|Linux) \
 	    ${NM} ${.CURDIR}/libmaa/libmaa*.so | awk '$$2 == "T" {print "libmaa " $$3}'; \
 	    ${NM} ${.CURDIR}/libdz/libdz*.so | awk '$$2 == "T" {print "libdz " $$3}';; \
 	  *) \
