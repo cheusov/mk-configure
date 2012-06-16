@@ -161,25 +161,6 @@ mkc_printobjdir:
 	@echo ${.OBJDIR}
 
 ###########
-.if !commands(clean)
-clean: mkc_clean
-.endif
-
-mkc_clean:
-	-rm -f ${CLEANFILES} 2>/dev/null
-	-rm -rf ${CLEANDIRS} 2>/dev/null
-
-###########
-distclean: cleandir
-.if !commands(cleandir)
-cleandir: mkc_cleandir
-.endif
-
-mkc_cleandir:
-	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
-	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
-
-###########
 .PHONY: realall
 .if !defined(SUBDIR) && !defined(SUBPRJ)
 realall : errorcheck

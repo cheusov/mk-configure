@@ -18,4 +18,33 @@ export_cmd  +=	${i}=${${i}:Q}; export ${i};
 .endif
 .endfor
 
+##########
+.if !commands(clean)
+clean: mkc_clean
+.endif
+
+mkc_clean:
+.if ${CLEANFILES:U} != ""
+	-rm -f ${CLEANFILES} 2>/dev/null
+.endif
+.if ${CLEANDIRS:U} != ""
+	-rm -rf ${CLEANDIRS} 2>/dev/null
+.endif
+
+#####
+distclean: cleandir
+.if !commands(cleandir)
+cleandir: mkc_cleandir
+.endif
+
+mkc_cleandir:
+.if ${CLEANFILES:U} != "" || ${DISTCLEANFILES:U} != ""
+	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
+.endif
+.if ${CLEANDIRS:U} != "" || ${DISTCLEANDIRS:U} != ""
+	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
+.endif
+
+##########
+
 .endif # MKC_IMP.FINAL.MK
