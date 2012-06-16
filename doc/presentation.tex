@@ -430,6 +430,32 @@ ln -sf libfoobar.1.0.dylib libfoobar.1.dylib
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{frame}[fragile]
+  \frametitle{Example 4: Support for shared libraries (Exported symbols)}
+
+  \begin{block}{}
+\begin{CodeNoLabel}
+\prompt{\$ cat Makefile}
+LIB            = foo
+INCS           = foo.h
+\h{EXPORT\_SYMBOLS} = foo.sym
+SHLIB_MAJOR    = 1
+MKSTATICLIB    = no
+.include <mkc.lib.mk>
+\prompt{\$ mkcmake}
+awk 'BEGIN \{print "\{ global:"\}  \{print \$0 ";"\}
+     END \{print "local: *; \};"\}' foo.sym
+     > foo.sym.tmp1 && mv foo.sym.tmp1 foo.sym.tmp
+cc    -I.  -c -fPIC -DPIC foo.c -o foo.os
+building shared foo library (version 1)
+ld -shared -soname libfoo.so.1
+   \h{--version-script foo.sym.tmp} -o libfoo.so.1  foo.os
+\prompt{\$}
+\end{CodeNoLabel}
+  \end{block}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
   \frametitle{Example 5: Big project consisting of several subprojects}
 
   \begin{block}{Dependency graph for all subprojects}
@@ -896,10 +922,10 @@ MKC\_CHECK\_FUNCS1 =		\_\_fpurge:stdio\_ext.h fpurge isblank
 MKC\_CHECK\_FUNCS3 =		strlcat
 MKC\_SOURCE\_FUNCLIBS =		fpurge strlcat
 
-WARNS=           4
-WARNERR=         no # do not treat warnings as errors
+WARNS=       4
+WARNERR=     no # do not treat warnings as errors
 
-MKC\_REQD=       0.19.0 # mk-configure>=0.19.0 is required
+MKC\_REQD=   0.19.0 # mk-configure>=0.19.0 is required
 ... # to be continued on the next slide
 \end{Code}
 \end{block}
