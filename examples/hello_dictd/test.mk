@@ -15,6 +15,9 @@ test_output :
 	  *BSD|Linux) \
 	    ${NM} ${.CURDIR}/libmaa/libmaa*.so | awk '$$2 == "T" {print "libmaa " $$3}'; \
 	    ${NM} ${.CURDIR}/libdz/libdz*.so | awk '$$2 == "T" {print "libdz " $$3}';; \
+	  SunOS) \
+	    ${NM} -P ${.CURDIR}/libmaa/libmaa*.so | awk '$$2 == "T" {print "libmaa " $$1}'; \
+	    ${NM} -P ${.CURDIR}/libdz/libdz*.so | awk '$$2 == "T" {print "libdz " $$1}';; \
 	  *) \
 	    printf 'libmaa fake4\nlibmaa fake5\nlibmaa fake6\nlibdz fake3\n';; \
 	esac; \

@@ -5,7 +5,6 @@ Plan 0.23.0
   - USE_RPATH
   - COPTS_<proj> OBJCOPTS_<proj> LDADD_<proj> LDFLAGS_<proj>
     CPPFLAGS_<proj> CXXFLAGS_<proj>
-  - regression tests for EXPORT_SYMBOLS (Solaris, HP-UX).
   - Regression tests:
     * optional .f tests
     * optional .p tests
