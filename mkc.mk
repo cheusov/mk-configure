@@ -44,6 +44,7 @@ _use_prog :=	1
 .include <mkc_imp.sys.mk>
 .endif # _use_prog || LIB
 
+########################################
 .if defined(SUBDIR)
 .include <mkc_imp.subdir.mk>
 
@@ -55,6 +56,7 @@ subdir-clean:
 cleandir: subdir-distclean
 subdir-distclean:
 	-rm -f ${DISTCLEANFILES} 2>/dev/null
+####################
 .elif defined(SUBPRJ)
 .include <mkc_imp.subprj.mk>
 
@@ -68,9 +70,10 @@ subprj-distclean:
 	-rm -f ${DISTCLEANFILES} 2>/dev/null
 
 .endif # SUBDIR || SUBPRJ
+########################################
 
-.include <mkc_imp.final.mk>
 .include <mkc_imp.arch.mk>
+.include <mkc_imp.final.mk>
 #
 
 .endif # MKC_ERR_MSG
