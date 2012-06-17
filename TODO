@@ -3,8 +3,7 @@ Plan 0.23.0
 
   - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
-  - COPTS_<proj> OBJCOPTS_<proj> LDADD_<proj> LDFLAGS_<proj>
-    CPPFLAGS_<proj> CXXFLAGS_<proj>
+  - OBJCOPTS_<proj>
   - Regression tests:
     * optional .f tests
     * optional .p tests

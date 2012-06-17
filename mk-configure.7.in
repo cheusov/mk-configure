@@ -135,25 +135,38 @@ C compiler.
 .RI < Iu >
 .RI [ cc ]
 .IP CFLAGS
-Options to ${CC}.
-.RI < U >
-.RI "[Usually " -O " or " -O2 ]
-.IP CPP
-C Pre-Processor.
-.RI < Iu >
-.RI [ cpp ]
-.IP CPPFLAGS
-Options to ${CPP}.
-.RI < U >
-.RI [ "" ]
+Additional flags to the compiler when creating C objects.
+.RI < "IM" >
+.IP CFLAGS_<project>
+Similar to CFLAGS but for project ${PROJECTNAME}.
+.RI < "U" >
+.IP COPTS
+Additional flags to the compiler when creating C objects.
+.RI < "U" >
+.IP COPTS_<project>
+Similar to COPTS but for project ${PROJECTNAME}.
+.RI < "U" >
 .IP CXX
 C++ compiler.
 .RI < Iu >
 .RI [ c++ ]
 .IP CXXFLAGS
-Options to ${CXX}.
-.RI < U >
+Additional flags to the compiler when creating C++ objects.
+.RI < "Iu" >
 .RI [ ${CFLAGS} ]
+.IP CXXFLAGS_<project>
+Similar to CXXFLAGS but for project ${PROJECTNAME}.
+.RI < "U" >
+.IP CPP
+C Pre-Processor.
+.RI < Iu >
+.RI [ cpp ]
+.IP CPPFLAGS
+Additional flags to the C pre-processor.
+.RI < "Iu" >
+.IP CPPFLAGS_<project>
+Similar to CPPFLAGS but for project ${PROJECTNAME}.
+.RI < "U" >
 .IP FC
 Fortran compiler.
 .RI < Iu >
@@ -162,6 +175,10 @@ Fortran compiler.
 Options to {$FC}.
 .RI < Iu >
 .RI [ -O ]
+.IP FFLAGS_<project>
+Similar to FFLAGS but for project
+.IR ${PROJECTNAME} .
+.RI < "U" >
 .IP INSTALL
 install(1) command.
 .RI < Iu >
@@ -594,15 +611,6 @@ listed in
 .IR PROGS .
 If SRCS.<prog> is not defined, it's assumed to be prog.c.
 .RI < "M" >
-.IP CFLAGS
-Additional flags to the compiler when creating C objects.
-.RI < "Iu" >
-.IP CPPFLAGS
-Additional flags to the C pre-processor.
-.RI < "Iu" >
-.IP COPTS
-Additional flags to the compiler when creating C objects.
-.RI < "U" >
 .IP LDADD
 Additional objects.  Usually used for libraries.
 For example, to link with the compatibility and utility
@@ -611,12 +619,16 @@ libraries, use:
     LDADD+=  -lutil -lcompat
 .VE
 .RI < "U" >
+.IP LDADD_<project>
+Similar to LDADD but for project ${PROJECTNAME}.
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VS
     LDFLAGS+=  -L/opt/company/software/lib
 .VE
 .RI < "Mu I" >
+.IP LDFLAGS_<project>
+Similar to LDFLAGS but for project ${PROJECTNAME}.
 .IP "BINDIR, BINMODE, BINOWN and BINGRP"
 See
 .IR "Common variables " and " mkc.files.mk"
@@ -632,16 +644,6 @@ If "yes", create Position Independent Executable (PIE), otherwise
 create a regular executable.
 .RI < "Mu" >
 .RI [ no ]
-.\" .IP "COPTS.<prog> OBJCCOPTS.<prog> LDADD.<prog> CPPFLAGS.<prog> CXXFLAGS.<prog>"
-.\" These provide a way to specify additions to the associated
-.\" variables in a way that applies only to a particular
-.\" program.  <prog> corresponds to
-.\" .\" either
-.\" PROG.
-.\" .\" or PROG_CXX (if set)
-.\" For example, if COPTS.foobar is
-.\" set to "-g", "-g" will be added to COPTS only when compiling
-.\" the "foobar" application.
 .IP USE_RELRO
 If "yes", enables a technique to harden the data sections of an ELF
 binary/process.  For security reasons it makes sense to set it to YES, it
@@ -710,14 +712,12 @@ Library mode.
 .IP SHLIBMODE
 Shared library mode.
 .RI < "Iu" >
-.IP LDADD
-Additional objects. See LDADD in
+.IP "LDADD LDADD_<project>"
+Additional objects. See
 .B mkc.prog.mk
-.RI < "Mu" >
-.IP LDFLAGS
-Additional linker flags. See LDFLAGS in
+.IP "LDFLAGS LDFLAGS_<project>"
+Additional linker flags. See
 .B mkc.prog.mk
-.RI < "Mu" >
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
 .RI < "M" >
