@@ -161,9 +161,9 @@ MKSTATICLIB ?=	no
 MKSTATICLIB ?=	yes
 .endif # MKDLL
 
+SHLIB_MINOR ?=	0
 .if ${MKDLL:tl} != "no"
 SHLIB_MAJOR ?=	1
-SHLIB_MINOR ?=	0
 .endif # MKDLL
 
 .if defined(SHLIB_MAJOR)

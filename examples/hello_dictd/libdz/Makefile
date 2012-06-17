@@ -11,6 +11,5 @@ MKC_REQUIRE_HEADERS  =	zlib.h
 MKC_REQUIRE_FUNCLIBS =	deflate:z
 
 SHLIB_MAJOR =	1
-SHLIB_MINOR =	0
 
 .include <mkc.lib.mk>
