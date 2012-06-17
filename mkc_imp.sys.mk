@@ -145,61 +145,61 @@ STRIP     ?=	strip
 # C
 .c.o:
 	${MESSAGE.c}
-	${COMPILE.c} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.c} -o ${.TARGET} ${.IMPSRC}
 .c.op:
 	${MESSAGE.c}
-	${COMPILE.c} -pg ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.c} -o ${.TARGET} -pg ${.IMPSRC}
 .c.os:
 	${MESSAGE.c}
-	${COMPILE.c} ${CFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.c} -o ${.TARGET} ${CFLAGS.pic} ${.IMPSRC}
 
 # C++
 .cc.o .cpp.o .cxx.o .C.o:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} -o ${.TARGET} ${.IMPSRC}
 .cc.op .C.op .cpp.op:
 	${MESSAGE.cc}
-	${COMPILE.cc} -pg ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} -o ${.TARGET} -pg ${.IMPSRC}
 .cc.os .C.os .cpp.os:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${CXXFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.cc} -o ${.TARGET} ${CXXFLAGS.pic} ${.IMPSRC}
 
 # Fortran/Ratfor
 .f.o:
 	${MESSAGE.f}
-	${COMPILE.f} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.f} -o ${.TARGET} ${.IMPSRC}
 .f.op:
 	${MESSAGE.f}
-	${COMPILE.f} -pg ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.f} -o ${.TARGET} -pg ${.IMPSRC}
 .f.os:
 	${MESSAGE.f}
-	${COMPILE.f} ${FFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.f} -o ${.TARGET} ${FFLAGS.pic} ${.IMPSRC}
 
 #.F:
 .F.o:
 	${MESSAGE.F}
-	${COMPILE.F} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.F} -o ${.TARGET} ${.IMPSRC}
 
 #.r:
 .r.o:
 	${MESSAGE.r}
-	${COMPILE.r} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.r} -o ${.TARGET} ${.IMPSRC}
 
 # Pascal
 .p.o:
 	${MESSAGE.p}
-	${COMPILE.p} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.p} -o ${.TARGET} ${.IMPSRC}
 
 # Assembly
 .S.o .s.o:
 	${MESSAGE.s}
-	${COMPILE.s} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.s} -o ${.TARGET} ${.IMPSRC}
 .S.op .s.op:
 	${MESSAGE.s}
-	${COMPILE.s} -pg ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.s} -o ${.TARGET} -pg ${.IMPSRC}
 .S.os .s.os:
 	${MESSAGE.s}
-	${COMPILE.s} ${CAFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.s} -o ${.TARGET} ${CAFLAGS.pic} ${.IMPSRC}
 
 # Objective-C
 .m.o:
@@ -207,10 +207,10 @@ STRIP     ?=	strip
 	${COMPILE.m} ${.IMPSRC}
 .m.op:
 	${MESSAGE.m}
-	${COMPILE.m} -pg ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.m} -o ${.TARGET} -pg ${.IMPSRC}
 .m.os:
 	${MESSAGE.m}
-	${COMPILE.m} ${CMFLAGS.pic} ${.IMPSRC} -o ${.TARGET}
+	${COMPILE.m} -o ${.TARGET} ${CMFLAGS.pic} ${.IMPSRC}
 
 # Lex
 LPREFIX ?=	yy
