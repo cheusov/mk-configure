@@ -686,9 +686,11 @@ Major shared library number. If unset, shared library is not built.
 .IP SHLIB_MINOR
 Minor shared library number.
 .RI < "M" >
+.RI [ 0 ]
 .IP SHLIB_TEENY
 Minor shared library number.
 .RI < "M" >
+.RI [ "" ]
 .IP LIBOWN
 Library owner. If
 .B bmake
