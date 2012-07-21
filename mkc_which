@@ -1,12 +1,12 @@
 #!/bin/sh
 
 ############################################################
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2012 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-# Replacement for which(1) that sucks so much on some systems, e.g. Solaris
+# Portable replacement for which(1)
 
 if test "$1" = "-x"; then
     failure=0
@@ -28,7 +28,7 @@ if echo "$1" | grep '^/' > /dev/null; then
     exit 0
 fi
 for i in `echo $PATH|tr : ' '`; do
-    if test -x "$i/$1"; then
+    if test -x "$i/$1" -a -f "$i/$1"; then
 	echo $i/$1
 	exit 0
     fi
