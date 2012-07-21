@@ -4,8 +4,8 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	${.OBJDIR}/prog2; \
 	\
-	echo OBJDIR_prog1=${OBJDIR_prog1}; \
-	echo OBJDIR_prog2=${OBJDIR_prog2}; \
+	echo OBJDIR_prog1=${OBJDIR_prog1} | mkc_test_helper_paths; \
+	echo OBJDIR_prog2=${OBJDIR_prog2} | mkc_test_helper_paths; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \
