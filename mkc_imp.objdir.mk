@@ -25,7 +25,7 @@ OBJDIR_${i} = ${.CURDIR}/obj.${MACHINE}
 .  elif defined(_OBJ_DIR)
 OBJDIR_${i} = ${.CURDIR}/obj
 .  else
-OBJDIR_${i} = ${i}
+OBJDIR_${i} = ${.CURDIR}/${i}
 .  endif # MAKEOBJDIRPREFIX...
 .endif
 
