@@ -1,4 +1,35 @@
 ======================================================================
+Version 0.23.0, by Aleksey Cheusov, Sun, 22 Jul 2012 14:06:06 +0300
+
+  mkc.subprj.mk:
+    - Support for "virtual" subproject was added. Subprojects listed
+      in SUBPRJ and SUBPRJS_DFLT are not necessarily associated with
+      a subdirectory. See examples/hello_superfs for example.
+      Virtual subproject is a way to group several subprojects into
+      new one.
+
+  New variables were introduced: COPTS_<proj> OBJCOPTS_<proj>
+  LDADD_<proj> LDFLAGS_<proj> CPPFLAGS_<proj> CXXFLAGS_<proj>.
+  See the manual page for details.
+
+  Fix: OBJDIR_<subdir> variables now always contain full paths.
+
+  Fix in mkc_which(1). Now it differs directories and regular files.
+
+  Minor fixes in regression tests for EXPORT_SYMBOLS.
+
+  mkc.lib.mk:
+    - SHLIB_MINOR unconditionally defaults to 0
+
+  More slides in .pdf presentation:
+    - cross-compilation
+    - EXPORT_SYMBOLS
+
+  Fixes for Pascal support
+
+  Minor fixes in the man page
+
+======================================================================
 Version 0.22.0, by Aleksey Cheusov, Fri,  9 Mar 2012 20:26:34 +0300
 
   Improvements in cross-compilation. The following variables were

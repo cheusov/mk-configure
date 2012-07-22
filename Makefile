@@ -25,7 +25,7 @@ SHRTOUT=		yes
 
 PROJECTNAME=		mk-configure
 
-VERSION=		0.22.0
+VERSION=		0.23.0
 
 BIRTHDATE=		2009-02-21
 
