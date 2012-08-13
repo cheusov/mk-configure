@@ -1,0 +1,207 @@
+PROJECTNAME=tools
+This is a message #1
+Message #2
+This is a message #3
+Message #3
+OBJDIR_tools_prog1=/path/to/prog1
+OBJDIR_tools_prog2=/path/to/prog2
+OBJDIR_tools_prog3=/path/to/prog3
+OBJDIR_libs_foo=/path/to/foo
+OBJDIR_libs_bar=/path/to/bar
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/bar.o
+/objdir/libs/bar/libbar.a
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/foo.o
+/objdir/libs/foo/libfoo.a
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog1/prog1.o
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog2/prog2.o
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3
+/objdir/tools/prog3/prog3.c
+/objdir/tools/prog3/prog3.o
+===== all SHRTOUT=yes ======
+==================================================
+all ===> tools/libs/bar
+CC: bar.c
+AR: libbar.a
+==================================================
+all ===> tools/libs/foo
+CC: foo.c
+AR: libfoo.a
+==================================================
+all ===> tools/tools/prog1
+CC: prog1.c
+LD: prog1
+==================================================
+all ===> tools/tools/prog2
+CC: prog2.c
+LD: prog2
+==================================================
+all ===> tools/tools/prog3
+CC: prog3.c
+LD: prog3
+========= installdirs ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/include
+/objdir/prefix/lib
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/prog1
+/objdir/prefix/bin/prog2
+/objdir/prefix/bin/prog3
+/objdir/prefix/include
+/objdir/prefix/include/bar.h
+/objdir/prefix/include/foo.h
+/objdir/prefix/lib
+/objdir/prefix/lib/libbar.a
+/objdir/prefix/lib/libfoo.a
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3.c
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3.c
+========= all-tools/prog1 ==========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/foo.o
+/objdir/libs/foo/libfoo.a
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog1/prog1.o
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3.c
+========= all-tools/prog2 ==========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/bar.o
+/objdir/libs/bar/libbar.a
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog2/prog2.o
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3.c
+========= all-tools/prog3 ==========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/bar.o
+/objdir/libs/bar/libbar.a
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/foo.o
+/objdir/libs/foo/libfoo.a
+/objdir/libs/foo/linkme.mk
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3
+/objdir/tools/prog3/prog3.c
+/objdir/tools/prog3/prog3.o

@@ -907,7 +907,7 @@ list them in this variable.
 .IP OBJDIR_<dir>
 Value of ${.OBJDIR} inside 
 .I dir
-subdirectory.
+subdirectory. Slash symbols inside <dir> are replaced with underline.
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
 is an auxiliary include file for checking platform's features

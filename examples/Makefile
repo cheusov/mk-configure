@@ -33,6 +33,7 @@ SUBDIR+=	hello_superfs
 SUBDIR+=	hello_xxzip
 SUBDIR+=	hello_progs
 SUBDIR+=	hello_progs2
+SUBDIR+=	tools
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools

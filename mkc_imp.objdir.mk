@@ -13,19 +13,19 @@ _MKC_IMP_OBJDIR_MK := 1
 .endif
 
 .for i in ${__REALSUBPRJ}
-j:=${i}
-.if empty(j:U:M*[./]*)
-EXPORT_VARNAMES += OBJDIR_${i}
+j:=${i:S,/,_,g}
+.if empty(j:U:M*[.]*)
+EXPORT_VARNAMES += OBJDIR_${i:S,/,_,g}
 .  if defined(MAKEOBJDIRPREFIX)
-OBJDIR_${i} = ${MAKEOBJDIRPREFIX}${.CURDIR}
+OBJDIR_${j} = ${MAKEOBJDIRPREFIX}${.CURDIR}
 .  elif defined(MAKEOBJDIR)
-OBJDIR_${i} = ${MAKEOBJDIR}
+OBJDIR_${j} = ${MAKEOBJDIR}
 .  elif defined(_OBJ_MACHINE_DIR)
-OBJDIR_${i} = ${.CURDIR}/obj.${MACHINE}
+OBJDIR_${j} = ${.CURDIR}/obj.${MACHINE}
 .  elif defined(_OBJ_DIR)
-OBJDIR_${i} = ${.CURDIR}/obj
+OBJDIR_${j} = ${.CURDIR}/obj
 .  else
-OBJDIR_${i} = ${.CURDIR}/${i}
+OBJDIR_${j} = ${.CURDIR}/${i}
 .  endif # MAKEOBJDIRPREFIX...
 .endif
 
