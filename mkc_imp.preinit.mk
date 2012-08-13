@@ -3,7 +3,7 @@
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.if !make(clean) && !make(cleandir) && !make(distclean) && !make(mkc_printobjdir)
+.if !make(clean) && !make(cleandir) && !make(distclean)
 MKCHECKS ?=	yes
 .else
 MKCHECKS ?=	no

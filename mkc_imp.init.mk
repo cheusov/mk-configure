@@ -156,11 +156,6 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY : mkc_printobjdir
-mkc_printobjdir:
-	@echo ${.OBJDIR}
-
-###########
 .PHONY: realall
 .if !defined(SUBDIR) && !defined(SUBPRJ)
 realall : errorcheck
