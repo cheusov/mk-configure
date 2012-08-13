@@ -862,11 +862,14 @@ List of variables excluded from EXPORT_VARNAMES.
 .RI < "Mu" >
 .RI [ "" ]
 .IP NOSUBDIR
-The same as in
-.B mkc.subdir.mk
+If for some reason you want to exclude some subdirectories from build,
+list them in this variable.
+.RI < "U" >
+.RI [ "" ]
 .IP OBJDIR_<dir>
-The same as in
-.B mkc.subdir.mk
+Value of ${.OBJDIR} inside 
+.I dir
+subdirectory. Slash symbols inside <dir> are replaced with underline.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -898,16 +901,14 @@ special sources.
 List of subdirectories
 .RI < "M" >
 .IP "EXPORT_VARNAMES and NOEXPORT_VARNAMES"
-The same as in mkc.subprj.mk include file.
+The same as in
+.B mkc.subprj.mk
 .IP NOSUBDIR
-If for some reason you want to exclude some subdirectories from build,
-list them in this variable.
-.RI < "U" >
-.RI [ "" ]
+The same as in
+.B mkc.subdir.mk
 .IP OBJDIR_<dir>
-Value of ${.OBJDIR} inside 
-.I dir
-subdirectory. Slash symbols inside <dir> are replaced with underline.
+The same as in
+.B mkc.subprj.mk
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
 is an auxiliary include file for checking platform's features
