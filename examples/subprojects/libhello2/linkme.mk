@@ -1,4 +1,5 @@
-PATH.hello2:=	${.PARSEDIR}
+PATH.hello2 :=	${.PARSEDIR}
 
-CPPFLAGS+=	-I${PATH.hello2}/include
-DPLIBDIRS+=	${PATH.hello2}
+CPPFLAGS  +=	-I${PATH.hello2}/include
+DPLIBDIRS +=	${PATH.hello2}
+DPLIBS    +=	-lhello2

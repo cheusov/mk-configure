@@ -18,8 +18,6 @@ SCRIPTS =	${INSCRIPTS}
 .include "../libhello1/linkme.mk"
 .include "../libhello2/linkme.mk"
 
-DPLIBS +=	-lhello1 -lhello2
-
 .include "../version.mk"
 
 .include "test.mk"

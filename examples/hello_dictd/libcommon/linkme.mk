@@ -1,4 +1,5 @@
-PATH.common:=	${.PARSEDIR}
+PATH.common :=	${.PARSEDIR}
 
-CPPFLAGS+=	-I${PATH.common}
-DPLIBDIRS+=	${PATH.common}
+CPPFLAGS  +=	-I${PATH.common}
+DPLIBDIRS +=	${PATH.common}
+DPLIBS    +=	-lcommon

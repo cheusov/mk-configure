@@ -1,4 +1,5 @@
-PATH.cxxlib:=	${.PARSEDIR}
+PATH.cxxlib :=	${.PARSEDIR}
 
-CPPFLAGS+=	-I${PATH.cxxlib}/include
-DPLIBDIRS+=	${PATH.cxxlib}
+CPPFLAGS  +=	-I${PATH.cxxlib}/include
+DPLIBDIRS +=	${PATH.cxxlib}
+DPLIBS    +=	-lcxxlib

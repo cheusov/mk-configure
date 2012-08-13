@@ -1,4 +1,5 @@
-PATH.dz:=	${.PARSEDIR}
+PATH.dz :=	${.PARSEDIR}
 
-CPPFLAGS+=	-I${PATH.dz}
-DPLIBDIRS+=	${PATH.dz}
+CPPFLAGS  +=	-I${PATH.dz}
+DPLIBDIRS +=	${PATH.dz}
+DPLIBS    +=	-ldz
