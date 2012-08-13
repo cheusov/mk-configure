@@ -11,6 +11,8 @@ test_output :
 	echo OBJDIR_tools_prog3=${OBJDIR_tools_prog3} | mkc_test_helper_paths; \
 	echo OBJDIR_libs_foo=${OBJDIR_libs_foo} | mkc_test_helper_paths; \
 	echo OBJDIR_libs_bar=${OBJDIR_libs_bar} | mkc_test_helper_paths; \
+	echo OBJDIR_prog3=${OBJDIR_prog3} | mkc_test_helper_paths; \
+	echo OBJDIR_bar=${OBJDIR_bar} | mkc_test_helper_paths; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \

@@ -869,7 +869,9 @@ list them in this variable.
 .IP OBJDIR_<dir>
 Value of ${.OBJDIR} inside 
 .I dir
-subdirectory. Slash symbols inside <dir> are replaced with underline.
+subdirectory. Slash symbols inside <dir> are replaced with underlines.
+In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>} if <dir>
+contains slashes.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk

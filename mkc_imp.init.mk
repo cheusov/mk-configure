@@ -13,7 +13,7 @@ TARGET_OPSYS ?=	${OPSYS}
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T} != 	cd ${_dir} && ${MAKE} ${MAKEFLAGS} -j1 mkc_printobjdir MKCHECKS=no
+DPLIBDIRS.${_dir:T} = 	${OBJDIR_${_dir:T}}
 .if ${TARGET_OPSYS} == "HP-UX"
 LDFLAGS  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif

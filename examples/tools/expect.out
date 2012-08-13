@@ -8,6 +8,8 @@ OBJDIR_tools_prog2=/path/to/prog2
 OBJDIR_tools_prog3=/path/to/prog3
 OBJDIR_libs_foo=/path/to/foo
 OBJDIR_libs_bar=/path/to/bar
+OBJDIR_prog3=/path/to/prog3
+OBJDIR_bar=/path/to/bar
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
