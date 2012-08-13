@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2012 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
@@ -6,7 +6,7 @@
 .ifndef MKC_IMP.FINAL.MK
 MKC_IMP.FINAL.MK = 1
 
-LDADD +=	${DPLIBS}
+LDADD +=	${DPLIBS} # DPLIBS is deprecated (2012-08-13)
 LDADD +=	${LDADD_${PROJECTNAME}}
 
 LDFLAGS +=	${LDFLAGS_${PROJECTNAME}}
