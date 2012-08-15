@@ -13,5 +13,4 @@ _THISDIR_ =
 #
 .include "test.mk"
 .include "version.mk"
-.include <mkc.own.mk>
 .include <mkc.subdir.mk>

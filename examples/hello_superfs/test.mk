@@ -29,6 +29,12 @@ test_output:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ======= errorcheck ==========; \
+	${MAKE} ${MAKEFLAGS} errorcheck > /dev/null 2>&1; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null 2>&1; \
+	\
 	echo ==== install MKINSTALL=no ====; \
 	MKINSTALL=no; export MKINSTALL; \
 	${MAKE} ${MAKEFLAGS} all installdirs install DESTDIR=${.OBJDIR} \

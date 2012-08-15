@@ -156,9 +156,9 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY: realall
-realall : errorcheck
-errorcheck:
+.PHONY: realall do_errorcheck
+
+__errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
 		fn=`printf '%s\n' "$$msg" | sed -n 's/^%%%: //p'`; \
@@ -169,6 +169,14 @@ errorcheck:
 	    done; \
 	    exit $$ex; \
 	fi
+
+.if defined(SUBPRJ) || defined(SUBDIR)
+realall : do_errorcheck
+do_errorcheck: .MAKE __errorcheck
+.else
+realall : errorcheck
+errorcheck: .MAKE __errorcheck
+.endif
 
 ###########
 

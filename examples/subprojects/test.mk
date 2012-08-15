@@ -42,9 +42,15 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ======== errorcheck ==========; \
+	${MAKE} ${MAKEFLAGS} errorcheck 2> /dev/null 1>&2; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	\
 	echo ========= libhello1 ==========; \
 	${MAKE} ${MAKEFLAGS} libhello1 DESTDIR=${.OBJDIR} > /dev/null; \

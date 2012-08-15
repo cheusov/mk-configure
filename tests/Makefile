@@ -14,5 +14,6 @@ SUBDIR  +=	lua_dirs
 SUBDIR  +=	rec_makefiles
 SUBDIR  +=	reqd
 SUBDIR  +=	reqd2
+SUBDIR  +=	reqd3
 
 .include <mkc.mk>

@@ -55,6 +55,11 @@ test_output :
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo ======= errorcheck ==========; \
+	${MAKE} ${MAKEFLAGS} errorcheck > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	echo ======= all-dict ==========; \
 	${MAKE} ${MAKEFLAGS} all-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
