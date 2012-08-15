@@ -22,7 +22,6 @@ SUBDIR+=	hello_strlcpy
 SUBDIR+=	hello_customtests
 SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements
-SUBDIR+=	hello_reqd
 SUBDIR+=	hello_cxx
 SUBDIR+=	hello_cxxlib
 SUBDIR+=	hello_dictd

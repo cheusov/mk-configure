@@ -12,6 +12,7 @@ SUBDIR  +=	pkg_config_1
 SUBDIR  +=	pkg_config_2
 SUBDIR  +=	lua_dirs
 SUBDIR  +=	rec_makefiles
+SUBDIR  +=	reqd
 SUBDIR  +=	reqd2
 
 .include <mkc.mk>
