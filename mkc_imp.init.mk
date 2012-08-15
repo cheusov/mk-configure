@@ -157,9 +157,7 @@ print-values2 :
 
 ###########
 .PHONY: realall
-.if !defined(SUBDIR) && !defined(SUBPRJ)
 realall : errorcheck
-.endif
 errorcheck:
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
