@@ -11,4 +11,6 @@ set -e
 LC_ALL=C
 export LC_ALL
 
-sed 's,/[^ ]*/,/path/to/,' "$@"
+sed -e 's,/[^ ]*/,/path/to/,' \
+    -e 's/\([.][^ ]*\)[.]dylib/.so\1/' \
+    "$@"
