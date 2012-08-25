@@ -21,7 +21,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======== filelist ==========; \
-	${MAKE} ${MAKEFLAGS} filelist; \
+	${MAKE} ${MAKEFLAGS} filelist | sed 's/[.]bundle/.so/'; \
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
