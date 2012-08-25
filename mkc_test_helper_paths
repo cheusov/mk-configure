@@ -13,4 +13,5 @@ export LC_ALL
 
 sed -e 's,/[^ ]*/,/path/to/,' \
     -e 's/\([.][^ ]*\)[.]dylib/.so\1/' \
+    -e 's/[.]bundle/.so/' \
     "$@"
