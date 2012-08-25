@@ -54,7 +54,7 @@ A: I know very well how broken POSIX tools may be on some OSes and
 
 ----------------------------------------------------------------------
 Q: You just didn't read autobook and don't know how to use GNU
-   autotools properly. Your critics is inadequate. First, read the
+   autotools properly. Your criticism is inadequate. First, read the
    documentation!
 
 A: The question is not about me personally. Try to maintain software
@@ -76,7 +76,7 @@ Q: NetBSD make? Then why not to support FreeBSD/OpenBSD makes?
 
 A: OpenBSD and FreeBSD make(1)s are different and NetBSD make
    is more powerful. More over, NetBSD and Free/OpenBSD make(1)s are
-   incompatible in some aspects and have very different mk-files.
+   incompatible in some aspects.
 
 ----------------------------------------------------------------------
 Q: Learning yet another make doesn't look like a good idea to me.
@@ -163,42 +163,14 @@ A: Yes, I don't see significant difference between setting paths and
 
    to Makefile and write your settings down to that file. Then
    your local build options will take effect every time you run
-   bmake. Easy?
+   mkcmake. Easy?
 
    If you don't like .sinclude you can use
 
      bmake -f my_local_settings.mk -f Makefile
 
    command. Interactive shell's aliases and functions might help to make
-   things easier.
-
-----------------------------------------------------------------------
-Q: Autotools-based software often implements lots of
-   --with/without-foo build options. What do you suggest instead?
-
-A: *** THIS IS NOT IMPLEMENTED YET ***
-
-   I think mk-configure does everything you may need here. Look at
-   examples/complex_hello example project.
-   In order to build complex_hello without libhello1 just run
-
-     bmake WITH_LIBHELLO1=0.
-
-   or
-
-     bmake WITHOUT_LIBHELLO1=1.
-
-   If you want to build complex_hello with external libhello2 run
-
-     bmake EXTERNAL_LIBHELLO2=1
-
-   or
-
-     bmake LOCAL_LIBHELLO2=0
-
-   As for LOCAL_LIBHELLO2 and EXTERNAL_LIBHELLO2, you need not do
-   anything special in project's Makefile. Everything is made
-   automatically.
+   things even easier.
 
 ----------------------------------------------------------------------
 Q: It's known that libxxx has different places in different Linux
@@ -234,7 +206,7 @@ A: I personally don't like two-phase ideology. I see one phase
    "build the software taking into account my platform's features".
    If you want to check for errors first, run
 
-    bmake errorcheck
+      bmake errorcheck
 
 ----------------------------------------------------------------------
 Q: Does mk-configure support caching?
@@ -242,13 +214,13 @@ Q: Does mk-configure support caching?
 A: If you mean caching of the platform features, my answer is YES.
    Look at _mkc_* files and documentation for MKC_CACHEDIR variable.
    If you mean caching of object files, then NO. This is not
-   mk-configure's task. For this use distcc(1) or similar projects.
+   mk-configure's task. For this use distcc(1) or similar tools.
 
 ----------------------------------------------------------------------
 Q: mk-configure lacks support for Qt/KDE etc.
 
 A: Software is developed step-by-step. If you need something, let me
-   know. I'll implement missed features in future releases of
+   know. I'll implement missing features in future releases of
    mk-configure.
 
 ----------------------------------------------------------------------
@@ -257,23 +229,13 @@ Q: mk-configure lacks support for my favourite
 
 A: First, let me know about it. Second, nobody prevents you from
    creating rules for your language directly in Makefile or in your
-   own (local to your project) include file.
+   own (local to your project) include files.
 
 ----------------------------------------------------------------------
 Q: How about integration of mk-configure to Eclipse or...
 
 A: I don't use such IDEs but I agree it whould be nice to have such
-   support. We are humans and therefore we can talk to each
-   other. Right? ;-)
-
-----------------------------------------------------------------------
-Q: I want to build many executables in one subdirectory.
-   How can I do this with mk-configure?
-
-A: mk-configure works like this: at most one compilable application or
-   library per directory. At first sight this is limitation but in my
-   view this makes a project cleaner and easier maintainable.
-   Have a look at mkc.subprj.mk and mkc.subdir.mk include files.
+   support.
 
 ----------------------------------------------------------------------
 Q: It looks like mk-configure is suitable for small-sized projects
