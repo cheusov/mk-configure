@@ -1,4 +1,4 @@
-# Copyright (c) 2010 by Aleksey Cheusov
+# Copyright (c) 2010-2013 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
@@ -21,13 +21,13 @@ COMPILE.pod2html ?=	${_V} ${POD2HTML} ${POD2HTML_FLAGS}
 .SUFFIXES: .${i}
 .pod.${i}:
 	${MESSAGE.pod2man}
-	${COMPILE.pod2man} -s ${i} ${.ALLSRC} > ${.TARGET}
+	${COMPILE.pod2man} -s ${i} ${.IMPSRC} > ${.TARGET}
 .endfor
 
 .SUFFIXES: .html
 .pod.html:
 	${MESSAGE.pod2html}
-	${COMPILE.pod2html} < ${.ALLSRC} > ${.TARGET}
+	${COMPILE.pod2html} < ${.IMPSRC} > ${.TARGET}
 
 CLEANFILES  +=	pod2htmd.tmp pod2htmi.tmp
 
