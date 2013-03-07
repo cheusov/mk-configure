@@ -1,4 +1,4 @@
-MKC_VERSION=@version@
-BUILTINSDIR?=@syscustomdir@
-MKC_LIBEXECDIR=@libexecdir@
-MKC_SYSCONFDIR=@sysconfdir@
+MKC_VERSION    =	@version@
+BUILTINSDIR   ?=	@syscustomdir@
+MKC_LIBEXECDIR =	@libexecdir@
+MKC_SYSCONFDIR =	@sysconfdir@
