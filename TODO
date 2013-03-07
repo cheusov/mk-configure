@@ -1,6 +1,8 @@
 ============================================================
 Plan 0.24.0
 
+  - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
+  - @sysconfdir@/mkc.conf
   - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
   - .RECURSIVE/.MAKE: -> mkc_imp.sub{dir,prj}.mk
   - "mkcmake all" ignores MKC_REQD
