@@ -1,5 +1,5 @@
 ============================================================
-Plan 0.24.0
+Plan 0.25.0
 
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf

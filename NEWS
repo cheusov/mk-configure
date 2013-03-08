@@ -1,13 +1,13 @@
 ======================================================================
-Version 0.24.0, by Aleksey Cheusov, Sat,  2 Mar 2013 19:10:43 +0300
+Version 0.24.0, by Aleksey Cheusov, Fri,  8 Mar 2013 13:18:00 +0300
 
   mkc.sub{dir,prj}.mk:
     - support for subprojects containing / symbol was added. In
-      OBJDIR_<dir> variable slashes are replaced with underline.  In
-      addition OBJDIR_<dir:T> variable is set.
+      OBJDIR_<dir> variable slashes are replaced with underlines.
+      In addition OBJDIR_<dir:T> variable is set.
     - now also run the target "errorcheck"
-    - mk.sub{dir,prj}.mk now work correctly with non-empty MAKEOBJDIR
-      or MAKEOBJDIRPREFIX.
+    - now work correctly with non-empty MAKEOBJDIR
+      and MAKEOBJDIRPREFIX.
 
   Minor improvements in examples/*/linkme.mk
 
