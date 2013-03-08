@@ -88,7 +88,7 @@ INTEXTS_REPLS+=		mkfilesdir     ${MKFILESDIR}
 INTEXTS_REPLS+=		syscustomdir   ${BUILTINSDIR}
 INTEXTS_REPLS+=		mkc_libexecdir ${LIBEXECDIR}
 
-CVSDIST_TARGETS=	doc mkc_clean
+DIST_TARGETS=		doc clean
 
 INSTALL=		${.CURDIR}/mkc_install
 
