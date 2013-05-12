@@ -3,9 +3,11 @@ This is a message #1
 Message #2
 This is a message #3
 Message #3
+int_size=n
 OBJDIR_tools_prog1=/path/to/prog1
 OBJDIR_tools_prog2=/path/to/prog2
 OBJDIR_tools_prog3=/path/to/prog3
+OBJDIR_tools_prog4=/path/to/prog4
 OBJDIR_libs_foo=/path/to/foo
 OBJDIR_libs_bar=/path/to/bar
 OBJDIR_prog3=/path/to/prog3
@@ -16,6 +18,9 @@ OBJDIR_bar=/path/to/bar
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_sizeof_int.c
+/objdir/_mkc_sizeof_int.err
+/objdir/_mkc_sizeof_int.res
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
@@ -29,6 +34,13 @@ OBJDIR_bar=/path/to/bar
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/libqux.a
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h
+/objdir/libs/qux/qux.h.in
+/objdir/libs/qux/qux.o
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -43,6 +55,10 @@ OBJDIR_bar=/path/to/bar
 /objdir/tools/prog3/prog3
 /objdir/tools/prog3/prog3.c
 /objdir/tools/prog3/prog3.o
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4
+/objdir/tools/prog4/prog4.c
+/objdir/tools/prog4/prog4.o
 ===== all SHRTOUT=yes ======
 ==================================================
 all ===> tools/libs/bar
@@ -52,6 +68,11 @@ AR: libbar.a
 all ===> tools/libs/foo
 CC: foo.c
 AR: libfoo.a
+==================================================
+all ===> tools/libs/qux
+GEN: qux.h
+CC: qux.c
+AR: libqux.a
 ==================================================
 all ===> tools/tools/prog1
 CC: prog1.c
@@ -64,6 +85,10 @@ LD: prog2
 all ===> tools/tools/prog3
 CC: prog3.c
 LD: prog3
+==================================================
+all ===> tools/tools/prog4
+CC: prog4.c
+LD: prog4
 ========= installdirs ==========
 /objdir/prefix
 /objdir/prefix/bin
@@ -75,12 +100,15 @@ LD: prog3
 /objdir/prefix/bin/prog1
 /objdir/prefix/bin/prog2
 /objdir/prefix/bin/prog3
+/objdir/prefix/bin/prog4
 /objdir/prefix/include
 /objdir/prefix/include/bar.h
 /objdir/prefix/include/foo.h
+/objdir/prefix/include/qux.h
 /objdir/prefix/lib
 /objdir/prefix/lib/libbar.a
 /objdir/prefix/lib/libfoo.a
+/objdir/prefix/lib/libqux.a
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
@@ -88,6 +116,9 @@ LD: prog3
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_sizeof_int.c
+/objdir/_mkc_sizeof_int.err
+/objdir/_mkc_sizeof_int.res
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
@@ -97,6 +128,10 @@ LD: prog3
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h.in
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -105,6 +140,8 @@ LD: prog3
 /objdir/tools/prog2/prog2.c
 /objdir/tools/prog3/Makefile
 /objdir/tools/prog3/prog3.c
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4.c
 ======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
@@ -116,6 +153,10 @@ LD: prog3
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h.in
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -124,6 +165,8 @@ LD: prog3
 /objdir/tools/prog2/prog2.c
 /objdir/tools/prog3/Makefile
 /objdir/tools/prog3/prog3.c
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4.c
 ========= all-tools/prog1 ==========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
@@ -141,6 +184,10 @@ LD: prog3
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h.in
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -151,6 +198,8 @@ LD: prog3
 /objdir/tools/prog2/prog2.c
 /objdir/tools/prog3/Makefile
 /objdir/tools/prog3/prog3.c
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4.c
 ========= all-tools/prog2 ==========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
@@ -168,6 +217,10 @@ LD: prog3
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h.in
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -178,6 +231,8 @@ LD: prog3
 /objdir/tools/prog2/prog2.o
 /objdir/tools/prog3/Makefile
 /objdir/tools/prog3/prog3.c
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4.c
 ========= all-tools/prog3 ==========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
@@ -197,6 +252,10 @@ LD: prog3
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
 /objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h.in
 /objdir/test.mk
 /objdir/tools.test.out.tmp
 /objdir/tools/prog1/Makefile
@@ -207,3 +266,42 @@ LD: prog3
 /objdir/tools/prog3/prog3
 /objdir/tools/prog3/prog3.c
 /objdir/tools/prog3/prog3.o
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4.c
+========= all-tools/prog4 ==========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_sizeof_int.c
+/objdir/_mkc_sizeof_int.err
+/objdir/_mkc_sizeof_int.res
+/objdir/expect.out
+/objdir/libs/bar/Makefile
+/objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.h
+/objdir/libs/bar/linkme.mk
+/objdir/libs/foo/Makefile
+/objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.h
+/objdir/libs/foo/linkme.mk
+/objdir/libs/qux/Makefile
+/objdir/libs/qux/libqux.a
+/objdir/libs/qux/linkme.mk
+/objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.h
+/objdir/libs/qux/qux.h.in
+/objdir/libs/qux/qux.o
+/objdir/test.mk
+/objdir/tools.test.out.tmp
+/objdir/tools/prog1/Makefile
+/objdir/tools/prog1/prog1.c
+/objdir/tools/prog2/Makefile
+/objdir/tools/prog2/prog2.c
+/objdir/tools/prog3/Makefile
+/objdir/tools/prog3/prog3.c
+/objdir/tools/prog4/Makefile
+/objdir/tools/prog4/prog4
+/objdir/tools/prog4/prog4.c
+/objdir/tools/prog4/prog4.o

@@ -6,9 +6,11 @@ test_output :
 	${.CURDIR}/tools/prog1/prog1; \
 	${.CURDIR}/tools/prog2/prog2; \
 	${.CURDIR}/tools/prog3/prog3; \
+	${.CURDIR}/tools/prog4/prog4 | sed 's/=[0-9]/=n/'; \
 	echo OBJDIR_tools_prog1=${OBJDIR_tools_prog1} | mkc_test_helper_paths; \
 	echo OBJDIR_tools_prog2=${OBJDIR_tools_prog2} | mkc_test_helper_paths; \
 	echo OBJDIR_tools_prog3=${OBJDIR_tools_prog3} | mkc_test_helper_paths; \
+	echo OBJDIR_tools_prog4=${OBJDIR_tools_prog4} | mkc_test_helper_paths; \
 	echo OBJDIR_libs_foo=${OBJDIR_libs_foo} | mkc_test_helper_paths; \
 	echo OBJDIR_libs_bar=${OBJDIR_libs_bar} | mkc_test_helper_paths; \
 	echo OBJDIR_prog3=${OBJDIR_prog3} | mkc_test_helper_paths; \
@@ -64,6 +66,12 @@ test_output :
 	echo ========= all-tools/prog3 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} all-tools/prog3 DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= all-tools/prog4 ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} all-tools/prog4 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
