@@ -27,8 +27,7 @@ __incinstall: .USE
 	    -g ${BINGRP} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET}
 
 .for I in ${INCS:O:u}
-realall: ${INCSSRCDIR}/${I}
-${DESTDIR}${INCSDIR}/$I: ${INCSSRCDIR}/$I __incinstall
+${DESTDIR}${INCSDIR}/$I: ${"${INCSSRCDIR}" != ".":?${INCSSRCDIR}/$I:$I} __incinstall
 .endfor
 
 UNINSTALLFILES  +=	${destination_incs}
