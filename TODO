@@ -1,6 +1,7 @@
 ============================================================
 Plan 0.25.0
 
+  - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf
   - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
