@@ -55,6 +55,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	rm -rf ${.OBJDIR}${PREFIX}; \
 	echo ======= errorcheck ==========; \
 	${MAKE} ${MAKEFLAGS} errorcheck > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \

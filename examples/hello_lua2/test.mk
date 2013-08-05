@@ -11,15 +11,15 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
 	find ${.OBJDIR}/usr -type f -o -type d | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
+	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
 	find ${.OBJDIR}/usr -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper /usr/local "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \

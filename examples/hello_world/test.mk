@@ -30,21 +30,24 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======== bin_tar ===========; \
-	${MAKE} ${MAKEFLAGS} bin_tar > /dev/null; \
-	${TAR} -tf ${.CURDIR:T}.tar | sort | ${tartf_cleanup}; \
+	${MAKE} ${MAKEFLAGS} PREFIX=/usr/local bin_tar > /dev/null; \
+	${TAR} -tf ${.CURDIR:T}.tar | \
+	sort | ${tartf_cleanup}; \
 	\
 	echo ======== bin_targz ===========; \
-	${MAKE} ${MAKEFLAGS} bin_targz > /dev/null; \
+	${MAKE} ${MAKEFLAGS} PREFIX=/usr/local bin_targz > /dev/null; \
 	${GZIP} -dc ${.CURDIR:T}.tar.gz | \
-	${TAR} -tf - | sort | ${tartf_cleanup}; \
+	${TAR} -tf - | \
+	sort | ${tartf_cleanup}; \
 	\
 	echo ======== bin_tarbz2 ===========; \
-	${MAKE} ${MAKEFLAGS} bin_tarbz2 > /dev/null; \
+	${MAKE} ${MAKEFLAGS} PREFIX=/usr/local bin_tarbz2 > /dev/null; \
 	${BZIP2} -dc ${.CURDIR:T}.tar.bz2 | \
-	${TAR} -tf - | sort | ${tartf_cleanup}; \
+	${TAR} -tf - | \
+	sort | ${tartf_cleanup}; \
 	\
 	echo ======= filelist ===========; \
-	${MAKE} ${MAKEFLAGS} filelist; \
+	${MAKE} ${MAKEFLAGS} PREFIX=/usr/local filelist; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \

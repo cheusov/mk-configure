@@ -55,17 +55,17 @@ test_output :
 	\
 	echo ========= libhello1 ==========; \
 	${MAKE} ${MAKEFLAGS} libhello1 DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-libhello2 ==========; \
 	${MAKE} ${MAKEFLAGS} all-libhello2 DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= cleandir-libhello1 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir-libhello1 DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR} -type f -o -type l -o -type d | \
+	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
