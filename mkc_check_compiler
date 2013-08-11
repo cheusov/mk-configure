@@ -11,6 +11,11 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+: ${TMPDIR:=/tmp}
+
+tmpfile="$TMPDIR/mk-c.$$"
+trap 'rm -f "$tmpfile"' 0
+
 ##################################################
 
 pathpart=compiler_type
@@ -50,7 +55,8 @@ BEGIN {
       printf "if defined(%s)\ncompiler %s\n#el", ARGV [i], ARGV [i+1]
    }
    printf "se\ncompiler unknown\n#endif\n"
-}' $checks | $CC -E - |
+}' $checks >"$tmpfile"
+    $CC -E "$tmpfile" |
     awk 'BEGIN { ret="unknown"} $1 == "compiler" {ret=$2; exit} END {print ret}'
 }
 
