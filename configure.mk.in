@@ -249,8 +249,10 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
 .if !defined(MKC_CUSTOM_FN.${c})
 MKC_CUSTOM_FN.${c}=${c}.c
 .endif
-CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom \
-	${MKC_CUSTOM_FN.${c}:H:S|^.$|${MKC_CUSTOM_DIR}|}/${MKC_CUSTOM_FN.${c}:T}
+.if empty(MKC_CUSTOM_FN.${c}:M/*)
+MKC_CUSTOM_FN.${c} := ${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
+.endif
+CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
 .endif
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 .if empty(MKC_REQUIRE_CUSTOM:U:M${c})

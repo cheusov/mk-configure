@@ -6,6 +6,8 @@
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/_mkc_custom_true_is_available.err
+/objdir/_mkc_custom_true_is_available.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -29,12 +31,16 @@ alloca(3) succeeded
 /objdir/_mkc_custom_alloca_in_alloca_h.res
 /objdir/_mkc_custom_alloca_in_stdlib_h.err
 /objdir/_mkc_custom_alloca_in_stdlib_h.res
+/objdir/_mkc_custom_true_is_available.err
+/objdir/_mkc_custom_true_is_available.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_customtests2.c
 /objdir/hello_customtests2.test.out.tmp
 /objdir/test.mk
+======= errorcheck + MAKEOBJDIR ===========
+true_is_available=1
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

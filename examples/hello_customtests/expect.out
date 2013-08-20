@@ -64,6 +64,8 @@ shtest is good: NO
 /objdir/hello_customtests.c
 /objdir/hello_customtests.test.out.tmp
 /objdir/test.mk
+======= errorcheck + MAKEOBJDIR ===========
+true_is_available=1
 ======= distclean ==========
 /objdir/Makefile
 /objdir/custom_tests/alloca_in_alloca_h.c

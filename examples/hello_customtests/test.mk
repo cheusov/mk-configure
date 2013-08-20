@@ -1,3 +1,5 @@
+CLEANDIRS +=		${.CURDIR}/testdir
+
 .PHONY : test_output
 test_output:
 	@set -e; \
@@ -25,6 +27,11 @@ test_output:
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ======= errorcheck + MAKEOBJDIR ===========; \
+	mkdir ${.CURDIR}/testdir || true; \
+	${MAKE} ${MAKEFLAGS} errorcheck MAKEOBJDIR=${.CURDIR}/testdir > /dev/null; \
+	printf 'true_is_available=%s\n' `cat ${.CURDIR}/testdir/_mkc_custom_true_is_available.res`; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
