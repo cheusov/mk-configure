@@ -1,6 +1,38 @@
 ============================================================
 Plan 0.25.0
+-------------------------
+.export is relatively new feature, check bmake version at startup
+-------------------------
+Warn about project names containing `-' (dash)
+-----------------------------------------
+gcc -L/usr/pkg/lib -R/usr/pkg/lib     -o hello_lex hello_lex.o   -ll
+yacc    calc.y
+mv y.tab.c calc.c
+gcc   -I/usr/pkg/include   -c     -o calc.o calc.c
+gcc -L/usr/pkg/lib -R/usr/pkg/lib     -o hello_calc calc.o
+ERROR: cannot find program -y
+Cannot find bison, good bye!
+------------------------------------------
 
+  clang does not support --param ssp-buffer-size=1 (-Qunused-arguments)
+
+  custom test failed -> exit status of mkcmake should not be zero
+  MKC_CUSTOM_ERR.qqqq -> error message before exiting just like 
+
+  clean, cleandir -> igniore mkc_imp.intexts.mk. test: REPLS contains
+  possibly empty variable.
+
+  mkcmake configure doesn't work
+  New variable MKC_CUSTOM_ENV.xxx
+
+  Add script_check to MKC_CHECK_CUSTOM
+               Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
+                    MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
+                    MKC_CUSTOM_FN.script_check=      checks/script_check
+
+  - object files mensioned in MKC_SOURCE_FUNS should be unconditionally deleted
+  - documentation for TARGET
+  - export TARGETS for subprojects
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf
