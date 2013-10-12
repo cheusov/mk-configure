@@ -226,7 +226,7 @@ CFLAGS.pic.icc =		-fPIC -DPIC
 CFLAGS.pic.clang =		-fPIC -DPIC
 CFLAGS.pic.pcc =		-k -DPIC
 CFLAGS.pic.mipspro =		-KPIC
-CFLAGS.pic.sunpro =		-KPIC # -xcode=pic32
+CFLAGS.pic.sunpro =		-xcode=pic32 # -KPIC
 CFLAGS.pic.hpc =		+Z # +z
 CFLAGS.pic.ibmc =		-qpic=large # -qpic=small
 CFLAGS.pic.decc =		# ?
