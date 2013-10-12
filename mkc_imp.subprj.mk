@@ -22,10 +22,16 @@ SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}
 .for dir in ${__REALSUBPRJ}
-.PHONY: nodeps-${targ}-${dir} subdir-${targ}-${dir} ${targ}-${dir}
+.PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir} \
+        nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
 nodeps-${targ}-${dir}: .MAKE __recurse
-       ${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
-subdir-${targ}-${dir}: .MAKE __recurse # nodeps-${targ}-${dir}
+       ${targ}-${dir}: .MAKE __recurse
+subdir-${targ}-${dir}: .MAKE __recurse
+.if ${dir} != ${dir:T}
+nodeps-${targ}-${dir:T}: nodeps-${targ}-${dir}
+       ${targ}-${dir:T}:        ${targ}-${dir}
+subdir-${targ}-${dir:T}: subdir-${targ}-${dir}
+.endif
 .endfor # dir
 
 .for dir in ${SUBPRJ_DFLT}
@@ -42,8 +48,8 @@ ${targ}-${prj}: ${targ}-${dep}
 .endfor # targ
 
 .for dir in ${__REALSUBPRJ}
-.PHONY: ${dir}
-${dir}: all-${dir}
+.PHONY: ${dir:T} ${dir}
+${dir:T} ${dir}: all-${dir}
 .endfor # dir
 
 # Make sure all of the standard targets are defined, even if they do nothing.

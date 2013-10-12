@@ -57,6 +57,15 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= all-prog1 ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} nodeps-all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} subdir-all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
 	echo ========= all-tools/prog2 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} all-tools/prog2 DESTDIR=${.OBJDIR} > /dev/null; \

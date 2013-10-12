@@ -85,20 +85,20 @@ The target
 .I bin_deb
 expects debian control files in DEBIAN subdirectory, see examples/hello_files
 for the sample.
-.IP <subdir>
+.IP "<subdir> and <subdir:T>"
 <subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
 This target is equivalent to all-<subdir> and is provided by
 .BR mkc.subdir.mk " and " mkc.subprj.mk
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
-sections below.
+sections below. <subdir:T> means the last component of the directory.
 .IP <target>-<subdir>
 runs the specified <target> for the specified <subdir>.
 This target is provided by
 .BR mkc.subdir.mk " and " mkc.subprj.mk
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
-sections below.
+sections below. The target <target>-<subdir:T> is also provided.
 .IP "subdir-<target>-<subdir> and nodeps-<target>-<subdir>"
 runs the specified <target> for the specified <subdir> without dependencies.
 These targets are provided by
@@ -106,6 +106,8 @@ These targets are provided by
 only. For details see
 .BR mkc.subprj.mk
 section below.
+Targets subdir-<target>-<subdir:T>
+and nodeps-<target>-<subdir:T> are also provided.
 .P
 .B NOTE:
 Commands associated with targets
