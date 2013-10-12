@@ -170,12 +170,12 @@ __errorcheck: .USE
 	    exit $$ex; \
 	fi
 
-.if defined(SUBPRJ) || defined(SUBDIR)
+.if defined(SUBPRJ)
 realall : do_errorcheck
-do_errorcheck: .MAKE __errorcheck
+do_errorcheck: __errorcheck
 .else
 realall : errorcheck
-errorcheck: .MAKE __errorcheck
+errorcheck: __errorcheck
 .endif
 
 ###########
@@ -192,9 +192,8 @@ MKC_ERR_MSG +=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} i
 LDLIBS =	${LDFLAGS} ${LDADD}
 
 ###########
-# skip uninstalling files and creating destination dirs
-# for mkc.subdir.mk and mkc.subprj.mk
-.if !defined(SUBDIR) && !defined(SUBPRJ)
+# skip uninstalling files and creating destination dirs for mkc.subprj.mk
+.if !defined(SUBPRJ)
 
 uninstall:
 	-rm -f ${UNINSTALLFILES} 2>/dev/null
@@ -211,7 +210,7 @@ filelist:
 
 test:
 
-.endif # SUBDIR
+.endif # SUBPRJ
 
 .if ${MKINSTALLDIRS:tl} == "yes"
 realinstall: installdirs

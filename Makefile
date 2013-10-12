@@ -53,7 +53,7 @@ FILES=	sys.mk configure.mk mkc.configure.mk mkc.mk \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.vars.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.own.mk mkc_imp.prog.mk \
-	mkc_imp.subdir.mk mkc_imp.subprj.mk mkc_imp.sys.mk \
+	mkc_imp.subprj.mk mkc_imp.sys.mk \
 	mkc_imp.init.mk mkc_imp.final.mk mkc_imp.scripts.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \

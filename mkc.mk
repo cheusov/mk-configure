@@ -4,11 +4,15 @@
 ############################################################
 .include <mkc_imp.preinit.mk>
 
-.if defined(SUBPRJS)
+.ifdef SUBDIR
+SUBPRJ = ${SUBDIR}
+.endif
+
+.ifdef SUBPRJS
 SUBPRJ   +=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
 .endif # defined(SUBPRJS)
 
-.if !defined(LIB) && !defined(SUBDIR) && !defined(SUBPRJ)
+.if !defined(LIB) && !defined(SUBPRJ)
 _use_prog :=	1
 .endif
 
@@ -46,19 +50,7 @@ CLEANFILES += ${MKC_SOURCE_FUNCLIBS:D${MKC_SOURCE_FUNCLIBS}.o}
 .endif # _use_prog || LIB
 
 ########################################
-.if defined(SUBDIR)
-.include <mkc_imp.subdir.mk>
-
-#
-.PHONY: subdir-clean subdir-distclean
-clean: subdir-clean
-subdir-clean:
-	-rm -f ${CLEANFILES} 2>/dev/null
-cleandir: subdir-distclean
-subdir-distclean:
-	-rm -f ${DISTCLEANFILES} 2>/dev/null
-####################
-.elif defined(SUBPRJ)
+.if defined(SUBPRJ)
 .include <mkc_imp.subprj.mk>
 
 #
@@ -70,7 +62,7 @@ cleandir: subprj-distclean
 subprj-distclean:
 	-rm -f ${DISTCLEANFILES} 2>/dev/null
 
-.endif # SUBDIR || SUBPRJ
+.endif # SUBPRJ
 ########################################
 
 .include <mkc_imp.arch.mk>
