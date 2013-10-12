@@ -24,15 +24,18 @@ EOF
 fi
 
 if echo "$1" | grep '^/' > /dev/null; then
-    echo $1
-    exit 0
-fi
-for i in `echo $PATH|tr : ' '`; do
-    if test -x "$i/$1" -a -f "$i/$1"; then
-	echo $i/$1
+    if test -x "$1"; then
+	echo $1
 	exit 0
     fi
-done
+else
+    for i in `echo $PATH|tr : ' '`; do
+	if test -x "$i/$1" -a -f "$i/$1"; then
+	    echo $i/$1
+	    exit 0
+	fi
+    done
+fi
 
 echo "Cannot find $1" >&2
 exit $failure

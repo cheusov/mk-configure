@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010, Aleksey Cheusov <vle@gmx.net>
+# Copyright (c) 2009-2013, Aleksey Cheusov <vle@gmx.net>
 # All rights reserved.
 # 
 # Redistribution and use in source and binary forms, with or without
@@ -271,27 +271,23 @@ MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 BUILTIN.${c}=	${CUSTOM.${c}}
 .endfor
 
-# checking for declared #define
+# checking for programs
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
+p_ := ${p}
 prog_id:=	${MKC_PROG.id.${p:S|+|x|g}:U${p}:S|/|_|g}
-.if !defined(PROG.${prog_id})
-p_=${p:M/*}
-.if !empty(p_)
-.  if exists(${p})
-PROG.${prog_id}=${p}
-.  else
-PROG.${prog_id}=
-.  endif # exists(${p})
+.ifdef PROG.${prog_id}
+.elif !empty(p_:M/*)
+PROG.${prog_id} = ${p}
 .else
-.undef p_
 PROG.${prog_id} != env ${mkc.environ} mkc_check_prog -i '${prog_id}' '${p}'
-.endif # p matches /*
 .endif # !defined(PROG.${prog_id})
-.if !empty(PROG.${prog_id})
+.ifndef HAVE_PROG.${prog_id}
+.if !empty(PROG.${prog_id}) && exists(${PROG.${prog_id}})
 HAVE_PROG.${prog_id}=		1
 .else
 HAVE_PROG.${prog_id}=		0
 .endif
+.endif # ifndef HAVE_PROG.${prog_id}
 
 .if !${HAVE_PROG.${prog_id}} && !empty(MKC_REQUIRE_PROGS:U1:M${p})
 MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"

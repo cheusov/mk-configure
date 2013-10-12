@@ -14,11 +14,11 @@ fi
 MKC_CACHEDIR=${MKC_CACHEDIR:-.}
 CC=${CC:-cc}
 
-tmpc=$MKC_CACHEDIR/_mkc_${pathpart}.c
-tmpo=$MKC_CACHEDIR/_mkc_${pathpart}.o
-tmperr=$MKC_CACHEDIR/_mkc_${pathpart}.err
-tmpexe=$MKC_CACHEDIR/_mkc_${pathpart}.exe
-cache=$MKC_CACHEDIR/_mkc_${pathpart}.res
+tmpc=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.c
+tmpo=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.o
+tmperr=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.err
+tmpexe=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.exe
+cache=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.res
 
 printme (){
     if test "$MKC_VERBOSE" != 1; then
