@@ -21,7 +21,7 @@ Usage: mkc_check_prog [OPTION] progname
 
 OPTIONS:
    -h|--help            display this screen
-   -i                   program id, a part of _mkc_* cache file
+   -i <progid>          program id, a part of _mkc_* cache file
 Examples:
    mkc_check_prog -h
    mkc_check_prog lua
