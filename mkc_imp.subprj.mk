@@ -1,4 +1,4 @@
-# Copyright (c) 2010 by Aleksey Cheusov
+# Copyright (c) 2010-2013 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
@@ -16,12 +16,14 @@ __REALSUBPRJ += ${dir}
 .endif
 .endfor
 
+.ifndef SUBDIR
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
+.endif
 
 SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}
-.for dir in ${__REALSUBPRJ}
+.for dir in ${__REALSUBPRJ:N.WAIT}
 .PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir} \
         nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
 nodeps-${targ}-${dir}: .MAKE __recurse
@@ -34,11 +36,17 @@ subdir-${targ}-${dir:T}: subdir-${targ}-${dir}
 .endif
 .endfor # dir
 
-.for dir in ${SUBPRJ_DFLT}
 .if !commands(${targ})
-${targ}: ${targ}-${dir}
-.endif
-.endfor
+. for dir in ${SUBPRJ_DFLT}
+dir_ = ${dir}
+.  if ${dir_} == ".WAIT"
+_SUBDIR_${targ} += .WAIT
+.  else
+_SUBDIR_${targ} += ${targ}-${dir}
+.  endif # .WAIT
+. endfor # dir
+${targ}: ${_SUBDIR_${targ}}
+.endif #!command(${targ})
 
 .for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
 .PHONY: ${targ}-${prj} ${targ}-${dep}
@@ -49,7 +57,10 @@ ${targ}-${prj}: ${targ}-${dep}
 
 .for dir in ${__REALSUBPRJ}
 .PHONY: ${dir:T} ${dir}
-${dir:T} ${dir}: all-${dir}
+.if ${dir:T} != ${dir}
+${dir:T}: all-${dir}
+.endif
+${dir}: all-${dir}
 .endfor # dir
 
 # Make sure all of the standard targets are defined, even if they do nothing.
