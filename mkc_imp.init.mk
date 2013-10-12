@@ -219,8 +219,9 @@ realinstall: installdirs
 
 .ORDER: installdirs install
 
-TARGETS  +=	all install clean cleandir depend test \
+TARGETS  +=	all all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist
+TARGETS := ${TARGETS:O:u}
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 .PHONY: ${TARGETS}
