@@ -20,7 +20,7 @@ mkc_check_prog detects presense of program file.
 Usage: mkc_check_prog [OPTION] progname
 
 OPTIONS:
-   -h|--help            display this screen
+   -h                   display this screen
    -i <progid>          program id, a part of _mkc_* cache file
 Examples:
    mkc_check_prog -h
@@ -32,7 +32,7 @@ EOF
 
 while test $# -ne 0; do
     case "$1" in
-	-h|--help)
+	-h)
 	    usage
 	    exit 0;;
 	-i)

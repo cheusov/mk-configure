@@ -25,7 +25,7 @@ Usage:
  mkc_check_custom [OPTIONS] cmd [args...]
 
 OPTIONS:
-   -h|--help            display this help
+   -h                   display this help
    -r                   build application and run it
    -p                   a part of cache filename, defaults to "custom"
    -n                   a part of cache filename, defaults to
@@ -42,7 +42,7 @@ if test $# -eq 0; then
     usage
     exit 1
 fi
-if test "_$1" = '_-h' -o "_$1" = '_--help'; then
+if test "_$1" = '_-h'; then
     usage
     exit 0
 fi
