@@ -25,18 +25,25 @@
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err
 /objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
 /objdir/_mkc_funclib_strlcpy.c
 /objdir/_mkc_funclib_strlcpy.err
 /objdir/_mkc_funclib_strlcpy.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
+/objdir/getline.c
+/objdir/hello
 /objdir/hello.c
 /objdir/hello.o
-/objdir/hello4
 /objdir/hello_strlcpy.test.out.tmp
 /objdir/input.in
 /objdir/strlcpy.c
@@ -44,21 +51,28 @@
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin
-/objdir/prefix/bin/hello4
+/objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err
 /objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
 /objdir/_mkc_funclib_strlcpy.c
 /objdir/_mkc_funclib_strlcpy.err
 /objdir/_mkc_funclib_strlcpy.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
+/objdir/getline.c
 /objdir/hello.c
 /objdir/hello_strlcpy.test.out.tmp
 /objdir/input.in
@@ -67,6 +81,7 @@
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
+/objdir/getline.c
 /objdir/hello.c
 /objdir/hello_strlcpy.test.out.tmp
 /objdir/input.in

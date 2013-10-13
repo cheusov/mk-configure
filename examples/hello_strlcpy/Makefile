@@ -1,7 +1,7 @@
-MKC_SOURCE_FUNCLIBS =	strlcpy
-MKC_CHECK_FUNCS3 +=	strlcpy:string.h
+MKC_SOURCE_FUNCLIBS =	strlcpy getline
+MKC_CHECK_FUNCS3 +=	strlcpy:string.h getline:stdio.h
 
-PROG =			hello4
+PROG =			hello
 SRCS =			hello.c
 
 WARNS =			4

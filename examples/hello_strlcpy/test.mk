@@ -1,7 +1,7 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
-	${.OBJDIR}/hello4 < ${.CURDIR}/input.in; \
+	${.OBJDIR}/hello < ${.CURDIR}/input.in; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
