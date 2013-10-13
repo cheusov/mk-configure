@@ -1,0 +1,29 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
+/objdir/expect.out
+/objdir/foo
+/objdir/foo.in
+/objdir/intexts_cleantrg.test.out.tmp
+/objdir/test.mk
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
+/objdir/expect.out
+/objdir/foo.in
+/objdir/intexts_cleantrg.test.out.tmp
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/foo.in
+/objdir/intexts_cleantrg.test.out.tmp
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/foo.in
+/objdir/intexts_cleantrg.test.out.tmp
+/objdir/test.mk
