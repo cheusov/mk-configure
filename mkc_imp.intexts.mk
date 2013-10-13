@@ -23,27 +23,28 @@ INTEXTS_SED  +=	-e 's,@datadir@,${DATADIR},g'
 INTEXTS_SED  +=	-e 's,@mandir@,${MANDIR},g'
 INTEXTS_SED  +=	-e 's,@incsdir@,${INCSDIR},g'
 
+.if !make(clean) && !make(cleandir) && !make(distclean)
 .for _pattern _repl in ${INTEXTS_REPLS}
 INTEXTS_SED  +=	-e 's,@${_pattern}@,${_repl},g'
 .endfor
-
-CLEANFILES   +=	${INSCRIPTS} ${INFILES}
+.endif
 
 .for i in ${INFILES}
-${i} : ${i}.in
+${i:T} : ${i}.in
 	${MESSAGE.gen}
 	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
 	chmod 0644 ${.TARGET}
 .endfor
 
 .for i in ${INSCRIPTS}
-${i} : ${i}.in
+${i:T} : ${i}.in
 	${MESSAGE.gen}
 	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
 	chmod 0755 ${.TARGET}
 .endfor
 
-all : ${INSCRIPTS} ${INFILES}
+CLEANFILES   +=	${INSCRIPTS:T} ${INFILES:T}
+realall: ${INSCRIPTS:T} ${INFILES:T}
 
 ######################################################################
 .endif # _MKC_IMP_INTEXTS_MK

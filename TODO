@@ -19,9 +19,6 @@ Cannot find bison, good bye!
   custom test failed -> exit status of mkcmake should not be zero
   MKC_CUSTOM_ERR.qqqq -> error message before exiting just like 
 
-  clean, cleandir -> igniore mkc_imp.intexts.mk. test: REPLS contains
-  possibly empty variable.
-
   mkcmake configure doesn't work
   New variable MKC_CUSTOM_ENV.xxx
 

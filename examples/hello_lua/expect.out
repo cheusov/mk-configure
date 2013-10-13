@@ -19,6 +19,8 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_lua.err
+/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
@@ -28,6 +30,7 @@ foobarbaz
 /objdir/expect.out
 /objdir/foo.lua
 /objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
 ========= install ==========
@@ -63,13 +66,15 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_lua.err
+/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
 /objdir/baz.c
 /objdir/expect.out
 /objdir/foo.lua
-/objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
 ======= distclean ==========
@@ -78,7 +83,7 @@ foobarbaz
 /objdir/baz.c
 /objdir/expect.out
 /objdir/foo.lua
-/objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
 ========= install2 ==========
@@ -97,6 +102,8 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_lua.err
+/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
@@ -106,6 +113,7 @@ foobarbaz
 /objdir/expect.out
 /objdir/foo.lua
 /objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua.test.out.tmp
 /objdir/home
 /objdir/home/cheusov

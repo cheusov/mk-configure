@@ -15,5 +15,6 @@ SUBDIR  +=	rec_makefiles
 SUBDIR  +=	reqd
 SUBDIR  +=	reqd2
 SUBDIR  +=	reqd3
+SUBDIR  +=	intexts_cleantrg
 
 .include <mkc.mk>
