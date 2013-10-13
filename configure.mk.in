@@ -195,6 +195,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d}"
 .endif
 .endfor
 
+.undef MKC_CHECK_VARS
 .undef MKC_REQUIRE_VARS
 
 # checking for struct members
