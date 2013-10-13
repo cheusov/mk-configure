@@ -87,3 +87,7 @@
 /objdir/input.in
 /objdir/strlcpy.c
 /objdir/test.mk
+======= CLEANFILES ==========
+strlcpy.o
+getline.o
+hello.o

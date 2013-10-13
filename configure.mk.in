@@ -34,6 +34,10 @@ MKC_COMMON_HEADERS?=     # list of headers always #included
 MKC_NOCACHE?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
 
+#
+MKC_SOURCE_FUNCLIBS   ?=
+_MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
+
 # .endif for the next .if is in the end of file
 .if ${MKCHECKS:Uno:tl} == "yes"
 
@@ -67,10 +71,7 @@ _MKC_LDADD:=		${LDADD}
 
 mkc.environ=CC='${CC}' CXX='${CXX}' FC='${FC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAGS='${_MKC_CFLAGS}' CXXFLAGS='${_MKC_CXXFLAGS}' FFLAGS='${_MKC_FFLAGS}' LDFLAGS='${_MKC_LDFLAGS}' LDADD='${_MKC_LDADD}' LEX='${LEX}' YACC='${YACC}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 
-#
-MKC_SOURCE_FUNCLIBS   ?=
-_MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
-
+######################################################
 # checking for builtin checks
 .for i in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
 MKC_CUSTOM_FN.${i}?=	${BUILTINSDIR}/${i}
@@ -78,6 +79,7 @@ MKC_CHECK_CUSTOM+=	${i}
 MKC_REQUIRE_CUSTOM+=	${MKC_REQUIRE_BUILTINS:M${i}}
 .endfor
 
+######################################################
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS} ${MKC_REQUIRE_HEADERS}
 .if !defined(HAVE_HEADER.${h:S|.|_|g:S|/|_|g})
@@ -95,6 +97,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
 .undef MKC_CHECK_HEADERS
 .undef MKC_REQUIRE_HEADERS
 
+######################################################
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS:U} ${MKC_SOURCE_FUNCLIBS:U} ${MKC_REQUIRE_FUNCLIBS:U}
 .if !defined(HAVE_FUNCLIB.${f:S/:/./g})
@@ -120,9 +123,9 @@ MKC_ERR_MSG+=		"ERROR: cannot find function ${f}"
 .endfor # f
 
 .undef MKC_CHECK_FUNCLIBS
-.undef MKC_SOURCE_FUNCLIBS
 .undef MKC_REQUIRE_FUNCLIBS
 
+######################################################
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF:U}
 .if !defined(SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g})
@@ -135,6 +138,7 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEO
 
 .undef MKC_CHECK_SIZEOF
 
+######################################################
 # checking for declared #define
 .for d in ${MKC_CHECK_DEFINES:U} ${MKC_REQUIRE_DEFINES:U}
 .if !defined(HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g})
@@ -156,6 +160,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d}"
 .undef MKC_CHECK_DEFINES
 .undef MKC_REQUIRE_DEFINES
 
+######################################################
 # checking for declared type
 .for t in ${MKC_CHECK_TYPES:U} ${MKC_REQUIRE_TYPES:U}
 .if !defined(HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g})
@@ -177,6 +182,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t}"
 .undef MKC_CHECK_TYPES
 .undef MKC_REQUIRE_TYPES
 
+######################################################
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS:U} ${MKC_REQUIRE_VARS:U}
 .if !defined(HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g})
@@ -198,6 +204,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d}"
 .undef MKC_CHECK_VARS
 .undef MKC_REQUIRE_VARS
 
+######################################################
 # checking for struct members
 .for m in ${MKC_CHECK_MEMBERS:U} ${MKC_REQUIRE_MEMBERS:U}
 .if !defined(HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g})
@@ -219,6 +226,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find member ${m}"
 .undef MKC_CHECK_MEMBERS
 .undef MKC_REQUIRE_MEMBERS
 
+######################################################
 # checking for declared functions
 .for n in 0 1 2 3 4 5 6 7 8 9
 
@@ -244,6 +252,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
 
 .endfor # n
 
+######################################################
 # custom checks
 .for c in ${MKC_CHECK_CUSTOM} ${MKC_REQUIRE_CUSTOM}
 .if !defined(CUSTOM.${c})
@@ -272,6 +281,7 @@ MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
 BUILTIN.${c}=	${CUSTOM.${c}}
 .endfor
 
+######################################################
 # checking for programs
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
 p_ := ${p}
@@ -301,6 +311,7 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 .undef MKC_CHECK_CUSTOM
 .undef MKC_REQUIRE_CUSTOM
 
+######################################################
 # final assignment
 .if !${MKC_NOAUTO:U0}
 .for i in ${MKC_CFLAGS}
@@ -312,7 +323,15 @@ LDADD+=		${i}
 .for i in ${MKC_SRCS}
 SRCS+=		${i}
 .endfor
-
 .endif # .if MKC_AUTO
 
-.endif # !make(clean) && !make(cleandir) && !make(distclean)
+.endif # MKCHECKS == yes
+
+######################################################
+######################################################
+######################################################
+.for i in ${_MKC_SOURCE_FUNCS}
+CLEANFILES += ${i}.o
+.endfor
+
+.undef MKC_SOURCE_FUNCLIBS

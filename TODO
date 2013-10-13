@@ -27,7 +27,6 @@ Cannot find bison, good bye!
                     MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
                     MKC_CUSTOM_FN.script_check=      checks/script_check
 
-  - object files mensioned in MKC_SOURCE_FUNS should be unconditionally deleted
   - documentation for TARGET
   - export TARGETS for subprojects
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...

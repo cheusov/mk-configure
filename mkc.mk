@@ -22,11 +22,7 @@ _use_prog :=	1
 .endif # _use_prog || LIB
 
 .include <mkc_imp.init.mk>
-
-CLEANFILES += ${MKC_SOURCE_FUNCLIBS:D${MKC_SOURCE_FUNCLIBS}.o}
-.if ${MKCHECKS:tl} == "yes"
 .include <configure.mk>
-.endif # MKCHECKS
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 

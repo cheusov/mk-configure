@@ -21,13 +21,17 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	find ${.OBJDIR} -type f | grep -v 'strlcpy[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f | grep -v 'strlcpy[.]o' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ======= CLEANFILES ==========; \
+	${MAKE} ${MAKEFLAGS} print-values VARS='CLEANFILES' MKCHECKS=no | \
+	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o$$/) print $$i}'
 
 .include <mkc.minitest.mk>
