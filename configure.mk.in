@@ -27,16 +27,16 @@
 #
 
 # user defined variables
-MKC_SHOW_CACHED?=0       # set it to `1' to show "...(cached)..." lines
-MKC_DELETE_TMPFILES?=0   # set it to `1' to delete temporary files
-MKC_CACHEDIR?=${.OBJDIR} # directory for cache and intermediate files
-MKC_COMMON_HEADERS?=     # list of headers always #included
-MKC_NOCACHE?=            # 1 or yes for disabling cache
-MKC_CUSTOM_DIR?=${.CURDIR} # directory with custom tests.c
+MKC_SHOW_CACHED     ?= 0          # set it to `1' to show "...(cached)..." lines
+MKC_DELETE_TMPFILES ?= 0          # set it to `1' to delete temporary files
+MKC_CACHEDIR        ?= ${.OBJDIR} # directory for cache and intermediate files
+MKC_COMMON_HEADERS  ?=            # list of headers always #included
+MKC_NOCACHE         ?=            # 1 or yes for disabling cache
+MKC_CUSTOM_DIR      ?=${.CURDIR}  # directory with custom tests.c
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
-_MKC_SOURCE_FUNCS=	${MKC_SOURCE_FUNCLIBS:C/:.*//}
+_MKC_SOURCE_FUNCS      =	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
 # .endif for the next .if is in the end of file
 .if ${MKCHECKS:Uno:tl} == "yes"
@@ -48,35 +48,29 @@ HAVE_FUNCLIB.main ?=	1
 .undef MKC_LDADD
 .undef MKC_CFLAGS
 
-#
-.ifndef OPSYS
-OPSYS!=	uname -s
-.endif
-
-TARGET_OPSYS?=	${OPSYS}
 .if defined(MKC_COMMON_DEFINES.${TARGET_OPSYS})
-CPPFLAGS+=		${MKC_COMMON_DEFINES.${TARGET_OPSYS}}
+CPPFLAGS +=		${MKC_COMMON_DEFINES.${TARGET_OPSYS}}
 .endif
 .if defined(MKC_COMMON_DEFINES)
-CPPFLAGS+=		${MKC_COMMON_DEFINES}
+CPPFLAGS +=		${MKC_COMMON_DEFINES}
 .endif
 
 #
-_MKC_CPPFLAGS:=		${CPPFLAGS}
-_MKC_CFLAGS:=		${CFLAGS}
-_MKC_CXXFLAGS:=		${CXXFLAGS}
-_MKC_FFLAGS:=		${FFLAGS}
-_MKC_LDFLAGS:=		${LDFLAGS}
-_MKC_LDADD:=		${LDADD}
+_MKC_CPPFLAGS :=	${CPPFLAGS}
+_MKC_CFLAGS   :=	${CFLAGS}
+_MKC_CXXFLAGS :=	${CXXFLAGS}
+_MKC_FFLAGS   :=	${FFLAGS}
+_MKC_LDFLAGS  :=	${LDFLAGS}
+_MKC_LDADD    :=	${LDADD}
 
 mkc.environ=CC='${CC}' CXX='${CXX}' FC='${FC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAGS='${_MKC_CFLAGS}' CXXFLAGS='${_MKC_CXXFLAGS}' FFLAGS='${_MKC_FFLAGS}' LDFLAGS='${_MKC_LDFLAGS}' LDADD='${_MKC_LDADD}' LEX='${LEX}' YACC='${YACC}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_COMMON_HEADERS='${MKC_COMMON_HEADERS}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 
 ######################################################
 # checking for builtin checks
 .for i in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
-MKC_CUSTOM_FN.${i}?=	${BUILTINSDIR}/${i}
-MKC_CHECK_CUSTOM+=	${i}
-MKC_REQUIRE_CUSTOM+=	${MKC_REQUIRE_BUILTINS:M${i}}
+MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${i}
+MKC_CHECK_CUSTOM   +=	${i}
+MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
 .endfor
 
 ######################################################
@@ -87,10 +81,10 @@ HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
 .endif
 .if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 .if empty(MKC_REQUIRE_HEADERS:U:M${h})
-MKC_CFLAGS  +=  -DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+MKC_CFLAGS  +=	-DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
-MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
+MKC_ERR_MSG +=	"ERROR: cannot find header ${h}"
 .endif
 .endfor
 
@@ -101,24 +95,24 @@ MKC_ERR_MSG+=		"ERROR: cannot find header ${h}"
 # checking for functions in libraries
 .for f in ${MKC_CHECK_FUNCLIBS:U} ${MKC_SOURCE_FUNCLIBS:U} ${MKC_REQUIRE_FUNCLIBS:U}
 .if !defined(HAVE_FUNCLIB.${f:S/:/./g})
-HAVE_FUNCLIB.${f:S/:/./g}!=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
+HAVE_FUNCLIB.${f:S/:/./g} !=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
 .endif
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//})
-HAVE_FUNCLIB.${f:C/:.*//}!=	env ${mkc.environ} mkc_check_funclib ${f:C/:.*//}
+HAVE_FUNCLIB.${f:C/:.*//} !=	env ${mkc.environ} mkc_check_funclib ${f:C/:.*//}
 .endif
 .if ${HAVE_FUNCLIB.${f:C/:.*//}} != ${HAVE_FUNCLIB.${f:S/:/./g}}
 .if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
-MKC_LDADD+=-l${f:C/^.*://}
+MKC_LDADD +=	-l${f:C/^.*://}
 .endif
 .endif
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
-MKC_SRCS+=${f:C/:.*//}.c
+MKC_SRCS +=	${f:C/:.*//}.c
 .endif
 .endfor # f
 
 .for f in ${MKC_REQUIRE_FUNCLIBS:U}
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
-MKC_ERR_MSG+=		"ERROR: cannot find function ${f}"
+MKC_ERR_MSG +=	"ERROR: cannot find function ${f}"
 .endif
 .endfor # f
 
@@ -146,14 +140,14 @@ HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_dec
 .endif
 .if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_DEFINES:U:M${d})
-MKC_CFLAGS  +=  -DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for d in ${MKC_REQUIRE_DEFINES:U}
 .if !${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of define ${d}"
+MKC_ERR_MSG +=	"ERROR: cannot find declaration of define ${d}"
 .endif
 .endfor
 
@@ -168,14 +162,14 @@ HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl 
 .endif
 .if ${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_TYPES:U:M${t})
-MKC_CFLAGS  +=  -DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for t in ${MKC_REQUIRE_TYPES:U}
 .if !${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of type ${t}"
+MKC_ERR_MSG +=	"ERROR: cannot find declaration of type ${t}"
 .endif
 .endfor
 
@@ -190,14 +184,14 @@ HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl v
 .endif
 .if ${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_VARS:U:M${d})
-MKC_CFLAGS  +=  -DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for d in ${MKC_REQUIRE_VARS:U}
 .if !${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of variable ${d}"
+MKC_ERR_MSG +=	"ERROR: cannot find declaration of variable ${d}"
 .endif
 .endfor
 
@@ -212,14 +206,14 @@ HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_c
 .endif
 .if ${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
 .if empty(MKC_REQUIRE_MEMBERS:U:M${m})
-MKC_CFLAGS  +=  -DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
+MKC_CFLAGS  +=	-DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 .endif
 .endif
 .endfor
 
 .for m in ${MKC_REQUIRE_MEMBERS:U}
 .if !${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
-MKC_ERR_MSG+=		"ERROR: cannot find member ${m}"
+MKC_ERR_MSG +=	"ERROR: cannot find member ${m}"
 .endif
 .endfor
 
@@ -236,14 +230,14 @@ HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_d
 .endif
 .if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_FUNCS${n}:U:M${d})
-MKC_CFLAGS  +=  -DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor # d
 
 .for d in ${MKC_REQUIRE_FUNCS${n}:U}
 .if !${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
-MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
+MKC_ERR_MSG +=	"ERROR: cannot find declaration of function ${d}"
 .endif
 .endfor # d
 
@@ -257,35 +251,35 @@ MKC_ERR_MSG+=		"ERROR: cannot find declaration of function ${d}"
 .for c in ${MKC_CHECK_CUSTOM} ${MKC_REQUIRE_CUSTOM}
 .if !defined(CUSTOM.${c})
 .if !defined(MKC_CUSTOM_FN.${c})
-MKC_CUSTOM_FN.${c}=${c}.c
+MKC_CUSTOM_FN.${c} =	${c}.c
 .endif
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
-MKC_CUSTOM_FN.${c} := ${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
+MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
-CUSTOM.${c}   !=   env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
+CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
 .endif
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 .if empty(MKC_REQUIRE_CUSTOM:U:M${c})
-MKC_CFLAGS  +=  -DCUSTOM_${c:tu}=${CUSTOM.${c}}
+MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 .endif
 .endif
 .endfor
 
 .for c in ${MKC_REQUIRE_CUSTOM}
 .if empty(CUSTOM.${c}) || ${CUSTOM.${c}} == 0
-MKC_ERR_MSG+=		"ERROR: custom test ${c} failed"
+MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
 
 .for c in ${MKC_CHECK_BUILTINS} 
-BUILTIN.${c}=	${CUSTOM.${c}}
+BUILTIN.${c} =		${CUSTOM.${c}}
 .endfor
 
 ######################################################
 # checking for programs
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
-p_ := ${p}
-prog_id:=	${MKC_PROG.id.${p:S|+|x|g}:U${p}:S|/|_|g}
+p_      :=	${p}
+prog_id :=	${MKC_PROG.id.${p:S|+|x|g}:U${p}:S|/|_|g}
 .ifdef PROG.${prog_id}
 .elif !empty(p_:M/*)
 PROG.${prog_id} = ${p}
@@ -294,14 +288,14 @@ PROG.${prog_id} != env ${mkc.environ} mkc_check_prog -i '${prog_id}' '${p}'
 .endif # !defined(PROG.${prog_id})
 .ifndef HAVE_PROG.${prog_id}
 .if !empty(PROG.${prog_id}) && exists(${PROG.${prog_id}})
-HAVE_PROG.${prog_id}=		1
+HAVE_PROG.${prog_id} =		1
 .else
-HAVE_PROG.${prog_id}=		0
+HAVE_PROG.${prog_id} =		0
 .endif
 .endif # ifndef HAVE_PROG.${prog_id}
 
 .if !${HAVE_PROG.${prog_id}} && !empty(MKC_REQUIRE_PROGS:U1:M${p})
-MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
+MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 .endif
 .endfor # p
 
@@ -315,13 +309,13 @@ MKC_ERR_MSG+=		"ERROR: cannot find program ${p}"
 # final assignment
 .if !${MKC_NOAUTO:U0}
 .for i in ${MKC_CFLAGS}
-CFLAGS+=	${i}
+CFLAGS +=	${i}
 .endfor
 .for i in ${MKC_LDADD}
-LDADD+=		${i}
+LDADD +=	${i}
 .endfor
 .for i in ${MKC_SRCS}
-SRCS+=		${i}
+SRCS +=		${i}
 .endfor
 .endif # .if MKC_AUTO
 
@@ -331,7 +325,7 @@ SRCS+=		${i}
 ######################################################
 ######################################################
 .for i in ${_MKC_SOURCE_FUNCS}
-CLEANFILES += ${i}.o
+CLEANFILES +=	${i}.o
 .endfor
 
 .undef MKC_SOURCE_FUNCLIBS

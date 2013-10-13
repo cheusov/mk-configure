@@ -18,12 +18,12 @@ _MKC_IMP_SYS_MK := 1
 
 .if ${MKPIE:U:tl} == "yes"
 LDFLAGS.prog +=	${LDFLAGS.pie}
-CFLAGS +=	${CFLAGS.pie}
-CXXFLAGS +=	${CXXFLAGS.pie}
+CFLAGS       +=	${CFLAGS.pie}
+CXXFLAGS     +=	${CXXFLAGS.pie}
 .endif
 
 .if ${USE_SSP:U:tl} == "yes"
-CFLAGS +=	${CFLAGS.ssp}
+CFLAGS   +=	${CFLAGS.ssp}
 CXXFLAGS +=	${CXXFLAGS.ssp}
 .endif
 
@@ -35,21 +35,21 @@ LDFLAGS.prog +=	${LDFLAGS.relro}
 CPPFLAGS +=	-D_FORTIFY_SOURCE=2
 .endif
 
-SHRTOUT ?=	no
+SHRTOUT    ?=	no
 
 .if ${SHRTOUT:tl} != "no"
 _MESSAGE   ?=	echo
 _MESSAGE_V ?=	:
-_V ?=		@
+_V         ?=	@
 .else
 _MESSAGE   ?=	:
 _MESSAGE_V ?=	echo
-_V ?=
+_V         ?=
 .endif
 
-AR ?=		ar
-ARFLAGS ?=	rl
-RANLIB ?=	ranlib
+AR         ?=	ar
+ARFLAGS    ?=	rl
+RANLIB     ?=	ranlib
 MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
 AS        ?=	as
@@ -108,7 +108,7 @@ LDFLAGS   ?=
 
 LORDER    ?=	lorder
 
-NM ?=		nm
+NM        ?=	nm
 
 PC        ?=	pc
 PFLAGS    ?=
@@ -143,7 +143,7 @@ STRIP     ?=	strip
 #STRINGS   ?=	strings
 
 # C
-_PN=${PROJECTNAME} # short synonym
+_PN =	${PROJECTNAME} # short synonym
 
 .c.o:
 	${MESSAGE.c}
