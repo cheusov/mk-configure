@@ -245,6 +245,7 @@ CXXFLAGS.pie ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}
 
 ####################
 CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param ssp-buffer-size=1
+CFLAGS.ssp.ibmc =		-qstackprotect
 CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
 
 CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CC_TYPE}:U}}
