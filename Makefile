@@ -29,7 +29,7 @@ VERSION=		0.24.0
 
 BIRTHDATE=		2009-02-21
 
-MKCHECKS=		no
+_CONFIGURE_MK=		no # configure.mk is not generated yet
 
 SCRIPTS=		mkc_check_funclib mkc_check_header \
 			mkc_check_sizeof  mkc_check_decl \

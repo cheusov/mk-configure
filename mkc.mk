@@ -22,7 +22,10 @@ _use_prog :=	1
 .endif # _use_prog || LIB
 
 .include <mkc_imp.init.mk>
+
+.if ${_CONFIGURE_MK:Uyes:tl} == "yes"
 .include <configure.mk>
+.endif
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
