@@ -5,29 +5,29 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | grep -v 'strlcpy[.]o' | \
+	find ${.OBJDIR} -type f | grep -Ev '(strlcpy|getline)[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type d | \
-	grep -v 'strlcpy[.]o' | \
+	grep -vE '(strlcpy|getline)[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
 	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR}${PREFIX} -type f | grep -v 'strlcpy[.]o' | \
+	find ${.OBJDIR}${PREFIX} -type f | grep -vE '(strlcpy|getline)[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	find ${.OBJDIR} -type f | grep -v 'strlcpy[.]o' | \
+	find ${.OBJDIR} -type f | grep -vE '(strlcpy|getline)[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	find ${.OBJDIR} -type f | grep -v 'strlcpy[.]o' | \
+	find ${.OBJDIR} -type f | grep -vE '(strlcpy|getline)[.]o' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= CLEANFILES ==========; \
