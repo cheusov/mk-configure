@@ -874,6 +874,13 @@ Value of ${.OBJDIR} inside
 subdirectory. Slash symbols inside <dir> are replaced with underlines.
 In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>} if <dir>
 contains slashes.
+.IP TARGETS
+List of recursive targets supported by the project and all its subprojects.
+.RI < "Im" >
+.RI [ all ", " install ", " installdirs ", " uninstall ", " clean ", "
+.IR cleandir ", " depends ", " test ", " errorcheck ", " filelist ]
+By setting this variable in the Makefile one can add new targets for special
+purposes, for example, static code analysis, partial builds etc.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -911,6 +918,9 @@ The same as in
 The same as in
 .B mkc.subdir.mk
 .IP OBJDIR_<dir>
+The same as in
+.B mkc.subprj.mk
+.IP TARGETS
 The same as in
 .B mkc.subprj.mk
 .SS "mkc.configure.mk"
