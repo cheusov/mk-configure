@@ -1,0 +1,47 @@
+Hello World 1!
+Hello World 2!
+=========== all ============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/hello1/Makefile
+/objdir/hello1/hello1
+/objdir/hello1/hello1.c
+/objdir/hello1/hello1.o
+/objdir/hello2/Makefile
+/objdir/hello2/hello2
+/objdir/hello2/hello2.c
+/objdir/hello2/hello2.o
+/objdir/hello_TARGETS.test.out.tmp
+/objdir/test.mk
+========= codingstylechk ==========
+==================================================
+codingstylechk ===> hello_TARGETS/hello1
+Coding style check for hello1
+==================================================
+codingstylechk ===> hello_TARGETS/hello2
+Coding style check for hello2
+FAILED
+*** Error code 1
+
+Stop.
+bmake: stopped in /objdir/hello2
+*** Error code 1
+
+Stop.
+bmake: stopped in /objdir
+cschk ex=1
+============= files ===============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/expect.out
+/objdir/hello1/Makefile
+/objdir/hello1/hello1.c
+/objdir/hello2/Makefile
+/objdir/hello2/hello2.c
+/objdir/hello_TARGETS.test.out.tmp
+/objdir/test.mk
