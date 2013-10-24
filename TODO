@@ -31,7 +31,6 @@ Cannot find bison, good bye!
   - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
   - "mkcmake all" ignores MKC_REQD
   - BMAKE_REQD - minimum required bmake version
-  - virtual subprj - check for subprj/Makefile, not subprj
   - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
   - OBJCOPTS_<proj>
