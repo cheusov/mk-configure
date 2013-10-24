@@ -137,6 +137,19 @@ CC_TYPE  ?=	unknown
 CXX_TYPE ?=	unknown
 
 ####################
+# Default compiler-specific options
+
+# C
+CFLAGS.dflt.clang     =		-Qunused-arguments
+
+CFLAGS               +=		${CFLAGS.dflt.${CC_TYPE}}
+
+# C++
+CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
+
+CXXFLAGS             +=		${CXXFLAGS.dflt.${CXX_TYPE}}
+
+####################
 # Warnings as error
 CFLAGS.warnerr.gcc    =		-Werror
 CFLAGS.warnerr.icc    =		-Werror

@@ -14,8 +14,6 @@ ERROR: cannot find program -y
 Cannot find bison, good bye!
 ------------------------------------------
 
-  clang does not support --param ssp-buffer-size=1 (-Qunused-arguments)
-
   custom test failed -> exit status of mkcmake should not be zero
   MKC_CUSTOM_ERR.qqqq -> error message before exiting just like 
 

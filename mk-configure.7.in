@@ -456,6 +456,10 @@ These variables are set by mk-configure and enable warning messages
 for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
 and warning level (WARNS).
 .RI < "Iu" >
+.IP "CFLAGS.dflt.<cctype>, CXXFLAGS.dflt.<cxxtype>"
+Additional flags passed to
+C or C++ compilers according to their types (CC_TYPE and CXX_TYPE).
+.RI < "Iu" >
 .IP "CFLAGS.pic, CXXFLAGS.pic"
 Options for C and C++ compilers for generating position independent
 code.  On some platforms it makes sense to override these variables
