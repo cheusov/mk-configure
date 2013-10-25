@@ -2,13 +2,12 @@ TEST_PREREQS = # empty
 
 .PHONY : test_output
 test_output :
-	@set -e; \
+	@set -e; LC_ALL=C; export LC_ALL; \
 	\
 	echo =========== all ============; \
-	${MAKE} ${MAKEFLAGS} all || true > /dev/null; \
-	find ${.OBJDIR} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | \
-	sed 's,^.*/tests/,tests/,'; \
+	{ ${MAKE} ${MAKEFLAGS} all 2>/dev/null || true; \
+	find ${.OBJDIR} -type f -o -type l | sort; } | \
+	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 

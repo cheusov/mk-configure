@@ -19,7 +19,7 @@ ERROR: cannot find program brbrbr
 *** Error code 1
 
 Stop.
-bmake: stopped in tests/reqd_clean_cache
+bmake: stopped in /objdir
 /objdir/Makefile
 /objdir/expect.out
 /objdir/reqd_clean_cache.test.out.tmp
