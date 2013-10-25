@@ -32,6 +32,7 @@ OPTIONS:
                         `basename <source_file>` without extension
    -m                   A part of verbose message, defaults to -n args
    -s                   exit status of executable will be check
+   -d                   delete cache files
 Examples:
    mkc_check_custom my_custom_test.c
    mkc_check_custom -r mmap_works_perfectly.c
@@ -62,6 +63,8 @@ while test $# -ne 0; do
 	    shift;;
 	-s)
 	    check_status=1;;
+	-d)
+	    delcache=1;;
 	-*)
 	    echo "Bad option $1" 1>&2
 	    exit 1;;

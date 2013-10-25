@@ -1,0 +1,27 @@
+=========== all ============
+ERROR: cannot find header trtrtr.h
+ERROR: cannot find header sys/brbrbr.h
+ERROR: cannot find function trtrtr
+ERROR: cannot find function brbrbr:dl
+ERROR: cannot find declaration of define TRTRTR
+ERROR: cannot find declaration of define BRBRBR:sys/time.h
+ERROR: cannot find declaration of type trtrtr_t
+ERROR: cannot find declaration of type brbrbr_t:sys/time.h
+ERROR: cannot find declaration of variable v_trtrtr
+ERROR: cannot find declaration of variable v_brbrbr:sys/time.h
+ERROR: cannot find member trtr.trtr_t:string.h
+ERROR: cannot find member brbr.brbr_t:sys/time.h
+ERROR: cannot find declaration of function trtrtr:sys/time.h
+ERROR: cannot find declaration of function brbrbr
+ERROR: custom test test1 failed
+ERROR: cannot find program trtrtr
+ERROR: cannot find program brbrbr
+*** Error code 1
+
+Stop.
+bmake: stopped in tests/reqd_clean_cache
+/objdir/Makefile
+/objdir/expect.out
+/objdir/reqd_clean_cache.test.out.tmp
+/objdir/test.mk
+/objdir/test1.c

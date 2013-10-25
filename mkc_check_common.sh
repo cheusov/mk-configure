@@ -41,6 +41,13 @@ cleanup (){
     fi
 }
 
+cleanup_all (){
+    MKC_DELETE_TMPFILES=1
+    KEEP_SOURCE=0
+    rm -f "$cache"
+    cleanup
+}
+
 check_and_cache (){
     # $1 - message
     # $2 - cache file name
@@ -81,3 +88,8 @@ find_n_match (){
 	exit 0
     fi
 }
+
+if test -n "$delcache"; then
+    cleanup_all
+    exit 0
+fi

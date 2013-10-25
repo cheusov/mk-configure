@@ -18,7 +18,7 @@ usage (){
 mkc_check_header detects presense of header file
 by compiling a test program.
 
-Usage: mkc_check_header header.h
+Usage: mkc_check_header [OPTIONS] header.h
 
 Examples:
    mkc_check_header stdint.h
@@ -33,6 +33,10 @@ fi
 if test "_$1" = '_-h'; then
     usage
     exit 0
+fi
+if test "_$1" = '_-d'; then
+    delcache=1
+    shift
 fi
 
 ##################################################

@@ -45,8 +45,6 @@ Plan 1)
 
   - Support for MKDEBUG like in NetBSD mk files
   - .lua.luac:
-  - disable caching for "negative" results
-    for MKC_REQUIRE_xxx features.
   - Implement mkc_imp.libtool.mk to build
     the shared libraries using GNU libtool(1).
   - MKSTRIP, STRIP, mkc_install: use STRIP, not STRIPPROG

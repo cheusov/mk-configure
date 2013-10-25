@@ -84,6 +84,7 @@ HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
 MKC_CFLAGS  +=	-DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
+_fake   !=   env ${mkc.environ} mkc_check_header -d ${h} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find header ${h}"
 .endif
 .endfor
@@ -112,6 +113,8 @@ MKC_SRCS +=	${f:C/:.*//}.c
 
 .for f in ${MKC_REQUIRE_FUNCLIBS:U}
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
+_fake   !=   env ${mkc.environ} mkc_check_funclib -d ${f:C/:.*//} && echo
+_fake   !=   env ${mkc.environ} mkc_check_funclib -d ${f:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find function ${f}"
 .endif
 .endfor # f
@@ -147,6 +150,7 @@ MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 .for d in ${MKC_REQUIRE_DEFINES:U}
 .if !${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
+_fake   !=   env ${mkc.environ} mkc_check_decl -d define ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of define ${d}"
 .endif
 .endfor
@@ -169,6 +173,7 @@ MKC_CFLAGS  +=	-DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 .for t in ${MKC_REQUIRE_TYPES:U}
 .if !${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
+_fake   !=   env ${mkc.environ} mkc_check_decl -d type ${t:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of type ${t}"
 .endif
 .endfor
@@ -191,6 +196,7 @@ MKC_CFLAGS  +=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 .for d in ${MKC_REQUIRE_VARS:U}
 .if !${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
+_fake   !=   env ${mkc.environ} mkc_check_decl -d variable ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of variable ${d}"
 .endif
 .endfor
@@ -213,6 +219,7 @@ MKC_CFLAGS  +=	-DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 
 .for m in ${MKC_REQUIRE_MEMBERS:U}
 .if !${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
+_fake   !=   env ${mkc.environ} mkc_check_decl -d member ${m:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find member ${m}"
 .endif
 .endfor
@@ -237,6 +244,7 @@ MKC_CFLAGS  +=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 
 .for d in ${MKC_REQUIRE_FUNCS${n}:U}
 .if !${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
+_fake   !=   env ${mkc.environ} mkc_check_decl -d func${n} ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of function ${d}"
 .endif
 .endfor # d
@@ -267,6 +275,7 @@ MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 
 .for c in ${MKC_REQUIRE_CUSTOM}
 .if empty(CUSTOM.${c}) || ${CUSTOM.${c}} == 0
+_fake   !=   env ${mkc.environ} mkc_check_custom -d ${MKC_CUSTOM_FN.${c}} && echo
 MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
@@ -295,6 +304,7 @@ HAVE_PROG.${prog_id} =		0
 .endif # ifndef HAVE_PROG.${prog_id}
 
 .if !${HAVE_PROG.${prog_id}} && !empty(MKC_REQUIRE_PROGS:U1:M${p})
+_fake   !=   env ${mkc.environ} mkc_check_prog -d -i '${prog_id}' '${p}' && echo
 MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 .endif
 .endfor # p

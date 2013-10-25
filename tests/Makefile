@@ -1,6 +1,6 @@
 NOEXPORT_VARNAMES=	MKC_CACHEDIR
 
-SUBDIR	+=	configure_test
+SUBDIR  +=	configure_test
 SUBDIR  +=	../examples
 SUBDIR  +=	mkshlib
 SUBDIR  +=	mkstaticlib
@@ -15,6 +15,7 @@ SUBDIR  +=	rec_makefiles
 SUBDIR  +=	reqd
 SUBDIR  +=	reqd2
 SUBDIR  +=	reqd3
+SUBDIR  +=	reqd_clean_cache
 SUBDIR  +=	intexts_cleantrg
 
 .include <mkc.mk>
