@@ -1592,7 +1592,10 @@ is an auxiliary include file that implement simple framework for unit
 tests.  Idea: application provides the target test_output and
 expect.out file that contains ideal output. "bmake test" runs "bmake
 test_output" and compare generated output with expect.out.
-Look at the sources.
+.IP TEST_PREREQS
+Prerequisites for target "test".
+.RI < "Iu" >
+.RI [ all ]
 .SS "mkc_imp.pkg-config.mk"
 .B mkc_imp.pkg-config.mk
 is internal include file which is included from

@@ -1,10 +1,12 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2013 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
 
-.PHONY : test all
-test: all
+TEST_PREREQS ?= all
+
+.PHONY : test
+test: ${TEST_PREREQS}
 	@echo 'Testing ${.CURDIR}... ' 1>&2; \
 	set -e; cd ${.CURDIR}; \
 	tmp_out=${.OBJDIR}/${.CURDIR:T}.test.out; \
