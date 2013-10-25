@@ -4,6 +4,9 @@ CLEANDIRS +=	${.OBJDIR}/home
 test_output:
 	@set -e; \
 	rm -rf ${.OBJDIR}/usr; \
+	LUA_PATH=${.CURDIR}/?.lua; \
+	LUA_CPATH=${.OBJDIR}/?.so; \
+	export LUA_PATH LUA_CPATH; \
 	./foobar; \
 	\
 	echo =========== all ============; \
