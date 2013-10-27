@@ -18,6 +18,14 @@ test_output :
 	\
 	echo ============= files ===============; \
 	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo =========== manpages ============; \
+	env MKCATPAGES=no ${MAKE} ${MAKEFLAGS} cleandir 2>/dev/null 1>&2; \
+	${MAKE} ${MAKEFLAGS} manpages 2>/dev/null 1>&2; \
+	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	\
+	${MAKE} ${MAKEFLAGS} cleandir 2>/dev/null 1>&2
 
 .include <mkc.minitest.mk>

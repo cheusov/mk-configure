@@ -10,12 +10,18 @@ Hello World 2!
 /objdir/expect.out
 /objdir/hello1/Makefile
 /objdir/hello1/hello1
+/objdir/hello1/hello1.1
 /objdir/hello1/hello1.c
+/objdir/hello1/hello1.cat1
 /objdir/hello1/hello1.o
+/objdir/hello1/hello1.pod
 /objdir/hello2/Makefile
 /objdir/hello2/hello2
+/objdir/hello2/hello2.1
 /objdir/hello2/hello2.c
+/objdir/hello2/hello2.cat1
 /objdir/hello2/hello2.o
+/objdir/hello2/hello2.pod
 /objdir/hello_TARGETS.test.out.tmp
 /objdir/test.mk
 ========= codingstylechk ==========
@@ -41,7 +47,23 @@ cschk ex=1
 /objdir/expect.out
 /objdir/hello1/Makefile
 /objdir/hello1/hello1.c
+/objdir/hello1/hello1.pod
 /objdir/hello2/Makefile
 /objdir/hello2/hello2.c
+/objdir/hello2/hello2.pod
+/objdir/hello_TARGETS.test.out.tmp
+/objdir/test.mk
+=========== manpages ============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/expect.out
+/objdir/hello1/Makefile
+/objdir/hello1/hello1.1
+/objdir/hello1/hello1.c
+/objdir/hello1/hello1.pod
+/objdir/hello2/Makefile
+/objdir/hello2/hello2.1
+/objdir/hello2/hello2.c
+/objdir/hello2/hello2.pod
 /objdir/hello_TARGETS.test.out.tmp
 /objdir/test.mk

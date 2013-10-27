@@ -1,0 +1,22 @@
+=head1 NAME
+
+hello2 - mk-configure example
+
+=head1 SYNOPSIS
+
+B<hello2> I<[options]> I<[files...]>
+
+=head1 DESCRIPTION
+
+bla bla bla
+
+=head1 AUTHOR
+
+Copyright (c) 2010 Aleksey Cheusov <vle@gmx.net>
+
+=head1 HOME
+
+L<http://sourceforge.net/projects/mk-configure>
+
+=head1 SEE ALSO
+L<mk-configure(7)>
