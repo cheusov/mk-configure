@@ -18,6 +18,12 @@
 /objdir/xxzip.c
 /objdir/xxzip.o
 /objdir/xxzip.pod
+===== all SHRTOUT=yes ======
+CC: xxzip.c
+LD: xxzip
+POD2MAN: xxzip.1
+NROFF: xxzip.cat1
+POD2HTML: tutorial.html
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin

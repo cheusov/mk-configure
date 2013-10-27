@@ -9,6 +9,11 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ===== all SHRTOUT=yes ======; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} all SHRTOUT=yes 2>&1 | \
+	mkc_test_helper2; \
+	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
