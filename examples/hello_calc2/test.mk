@@ -24,6 +24,11 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
+	echo ========== depend ===========; \
+	${MAKE} ${MAKEFLAGS} depend DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \

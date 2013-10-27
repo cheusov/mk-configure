@@ -49,6 +49,28 @@
 /objdir/lex.l
 /objdir/parser.y
 /objdir/test.mk
+========== depend ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_custom_prog_bison.err
+/objdir/_mkc_custom_prog_bison.res
+/objdir/_mkc_custom_prog_flex.err
+/objdir/_mkc_custom_prog_flex.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/expressions.txt
+/objdir/hello_calc2.test.out.tmp
+/objdir/lex.c
+/objdir/lex.d
+/objdir/lex.l
+/objdir/parser.c
+/objdir/parser.d
+/objdir/parser.h
+/objdir/parser.y
+/objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

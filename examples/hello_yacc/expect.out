@@ -36,6 +36,22 @@
 /objdir/hello_yacc.test.out.tmp
 /objdir/input.txt
 /objdir/test.mk
+========== depend ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_yacc.err
+/objdir/_mkc_prog_yacc.res
+/objdir/calc.c
+/objdir/calc.d
+/objdir/calc.y
+/objdir/expect.out
+/objdir/hello_yacc.test.out.tmp
+/objdir/input.txt
+/objdir/test.mk
 ==== SHRTOUT=yes ====
 YACC: calc.y
 CC: calc.c

@@ -20,7 +20,12 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
+	echo ========== depend ===========; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
@@ -30,7 +35,7 @@ test_output:
 		all 2>/dev/null | mkc_test_helper2; \
 	\
 	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

@@ -1,6 +1,7 @@
 PROG =		calc
-
 SRCS =		lex.l parser.y
+
+DPSRCS  =	lex.c parser.c parser.h
 
 YHEADER =	1
 YPREFIX =	calc_
