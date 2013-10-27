@@ -30,6 +30,7 @@ INTEXTS_SED  +=	-e 's,@${_pattern}@,${_repl},g'
 .endif
 
 .for i in ${INFILES}
+.NOPATH: ${i:T}
 ${i:T} : ${i}.in
 	${MESSAGE.gen}
 	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
@@ -37,6 +38,7 @@ ${i:T} : ${i}.in
 .endfor
 
 .for i in ${INSCRIPTS}
+.NOPATH: ${i:T}
 ${i:T} : ${i}.in
 	${MESSAGE.gen}
 	${_V} sed ${INTEXTS_SED} ${.ALLSRC} > ${.TARGET} && \
