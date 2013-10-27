@@ -5,6 +5,7 @@ tartf_cleanup=	sed -e 's,^[.]/,,' -e 's,/$$,,' -e '/^[.]*$$/ d'
 .PHONY : test_output
 test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	echo PROJECTNAME=${PROJECTNAME}; \
 	${.OBJDIR}/hello_world; \
 	rm -rf ${.OBJDIR}${PREFIX}; \

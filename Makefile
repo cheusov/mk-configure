@@ -113,9 +113,8 @@ test: configure.mk mkc_imp.vars.mk mkc_check_version
 	@set -e; \
 	PATH=${.CURDIR}:${.OBJDIR}:$$PATH; \
 	BUILTINSDIR=${.CURDIR}/custom; \
-	MKCATPAGES=yes; \
 	NO_AUTODEP=yes; \
-	export PATH BUILTINSDIR MKCATPAGES NO_AUTODEP; \
+	export PATH BUILTINSDIR NO_AUTODEP; \
 	unset MAKEOBJDIR MAKEOBJDIRPREFIX || true; \
 	cd ${.CURDIR}/tests; \
 	${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} ${MAKEFLAGS} test

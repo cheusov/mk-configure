@@ -5,6 +5,7 @@ test_output:
 	${.OBJDIR}/client; \
 	${.OBJDIR}/server; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

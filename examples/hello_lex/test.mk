@@ -3,6 +3,7 @@ test_output:
 	@set -e; \
 	${.OBJDIR}/hello_lex < ${.CURDIR}/input.txt; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

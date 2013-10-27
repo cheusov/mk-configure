@@ -1,17 +1,17 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
-	MKHTML=yes; export MKHTML; \
-	\
+	MKCATPAGES=yes; export MKCATPAGES; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
+	${MAKE} ${MAKEFLAGS} all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== all+html ==========; \
-	${MAKE} ${MAKEFLAGS} all \
-		> /dev/null; \
+	MKHTML=yes; export MKHTML; \
+	${MAKE} ${MAKEFLAGS} all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\

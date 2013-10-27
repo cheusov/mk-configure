@@ -3,6 +3,7 @@ test_output:
 	@set -e; \
 	${.OBJDIR}/hello_cxx; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

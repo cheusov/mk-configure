@@ -4,6 +4,7 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	app/app plugin1/plugin1${DLL_EXT} plugin1/plugin1${DLL_EXT} | \
 	awk '$$3 == "address:" {$$4 = "0xF00DBEAF"} {print}'; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

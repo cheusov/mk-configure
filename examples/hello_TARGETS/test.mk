@@ -6,6 +6,7 @@ test_output :
 	@:; \
 	${OBJDIR_hello1}/hello1; \
 	${OBJDIR_hello2}/hello2; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \

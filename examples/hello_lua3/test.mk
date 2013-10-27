@@ -3,6 +3,7 @@ test_output:
 	@set -e; \
 	rm -rf ${.OBJDIR}/usr ${.OBJDIR}/opt; \
 	echo PROJECTNAME=${PROJECTNAME}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

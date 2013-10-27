@@ -14,14 +14,12 @@
 /objdir/fsck_superfs/fsck_superfs
 /objdir/fsck_superfs/fsck_superfs.8
 /objdir/fsck_superfs/fsck_superfs.c
-/objdir/fsck_superfs/fsck_superfs.cat8
 /objdir/fsck_superfs/fsck_superfs.o
 /objdir/hello_superfs.test.out.tmp
 /objdir/mkfs_superfs/Makefile
 /objdir/mkfs_superfs/mkfs_superfs
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
-/objdir/mkfs_superfs/mkfs_superfs.cat8
 /objdir/mkfs_superfs/mkfs_superfs.o
 /objdir/test.mk
 ========= install ==========

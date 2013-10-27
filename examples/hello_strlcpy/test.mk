@@ -3,6 +3,7 @@ test_output:
 	@set -e; \
 	${.OBJDIR}/hello < ${.CURDIR}/input.in; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | grep -Ev '(strlcpy|getline)[.]o' | \

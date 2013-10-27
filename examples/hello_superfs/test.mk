@@ -1,8 +1,8 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
-	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \

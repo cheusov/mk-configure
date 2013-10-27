@@ -1,6 +1,7 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/cxxlib:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/cxxlib:$$LD_LIBRARY_PATH; \

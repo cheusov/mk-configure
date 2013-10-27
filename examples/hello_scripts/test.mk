@@ -5,6 +5,7 @@ test_output:
 	${.CURDIR}/hello_world2; \
 	${.CURDIR}/hello_world3; \
 	\
+	MKCATPAGES=yes; export MKCATPAGES; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \

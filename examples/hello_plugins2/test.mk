@@ -3,6 +3,7 @@ test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	app/app plugin1/plugin1${DLL_EXT} plugin2/plugin2${DLL_EXT}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

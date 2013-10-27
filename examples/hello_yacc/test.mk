@@ -1,6 +1,8 @@
 .PHONY : test_output
 test_output:
 	@set -e; \
+	MKCATPAGES=yes; export MKCATPAGES; \
+	\
 	${.OBJDIR}/hello_calc < ${.CURDIR}/input.txt; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\

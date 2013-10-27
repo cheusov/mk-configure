@@ -1,6 +1,7 @@
 .PHONY : test_output
 test_output :
 	@set -e; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
@@ -23,6 +24,7 @@ test_output :
 	esac; \
 	\
 	echo =========== all ============; \
+	${MAKE} ${MAKEFLAGS} all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\

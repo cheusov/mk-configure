@@ -19,7 +19,6 @@ My email is vle@gmx.net
 /objdir/hello/hello_subprojects.1
 /objdir/hello/hello_subprojects.1.in
 /objdir/hello/hello_subprojects.c
-/objdir/hello/hello_subprojects.cat1
 /objdir/hello/hello_subprojects.o
 /objdir/hello/hello_subprojects2
 /objdir/hello/hello_subprojects2.in
@@ -37,7 +36,6 @@ My email is vle@gmx.net
 /objdir/libhello2/Makefile
 /objdir/libhello2/hello2.3
 /objdir/libhello2/hello2.c
-/objdir/libhello2/hello2.cat3
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/libhello2.a

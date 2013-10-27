@@ -1,6 +1,8 @@
 .PHONY : test_output
 test_output :
 	@set -e; \
+	MKCATPAGES=yes; export MKCATPAGES; \
+	\
 	echo PROJECTNAME=${PROJECTNAME}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	${.CURDIR}/tools/prog1/prog1; \

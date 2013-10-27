@@ -4,6 +4,7 @@ CLEANDIRS +=		${.CURDIR}/testdir
 test_output:
 	@set -e; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

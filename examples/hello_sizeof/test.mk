@@ -3,6 +3,7 @@ test_output:
 	@set -e; \
 	${.OBJDIR}/sizeof_test | tr '1248' 'nnnn'; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \

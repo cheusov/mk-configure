@@ -8,6 +8,7 @@ test_output:
 	LUA_CPATH=${.OBJDIR}/?.so; \
 	export LUA_PATH LUA_CPATH; \
 	./foobar; \
+	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | \
