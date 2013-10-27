@@ -63,6 +63,30 @@
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
 /objdir/test.mk
+========== depend ===========
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/.depend
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/fsck_superfs/fsck_superfs.d
+/objdir/hello_superfs.test.out.tmp
+/objdir/mkfs_superfs/.depend
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/mkfs_superfs/mkfs_superfs.d
+/objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
 /objdir/Makefile.inc
