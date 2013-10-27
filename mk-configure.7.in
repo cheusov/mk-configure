@@ -1654,6 +1654,24 @@ Path to POD to HTML conversion utility
 Flags passed to ${POD2HTML}
 .RI < "Iu" >
 .RI [ "" ].
+.SS "mkc_imp.dep.mk"
+.B mkc_imp.dep.mk
+is internal include file which is included from
+.BR mkc.prog.mk " and " mkc.lib.mk .
+Do not use it directly!  This include file contains the default
+targets for building .depend files.  It creates .d files from entries
+in SRCS and DPSRCS that are C, C++, or Objective C source files, and
+builds .depend from the .d files.  All other files in SRCS and all of
+DPSRCS will be used as dependencies for the .d files.
+The following variables are provided:
+.IP SRCS
+The same as in
+.B mkc.prog.mk
+and
+.BR mkc.lib.mk .
+.IP DPSRCS
+List of source files which are needed for generating
+dependencies, but are not needed in ${SRCS}.
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-rools.
 .IP SYSROOT
