@@ -26,6 +26,11 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
+	echo ========== depend ===========; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
 	echo ========== server ===========; \
 	${MAKE} ${MAKEFLAGS} server > /dev/null; \
 	find ${.OBJDIR} -type f | \

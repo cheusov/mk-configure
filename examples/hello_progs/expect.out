@@ -39,20 +39,43 @@ server: I am a server
 /objdir/server.c
 /objdir/server_puts.c
 /objdir/test.mk
-========== server ===========
+========== depend ===========
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client.c
+/objdir/client.d
 /objdir/client_puts.c
+/objdir/client_puts.d
+/objdir/expect.out
+/objdir/hello_progs.test.out.tmp
+/objdir/server.c
+/objdir/server.d
+/objdir/server_puts.c
+/objdir/server_puts.d
+/objdir/test.mk
+========== server ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client.c
+/objdir/client.d
+/objdir/client_puts.c
+/objdir/client_puts.d
 /objdir/expect.out
 /objdir/hello_progs.test.out.tmp
 /objdir/server
 /objdir/server.c
+/objdir/server.d
 /objdir/server.o
 /objdir/server_puts.c
+/objdir/server_puts.d
 /objdir/server_puts.o
 /objdir/test.mk
 ========== client ===========

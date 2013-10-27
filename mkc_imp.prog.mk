@@ -22,6 +22,8 @@ __proginstall: .USE
 .for p in ${PROGS}
 realinstall:	proginstall
 
+_SRCS_ALL += ${SRCS.${p}}
+
 DPSRCS.${p} =	${SRCS.${p}:M*.l:.l=.c} ${SRCS.${p}:M*.y:.y=.c}
 CLEANFILES +=	${DPSRCS.${p}}
 .if defined(YHEADER)

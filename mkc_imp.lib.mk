@@ -65,6 +65,8 @@ _LIBS   +=	${SHLIBFN}
 
 realall: ${SRCS} ${_LIBS}
 
+_SRCS_ALL = ${SRCS}
+
 __archivebuild: .USE
 	@rm -f ${.TARGET}
 	${MESSAGE.ar}
