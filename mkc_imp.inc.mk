@@ -9,6 +9,7 @@
 
 .PHONY:		incinstall
 realinstall:	incinstall
+incinstall:	# ensure existence
 
 .if defined(INCS)
 INCSSRCDIR  ?=	.
@@ -17,7 +18,7 @@ CPPFLAGS    +=	-I${INCSSRCDIR}
 .if ${MKINSTALL:tl} == "yes"
 destination_incs =	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}
 
-incinstall:: ${destination_incs}
+incinstall: ${destination_incs}
 .PRECIOUS: ${destination_incs}
 .PHONY: ${destination_incs}
 
@@ -34,7 +35,3 @@ UNINSTALLFILES  +=	${destination_incs}
 INSTALLDIRS     +=	${destination_incs:H}
 .endif # MKINSTALL
 .endif # INCS
-
-.if !target(incinstall)
-incinstall::
-.endif
