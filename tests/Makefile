@@ -1,6 +1,7 @@
 NOEXPORT_VARNAMES=	MKC_CACHEDIR
 
 SUBDIR  +=	configure_test
+SUBDIR  +=	mkinstall
 SUBDIR  +=	../examples
 SUBDIR  +=	mkshlib
 SUBDIR  +=	mkstaticlib

@@ -56,10 +56,10 @@ realinstall: infoinstall
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor # F
-.endif # MKINSTALL
 
 UNINSTALLFILES  +=	${destination_infos}
 INSTALLDIRS     +=	${destination_infos:H}
+.endif # MKINSTALL
 .endif # MKINFO
 
 .endif # TEXINFO

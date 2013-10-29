@@ -1,0 +1,38 @@
+\input texinfo    @c -*-texinfo-*-
+@setfilename qux.info
+@settitle qux shell functions
+@setchapternewpage odd
+
+@ifinfo
+@dircategory Libraries
+@direntry
+* qux: (qux).       Info page for qux.
+@end direntry
+
+This is fake!
+
+@end ifinfo
+
+@titlepage  
+@title qux info page
+@subtitle Edition @value{EDITION}, Version @value{VERSION}.
+@subtitle @value{UPDATE-MONTH}
+@author Aleksey Cheusov
+
+@page
+foobar
+
+@vskip 0pt plus 1filll
+Copyright @copyright{} 2009 Aleksey Cheusov
+@end titlepage
+
+@ifinfo
+@node Top
+@top qux fake!
+
+This is fake too!
+
+@end ifinfo
+
+@contents
+@bye

@@ -1,0 +1,55 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/bar
+/objdir/baz.h
+/objdir/expect.out
+/objdir/foo
+/objdir/foo.in
+/objdir/mkinstall.test.out.tmp
+/objdir/qux
+/objdir/qux.1
+/objdir/qux.c
+/objdir/qux.cat1
+/objdir/qux.info
+/objdir/qux.o
+/objdir/qux.texinfo
+/objdir/test.mk
+===== all SHRTOUT=yes ======
+CC: qux.c
+LD: qux
+NROFF: qux.cat1
+TEXINFO: qux.info
+========= installdirs MKINSTALL=no ==========
+========= install MKINSTALL=no ==========
+========= installdirs ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/include
+/objdir/prefix/info
+/objdir/prefix/man
+/objdir/prefix/man/cat1
+/objdir/prefix/man/man1
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/bar
+/objdir/prefix/bin/foo
+/objdir/prefix/bin/foo2
+/objdir/prefix/bin/qux
+/objdir/prefix/bin/qux2
+/objdir/prefix/include
+/objdir/prefix/include/baz.h
+/objdir/prefix/info
+/objdir/prefix/info/dir
+/objdir/prefix/info/qux.info
+/objdir/prefix/man
+/objdir/prefix/man/cat1
+/objdir/prefix/man/cat1/qux.0
+/objdir/prefix/man/cat1/qux2.0
+/objdir/prefix/man/man1
+/objdir/prefix/man/man1/qux.1
+/objdir/prefix/man/man1/qux2.1
