@@ -9,7 +9,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -42,7 +42,7 @@ test_output:
 	\
 	echo ==== install MKINSTALL=no ====; \
 	MKINSTALL=no; export MKINSTALL; \
-	${MAKE} ${MAKEFLAGS} all installdirs install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} all installdirs install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

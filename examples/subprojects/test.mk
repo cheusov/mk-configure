@@ -29,7 +29,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -74,7 +74,7 @@ test_output :
 	\
 	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
-	${MAKE} ${MAKEFLAGS} all installdirs install >&2; \
+	${MAKE} ${MAKEFLAGS} all installdirs install -j3 >&2; \
 	LD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \

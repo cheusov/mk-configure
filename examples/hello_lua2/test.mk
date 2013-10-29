@@ -15,7 +15,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} PREFIX=/usr/local \
+	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
 	find ${.OBJDIR}/usr -type f -o -type d | \
 	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
@@ -38,7 +38,7 @@ test_output:
 	echo ========= install2 ==========; \
 	env PREFIX=/home/cheusov/local \
 	    LUA_LMODDIR=/home/cheusov/local/share/lua/5.1 \
-	    ${MAKE} ${MAKEFLAGS} all install DESTDIR=${.OBJDIR} \
+	    ${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \

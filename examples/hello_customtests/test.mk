@@ -14,7 +14,7 @@ test_output:
 	${.OBJDIR}/hello_customtests; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
