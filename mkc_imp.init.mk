@@ -212,19 +212,27 @@ test:
 
 .endif # SUBPRJ
 
-.if ${MKINSTALLDIRS:tl} == "yes"
-realinstall: installdirs
-.endif
-
-.ORDER: installdirs install
-
 TARGETS  +=	all all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist
 TARGETS := ${TARGETS:O:u}
 
+# standard targets
+.PHONY: realinstall realall
+
+distclean:	cleandir
+
+all:		realall
+
+.if ${MKINSTALLDIRS:tl} == "yes"
+zzz := 1
+install: installdirs .WAIT realinstall
+.else
+install: realinstall
+.endif
+
 # Make sure all of the standard targets are defined, even if they do nothing.
 .PHONY: ${TARGETS}
-${TARGETS}:
+${TARGETS} realinstall realall:
 
 ###########
 

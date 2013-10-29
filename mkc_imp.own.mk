@@ -117,18 +117,6 @@ COPY        ?=		-c
 PRESERVE    ?=
 STRIPFLAG   ?=	-s
 
-.PHONY:		${TARGETS}
-
-install:	realinstall
-subdir-install:
-realinstall:
-
-all:		realall
-subdir-all:
-realall:
-
-distclean:	cleandir
-
 PRINTOBJDIR =	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
 
 MKINSTALL ?=	yes
