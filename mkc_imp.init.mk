@@ -224,7 +224,6 @@ distclean:	cleandir
 all:		realall
 
 .if ${MKINSTALLDIRS:tl} == "yes"
-zzz := 1
 install: installdirs .WAIT realinstall
 .else
 install: realinstall
