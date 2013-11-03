@@ -156,7 +156,7 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY: realall do_errorcheck
+.PHONY: realall realerrorcheck
 
 __errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
@@ -170,13 +170,8 @@ __errorcheck: .USE
 	    exit $$ex; \
 	fi
 
-.if defined(SUBPRJ)
-realall : do_errorcheck
-do_errorcheck: __errorcheck
-.else
-realall : errorcheck
-errorcheck: __errorcheck
-.endif
+realall : realerrorcheck
+realerrorcheck: __errorcheck
 
 ###########
 
