@@ -1,0 +1,7 @@
+ERROR: We need mk-configure v.999.0.0 while 0.24.0 is detected
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello.in
+/objdir/reqd4.test.out
+/objdir/test.mk

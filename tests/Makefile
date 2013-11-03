@@ -16,6 +16,7 @@ SUBDIR  +=	rec_makefiles
 SUBDIR  +=	reqd
 SUBDIR  +=	reqd2
 SUBDIR  +=	reqd3
+SUBDIR  +=	reqd4
 SUBDIR  +=	reqd_clean_cache
 SUBDIR  +=	intexts_cleantrg
 

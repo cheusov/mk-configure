@@ -184,6 +184,7 @@ errorcheck: __errorcheck
 _mkc_version_ok  !=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
 .if !${_mkc_version_ok}
 MKC_ERR_MSG +=	"ERROR: We need mk-configure v.${MKC_REQD} while ${MKC_VERSION} is detected"
+MKCHECKS     =	no
 .endif
 .endif
 
