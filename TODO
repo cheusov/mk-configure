@@ -3,8 +3,7 @@ Plan 0.25.0
 
 Some thoughts inspired by talks with Michael Crogan
 - Doublecheck parallel all/uninstall/installation/... (incl. mkc.subprj.mk),
-  appropriate regression tests, also check whether MKC_ERR_MSG
-  and BMAKE_REQD work correctly with "mkcmake -jN".
+  appropriate regression tests.
 - Better support for MAKEOBJDIRPREFIX , maybe target "obj" is needed.
 - Better explain how "test" target works, maybe as a couple of slides
   in the PDF presentation. With and without mkc.minitest.mk.
@@ -90,7 +89,6 @@ Cannot find bison, good bye!
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf
   - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
-  - BMAKE_REQD - minimum required bmake version
   - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
   - OBJCOPTS_<proj>

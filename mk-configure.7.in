@@ -360,6 +360,13 @@ before installing files (target
 .IR install ).
 .RI < "Iu" >
 .RI [ yes ]
+.IP BMAKE_REQD
+Minimal required version of
+.BR bmake .
+If it is older,
+.B mkcmake
+exits with error.
+.RI < "Im" >
 .IP MKC_REQD
 Minimal required version of
 .BR mk-configure .
