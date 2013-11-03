@@ -1,60 +1,35 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
-# Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
-# Copyright (c) 1988, 1989, 1993 The Regents of the University of California
-# Copyright (c) 1988, 1989 by Adam de Boor
-# Copyright (c) 1989 by Berkeley Softworks
+# Copyright (c) 2009-2013 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
 
+.if !defined(_MKC_IMP_LINKS_MK)
+_MKC_IMP_LINKS_MK := 1
+
 .PHONY:		linksinstall
-realinstall:	linksinstall
+linksinstall:
 
-.if defined(SYMLINKS) && !empty(SYMLINKS) && ${MKINSTALL:tl} == "yes"
-linksinstall::
-	@(set ${SYMLINKS}; \
-	 while test $$# -ge 2; do \
-		l=$$1; \
-		shift; \
-		t=${DESTDIR}$$1; \
-		shift; \
-		if [ -h $$t ]; then \
-			cur=`ls -ld $$t | awk '{print $$NF}'` ; \
-			if [ "$$cur" = "$$l" ]; then \
-				continue ; \
-			fi; \
-		fi; \
-		echo "$$t -> $$l"; \
-		rm -rf $$t; ln -s $$l $$t; \
-	 done; )
-.for l r in ${SYMLINKS}
-UNINSTALLFILES +=	${DESTDIR}${r}
-INSTALLDIRS    +=	${DESTDIR}${r:H}
+realinstall2:	linksinstall
+
+.if ${MKINSTALL:tl} == "yes"
+
+linksinstall:
+.for l r in ${LINKS}
+	rm -f ${DESTDIR}${r}; ln ${DESTDIR}${l} ${DESTDIR}${r}
 .endfor
-.endif
+.for l r in ${SYMLINKS}
+	rm -f ${DESTDIR}${r}; ln -s ${l} ${DESTDIR}${r}
+.endfor
 
-.if defined(LINKS) && !empty(LINKS) && ${MKINSTALL:tl} == "yes"
-linksinstall::
-	@(set ${LINKS}; \
-	 echo ".include <mkc.own.mk>"; \
-	 while test $$# -ge 2; do \
-		l=${DESTDIR}$$1; \
-		shift; \
-		t=${DESTDIR}$$1; \
-		shift; \
-		echo "realall: $$t"; \
-		echo ".PHONY: $$t"; \
-		echo "$$t:"; \
-		echo "	@echo \"$$t -> $$l\""; \
-		echo "	@rm -f $$t; ln $$l $$t"; \
-	 done; \
-	) | ${MAKE} -f- all
 .for l r in ${LINKS}
 UNINSTALLFILES +=	${DESTDIR}${r}
 INSTALLDIRS    +=	${DESTDIR}${r:H}
 .endfor
-.endif
 
-.if !target(linksinstall)
-linksinstall:
-.endif
+.for l r in ${SYMLINKS}
+UNINSTALLFILES +=	${DESTDIR}${r}
+INSTALLDIRS    +=	${DESTDIR}${r:H}
+.endfor
+
+.endif # MKINSTALL=yes
+.endif # _MKC_IMP_LINKS_MK

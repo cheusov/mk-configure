@@ -5,9 +5,6 @@ Some thoughts inspired by talks with Michael Crogan
 - Doublecheck parallel all/uninstall/installation/... (incl. mkc.subprj.mk),
   appropriate regression tests, also check whether MKC_ERR_MSG,
   MKC_REQD and BMAKE_REQD work correctly with "mkcmake -jN".
-- Fix LINKS and MLINKS bug with "mkcmake -jN", hardlink should be
-  created after everything else (FILES, PROG, MAN etc.) is already
-  installed.
 - Better support for MAKEOBJDIRPREFIX , maybe target "obj" is needed.
 - Better explain how "test" target works, maybe as a couple of slides
   in the PDF presentation. With and without mkc.minitest.mk.

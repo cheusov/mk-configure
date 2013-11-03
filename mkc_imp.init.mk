@@ -216,22 +216,20 @@ TARGETS  +=	all all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist
 TARGETS := ${TARGETS:O:u}
 
-# standard targets
-.PHONY: realinstall realall
+# Make sure all of the standard targets are defined, even if they do nothing.
+.PHONY: ${TARGETS} realinstall realinstall2 realall
+${TARGETS} realinstall realinstall2 realall:
 
 distclean:	cleandir
 
 all:		realall
 
 .if ${MKINSTALLDIRS:tl} == "yes"
-install: installdirs .WAIT realinstall
+install: installdirs .WAIT realinstall .WAIT realinstall2
 .else
-install: realinstall
+install: realinstall .WAIT realinstall2
 .endif
 
-# Make sure all of the standard targets are defined, even if they do nothing.
-.PHONY: ${TARGETS}
-${TARGETS} realinstall realall:
 
 ###########
 
