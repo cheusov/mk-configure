@@ -18,7 +18,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\

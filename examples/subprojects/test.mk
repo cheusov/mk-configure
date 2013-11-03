@@ -35,7 +35,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
@@ -61,7 +61,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-libhello2 ==========; \
-	${MAKE} ${MAKEFLAGS} all-libhello2 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-libhello2 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\

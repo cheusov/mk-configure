@@ -5,13 +5,13 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
-	${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== all+html ==========; \
 	MKHTML=yes; export MKHTML; \
-	${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -22,7 +22,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -38,7 +38,7 @@ test_output:
 	\
 	echo ==== install MKINSTALL=no ====; \
 	MKINSTALL=no; export MKINSTALL; \
-	${MAKE} ${MAKEFLAGS} all installdirs install -j3 DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} -j4 all installdirs install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

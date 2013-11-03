@@ -40,7 +40,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
@@ -55,13 +55,13 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-tools/prog1 ==========; \
-	${MAKE} ${MAKEFLAGS} all-tools/prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-prog1 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
-	${MAKE} ${MAKEFLAGS} all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} nodeps-all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} subdir-all-prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} prog1 DESTDIR=${.OBJDIR} > /dev/null; \
@@ -70,19 +70,19 @@ test_output :
 	\
 	echo ========= all-tools/prog2 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
-	${MAKE} ${MAKEFLAGS} all-tools/prog2 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog2 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-tools/prog3 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
-	${MAKE} ${MAKEFLAGS} all-tools/prog3 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog3 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-tools/prog4 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
-	${MAKE} ${MAKEFLAGS} all-tools/prog4 DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog4 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\

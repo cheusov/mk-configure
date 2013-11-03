@@ -2,7 +2,7 @@
 Plan 0.25.0
 
 Some thoughts inspired by talks with Michael Crogan
-- Doublecheck parallel all/uninstall/installation/... (incl. mkc.subprj.mk),
+- Doublecheck parallel depend (incl. mkc.subprj.mk),
   appropriate regression tests.
 - Better support for MAKEOBJDIRPREFIX , maybe target "obj" is needed.
 - Better explain how "test" target works, maybe as a couple of slides

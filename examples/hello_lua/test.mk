@@ -22,7 +22,7 @@ test_output:
 	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
 	find ${.OBJDIR}/usr -type f | \
 	mkc_test_helper /usr/local "${.OBJDIR}"; \
 	\

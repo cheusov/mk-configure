@@ -24,7 +24,7 @@ test_output :
 	esac; \
 	\
 	echo =========== all ============; \
-	${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -39,7 +39,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
@@ -64,7 +64,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	echo ======= all-dict ==========; \
-	${MAKE} ${MAKEFLAGS} all-dict > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ========= installdirs-dict ==========; \
@@ -78,7 +78,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= uninstall-dict ==========; \
-	${MAKE} ${MAKEFLAGS} uninstall-dict DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall-dict DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
@@ -104,14 +104,14 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= uninstall-doc ==========; \
-	${MAKE} ${MAKEFLAGS} uninstall-doc DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 uninstall-doc DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== all with NOSUBDIR ============; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	NOSUBDIR='dictfmt dictzip'; export NOSUBDIR; \
-	${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
