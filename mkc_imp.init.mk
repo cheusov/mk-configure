@@ -110,6 +110,7 @@ REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
 ###########
 
 .include <mkc_imp.own.mk>
+.include <mkc_imp.obj.mk>
 
 ###########
 .if !empty(_srcsall:U:M*.y)
@@ -208,8 +209,8 @@ test:
 
 .endif # SUBPRJ
 
-TARGETS  +=	all all install clean cleandir depend test \
-		installdirs uninstall errorcheck filelist
+TARGETS +=	all all install clean cleandir depend test \
+		installdirs uninstall errorcheck filelist obj
 TARGETS := ${TARGETS:O:u}
 
 # Make sure all of the standard targets are defined, even if they do nothing.

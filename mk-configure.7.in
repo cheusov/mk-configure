@@ -77,6 +77,10 @@ output a list of destination files of the project, one per line, e.g.
   /usr/local/bin/hello
   /usr/local/man/man1/hello.1
 .VE
+.IP "obj"
+if MKOBJDIR is "yes", creates object directories (${.OBJDIR}) according
+to MAKEOBJDIR and MAKEOBJPREFIX variables. Current umask is used for
+this.
 .IP "bin_tar, bin_targz, bin_tarbz2, bin_zip, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
 and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
@@ -360,6 +364,12 @@ before installing files (target
 .IR install ).
 .RI < "Iu" >
 .RI [ yes ]
+.IP MKOBJDIR
+If "yes", the target "obj" creates object directories, if "auto",
+object directories are created automatically. Otherwise object
+directories are not created.
+.RI < "Iu" >
+.RI [ auto ]
 .IP BMAKE_REQD
 Minimal required version of
 .BR bmake .

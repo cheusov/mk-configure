@@ -126,15 +126,12 @@ MKHTML     ?=	no
 MKDOC      ?=	yes
 MKINFO     ?=	yes
 MKMAN      ?=	yes
+MKSHARE    ?=	yes
 
 #
-# MKOBJDIRS controls whether object dirs are created during "make build".
-# MKOBJ controls whether the "make obj" rule does anything.
+# MKOBJDIRS controls whether object dirs are created during "make all" or "make obj".
 #
-MKOBJ     ?=	yes
-MKOBJDIRS ?=	no
-
-MKSHARE   ?=	yes
+MKOBJDIRS ?=	auto
 
 MKPIE     ?=	no
 USE_SSP   ?=	no

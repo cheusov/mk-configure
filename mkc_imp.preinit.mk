@@ -17,7 +17,7 @@ _bmake_ok  = 0
 .endif
 
 ####################
-.if !make(clean) && !make(cleandir) && !make(distclean)
+.if !make(clean) && !make(cleandir) && !make(distclean) && !make(obj)
 MKCHECKS ?=	yes
 .else
 MKCHECKS ?=	no

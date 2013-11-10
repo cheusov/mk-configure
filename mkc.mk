@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2013 by Aleksey Cheusov
 #
 # See COPYRIGHT file in the distribution.
 ############################################################
