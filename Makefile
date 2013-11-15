@@ -128,7 +128,7 @@ cleandir_tests: configure.mk
 	for d in ${.CURDIR}/tests ${.CURDIR}/doc; do \
 	   cd $$d; \
 	   ${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
-		${MAKEFLAGS} cleandir; \
+		${MAKEFLAGS} cleandir || true; \
 	done
 clean: clean_tests
 clean_tests: configure.mk
@@ -137,7 +137,7 @@ clean_tests: configure.mk
 	for d in ${.CURDIR}/tests ${.CURDIR}/doc; do \
 	   cd $$d; \
 	   ${MAKE} -m ${.CURDIR} -m ${.OBJDIR} -m ${MKFILESDIR} \
-		${MAKEFLAGS} clean; \
+		${MAKEFLAGS} clean || true; \
 	done
 
 ##################################################
