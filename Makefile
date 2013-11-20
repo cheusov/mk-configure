@@ -57,7 +57,7 @@ FILES =	sys.mk configure.mk mkc.configure.mk mkc.mk \
 	mkc_imp.init.mk mkc_imp.final.mk mkc_imp.scripts.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
-	mkc_imp.objdir.mk
+	mkc_imp.objdir.mk mkc_imp.obj.mk
 
 FILES +=		${EXTRAFILES}
 
