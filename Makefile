@@ -45,7 +45,7 @@ MAN =			mkc_check_funclib.1 mkc_check_header.1 \
 			mkc_check_prog.1 mkc_check_custom.1 \
 			mk-configure.7 mkcmake.1
 
-EXTRAFILES ?=		README NEWS TODO COPYRIGHT FAQ
+EXTRAFILES ?=		README NEWS TODO LICENSE FAQ
 
 FILES =	sys.mk configure.mk mkc.configure.mk mkc.mk \
 	mkc.own.mk mkc_imp.intexts.mk \
