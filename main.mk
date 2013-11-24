@@ -35,4 +35,5 @@ clean:       clean-tests    clean-presentation
 test: test-tests
 
 ##################################################
+.include "Makefile.inc"
 .include <mkc.mk>
