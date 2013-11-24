@@ -23,9 +23,7 @@ _use_prog :=	1
 
 .include <mkc_imp.init.mk>
 
-.if ${_CONFIGURE_MK:Uyes:tl} == "yes"
-.include <configure.mk>
-.endif
+.sinclude <configure.mk> # .sinclude for bootstrapping
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 

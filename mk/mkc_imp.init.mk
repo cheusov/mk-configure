@@ -32,11 +32,7 @@ __initialized__ := 1
 .MAIN:		all
 
 ###########
-.if ${PROJECTNAME:U1} == "mk-configure"
-.sinclude <mkc_imp.vars.mk>
-.else
-.include <mkc_imp.vars.mk>
-.endif
+.sinclude <mkc_imp.vars.mk> # .sinclude for bootstrapping
 
 #.if defined(MKC_SHELL)
 #.SHELL: name=${MKC_SHELL}
