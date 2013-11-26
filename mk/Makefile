@@ -1,4 +1,4 @@
-FILES =	sys.mk mkc.configure.mk mkc.mk \
+FILES =	sys.mk mkc.configure.mk configure.mk mkc.mk \
 	mkc.own.mk mkc_imp.intexts.mk \
 	mkc.minitest.mk mkc_imp.pkg-config.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
@@ -11,7 +11,7 @@ FILES =	sys.mk mkc.configure.mk mkc.mk \
 
 FILESDIR =			${MKFILESDIR}
 
-INFILES +=	configure.mk mkc_imp.vars.mk
+INFILES +=	mkc_imp.vars.mk
 
 .for i in mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk mkc.files.mk
 SYMLINKS   +=	mkc.mk ${MKFILESDIR}/${i}
