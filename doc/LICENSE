@@ -98,6 +98,7 @@ ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ######################################################################
 
 Copyright 1991 by the Massachusetts Institute of Technology
+Copyright 2013 by Aleksey Cheusov <vle@gmx.net>
 
 Permission to use, copy, modify, distribute, and sell this software
 and its documentation for any purpose is hereby granted without fee,
@@ -109,10 +110,20 @@ without specific, written prior permission.  M.I.T. makes no
 representations about the suitability of this software for any
 purpose.  It is provided "as is" without express or implied warranty.
 
-Calling this script install-sh is preferred over install.sh, to
-prevent `make' implicit rules from creating a file called install from
-it when there is no Makefile.
+######################################################################
 
-This script is compatible with the BSD install script, but was written
-from scratch.  It can only install one file at a time, a restriction
-shared with many OS's install programs.
+File examples/hello_strlcpy/strlcpy.c is licensed as follows:
+
+Copyright (c) 1998 Todd C. Miller <Todd.Miller@courtesan.com>
+
+Permission to use, copy, modify, and distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND TODD C. MILLER DISCLAIMS ALL
+WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL TODD C. MILLER BE LIABLE
+FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
+OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
+CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.

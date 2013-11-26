@@ -1,6 +1,6 @@
 # Copyright (c) 2010-2013 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 .if !defined(_MKC_IMP_POD_MK)

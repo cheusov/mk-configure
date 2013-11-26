@@ -1,6 +1,6 @@
 # Copyright (c) 2009-2010 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 # Given a list of files in INFILES or INSCRIPTS mkc.intexts.mk

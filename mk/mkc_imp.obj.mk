@@ -1,6 +1,6 @@
 # Copyright (c) 2013 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 .ifndef _MKC_IMP_OBJ_MK

@@ -1,6 +1,6 @@
 # Copyright (c) 2010 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 .for i in ${LUA_LMODULES}

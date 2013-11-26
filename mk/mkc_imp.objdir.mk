@@ -1,6 +1,6 @@
 # Copyright (c) 2012 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 
 .if !defined(_MKC_IMP_OBJDIR_MK)
 _MKC_IMP_OBJDIR_MK := 1

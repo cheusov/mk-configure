@@ -1,6 +1,6 @@
 # Copyright (c) 2009-2012 by Aleksey Cheusov
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 .ifndef MKC_IMP.FINAL.MK

@@ -738,7 +738,7 @@ Version 0.11.0, by Aleksey Cheusov, Sat,  5 Sep 2009 15:26:01 +0300
 
       - MKC_REQD variable
 
-  Makefile of mk-configure: README, NEWS, TODO, FAQ and COPYRIGHT
+  Makefile of mk-configure: README, NEWS, TODO, FAQ and LICENSE
   files are also installed unless EXTRAFILES is set to an empty string.
 
   "mkc_check_sizeof" and "mkc_check_decl type" don't create cache

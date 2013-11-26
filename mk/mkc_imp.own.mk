@@ -4,7 +4,7 @@
 # Copyright (c) 1988, 1989 by Adam de Boor
 # Copyright (c) 1989 by Berkeley Softworks
 #
-# See COPYRIGHT file in the distribution.
+# See LICENSE file in the distribution.
 ############################################################
 
 .if !defined(_BSD_OWN_MK_)
