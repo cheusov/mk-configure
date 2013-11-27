@@ -11,6 +11,7 @@ digraph FSA {
    "runawk";
    "pkg_summary-utils";
    "nih";
+   "pipestatus";
 
  node [ shape = oval style=solid ];
 
