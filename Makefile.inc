@@ -24,3 +24,7 @@ AWK ?=			/bin/awk
 .endif
 
 BMAKE  ?=	bmake
+PS2PDF ?=	ps2pdf
+DOT    ?=	dot
+DVIPS  ?=	dvips
+LATEX  ?=	latex

@@ -1,4 +1,8 @@
-##################################################
+############################################################
+
+MKC_REQUIRE_PROGS =	${PS2PDF} ${DOT} ${DVIPS} ${LATEX}
+
+############################################################
 
 all : presentation.pdf myprojects.pdf
 
@@ -12,19 +16,19 @@ dvi : presentation.dvi
 presentation.ps presentation.pdf presentation.dvi: my_prjs.eps dep_graph.eps
 
 .ps.pdf:
-	ps2pdf "$<" "$@"
+	${PROG.${PS2PDF}} "$<" "$@"
 
 #.tex.pdf:
 #	pdflatex "$<" && pdflatex "$<"
 
 .dot.eps:
-	dot -Tps ${.IMPSRC} > ${.TARGET}
+	${PROG.${DOT}} -Tps ${.IMPSRC} > ${.TARGET}
 
 .dvi.ps:
-	dvips $<
+	${PROG.${DVIPS}} $<
 
 .tex.dvi:
-	latex "${.IMPSRC}" && latex "${.IMPSRC}"
+	${PROG.${LATEX}} "${.IMPSRC}" && ${PROG.${LATEX}} "${.IMPSRC}"
 
 .gz:
 	gzip ${.IMPSRC}
