@@ -1,0 +1,9 @@
+#!/bin/sh
+
+############################################################
+# Copyright (c) 2013 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
+${0%%/prog_nbmkdep}/prog_mkdep --

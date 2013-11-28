@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Sep 2, 2009" "" ""
+.TH MK-CONFIGURE 7 "Nov 28, 2013" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -1236,6 +1236,9 @@ and
 .I flex
 as
 .IR lex .
+.TP
+.BR prog_mkdep ", " prog_nbmkdep
+Find traditional BSD mkdep(1) or recent NetBSD version of it respectively.
 .TP
 .B endianess
 BUILTIN.endianess variable is set to either

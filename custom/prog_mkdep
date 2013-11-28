@@ -1,0 +1,35 @@
+#!/bin/sh
+
+############################################################
+# Copyright (c) 2013 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
+LC_ALL=C
+export LC_ALL
+
+extra_args="$*"
+
+pathpart='custom_nbmkdep'
+. mkc_check_common.sh
+
+#trap "echo $tmpc; rm $tmpc" 0
+trap "rm -f $tmpc $tmpo" 0
+
+cat > "$tmpc" <<'EOF'
+#include <stdio.h>
+EOF
+
+check_mkdep (){
+    "$1" -f "$tmpo" $extra_args -I . -I `pwd` "$tmpc"
+}
+
+for i in bmkdep nbmkdep mkdep; do
+    if test -z "`check_mkdep $i 2>&1 > /dev/null`"; then
+	mkc_which $i
+	exit 0
+    fi
+done
+
+echo ''
