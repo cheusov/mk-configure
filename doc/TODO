@@ -14,12 +14,6 @@ Some thoughts inspired by talks with Michael Crogan
   is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
 - Better explain ../Makefile.inc included automatically. For those who
   are not familiar with *BSD it is not obvious how to use it.
-- Some important mk-configure features work ONLY if mkcmake is run
-  from top-level directory like "mkcmake all-subprojects" but doesn't work
-  if you run "mkcmake -C subprojects all". It makes sense to add new
-  variable, say, TOPDIR which, if set (by user), will force rerun mkcmake
-  from the top-level directory. Another option for this variable is to
-  *not* check ../Makefile.inc from the top-level directory.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
 - Exit with error if any two of the following are defined: PROG,

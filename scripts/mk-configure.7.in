@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 28, 2013" "" ""
+.TH MK-CONFIGURE 7 "Dec 1, 2013" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -28,10 +28,12 @@ NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .P
 To get system-specific configuration parameters, mkc.*.mk include
-files will try to include the file specified by the "MAKECONF"
+files try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
 make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf, is
-included.  These files may define any of the variables described
+included. Unless TOPDIR variable is set, "../Makefile.inc"
+is also included if exists.
+These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
 In triangle brackets -- typical way of use, where
 .I I
@@ -499,6 +501,18 @@ See USE_SSP variable for more information.
 If "yes", enables stack protection code, which detects stack overflows
 and aborts the program. This enhances security but imposes some
 performance penalty.
+.RI < "U" >
+.RI [ no ]
+.IP TOPDIR
+Path to top-level project's directory. If set, "../Makefile.inc"
+is not included. Also, the following command
+.br
+   mkcmake -C subproject target
+.br
+will be translated to
+.br
+   cd ${TOPDIR}; mkcmake target-subproject
+.RI < "U" >
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -603,10 +617,6 @@ The include file
 handles building program from one or
 more source files, along with their manual pages.  It has a limited
 number of suffixes.
-The include file
-.B mkc.prog.mk
-includes the file named "../Makefile.inc"
-if it exists.
 List of supported variables:
 .IP PROG
 The name of the program to build.
@@ -692,10 +702,6 @@ The include file
 .B mkc.lib.mk
 has support for building a static or dynanic library.  It has a
 limited number of suffixes.
-The include file
-.B mkc.lib.mk
-includes the file named "../Makefile.inc"
-if it exists.
 .B mkc.lib.mk
 uses the following variables:
 .IP LIB
@@ -821,9 +827,7 @@ The include file
 .B mkc.subprj.mk
 handles subprojects (subdirectories)
 organized as a dependency graph.
-It includes the file named "../Makefile.inc"
-if it exists,
-and provides all targets provided by
+It provides all targets provided by
 .BR mkc.prog.mk .
 Variable SUBPRJ contains a list of pairs
 .I depdir:dir
@@ -907,9 +911,7 @@ The include file
 .B mkc.subdir.mk
 contains the default targets for building
 subdirectories.
-It includes the file named "../Makefile.inc"
-if it exists,
-and provides the same targets as
+It provides the same targets as
 .BR mkc.prog.mk .
 For all of
 the directories listed in the variable SUBDIR, the specified directory 

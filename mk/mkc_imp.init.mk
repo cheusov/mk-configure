@@ -99,7 +99,7 @@ REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
 .include "${dir}"
 .endfor
 
-.if exists(${.CURDIR}/../Makefile.inc)
+.if ${TOPDIR:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 

@@ -1,7 +1,11 @@
+next_level !=	expr ${.MAKE.LEVEL} + 1
+
 .PHONY : test_output
 test_output :
 	@set -e; \
 	MKCATPAGES=yes; export MKCATPAGES; \
+	TOPDIR=`pwd`; export TOPDIR; \
+	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
@@ -57,7 +61,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	rm -rf ${.OBJDIR}${PREFIX}; \
+	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr; \
 	echo =========== MKOBJDIRS=auto ============; \
 	env TARGETS=fake ${MAKE} ${MAKEFLAGS} fake \
 		MKCHECKS=no MAKEOBJDIRPREFIX=${.OBJDIR}/obj1 > /dev/null; \
@@ -94,10 +98,19 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	\
 	echo ======= all-dict ==========; \
 	${MAKE} ${MAKEFLAGS} -j4 all-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ======= -C dict all ==========; \
+	${MAKE} ${MAKEFLAGS} clean-dict > /dev/null; \
+	echo TOPDIR=$$TOPDIR 1>&2; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -C dict all > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
+	\
 	echo ========= installdirs-dict ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs-dict DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
@@ -108,13 +121,19 @@ test_output :
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= -Cdict install ==========; \
+	rm -rf ${.OBJDIR}${PREFIX} > /dev/null; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -C dict install DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
 	echo ======= uninstall-dict ==========; \
 	${MAKE} ${MAKEFLAGS} -j4 uninstall-dict DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
-	echo ========== clean-dict ===========; \
-	${MAKE} ${MAKEFLAGS} clean-dict > /dev/null; \
+	echo ========== -C dict clean ===========; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -C dict clean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
