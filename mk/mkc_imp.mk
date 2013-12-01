@@ -43,7 +43,6 @@ _use_prog :=	1
 .include <mkc_imp.files.mk>
 .include <mkc_imp.scripts.mk>
 .include <mkc_imp.links.mk>
-.include <mkc_imp.sys.mk>
 .endif # _use_prog || LIB
 
 ########################################
