@@ -17,22 +17,20 @@ DIST_TARGETS =		pdf clean-mk clean-scripts mkc_clean
 INSTALL      =		${.CURDIR}/scripts/mkc_install
 PATH        :=		${OBJDIR_custom}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
 
-.export SHRTOUT INSTALL _CONFIGURE_MK PATH
+.export SHRTOUT INSTALL PATH
 
 ##################################################
-.PHONY: doc
+.PHONY: pdf
 pdf: all-presentation
 pdf:
-	@set -e; cd presentation; ${MAKE} ${MAKEFLAGS} clean-garbage; rm -f myprojects.*
+	@set -e; cd presentation; \
+	${MAKE} ${MAKEFLAGS} clean-garbage; \
+	rm -f myprojects.*
 
 ##################################################
-
-.PHONY: cleandir_tests clean_tests
-
-cleandir: cleandir-tests cleandir-presentation
-clean:       clean-tests    clean-presentation
-
-test: test-tests
+cleandir:	cleandir-tests cleandir-presentation
+clean:		clean-tests clean-presentation
+test:		test-tests
 
 ##################################################
 .include "Makefile.inc"
