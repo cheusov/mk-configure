@@ -513,6 +513,10 @@ will be translated to
 .br
    cd ${TOPDIR}; mkcmake target-subproject
 .RI < "U" >
+.SS "mkc.init.mk"
+This file sets most important mk-configure variables, for example,
+OPSYS, PREFIX, CC_TYPE etc. and is included automatically by
+.BR mkc.files.mk ", " mkc.lib.mk ", " mkc.prog.mk ", " mkc.subdir.mk " and " mkc.subprj.mk
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -694,8 +698,6 @@ be exported.
 .B mkc.prog.mk
 includes
 .B mkc.files.mk
-.\" and
-.\" .B mkc.own.mk
 and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
 The include file
