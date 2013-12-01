@@ -2,3 +2,5 @@ MKC_VERSION    =	@version@
 BUILTINSDIR   ?=	@syscustomdir@
 MKC_LIBEXECDIR =	@libexecdir@
 MKC_SYSCONFDIR =	@sysconfdir@
+MKDEP          =	@mkdep_cmd@
+MKDEP_TYPE     =	@mkdep_type@

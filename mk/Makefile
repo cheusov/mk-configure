@@ -21,4 +21,26 @@ ${i}:
 	ln -f -s ${.CURDIR}/mkc.mk ${i}
 .endfor
 
+#################################################
+.for i in prog_mkdep prog_nbmkdep
+MKC_CHECK_CUSTOM   +=	${i}
+MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../custom/${i}
+.endfor
+
+.include <mkc.configure.mk>
+
+.if !empty(CUSTOM.prog_nbmkdep)
+mkdep_cmd  =		${CUSTOM.prog_nbmkdep}
+mkdep_type =		nbmkdep
+.elif !empty(CUSTOM.prog_mkdep)
+mkdep_cmd  =		${CUSTOM.prog_mkdep}
+mkdep_type =		mkdep
+.else
+MKC_ERR_MSG +=		"mkdep(1) cannot be found"
+.endif
+
+INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
+INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
+
+#################################################
 .include <mkc.mk>

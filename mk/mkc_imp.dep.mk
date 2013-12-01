@@ -37,34 +37,44 @@ MESSAGE.dep ?=	@${_MESSAGE} "DEP: ${.TARGET}"
 ${__DPSRCS.d}: ${__DPSRCS.notd} ${DPSRCS}
 .endif # __DPSRCS.d
 
+.if ${MKDEP_TYPE:U} == "nbmkdep"
+ddash=--
+.else
+ddash=
+.endif
+
 .depend: ${__DPSRCS.d}
 	${MESSAGE.dep};
 	@rm -f .depend
+.if ${MKDEP_TYPE:U} == "nbmkdep"
 	@${MKDEP} -d -f ${.TARGET} -s ${MKDEP_SUFFIXES:Q} ${__DPSRCS.d}
+.else
+	@cat ${__DPSRCS.d} > ${.TARGET}.tmp && mv ${.TARGET}.tmp ${.TARGET}
+.endif
 
 .SUFFIXES: .d .s .S .c .C .cc .cpp .cxx .m
 
 .c.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} -- ${MKDEPFLAGS} \
+	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
 	    ${CPPFLAGS} ${.IMPSRC}
 
 .m.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} -- ${MKDEPFLAGS} \
+	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
 	    ${CPPFLAGS} ${.IMPSRC}
 
 .s.d .S.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} -- ${MKDEPFLAGS} \
+	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
 	    ${CPPFLAGS} ${.IMPSRC}
 
 .C.d .cc.d .cpp.d .cxx.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} -- ${MKDEPFLAGS} \
+	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
 	    ${CPPFLAGS} ${.IMPSRC}
 
