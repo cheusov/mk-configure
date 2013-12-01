@@ -65,7 +65,6 @@ ERROR: cannot find program -y
 Cannot find bison, good bye!
 ------------------------------------------
 
-  mkc_imp.own -- useless, copy it to mkc_imp.init.mk,
   top-level mkc.init.mk, remove mkc.own.mk
 
   custom test failed -> exit status of mkcmake should not be zero

@@ -4,4 +4,3 @@
 ############################################################
 
 .include <mkc_imp.init.mk>
-.include <mkc_imp.own.mk>
