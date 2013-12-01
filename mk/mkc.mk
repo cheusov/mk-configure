@@ -23,7 +23,7 @@ _use_prog :=	1
 
 .include <mkc_imp.init.mk>
 
-.sinclude <configure.mk> # .sinclude for bootstrapping
+.include <configure.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
