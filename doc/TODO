@@ -2,8 +2,6 @@
 Plan 0.25.0
 
 Some thoughts inspired by talks with Michael Crogan
-- Doublecheck parallel depend (incl. mkc.subprj.mk),
-  appropriate regression tests.
 - Better explain how "test" target works, maybe as a couple of slides
   in the PDF presentation. With and without mkc.minitest.mk.
 - One more example/ for TARGETS, demonstrating such things as
@@ -46,7 +44,6 @@ Some thoughts inspired by talks with Michael Crogan
   another subproject (build script for example).
 - For better extensibility it makes sense to implement user-implementable
   pre_all, post_all, pre_install, post_install etc. targets.
-- SYSCONFDIR is absent in the documentation.
 - Interdependencies between targetX-subprjA and targetY-subprjB (for
   example all-prject1 and install-prject2). Maybe this is cool idea
   for examples/ and slides. I need some good example for this.

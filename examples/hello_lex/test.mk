@@ -27,7 +27,7 @@ test_output:
 	\
 	echo ========== depend ===========; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	${MAKE} ${MAKEFLAGS} depend -j4 > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
