@@ -20,6 +20,10 @@ __REALSUBPRJ += ${dir}
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
 .endif
 
+.if !empty(__REALSUBPRJ:M*-*)
+.error "Dash symbol is not allowed inside subdir (${__REALSUBPRJ:M*-*})"
+.endif
+
 SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}

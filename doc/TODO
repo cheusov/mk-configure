@@ -20,8 +20,6 @@ Some thoughts inspired by talks with Michael Crogan
   project based on mk-configure. The sad fact is autoconf/automake is
   everywhere. So, it would be nice integrate mk-c into reality.
   mkc_imp.autotools.mk is needed for this.
-- Exit with error if subproject contains dash. Dash is separator between
-  target and subproject.
 - FIX: target "depend" relies on NetBSD version of mkdep(1) which is
   incompatible with most other mkdeps(1) implementations. TODO:
   autodetection of mkdep/nbmkdep/makedepend at mk-configure build

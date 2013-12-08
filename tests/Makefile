@@ -24,5 +24,6 @@ SUBDIR  +=	reqd3
 SUBDIR  +=	reqd4
 SUBDIR  +=	reqd_clean_cache
 SUBDIR  +=	intexts_cleantrg
+SUBDIR  +=	test_subprj_dash
 
 .include <mkc.mk>

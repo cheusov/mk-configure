@@ -38,5 +38,6 @@ sed -e "s,$objdir,/objdir,g" \
     -e '/pod2htmi.tmp/ d' \
     -e 's,lua/[0-9]*[.][0-9]*,lua/X.Y,' \
     -e 's,//,/,g' \
+    -e 's,^bmake:.*line [0-9][0-9]*: "\(.*\)".*$,\1,g' \
     -e 's/[.]sl/.so/' -e /so_locations/d |
 $SORT_CMD
