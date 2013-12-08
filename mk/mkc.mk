@@ -12,7 +12,7 @@ MKC_CACHEDIR ?=	${TOPDIR}
 .export MKC_CACHEDIR
 .MAIN: all
 .DEFAULT:
-	@set -x; set -e; cd ${TOPDIR}; pwd; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:T}; set +x
+	@set -e; cd ${TOPDIR}; pwd; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:T}
 .else
 .include <mkc_imp.mk>
 .endif #TOPDIR
