@@ -21,7 +21,7 @@ _use_prog :=	1
 .include <mkc_imp.pod.mk>
 .endif # _use_prog || LIB
 
-.include <mkc_imp.init.mk>
+.include <mkc.init.mk>
 
 .include <configure.mk>
 

@@ -10,7 +10,7 @@
 .if !defined(_MKC_IMP_INFO_MK) && defined(TEXINFO)
 _MKC_IMP_INFO_MK := 1
 
-.include <mkc_imp.init.mk>
+.include <mkc.init.mk>
 
 MAKEINFO     ?=	makeinfo
 INFOFLAGS    ?=	

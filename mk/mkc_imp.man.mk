@@ -31,8 +31,6 @@ MKCATPAGES =	no
 .undef MANZ
 .endif
 
-.include <mkc_imp.init.mk>
-
 .PHONY:		catinstall maninstall catpages manpages catlinks \
 		manlinks html installhtml
 .if ${MKMAN:tl} != "no"

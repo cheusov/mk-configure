@@ -4,7 +4,7 @@
 ############################################################
 
 .include <mkc_imp.preinit.mk>
-.include <mkc_imp.init.mk>
+.include <mkc.init.mk>
 
 .include <configure.mk>
 
