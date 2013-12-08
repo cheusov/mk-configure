@@ -20,11 +20,6 @@ Some thoughts inspired by talks with Michael Crogan
   project based on mk-configure. The sad fact is autoconf/automake is
   everywhere. So, it would be nice integrate mk-c into reality.
   mkc_imp.autotools.mk is needed for this.
-- FIX: target "depend" relies on NetBSD version of mkdep(1) which is
-  incompatible with most other mkdeps(1) implementations. TODO:
-  autodetection of mkdep/nbmkdep/makedepend at mk-configure build
-  time, alternative .mk files/sections for different algorithms
-  for generating .depend. Doublecheck exit status of mkdep(1) run.
 - Alternative .depend generation, e.g. like it is described in GNU
   make infor files
 - Higher priority for fixing handling of dependencies between
