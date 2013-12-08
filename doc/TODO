@@ -41,10 +41,6 @@ Some "targets" from TARGETS should set MKCHECKS to "no"
 
 ronn(1) : markdown to man pages
 
--------------------------
-.export is relatively new feature, check bmake version at startup
--------------------------
-Warn about project names containing `-' (dash)
 -----------------------------------------
 gcc -L/usr/pkg/lib -R/usr/pkg/lib     -o hello_lex hello_lex.o   -ll
 yacc    calc.y
@@ -164,13 +160,9 @@ Plan 4)
   = mkc.subdir.mk:
     - continue bulding even if some subprojects failed
 
-  = mkc.subdir.mk, mkc.subprj.mk: reimplement ${dir}.${MACHINE}
-
   = MKC_CHECK_CUSTOM:
     - MKC_CUSTOM_FN=xxx.f
     - MKC_CUSTOM_FN=xxx.objc
-
-  = user-defined postinstall and preinstall?
 
   = Implement mkc.qt.mk
 
