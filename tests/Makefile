@@ -25,5 +25,9 @@ SUBDIR  +=	reqd4
 SUBDIR  +=	reqd_clean_cache
 SUBDIR  +=	intexts_cleantrg
 SUBDIR  +=	test_subprj_dash
+SUBDIR  +=	test_mkc_vs_PROG
+SUBDIR  +=	test_mkc_vs_LIB
+SUBDIR  +=	test_mkc_vs_SUBDIR
+SUBDIR  +=	test_mkc_vs_SUBPRJ
 
 .include <mkc.mk>
