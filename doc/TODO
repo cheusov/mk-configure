@@ -16,9 +16,6 @@ Some thoughts inspired by talks with Michael Crogan
   are not familiar with *BSD it is not obvious how to use it.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
-- Exit with error if any two of the following are defined: PROG,
-  PROGS, LIB, SUBPRJ, SUBDIR. It is impossible (bad practice in my
-  view) to combine program and library in one subproject.
 - Example is needed for how to embed autoconf-based subproject into a
   project based on mk-configure. The sad fact is autoconf/automake is
   everywhere. So, it would be nice integrate mk-c into reality.

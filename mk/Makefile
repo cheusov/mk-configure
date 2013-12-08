@@ -7,19 +7,12 @@ FILES =	sys.mk mkc.configure.mk configure.mk mkc.mk \
 	mkc_imp.init.mk mkc_imp.final.mk mkc_imp.scripts.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
+	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk ${INFILES}
 
 FILESDIR =			${MKFILESDIR}
 
 INFILES +=	mkc_imp.vars.mk
-
-.for i in mkc.prog.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk mkc.files.mk
-SYMLINKS   +=	mkc.mk ${MKFILESDIR}/${i}
-CLEANFILES +=	${i}
-all: ${i}
-${i}:
-	ln -f -s ${.CURDIR}/mkc.mk ${i}
-.endfor
 
 #################################################
 .for i in prog_mkdep prog_nbmkdep
