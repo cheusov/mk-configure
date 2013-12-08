@@ -72,8 +72,8 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
 
   mkc.sub{dir,prj}.mk:
      - ${MAKEFLAGS} is passed to recursive ${MAKE}s.
-     - {nodeps-,subdir-,}dir:T are also targets, that is, one can
-       use only the last component of subdirectory as_a_part_of/as_a_whole
+     - {nodeps-,subdir-,}dir:T are also targets, that is, one can also
+       use the last component of subdirectory as_a_part_of/as_a_whole
        target.
 
   mkc_imp.subdir.mk was reimplemented using mkc_imp.subprj.mk
