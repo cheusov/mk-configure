@@ -1,4 +1,111 @@
 ======================================================================
+Version 0.25.0, by Aleksey Cheusov, not released yet
+
+  Build infrastructure for mk-c itself was completely reimplemented.
+  Now it looks much better and is more flexible for further extensions.
+
+  Variable TARGETS is now visible to users and is documented. It
+  contains all recursive targets and may be used for adding user's
+  functionality to mk-c.
+
+  FIX: Parallel installation ("mkcmake install -jN") now works
+  correctly. "installdirs" is activated before "install". Report by
+  Michael Crogan.
+
+  During build object directories are created automatically by default
+  when MAKEOBJDIR or MAKEOBJDIRPREFIX are set.  New recursive target
+  "obj" and variable MKOBJDIRS were introduced.
+  Report by Michael Crogan.
+
+  target "depend":
+     - FIX. Original implementation relied on NetBSD version of
+       mkdep(1). So, it didn't work on Linux, FreeBSD and others with
+       original BSD mkdep(1). Type of mkdep(1) is detected at
+       mk-configure build time. Report by Michael Crogan.
+
+  New variable BMAKE_REQD was introduced.
+
+  New variable TOPDIR was introduced. With its help
+     "mkcmake -C subdir target" may work just like "mkcmake target-subdir".
+
+  New variables CFLAGS.dflt.${CC_TYPE} and CXXFLAGS.dflt.${CXX_TYPE}
+    were introduced. They default to -Qunused-arguments
+    for clang and clang++.
+
+  mkc.init.mk can be invoked by users directly for setting all
+  required variables and further checks (CC_TYPE, LD_TYPE, OPSYS etc.).
+
+  mkc_imp.links.mk:
+     - This module was reimplemented from scratch.
+       Bug with parallel installation (LINKS and MLINKS) was fixed.
+
+  mkc.minitest.mk:
+     - new variable TEST_PREREQS was introduced.
+
+  mkc_imp.inc.mk: fix for ${INCS} installation problem happened when
+     headers are built in ${.OBJDIR}. Report by Jan Smydke.
+
+  mkc_imp.info.mk:
+     - fix for MKINSTALL=no. "installdirs" unexpectedly created target
+       directories.
+
+  mkc.configure.mk:
+     - fix issue with MKC_CHECK_CUSTOM when ${.OBJDIR} != ${.CURDIR}
+     - MKC_CHECK_PROGS: PROG.<prog> is set even if full path was
+       specified.  In addition existence and executability of the
+       specified file is always checked.
+     - fix for MKC_SOURCE_FUNCLIBS. Not all objects were cleaned
+       correctly by target "clean".  Now objects are added to CLEANFILES
+       unconditionally.
+     - negative results for MKC_REQUIRE_* are not cached.  This gives
+       users ability to fix the problem by changing the environment
+       and try again.
+     - MKC_CHECK_BUILTINS. Additional builtin checks were added:
+       "prog_mkdep" and "prog_nbmkdep" for original BSD mkdep(1) and
+       NetBSD version of mkdep(1) respectively.
+
+  mkc_imp.intexts.mk fixes:
+     - Targets "clean" and "cleandir" do not fail anymore if INTEXTS_REPLS
+       contains empty variables.
+     - Target "all" works correctly if INFILES or INSCRIPTS contain
+       files with directories.
+
+  mkc.sub{dir,prj}.mk:
+     - ${MAKEFLAGS} is passed to recursive ${MAKE}s.
+     - {nodeps-,subdir-,}dir:T are also targets, that is, one can
+       use only the last component of subdirectory as_a_part_of/as_a_whole
+       target.
+
+  mkc_imp.subdir.mk was reimplemented using mkc_imp.subprj.mk
+
+  mkc_imp.dep.mk:
+     - documentation for this module was added.
+     - support for SHRTOUT=yes
+     - new variable DPSRCS was introduced
+
+  MKPIE/SHLIB_*:
+     - s/-KPIC/-xcode=pic32/ for SunStudio compilers
+  MKSSP=yes:
+     - Support for IBM XL Compiler was added (not tested due to lack of such iron)
+     - Support for Intel C/C++ Compiler was added
+
+  Documentation fixes, updates and improvements.  A lot of new
+  examples/. A lot of new regression tests.
+
+  Tools:
+     Long option --help was removed from all utilities
+     - mkc_install:
+        - fix for problem with parallel "installdirs" (race condition).
+        - Options -t and -b were removed.
+     - mkc_check_prog: option -i is documented in man page
+     - mkc_check_compiler: workarounds for buggy SunStudio C++
+       compiler. "CC -E -" exits with error.
+
+  All test are run with MKCATPAGES=no by default.
+
+  myprojects.pdf: pipestatus also uses mk-configure.
+
+======================================================================
 Version 0.24.0, by Aleksey Cheusov, Fri,  8 Mar 2013 13:18:00 +0300
 
   mkc.sub{dir,prj}.mk:
