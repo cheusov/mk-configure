@@ -143,6 +143,10 @@ assembly source files.  []
 C compiler.
 .RI < Iu >
 .RI [ cc ]
+.IP CC_PREFIX
+Prefix command for ${CC}, for example, distcc or ccache.
+.RI < Iu >
+.RI [ "" ]
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
 .RI < "IM" >
@@ -167,6 +171,10 @@ Similar to COPTS but for project ${PROJECTNAME}.
 C++ compiler.
 .RI < Iu >
 .RI [ c++ ]
+.IP CXX_PREFIX
+Prefix command for ${CXX}, for example, distcc or ccache.
+.RI < Iu >
+.RI [ "" ]
 .IP CXXFLAGS
 Additional flags to the compiler when creating C++ objects.
 .RI < "Iu" >

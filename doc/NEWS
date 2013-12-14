@@ -26,8 +26,8 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
        original BSD mkdep(1). Type of mkdep(1) is detected at
        mk-configure build time. Report by Michael Crogan.
 
-  New variables LN, LN_S, MKDIR, RM, CLEANFILES_CMD, CLEANDIRS_CMD and
-  UNINSTALL was introduced.
+  New variables LN, LN_S, MKDIR, RM, CLEANFILES_CMD, CLEANDIRS_CMD,
+  UNINSTALL, CC_PREFIX, CXX_PREFIX were introduced.
 
   New variable BMAKE_REQD was introduced.
 

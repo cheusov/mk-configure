@@ -314,19 +314,19 @@ MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
 AS        ?=	as
 AFLAGS    ?=
-COMPILE.s ?=	${_V} ${CC} ${AFLAGS} -c
+COMPILE.s ?=	${_V} ${CC_PREFIX} ${CC} ${AFLAGS} -c
 LINK.s    ?=	${_V} ${CC} ${AFLAGS} ${LDFLAGS}
 MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
 CC        ?=	cc
 CFLAGS    ?=
-COMPILE.c ?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
 LINK.c    ?=	${_V} ${CC} ${CFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX        ?=	c++
 CXXFLAGS   +=	${CFLAGS}
-COMPILE.cc ?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
 LINK.cc    ?=	${_V} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${LDFLAGS} ${LDFLAGS.prog}
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
