@@ -373,6 +373,8 @@ LORDER    ?=	lorder
 
 NM        ?=	nm
 
+MKDIR     ?=	mkdir
+
 PC        ?=	pc
 PFLAGS    ?=
 COMPILE.p ?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} -c

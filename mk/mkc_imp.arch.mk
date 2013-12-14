@@ -13,7 +13,7 @@ basefile  =	${.CURDIR}/${PROJECTNAME}
 .PHONY: bin_cleanup bin_tar bin_targz bin_tarbz2
 
 bin_cleanup:
-	set -e; ${RM} -rf ${destdir}; mkdir -m 0700 ${destdir}; \
+	set -e; ${RM} -rf ${destdir}; ${MKDIR} -m 0700 ${destdir}; \
 	${MAKE} ${MAKEFLAGS} all install DESTDIR=${destdir}
 
 bin_tar: bin_cleanup
