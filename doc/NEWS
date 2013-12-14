@@ -89,6 +89,8 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
      - support for SHRTOUT=yes
      - new variable DPSRCS was introduced
      - MKDEP_SUFFIXES also contains .os and .op
+     - Target "clean" does not remove .depend and .d files.
+       Target "cleandir" does. NetBSD mk files work the same way.
 
   MKPIE/SHLIB_*:
      - s/-KPIC/-xcode=pic32/ for SunStudio compilers

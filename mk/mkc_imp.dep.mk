@@ -5,7 +5,7 @@
 .ifndef _MKC_IMP_DEP_MK
 _MKC_IMP_DEP_MK := 1
 
-CLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
+DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
 
 ##### Basic targets
 .PHONY: _beforedepend depend

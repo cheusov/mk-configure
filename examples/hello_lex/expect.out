@@ -60,6 +60,7 @@ DEP: .depend
 LEX: hello_lex.l
 CC: hello_lex.c
 LD: hello_lex
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
@@ -70,6 +71,7 @@ LD: hello_lex
 /objdir/expect.out
 /objdir/hello_lex
 /objdir/hello_lex.c
+/objdir/hello_lex.d
 /objdir/hello_lex.l
 /objdir/hello_lex.o
 /objdir/hello_lex.test.out.tmp
