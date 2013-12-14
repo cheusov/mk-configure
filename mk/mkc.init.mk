@@ -598,7 +598,7 @@ LDLIBS =	${LDFLAGS} ${LDADD}
 .if !defined(SUBPRJ)
 
 uninstall:
-	-${UNINSTALL} ${UNINSTALLFILES} 2>/dev/null
+	-${UNINSTALL} ${UNINSTALLFILES}
 
 installdirs:
 	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \
