@@ -398,6 +398,8 @@ OBJDUMP   ?=    objdump
 
 STRIP     ?=	strip
 
+RM        ?=	rm
+
 #ADDR2LINE ?=	addr2line
 #READELF   ?=	readelf
 #STRINGS   ?=	strings
@@ -587,7 +589,7 @@ LDLIBS =	${LDFLAGS} ${LDADD}
 .if !defined(SUBPRJ)
 
 uninstall:
-	-rm -f ${UNINSTALLFILES} 2>/dev/null
+	-${RM} -f ${UNINSTALLFILES} 2>/dev/null
 
 installdirs:
 	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \

@@ -13,12 +13,12 @@ basefile  =	${.CURDIR}/${PROJECTNAME}
 .PHONY: bin_cleanup bin_tar bin_targz bin_tarbz2
 
 bin_cleanup:
-	set -e; rm -rf ${destdir}; mkdir -m 0700 ${destdir}; \
+	set -e; ${RM} -rf ${destdir}; mkdir -m 0700 ${destdir}; \
 	${MAKE} ${MAKEFLAGS} all install DESTDIR=${destdir}
 
 bin_tar: bin_cleanup
-	set -e; rm -f ${basefile}.tar; cd ${destdir}; \
-	${TAR} -cf ${basefile}.tar .; cd /; rm -rf ${destdir}
+	set -e; ${RM} -f ${basefile}.tar; cd ${destdir}; \
+	${TAR} -cf ${basefile}.tar .; cd /; ${RM} -rf ${destdir}
 
 bin_targz: bin_tar
 	${GZIP} ${basefile}.tar
@@ -27,12 +27,12 @@ bin_tarbz2: bin_tar
 	${BZIP2} ${basefile}.tar
 
 bin_zip: bin_cleanup
-	set -e; rm -f ${basefile}.zip; cd ${destdir}; \
-	${ZIP} -r ${basefile}.zip .; rm -rf ${destdir}
+	set -e; ${RM} -f ${basefile}.zip; cd ${destdir}; \
+	${ZIP} -r ${basefile}.zip .; ${RM} -rf ${destdir}
 
 bin_deb: DEBIAN/control bin_cleanup
-	set -e; cp -rp DEBIAN ${destdir}; rm -rf ${destdir}/DEBIAN/CVS; \
+	set -e; cp -rp DEBIAN ${destdir}; ${RM} -rf ${destdir}/DEBIAN/CVS; \
 	dpkg-deb -b ${destdir} ${.CURDIR:T:S/_/-/g}.deb; \
-	rm -rf ${destdir}
+	${RM} -rf ${destdir}
 
 .endif # _MKC_IMP_ARCH_MK

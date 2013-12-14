@@ -248,6 +248,10 @@ Display information from object files.
 Generate index to archive.
 .RI < Iu >
 .RI [ ranlib ]
+.IP RM
+rm tool.
+.RI < Iu >
+.RI [ rm ]
 .IP SIZE
 List section sizes and total size.
 .RI < Iu >

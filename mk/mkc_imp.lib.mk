@@ -68,7 +68,7 @@ realall: ${SRCS} ${_LIBS}
 _SRCS_ALL = ${SRCS}
 
 __archivebuild: .USE
-	@rm -f ${.TARGET}
+	@${RM} -f ${.TARGET}
 	${MESSAGE.ar}
 	${_V} ${AR} cq ${.TARGET} ${.ALLSRC}; \
 	${RANLIB} ${.TARGET}
@@ -95,7 +95,7 @@ lib${LIB}_pic.a:: ${SOBJS} __archivebuild
 ${SHLIBFN}: ${SOBJS} ${DPADD}
 .if !commands(${SHLIBFN})
 	@${_MESSAGE_V} building shared ${LIB} library \(version ${SHLIB_FULLVERSION}\)
-	@rm -f ${.TARGET}
+	@${RM} -f ${.TARGET}
 	@${_MESSAGE} "LD: ${.TARGET}"
 	${_V} $(LDREAL) ${LDFLAGS.shlib} -o ${.TARGET} \
 	    ${SOBJS} ${LDFLAGS} ${LDADD}

@@ -45,7 +45,7 @@ ddash=
 
 .depend: ${__DPSRCS.d}
 	${MESSAGE.dep};
-	@rm -f .depend
+	@${RM} -f .depend
 .if ${MKDEP_TYPE:U} == "nbmkdep"
 	@${MKDEP} -d -f ${.TARGET} -s ${MKDEP_SUFFIXES:Q} ${__DPSRCS.d}
 .else

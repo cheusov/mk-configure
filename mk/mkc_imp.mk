@@ -53,10 +53,10 @@ _use_prog :=	1
 .PHONY: subprj-clean subprj-distclean
 clean: subprj-clean
 subprj-clean:
-	-rm -f ${CLEANFILES} 2>/dev/null
+	-${RM} -f ${CLEANFILES} 2>/dev/null
 cleandir: subprj-distclean
 subprj-distclean:
-	-rm -f ${DISTCLEANFILES} 2>/dev/null
+	-${RM} -f ${DISTCLEANFILES} 2>/dev/null
 
 .endif # SUBPRJ
 ########################################

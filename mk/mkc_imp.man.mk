@@ -50,21 +50,21 @@ TBL       ?=	tbl
 	${MESSAGE.nroff}
 .if !defined(USETBL)
 	${_V} ${NROFF} ${NROFF_MAN2CAT} ${.IMPSRC} > ${.TARGET} || \
-	 (rm -f ${.TARGET}; false)
+	 (${RM} -f ${.TARGET}; false)
 .else
 	${_V} ${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET} || \
-	 (rm -f ${.TARGET}; false)
+	 (${RM} -f ${.TARGET}; false)
 .endif
 
 .9.html9 .8.html8 .7.html7 .6.html6 .5.html5 .4.html4 .3.html3 .2.html2 .1.html1:
 .if !defined(USETBL)
 	@echo "${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET}"
 	@${GROFF} -Tascii -mdoc2html -P-b -P-u -P-o ${.IMPSRC} > ${.TARGET} || \
-	 (rm -f ${.TARGET}; false)
+	 (${RM} -f ${.TARGET}; false)
 .else
 	@echo "${TBL} ${.IMPSRC} | ${GROFF} -mdoc2html -P-b -P-u -P-o > ${.TARGET}"
 	@cat ${.IMPSRC} | ${GROFF} -mdoc2html -P-b -P-u -P-o > ${.TARGET} || \
-	 (rm -f ${.TARGET}; false)
+	 (${RM} -f ${.TARGET}; false)
 .endif
 
 .if defined(MAN) && !empty(MAN)
@@ -90,7 +90,7 @@ maninstall: manlinks
 
 __installpage: .USE
 .if defined(MCOMPRESS) && !empty(MCOMPRESS)
-	@rm -f ${.TARGET}
+	@${RM} -f ${.TARGET}
 	${MCOMPRESS} ${.ALLSRC} > ${.TARGET}
 	@chown ${MANOWN}:${MANGRP} ${.TARGET}
 	@chmod ${MANMODE} ${.TARGET}

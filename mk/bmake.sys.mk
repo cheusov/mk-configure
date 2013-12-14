@@ -92,7 +92,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .c.a:
 	${COMPILE.c} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 .c.ln:
 	${LINT} ${LINTFLAGS} ${CPPFLAGS:M-[IDU]*} -i ${.IMPSRC}
 
@@ -104,7 +104,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .cc.a .cpp.a .cxx.a .C.a:
 	${COMPILE.cc} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 # Fortran/Ratfor
 .f:
@@ -114,7 +114,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .f.a:
 	${COMPILE.f} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 .F:
 	${LINK.F} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
@@ -123,7 +123,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .F.a:
 	${COMPILE.F} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 .r:
 	${LINK.r} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
@@ -132,7 +132,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .r.a:
 	${COMPILE.r} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 # Pascal
 .p:
@@ -142,7 +142,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .p.a:
 	${COMPILE.p} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 # Assembly
 .s:
@@ -152,7 +152,7 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .s.a:
 	${COMPILE.s} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 .S:
 	${LINK.S} -o ${.TARGET} ${.IMPSRC} ${LDLIBS}
 .S.o:
@@ -160,35 +160,35 @@ YACC.y    ?=	${YACC} ${YFLAGS}
 .S.a:
 	${COMPILE.S} ${.IMPSRC}
 	${AR} ${ARFLAGS} $@ $*.o
-	rm -f $*.o
+	${RM} -f $*.o
 
 # Lex
 .l:
 	${LEX.l} ${.IMPSRC}
 	${LINK.c} -o ${.TARGET} lex.yy.c ${LDLIBS} -ll
-	rm -f lex.yy.c
+	${RM} -f lex.yy.c
 .l.c:
 	${LEX.l} ${.IMPSRC}
 	mv lex.yy.c ${.TARGET}
 .l.o:
 	${LEX.l} ${.IMPSRC}
 	${COMPILE.c} -o ${.TARGET} lex.yy.c 
-	rm -f lex.yy.c
+	${RM} -f lex.yy.c
 
 # Yacc
 .y:
 	${YACC.y} ${.IMPSRC}
 	${LINK.c} -o ${.TARGET} y.tab.c ${LDLIBS}
-	rm -f y.tab.c
+	${RM} -f y.tab.c
 .y.c:
 	${YACC.y} ${.IMPSRC}
 	mv y.tab.c ${.TARGET}
 .y.o:
 	${YACC.y} ${.IMPSRC}
 	${COMPILE.c} -o ${.TARGET} y.tab.c
-	rm -f y.tab.c
+	${RM} -f y.tab.c
 
 # Shell
 .sh:
-	rm -f ${.TARGET}
+	${RM} -f ${.TARGET}
 	cp ${.IMPSRC} ${.TARGET}

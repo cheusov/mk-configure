@@ -15,10 +15,10 @@ realinstall2:	linksinstall
 
 linksinstall:
 .for l r in ${LINKS}
-	rm -f ${DESTDIR}${r}; ln ${DESTDIR}${l} ${DESTDIR}${r}
+	${RM} -f ${DESTDIR}${r}; ln ${DESTDIR}${l} ${DESTDIR}${r}
 .endfor
 .for l r in ${SYMLINKS}
-	rm -f ${DESTDIR}${r}; ln -s ${l} ${DESTDIR}${r}
+	${RM} -f ${DESTDIR}${r}; ln -s ${l} ${DESTDIR}${r}
 .endfor
 
 .for l r in ${LINKS}

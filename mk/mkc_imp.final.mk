@@ -28,10 +28,10 @@ clean: mkc_clean
 
 mkc_clean:
 .if ${CLEANFILES:U} != ""
-	-rm -f ${CLEANFILES} 2>/dev/null
+	-${RM} -f ${CLEANFILES} 2>/dev/null
 .endif
 .if ${CLEANDIRS:U} != ""
-	-rm -rf ${CLEANDIRS} 2>/dev/null
+	-${RM} -rf ${CLEANDIRS} 2>/dev/null
 .endif
 
 #####
@@ -42,10 +42,10 @@ cleandir: mkc_cleandir
 
 mkc_cleandir:
 .if ${CLEANFILES:U} != "" || ${DISTCLEANFILES:U} != ""
-	-rm -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
+	-${RM} -f ${DISTCLEANFILES} ${CLEANFILES} 2>/dev/null
 .endif
 .if ${CLEANDIRS:U} != "" || ${DISTCLEANDIRS:U} != ""
-	-rm -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
+	-${RM} -rf ${DISTCLEANDIRS} ${CLEANDIRS} 2>/dev/null
 .endif
 
 ##########
