@@ -105,7 +105,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 .endif # ELF
 .endif # !commands(...)
 
-CLEANFILES += a.out [Ee]rrs mklog core *.core \
+CLEANFILES += \
 	${OBJS} ${POBJS} ${SOBJS} \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SHLIBFN}

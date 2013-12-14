@@ -68,6 +68,6 @@ CLEANFILES +=	${OBJS.${p}}
 
 realall: ${PROGS}
 
-CLEANFILES += a.out [Ee]rrs mklog core *.core ${PROGS}
+CLEANFILES += ${PROGS}
 
 .endif # _MKC_IMP_PROG_MK
