@@ -52,27 +52,28 @@ means "May be set in project's Makefile but may be initialized or overriden by u
 .BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk ", and " mkc.subprj.mk
 include files provide the following targets:
 .IP all
-build everything
+build everything.
 .IP clean
-clean temporary files created while building.
+clean temporary files and directories created while building with a help of
+${CLEANFILES_CMD} and ${CLEANDIRS_CMD} commands.
 .IP cleandir
 remove all of the files removed by the target clean, as
 well as cache files created by
 .BR mkc.configure.mk .
 .IP distclean
-synonym for target "cleandir"
+synonym for target "cleandir".
 .IP installdirs
-create target directories
+create target directories.
 .IP install
 install programs, libraries, files, include files, manual pages etc.
-to the target directories
+to the target directories with a help of ${INSTALL} program.
 .IP uninstall
-remove installed files
+remove installed files with a help of ${UNINSTALL} command.
 .IP errorcheck
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
-create .depend file containing list of dependencies (see mkdep(1))
+create .depend file containing list of dependencies (see mkdep(1)).
 .IP filelist
 output a list of destination files of the project, one per line, e.g.
 .VS
@@ -288,6 +289,10 @@ to be stripped.
 Topological sort of a directed graph.
 .RI < Iu >
 .RI [ "tsort -q" ]
+.IP UNINSTALL
+Command for removing files used by target "uninstall".
+.RI < Iu >
+.RI [ "${RM} -f" ]
 .IP YACC
 LALR(1) parser generator.
 .RI < Iu >
