@@ -199,6 +199,14 @@ Lexical analyzer.
 Options to ${LEX}.
 .RI < Iu >
 .RI [ "" ]
+.IP LN
+ln(1) tool.
+.RI < Iu >
+.RI [ ln ]
+.IP LN_S
+Tool equivalent to ln -s.
+.RI < Iu >
+.RI [ "${LN} -s" ]
 .IP LPREFIX
 Symbol prefix for ${LEX} (see -P option in lex(1)).
 .RI < Iu >
@@ -249,7 +257,7 @@ Generate index to archive.
 .RI < Iu >
 .RI [ ranlib ]
 .IP RM
-rm tool.
+rm(1) tool.
 .RI < Iu >
 .RI [ rm ]
 .IP SIZE

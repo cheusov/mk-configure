@@ -23,7 +23,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
        original BSD mkdep(1). Type of mkdep(1) is detected at
        mk-configure build time. Report by Michael Crogan.
 
-  New variable RM was introduced.
+  New variables LN, LN_S and RM were introduced.
 
   New variable BMAKE_REQD was introduced.
 

@@ -366,6 +366,9 @@ LD.OSF1   ?=	/usr/bin/ld
 LD        ?=	${LD.${TARGET_OPSYS}:Uld}
 LDFLAGS   ?=
 
+LN        ?=	ln
+LN_S      ?=	${LN} -s
+
 LORDER    ?=	lorder
 
 NM        ?=	nm
