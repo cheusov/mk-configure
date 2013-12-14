@@ -85,6 +85,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
      - documentation for this module was added.
      - support for SHRTOUT=yes
      - new variable DPSRCS was introduced
+     - MKDEP_SUFFIXES also contains .os and .op
 
   MKPIE/SHLIB_*:
      - s/-KPIC/-xcode=pic32/ for SunStudio compilers

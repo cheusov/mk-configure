@@ -16,7 +16,7 @@ depend: _beforedepend .depend
 
 ##### Default values
 MKDEP          ?=	mkdep
-MKDEP_SUFFIXES ?=	.o
+MKDEP_SUFFIXES ?=	.o .os .op
 
 ##### Build rules
 # some of the rules involve .h sources, so remove them from mkdep line
