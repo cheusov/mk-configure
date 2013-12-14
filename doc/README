@@ -307,7 +307,7 @@ Also mk-configure is not feature-complete yet, see TODO file for details.
 -------------------------------------------------------------------------
 INSTALLATION:
 
-   1) Install bmake to your system.
+   1) Install bmake(1).
       Sources are available here.
 
         ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
@@ -318,7 +318,14 @@ INSTALLATION:
       Please make sure you install stable version of bmake and
       'bmake test' succeeds (see section 3 below).
 
-   2)
+   2) Install NetBSD version of mkdep(1).
+      Sources are available here.
+
+        https://code.google.com/p/bmkdep/
+
+      Traditional BSD mkdep(1) is also good but NetBSD version is just better.
+
+   3)
       # cd mk-configure-X.Y.Z/
 
       # export PREFIX=/usr/local (the default)
@@ -332,7 +339,7 @@ INSTALLATION:
       Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
       to whatever you want. PREFIX defaults to /usr/local.
 
-   3)
+   4)
       # bmake test # For testing mk-configure, this step is optional.
                    # Note that testing requires lex(1), yacc(1),
                    # pkg-config(1), glib2 library and other things
@@ -345,12 +352,12 @@ INSTALLATION:
                    # e.g.
                    # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
 
-   4)
+   5)
       # bmake install
         or
       # env DESTDIR=/tmp/temproot bmake install
 
-   5) You can also build a simple presentation by running either of the
+   6) You can also build a simple presentation by running either of the
       following commands:
 
           bmake doc

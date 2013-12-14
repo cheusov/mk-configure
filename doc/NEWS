@@ -4,6 +4,9 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
   Build infrastructure for mk-c itself was completely reimplemented.
   Now it looks much better and is more flexible for further extensions.
 
+  NetBSD version of mkdep(1) or traditional BSD mkdep(1) is needed at
+  build time.
+
   Variable TARGETS is now visible to users and is documented. It
   contains all recursive targets and may be used for adding user's
   functionality to mk-c.
