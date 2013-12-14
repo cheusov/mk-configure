@@ -451,14 +451,12 @@ lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	awk 'BEGIN {print "{ global:"} \
 	     {print $$0 ";"} \
-	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}.tmp && \
-	mv ${.TARGET}.tmp ${.TARGET}
+	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}
 .elif ${LD_TYPE} == "darwinld"
 CLEANFILES +=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
-	awk '{print "_" $$0}' ${.ALLSRC} > ${.TARGET}.tmp && \
-	mv ${.TARGET}.tmp ${.TARGET}
+	awk '{print "_" $$0}' ${.ALLSRC} > ${.TARGET}
 .endif # sunld or darwinld
 
 LDFLAGS.expsym.gnuld    =	--version-script ${EXPORT_SYMBOLS}.tmp
