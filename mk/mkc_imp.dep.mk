@@ -44,12 +44,12 @@ ddash=
 .endif
 
 .depend: ${__DPSRCS.d}
-	${MESSAGE.dep};
-	@${RM} -f .depend
+	${MESSAGE.dep}
+	@${RM} -f ${.TARGET}
 .if ${MKDEP_TYPE:U} == "nbmkdep"
 	@${MKDEP} -d -f ${.TARGET} -s ${MKDEP_SUFFIXES:Q} ${__DPSRCS.d}
 .else
-	@cat ${__DPSRCS.d} > ${.TARGET}.tmp && mv ${.TARGET}.tmp ${.TARGET}
+	@cat ${__DPSRCS.d} > ${.TARGET}
 .endif
 
 .SUFFIXES: .d .s .S .c .C .cc .cpp .cxx .m
