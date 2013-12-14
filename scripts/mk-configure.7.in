@@ -148,6 +148,14 @@ Additional flags to the compiler when creating C objects.
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CLEANFILES_CMD
+Command for removing files used by targets "clean" and "cleandir".
+.RI < Iu >
+.RI [ "${RM} -f" ]
+.IP CLEANDIRS_CMD
+Command for removing directories used by targets "clean" and "cleandir".
+.RI < Iu >
+.RI [ "${RM} -rf" ]
 .IP COPTS
 Additional flags to the compiler when creating C objects.
 .RI < "U" >

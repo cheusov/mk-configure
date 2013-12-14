@@ -354,6 +354,9 @@ MESSAGE.r  ?=	${MESSAGE.f}
 
 MESSAGE.ld ?=	@${_MESSAGE} "LD: ${.TARGET}"
 
+CLEANFILES_CMD ?=	${RM} -f
+CLEANDIRS_CMD ?=	${RM} -rf
+
 INSTALL    ?=	install
 
 LEX       ?=	lex

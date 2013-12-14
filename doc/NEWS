@@ -24,6 +24,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
        mk-configure build time. Report by Michael Crogan.
 
   New variables LN, LN_S, MKDIR and RM were introduced.
+  New variables CLEANFILES_CMD, CLEANDIRS_CMD were introduced.
 
   New variable BMAKE_REQD was introduced.
 
