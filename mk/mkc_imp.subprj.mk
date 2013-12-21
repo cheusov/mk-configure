@@ -46,29 +46,46 @@ dir_ = ${dir}
 .  if ${dir_} == ".WAIT"
 _SUBDIR_${targ} += .WAIT
 .  else
-_SUBDIR_${targ} += ${targ}-${dir}
+_SUBDIR_${targ} += ${targ}-${dir}:${targ}
 .  endif # .WAIT
 . endfor # dir
-${targ}: ${_SUBDIR_${targ}}
+.for excl in ${NODEPS}
+_SUBDIR_${targ} :=	${_SUBDIR_${targ}:N${excl}}
+.endfor # excl
+_ALLTARGDEPS2 += ${_SUBDIR_${targ}}
+${targ}: ${_SUBDIR_${targ}:S/:${targ}$//}
 .endif #!command(${targ})
 
 .for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
-.PHONY: ${targ}-${prj} ${targ}-${dep}
-${targ}-${prj}: ${targ}-${dep}
+_ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
 .endfor
 
 .endfor # targ
 
 .for dir in ${__REALSUBPRJ}
-.PHONY: ${dir:T} ${dir}
 .if ${dir:T} != ${dir}
-${dir:T}: all-${dir}
+_ALLTARGDEPS += all-${dir}:${dir:T}
 .endif
-${dir}: all-${dir}
+_ALLTARGDEPS += all-${dir}:${dir}
 .endfor # dir
+
+.for excl in ${NODEPS}
+_ALLTARGDEPS :=	${_ALLTARGDEPS:N${excl}}
+.endfor # excl
+
+.for deptarg prjtarg in ${_ALLTARGDEPS:S/:/ /}
+.PHONY: ${prjtarg} ${deptarg}
+${prjtarg}: ${deptarg}
+.endfor
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS}:
+
+.PHONY: output_deps
+output_deps:
+.for i in ${_ALLTARGDEPS} ${_ALLTARGDEPS2}
+	@echo ${i}
+.endfor
 
 .include <mkc_imp.objdir.mk>
 

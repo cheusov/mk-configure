@@ -21,6 +21,12 @@ test_output :
 	echo OBJDIR_prog3=${OBJDIR_prog3} | mkc_test_helper_paths; \
 	echo OBJDIR_bar=${OBJDIR_bar} | mkc_test_helper_paths; \
 	\
+	echo =========== check ============; \
+	${MAKE} ${MAKEFLAGS} check 2>&1; \
+	\
+	echo =========== check-tools/prog1 ============; \
+	${MAKE} ${MAKEFLAGS} check-tools/prog1 2>&1; \
+	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

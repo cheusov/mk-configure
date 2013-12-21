@@ -27,7 +27,10 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
        mk-configure build time. Report by Michael Crogan.
 
   New variables LN, LN_S, MKDIR, RM, CLEANFILES_CMD, CLEANDIRS_CMD,
-  UNINSTALL, CC_PREFIX, CXX_PREFIX were introduced.
+  UNINSTALL, MAKEDEPEND, CC_PREFIX, CXX_PREFIX were introduced.
+
+  New variable NODEPS was introduced. With its help one can cut off
+  the dependency graph for particular targets.
 
   New variable BMAKE_REQD was introduced.
 

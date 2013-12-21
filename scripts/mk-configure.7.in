@@ -933,6 +933,15 @@ for subprojects are created in a top-level directory.
 List of variables excluded from EXPORT_VARNAMES.
 .RI < "Mu" >
 .RI [ "" ]
+.IP NODEPS
+This variable specifies a list of patterns that describes edges from dependency
+graph in
+.IR targdep-prjdep : targ-prj
+or
+.IR targ-prj : targ
+formats to be excluded from dependency graph.
+.RI < "M" >
+.RI []
 .IP NOSUBDIR
 If for some reason you want to exclude some subdirectories from build,
 list them in this variable.

@@ -12,6 +12,18 @@ OBJDIR_libs_foo=/path/to/foo
 OBJDIR_libs_bar=/path/to/bar
 OBJDIR_prog3=/path/to/prog3
 OBJDIR_bar=/path/to/bar
+=========== check ============
+==================================================
+check ===> tools/prog1
+==================================================
+check ===> tools/prog2
+==================================================
+check ===> tools/prog3
+==================================================
+check ===> tools/prog4
+=========== check-tools/prog1 ============
+==================================================
+check ===> tools/prog1
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
@@ -61,32 +73,32 @@ OBJDIR_bar=/path/to/bar
 /objdir/tools/prog4/prog4.o
 ===== all SHRTOUT=yes ======
 ==================================================
-all ===> tools/libs/bar
+all ===> libs/bar
 CC: bar.c
 AR: libbar.a
 ==================================================
-all ===> tools/libs/foo
+all ===> libs/foo
 CC: foo.c
 AR: libfoo.a
 ==================================================
-all ===> tools/libs/qux
+all ===> libs/qux
 GEN: qux.h
 CC: qux.c
 AR: libqux.a
 ==================================================
-all ===> tools/tools/prog1
+all ===> tools/prog1
 CC: prog1.c
 LD: prog1
 ==================================================
-all ===> tools/tools/prog2
+all ===> tools/prog2
 CC: prog2.c
 LD: prog2
 ==================================================
-all ===> tools/tools/prog3
+all ===> tools/prog3
 CC: prog3.c
 LD: prog3
 ==================================================
-all ===> tools/tools/prog4
+all ===> tools/prog4
 CC: prog4.c
 LD: prog4
 ========= installdirs ==========
