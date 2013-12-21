@@ -245,10 +245,16 @@ List dependencies for object files.
 .IP MAKE
 bmake(1).
 .RI [ bmake " or " make " on NetBSD]"
+.IP MAKEDEPEND
+makedepend(1) tool.
+.RI < Iu >
 .IP MKDIR
 mkdir(1) tool.
 .RI < Iu >
 .RI [ mkdir ]
+.IP MKDEP
+mkdep(1) tool.
+.RI < Iu >
 .IP NM
 List symbols from object files.
 .RI < Iu >

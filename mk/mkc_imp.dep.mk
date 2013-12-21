@@ -43,40 +43,52 @@ ddash=--
 ddash=
 .endif
 
+.if ${MKDEP_TYPE:U} == "makedepend"
+MKDEP.c   = @${MAKEDEPEND} -f- ${ddash} ${MKDEPFLAGS} \
+	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+MKDEP.m   = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+MKDEP.cc  = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+MKDEP.s   = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+.else
+MKDEP.c   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+MKDEP.m   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+MKDEP.cc  = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+MKDEP.s   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+.endif
+
 .depend: ${__DPSRCS.d}
 	${MESSAGE.dep}
 	@${RM} -f ${.TARGET}
 .if ${MKDEP_TYPE:U} == "nbmkdep"
 	@${MKDEP} -d -f ${.TARGET} -s ${MKDEP_SUFFIXES:Q} ${__DPSRCS.d}
 .else
-	@cat ${__DPSRCS.d} > ${.TARGET}
+	@sed 's/^\([^ ]*\)[.]o\(.*\)$$/${MKDEP_SUFFIXES:C,^,\\\\1,}\2/' ${__DPSRCS.d} > ${.TARGET}
 .endif
 
 .SUFFIXES: .d .s .S .c .C .cc .cpp .cxx .m
 
 .c.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
-	    ${CPPFLAGS} ${.IMPSRC}
+	@${MKDEP.c} ${.IMPSRC}
 
 .m.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
-	    ${CPPFLAGS} ${.IMPSRC}
+	@${MKDEP.m} ${.IMPSRC}
 
 .s.d .S.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
-	    ${CPPFLAGS} ${.IMPSRC}
+	@${MKDEP.s} ${.IMPSRC}
 
 .C.d .cc.d .cpp.d .cxx.d:
 	${MESSAGE.dep}
-	@${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} \
-	    ${CPPFLAGS} ${.IMPSRC}
+	@${MKDEP.cc} ${.IMPSRC}
 
 .endif # defined(SRCS)
 

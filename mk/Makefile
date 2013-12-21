@@ -20,9 +20,15 @@ MKC_CHECK_CUSTOM   +=	${i}
 MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../custom/${i}
 .endfor
 
+MKC_CHECK_PROGS    +=	makedepend
+
 .include <mkc.configure.mk>
 
-.if !empty(CUSTOM.prog_nbmkdep)
+.if ${HAVE_PROG.makedepend:U0}
+makedepend_cmd =	${PROG.makedepend}
+mkdep_cmd  =		mkdep
+mkdep_type =		makedepend
+.elif !empty(CUSTOM.prog_nbmkdep)
 mkdep_cmd  =		${CUSTOM.prog_nbmkdep}
 mkdep_type =		nbmkdep
 .elif !empty(CUSTOM.prog_mkdep)
@@ -32,7 +38,10 @@ mkdep_type =		mkdep
 MKC_ERR_MSG +=		"mkdep(1) cannot be found"
 .endif
 
+makedepend_cmd ?=	makedepend
+
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
+INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
 
 #################################################
