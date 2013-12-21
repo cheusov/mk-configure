@@ -15,8 +15,8 @@ This is fake!
 
 @titlepage  
 @title shell_func info page
-@subtitle Edition @value{EDITION}, Version @value{VERSION}.
-@subtitle @value{UPDATE-MONTH}
+@subtitle Edition 1, Version 7.
+@subtitle 5
 @author Aleksey Cheusov
 
 @page

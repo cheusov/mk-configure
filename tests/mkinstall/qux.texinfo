@@ -15,8 +15,8 @@ This is fake!
 
 @titlepage  
 @title qux info page
-@subtitle Edition @value{EDITION}, Version @value{VERSION}.
-@subtitle @value{UPDATE-MONTH}
+@subtitle Edition 11, Version 22.
+@subtitle 5
 @author Aleksey Cheusov
 
 @page
