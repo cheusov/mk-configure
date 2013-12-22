@@ -1,5 +1,5 @@
 PATH.qux  :=	${.PARSEDIR}
 
-CPPFLAGS  +=	-I${PATH.qux}
+CPPFLAGS  +=	-I${OBJDIR_libs_qux}
 DPLIBDIRS +=	libs/${PATH.qux:T}
 LDADD     +=	-lqux

@@ -21,6 +21,11 @@ export_cmd  +=	${i}=${${i}:Q}; export ${i};
 .endif
 .endfor
 
+.if ${MKRELOBJDIR} == "yes" && defined(SRCTOP)
+export_cmd  +=	MAKEOBJDIR=${.OBJDIR}/${.TARGET:C/^.*-//}; \
+	export MAKEOBJDIR; ${MKDIR} -p $${MAKEOBJDIR};
+.endif
+
 ##########
 .if !commands(clean)
 clean: mkc_clean

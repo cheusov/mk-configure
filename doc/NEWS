@@ -20,6 +20,10 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
   "obj" and variable MKOBJDIRS were introduced.
   Report by Michael Crogan.
 
+  New variable MKRELOBJDIR was introduced. With its help one can
+  create object directories relative to top-level object directory
+  (like MAKEOBJDIRPREFIX but without top-level ${.CURDIR} in paths).
+
   target "depend":
      - FIX. Original implementation relied on NetBSD version of
        mkdep(1). So, it didn't work on Linux, FreeBSD and others with

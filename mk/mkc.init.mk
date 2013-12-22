@@ -239,7 +239,8 @@ MKSHARE    ?=	yes
 #
 # MKOBJDIRS controls whether object dirs are created during "make all" or "make obj".
 #
-MKOBJDIRS ?=	auto
+MKOBJDIRS     ?=	auto
+MKRELOBJDIR  ?=	no
 
 MKPIE     ?=	no
 USE_SSP   ?=	no

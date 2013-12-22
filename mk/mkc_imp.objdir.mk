@@ -16,7 +16,9 @@ _MKC_IMP_OBJDIR_MK := 1
 j:=${i:S,/,_,g}
 .if empty(j:U:M*[.]*)
 EXPORT_VARNAMES += OBJDIR_${i:S,/,_,g}
-.  if defined(MAKEOBJDIRPREFIX)
+.  if ${MKRELOBJDIR:tl} == "yes"
+OBJDIR_${j} = ${.OBJDIR}/${i}
+.  elif defined(MAKEOBJDIRPREFIX)
 OBJDIR_${j} = ${MAKEOBJDIRPREFIX}${.CURDIR}
 .  elif defined(MAKEOBJDIR)
 OBJDIR_${j} = ${MAKEOBJDIR}

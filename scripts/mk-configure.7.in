@@ -969,6 +969,13 @@ purposes, for example, static code analysis, partial builds etc.
 If "yes", special targets with last component of the subprojects are provided.
 .RI < "Im" >
 .RI [ yes ]
+.IP MKRELOBJDIR
+If "yes", object directories
+.RI ${TOPOBJ}/ dir
+are used. Unlike MAKEOBJDIRPREFIX object directories do not contain
+top-level ${.CURDIR} in paths.
+.RI < "Iu" >
+.RI [ no ]
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
@@ -1007,6 +1014,12 @@ The same as in
 The same as in
 .B mkc.subprj.mk
 .IP TARGETS
+The same as in
+.B mkc.subprj.mk
+.IP SHORTPRJNAME
+The same as in
+.B mkc.subprj.mk
+.IP MKRELOBJDIR
 The same as in
 .B mkc.subprj.mk
 .SS "mkc.configure.mk"

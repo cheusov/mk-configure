@@ -423,3 +423,26 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 /objdir/tools/prog4/prog4.o
 /objdir/tools2.test.out.tmp
+========= MKRELOBJDIR ==========
+obj/_mkc_compiler_type.err
+obj/_mkc_compiler_type.res
+obj/_mkc_prog_cc.err
+obj/_mkc_prog_cc.res
+obj/_mkc_sizeof_int.c
+obj/_mkc_sizeof_int.err
+obj/_mkc_sizeof_int.res
+obj/libs/bar/bar.o
+obj/libs/bar/libbar.a
+obj/libs/foo/foo.o
+obj/libs/foo/libfoo.a
+obj/libs/qux/libqux.a
+obj/libs/qux/qux.h
+obj/libs/qux/qux.o
+obj/tools/prog1/prog1
+obj/tools/prog1/prog1.o
+obj/tools/prog2/prog2
+obj/tools/prog2/prog2.o
+obj/tools/prog3/prog3
+obj/tools/prog3/prog3.o
+obj/tools/prog4/prog4
+obj/tools/prog4/prog4.o

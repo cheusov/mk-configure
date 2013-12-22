@@ -100,6 +100,15 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= MKRELOBJDIR ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	MKRELOBJDIR=yes; export MKRELOBJDIR; \
+	mkdir obj; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} \
+		-j4 all > /dev/null; \
+	find obj -type f -o -type l | sort; \
+	rm -rf obj; \
+	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 
 .include <mkc.minitest.mk>
