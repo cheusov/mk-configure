@@ -102,6 +102,10 @@ LDREAL  ?=	${LD}
 
 MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
+.if !defined(SRCTOP) && ${.MAKE.LEVEL} == ${init_make_level}
+SRCTOP        =	${.CURDIR}
+.endif
+
 ###########
 .if exists(${.CURDIR}/Makefile.rec)
 REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
@@ -266,7 +270,7 @@ MKPROFILELIB ?=	no
 
 MKINSTALLDIRS   ?=	yes
 
-EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES TARGETS SHORTPRJNAME
+EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES TARGETS SHORTPRJNAME SRCTOP
 
 EXPORT_DYNAMIC  ?=	no
 

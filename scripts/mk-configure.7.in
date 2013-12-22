@@ -550,7 +550,9 @@ performance penalty.
 .RI < "U" >
 .RI [ no ]
 .IP SRCTOP
-Path to top-level project's directory. If set, "../Makefile.inc"
+Path to top-level project's directory which
+defaults to ${.CURDIR} if ${.MAKE.LEVEL} is 0.
+If set, "../Makefile.inc"
 is not included. Also, the following command
 .br
    mkcmake -C subproject target
