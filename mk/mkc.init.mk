@@ -102,8 +102,11 @@ LDREAL  ?=	${LD}
 
 MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
-.if !defined(SRCTOP) && ${.MAKE.LEVEL} == ${init_make_level}
-SRCTOP        =	${.CURDIR}
+init_make_level ?= 0 # for mkc.configure.mk
+
+.if ${.MAKE.LEVEL} == ${init_make_level}
+SRCTOP       ?=	${.CURDIR}
+OBJTOP       ?=	${.OBJDIR}
 .endif
 
 ###########

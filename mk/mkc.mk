@@ -7,6 +7,7 @@
 _MKC_MK := 1
 
 init_make_level ?= 0
+
 .if defined(SRCTOP) && ${SRCTOP:U} != ${.CURDIR} && ${.MAKE.LEVEL} == ${init_make_level}
 MKC_CACHEDIR ?=	${SRCTOP}
 .export MKC_CACHEDIR

@@ -550,7 +550,7 @@ performance penalty.
 .RI < "U" >
 .RI [ no ]
 .IP SRCTOP
-Path to top-level project's directory which
+Top-level project's directory which
 defaults to ${.CURDIR} if ${.MAKE.LEVEL} is 0.
 If set, "../Makefile.inc"
 is not included. Also, the following command
@@ -560,7 +560,11 @@ is not included. Also, the following command
 will be translated to
 .br
    cd ${SRCTOP}; mkcmake target-subproject
-.RI < "U" >
+.RI < Iu >
+.IP OBJTOP
+Top-level object directory which
+defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
+.RI < I >
 .SS "mkc.init.mk"
 This file sets most important mk-configure variables, for example,
 OPSYS, PREFIX, CC_TYPE etc. and is included automatically by
