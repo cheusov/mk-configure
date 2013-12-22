@@ -1,6 +1,4 @@
-SUBPRJ =	mkfs_superfs       fsck_superfs \
-		docs \
-		mkfs_superfs:tools fsck_superfs:tools
+SUBPRJ =	docs mkfs_superfs:tools fsck_superfs:tools
 
 SUBPRJ_DFLT =	mkfs_superfs fsck_superfs docs
 
