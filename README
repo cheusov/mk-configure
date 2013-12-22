@@ -1,1 +1,424 @@
-See doc/README
+-------------------------------------------------------------------------
+WHAT IS MK-CONFIGURE?
+
+mk-configure is a lightweight replacement for GNU autotools, written
+in and for bmake (portable version of NetBSD make) and UNIX tools
+(shell, awk etc.).  FreeBSD and OpenBSD make are not good. They are
+incompatible with NetBSD bmake. GNU make is not good too.
+
+mk-configure provides a number of include files written in and for
+bmake and a number of standalone programs that should be installed to
+user's host for building a software.
+
+mk-configure features:
+
+ - An easy way for building standalone executables, static and shared
+   libraries written in C, C++, Fortran, Pascal and Objective C; .cat
+   and .html files from man pages; .info pages from texinfo sources
+   etc. LEX, YACC are also supported. Support for other languages are
+   planned.
+
+ - Installing and uninstalling executables, libraries, scripts,
+   documentation files and others. DESTDIR support is also provided.
+
+ - Integrated autoconf-like support for finding #include files,
+   libraries and function implementation, function definitions,
+   defines, types, struct members etc.
+
+ - A number of built-in checks for, e.g., system endianess, GNU bison
+   or GNU flex programs and many others.
+
+ - Automatic dependency analysis built-in for C, C++ and Fortran (not
+   implemented yet, will be available soon).
+
+ - Extensibility by writing bmake include files.
+
+ - Support for regression tests (see mkc.minitest.mk for the sample).
+
+ - mk-configure is small and easy. It is definitely much easier for
+   use than GNU autotools, many people think that it is also easier
+   than other competing projects like CMake, scons and others.
+
+-------------------------------------------------------------------------
+WHAT MK-CONFIGURE IS NOT
+
+ - mk-configure is not a replacement for traditional make(1)
+
+ - mk-configure is not a silver bullet ;-)
+
+-------------------------------------------------------------------------
+GOALS OF THE PROJECT
+
+ - No code generation! Library approach is used instead.  Instead of
+   generating tons of unreadable blobs mk-configure uses bmake include
+   files (bmake's libraries) and external executables to make its job.
+   Developers should distribute source code only, not blobs.
+
+ - Single top level command for building a software, bmake in our
+   case. Instead of running and learning
+   autoconf/automake/aclocal/autoreconf/config.status/autoheader and
+   many other tools and the way they interact with each other you
+   should learn only ONE tool, bmake.
+
+ - No bloat. At this time mk-configure consists of far less than 10000
+   lines of code (excluding examples and regression tests). Compare
+   this number with autotools sources and you'll see a difference.
+
+ - Simplicity for both developers and users. The only file developer
+   should be aware of during development is 'Makefile'.  Users just
+   run 'env <options> bmake all <options>' to build a software. The
+   same for developers -- for building a software, just run 'bmake'.
+
+ - Portability. At the moment the following systems and compilers are
+   supported:
+
+    - NetBSD. Tested on NetBSD-5.0/x86 and NetBSD-2.0/alpha with
+      gcc, pcc and clang.
+
+    - FreeBSD. Tested on FreeBSD-6.2/x86, 7.1/spark64 and 7.1/x86
+      with gcc.
+
+    - OpenBSD. Tested on OpenBSD-3.8/x86 and 4.5/x86 with gcc.
+
+    - DragonFlyBSD. Tested on DragonFly-2.4.1-RELEASE/x86 with gcc.
+
+    - MirOS BSD. Tested on MirBSD-10/x86 with gcc.
+
+    - Linux. Tested on Linux/{x86,x86-64} with gcc, icc, sunstudio-12.
+
+    - Solaris. Tested on Solaris-10/x86 and Solaris-10/spark64
+      with sunstudio-11, sunstudio-12 and gcc.
+
+    - Darwin (MacOS-X). Tested on Darwin-8.11.0/ppc (MacOS-X Tiger)
+      with native gcc.
+
+    - Interix. Tested on Interix-3.5/x86 with gcc.
+
+    - QNX. Tested on QNX-6.3/x86 with gcc.
+
+    - OSF1. Tested on Tru64-5.1/alpha with gcc and DEC C compiler.
+
+    - HP-UX. Tested on HP-UX-11.0/hppa with gcc.
+
+    - Partial support for AIX and their native
+      compilers. Support is not complete because I have no access to
+      "big iron" :-( .
+
+    If you don't see your favorite system/compiler here and want to
+    help me to improve mk-configure, feel free to contact
+    me. mk-configure needs your help! ;-)
+
+ - Declarative approach in writing Makefiles. Instead of specifying
+   _HOW_ to build your software, you should specify source files,
+   files to build and (optionally) build options, e.g. LDCOMPILER=yes
+   meaning that ${CC} or ${C++} compiler should be used as a linker
+   instead of ${LD}. Small/medium size projects may have no rules in
+   Makefiles at all. Most useful things are already implemented in
+   mk-configure include files including implementation for targets
+   all, install, uninstall as well as support for building the shared
+   libraries, installation to ${DESTDIR} etc. Usually Makefile contain
+   only variable assignments, .include-s and .if/.for directives.
+
+ - No heavy dependencies like Python or Perl.
+
+-------------------------------------------------------------------------
+HOW TO USE MK-CONFIGURE?
+
+ Developers:
+    - Install bmake (and optionally sys.mk) to your system.
+    - Install mk-configure to your system.
+    - Develop your software using bmake and mkc.*.mk include files
+      provided by mk-configure.
+    - Run 'mkcmake' or 'mkcmake all' for building your software.
+      (mkcmake is a trivial wrapper over bmake).
+      You need not autoconf/autoheader/automake/aclocal/config.guess/
+      /autoreconf/config.status/config.sub and blah-blah-blah
+
+      BMAKE is magic enough ;-)
+
+ Users and software packagers:
+    - Install bmake (and optionally sys.mk) to your system.
+    - Install mk-configure to your system.
+    - Run bmake for building a software and pass to it
+      the building options, e.g.
+
+         env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
+              mkcmake all install
+
+      (mkcmake is a wrapper for bmake)
+
+      There is no need for configure script and analogs.
+
+      BMAKE is magic enough ;-)
+
+-------------------------------------------------------------------------
+WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
+
+ 1) Autotools are toooooo big and toooooo complex.  I fear most free
+   and open source developers do not understand how to use autotools
+   in a proper way to make software REALLY portable.
+
+ 2) configure script generated by autoconf is too big.  Trivial
+   configure.ac results in hundreds of kilobytes of unreadable textual
+   blobs.  What the hell?
+
+ 3) The goal of autotools was to make building software easier.  But
+   this goal makes development painful.  Autotools is a hell for
+   development/developers.  Too much of top-level commands: automake,
+   autoconf, aclocal, autoheader...  All its functionality can be
+   implemented using one top-level command -- bmake. Autotools is also
+   a well known source of headaches for users and software packagers.
+
+ 4) In theory, configure script generated by autoconf is portable
+   because it is written in portable shell. In practice this is not
+   always true. Users often need to update autoconf for regenerating
+   an upstream configure scripts. They also often need to patch a
+   configure and Makefile blobs.
+
+ 5) autoconf doesn't support efficient results caching from different
+   projects. In theory this can make building thousands of projects
+   (e.g. software packages in OS distributions) dramatically faster.
+
+ 6) configures script generated by autoconf are too slow even on
+   modern hardware and systems having fast fork(2) system call
+   (notably *BSD and Linux).
+
+ 7) Many (most?) real-life configure.ac break the cross-compiling.
+
+ 8) In my view autotools (automake and autoconf) is BADLY designed.  I
+   personally dislike code generation idea because it is ... extreamly
+   ugly :-/ approach even if the generated code is claimed to be
+   "portable".  Today it is not a problem to install any kind of
+   software building tools and to them more efficiently.
+
+-------------------------------------------------------------------------
+WHAT MK-CONFIGURE CONSISTS OF?
+
+- mkc.{files,lib,prog,subprj,subdir}.mk files.
+
+      These include files are responsible for building, installing and
+      uninstalling applications, static and shared libraries, scripts,
+      plain files, man and info pages, hard and soft links etc...
+      NOTE FOR *BSD USERS: unlike well known Mk files from *BSD
+      systems mkc.*.mk files provide the following features (this list
+      is not complete, see mk-configure.7 for details).
+
+      - PREFIX, BINDIR, MANDIR etc. variables default to directories
+        under /usr/local.  By default the same variables in bsd.*.mk
+        files are set to directories under /usr. This is because they
+        are used mainly for maintaining *BSD's own code while
+        mk-configure is targeted to all UNIX-like systems, not only *BSD.
+
+      - BINOWN, BINGRP, MANOWN etc. variables are set to 'id -u' and
+        'id -g' if mkcmake(1) is run under an unprivileged user.
+        By default bsd.*.mk use root:wheel by default.
+
+      - A target 'install' installs include files, info pages and
+        others not installed by default by bsd.*.mk files.
+        It also creates target directories by default
+        (see target 'installdirs' and MKINSTALLDIRS variable).
+
+      - A target 'installdirs' creates all required destination
+        directories. bsd.*.mk files do not create them at all.
+
+      - A target 'uninstall' removes all installed files from
+        destination directories. bsd.*.mk files do not provide
+        this functionality.
+
+      - A target 'test' of mkc.subdir.mk (by default) runs a "test"
+        target for each subdirectory listed in SUBDIR. Other mkc.*.mk
+        files provide "test" target too but does nothing by default.
+        If you want to test your application, define your own "test"
+        target in application's Makefile.
+
+      - DPLIBDIRS variable, if set, contains a list of directories of
+        the libraries your project depends on. If this variable is
+        set, LDFLAGS is modified accordingly. See examples/ projects.
+
+      - "cleandir" and "distclean" targets that remove all temporary
+        files and mk.configure.mk's cache files.
+
+      - support for texinfo/info files. There is no need to .include
+        a special include files such as <bsd.info.mk> file.
+
+      - mkc.subprj.mk is a powerful replacement
+        for traditional bsd.subdir.mk.
+
+      - Tons of other additions and improvements.
+
+- mkc.intexts.in
+
+  Given a list of files in INFILES or INSCRIPTS mkc.intexts.mk
+  generates them from appropriate *.in file replacing @prefix@,
+  @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ etc. with
+  real ${PREFIX}, ${SYSCONFDIR} etc. See examples/ subdirectory for
+  the samples.
+
+- mkc.configure.mk script which is a replacement for GNU autoconf. Its
+  functionality is large enough to describe here.  It short, it allows
+  to check for presence of header files, function or variable
+  declarations, presence of function in a particular library, defines,
+  sizeof of data types and other useful things. Read the documentation
+  in mk-configure.7 and see examples/ subdirectory for the samples of
+  use.
+
+- Standalone full-functional
+  mkc_check_{funclib,header,sizeof,decl,prog,custom,compiler} and
+  other programs that can be used without bmake and without mkc.*.mk
+  files.  Read appropriate man pages.
+
+-------------------------------------------------------------------------
+DOCUMENTATION:
+
+   - Presentation about mk-configure (basic ideas and simple samples of use).
+     See INSTALLATION section for build instructions.
+
+   - Instead of screenshots :-) I've prepared lots of samples under
+     examples/ subdirectory.
+
+   - Documentation for include files is in mk-configure(7).
+
+   - Most programs (mkc_check_{decl,header,funclib,sizeof,prog,custom})
+     have -h option and manual pages.
+
+   - Read the FAQ document. It may be helpful.
+
+   - Real life projects based on mk-configure:
+      - Lightweight Modular malloc(3) debugger.
+        http://sourceforge.net/projects/lmdbg/
+      - AWK interpreter from NetBSD cvs tree,
+                 ported to Darwin, Solaris, Linux and other BSD.
+        http://mova.org/~cheusov/pub/mk-configure/nbawk/
+      - getopt_long(3) like module for Lua programming language (>=0.8.0)
+        http://luaforge.net/projects/alt-getopt/
+
+-------------------------------------------------------------------------
+IS MK-CONFIGURE STABLE?
+
+"mk-configure" is currently in alpha stage of development.
+
+!!! API IS NOT STABLE YET AND MAY BE CHANGED IN THE NEXT RELEASE !!!
+
+IF YOU WANT TO HELP ME STABILIZE IT,
+SEND YOUR SUGGESTIONS AND IDEAS TO ME AS SOON AS POSSIBLE ;-)
+
+Also mk-configure is not feature-complete yet, see TODO file for details.
+
+-------------------------------------------------------------------------
+INSTALLATION:
+
+   1) Install bmake(1).
+      Sources are available here.
+
+        ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
+        http://www.crufty.net/help/sjg/bmake.html
+
+      NOTE: Some versions of bmake (shipped with NetBSD-5.1, for
+      example) contains bugs which are critical for mk-configure.
+      Please make sure you install stable version of bmake and
+      'bmake test' succeeds (see section 3 below).
+
+   2) Install NetBSD version of mkdep(1).
+      Sources are available here.
+
+        https://code.google.com/p/bmkdep/
+
+      Traditional BSD mkdep(1) is also good but NetBSD version is just better.
+
+   3)
+      # cd mk-configure-X.Y.Z/
+
+      # export PREFIX=/usr/local (the default)
+        or
+      # export PREFIX=/usr SYSCONFDIR=/etc
+
+      # emacs sys.mk # if needed
+
+      # bmake all
+
+      Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
+      to whatever you want. PREFIX defaults to /usr/local.
+
+   4)
+      # bmake test # For testing mk-configure, this step is optional.
+                   # Note that testing requires lex(1), yacc(1),
+                   # pkg-config(1), glib2 library and other things
+                   # that are not mandatory for using mk-configure
+                   # and may be not available on your system.
+                   # If "bmake test" fails on your platform, please let
+                   # me know. If for some reason you want to exclude some
+                   # regression tests (they are in "tests" and "examples"
+                   # subdirectories), you may list them in NOSUBDIR variable,
+                   # e.g.
+                   # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
+
+   5)
+      # bmake install
+        or
+      # env DESTDIR=/tmp/temproot bmake install
+
+   6) You can also build a simple presentation by running either of the
+      following commands:
+
+          bmake doc
+          bmake -C doc presentation.pdf
+          bmake -C doc presentation.ps
+
+  NOTE: I'd recommend to use the latest stable version of bmake. Old
+    bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
+    not supported. pmake-1.111 (an ancient version of NetBSD make)
+    found in some Linux distributions does't work too.
+
+  NOTE: In order to work properly bmake needs sys.mk file that defines
+    default variable values and suffix rules. mk-configure doesn't
+    need them, but bmake always tries to load this file. The problem
+    is that different Mk-files libraries may conflict due to common
+    sys.mk. This is why mk-c's own mk files are installed to its own
+    directory (${PREFIX}/share/mkc-mk by default) and the same for
+    empty sys.mk file.
+
+   6) Usage
+
+    For use of mk-configure for real-life development you may need the
+    following programs: C/C++/Fortran/Pascal/Objective-C compilers,
+    linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
+    pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
+    nm, tsort, pkg-config, zip and others.  Of course you'll
+    need awk, sed, grep and some other POSIX tools too.
+
+-------------------------------------------------------------------------
+PACKAGES
+
+  If you use pkgsrc (cross platforms packaging system developped by
+  NetBSD team), you may find package for latest mk-configure in
+  devel/mk-configure.
+
+  Debian/Ubuntu Linux users may install mk-configure by adding
+    the following lines
+
+        deb     http://mova.org/~cheusov/pub/debian       lenny    main
+        deb-src http://mova.org/~cheusov/pub/debian       lenny    main
+
+    to /etc/apt/sources.list and then using apt or aptitude commands.
+    Binary packages are available only for Debian/Lenny/i386.
+
+  mk-configure is also packaged in FreeBSD ports (devel/mk-configure).
+
+-------------------------------------------------------------------------
+FEEDBACK
+
+Send all your suggestions, bug reports etc.
+to Aleksey Cheusov <vle@gmx.net> or register them at project's site
+http://sourceforge.net/projects/mk-configure/
+
+For free e-mail subscription for mk-configure releases, visit
+http://freshmeat.net/projects/mk-configure/
+page.
+
+For pull requests, use github
+http://github.com/cheusov/mk-configure/
+
+Feel free to notify me about spelling errors in the documentation.
+English is not my first language.
+
+-------------------------------------------------------------------------
