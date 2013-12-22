@@ -27,7 +27,7 @@ OBJDIR_${j} = ${.CURDIR}/obj
 .  else
 OBJDIR_${j} = ${.CURDIR}/${i}
 .  endif # MAKEOBJDIRPREFIX...
-.  if ${i} != ${j}
+.  if ${SHORTPRJNAME:tl} == "yes" && ${i} != ${j}
 OBJDIR_${i:T} := ${OBJDIR_${j}}
 EXPORT_VARNAMES += OBJDIR_${i:T}
 .  endif

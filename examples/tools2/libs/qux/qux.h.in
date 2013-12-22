@@ -1,0 +1,4 @@
+
+#define INT_SIZE @int_size@
+
+int get_int_size (void);

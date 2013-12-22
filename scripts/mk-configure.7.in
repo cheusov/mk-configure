@@ -99,13 +99,15 @@ This target is equivalent to all-<subdir> and is provided by
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
 sections below. <subdir:T> means the last component of the directory.
+This target is created if ${SHORTPRJNAME} is "yes".
 .IP <target>-<subdir>
 runs the specified <target> for the specified <subdir>.
 This target is provided by
 .BR mkc.subdir.mk " and " mkc.subprj.mk
 only. For details see
 .BR mkc.subdir.mk " or " mkc.subprj.mk
-sections below. The target <target>-<subdir:T> is also provided.
+sections below. The target <target>-<subdir:T> is also provided
+if ${SHORTPRJNAME} is "yes".
 .IP "subdir-<target>-<subdir> and nodeps-<target>-<subdir>"
 runs the specified <target> for the specified <subdir> without dependencies.
 These targets are provided by
@@ -114,7 +116,8 @@ only. For details see
 .BR mkc.subprj.mk
 section below.
 Targets subdir-<target>-<subdir:T>
-and nodeps-<target>-<subdir:T> are also provided.
+and nodeps-<target>-<subdir:T> are also provided
+if ${SHORTPRJNAME} is "yes".
 .P
 .B NOTE:
 Commands associated with targets
@@ -951,8 +954,8 @@ list them in this variable.
 Value of ${.OBJDIR} inside 
 .I dir
 subdirectory. Slash symbols inside <dir> are replaced with underlines.
-In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>} if <dir>
-contains slashes.
+In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>}
+if ${SHORTPRJNAME} is "yes".
 .IP TARGETS
 List of recursive targets supported by the project and all its subprojects.
 .RI < "Im" >
@@ -960,6 +963,10 @@ List of recursive targets supported by the project and all its subprojects.
 .IR cleandir ", " depends ", " test ", " errorcheck ", " filelist ]
 By setting this variable in the Makefile one can add new targets for special
 purposes, for example, static code analysis, partial builds etc.
+.IP SHORTPRJNAME
+If "yes", special targets with last component of the subprojects are provided.
+.RI < "Im" >
+.RI [ yes ]
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk

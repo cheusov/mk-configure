@@ -28,12 +28,12 @@ SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}
 .for dir in ${__REALSUBPRJ:N.WAIT}
-.PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir} \
-        nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
+.PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
        ${targ}-${dir}: .MAKE __recurse
 subdir-${targ}-${dir}: .MAKE __recurse
-.if ${dir} != ${dir:T}
+.if ${SHORTPRJNAME:tl} == "yes" && ${dir} != ${dir:T}
+.PHONY: nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
 nodeps-${targ}-${dir:T}: nodeps-${targ}-${dir}
        ${targ}-${dir:T}:        ${targ}-${dir}
 subdir-${targ}-${dir:T}: subdir-${targ}-${dir}
@@ -63,7 +63,7 @@ _ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
 .endfor # targ
 
 .for dir in ${__REALSUBPRJ}
-.if ${dir:T} != ${dir}
+.if ${SHORTPRJNAME:tl} == "yes" && ${dir:T} != ${dir}
 _ALLTARGDEPS += all-${dir}:${dir:T}
 .endif
 _ALLTARGDEPS += all-${dir}:${dir}

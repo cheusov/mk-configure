@@ -15,18 +15,24 @@ OPSYS :=	${OPSYS:C/^CYGWIN.*$/Cygwin/}
 TARGET_OPSYS ?=	${OPSYS}
 
 ###########
+SHORTPRJNAME   ?=	yes
+
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
-.ifndef DPLIBDIRS.${_dir:T}
-DPLIBDIRS.${_dir:T} = 	${OBJDIR_${_dir:T}}
+.ifndef DPLIBDIRS.${_dir}
+.if ${SHORTPRJNAME:tl} == "yes"
+DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:T}}
+.else
+DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,/,_,g}}
+.endif
 .if ${TARGET_OPSYS} == "HP-UX"
 LDFLAGS  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif
-LDFLAGS  +=	-L${DPLIBDIRS.${_dir:T}}
+LDFLAGS  +=	-L${DPLIBDIRS.${_dir}}
 .endif
 .endfor
 
-.undef DPLIBDIRS
+#.undef DPLIBDIRS
 
 .endif # DPLIBDIRS
 
@@ -262,7 +268,7 @@ MKPROFILELIB ?=	no
 
 MKINSTALLDIRS   ?=	yes
 
-EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES TARGETS
+EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES TARGETS SHORTPRJNAME
 
 EXPORT_DYNAMIC  ?=	no
 
@@ -295,7 +301,7 @@ LDFLAGS.prog +=	${LDFLAGS.relro}
 CPPFLAGS +=	-D_FORTIFY_SOURCE=2
 .endif
 
-SHRTOUT    ?=	no
+SHRTOUT        ?=	no
 
 .if ${SHRTOUT:tl} != "no"
 _MESSAGE   ?=	echo
