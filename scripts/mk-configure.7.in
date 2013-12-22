@@ -1000,27 +1000,11 @@ must complete before any subdirs after .WAIT are
 started.  See
 .B bmake(1)
 for some caveats on use of .WAIT and other
-special sources.
+special sources. SUBDIR variable is provided as well as all variables provided
+by mkc.subprj.mk except SUBPRJ.
 .IP SUBDIR
 List of subdirectories
 .RI < "M" >
-.IP "EXPORT_VARNAMES and NOEXPORT_VARNAMES"
-The same as in
-.B mkc.subprj.mk
-.IP NOSUBDIR
-The same as in
-.B mkc.subdir.mk
-.IP OBJDIR_<dir>
-The same as in
-.B mkc.subprj.mk
-.IP TARGETS
-The same as in
-.B mkc.subprj.mk
-.IP SHORTPRJNAME
-The same as in
-.B mkc.subprj.mk
-.IP MKRELOBJDIR
-The same as in
 .B mkc.subprj.mk
 .SS "mkc.configure.mk"
 .B mkc.configure.mk
