@@ -34,7 +34,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
 
   New variable BMAKE_REQD was introduced.
 
-  New variable TOPDIR was introduced. With its help
+  New variable SRCTOP was introduced. With its help
      "mkcmake -C subdir target" may work just like "mkcmake target-subdir".
 
   New variables CFLAGS.dflt.${CC_TYPE} and CXXFLAGS.dflt.${CXX_TYPE}

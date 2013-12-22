@@ -31,7 +31,7 @@ To get system-specific configuration parameters, mkc.*.mk include
 files try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
 make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf, is
-included. Unless TOPDIR variable is set, "../Makefile.inc"
+included. Unless SRCTOP variable is set, "../Makefile.inc"
 is also included if exists.
 These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
@@ -549,7 +549,7 @@ and aborts the program. This enhances security but imposes some
 performance penalty.
 .RI < "U" >
 .RI [ no ]
-.IP TOPDIR
+.IP SRCTOP
 Path to top-level project's directory. If set, "../Makefile.inc"
 is not included. Also, the following command
 .br
@@ -557,7 +557,7 @@ is not included. Also, the following command
 .br
 will be translated to
 .br
-   cd ${TOPDIR}; mkcmake target-subproject
+   cd ${SRCTOP}; mkcmake target-subproject
 .RI < "U" >
 .SS "mkc.init.mk"
 This file sets most important mk-configure variables, for example,

@@ -4,7 +4,7 @@ next_level !=	expr ${.MAKE.LEVEL} + 1
 test_output :
 	@set -e; \
 	MKCATPAGES=yes; export MKCATPAGES; \
-	TOPDIR=`pwd`; export TOPDIR; \
+	SRCTOP=`pwd`; export SRCTOP; \
 	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
@@ -106,7 +106,7 @@ test_output :
 	\
 	echo ======= -C dict all ==========; \
 	${MAKE} ${MAKEFLAGS} clean-dict > /dev/null; \
-	echo TOPDIR=$$TOPDIR 1>&2; \
+	echo SRCTOP=$$SRCTOP 1>&2; \
 	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -C dict all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\

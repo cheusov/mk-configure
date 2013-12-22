@@ -4,7 +4,7 @@ next_level !=	expr ${.MAKE.LEVEL} + 1
 test_output :
 	@set -e; \
 	MKCATPAGES=yes; export MKCATPAGES; \
-	TOPDIR=`pwd`; export TOPDIR; \
+	SRCTOP=`pwd`; export SRCTOP; \
 	\
 	echo PROJECTNAME=${PROJECTNAME}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \

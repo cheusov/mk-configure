@@ -7,14 +7,14 @@
 _MKC_MK := 1
 
 init_make_level ?= 0
-.if defined(TOPDIR) && ${TOPDIR:U} != ${.CURDIR} && ${.MAKE.LEVEL} == ${init_make_level}
-MKC_CACHEDIR ?=	${TOPDIR}
+.if defined(SRCTOP) && ${SRCTOP:U} != ${.CURDIR} && ${.MAKE.LEVEL} == ${init_make_level}
+MKC_CACHEDIR ?=	${SRCTOP}
 .export MKC_CACHEDIR
 .MAIN: all
 .DEFAULT:
-	@set -e; cd ${TOPDIR}; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:S,${TOPDIR}/,,}
+	@set -e; cd ${SRCTOP}; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:S,${SRCTOP}/,,}
 .else
 .include <mkc_imp.mk>
-.endif #TOPDIR
+.endif #SRCTOP
 
 .endif # _MKC_MK
