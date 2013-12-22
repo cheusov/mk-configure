@@ -223,8 +223,6 @@ COPY        ?=		-c
 PRESERVE    ?=
 STRIPFLAG   ?=	-s
 
-PRINTOBJDIR =	printf "xxx: .MAKE\n\t@echo \$${.OBJDIR}\n" | ${MAKE} -B -s -f-
-
 MKINSTALL ?=	yes
 
 MKCATPAGES ?=	no
@@ -272,7 +270,6 @@ EXPORT_VARNAMES +=	MKC_CACHEDIR REC_MAKEFILES TARGETS SHORTPRJNAME
 
 EXPORT_DYNAMIC  ?=	no
 
-MKC_CACHEDIR    ?=	${.OBJDIR} # directory for cache and intermediate files
 DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 
 .include <mkc_imp.platform.sys.mk>
