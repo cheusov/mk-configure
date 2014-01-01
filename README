@@ -189,7 +189,7 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
 
  8) In my view autotools (automake and autoconf) are BADLY designed.
    Personally, I dislike code generation for software build because it
-   is extreamly ugly approach even if the generated code is claimed to
+   is extremely ugly approach even if the generated code is claimed to
    be "portable".  Nowadays it is not a problem to install any kind of
    software building tools and use them more efficiently.
 
@@ -382,10 +382,10 @@ INSTALLATION:
     need awk, sed, grep and some other POSIX tools too.
 
 -------------------------------------------------------------------------
-MK-COFIGURE BINARY PACKAGE
+MK-CONFIGURE BINARY PACKAGE
 
-  Binary package for mk-configure is available in the following systems:
-     - pkgsrc (native NetBSD packaging system) in devel/mk-configure.
+  Binary packages for mk-configure are available in the following systems:
+     - NetBSD pkgsrc (devel/mk-configure).
      - FreeBSD ports (devel/mk-configure)
      - Debian/Ubuntu Linux (mk-configure)
      - AltLinux (mk-configure)
