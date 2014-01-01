@@ -834,7 +834,7 @@ List of source files to build the library.  Suffix types
 If "yes", ${CC} is used for linking instead of ${LD}.
 For C++ sources ${CXX} is used for linking.
 .RI < "Iu" >
-.RI [ no ]
+.RI [ yes ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
 .RI < "IMu" >

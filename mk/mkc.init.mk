@@ -82,7 +82,7 @@ LDREAL     ?=	${PC}
 LDCOMPILER.Interix =	yes
 LDCOMPILER.Darwin  =	yes
 #LDCOMPILER.HP-UX=	yes
-LDCOMPILER        ?=	${LDCOMPILER.${TARGET_OPSYS}:Uno}
+LDCOMPILER        ?=	${LDCOMPILER.${TARGET_OPSYS}:Uyes}
 
 .if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
 src_type  +=	c
