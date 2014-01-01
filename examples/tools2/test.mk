@@ -5,6 +5,7 @@ test_output :
 	@set -e; \
 	MKCATPAGES=yes; export MKCATPAGES; \
 	SRCTOP=`pwd`; export SRCTOP; \
+	LC_ALL=C; export LC_ALL; \
 	\
 	echo PROJECTNAME=${PROJECTNAME}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
