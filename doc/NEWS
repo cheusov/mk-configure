@@ -91,7 +91,7 @@ Version 0.25.0, by Aleksey Cheusov, Wed,  1 Jan 2014 19:28:55 +0300
      - ${MAKEFLAGS} is passed to recursive ${MAKE}s.
      - {nodeps-,subdir-,}dir:T are also targets, that is, one can also
        use the last component of subdirectory as_a_part_of/as_a_whole
-       target. If you want to disablethis set SHORTPRJNAME to "no".
+       target. If you want to disable this, set SHORTPRJNAME to "no".
 
   mkc_imp.subdir.mk was reimplemented using mkc_imp.subprj.mk
 
