@@ -389,20 +389,12 @@ INSTALLATION:
 -------------------------------------------------------------------------
 PACKAGES
 
-  If you use pkgsrc (cross platforms packaging system developped by
-  NetBSD team), you may find package for latest mk-configure in
-  devel/mk-configure.
-
-  Debian/Ubuntu Linux users may install mk-configure by adding
-    the following lines
-
-        deb     http://mova.org/~cheusov/pub/debian       lenny    main
-        deb-src http://mova.org/~cheusov/pub/debian       lenny    main
-
-    to /etc/apt/sources.list and then using apt or aptitude commands.
-    Binary packages are available only for Debian/Lenny/i386.
-
-  mk-configure is also packaged in FreeBSD ports (devel/mk-configure).
+  mk-configure is available as a package in the following systems:
+     - pkgsrc (native NetBSD packaging system) in devel/mk-configure.
+     - FreeBSD ports (devel/mk-configure)
+     - Debian/Ubuntu Linux (mk-configure)
+     - AltLinux (mk-configure)
+     - RHEL (mk-configure in repoforge repository)
 
 -------------------------------------------------------------------------
 FEEDBACK
