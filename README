@@ -287,25 +287,19 @@ DOCUMENTATION:
    - Read the FAQ document. It may be helpful.
 
    - Real life projects based on mk-configure:
-      - Lightweight Modular malloc(3) debugger.
-        http://sourceforge.net/projects/lmdbg/
+      - Most of my projects use mk-configure.
+        https://github.com/cheusov
       - AWK interpreter from NetBSD cvs tree,
                  ported to Darwin, Solaris, Linux and other BSD.
         http://mova.org/~cheusov/pub/mk-configure/nbawk/
       - getopt_long(3) like module for Lua programming language (>=0.8.0)
-        http://luaforge.net/projects/alt-getopt/
+        http://sourceforge.net/projects/lua-alt-getopt/
 
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?
 
-"mk-configure" is currently in alpha stage of development.
-
-!!! API IS NOT STABLE YET AND MAY BE CHANGED IN THE NEXT RELEASE !!!
-
-IF YOU WANT TO HELP ME STABILIZE IT,
-SEND YOUR SUGGESTIONS AND IDEAS TO ME AS SOON AS POSSIBLE ;-)
-
-Also mk-configure is not feature-complete yet, see TODO file for details.
+Basic functionality of "mk-configure" is stable
+but it is not feature-complete yet, see TODO file for details.
 
 -------------------------------------------------------------------------
 INSTALLATION:
