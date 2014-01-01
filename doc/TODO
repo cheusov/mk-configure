@@ -2,6 +2,22 @@
 Plan 0.25.0
 
 Some thoughts inspired by talks with Michael Crogan
+
+- During development of huge projects it may make sense to always keep
+  "installed" version of the software somewhere (FAKEPREFIX?)
+  and always keep it synced.
+  mk-configure needs a mechanism to always "install"
+  after "all" and "uninstall" before "clean". Options: develop this in
+  mk-c and make it optional feature; provide a mechanism for
+  auto-depend one target from TARGETS from another one. In the latter
+  case users will be able to implement this kind of things themself.
+  (myall   ->    "myall-* : all-* .WAIT install-*)
+  (myclean ->  "myclean-* : uninstall-* .WAIT clean-*)
+
+- VARIANTS for libraries.
+
+- project "roundup" for testing 
+
 - Better explain how "test" target works, maybe as a couple of slides
   in the PDF presentation. With and without mkc.minitest.mk.
 - One more example/ for TARGETS, demonstrating such things as
@@ -10,7 +26,7 @@ Some thoughts inspired by talks with Michael Crogan
 - Additional slides in PDF for virtual subprojects.
   Notes about "virtual subproject" in examples/.
 - Notes in examples/hello_dictd and other examples based on
-  mkc.subprj.mk about what mkc.prjs.mk really does. Reference (man page)
+  mkc.subprj.mk about what mkc.subprj.mk really does. Reference (man page)
   is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
 - Better explain ../Makefile.inc included automatically. For those who
   are not familiar with *BSD it is not obvious how to use it.
@@ -21,7 +37,7 @@ Some thoughts inspired by talks with Michael Crogan
   everywhere. So, it would be nice integrate mk-c into reality.
   mkc_imp.autotools.mk is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
-  make infor files
+  make info files
 - Higher priority for fixing handling of dependencies between
   libraries and programs. In addition examples/ is needed for
   triggering rebuild of subproject if "something" was rebuild in
