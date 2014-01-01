@@ -1,11 +1,13 @@
 ======================================================================
-Version 0.25.0, by Aleksey Cheusov, not released yet
+Version 0.25.0, by Aleksey Cheusov, Wed,  1 Jan 2014 19:28:55 +0300
 
   Build infrastructure for mk-c itself was completely reimplemented.
   Now it looks much better and is more flexible for further extensions.
 
-  NetBSD version of mkdep(1) or traditional BSD mkdep(1) is needed at
-  build time.
+  NetBSD version of mkdep(1), traditional BSD mkdep(1) or
+  makedepend(1) is needed at build time.
+
+  LDCOMPILER defaults to "yes".
 
   Variable TARGETS is now visible to users and is documented. It
   contains all recursive targets and may be used for adding user's
@@ -23,6 +25,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
   New variable MKRELOBJDIR was introduced. With its help one can
   create object directories relative to top-level object directory
   (like MAKEOBJDIRPREFIX but without top-level ${.CURDIR} in paths).
+  Thanks to Michael Crogan.
 
   target "depend":
      - FIX. Original implementation relied on NetBSD version of
@@ -88,7 +91,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
      - ${MAKEFLAGS} is passed to recursive ${MAKE}s.
      - {nodeps-,subdir-,}dir:T are also targets, that is, one can also
        use the last component of subdirectory as_a_part_of/as_a_whole
-       target.
+       target. If you want to disablethis set SHORTPRJNAME to "no".
 
   mkc_imp.subdir.mk was reimplemented using mkc_imp.subprj.mk
 
@@ -96,12 +99,14 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
      - documentation for this module was added.
      - support for SHRTOUT=yes
      - new variable DPSRCS was introduced
-     - MKDEP_SUFFIXES also contains .os and .op
+     - MKDEP_SUFFIXES also contains .os and .op. Report by Michael Crogan.
      - Target "clean" does not remove .depend and .d files.
        Target "cleandir" does. NetBSD mk files work the same way.
+       Report by Michael Crogan.
 
   MKPIE/SHLIB_*:
      - s/-KPIC/-xcode=pic32/ for SunStudio compilers
+
   MKSSP=yes:
      - Support for IBM XL Compiler was added (not tested due to lack of such iron)
      - Support for Intel C/C++ Compiler was added
@@ -116,7 +121,7 @@ Version 0.25.0, by Aleksey Cheusov, not released yet
         - Options -t and -b were removed.
      - mkc_check_prog: option -i is documented in man page
      - mkc_check_compiler: workarounds for buggy SunStudio C++
-       compiler. "CC -E -" exits with error.
+       compiler ("CC -E -" exits with error).
 
   All test are run with MKCATPAGES=no by default.
 
