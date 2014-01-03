@@ -1,7 +1,12 @@
 ============================================================
 Plan 0.25.0
 
+- ${SRCTOP}/Makefile.common -- makefile which is included
+  by all subpojects
+
 Some thoughts inspired by talks with Michael Crogan
+
+- SRCDIR_<subdir> similar to OBJDIR_<subdir>
 
 - During development of huge projects it may make sense to always keep
   "installed" version of the software somewhere (FAKEPREFIX?)
@@ -15,6 +20,11 @@ Some thoughts inspired by talks with Michael Crogan
   (myclean ->  "myclean-* : uninstall-* .WAIT clean-*)
 
 - VARIANTS for libraries.
+
+- mkc.subprj.mk: special target for outputting a dependency graph
+  taking into account NODEPS variable.
+
+- _mkc_done_<prj>_<trg>
 
 - project "roundup" for testing 
 
@@ -52,6 +62,8 @@ Some thoughts inspired by talks with Michael Crogan
   "meta mode" he invented.
 - Better support for working without installation to /. -rpath, additional
   directories for objects, binaries and libs.
+- symlinks in object directories to source files for easier running
+  unitest, for example. lndir(1).
 
 Some "targets" from TARGETS should set MKCHECKS to "no"
 
