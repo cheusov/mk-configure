@@ -304,6 +304,7 @@ LDFLAGS.prog +=	${LDFLAGS.relro}
 
 .if ${USE_FORT:U:tl} == "yes"
 CPPFLAGS +=	-D_FORTIFY_SOURCE=2
+CFLAGS   +=	-O
 .endif
 
 SHRTOUT        ?=	no
