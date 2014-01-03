@@ -67,6 +67,16 @@ ERROR: cannot find program -y
 Cannot find bison, good bye!
 ------------------------------------------
 
+  Reimplement linkme.mk. It is not flexible enough.
+    - Additional type of dependencies in mkc.subprjs.mk (LIBDEPS =
+      libfoo:bar ...), pass them to subprojects using enironment and
+      include appropriate libfoo/linkme.mk if it is
+      available. Otherwise, use default -l and -I.
+    or
+    - keep linkme.mk and avoid direct use of CPPFLAGS, LDADD and
+      DPLIBDIRS.  Instead use special variables XXX.includes,
+      XXX.ldflags, XXX.ldadd, SRCDIR_<lib> and OBJDIR_<lib>.
+
   custom test failed -> exit status of mkcmake should not be zero
   MKC_CUSTOM_ERR.qqqq -> error message before exiting just like 
 
@@ -82,7 +92,6 @@ Cannot find bison, good bye!
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf
   - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
-  - Reimplement linkme.mk. It is not flexible enough.
   - USE_RPATH
   - OBJCOPTS_<proj>
   - Regression tests:
