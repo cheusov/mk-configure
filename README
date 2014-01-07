@@ -322,7 +322,10 @@ INSTALLATION:
 
       Traditional BSD mkdep(1) is also good but NetBSD version is just better.
 
-   3)
+   3) Download mk-configure source from either
+      http://mova.org/~cheusov/pub/mk-configure or
+      http://sourceforge.net/projects/mk-configure and unpack tarball.
+
       # cd mk-configure-X.Y.Z/
 
       # export PREFIX=/usr/local (the default)
