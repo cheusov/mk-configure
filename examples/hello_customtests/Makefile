@@ -21,7 +21,7 @@ MKC_REQD =		0.12.0
 .include <mkc.configure.mk>
 
 BUILTIN.endianness ?=
-.if ${BUILTIN.endianess} != little && ${BUILTIN.endianess} != big
+.if ${BUILTIN.endianness} != little && ${BUILTIN.endianness} != big
 MKC_ERR_MSG =	"Do you run PDP-11?"
 .endif
 

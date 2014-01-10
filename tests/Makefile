@@ -29,5 +29,6 @@ SUBDIR  +=	test_mkc_vs_PROG
 SUBDIR  +=	test_mkc_vs_LIB
 SUBDIR  +=	test_mkc_vs_SUBDIR
 SUBDIR  +=	test_mkc_vs_SUBPRJ
+SUBDIR  +=	endianess
 
 .include <mkc.mk>
