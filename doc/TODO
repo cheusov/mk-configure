@@ -1,10 +1,32 @@
 ============================================================
-Plan 0.25.0
+Plan 0.26.0
+
+- MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
+  implementation is taken from mk-c.
+  Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
+
+  Candidates: strlcpy, strlcat, getline
+
+  Implementation details:
+    *  mkc_imp.need_strlcat.mk where all checks are made
+    *  include file mkc_strlcat.h from mkc special directory
+    *  get mkc_strlcat.c from mkc special directory
+    *  HAVE_NEED.strlcat for overriding
+
+- Special marker for checks that cannot be possible in cross-compiling
+
+- MKC_SOURCE_FUNCLIBS -- source for replacement.c
+
+- mkc_imp.pkg-config.mk: defines similar to HAVE_*
+
+- Docuentation for OPSYS_TARGET, TOOLDIR, MACHINE_GNU_PLATFORM
 
 - ${SRCTOP}/Makefile.common -- makefile which is included
   by all subpojects
 
 Some thoughts inspired by talks with Michael Crogan
+
+- MKASNEEDED=yes => ld --as-needed
 
 - SRCDIR_<subdir> similar to OBJDIR_<subdir>
 
@@ -162,10 +184,6 @@ Plan 3)
     Save defines to config.h and set HAVE_CONFIG_H to 1
     for compiling.
 
-  = MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
-    implementation is taken from mk-c.
-    Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
-
   = MKC_CUSTOM_premk, MKC_CUSTOM_postmk
 
   = Online tutorial
@@ -174,7 +192,8 @@ Plan 3)
   = shared libraries support for nwcc and other compilers.
 
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
-    MagicMakefiles, bjam, pymake etc.
+    MagicMakefiles, bjam, pymake, bitmake, pkgconf,
+    http://sourceforge.net/projects/mkbuild etc.
 
   = Often compilers need special options to compile pthread code.
     Support for MKPTHREAD=yes|no is needed.
