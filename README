@@ -25,7 +25,7 @@ mk-configure features:
    libraries and function implementation, function definitions,
    defines, types, struct members etc.
 
- - A number of built-in checks for, e.g., system endianess, GNU bison
+ - A number of built-in checks for, e.g., system endianness, GNU bison
    or GNU flex programs and many others.
 
  - Automatic dependency analysis built-in for C, C++ and Fortran (not

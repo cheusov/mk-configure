@@ -14,13 +14,13 @@ MKC_CUSTOM_FN.cxx_with_templates = custom_tests/cxx_with_templates.cc
 MKC_CUSTOM_FN.true_is_available  = custom_tests/true_is_available
 MKC_CUSTOM_FN.shtest             = custom_tests/shtest
 
-MKC_CHECK_BUILTINS +=		endianess
+MKC_CHECK_BUILTINS +=		endianness
 
 MKC_REQD =		0.12.0
 
 .include <mkc.configure.mk>
 
-BUILTIN.endianess ?=
+BUILTIN.endianness ?=
 .if ${BUILTIN.endianess} != little && ${BUILTIN.endianess} != big
 MKC_ERR_MSG =	"Do you run PDP-11?"
 .endif
