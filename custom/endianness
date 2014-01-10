@@ -13,7 +13,7 @@ export LC_ALL
 
 ##################################################
 
-pathpart=endianess
+pathpart=endianness
 . mkc_check_common.sh
 
 trap "rm -f $tmpc $tmpo" 0
