@@ -140,7 +140,7 @@ Plan 2)
   - mkc_imp.filelist.mk
     - FL_NOPREFIX
     - FL_PERSUBPRJ
-  - IRIX: "endianess" and EXPORT_SYMBOLS
+  - IRIX: "endianness" and EXPORT_SYMBOLS
 
 ============================================================
 Plan 3)

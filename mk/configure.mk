@@ -68,9 +68,11 @@ mkc.environ=CC='${CC}' CXX='${CXX}' FC='${FC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAG
 ######################################################
 # checking for builtin checks
 .for i in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
-MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${i}
+.for j in ${i:endianess=endianness}
+MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${j}
 MKC_CHECK_CUSTOM   +=	${i}
 MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
+.endfor
 .endfor
 
 ######################################################
@@ -263,6 +265,9 @@ MKC_CUSTOM_FN.${c} =	${c}.c
 .endif
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
 MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
+.endif
+.if ${c} == "endianess"
+.warning "endianess test deprecated; use endianness instead"
 .endif
 CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
 .endif

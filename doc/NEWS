@@ -616,7 +616,7 @@ Version 0.13.0, by Aleksey Cheusov, Sun, 27 Dec 2009 17:06:06 +0200
 
   So called built-in checks are implemented. See MKC_CHECK_BUILTINS
   variable. Built-in checks are checks provided by mk-configure. At
-  the moment the following checks are implemented: endianess,
+  the moment the following checks are implemented: endianness,
   prog_flex, prog_bison, prog_gawk, prog_gm4. See mk-configure.7 for
   the documentation.
 
