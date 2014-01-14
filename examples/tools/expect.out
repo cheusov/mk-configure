@@ -12,6 +12,14 @@ OBJDIR_libs_foo=/path/to/foo
 OBJDIR_libs_bar=/path/to/bar
 OBJDIR_prog3=/path/to/prog3
 OBJDIR_bar=/path/to/bar
+SRCDIR_tools_prog1=tools/tools/prog1
+SRCDIR_tools_prog2=tools/tools/prog2
+SRCDIR_tools_prog3=tools/tools/prog3
+SRCDIR_tools_prog4=tools/tools/prog4
+SRCDIR_libs_foo=tools/libs/foo
+SRCDIR_libs_bar=tools/libs/bar
+SRCDIR_prog3=tools/tools/prog3
+SRCDIR_bar=tools/libs/bar
 =========== check ============
 ==================================================
 check ===> tools/prog1

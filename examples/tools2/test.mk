@@ -21,6 +21,14 @@ test_output :
 	echo OBJDIR_libs_bar=${OBJDIR_libs_bar} | mkc_test_helper_paths; \
 	echo OBJDIR_prog3=${OBJDIR_prog3} | mkc_test_helper_paths; \
 	echo OBJDIR_bar=${OBJDIR_bar} | mkc_test_helper_paths; \
+	echo SRCDIR_tools_prog1=${SRCDIR_tools_prog1} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_tools_prog2=${SRCDIR_tools_prog2} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_tools_prog3=${SRCDIR_tools_prog3} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_tools_prog4=${SRCDIR_tools_prog4} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_libs_foo=${SRCDIR_libs_foo} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_libs_bar=${SRCDIR_libs_bar} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_prog3=${SRCDIR_prog3} | sed 's,=.*examples/,=,'; \
+	echo SRCDIR_bar=${SRCDIR_bar} | sed 's,=.*examples/,=,'; \
 	\
 	echo =========== check ============; \
 	${MAKE} ${MAKEFLAGS} check 2>&1; \

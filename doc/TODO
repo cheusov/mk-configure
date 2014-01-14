@@ -28,8 +28,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
 
-- SRCDIR_<subdir> similar to OBJDIR_<subdir>
-
 - During development of huge projects it may make sense to always keep
   "installed" version of the software somewhere (FAKEPREFIX?)
   and always keep it synced.

@@ -64,8 +64,15 @@ _ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
 
 .for dir in ${__REALSUBPRJ}
 .if ${SHORTPRJNAME:tl} == "yes" && ${dir:T} != ${dir}
+SRCDIR_${dir:T} = ${.CURDIR}/${dir}
+EXPORT_VARNAMES += SRCDIR_${dir:T}
 _ALLTARGDEPS += all-${dir}:${dir:T}
-.endif
+.endif # .if ${SHORTPRJNAME:tl} == "yes" ...
+j:=${dir:S,/,_,g}
+.if empty(j:M*[.]*)
+SRCDIR_${j} = ${.CURDIR}/${dir}
+EXPORT_VARNAMES += SRCDIR_${dir:S,/,_,g}
+.endif # .if dir contains .
 _ALLTARGDEPS += all-${dir}:${dir}
 .endfor # dir
 

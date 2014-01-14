@@ -5,7 +5,6 @@
 .if !defined(_MKC_IMP_OBJDIR_MK)
 _MKC_IMP_OBJDIR_MK := 1
 
-
 .if ${:!if test -d ${.CURDIR}/obj.${MACHINE}; then echo 1; else echo 0; fi!}
   _OBJ_MACHINE_DIR := 1
 .elif ${:!if test -d ${.CURDIR}/obj; then echo 1; else echo 0; fi!}

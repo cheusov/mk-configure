@@ -962,6 +962,12 @@ Value of ${.OBJDIR} inside
 subdirectory. Slash symbols inside <dir> are replaced with underlines.
 In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>}
 if ${SHORTPRJNAME} is "yes".
+.IP SRCDIR_<dir>
+Value of ${.CURDIR} inside 
+.I dir
+subdirectory. Slash symbols inside <dir> are replaced with underlines.
+In addition, SRCDIR_<dir:T> variable is set to ${SRCDIR_<dir>}
+if ${SHORTPRJNAME} is "yes".
 .IP TARGETS
 List of recursive targets supported by the project and all its subprojects.
 .RI < "Im" >
