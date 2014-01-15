@@ -2,7 +2,7 @@
 .\"
 .\" This file contains parts of NetBSD's bsd.README file
 .\"
-.\" Copyright (c) 2009-2010 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) 2009-2014 by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -294,6 +294,11 @@ rm(1) tool.
 List section sizes and total size.
 .RI < Iu >
 .RI [ size ]
+.IP SRC_PATHADD
+List of directories added to
+.IR .PATH .
+.RI < Im >
+.RI [ "" ]
 .IP STRIP
 Discard symbols from object files.
 .RI < Iu >

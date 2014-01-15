@@ -6,6 +6,8 @@
 .ifndef MKC_IMP.FINAL.MK
 MKC_IMP.FINAL.MK = 1
 
+.PATH: ${SRC_PATHADD}
+
 LDADD +=	${DPLIBS} # DPLIBS is deprecated (2012-08-13)
 LDADD +=	${LDADD_${PROJECTNAME}}
 
