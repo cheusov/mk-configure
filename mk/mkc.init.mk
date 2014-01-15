@@ -110,12 +110,9 @@ OBJTOP       ?=	${.OBJDIR}
 .endif
 
 ###########
-.if exists(${.CURDIR}/Makefile.rec)
-REC_MAKEFILES +=	${.CURDIR}/Makefile.rec
+.if exists(${SRCTOP}/Makefile.common)
+.include "${SRCTOP}/Makefile.common"
 .endif
-.for dir in ${REC_MAKEFILES}
-.include "${dir}"
-.endfor
 
 .if ${SRCTOP:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"

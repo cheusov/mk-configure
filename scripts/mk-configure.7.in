@@ -31,7 +31,9 @@ To get system-specific configuration parameters, mkc.*.mk include
 files try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
 make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf, is
-included. Unless SRCTOP variable is set, "../Makefile.inc"
+included. If "${SRCTOP}/Makefile.common" file exists it is also included
+by all subprojects.
+Unless SRCTOP variable is set, "../Makefile.inc"
 is also included if exists.
 These files may define any of the variables described
 below. Below in square brackets the default value for variables are specified.
