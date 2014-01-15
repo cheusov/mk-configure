@@ -17,8 +17,6 @@ Plan 0.26.0
 
 - mkc_imp.pkg-config.mk: defines similar to HAVE_*
 
-- Docuentation for OPSYS_TARGET, TOOLDIR, MACHINE_GNU_PLATFORM
-
 - ${SRCTOP}/Makefile.common -- makefile which is included
   by all subpojects
 

@@ -1780,6 +1780,10 @@ List of source files which are needed for generating
 dependencies, but are not needed in ${SRCS}.
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-rools.
+.IP MACHINE_GNU_PLATFORM
+See TOOLCHAIN_PREFIX.
+.IP OPSYS_TARGET
+OPSYS for target OS.
 .IP SYSROOT
 Root directory for headers and libraries.
 If set, the following variables
@@ -1787,6 +1791,8 @@ are set to ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}<toolname>: AR, AS, CXX, CPP, CC,
 INSTALL, LD, NM, OBJCOPY, OBJDUMP, RANLIB, SIZE and STRIP.
 .RI < "U" >
 .RI [ "" ].
+.IP TOOLDIR
+See TOOLCHAIN_DIR.
 .IP TOOLCHAIN_DIR
 Directory that contains cross-toolchain.
 .RI < "U" >
