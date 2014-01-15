@@ -17,9 +17,6 @@ Plan 0.26.0
 
 - mkc_imp.pkg-config.mk: defines similar to HAVE_*
 
-- ${SRCTOP}/Makefile.common -- makefile which is included
-  by all subpojects
-
 Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
