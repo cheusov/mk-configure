@@ -1108,6 +1108,15 @@ added to SRCS unless MKC_NOAUTO=1.
  Res: SRCS+= getline.c
       HAVE_FUNCLIB.getline= 0
 .VE
+.IP "MKC_SOURCE_DIR, MKC_SOURCE_DIR.<source>"
+Directory with sources for MKC_SOURCE_FUNCLIBS. If MKC_SOURCE_DIR.<source> is unset,
+MKC_SOURCE_DIR is used that defaults to ${.CURDIR}.
+.VS
+ Ex:  MKC_SOURCE_FUNCLIBS += getline
+      MKC_SOURCE_DIR.getline.c = ${.CURDIR}/../missing
+ Res: SRCS+= ${.CURDIR}/../missing/getline.c
+      HAVE_FUNCLIB.getline= 0
+.VE
 .IP MKC_CHECK_DEFINES
 List of define:header to check. <header> part is optional.
 

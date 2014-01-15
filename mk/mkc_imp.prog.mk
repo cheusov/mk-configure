@@ -32,6 +32,10 @@ CLEANFILES +=	${SRCS.${p}:M*.y:.y=.h}
 
 OBJS.${p} =	${SRCS.${p}:N*.h:N*.sh:N*.fth:T:R:S/$/.o/g}
 
+.if !empty(SRCS.${p}:N*.h:N*.sh:M*/*:H)
+SRC_PATHADD +=	${SRCS:N*.h:N*.sh:M*/*:H}
+.endif
+
 .if defined(OBJS.${p}) && !empty(OBJS.${p})
 .NOPATH: ${OBJS.${p}}
 

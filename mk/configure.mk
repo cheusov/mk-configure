@@ -33,6 +33,7 @@ MKC_CACHEDIR        ?= ${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS  ?=            # list of headers always #included
 MKC_NOCACHE         ?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR      ?=${.CURDIR}  # directory with custom tests.c
+MKC_SOURCE_DIR      ?=${.CURDIR}  # directory with missing strlcat.c etc.
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
@@ -107,7 +108,7 @@ MKC_LDADD +=	-l${f:C/^.*://}
 .endif
 .endif
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
-MKC_SRCS +=	${f:C/:.*//}.c
+MKC_SRCS +=	${MKC_SOURCE_DIR.${f:C/:.*//}.c:U${MKC_SOURCE_DIR}}/${f:C/:.*//}.c
 .endif
 .endfor # f
 

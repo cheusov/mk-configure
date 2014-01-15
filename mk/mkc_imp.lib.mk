@@ -40,6 +40,10 @@ OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 SOBJS  =	${OBJS:.o=.os}
 POBJS  =	${OBJS:.o=.op}
 
+.if !empty(SRCS:N*.h:N*.sh:M*/*:H)
+SRC_PATHADD +=	${SRCS:N*.h:N*.sh:M*/*:H}
+.endif
+
 .if ${MKSTATICLIB:tl} != "no"
 _LIBS +=	lib${LIB}.a
 .endif
