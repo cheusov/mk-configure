@@ -1237,7 +1237,7 @@ treated as a fatal error (See
 target.
 .IP MKC_CHECK_FUNCS<N>
 List of <func>:<header> to be check. <header> part is optional.
-
+Here <N> means the number of arguments.
 As a result of the check bmake's variable
 HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
 is set to either 0 or 1.
