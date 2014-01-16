@@ -18,27 +18,24 @@
 .SH NAME
 mkc_check_custom \- run user's custom checks.
 .SH SYNOPSIS
-.BI mkc_check_custom " [-r] <file>"
+.BI mkc_check_custom " [-r] sourcefile"
+.br
+.BI mkc_check_custom " cmd [args...]"
 .br
 .BI mkc_check_custom " -h"
 .SH DESCRIPTION
-.B mkc_check_custom
-takes a
-.I file
-and tries to compile or runs it. If
-.I file
-is an executable file,
-.B mkc_check_custom
-runs it and outputs 1 if it succeeded or 0 otherwise.
 If
-.I file
-is not executable,
+.I cmd
+is executable
 .B mkc_check_custom
-tries to compile and (if
-.I -r
-applied ) run a generated executable. Again, if compilation/run succeeded,
-1 is output, otherwise -- 0. What type of compiler to use depend on
-.I file
+runs
+.IR "cmd args" .
+Otherwise it tries to compile
+.IR sourcefile
+and output 1 if compilation succeeded and 0 otherwise.
+If -r option was applied it runs a compiled program.
+What type of compiler to use depends on
+.I sourcefile
 extension. '.c' corresponds to
 .I ${CC}
 (C language), '.cc', '.cxx', '.C' and '.cpp' correspond to
@@ -49,7 +46,34 @@ extension. '.c' corresponds to
 .SH OPTIONS
 .TP
 .B "-h"
-display help message
+Display help message.
+.TP
+.B "-r"
+Run executable compiled from
+.IR sourcefile .
+.TP
+.BI "-p " text
+Prefix of the generated cache file. The default is "custom".
+.TP
+.BI "-n " text
+Name part of the generated cache file.
+.br
+The default is `basename <sourcefile>`.
+.TP
+.BI "-m " text
+Message
+.B mkc_check_custom
+outputs.
+.br
+The default is "custom test sourcefile_or_cmd".
+.TP
+.BI -s
+.B mkc_check_custom 
+outputs an exit status of
+.IR "cmd args" .
+.TP
+.BI -d
+Delete cache files.
 .SH ENVIRONMENT
 .TP
 .B CC

@@ -27,10 +27,10 @@ Usage:
 OPTIONS:
    -h                   display this help
    -r                   build application and run it
-   -p                   a part of cache filename, defaults to "custom"
-   -n                   a part of cache filename, defaults to
+   -p text              prefix for cache filename, defaults to "custom"
+   -n text              a part of cache filename, defaults to
                         `basename <source_file>` without extension
-   -m                   A part of verbose message, defaults to -n args
+   -m text              A part of verbose message, defaults to -n args
    -s                   exit status of executable will be check
    -d                   delete cache files
 Examples:
