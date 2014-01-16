@@ -1548,15 +1548,15 @@ expanding the following @@ patterns:
 .VS
  Pattern       Result
 ----------------------
-@prefix@       ${PREFIX}
-@bindir@       ${BINDIR}
-@mandir@       ${MANDIR}
-@sbindir@      ${SBINDIR}
-@libdir@       ${LIBDIR}
-@libexecdir@   ${LIBEXECDIR}
-@datadir@      ${DATADIR}
-@sysconfdir@   ${SYSCONFDIR}
-@incsdir@      ${INCSDIR}
+.RI @ "" "prefix@       ${PREFIX}"
+.RI @ "" "bindir@       ${BINDIR}"
+.RI @ "" "mandir@       ${MANDIR}"
+.RI @ "" "sbindir@      ${SBINDIR}"
+.RI @ "" "libdir@       ${LIBDIR}"
+.RI @ "" "libexecdir@   ${LIBEXECDIR}"
+.RI @ "" "datadir@      ${DATADIR}"
+.RI @ "" "sysconfdir@   ${SYSCONFDIR}"
+.RI @ "" "incsdir@      ${INCSDIR}"
 .VE
 The following variables are provided:
 .IP INFILES
