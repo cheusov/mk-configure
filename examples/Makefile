@@ -34,6 +34,7 @@ SUBDIR+=	hello_progs
 SUBDIR+=	hello_progs2
 SUBDIR+=	tools
 SUBDIR+=	tools2
+SUBDIR+=	pkgconfig3
 
 .ifdef WITH_require_tools
 SUBDIR+=	hello_require_tools

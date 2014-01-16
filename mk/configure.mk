@@ -44,11 +44,6 @@ _MKC_SOURCE_FUNCS      =	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
 HAVE_FUNCLIB.main ?=	1
 
-#
-.undef MKC_SRCS
-.undef MKC_LDADD
-.undef MKC_CFLAGS
-
 .if defined(MKC_COMMON_DEFINES.${TARGET_OPSYS})
 CPPFLAGS +=		${MKC_COMMON_DEFINES.${TARGET_OPSYS}}
 .endif
@@ -250,6 +245,9 @@ MKC_ERR_MSG +=	"ERROR: cannot find declaration of function ${d}"
 .endif
 .endfor # d
 
+MKC_CHECK_FUNCS${n}   := # workaround for buggy bmake-20110606
+MKC_REQUIRE_FUNCS${n} := # workaround for buggy bmake-20110606
+
 .undef MKC_CHECK_FUNCS${n}
 .undef MKC_REQUIRE_FUNCS${n}
 
@@ -321,17 +319,7 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 
 ######################################################
 # final assignment
-.if !${MKC_NOAUTO:U0}
-.for i in ${MKC_CFLAGS}
-CFLAGS +=	${i}
-.endfor
-.for i in ${MKC_LDADD}
-LDADD +=	${i}
-.endfor
-.for i in ${MKC_SRCS}
-SRCS +=		${i}
-.endfor
-.endif # .if MKC_AUTO
+.include <mkc_imp.conf-final.mk>
 
 .endif # MKCHECKS == yes
 

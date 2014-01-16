@@ -15,8 +15,6 @@ Plan 0.26.0
 
 - Special marker for checks that cannot be possible in cross-compiling
 
-- mkc_imp.pkg-config.mk: defines similar to HAVE_*
-
 Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed

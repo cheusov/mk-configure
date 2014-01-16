@@ -1,33 +1,25 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
 
-#
-# Sample of Makefile:
-#    PKG_CONFIG_DEPS                 = glib-2.0>=2.22
-#
-#    PROG            = main
-#
-#    CFLAGS+=		-DG_DISABLE_DEPRECATED=1
-#    CFLAGS+=		-DG_DISABLE_SINGLE_INCLUDES
-#
-#    .include <mkc.prog.mk>
-#
+.if defined(PKG_CONFIG_DEPS) # PKG_CONFIG_DEPS -- deprecated 2014.01.15
+MKC_REQUIRE_PKGCONFIG +=	${PKG_CONFIG_DEPS}
+.endif
+.if defined(MKC_REQUIRE_PKGCONFIG)
+MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
+.endif
 
-############################################################
-
-# .endif for the next line is in the end of file
-.if defined(PKG_CONFIG_DEPS) && !make(clean) && !make(cleandir) && !make(distclean)
-
+.if defined(MKC_CHECK_PKGCONFIG) && !make(clean) && !make(cleandir) && !make(distclean)
 MKC_REQUIRE_PROGS+=	pkg-config
 .include <configure.mk>
 
 .if ${HAVE_PROG.pkg-config}
 
-.for l in ${PKG_CONFIG_DEPS}
+.for l in ${MKC_CHECK_PKGCONFIG:O:u}
 _lpair  =	${l:C/(>=|<=|=|>|<)/ & /g}
-_pcname =	${PCNAME.${_lpair:[1]:S/-/_/g:S/+/p/g:S/./_/g}:U${_lpair:[1]}}
+_id     =	${_lpair:[1]}
+_pcname =	${PCNAME.${_id:S/-/_/g:S/+/p/g:S/./_/g}:U${_id}}
 _lp    :=	${_pcname} ${_lpair:[2]} ${_lpair:[3]}
 _ln     =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
@@ -35,10 +27,7 @@ PKG_CONFIG.exists.${_ln} != env ${mkc.environ} mkc_check_custom \
     -p pkgconfig -s -n '${_ln}' -m '[pkg-config] ${_lp}' \
     ${PROG.pkg-config} --print-errors --exists "${_lp}"
 
-.if !${PKG_CONFIG.exists.${_ln}}
-MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
-.else
-
+.if ${PKG_CONFIG.exists.${_ln}}
 # --cflags and --libs
 .if defined(PROGS) || defined(LIB)
 .if !defined(CPPFLAGS.pkg-config.${_ln})
@@ -53,8 +42,8 @@ LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
     ${PROG.pkg-config} --libs "${_lp}"
 .endif # LDADD.pkg-config.${l}
 
-CPPFLAGS :=	${CPPFLAGS} ${CPPFLAGS.pkg-config.${_ln}}
-LDADD    :=	${LDADD}    ${LDADD.pkg-config.${_ln}}
+MKC_CPPFLAGS +=	${CPPFLAGS.pkg-config.${_ln}}
+MKC_LDADD    +=	${LDADD.pkg-config.${_ln}}
 .endif # PROGS || LIB
 
 .for i in ${PKG_CONFIG_VARS.${_ln}}
@@ -65,15 +54,26 @@ PKG_CONFIG.var.${_ln}.${i} != env ${mkc.environ} mkc_check_custom \
 .endif # PKG_CONFIG.var.${_ln}.${i}
 .endfor # i
 
+MKC_CFLAGS +=	-DHAVE_PKCONFIG_${_id:S/-/_/g:S/+/P/g:S/./_/g}=1
+
+.elif !empty(MKC_REQUIRE_PKGCONFIG:M${l})
+MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .endif # PKG-CONFIG.exists
 
-.endfor # .for l in PKG_CONFIG_DEPS
-.undef PKG_CONFIG_DEPS
+.endfor # .for l in MKC_CHECK_PKGCONFIG
 
-.undef _ln
-.undef _lp
-.undef _pcname
+######################################################
+.include <mkc_imp.conf-final.mk>
+
+.undef PKG_CONFIG_DEPS
+.undef MKC_CHECK_PKGCONFIG
+.undef MKC_REQUIRE_PKGCONFIG
+
 .undef _lpair
+.undef _id
+.undef _pcname
+.undef _lp
+.undef _ln
 
 .endif # HAVE_PROG.pkg-config
 

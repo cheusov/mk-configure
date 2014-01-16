@@ -15,6 +15,7 @@ SUBDIR  +=	mkprofilelib
 SUBDIR  +=	mkdll
 SUBDIR  +=	pkg_config_0
 SUBDIR  +=	pkg_config_1
+SUBDIR  +=	pkg_config_1_1
 SUBDIR  +=	pkg_config_2
 SUBDIR  +=	lua_dirs
 SUBDIR  +=	rec_makefiles

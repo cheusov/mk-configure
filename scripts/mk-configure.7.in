@@ -1714,9 +1714,22 @@ This module supports dependencies controlled by
 program. As a result CPPFLAGS and LDADD variables are modified according
 to "pkg-config --cflags ..." and "pkg-config --libs ...".
 The following variables are provided:
-.IP PKG_CONFIG_DEPS
-List of dependency libraries. Spaces around <=, >=, =, < and > are not allowed.
+.IP MKC_CHECK_PKGCONFIG
+List of libraries to check, for example, glib-2.0>=2.1.
+Spaces around <=, >=, =, < and > are not allowed.
+As a result of the check bmake's variable
+PKG_CONFIG.exists.<lib> is set to 1 for success or 0 for failure.
+Unless MKC_NOAUTO is set to 1 -DHAVE_PKGCONFIG_<LIB>=1
+is also added to CFLAGS if <lib> was found. <LIB> is tr/a-z+.-/A-ZP__/ of <lib>.
 .RI < "M" >
+.IP MKC_REQUIRE_PKGCONFIG
+The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
+treated as a fatal error (See
+.B errorcheck
+target.
+.RI < "M" >
+.IP PKG_CONFIG_DEPS
+Synonym for MKC_REQUIRE_PKGCONFIG. Deprecated.
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
 Inside <lib> <=, >=, =, < and > and replaced with
