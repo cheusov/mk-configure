@@ -217,7 +217,12 @@ check_itself (){
     fi
 }
 
-check_and_cache "checking for $decltype ${declwhat}${incs_msg}" "$cache" "$@"
+if test 'func' = "$decltype"; then
+    declmsg='function declaration'
+else
+    declmsg="$decltype"
+fi
+check_and_cache "checking for $declmsg ${declwhat}${incs_msg}" "$cache" "$@"
 
 ##################################################
 # clean-ups

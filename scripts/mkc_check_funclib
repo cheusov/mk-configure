@@ -100,7 +100,7 @@ EOF
     fi
 }
 
-check_and_cache "checking for function ${funcname}${libs_msg}" "$cache" "$@"
+check_and_cache "checking for function implementation ${funcname}${libs_msg}" "$cache" "$@"
 
 ##################################################
 # clean-ups
