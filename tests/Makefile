@@ -31,5 +31,6 @@ SUBDIR  +=	test_mkc_vs_LIB
 SUBDIR  +=	test_mkc_vs_SUBDIR
 SUBDIR  +=	test_mkc_vs_SUBPRJ
 SUBDIR  +=	endianess
+SUBDIR  +=	create_cachedir
 
 .include <mkc.mk>

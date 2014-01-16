@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -13,6 +13,12 @@ fi
 
 MKC_CACHEDIR=${MKC_CACHEDIR:-.}
 CC=${CC:-cc}
+
+if test -x "$MKC_CACHEDIR"; then
+    :
+else
+    mkdir -p "$MKC_CACHEDIR"
+fi
 
 tmpc=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.c
 tmpo=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.o

@@ -941,8 +941,6 @@ The default is all projects listed in SUBPRJ.
 .RI < "IMu" >
 .IP EXPORT_VARNAMES
 List of variables to export before running make for subdirectories.
-By default MKC_CACHEDIR variable is exported. As a result cache files
-for subprojects are created in a top-level directory.
 .RI < "Mu" >
 .RI [ MKC_CACHEDIR ] 
 .IP NOEXPORT_VARNAMES
@@ -1416,11 +1414,10 @@ The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
 .IP MKC_CACHEDIR
 Directory where intermediate and cache files are created.
 It defaults to ${.OBJDIR}.
-.\" Setting this variable to something common for huge amount of
-.\" projects can save lots of time/energy wasted on unnecessary
-.\" rechecking. Idea: to use hash from options passed to compiler
-.\" for calculating the cache directory
-.\" ( remove -Wxxx etc. + sort + uniq + crc32/md5/...).
+By default MKC_CACHEDIR variable is exported for subprojects.
+As a result cache files
+for subprojects are created in the top-level directory.
+If cache directory doesn't exist, it is created automatically.
 .IP MKC_SHOW_CACHED
 Setting it to 0 will hide
 .VS
