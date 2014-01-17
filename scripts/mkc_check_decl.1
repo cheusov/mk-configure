@@ -16,7 +16,8 @@
 .\" ------------------------------------------------------------------
 .TH MKC_CHECK_DECL 1 "Mar 15, 2009" "" ""
 .SH NAME
-mkc_check_decl \- checks for define, function, variable or type.
+mkc_check_decl \- checks for define, function, variable, type or
+function prototype.
 .SH SYNOPSIS
 .BI mkc_check_decl " <check_type> <what> [includes...]"
 .br
@@ -24,7 +25,8 @@ mkc_check_decl \- checks for define, function, variable or type.
 .SH DESCRIPTION
 .I check_type
 is either
-.IR " define" , " variable" , " func[0-9]" , " type " or " member" .
+.IR " define" , " variable" , " func[0-9]" , " type" , " member " or
+.IR " prototype" .
 Depending on its value
 .B mkc_check_decl
 checks for define, variable, function with specified number
@@ -80,6 +82,8 @@ If set to 1, temporary files are removed.
    mkc_check_decl type long-long
    mkc_check_decl member tm.tm_isdst time.h
    mkc_check_decl member ifreq.ifr_addr.sa_len net/if.h
+   mkc_check_decl prototype 'int connect(int __fd, const struct sockaddr * __addr, socklen_t __len)' sys/socket.h
+   mkc_check_decl prototype 'int connect(int __fd, struct sockaddr * __addr, socklen_t __len)' sys/socket.h
 .VE
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
