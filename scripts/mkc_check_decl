@@ -27,7 +27,7 @@ in system header files by compiling a test program.
 Usage:
  mkc_check_decl [OPTIONS] <CHECKTYPE> <what> [includes...]
 where CHECKTYPE is either of the following: "define", "variable",
-"func[0-9]", "type" or "member"
+"func[0-9]", "type", "member" or "prototype".
 
 OPTIONS:
    -h             display this help
@@ -44,6 +44,8 @@ Examples:
    mkc_check_decl type long-long
    mkc_check_decl member tm.tm_isdst time.h
    mkc_check_decl member ifreq.ifr_addr.sa_len net/if.h
+   mkc_check_decl prototype 'int connect(int __fd, const struct sockaddr * __addr, socklen_t __len)' sys/socket.h
+   mkc_check_decl prototype 'int connect(int __fd, struct sockaddr * __addr, socklen_t __len)' sys/socket.h
 EOF
 }
 
@@ -63,18 +65,30 @@ fi
 ##################################################
 # initializing
 
-decltype=`echo $1 | sed -e 's/[0-9]//g'`
-argscnt=`echo $1 | sed 's/[^0-9]//g'`
+decltype=`echo "$1" | sed -e 's/[0-9]//g'`
+argscnt=`echo "$1" | sed 's/[^0-9]//g'`
 shift
 
-declwhat=`echo $1 | sed 's/-/ /'`
+declwhat=`echo "$1" | sed 's/-/ /'`
 shift
 
-if test "$decltype" = type; then
-    pathpart=`echo ${decltype}_${declwhat}_$* | tr '/. ' '__~'`
-else
-    pathpart=`echo $decltype$argscnt $declwhat $* | tr '/. ' '___'`
-fi
+typemsg="$decltype $declwhat"
+case "$decltype" in
+    type)
+	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/. ' '__~'`
+	;;
+    prototype)
+	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/. *' "__~8"`
+	funcname="${declwhat%%(*}"
+	funcname="${funcname##* }"
+	typemsg="correct ${funcname}() prototype"
+    incs_msg="${declwhat##*\(}"
+    incs_msg=" ${incs_msg%%)*}:"
+	;;
+    *)
+	pathpart=`echo "$decltype$argscnt $declwhat $*" | tr '/. ' '___'`
+	;;
+esac
 
 . mkc_check_common.sh
 
@@ -179,6 +193,23 @@ BEGIN {
 }
 
 ##############################
+is_prototype (){
+    get_includes "$@" > "$tmpc"
+
+    cat >> "$tmpc" <<EOF
+void func (void)
+{
+   if (${funcname}) return;
+   ${declwhat};
+}
+EOF
+
+    #
+    compile
+}
+
+
+##############################
 is_member (){
     get_includes "$@" > "$tmpc"
 
@@ -217,7 +248,7 @@ check_itself (){
     fi
 }
 
-check_and_cache "checking for $decltype ${declwhat}${incs_msg}" "$cache" "$@"
+check_and_cache "checking for ${typemsg}${incs_msg}" "$cache" "$@"
 
 ##################################################
 # clean-ups
