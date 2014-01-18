@@ -78,7 +78,7 @@ case "$decltype" in
 	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/. ' '__~'`
 	;;
     prototype)
-	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/. *' "__~8"`
+	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/(). *' '____~8'`
 	funcname="${declwhat%%(*}"
 	funcname="${funcname##* }"
 	typemsg="correct ${funcname}() prototype"
