@@ -81,12 +81,9 @@ case "$decltype" in
 	pathpart=`echo "${decltype}_${declwhat}_$*" | tr '/(). *' '____~8'`
 	funcname="${declwhat%%(*}"
 	funcname="${funcname##* }"
-	typemsg="correct ${funcname}() prototype"
-    incs_msg="${declwhat##*\(}"
-    incs_msg=" ${incs_msg%%)*}:"
 	;;
     *)
-	pathpart=`echo "$decltype$argscnt $declwhat $*" | tr '/. ' '___'`
+	pathpart=`echo "$decltype$argscnt $declwhat" $* | tr '/. ' '___'`
 	;;
 esac
 

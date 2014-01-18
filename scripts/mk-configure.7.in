@@ -1268,7 +1268,6 @@ MKC_CUSTOM_FN.<custom_check_name> is a
 for your custom check,
 e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
 filename.cpp, mychecks/filename.f or subdir/executable_script.
-
 .B mk-configure
 tries to compile or run the specified file and sets
 CUSTOM.<custom_check_name> variable to 1, 0 or other value.
@@ -1386,6 +1385,33 @@ unless MKC_NOAUTO is set to 1
                 -DSIZEOF_LONG_LONG=4 \\
                 -DSIZEOF_OFF_T_SYS_TYPES_H=8
 .VE
+.IP MKC_CHECK_PROTOTYPES
+A list of checks (list of names) for C function prototypes.
+MKC_PROTOTYPE_FUNC.<name> is a C function prototype.
+MKC_PROTOTYPE_HEADERS.<name> is a list of headers to #include.
+mk-configure verifies that the specified prototype is correct and if
+so, HAVE_PROTOTYPE.<name> bmake variable is set to 1 and
+-DHAVE_PROTOTYPE_<NAME>=1 is added to CFLAGS unless MKC_NOAUTO is set to 1.
+Otherwise, HAVE_PROTOTYPE.<name> variable is set to 0.
+.VS
+Ex.
+  MKC_CHECK_PROTOTYPES = posix_iconv const_iconv
+  MKC_PROTOTYPE_FUNC.posix_iconv = \ 
+    size_t iconv(iconv_t,char**,size_t*,char**,size_t*)
+  MKC_PROTOTYPE_FUNC.const_iconv = \ 
+    size_t iconv(iconv_t,const char**,size_t*,char**,size_t*)
+  MKC_PROTOTYPE_HEADERS.posix_iconv = iconv.h
+  MKC_PROTOTYPE_HEADERS.const_iconv = iconv.h
+Res.
+ HAVE_PROTOTYPE.posix_iconv=0
+ HAVE_PROTOTYPE.const_iconv=1
+ CFLAGS += -DHAVE_PROTOTYPE_CONST_ICONV=1
+.VE
+.IP MKC_REQUIRE_PROTOTYPES
+The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
+treated as a fatal error (See
+.B errorcheck
+target.
 .IP MKC_NOAUTO_FUNCLIBS
 See MKC_CHECK_FUNCLIBS
 .IP MKC_NOAUTO
