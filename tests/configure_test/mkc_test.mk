@@ -77,6 +77,12 @@ MKC_CUSTOM_FN.custom_check2=	my_check2.c
 
 MKC_REQUIRE_CUSTOM+=		custom_check3
 
+MKC_CHECK_PROTOTYPES =	strcmp_ok strcmp_bad
+MKC_PROTOTYPE_FUNC.strcmp_ok  = int strcmp(const char*, const char*)
+MKC_PROTOTYPE_FUNC.strcmp_bad = int strcmp(const char*, const char*, int lalala)
+MKC_PROTOTYPE_HEADERS.strcmp_ok  = string.h
+MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
+
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
@@ -99,6 +105,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_VAR.mkc_test_var.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
+	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad \
 	\
 	CUSTOM.custom_check1 CUSTOM.custom_check2 \
 	\

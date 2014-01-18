@@ -16,6 +16,7 @@ ERROR: cannot find declaration of function brbrbr
 ERROR: custom test test1 failed
 ERROR: cannot find program trtrtr
 ERROR: cannot find program brbrbr
+ERROR: prototype test bad999 failed
 *** Error code 1
 
 Stop.

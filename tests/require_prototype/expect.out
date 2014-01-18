@@ -1,0 +1,1 @@
+checking for prototype pid_t fork(void) ( unistd.h unistd.h )... yes

@@ -20,3 +20,5 @@ CUSTOM.custom_check1=0
 CUSTOM.custom_check2=1
 PROG.awk=
 PROG.megaprog-x34=/bad/path
+HAVE_PROTOTYPE.strcmp_ok=0
+HAVE_PROTOTYPE.strcmp_bad=1
