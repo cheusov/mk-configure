@@ -231,12 +231,8 @@ EOF
 ##################################################
 # test
 
-for i in "$@"; do
-    incs_msg="$incs_msg $i"
-done
-
-if test -n "$incs_msg"; then
-    incs_msg=" ($incs_msg )"
+if test $# -gt 0; then
+    incs_msg=" ( $* )"
 fi
 
 check_itself (){
