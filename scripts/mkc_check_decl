@@ -69,7 +69,7 @@ decltype=`echo "$1" | sed -e 's/[0-9]//g'`
 argscnt=`echo "$1" | sed 's/[^0-9]//g'`
 shift
 
-declwhat=`echo "$1" | sed 's/-/ /'`
+declwhat=`echo "$1" | awk '{gsub(/-/, " "); gsub(/ +[(]/, "("); $1=$1; print}'`
 shift
 
 typemsg="$decltype $declwhat"
