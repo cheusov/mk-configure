@@ -1,0 +1,100 @@
+foo17# Copyrig
+foo17# All rig
+foo17# 
+foo17# Redistr
+foo17# modific
+foo17# are met
+foo17# 1. Redi
+foo17#    noti
+foo17# 2. Redi
+foo17#    noti
+foo17#    docu
+foo17# 
+foo17# THIS SO
+foo17# ``AS IS
+foo17# TO, THE
+foo17# PURPOSE
+foo17# BE LIAB
+foo17# CONSEQU
+foo17# SUBSTIT
+foo17# INTERRU
+foo17# CONTRAC
+foo17# ARISING
+foo17# POSSIBI
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
+/objdir/_mkc_func3_strlcat_string_h.c
+/objdir/_mkc_func3_strlcat_string_h.err
+/objdir/_mkc_func3_strlcat_string_h.res
+/objdir/_mkc_func3_strlcpy_string_h.c
+/objdir/_mkc_func3_strlcpy_string_h.err
+/objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_strlcat.c
+/objdir/_mkc_funclib_strlcat.err
+/objdir/_mkc_funclib_strlcat.res
+/objdir/_mkc_funclib_strlcpy.c
+/objdir/_mkc_funclib_strlcpy.err
+/objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/hello
+/objdir/hello.c
+/objdir/hello.o
+/objdir/hello_strlcpy3.test.out.tmp
+/objdir/input.in
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/hello
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
+/objdir/_mkc_func3_strlcat_string_h.c
+/objdir/_mkc_func3_strlcat_string_h.err
+/objdir/_mkc_func3_strlcat_string_h.res
+/objdir/_mkc_func3_strlcpy_string_h.c
+/objdir/_mkc_func3_strlcpy_string_h.err
+/objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_strlcat.c
+/objdir/_mkc_funclib_strlcat.err
+/objdir/_mkc_funclib_strlcat.res
+/objdir/_mkc_funclib_strlcpy.c
+/objdir/_mkc_funclib_strlcpy.err
+/objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/hello.c
+/objdir/hello_strlcpy3.test.out.tmp
+/objdir/input.in
+/objdir/test.mk
+======= distclean ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/hello.c
+/objdir/hello_strlcpy3.test.out.tmp
+/objdir/input.in
+/objdir/test.mk
+======= CLEANFILES ==========
+strlcpy.o
+strlcat.o
+getline.o
+hello.o

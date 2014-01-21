@@ -2,7 +2,8 @@ SHRTOUT           =	no
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 EXPORT_VARNAMES   =	SHRTOUT
 
-BUILTINSDIR       =	${OBJDIR_custom}
+BUILTINSDIR       =	${SRCDIR_custom}
+FEATURESDIR       =	${SRCDIR_features}
 .export BUILTINSDIR
 
 SUBDIR  +=	configure_test

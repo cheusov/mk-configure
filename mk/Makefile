@@ -10,7 +10,7 @@ FILES =	sys.mk mkc.configure.mk configure.mk mkc.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk ${INFILES}
 
-FILESDIR =			${MKFILESDIR}
+FILESDIR =	${MKFILESDIR}
 
 INFILES +=	mkc_imp.vars.mk
 

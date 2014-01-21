@@ -1455,8 +1455,41 @@ If set to 1, temporary files are removed.
 .IP MKC_NOCACHE
 All results are cached unless MKC_NOCACHE variable is set
 non-empty value
-.SS "mkc_imp.scripts.mk"
-.B mkc_imp.scripts.mk
+.IP MKC_FEATURES
+This is a list of "features" required by project. In general, a feature
+is something that has problems with portability. This may be a
+function name or header missing on some platforms, for example.
+What developer
+needs to do is to add FEATURENAME to MKC_FEATURES variable and add
+#include <mkc_FEATURENAME.h> where it is needed. Internally, system
+requiremets are checked in the automatically included
+mkc_imp.f_FEATURENAME.mk
+file and all required actions (includes, define checks etc.)
+are made in mkc_FEATURENAME.h header file.
+Currently the following features are provided:
+.RS
+.TP
+.B strlcat
+This feature corresponds to strlcat(3) function available on almost
+all systems except glibc-based Linux-es. mkc_imp.f_strlcat.mk checks
+whether strlcat declaration is available in string.h and
+implementation is available in libc. If not, strlcat.c provided by
+mk-configure is added to SRCS and declaration is provided in
+mkc_strlcat.h header.
+.TP
+.B strlcpy
+The same as strlcat.
+.TP
+.B getline
+This feature corresponds to getline(3) function which is a part of POSIX2008
+unavailable on some
+systems. mkc_imp.f_getline.mk checks
+whether getline declaration is available in stdio.h and
+implementation is available in libc. If not, getline.c provided by
+mk-configure is added to SRCS and declaration is provided in
+mkc_getline.h header.
+.RE
+.SS mkc_imp.scripts.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly!

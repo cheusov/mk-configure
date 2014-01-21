@@ -1,7 +1,7 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
-SUBPRJ_DFLT =   custom helpers mk scripts
+SUBPRJ_DFLT =   custom helpers mk scripts features
 SUBPRJ      =	examples tests doc presentation ${SUBPRJ_DFLT}
 
 ##################################################

@@ -20,6 +20,7 @@ SUBDIR+=	hello_glib2
 SUBDIR+=	hello_subdirs
 SUBDIR+=	hello_strlcpy
 SUBDIR+=	hello_strlcpy2
+SUBDIR+=	hello_strlcpy3
 SUBDIR+=	hello_customtests
 SUBDIR+=	hello_customtests2
 SUBDIR+=	hello_requirements

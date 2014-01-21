@@ -5,6 +5,7 @@ BIRTHDATE =		2009-02-21
 MKFILESDIR    ?=	${PREFIX}/share/mkc-mk
 DOCDIR        ?=	${PREFIX}/share/doc/mk-configure
 BUILTINSDIR   ?=	${PREFIX}/share/mk-configure/custom
+FEATURESDIR   ?=	${PREFIX}/share/mk-configure/features
 
 INTEXTS_REPLS +=	version        ${VERSION}
 INTEXTS_REPLS +=	AWK            ${AWK}

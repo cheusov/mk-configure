@@ -23,6 +23,11 @@ _use_prog :=	1
 
 .include <mkc.init.mk>
 
+.for f in ${MKC_FEATURES}
+.include <mkc_imp.f_${f}.mk>
+.endfor
+CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
+
 .include <configure.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
