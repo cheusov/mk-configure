@@ -4,7 +4,7 @@ EXPORT_VARNAMES   =	SHRTOUT
 
 BUILTINSDIR       =	${SRCDIR_custom}
 FEATURESDIR       =	${SRCDIR_features}
-.export BUILTINSDIR
+.export BUILTINSDIR FEATURESDIR
 
 SUBDIR  +=	configure_test
 SUBDIR  +=	mkinstall
