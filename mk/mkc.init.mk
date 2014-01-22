@@ -527,37 +527,6 @@ YFLAGS +=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
 .include <mkc_imp.obj.mk>
 
 ###########
-.if !empty(_srcsall:U:M*.y)
-MKC_REQUIRE_PROGS  +=			${YACC:[1]}
-MKC_PROG.id.${YACC:[1]:S/+/x/g}  =	yacc
-.endif
-
-.if !empty(_srcsall:U:M*.l)
-MKC_REQUIRE_PROGS  +=			${LEX:[1]}
-MKC_PROG.id.${LEX:[1]:S/+/x/g}   =	lex
-.endif
-
-.if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y)
-MKC_REQUIRE_PROGS  +=			${CC:[1]}
-MKC_PROG.id.${CC:[1]:S|+|x|g}    =	cc
-.endif
-
-.if !empty(_srcsall:U:M*.cc) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp)
-MKC_REQUIRE_PROGS  +=			${CXX:[1]}
-MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
-.endif
-
-.if !empty(_srcsall:U:M*.f)
-MKC_REQUIRE_PROGS  +=			${FC:[1]}
-MKC_PROG.id.${FC:[1]:S/+/x/g}    =	fc
-.endif
-
-.if !empty(_srcsall:U:M*.p)
-MKC_REQUIRE_PROGS  +=			${PC:[1]}
-MKC_PROG.id.${PC:[1]:S/+/x/g}    =	pc
-.endif
-
-###########
 .PHONY : print-values
 print-values :
 .for v in ${VARS}

@@ -4,7 +4,7 @@ FILES =	sys.mk mkc.configure.mk configure.mk mkc.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.prog.mk \
 	mkc_imp.subprj.mk mkc_imp.conf-final.mk \
-	mkc_imp.final.mk mkc_imp.scripts.mk \
+	mkc_imp.final.mk mkc_imp.scripts.mk mkc_imp.checkprogs.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \

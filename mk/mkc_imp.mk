@@ -28,6 +28,7 @@ _use_prog :=	1
 .endfor
 CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
+.include <mkc_imp.checkprogs.mk>
 .include <configure.mk>
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
