@@ -1,7 +1,7 @@
 
 %{
 #include <stdio.h>
-#include <math.h>
+#include <mkc_libm.h>
 %}
 
 %union {

@@ -1488,6 +1488,11 @@ whether getline declaration is available in stdio.h and
 implementation is available in libc. If not, getline.c provided by
 mk-configure is added to SRCS and declaration is provided in
 mkc_getline.h header.
+.TP
+.B libm
+This feature checks whether libm is available and if yes, adds -lm to
+LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
+not.
 .RE
 .SS mkc_imp.scripts.mk
 is internal include file which is included from
