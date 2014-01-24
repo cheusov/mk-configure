@@ -1492,7 +1492,13 @@ mkc_getline.h header.
 .B libm
 This feature checks whether libm is available and if yes, adds -lm to
 LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
-not.
+not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
+-lm is added to LDADD.
+.TP
+.B libdl
+This feature checks whether libdl library is available and dlopen(3)
+is declared in dlfcn.h.  If yes, -ldl is added to LDADD. mkc_libdl.h
+provides declarations for dlopen(3), dlsym(3), dlclose(3) etc.
 .RE
 .SS mkc_imp.scripts.mk
 is internal include file which is included from
