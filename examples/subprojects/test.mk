@@ -18,8 +18,7 @@ test_output :
 	\
 	echo ===== all SHRTOUT=yes ======; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	env SHRTOUT=YES \
-		${MAKE} ${MAKEFLAGS} all 2>&1 | \
+	${MAKE} ${MAKEFLAGS} all SHRTOUT=YES 2>&1 | \
 	mkc_test_helper_paths; \
 	\
 	echo ========= installdirs ==========; \

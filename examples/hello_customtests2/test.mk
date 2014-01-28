@@ -31,7 +31,9 @@ test_output:
 	\
 	echo ======= errorcheck + MAKEOBJDIR ===========; \
 	mkdir ${.CURDIR}/testdir || true; \
-	${MAKE} ${MAKEFLAGS} errorcheck MAKEOBJDIR=${.CURDIR}/testdir > /dev/null; \
+	${MAKE} ${MAKEFLAGS} errorcheck \
+	   MKC_CACHEDIR=${.CURDIR}/testdir \
+	   MAKEOBJDIR=${.CURDIR}/testdir > /dev/null; \
 	printf 'true_is_available=%s\n' `cat ${.CURDIR}/testdir/_mkc_custom_true_is_available.res`; \
 	\
 	echo ======= distclean ==========; \

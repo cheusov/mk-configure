@@ -33,12 +33,12 @@ test_output:
 	\
 	echo ==== SHRTOUT=yes depend ====; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	env SHRTOUT=yes ${MAKE} ${MAKEFLAGS} depend 2>&1 |\
+	env ${MAKE} ${MAKEFLAGS} SHRTOUT=yes depend 2>&1 |\
 	mkc_test_helper2; \
 	\
 	echo ==== SHRTOUT=yes all ====; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	env MKCATPAGES=no MKHTML=no SHRTOUT=yes ${MAKE} ${MAKEFLAGS} all 2>&1 |\
+	env MKCATPAGES=no MKHTML=no ${MAKE} ${MAKEFLAGS} all SHRTOUT=yes 2>&1 |\
 	mkc_test_helper2; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\

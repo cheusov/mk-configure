@@ -33,7 +33,7 @@ test_output:
 	\
 	echo ==== SHRTOUT=yes ====; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	env MKCATPAGES=no MKHTML=no SHRTOUT=yes ${MAKE} ${MAKEFLAGS} \
+	env MKCATPAGES=no MKHTML=no ${MAKE} ${MAKEFLAGS} SHRTOUT=yes \
 		all 2>/dev/null | mkc_test_helper2; \
 	\
 	echo ======= distclean ==========; \

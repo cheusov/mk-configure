@@ -15,9 +15,10 @@ NODEPS +=	check-*/*:check-*/* \
 # target "check" is used for testing because "test" is used by mk-configure
 TARGETS =	check
 
-SHORTPRJNAME = no
+SHORTPRJNAME =	no
 
 # for regression test only
+MKC_CACHEDIR =	${.OBJDIR}
 _THISDIR_ =
 .export _THISDIR_
 
