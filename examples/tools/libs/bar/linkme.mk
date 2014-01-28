@@ -2,4 +2,4 @@ PATH.bar  :=	${.PARSEDIR}
 
 CPPFLAGS  +=	-I${PATH.bar}
 DPLIBDIRS +=	${PATH.bar}
-LDADD     +=	-lbar
+LDADD0    +=	-lbar

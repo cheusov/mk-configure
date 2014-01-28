@@ -717,6 +717,9 @@ libraries, use:
 .RI < "U" >
 .IP LDADD_<project>
 Similar to LDADD but for project ${PROJECTNAME}.
+.IP LDADD0
+The same as LDADD but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
+.RI < "M" >
 .IP LDFLAGS
 Additional linker flags. Often used for specifying library directories.
 .VS
@@ -725,6 +728,11 @@ Additional linker flags. Often used for specifying library directories.
 .RI < "Mu I" >
 .IP LDFLAGS_<project>
 Similar to LDFLAGS but for project ${PROJECTNAME}.
+.IP LDFLAGS0
+The same as LDFLAGS but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
+Normally LDFLAGS0 and LDADD0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
 .IP "BINDIR, BINMODE, BINOWN and BINGRP"
 See
 .IR "Common variables " and " mkc.files.mk"

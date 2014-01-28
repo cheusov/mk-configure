@@ -2,4 +2,4 @@ PATH.foo  :=	${.PARSEDIR}
 
 CPPFLAGS  +=	-I${PATH.foo}
 DPLIBDIRS +=	libs/${PATH.foo:T}
-LDADD     +=	-lfoo
+LDADD0    +=	-lfoo

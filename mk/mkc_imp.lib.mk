@@ -102,7 +102,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 	@${RM} -f ${.TARGET}
 	@${_MESSAGE} "LD: ${.TARGET}"
 	${_V} $(LDREAL) ${LDFLAGS.shlib} -o ${.TARGET} \
-	    ${SOBJS} ${LDFLAGS} ${LDADD}
+	    ${SOBJS} ${LDFLAGS0} ${LDADD0} ${LDFLAGS} ${LDADD}
 .if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
 	@${LN_S} -f ${SHLIBFN} lib${LIB}${SHLIB_EXT}
 	@${LN_S} -f ${SHLIBFN} lib${LIB}${SHLIB_EXT1}

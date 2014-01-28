@@ -16,7 +16,7 @@ _MKC_PLATFORM_MK := 1
 CFLAGS.sysroot  ?=	--sysroot=${SYSROOT}
 LDFLAGS.sysroot ?=	--sysroot=${SYSROOT}
 CFLAGS   +=	${CFLAGS.sysroot}
-LDFLAGS  +=	${LDFLAGS.sysroot}
+LDFLAGS0 +=	${LDFLAGS.sysroot}
 
 TOOLCHAIN_PREFIX ?=	${MACHINE_GNU_PLATFORM}-
 TOOLCHAIN_DIR    ?=	${TOOLDIR}/bin

@@ -26,9 +26,9 @@ DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:T}}
 DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,/,_,g}}
 .endif
 .if ${TARGET_OPSYS} == "HP-UX"
-LDFLAGS  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
+LDFLAGS0  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif
-LDFLAGS  +=	-L${DPLIBDIRS.${_dir}}
+LDFLAGS0  +=	-L${DPLIBDIRS.${_dir}}
 .endif
 .endfor
 
