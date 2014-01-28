@@ -569,9 +569,6 @@ MKCHECKS     =	no
 
 ###########
 
-LDLIBS =	${LDFLAGS} ${LDADD}
-
-###########
 # skip uninstalling files and creating destination dirs for mkc.subprj.mk
 .if !defined(SUBPRJ)
 
