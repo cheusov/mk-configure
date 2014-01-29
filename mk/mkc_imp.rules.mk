@@ -1,3 +1,7 @@
+# Copyright (c) 2014 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
 .SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .F .f .r .m .y .l .cl .p .h
 
 .LIBS:		.a

@@ -454,3 +454,44 @@ obj/tools/prog3/prog3
 obj/tools/prog3/prog3.o
 obj/tools/prog4/prog4
 obj/tools/prog4/prog4.o
+=========== print_deps ============
+all-libs/foo all-tools/prog1
+all-libs/bar all-tools/prog2
+all-libs/foo all-tools/prog3
+all-libs/bar all-tools/prog3
+all-libs/qux all-tools/prog4
+all-tools/prog1 all-tests/prog1
+all-tools/prog2 all-tests/prog2
+all-tools/prog3 all-tests/prog3
+all-tools/prog4 all-tests/prog4
+all-libs/bar libs/bar
+all-libs/foo libs/foo
+all-libs/qux libs/qux
+all-tests/prog1 tests/prog1
+all-tests/prog2 tests/prog2
+all-tests/prog3 tests/prog3
+all-tests/prog4 tests/prog4
+all-tools/prog1 tools/prog1
+all-tools/prog2 tools/prog2
+all-tools/prog3 tools/prog3
+all-tools/prog4 tools/prog4
+all-libs/bar all
+all-libs/foo all
+all-libs/qux all
+all-tools/prog1 all
+all-tools/prog2 all
+all-tools/prog3 all
+all-tools/prog4 all
+all-libs/bar
+all-libs/foo
+all-libs/qux
+all-tests/prog1
+all-tests/prog2
+all-tests/prog3
+all-tests/prog4
+all-tools/prog1
+all-tools/prog2
+all-tools/prog3
+all-tools/prog4
+all
+=====

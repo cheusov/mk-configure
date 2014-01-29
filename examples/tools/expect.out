@@ -424,3 +424,97 @@ LD: prog4
 /objdir/tools/prog4/prog4
 /objdir/tools/prog4/prog4.c
 /objdir/tools/prog4/prog4.o
+=========== print_deps ============
+all-libs/foo all-tools/prog1
+all-libs/bar all-tools/prog2
+all-libs/foo all-tools/prog3
+all-libs/bar all-tools/prog3
+all-libs/qux all-tools/prog4
+all-libs/bar bar
+all-libs/bar libs/bar
+all-libs/foo foo
+all-libs/foo libs/foo
+all-libs/qux qux
+all-libs/qux libs/qux
+all-tools/prog1 prog1
+all-tools/prog1 tools/prog1
+all-tools/prog2 prog2
+all-tools/prog2 tools/prog2
+all-tools/prog3 prog3
+all-tools/prog3 tools/prog3
+all-tools/prog4 prog4
+all-tools/prog4 tools/prog4
+all-libs/bar all
+all-libs/foo all
+all-libs/qux all
+all-tools/prog1 all
+all-tools/prog2 all
+all-tools/prog3 all
+all-tools/prog4 all
+all-libs/bar
+all-bar
+all-libs/bar all-bar
+all-libs/foo
+all-foo
+all-libs/foo all-foo
+all-libs/qux
+all-qux
+all-libs/qux all-qux
+all-tools/prog1
+all-prog1
+all-tools/prog1 all-prog1
+all-tools/prog2
+all-prog2
+all-tools/prog2 all-prog2
+all-tools/prog3
+all-prog3
+all-tools/prog3 all-prog3
+all-tools/prog4
+all-prog4
+all-tools/prog4 all-prog4
+bar
+foo
+qux
+prog1
+prog2
+prog3
+prog4
+all
+check
+clean
+cleandir
+depend
+errorcheck
+filelist
+install
+installdirs
+obj
+test
+uninstall
+=====
+check-tools/prog1 check
+check-tools/prog2 check
+check-tools/prog3 check
+check-tools/prog4 check
+check-libs/bar
+check-bar
+check-libs/bar check-bar
+check-libs/foo
+check-foo
+check-libs/foo check-foo
+check-libs/qux
+check-qux
+check-libs/qux check-qux
+check-tools/prog1
+check-prog1
+check-tools/prog1 check-prog1
+check-tools/prog2
+check-prog2
+check-tools/prog2 check-prog2
+check-tools/prog3
+check-prog3
+check-tools/prog3 check-prog3
+check-tools/prog4
+check-prog4
+check-tools/prog4 check-prog4
+check

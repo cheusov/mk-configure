@@ -118,6 +118,10 @@ test_output :
 	find obj -type f -o -type l | sort; \
 	rm -rf obj; \
 	\
+	echo =========== print_deps ============; \
+	${MAKE} ${MAKEFLAGS} print_deps | grep -E '^all'; \
+	echo =====; \
+	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 
 .include <mkc.minitest.mk>

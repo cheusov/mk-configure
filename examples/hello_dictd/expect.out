@@ -708,3 +708,145 @@ obj1 does not exist
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
 /objdir/test.mk
+=========== print_deps ============
+all-libcommon all-dict
+all-libcommon all-dictd
+all-libcommon all-dictzip
+all-libcommon all-dictfmt
+all-libmaa all-dict
+all-libmaa all-dictd
+all-libmaa all-dictzip
+all-libmaa all-dictfmt
+all-libdz all-dictzip
+test-libcommon test-dict
+test-libcommon test-dictd
+test-libcommon test-dictzip
+test-libcommon test-dictfmt
+test-libmaa test-dict
+test-libmaa test-dictd
+test-libmaa test-dictzip
+test-libmaa test-dictfmt
+test-libdz test-dictzip
+all-dict dict
+all-dictd dictd
+all-dictfmt dictfmt
+all-dictzip dictzip
+all-doc doc
+all-libcommon libcommon
+all-libdz libdz
+all-libmaa libmaa
+all-dict all
+all-dictd all
+all-dictzip all
+all-dictfmt all
+all-dict
+all-dictd
+all-dictfmt
+all-dictzip
+all-doc
+all-libcommon
+all-libdz
+all-libmaa
+test-dict
+test-dictd
+test-dictfmt
+test-dictzip
+test-doc
+test-libcommon
+test-libdz
+test-libmaa
+all
+test
+=====
+all-libcommon all-dict
+all-libcommon all-dictd
+all-libmaa all-dict
+all-libmaa all-dictd
+test-libcommon test-dict
+test-libcommon test-dictd
+test-libmaa test-dict
+test-libmaa test-dictd
+all-dict dict
+all-dictd dictd
+all-doc doc
+all-libcommon libcommon
+all-libdz libdz
+all-libmaa libmaa
+all-dict all
+all-dictd all
+all-dict
+all-dictd
+all-doc
+all-libcommon
+all-libdz
+all-libmaa
+test-dict
+test-dictd
+test-doc
+test-libcommon
+test-libdz
+test-libmaa
+all
+test
+=====
+all-libcommon all-dict
+all-libcommon all-dictd
+all-libcommon all-dictzip
+all-libcommon all-dictfmt
+all-libmaa all-dict
+all-libmaa all-dictd
+all-libmaa all-dictzip
+all-libmaa all-dictfmt
+all-libdz all-dictzip
+test-libcommon test-dict
+test-libcommon test-dictd
+test-libcommon test-dictzip
+test-libcommon test-dictfmt
+test-libmaa test-dict
+test-libmaa test-dictd
+test-libmaa test-dictzip
+test-libmaa test-dictfmt
+test-libdz test-dictzip
+all-dict dict
+all-dictd dictd
+all-dictfmt dictfmt
+all-dictzip dictzip
+all-doc doc
+all-libcommon libcommon
+all-libdz libdz
+all-libmaa libmaa
+all-dict all
+all-dictd all
+all-dictzip all
+all-dictfmt all
+test2-dict test2
+test2-dictd test2
+test2-dictzip test2
+test2-dictfmt test2
+all-dict
+all-dictd
+all-dictfmt
+all-dictzip
+all-doc
+all-libcommon
+all-libdz
+all-libmaa
+test-dict
+test-dictd
+test-dictfmt
+test-dictzip
+test-doc
+test-libcommon
+test-libdz
+test-libmaa
+test2-dict
+test2-dictd
+test2-dictfmt
+test2-dictzip
+test2-doc
+test2-libcommon
+test2-libdz
+test2-libmaa
+all
+test
+test2

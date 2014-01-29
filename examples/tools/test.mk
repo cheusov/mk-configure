@@ -117,6 +117,11 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo =========== print_deps ============; \
+	${MAKE} ${MAKEFLAGS} print_deps | grep -E '^(all|[^-/ ]+$$)'; \
+	echo =====; \
+	${MAKE} ${MAKEFLAGS} print_deps | grep -E ^check; \
+	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 
 .include <mkc.minitest.mk>

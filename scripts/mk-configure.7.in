@@ -120,6 +120,11 @@ section below.
 Targets subdir-<target>-<subdir:T>
 and nodeps-<target>-<subdir:T> are also provided
 if ${SHORTPRJNAME} is "yes".
+.IP print_deps
+Outputs the dependency graph on targets in tsort(1) format
+taking NODEPS and NOSUBDIR variables into account.
+This target is provided by
+.BR mkc.subdir.mk " and " mkc.subprj.mk " only."
 .P
 .B NOTE:
 Commands associated with targets

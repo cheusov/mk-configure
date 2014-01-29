@@ -163,6 +163,16 @@ test_output :
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	unset NOSUBDIR; \
+	\
+	echo =========== print_deps ============; \
+	${MAKE} ${MAKEFLAGS} print_deps | grep -E '^(all|test)'; \
+	echo =====; \
+	NOSUBDIR='dictfmt dictzip' \
+	   ${MAKE} ${MAKEFLAGS} print_deps | grep -E '^(all|test)'; \
+	echo =====; \
+	NODEPS='test2-*:test2-dict*' TARGETS=test2 \
+	   ${MAKE} ${MAKEFLAGS} print_deps | grep -E '^(all|test)'; \
 	\
 	true =========== cleandir ============; \
 	unset NOSUBDIR || true; \

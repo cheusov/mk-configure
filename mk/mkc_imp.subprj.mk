@@ -32,15 +32,18 @@ SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}
 .for dir in ${__REALSUBPRJ:N.WAIT}
+_ALLTARGDEPS3 +=	${targ}-${dir}
 .PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
        ${targ}-${dir}: .MAKE __recurse
 subdir-${targ}-${dir}: .MAKE __recurse
 .if ${SHORTPRJNAME:tl} == "yes" && ${dir} != ${dir:T}
+_ALLTARGDEPS3 +=	${targ}-${dir:T}
 .PHONY: nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
 nodeps-${targ}-${dir:T}: nodeps-${targ}-${dir}
        ${targ}-${dir:T}:        ${targ}-${dir}
 subdir-${targ}-${dir:T}: subdir-${targ}-${dir}
+_ALLTARGDEPS3 +=	${targ}-${dir}:${targ}-${dir:T}
 .endif
 .endfor # dir
 
@@ -61,18 +64,17 @@ ${targ}: ${_SUBDIR_${targ}:S/:${targ}$//}
 .endif #!command(${targ})
 
 .for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
-#.if empty(NOSUBDIR:U:M${prj}) && empty(NOSUBDIR:U:M${dep})
 _ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
-#.endif
 .endfor # dep prj
 
 .endfor # targ
 
 .for dir in ${__REALSUBPRJ}
 .if ${SHORTPRJNAME:tl} == "yes" && ${dir:T} != ${dir}
-SRCDIR_${dir:T} = ${.CURDIR}/${dir}
-EXPORT_VARNAMES += SRCDIR_${dir:T}
-_ALLTARGDEPS += all-${dir}:${dir:T}
+SRCDIR_${dir:T}  =	${.CURDIR}/${dir}
+EXPORT_VARNAMES +=	SRCDIR_${dir:T}
+_ALLTARGDEPS    +=	all-${dir}:${dir:T}
+_ALLTARGDEPS3   +=	${dir:T}
 .endif # .if ${SHORTPRJNAME:tl} == "yes" ...
 j:=${dir:S,/,_,g}
 .if empty(j:M*[.]*)
@@ -94,10 +96,10 @@ ${prjtarg}: ${deptarg}
 # Make sure all of the standard targets are defined, even if they do nothing.
 ${TARGETS}:
 
-.PHONY: output_deps
-output_deps:
-.for i in ${_ALLTARGDEPS} ${_ALLTARGDEPS2}
-	@echo ${i}
+.PHONY: print_deps
+print_deps:
+.for i in ${_ALLTARGDEPS} ${_ALLTARGDEPS2} ${_ALLTARGDEPS3} ${TARGETS}
+	@echo ${i:S/:/ /}
 .endfor
 
 __recurse: .USE
