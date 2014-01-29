@@ -1,18 +1,6 @@
 ============================================================
 Plan 0.26.0
 
-- MKC_NEED_FUNCLIBS - the same as MKC_SOURCE_FUNCLIBS but
-  implementation is taken from mk-c.
-  Ex: MKC_NEED_FUNCLIBS += strlcat strlcpy getline
-
-  Candidates: strlcpy, strlcat, getline
-
-  Implementation details:
-    *  mkc_imp.need_strlcat.mk where all checks are made
-    *  include file mkc_strlcat.h from mkc special directory
-    *  get mkc_strlcat.c from mkc special directory
-    *  HAVE_NEED.strlcat for overriding
-
 - Special marker for checks that cannot be possible in cross-compiling
 
 Some thoughts inspired by talks with Michael Crogan
@@ -31,9 +19,6 @@ Some thoughts inspired by talks with Michael Crogan
   (myclean ->  "myclean-* : uninstall-* .WAIT clean-*)
 
 - VARIANTS for libraries.
-
-- mkc.subprj.mk: special target for outputting a dependency graph
-  taking into account NODEPS variable.
 
 - _mkc_done_<prj>_<trg>
 
@@ -55,7 +40,7 @@ Some thoughts inspired by talks with Michael Crogan
   like shlock(1) or flock(1) is needed for this.
 - Example is needed for how to embed autoconf-based subproject into a
   project based on mk-configure. The sad fact is autoconf/automake is
-  everywhere. So, it would be nice integrate mk-c into reality.
+  everywhere. So, it would be nice to integrate mk-c into reality.
   mkc_imp.autotools.mk is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
   make info files
@@ -79,16 +64,6 @@ Some thoughts inspired by talks with Michael Crogan
 Some "targets" from TARGETS should set MKCHECKS to "no"
 
 ronn(1) : markdown to man pages
-
------------------------------------------
-gcc -L/usr/pkg/lib -R/usr/pkg/lib     -o hello_lex hello_lex.o   -ll
-yacc    calc.y
-mv y.tab.c calc.c
-gcc   -I/usr/pkg/include   -c     -o calc.o calc.c
-gcc -L/usr/pkg/lib -R/usr/pkg/lib     -o hello_calc calc.o
-ERROR: cannot find program -y
-Cannot find bison, good bye!
-------------------------------------------
 
   Reimplement linkme.mk. It is not flexible enough.
     - Additional type of dependencies in mkc.subprjs.mk (LIBDEPS =
@@ -114,7 +89,6 @@ Cannot find bison, good bye!
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - @sysconfdir@/mkc.conf
-  - LDFLAGS vs. LDFLAGS in link.me (global paths before project's)
   - USE_RPATH
   - OBJCOPTS_<proj>
   - Regression tests:
@@ -144,7 +118,6 @@ Plan 2)
     dynamic symbol table (GNU ld)
   - EXPORT_SYMBOLS_REGEXP
 
-  - recheck documentation for Makefile.rec
   - Syllable, Haiku, OpenServer/UnixWare and HURD
   - lcc and tcc compilers
   - epm -> rpm, SVR4 pkg etc.
