@@ -118,7 +118,7 @@ int main ()
    return 0;
 }
 #else
-.error "$declwhat is not a define"
+#error "$declwhat is not a define"
 #endif
 EOF
 
