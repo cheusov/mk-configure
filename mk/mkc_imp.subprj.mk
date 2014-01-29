@@ -94,6 +94,29 @@ output_deps:
 	@echo ${i}
 .endfor
 
+__recurse: .USE
+	@targ=${.TARGET:S/^nodeps-//:C/-.*$//};				\
+	dir=${.TARGET:S/^nodeps-//:C/^[^-]*-//};			\
+	if ! test -f ${.CURDIR}/$$dir/Makefile; then exit 0; fi;	\
+	test "$${targ}_${MKINSTALL:tl}" = 'install_no' && exit 0;       \
+	test "$${targ}_${MKINSTALL:tl}" = 'installdirs_no' && exit 0;	\
+	${export_cmd}							\
+	set -e;								\
+	${VERBOSE_ECHO} ================================================== 1>&2;\
+	case "$$dir" in /*)						\
+		${VERBOSE_ECHO} "$$targ ===> $$dir" 1>&2;		\
+		cd "$$dir";						\
+		env "_THISDIR_=$$dir/" ${MAKE} ${MAKEFLAGS} $$targ;		\
+		;;							\
+	*)								\
+		${VERBOSE_ECHO} "$$targ ===> ${_THISDIR_}$$dir" 1>&2;	\
+		cd "${.CURDIR}/$$dir";					\
+		env "_THISDIR_=${_THISDIR_}$$dir/" ${MAKE} ${MAKEFLAGS} $$targ; \
+		;;							\
+	esac
+
+###########
+
 .include <mkc_imp.objdir.mk>
 
 .endif # _MKC_IMP_SUBPRJ_MK
