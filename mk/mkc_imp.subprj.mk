@@ -16,6 +16,10 @@ __REALSUBPRJ += ${dir}
 .endif
 .endfor
 
+.for dir in ${NOSUBDIR}
+NODEPS +=	*-${dir}:* *:*-${dir}   *-*/${dir}:* *:*-*/${dir}
+.endfor
+
 .ifndef SUBDIR
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
 .endif
@@ -57,8 +61,10 @@ ${targ}: ${_SUBDIR_${targ}:S/:${targ}$//}
 .endif #!command(${targ})
 
 .for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
+#.if empty(NOSUBDIR:U:M${prj}) && empty(NOSUBDIR:U:M${dep})
 _ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
-.endfor
+#.endif
+.endfor # dep prj
 
 .endfor # targ
 
