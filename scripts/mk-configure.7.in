@@ -56,7 +56,7 @@ include files provide the following targets:
 .IP all
 build everything.
 .IP clean
-clean temporary files and directories created while building with a help of
+clean temporary files and directories with a help of
 ${CLEANFILES_CMD} and ${CLEANDIRS_CMD} commands.
 .IP cleandir
 remove all of the files removed by the target clean, as
@@ -94,37 +94,6 @@ The target
 .I bin_deb
 expects debian control files in DEBIAN subdirectory, see examples/hello_files
 for the sample.
-.IP "<subdir> and <subdir:T>"
-<subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
-This target is equivalent to all-<subdir> and is provided by
-.BR mkc.subdir.mk " and " mkc.subprj.mk
-only. For details see
-.BR mkc.subdir.mk " or " mkc.subprj.mk
-sections below. <subdir:T> means the last component of the directory.
-This target is created if ${SHORTPRJNAME} is "yes".
-.IP <target>-<subdir>
-runs the specified <target> for the specified <subdir>.
-This target is provided by
-.BR mkc.subdir.mk " and " mkc.subprj.mk
-only. For details see
-.BR mkc.subdir.mk " or " mkc.subprj.mk
-sections below. The target <target>-<subdir:T> is also provided
-if ${SHORTPRJNAME} is "yes".
-.IP "subdir-<target>-<subdir> and nodeps-<target>-<subdir>"
-runs the specified <target> for the specified <subdir> without dependencies.
-These targets are provided by
-.BR mkc.subprj.mk
-only. For details see
-.BR mkc.subprj.mk
-section below.
-Targets subdir-<target>-<subdir:T>
-and nodeps-<target>-<subdir:T> are also provided
-if ${SHORTPRJNAME} is "yes".
-.IP print_deps
-Outputs the dependency graph on targets in tsort(1) format
-taking NODEPS and NOSUBDIR variables into account.
-This target is provided by
-.BR mkc.subdir.mk " and " mkc.subprj.mk " only."
 .P
 .B NOTE:
 Commands associated with targets
@@ -943,6 +912,9 @@ and all its dependencies while
 See
 .I examples/hello_dictd
 subdirectory for the sample of use.
+.P
+.B mkc.subprj.mk
+provides the following variables:
 .IP SUBPRJ
 List of subprojects (subdirectories) and dependencies. If the
 subdirectory doesn't exist the subproject becomes "virtual" and may be
@@ -1004,6 +976,26 @@ are used. Unlike MAKEOBJDIRPREFIX object directories do not contain
 top-level ${.CURDIR} in paths.
 .RI < "Iu" >
 .RI [ no ]
+.P
+.B mkc.subprj.mk
+provides the following targets:
+.IP "<subdir> and <subdir:T>"
+<subdir> is a subdirectory listed in SUBDIR or SUBPRJ.
+This target is equivalent to all-<subdir>.
+<subdir:T> means the last component of the directory
+and is created if ${SHORTPRJNAME} is "yes".
+.IP <target>-<subdir>
+Runs the specified <target> for the specified <subdir>.
+The target <target>-<subdir:T> is provided
+if ${SHORTPRJNAME} is "yes".
+.IP "subdir-<target>-<subdir> and nodeps-<target>-<subdir>"
+Runs the specified <target> for the specified <subdir> without dependencies.
+Targets subdir-<target>-<subdir:T>
+and nodeps-<target>-<subdir:T> are provided
+if ${SHORTPRJNAME} is "yes".
+.IP print_deps
+Outputs the dependency graph on targets in tsort(1) format
+taking NODEPS and NOSUBDIR variables into account.
 .SS "mkc.subdir.mk"
 The include file
 .B mkc.subdir.mk
