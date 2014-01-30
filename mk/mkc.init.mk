@@ -107,6 +107,7 @@ init_make_level ?= 0 # for mkc.configure.mk
 .if ${.MAKE.LEVEL} == ${init_make_level}
 SRCTOP       ?=	${.CURDIR}
 OBJTOP       ?=	${.OBJDIR}
+.export SRCTOP OBJTOP
 .endif
 
 ###########
@@ -271,7 +272,7 @@ MKPROFILELIB ?=	no
 
 MKINSTALLDIRS   ?=	yes
 
-EXPORT_VARNAMES +=	MKC_CACHEDIR TARGETS SHORTPRJNAME SRCTOP OBJTOP
+EXPORT_VARNAMES +=	MKC_CACHEDIR TARGETS SHORTPRJNAME
 
 EXPORT_DYNAMIC  ?=	no
 
