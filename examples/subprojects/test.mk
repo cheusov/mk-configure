@@ -1,3 +1,5 @@
+next_level !=	expr ${.MAKE.LEVEL} + 1
+
 .PHONY : test_output
 test_output :
 	@set -e; \
@@ -70,6 +72,27 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	\
+	echo ======= debug/release =======; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -j3 debug 1>&2; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} -j3 release 1>&2; \
+	find ${.CURDIR}/release ${.CURDIR}/debug -type f | \
+	mkc_test_helper "${PREFIX}" "${.CURDIR}"; \
+	rm -rf ${.CURDIR}/release ${.CURDIR}/debug; \
+	\
+	echo ======= drp =======; \
+	env BM=debug   init_make_level=${next_level} \
+	   ${MAKE} ${MAKEFLAGS} -j3 all 1>&2; \
+	find ${.CURDIR}/obj -type f | \
+	mkc_test_helper "${PREFIX}" "${.CURDIR}"; \
+	rm -rf ${.CURDIR}/obj; \
+	echo =======; \
+	env BM=release init_make_level=${next_level} \
+	   ${MAKE} ${MAKEFLAGS} -j3 all 1>&2; \
+	find ${.CURDIR}/obj -type f | \
+	mkc_test_helper "${PREFIX}" "${.CURDIR}"; \
+	rm -rf ${.CURDIR}/obj; \
 	\
 	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
