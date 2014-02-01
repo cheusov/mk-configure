@@ -63,29 +63,8 @@ INSTALL  ?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
 
 ####################
 
-.if !defined(CC.SunOS)
-.if exists(/usr/ccs/bin/cc)
-CC.SunOS  =	/usr/ccs/bin/cc
-.elif exists(/opt/SUNWspro/bin/cc)
-CC.SunOS  =	/opt/SUNWspro/bin/cc
-.elif exists(/usr/sfw/bin/gcc)
-CC.SunOS  =	/usr/sfw/bin/gcc
-.else
 CC.SunOS  =	cc
-.endif # exists...
-.endif # defined(CC.SunOS)
-
-.if !defined(CXX.SunOS)
-.if exists(/usr/ccs/bin/CC)
-CXX.SunOS =	/usr/ccs/bin/CC
-.elif exists(/opt/SUNWspro/bin/CC)
-CXX.SunOS =	/opt/SUNWspro/bin/CC
-.elif exists(/usr/sfw/bin/g++)
-CXX.SunOS =	/usr/sfw/bin/g++
-.else
-CXX.SunOS =	c++
-.endif # exists...
-.endif # defined(CC.SunOS)
+CXX.SunOS =	CC
 
 CPP.SunOS    =	${CC} -E
 
