@@ -6,6 +6,7 @@ test:
 	tmp_out=${.OBJDIR}/${.CURDIR:T}.test.out; \
 	rm -f $$tmp_out; \
 	${MAKE} ${MAKEFLAGS} -f ${.CURDIR}/test.mk all 2>&1 | \
+	sed 's,bmake\[[0-9]*\],bmake,' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}" > $$tmp_out; \
 	diff ${.CURDIR}/expect.out $$tmp_out && \
 	echo '      succeeded' 1>&2 || \
