@@ -1504,6 +1504,20 @@ not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 This feature checks whether libdl library is available and dlopen(3)
 is declared in dlfcn.h.  If yes, -ldl is added to LDADD. mkc_libdl.h
 provides declarations for dlopen(3), dlsym(3), dlclose(3) etc.
+.TP
+.B "RB SPLAY"
+BSD systems provide sys/tree.h header where RB_* and SPLAY_* macroses
+are defined for red-black tree and splay. These features check whether
+sys/tree.h and appropriate macroses are available. If yes, mkc_RB.h
+and mkc_SPLAY.h include system-wide sys/tree.h, otherwise NetBSD
+version of sys/tree.h provided by mk-configure is included.
+.TP
+.B "SLIST SIMPLEQ STAILQ LIST TAILQ CIRCLEQ"
+BSD systems provide sys/queue.h header where SLIST_* etc. macroses are
+defined for lists and queues. These features check whether sys/queue.h
+and appropriate macroses are available. If yes, mkc_SLIST.h and others
+include system-wide sys/queue.h, otherwise NetBSD version of
+sys/queue.h provided by mk-configure is included.
 .RE
 .SS mkc_imp.scripts.mk
 is internal include file which is included from

@@ -248,6 +248,57 @@ GEN: hello_subprojects2
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
 /objdir/version.mk
+======= debug/release =======
+/objdir/debug/hello/hello_subprojects
+/objdir/debug/hello/hello_subprojects.1
+/objdir/debug/hello/hello_subprojects.cat1
+/objdir/debug/hello/hello_subprojects.o
+/objdir/debug/hello/hello_subprojects2
+/objdir/debug/libhello1/hello1.o
+/objdir/debug/libhello1/hello1.os
+/objdir/debug/libhello1/libhello1.a
+/objdir/debug/libhello1/libhello1.so.1.0
+/objdir/debug/libhello2/hello2.cat3
+/objdir/debug/libhello2/hello2.o
+/objdir/debug/libhello2/libhello2.a
+/objdir/release/hello/hello_subprojects
+/objdir/release/hello/hello_subprojects.1
+/objdir/release/hello/hello_subprojects.cat1
+/objdir/release/hello/hello_subprojects.o
+/objdir/release/hello/hello_subprojects2
+/objdir/release/libhello1/hello1.o
+/objdir/release/libhello1/hello1.os
+/objdir/release/libhello1/libhello1.a
+/objdir/release/libhello1/libhello1.so.1.0
+/objdir/release/libhello2/hello2.cat3
+/objdir/release/libhello2/hello2.o
+/objdir/release/libhello2/libhello2.a
+======= drp =======
+/objdir/obj/debug/hello/hello_subprojects
+/objdir/obj/debug/hello/hello_subprojects.1
+/objdir/obj/debug/hello/hello_subprojects.cat1
+/objdir/obj/debug/hello/hello_subprojects.o
+/objdir/obj/debug/hello/hello_subprojects2
+/objdir/obj/debug/libhello1/hello1.o
+/objdir/obj/debug/libhello1/hello1.os
+/objdir/obj/debug/libhello1/libhello1.a
+/objdir/obj/debug/libhello1/libhello1.so.1.0
+/objdir/obj/debug/libhello2/hello2.cat3
+/objdir/obj/debug/libhello2/hello2.o
+/objdir/obj/debug/libhello2/libhello2.a
+=======
+/objdir/obj/release/hello/hello_subprojects
+/objdir/obj/release/hello/hello_subprojects.1
+/objdir/obj/release/hello/hello_subprojects.cat1
+/objdir/obj/release/hello/hello_subprojects.o
+/objdir/obj/release/hello/hello_subprojects2
+/objdir/obj/release/libhello1/hello1.o
+/objdir/obj/release/libhello1/hello1.os
+/objdir/obj/release/libhello1/libhello1.a
+/objdir/obj/release/libhello1/libhello1.so.1.0
+/objdir/obj/release/libhello2/hello2.cat3
+/objdir/obj/release/libhello2/hello2.o
+/objdir/obj/release/libhello2/libhello2.a
 ======= library dependencies =======
 Hello1
 Hello v.1.2.3
