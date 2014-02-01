@@ -90,14 +90,15 @@ __errorcheck: .USE
 realall : realerrorcheck
 realerrorcheck: __errorcheck
 
+.include <mkc_imp.checkprogs.mk>
+.include <configure.mk>
+
 # features
 .for f in ${MKC_FEATURES}
 .include <mkc_imp.f_${f}.mk>
 .endfor
-CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
-
-.include <mkc_imp.checkprogs.mk>
 .include <configure.mk>
+CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
