@@ -1,4 +1,6 @@
-.include <mkc.configure.mk> # FIX: pass -D_GNU_SOURCE only for dlopen:dlfcn.h
+# Copyright (c) 2014 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
 
 MKC_COMMON_DEFINES += -D_GNU_SOURCE
 
