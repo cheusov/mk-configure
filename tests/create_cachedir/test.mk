@@ -1,5 +1,6 @@
 TEST_MKC_CACHEDIR  =	${.CURDIR}/.cache
 CLEANFILES   +=		${.OBJDIR}/${.CURDIR:T}.test.out ${TEST_MKC_CACHEDIR}
+CLEANDIRS    +=		${TEST_MKC_CACHEDIR}
 
 .PHONY : test_output
 test_output:
