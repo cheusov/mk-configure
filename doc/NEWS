@@ -1,4 +1,61 @@
 ======================================================================
+Version 0.26.0, by Aleksey Cheusov, Sat,  1 Feb 2014 17:21:45 +0300
+
+  "Features" framework was implemented (variable MKC_FEATURES).  In
+  general, a feature is something that has problems with
+  portability. This may be a function name or header missing on some
+  platforms, for example.  What developer needs to do is to add
+  FEATURENAME to MKC_FEATURES variable and add #include
+  <mkc_FEATURENAME.h> where it is needed. Internally, system
+  requiremets are checked in the automatically included
+  mkc_imp.f_FEATURENAME.mk file and all required actions (includes,
+  define checks etc.)  are made in mkc_FEATURENAME.h header file.
+  Currently the following features are provided: strlcat, strlcpy,
+  getline, libm, libdl, RB, SPLAY, SLIST, SIMPLEQ, STAILQ, LIST, TAILQ
+  and CIRCLEQ. Original idea was stolen from pkgsrc.
+
+  mkc_imp.pkg-config.mk:
+    - New variables MKC_CHECK_PKGCONFIG and MKC_REQUIRE_PKGCONFIG were
+      introduced.  They work just like other MKC_{CHECK,REQUIRE}_*
+      variables from mkc.configure.mk. Thanks to Andrew Shadura for
+      pushing me to this direction.
+
+  mkc.configure.mk:
+    - MKC_{CHECK,REQUIRE}_PROTOTYPES were introduced.  With their help
+      mk-configure is able to check C function prototypes.  This
+      feature was proposed by Andrew Shadura.
+
+  If ${MKC_CACHEDIR} does not exit, it is automatically created.
+
+  ${SRCTOP}/Makefile.common is included by all subprojects if it
+  exists. It can be used as a replacement or addition for
+  ../Makefile.inc.
+
+  Valiables SRCDIR_<dir>, SRC_PATHADD, MKC_SOURCE_DIR, LDFLAGS0 and
+  LDADD0 were introduced.
+
+  Wrongly named builtin 'endianess' was renamed to 'endianness'.
+  Thanks to Andew Shadura for the report and fix!
+
+  mk-configure itself is now 2-level project.
+  This allows me to run an arbitrary regression test like the following
+     bmake test-examples/hello_world
+  Hurray! :-)
+
+  mkc.subprj.mk:
+    - Now it works correctly if NOSUBDIR is not empty.
+      Also, NOSUBDIR affects NODEPS and therefore the dependency graph.
+    - New target "print-deps" that outputs the dependency graph was
+      introduced.
+
+  -O is added to CFLAGS if USE_FORT==yes, seen on Linux/ppc64/gcc
+
+  Documentation: clean-ups, grammar fixes, minor improvements.
+
+  Fix. Some @@ patterns in mk-configure.7 should not be replaced with
+  directories. Thanks to Andrew Shadura for the report!
+
+======================================================================
 Version 0.25.0, by Aleksey Cheusov, Wed,  1 Jan 2014 19:28:55 +0300
 
   Build infrastructure for mk-c itself was completely reimplemented.
