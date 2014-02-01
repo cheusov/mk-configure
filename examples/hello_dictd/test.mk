@@ -17,7 +17,10 @@ test_output :
 	\
 	echo =========== nm ============; \
 	case ${OPSYS} in \
-	  *BSD|Linux|SunOS) \
+	  *BSD|SunOS) \
+	    ${NM} -P ${.CURDIR}/libmaa/libmaa*.so | awk 'NF==4 && $$2=="T" {print "libmaa " $$1}'; \
+	    ${NM} -P ${.CURDIR}/libdz/libdz*.so   | awk 'NF==4 && $$2=="T" {print "libdz " $$1}';; \
+	  Linux) \
 	    ${NM} -P ${.CURDIR}/libmaa/libmaa*.so | awk 'NF==4 && $$2 ~ /^[DT]$$/ {print "libmaa " $$1}'; \
 	    ${NM} -P ${.CURDIR}/libdz/libdz*.so   | awk 'NF==4 && $$2 ~ /^[DT]$$/ {print "libdz " $$1}';; \
 	  *) \
