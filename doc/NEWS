@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.26.0, by Aleksey Cheusov, Sun,  2 Feb 2014 19:47:17 +0300
+Version 0.26.0, by Aleksey Cheusov, Mon,  3 Feb 2014 00:32:51 +0300
 
   "Features" framework was implemented (variable MKC_FEATURES).  In
   general, a feature is something that has problems with
