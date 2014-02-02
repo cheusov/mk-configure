@@ -43,6 +43,7 @@ makedepend_cmd ?=	makedepend
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
 INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
+INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 
 #################################################
 .include <mkc.mk>
