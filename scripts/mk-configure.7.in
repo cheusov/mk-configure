@@ -1879,6 +1879,10 @@ and
 .IP DPSRCS
 List of source files which are needed for generating
 dependencies, but are not needed in ${SRCS}.
+.IP MKDEP_CC
+Compiler passed to mkdep(1).
+.RI < "Iu" >
+.RI [ "${CC}" ].
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM

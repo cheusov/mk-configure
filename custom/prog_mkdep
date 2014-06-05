@@ -14,12 +14,16 @@ extra_args="$*"
 pathpart='custom_nbmkdep'
 . mkc_check_common.sh
 
-#trap "echo $tmpc; rm $tmpc" 0
 trap "rm -f $tmpc $tmpo" 0
 
 cat > "$tmpc" <<'EOF'
 #include <stdio.h>
 EOF
+
+if test -n "$MKDEP_CC"; then
+    CC="$MKDEP_CC"
+    export CC
+fi
 
 check_mkdep (){
     "$1" -f "$tmpo" $extra_args -I . -I `pwd` "$tmpc"

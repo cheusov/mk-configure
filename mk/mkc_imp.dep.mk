@@ -17,6 +17,7 @@ depend: _beforedepend .depend
 ##### Default values
 MKDEP          ?=	mkdep
 MKDEP_SUFFIXES ?=	.o .os .op
+MKDEP_CC       ?=	${CC}
 
 ##### Build rules
 # some of the rules involve .h sources, so remove them from mkdep line
@@ -44,22 +45,22 @@ ddash=
 .endif
 
 .if ${MKDEP_TYPE:U} == "makedepend"
-MKDEP.c   = @${MAKEDEPEND} -f- ${ddash} ${MKDEPFLAGS} \
+MKDEP.c   = ${MAKEDEPEND} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
-MKDEP.m   = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+MKDEP.m   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
-MKDEP.cc  = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+MKDEP.cc  = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
-MKDEP.s   = @${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
+MKDEP.s   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
 .else
-MKDEP.c   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+MKDEP.c   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
-MKDEP.m   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+MKDEP.m   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
-MKDEP.cc  = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+MKDEP.cc  = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
-MKDEP.s   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
+MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
 .endif
 
@@ -76,7 +77,7 @@ MKDEP.s   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 
 .c.d:
 	${MESSAGE.dep}
-	@${MKDEP.c} ${.IMPSRC}
+	@env CC=${MKDEP_CC} ${MKDEP.c} ${.IMPSRC}
 
 .m.d:
 	${MESSAGE.dep}
@@ -84,11 +85,11 @@ MKDEP.s   = @${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 
 .s.d .S.d:
 	${MESSAGE.dep}
-	@${MKDEP.s} ${.IMPSRC}
+	@env CC=${MKDEP_CC} ${MKDEP.s} ${.IMPSRC}
 
 .C.d .cc.d .cpp.d .cxx.d:
 	${MESSAGE.dep}
-	@${MKDEP.cc} ${.IMPSRC}
+	@env CC=${MKDEP_CC} ${MKDEP.cc} ${.IMPSRC}
 
 .endif # defined(SRCS)
 

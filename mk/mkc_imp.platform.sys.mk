@@ -103,7 +103,7 @@ CPPFLAGS +=	${CPPFLAGS.${TARGET_OPSYS}:U}
 ############################################################
 # CC compiler type
 .if make(cleandir) || make(distclean) || make(clean)
-.elif ${MKCHECKS:Uno:tl} == "yes" && !defined(CC_TYPE) && (defined(PROGS) || defined(LIB))
+.elif ${MKCHECKS:Uno:tl} == "yes" && !defined(CC_TYPE) && (defined(PROGS) || defined(LIB) || defined(MKC_CHECK_PROTOTYPES))
 mkc.cc_type.environ = CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 .if !empty(src_type:Mc)
 CC_TYPE  !=	env ${mkc.cc_type.environ} mkc_check_compiler
@@ -120,11 +120,13 @@ CXX_TYPE ?=	unknown
 
 # C
 CFLAGS.dflt.clang     =		-Qunused-arguments
+CFLAGS.dflt.icc       =		-we147 # 147 is required for MKC_CHECK_PROTOTYPES
 
 CFLAGS               +=		${CFLAGS.dflt.${CC_TYPE}}
 
 # C++
 CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
+CXXFLAGS.dflt.icc     =		-we147
 
 CXXFLAGS             +=		${CXXFLAGS.dflt.${CXX_TYPE}}
 
