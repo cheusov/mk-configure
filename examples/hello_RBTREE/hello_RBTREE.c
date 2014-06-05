@@ -21,8 +21,9 @@ static int berrys_cmp (struct berry *a, struct berry *b)
 }
 
 static RB_HEAD (berrys_entries, berry) berrys = RB_INITIALIZER(&berrys);
-RB_PROTOTYPE (berrys_entries, berry, link, berrys_cmp);
-RB_GENERATE (berrys_entries, berry, link, berrys_cmp);
+
+RB_PROTOTYPE (berrys_entries, berry, link, berrys_cmp)
+RB_GENERATE (berrys_entries, berry, link, berrys_cmp)
 
 static void output_berries (void)
 {
