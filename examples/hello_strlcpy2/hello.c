@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 #ifndef HAVE_FUNC3_STRLCPY_STRING_H
 size_t strlcpy(char *dst, const char *src, size_t siz);

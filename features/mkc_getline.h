@@ -8,6 +8,7 @@
 #define _MKC_GETLINE_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 #ifndef HAVE_FUNC3_GETLINE_STDIO_H
 ssize_t getline(char** lineptr, size_t* n, FILE* stream);

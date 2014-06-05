@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.26.0, by Aleksey Cheusov, Sat,  1 Feb 2014 17:21:45 +0300
+Version 0.26.0, by Aleksey Cheusov, Mon,  3 Feb 2014 00:32:51 +0300
 
   "Features" framework was implemented (variable MKC_FEATURES).  In
   general, a feature is something that has problems with
@@ -54,6 +54,11 @@ Version 0.26.0, by Aleksey Cheusov, Sat,  1 Feb 2014 17:21:45 +0300
 
   Fix. Some @@ patterns in mk-configure.7 should not be replaced with
   directories. Thanks to Andrew Shadura for the report!
+
+  This release was successfully tested on the following platforms:
+  NetBSD-6.1/amd64, FreeBSD-8.3/amd64, OpenBSD-{4.9,5.3}/x86,
+  DragonFlyBSD-3.4/x86, Linux/{x86,amd64}, SunOS-5.10/sparc,
+  SunOS-5.11/x86.
 
 ======================================================================
 Version 0.25.0, by Aleksey Cheusov, Wed,  1 Jan 2014 19:28:55 +0300

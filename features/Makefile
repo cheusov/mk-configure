@@ -1,4 +1,4 @@
-.for f in strlcat strlcpy
+.for f in strlcat strlcpy getline
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}

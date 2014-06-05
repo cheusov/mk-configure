@@ -6,4 +6,11 @@
 # See LICENSE file in the distribution.
 ############################################################
 
+# workround for crappylaris
+if test -z "$CRAPPYLIS" -a -x /usr/xpg4/bin/sh; then
+	CRAPPYLIS=1
+	export CRAPPYLIS
+	exec /usr/xpg4/bin/sh "$0" "$@"
+fi
+
 ${0%%/prog_nbmkdep}/prog_mkdep --
