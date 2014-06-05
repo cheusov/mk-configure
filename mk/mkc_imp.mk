@@ -16,10 +16,8 @@ SUBPRJ   +=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
 _use_prog :=	1
 .endif
 
-.if defined(_use_prog) || defined(LIB)
 .include <mkc_imp.lua.mk>
 .include <mkc_imp.pod.mk>
-.endif # _use_prog || LIB
 
 .include <mkc.init.mk>
 .include <mkc_imp.rules.mk>
