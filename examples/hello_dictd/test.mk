@@ -64,7 +64,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr; \
+	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/home; \
 	echo =========== MKOBJDIRS=auto ============; \
 	env TARGETS=fake ${MAKE} ${MAKEFLAGS} fake \
 		MKCHECKS=no MAKEOBJDIRPREFIX=${.OBJDIR}/obj1 > /dev/null; \
