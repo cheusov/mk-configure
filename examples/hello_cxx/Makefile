@@ -4,7 +4,7 @@ WARNS =		4
 
 CPPFLAGS +=	-I.
 
-SRCS =		hello_msg.cc main.cc
+SRCS =		main.cc hello_msg.cc five.c seven.c
 
 MKC_REQD =	0.12.9
 
