@@ -107,7 +107,8 @@ CPPFLAGS +=	${CPPFLAGS.${TARGET_OPSYS}:U}
 mkc.cc_type.environ = CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 .if !empty(src_type:Mc)
 CC_TYPE  !=	env ${mkc.cc_type.environ} mkc_check_compiler
-.elif !empty(src_type:Mcxx)
+.endif
+.if !empty(src_type:Mcxx)
 CXX_TYPE !=	env ${mkc.cc_type.environ} mkc_check_compiler -x
 .endif # src_type
 .endif # cleandir|distclean|...

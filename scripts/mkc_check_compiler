@@ -21,8 +21,11 @@ trap 'rm -f "$tmpfile"' 0
 pathpart=compiler_type
 if test "$1" = -x; then
     pathpart=cxx_type
+    langname='C'
     CC="$CXX"
     export CC
+else
+    langname='C++'
 fi
 
 ##################################################
@@ -62,7 +65,7 @@ BEGIN {
 
 . mkc_check_common.sh
 
-check_and_cache "checking for compiler type" "$cache"
+check_and_cache "checking for $langname compiler type" "$cache"
 
 printme '%s\n' "$ret" 1>&2
 
