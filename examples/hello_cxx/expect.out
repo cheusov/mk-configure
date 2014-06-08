@@ -1,11 +1,20 @@
 Hello world!
+Five: 5
+Seven: 7
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
+/objdir/five.c
+/objdir/five.h
+/objdir/five.o
 /objdir/hello_cxx
 /objdir/hello_cxx.test.out.tmp
 /objdir/hello_msg.cc
@@ -13,6 +22,9 @@ Hello world!
 /objdir/hello_msg.o
 /objdir/main.cc
 /objdir/main.o
+/objdir/seven.c
+/objdir/seven.h
+/objdir/seven.o
 /objdir/test.mk
 ========= install ==========
 /objdir/prefix
@@ -21,21 +33,33 @@ Hello world!
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
+/objdir/five.c
+/objdir/five.h
 /objdir/hello_cxx.test.out.tmp
 /objdir/hello_msg.cc
 /objdir/hello_msg.h
 /objdir/main.cc
+/objdir/seven.c
+/objdir/seven.h
 /objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
+/objdir/five.c
+/objdir/five.h
 /objdir/hello_cxx.test.out.tmp
 /objdir/hello_msg.cc
 /objdir/hello_msg.h
 /objdir/main.cc
+/objdir/seven.c
+/objdir/seven.h
 /objdir/test.mk
