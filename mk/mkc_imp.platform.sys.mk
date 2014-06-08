@@ -211,8 +211,8 @@ CXXFLAGS.warns.hpc.4 =		${CFLAGS.warns.hpc.4}
 
 ####################
 
-CFLAGS   +=			${CFLAGS.warns.${CC_TYPE}.${WARNS}}
-CXXFLAGS +=			${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}}
+CFLAGS.warns   =		${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
+CXXFLAGS.warns =		${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 
 ####################
 CFLAGS.pic.gcc.Interix =
@@ -236,7 +236,7 @@ CFLAGS.pie.icc =		-fPIE -DPIC
 CFLAGS.pie.clang =		-fPIE -DPIC
 
 CFLAGS.pie   ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}}:U${CFLAGS.pic}}
-CXXFLAGS.pie ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}}:U${CXXFLAGS.pic}}
+CXXFLAGS.pie ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CXX_TYPE}}:U${CXXFLAGS.pic}}
 
 ####################
 CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param ssp-buffer-size=1

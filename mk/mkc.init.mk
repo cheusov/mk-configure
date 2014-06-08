@@ -281,15 +281,15 @@ DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 .include <mkc_imp.platform.sys.mk>
 
 ######
-.if ${MKPIE:U:tl} == "yes"
+.if ${MKPIE:U:tl} == "yes" && ${_top_mk:U} == "mkc.prog.mk"
 LDFLAGS.prog +=	${LDFLAGS.pie}
-CFLAGS       +=	${CFLAGS.pie}
-CXXFLAGS     +=	${CXXFLAGS.pie}
+_CFLAGS.pie   +=	${CFLAGS.pie}
+_CXXFLAGS.pie +=	${CXXFLAGS.pie}
 .endif
 
 .if ${USE_SSP:U:tl} == "yes"
-CFLAGS   +=	${CFLAGS.ssp}
-CXXFLAGS +=	${CXXFLAGS.ssp}
+_CFLAGS.ssp   =	${CFLAGS.ssp}
+_CXXFLAGS.ssp =	${CXXFLAGS.ssp}
 .endif
 
 .if ${USE_RELRO:U:tl} == "yes"
@@ -325,12 +325,12 @@ MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
 CC        ?=	cc
 CFLAGS    ?=
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${CPPFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX        ?=	c++
 CXXFLAGS   +=	${CFLAGS}
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${CFLAGS.warnerr} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 OBJC       ?=	${CC}

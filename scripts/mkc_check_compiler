@@ -21,11 +21,11 @@ trap 'rm -f "$tmpfile"' 0
 pathpart=compiler_type
 if test "$1" = -x; then
     pathpart=cxx_type
-    langname='C'
+    langname='C++'
     CC="$CXX"
     export CC
 else
-    langname='C++'
+    langname='C'
 fi
 
 ##################################################
