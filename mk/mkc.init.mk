@@ -281,7 +281,7 @@ DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 .include <mkc_imp.platform.sys.mk>
 
 ######
-.if ${MKPIE:U:tl} == "yes" && ${_top_mk:U} == "mkc.prog.mk"
+.if ${MKPIE:U:tl} == "yes"
 LDFLAGS.prog +=	${LDFLAGS.pie}
 _CFLAGS.pie   +=	${CFLAGS.pie}
 _CXXFLAGS.pie +=	${CXXFLAGS.pie}
