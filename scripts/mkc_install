@@ -26,10 +26,7 @@
 
 
 # set DOITPROG to echo to test this script
-
-# Don't use :- since 4.3BSD and earlier shells don't like it.
 doit="${DOITPROG-}"
-
 
 # put in absolute paths if you don't have them in your path; or use env. vars.
 
@@ -53,12 +50,14 @@ src=""
 dst=""
 dir_arg=""
 
+set -e
+
 mkcchgrp () { $chgrpprog "$grp" "$@"; }
 mkcchown () { $chownprog "$own" "$@"; }
 mkcchmod () { $chmodprog "$mod" "$@"; }
 
 while [ x"$1" != x ]; do
-    case $1 in
+    case "$1" in
 	-c) instcmd="$cpprog"
 	    shift
 	    continue;;
@@ -102,8 +101,6 @@ done
 if [ x"$src" = x ]; then
 	echo "install:	no input file specified"
 	exit 1
-else
-	true
 fi
 
 if [ x"$dir_arg" != x ]; then
@@ -111,7 +108,7 @@ if [ x"$dir_arg" != x ]; then
 
 	if [ -d "$dst" ]; then
 		instcmd=:
-		chmodcmd=":"
+		chmodcmd=:
 	else
 		instcmd="$mkdirprog -p"
 	fi
@@ -131,8 +128,6 @@ else
 	if [ x"$dst" = x ]; then
 		echo "install:	no destination specified"
 		exit 1
-	else
-		true
 	fi
 
 # If destination is a directory, append the input filename; if your system
@@ -140,8 +135,6 @@ else
 
 	if [ -d "$dst" ]; then
 		dst="$dst"/`basename "$src"`
-	else
-		true
 	fi
 fi
 
@@ -149,16 +142,16 @@ fi
 dstdir=`dirname "$dst"`
 
 if [ x"$dir_arg" != x ]; then
-	$doit $instcmd "$dst" &&
+	$doit $instcmd "$dst"
 
-	$doit $chowncmd "$dst" &&
-	$doit $chgrpcmd "$dst" &&
-	$doit $stripcmd "$dst" &&
+	$doit $chowncmd "$dst"
+	$doit $chgrpcmd "$dst"
+	$doit $stripcmd "$dst"
 	$doit $chmodcmd "$dst"
 else
 # Make sure that the destination directory exists.
 	if [ ! -d "$dstdir" ]; then
-		$mkdirprog -p "$dstdir" 2>/dev/null
+		$mkdirprog -p "$dstdir"
 	fi
 
 # No renaming of the final executable
@@ -170,9 +163,9 @@ else
 
 # Move or copy the file name to the temp name
 
-	$doit $instcmd "$src" "$dsttmp" &&
+	$doit $instcmd "$src" "$dsttmp"
 
-	trap "rm -f '${dsttmp}'" 0 &&
+	trap "rm -f '${dsttmp}'" 0
 
 # and set any options; do chmod last to preserve setuid bits
 
@@ -180,17 +173,13 @@ else
 # ignore errors from any of these, just make sure not to ignore
 # errors from the above "$doit $instcmd $src $dsttmp" command.
 
-	$doit $chowncmd "$dsttmp" &&
-	$doit $chgrpcmd "$dsttmp" &&
-	$doit $stripcmd "$dsttmp" &&
-	$doit $chmodcmd "$dsttmp" &&
+	$doit $chowncmd "$dsttmp"
+	$doit $chgrpcmd "$dsttmp"
+	$doit $stripcmd "$dsttmp"
+	$doit $chmodcmd "$dsttmp"
 
 # Now rename the file to the real destination.
 
-	$doit $rmcmd -f "$dstdir/$dstfile" &&
+	$doit $rmcmd -f "$dstdir/$dstfile"
 	$doit $mvcmd "$dsttmp" "$dstdir/$dstfile"
-
-fi &&
-
-
-exit 0
+fi
