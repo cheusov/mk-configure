@@ -99,73 +99,73 @@ while [ x"$1" != x ]; do
 done
 
 if [ x"$src" = x ]; then
-	echo "install:	no input file specified"
-	exit 1
+    echo "install:	no input file specified"
+    exit 1
 fi
 
 if [ x"$dir_arg" != x ]; then
-	dst="$src"
+    dst="$src"
 
-	if [ -d "$dst" ]; then
-		instcmd=:
-		chmodcmd=:
-	else
-		instcmd="$mkdirprog -p"
-	fi
+    if [ -d "$dst" ]; then
+	instcmd=:
+	chmodcmd=:
+    else
+	instcmd="$mkdirprog -p"
+    fi
 else
 
 # Waiting for this to be detected by the "$instcmd $src $dsttmp" command
 # might cause directories to be created, which would be especially bad 
 # if $src (and thus $dsttmp) contains '*'.
 
-	if [ -f "$src" -o -d "$src" ]; then
-		true
-	else
-		echo "install:  $src does not exist"
-		exit 1
-	fi
-	
-	if [ x"$dst" = x ]; then
-		echo "install:	no destination specified"
-		exit 1
-	fi
+    if [ -f "$src" -o -d "$src" ]; then
+	true
+    else
+	echo "install:  $src does not exist"
+	exit 1
+    fi
+
+    if [ x"$dst" = x ]; then
+	echo "install:	no destination specified"
+	exit 1
+    fi
 
 # If destination is a directory, append the input filename; if your system
 # does not like double slashes in filenames, you may need to add some logic
 
-	if [ -d "$dst" ]; then
-		dst="$dst"/`basename "$src"`
-	fi
+    if [ -d "$dst" ]; then
+	dst="$dst"/`basename "$src"`
+    fi
 fi
 
 ##
 dstdir=`dirname "$dst"`
 
 if [ x"$dir_arg" != x ]; then
-	$doit $instcmd "$dst"
+    $doit $instcmd "$dst"
 
-	$doit $chowncmd "$dst"
-	$doit $chgrpcmd "$dst"
-	$doit $stripcmd "$dst"
-	$doit $chmodcmd "$dst"
+    $doit $chowncmd "$dst"
+    $doit $chgrpcmd "$dst"
+    $doit $stripcmd "$dst"
+    $doit $chmodcmd "$dst"
 else
 # Make sure that the destination directory exists.
-	if [ ! -d "$dstdir" ]; then
-		$mkdirprog -p "$dstdir"
-	fi
+    if [ ! -d "$dstdir" ]; then
+	$mkdirprog -p "$dstdir"
+    fi
 
 # No renaming of the final executable
-	dstfile=`basename "$dst"`
+    dstfile=`basename "$dst"`
 
 # Make a temp file name in the proper directory.
 
-	dsttmp="$dstdir/#inst.$$#"
+    dsttmp="$dstdir/#inst.$$#"
 
 # Move or copy the file name to the temp name
 
-	$doit $instcmd "$src" "$dsttmp"
+    $doit $instcmd "$src" "$dsttmp"
 
-	trap "rm -f '${dsttmp}'" 0
+    trap "rm -f '${dsttmp}'" 0
 
 # and set any options; do chmod last to preserve setuid bits
 
@@ -173,13 +173,13 @@ else
 # ignore errors from any of these, just make sure not to ignore
 # errors from the above "$doit $instcmd $src $dsttmp" command.
 
-	$doit $chowncmd "$dsttmp"
-	$doit $chgrpcmd "$dsttmp"
-	$doit $stripcmd "$dsttmp"
-	$doit $chmodcmd "$dsttmp"
+    $doit $chowncmd "$dsttmp"
+    $doit $chgrpcmd "$dsttmp"
+    $doit $stripcmd "$dsttmp"
+    $doit $chmodcmd "$dsttmp"
 
 # Now rename the file to the real destination.
 
-	$doit $rmcmd -f "$dstdir/$dstfile"
-	$doit $mvcmd "$dsttmp" "$dstdir/$dstfile"
+    $doit $rmcmd -f "$dstdir/$dstfile"
+    $doit $mvcmd "$dsttmp" "$dstdir/$dstfile"
 fi
