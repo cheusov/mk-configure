@@ -28,8 +28,8 @@ scriptsinstall:: ${destination_scripts}
 
 __scriptinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
-	    -o ${SCRIPTSOWN_${.ALLSRC:T}:U${SCRIPTSOWN}} \
-	    -g ${SCRIPTSGRP_${.ALLSRC:T}:U${SCRIPTSGRP}} \
+	    -o ${SCRIPTSOWN_${.ALLSRC:T}:U${SCRIPTSOWN}:Q} \
+	    -g ${SCRIPTSGRP_${.ALLSRC:T}:U${SCRIPTSGRP}:Q} \
 	    -m ${SCRIPTSMODE_${.ALLSRC:T}:U${SCRIPTSMODE}} \
 	    ${.ALLSRC} ${.TARGET}
 

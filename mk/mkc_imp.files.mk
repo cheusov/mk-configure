@@ -28,8 +28,8 @@ filesinstall: ${destination_files}
 
 __fileinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
-	    -o ${FILESOWN_${.ALLSRC:T}:U${FILESOWN}} \
-	    -g ${FILESGRP_${.ALLSRC:T}:U${FILESGRP}} \
+	    -o ${FILESOWN_${.ALLSRC:T}:U${FILESOWN}:Q} \
+	    -g ${FILESGRP_${.ALLSRC:T}:U${FILESGRP}:Q} \
 	    -m ${FILESMODE_${.ALLSRC:T}:U${FILESMODE}} \
 	    ${.ALLSRC} ${.TARGET}
 

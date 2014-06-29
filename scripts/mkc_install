@@ -4,7 +4,7 @@
 # This comes from X11R5 (mit/util/scripts/install.sh).
 #
 # Copyright 1991 by the Massachusetts Institute of Technology
-# Copyright 2013 by Aleksey Cheusov <vle@gmx.net>
+# Copyright 2013-2014 by Aleksey Cheusov <vle@gmx.net>
 #
 # Permission to use, copy, modify, distribute, and sell this software and its
 # documentation for any purpose is hereby granted without fee, provided that
@@ -43,15 +43,19 @@ rmprog="${RMPROG-rm}"
 mkdirprog="${MKDIRPROG-mkdir}"
 
 instcmd="$mvprog"
-chmodcmd="$chmodprog 0755"
-chowncmd=""
-chgrpcmd=""
-stripcmd=""
+chmodcmd=mkcchmod; mod=0755;
+chowncmd=":"
+chgrpcmd=":"
+stripcmd=":"
 rmcmd="$rmprog -f"
 mvcmd="$mvprog"
 src=""
 dst=""
 dir_arg=""
+
+mkcchgrp () { $chgrpprog "$grp" "$@"; }
+mkcchown () { $chownprog "$own" "$@"; }
+mkcchmod () { $chmodprog "$mod" "$@"; }
 
 while [ x"$1" != x ]; do
     case $1 in
@@ -63,17 +67,20 @@ while [ x"$1" != x ]; do
 	    shift
 	    continue;;
 
-	-m) chmodcmd="$chmodprog $2"
+	-m) mod="$2"
+	    chmodcmd=mkcchmod
 	    shift
 	    shift
 	    continue;;
 
-	-o) chowncmd="$chownprog $2"
+	-o) own="$2"
+	    chowncmd=mkcchown
 	    shift
 	    shift
 	    continue;;
 
-	-g) chgrpcmd="$chgrpprog $2"
+	-g) grp="$2"
+	    chgrpcmd=mkcchgrp
 	    shift
 	    shift
 	    continue;;
@@ -83,9 +90,9 @@ while [ x"$1" != x ]; do
 	    continue;;
 
 	*)  if [ x"$src" = x ]; then
-		src=$1
+		src="$1"
 	    else
-		dst=$1
+		dst="$1"
 	    fi
 	    shift
 	    continue;;
@@ -100,11 +107,11 @@ else
 fi
 
 if [ x"$dir_arg" != x ]; then
-	dst=$src
+	dst="$src"
 
-	if [ -d $dst ]; then
+	if [ -d "$dst" ]; then
 		instcmd=:
-		chmodcmd=""
+		chmodcmd=":"
 	else
 		instcmd="$mkdirprog -p"
 	fi
@@ -114,7 +121,7 @@ else
 # might cause directories to be created, which would be especially bad 
 # if $src (and thus $dsttmp) contains '*'.
 
-	if [ -f $src -o -d $src ]; then
+	if [ -f "$src" -o -d "$src" ]; then
 		true
 	else
 		echo "install:  $src does not exist"
@@ -131,23 +138,23 @@ else
 # If destination is a directory, append the input filename; if your system
 # does not like double slashes in filenames, you may need to add some logic
 
-	if [ -d $dst ]; then
-		dst="$dst"/`basename $src`
+	if [ -d "$dst" ]; then
+		dst="$dst"/`basename "$src"`
 	else
 		true
 	fi
 fi
 
 ##
-dstdir=`dirname $dst`
+dstdir=`dirname "$dst"`
 
 if [ x"$dir_arg" != x ]; then
-	$doit $instcmd $dst &&
+	$doit $instcmd "$dst" &&
 
-	if [ x"$chowncmd" != x ]; then $doit $chowncmd $dst; else true ; fi &&
-	if [ x"$chgrpcmd" != x ]; then $doit $chgrpcmd $dst; else true ; fi &&
-	if [ x"$stripcmd" != x ]; then $doit $stripcmd $dst; else true ; fi &&
-	if [ x"$chmodcmd" != x ]; then $doit $chmodcmd $dst; else true ; fi
+	$doit $chowncmd "$dst" &&
+	$doit $chgrpcmd "$dst" &&
+	$doit $stripcmd "$dst" &&
+	$doit $chmodcmd "$dst"
 else
 # Make sure that the destination directory exists.
 	if [ ! -d "$dstdir" ]; then
@@ -155,17 +162,17 @@ else
 	fi
 
 # No renaming of the final executable
-	dstfile=`basename $dst`
+	dstfile=`basename "$dst"`
 
 # Make a temp file name in the proper directory.
 
-	dsttmp=$dstdir/#inst.$$#
+	dsttmp="$dstdir/#inst.$$#"
 
 # Move or copy the file name to the temp name
 
-	$doit $instcmd $src $dsttmp &&
+	$doit $instcmd "$src" "$dsttmp" &&
 
-	trap "rm -f ${dsttmp}" 0 &&
+	trap "rm -f '${dsttmp}'" 0 &&
 
 # and set any options; do chmod last to preserve setuid bits
 
@@ -173,15 +180,15 @@ else
 # ignore errors from any of these, just make sure not to ignore
 # errors from the above "$doit $instcmd $src $dsttmp" command.
 
-	if [ x"$chowncmd" != x ]; then $doit $chowncmd $dsttmp; else true;fi &&
-	if [ x"$chgrpcmd" != x ]; then $doit $chgrpcmd $dsttmp; else true;fi &&
-	if [ x"$stripcmd" != x ]; then $doit $stripcmd $dsttmp; else true;fi &&
-	if [ x"$chmodcmd" != x ]; then $doit $chmodcmd $dsttmp; else true;fi &&
+	$doit $chowncmd "$dsttmp" &&
+	$doit $chgrpcmd "$dsttmp" &&
+	$doit $stripcmd "$dsttmp" &&
+	$doit $chmodcmd "$dsttmp" &&
 
 # Now rename the file to the real destination.
 
-	$doit $rmcmd -f $dstdir/$dstfile &&
-	$doit $mvcmd $dsttmp $dstdir/$dstfile 
+	$doit $rmcmd -f "$dstdir/$dstfile" &&
+	$doit $mvcmd "$dsttmp" "$dstdir/$dstfile"
 
 fi &&
 

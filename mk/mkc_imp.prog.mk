@@ -17,7 +17,7 @@ CFLAGS +=	${COPTS}
 
 __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
-	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
+	    -o ${BINOWN:Q} -g ${BINGRP:Q} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 .for p in ${PROGS}
 realinstall:	proginstall

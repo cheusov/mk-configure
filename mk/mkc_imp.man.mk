@@ -77,7 +77,7 @@ HTMLPAGES   =	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
 .endif
 
 MINSTALL    =	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
-		    -o ${MANOWN} -g ${MANGRP} -m ${MANMODE}
+		    -o ${MANOWN:Q} -g ${MANGRP:Q} -m ${MANMODE}
 
 .if defined(MANZ)
 # chown and chmod are done afterward automatically
@@ -92,7 +92,7 @@ __installpage: .USE
 .if defined(MCOMPRESS) && !empty(MCOMPRESS)
 	@${RM} -f ${.TARGET}
 	${MCOMPRESS} ${.ALLSRC} > ${.TARGET}
-	@chown ${MANOWN}:${MANGRP} ${.TARGET}
+	@chown ${MANOWN:Q}:${MANGRP:Q} ${.TARGET}
 	@chmod ${MANMODE} ${.TARGET}
 .else
 	${MINSTALL} ${.ALLSRC} ${.TARGET}

@@ -24,8 +24,8 @@ incinstall: ${destination_incs}
 
 __incinstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
-	    -o ${BINOWN} \
-	    -g ${BINGRP} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET}
+	    -o ${BINOWN:Q} \
+	    -g ${BINGRP:Q} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET}
 
 .for I in ${INCS:O:u}
 ${DESTDIR}${INCSDIR}/$I: ${"${INCSSRCDIR}" != ".":?${INCSSRCDIR}/$I:$I} __incinstall
