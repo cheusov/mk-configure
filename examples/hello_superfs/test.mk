@@ -52,7 +52,7 @@ test_output:
 	echo =========== Michael mode: all ============; \
 	MICHAEL_MODE=1; export MICHAEL_MODE; \
 	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} all > /dev/null 2>&1; \
-	find ${TMPPREFIX} -type f -o -type l | \
+	find ${TMPPREFIX} -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== Michael mode: clean ============; \
