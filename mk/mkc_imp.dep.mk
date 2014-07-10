@@ -8,11 +8,12 @@ _MKC_IMP_DEP_MK := 1
 DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
 
 ##### Basic targets
-.PHONY: _beforedepend depend
-_beforedepend .depend: # ensure existence
-
-.ORDER: _beforedepend .depend
-depend: _beforedepend .depend
+.PHONY: pre_depend do_depend do_depend1 do_depend2 post_depend
+pre_depend do_depend do_depend1 do_depend2 post_depend: # ensure existence
+.if !commands(do_depend)
+do_depend: do_depend1 .WAIT do_depend2
+.endif
+depend: pre_depend .WAIT do_depend .WAIT post_depend
 
 ##### Default values
 MKDEP          ?=	mkdep
@@ -27,7 +28,8 @@ __DPSRCS.all  =	${_SRCS_ALL:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
 __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
-_beforedepend: ${DPSRCS}
+do_depend1: ${DPSRCS}
+do_depend2: .depend
 
 MESSAGE.dep ?=	@${_MESSAGE} "DEP: ${.TARGET}"
 

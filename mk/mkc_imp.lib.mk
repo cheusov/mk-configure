@@ -12,7 +12,7 @@ _MKC_IMP_LIB_MK := 1
 
 .PHONY:		libinstall
 .if ${MKINSTALL:tl} == "yes"
-realinstall:	libinstall
+do_install1:	libinstall
 INSTALLDIRS    +=	${DESTDIR}${LIBDIR}
 UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 .endif # MKINSTALL
@@ -67,7 +67,9 @@ _LIBS   +=	${SHLIBFN}
 
 .NOPATH: ${_LIBS}
 
-realall: ${SRCS} ${_LIBS}
+.if !commands(do_all)
+do_all: ${SRCS} ${_LIBS}
+.endif
 
 _SRCS_ALL = ${SRCS}
 

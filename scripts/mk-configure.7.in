@@ -54,28 +54,62 @@ means "May be set in project's Makefile but may be initialized or overriden by u
 .BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk ", and " mkc.subprj.mk
 include files provide the following targets:
 .IP all
-build everything.
+build everything. Internally, the target
+.I all
+runs
+.IR pre_all ", " do_all " and " post_all
+targets in this order.
 .IP clean
 clean temporary files and directories with a help of
 ${CLEANFILES_CMD} and ${CLEANDIRS_CMD} commands.
+Internally, the target
+.I clean
+runs
+.IR pre_clean ", " do_clean " and " post_clean
+targets in this order.
 .IP cleandir
 remove all of the files removed by the target clean, as
 well as cache files created by
 .BR mkc.configure.mk .
+Internally, the target
+.I cleandir
+runs
+.IR pre_cleandir ", " do_cleandir " and " post_cleandir
+targets in this order.
 .IP distclean
 synonym for target "cleandir".
 .IP installdirs
 create target directories.
+Internally, the target
+.I installdirs
+runs
+.IR pre_installdirs ", " do_installdirs " and " post_installdirs
+targets in this order.
 .IP install
 install programs, libraries, files, include files, manual pages etc.
 to the target directories with a help of ${INSTALL} program.
+Internally, the target
+.I install
+runs
+.IR pre_install ", " do_install " and " post_install
+in this order.
 .IP uninstall
 remove installed files with a help of ${UNINSTALL} command.
+Internally, the target
+.I uninstall
+runs
+.IR pre_uninstall ", " do_uninstall " and " post_uninstall
+targets in this order.
 .IP errorcheck
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
 create .depend file containing list of dependencies (see mkdep(1)).
+Internally, the target
+.I depend
+runs
+.IR pre_depend ", " do_depend " and " post_depend
+targets in this order.
 .IP filelist
 output a list of destination files of the project, one per line, e.g.
 .VS
@@ -99,6 +133,12 @@ for the sample.
 Commands associated with targets
 .IR all ", " install ", " clean ", " cleandir ", " depend ", " test ", " installdirs ", " uninstall ", " errorcheck " and " filelist
 in Makefile override the standard behaviour.
+.P
+.B NOTE:
+.IR pre\_* " and " post\_*
+targets are for user extensions.
+.B mk-configure
+does not provide actions for them.
 .SS "Common variables"
 The following variables control how various files are compiled/built.
 .IP AR

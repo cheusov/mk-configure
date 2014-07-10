@@ -20,7 +20,7 @@ __proginstall: .USE
 	    -o ${BINOWN} -g ${BINGRP} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 .for p in ${PROGS}
-realinstall:	proginstall
+do_install1:	proginstall
 
 _SRCS_ALL += ${SRCS.${p}}
 
@@ -71,7 +71,9 @@ CLEANFILES +=	${OBJS.${p}}
 
 .endfor # ${PROGS}
 
-realall: ${PROGS}
+.if !commands(do_all)
+do_all: ${PROGS}
+.endif
 
 CLEANFILES += ${PROGS}
 

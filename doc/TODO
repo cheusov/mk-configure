@@ -47,8 +47,6 @@ Some thoughts inspired by talks with Michael Crogan
   libraries and programs. In addition examples/ is needed for
   triggering rebuild of subproject if "something" was rebuild in
   another subproject (build script for example).
-- For better extensibility it makes sense to implement user-implementable
-  pre_all, post_all, pre_install, post_install etc. targets.
 - Interdependencies between targetX-subprjA and targetY-subprjB (for
   example all-prject1 and install-prject2). Maybe this is cool idea
   for examples/ and slides. I need some good example for this.

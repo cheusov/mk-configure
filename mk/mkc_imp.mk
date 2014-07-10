@@ -26,29 +26,46 @@ _use_prog :=	1
 .include <mkc_imp.obj.mk>
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-.PHONY: ${TARGETS} realinstall realinstall2 realall
-${TARGETS} realinstall realinstall2 realall:
+.PHONY: ${TARGETS} pre_install do_install do_install1 do_install2 post_install do_all pre_uninstall do_uninstall post_uninstall
+${TARGETS} pre_install do_install do_install1 do_install2 post_install do_all pre_uninstall do_uninstall post_uninstall:
 
 distclean:	cleandir
 
-all:		realall
+all:		pre_all .WAIT do_all .WAIT post_all
+pre_all do_all post_all: # ensure existence
 
 .if ${MKINSTALLDIRS:tl} == "yes"
-install: installdirs .WAIT realinstall .WAIT realinstall2
+install: pre_installdirs .WAIT do_installdirs .WAIT post_installdirs .WAIT \
+         pre_install .WAIT do_install .WAIT post_install
 .else
-install: realinstall .WAIT realinstall2
+install: pre_install .WAIT do_install .WAIT post_install
 .endif
+
+.if !commands(do_install)
+do_install: do_install1 .WAIT do_install2
+.endif
+
+pre_installdirs do_installdirs post_installdirs: # ensure existence
 
 # skip uninstalling files and creating destination dirs for mkc.subprj.mk
 .if !defined(SUBPRJ)
 
-uninstall:
-	-${UNINSTALL} ${UNINSTALLFILES}
+.PHONY: pre_uninstall do_uninstall post_uninstall
+uninstall: pre_uninstall .WAIT do_uninstall .WAIT post_uninstall
 
-installdirs:
+.if !commands(do_uninstall)
+do_uninstall:
+	-${UNINSTALL} ${UNINSTALLFILES}
+.endif
+
+installdirs: pre_installdirs .WAIT do_installdirs .WAIT post_installdirs
+
+.if !commands(do_installdirs)
+do_installdirs:
 	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \
 		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
 	done
+.endif
 
 filelist:
 	@for d in ${UNINSTALLFILES:O:u}; do \
@@ -73,7 +90,7 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY: realall realerrorcheck
+.PHONY: do_all realerrorcheck
 
 __errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
@@ -87,7 +104,7 @@ __errorcheck: .USE
 	    exit $$ex; \
 	fi
 
-realall : realerrorcheck
+do_all : realerrorcheck
 realerrorcheck: __errorcheck
 
 .include <mkc_imp.checkprogs.mk>
@@ -123,16 +140,6 @@ CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 ########################################
 .if defined(SUBPRJ)
 .include <mkc_imp.subprj.mk>
-
-#
-.PHONY: subprj-clean subprj-distclean
-clean: subprj-clean
-subprj-clean:
-	-${CLEANFILES_CMD} -f ${CLEANFILES}
-cleandir: subprj-distclean
-subprj-distclean:
-	-${CLEANFILES_CMD} ${DISTCLEANFILES}
-
 .endif # SUBPRJ
 ########################################
 

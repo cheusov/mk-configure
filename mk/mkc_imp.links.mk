@@ -9,7 +9,7 @@ _MKC_IMP_LINKS_MK := 1
 .PHONY:		linksinstall
 linksinstall:
 
-realinstall2:	linksinstall
+do_install2:	linksinstall
 
 .if ${MKINSTALL:tl} == "yes"
 
