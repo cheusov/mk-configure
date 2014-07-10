@@ -1,7 +1,8 @@
 #!/bin/sh
 #
 # install - install a program, script, or datafile
-# This comes from X11R5 (mit/util/scripts/install.sh).
+# This comes from X11R5 (mit/util/scripts/install.sh)
+# and was modified by Aleksey Cheusov <vle@gmx.net>.
 #
 # Copyright 1991 by the Massachusetts Institute of Technology
 # Copyright 2013-2014 by Aleksey Cheusov <vle@gmx.net>
@@ -32,6 +33,7 @@ doit="${DOITPROG-}"
 
 mvprog="${MVPROG-mv}"
 cpprog="${CPPROG-cp}"
+lnsprog="${LNSPROG-ln -f -s}"
 chmodprog="${CHMODPROG-chmod}"
 chownprog="${CHOWNPROG-chown}"
 chgrpprog="${CHGRPPROG-chgrp}"
@@ -59,6 +61,10 @@ mkcchmod () { $chmodprog "$mod" "$@"; }
 while [ x"$1" != x ]; do
     case "$1" in
 	-c) instcmd="$cpprog"
+	    shift
+	    continue;;
+
+	-l) instcmd="$lnsprog"
 	    shift
 	    continue;;
 
@@ -97,6 +103,13 @@ while [ x"$1" != x ]; do
 	    continue;;
     esac
 done
+
+if test "_$instcmd" = "_$lnsprog"; then
+    chowncmd=:
+    chgrpcmd=:
+    chmodcmd=:
+    stripcmd=:
+fi
 
 if [ x"$src" = x ]; then
     echo "install:	no input file specified"
