@@ -11,9 +11,11 @@
 _MKC_IMP_SCRIPTS_MK := 1
 
 .PHONY:		scriptsinstall
-realinstall:	scriptsinstall
+do_install1:	scriptsinstall
 
-realall: ${SCRIPTS}
+.if !commands(do_all)
+do_all: ${SCRIPTS}
+.endif
 
 .if defined(SCRIPTS)
 .if ${MKINSTALL:tl} == "yes"

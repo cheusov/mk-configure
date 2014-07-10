@@ -1,3 +1,5 @@
+next_level !=	expr ${.MAKE.LEVEL} + 1
+
 .PHONY : test_output
 test_output:
 	@set -e; \
@@ -45,9 +47,28 @@ test_output:
 	${MAKE} ${MAKEFLAGS} all installdirs install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; unset MKINSTALL; \
+	\
+	echo =========== Michael mode: all ============; \
+	MICHAEL_MODE=1; export MICHAEL_MODE; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} all > /dev/null 2>&1; \
+	find ${TMPPREFIX} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo =========== Michael mode: clean ============; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} clean > /dev/null 2>&1; \
+	find ${TMPPREFIX} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo =========== Michael mode: cleandir ============; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} all > /dev/null 2>&1; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} cleandir > /dev/null 2>&1; \
+	find ${TMPPREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	true ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null
+
+CLEANDIRS += ${TMPPREFIX}
 
 .include <mkc.minitest.mk>

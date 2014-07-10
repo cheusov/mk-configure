@@ -27,12 +27,17 @@ MESSAGE.texinfo ?=	@${_MESSAGE} "TEXINFO: ${.TARGET}"
 	${_V}${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
 
 .if defined(TEXINFO) && !empty(TEXINFO)
-realall: ${TEXINFO}
+.if !commands(do_all)
+do_all: ${TEXINFO}
+.endif
+
 INFOFILES =	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
 .if ${MKINFO:tl} != "no"
-realall: ${INFOFILES}
+.if !commands(do_all)
+do_all: ${INFOFILES}
+.endif
 
 CLEANFILES +=	${INFOFILES}
 
@@ -52,7 +57,7 @@ __infoinstall: .USE
 	${INSTALL_INFO} --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 
 .if ${MKINSTALL:tl} == "yes"
-realinstall: infoinstall
+do_install1: infoinstall
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor # F

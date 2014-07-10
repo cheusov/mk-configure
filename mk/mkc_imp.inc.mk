@@ -8,7 +8,7 @@
 ############################################################
 
 .PHONY:		incinstall
-realinstall:	incinstall
+do_install1:	incinstall
 incinstall:	# ensure existence
 
 .if defined(INCS)

@@ -13,11 +13,13 @@ _BSD_FILES_MK := 1
 .include <mkc.init.mk>
 
 .PHONY:		filesinstall
-realinstall:	filesinstall
+do_install1:	filesinstall
 
 .if defined(FILES) && !empty(FILES)
 
-realall: ${FILES}
+.if !commands(do_all)
+do_all: ${FILES}
+.endif
 
 .if ${MKINSTALL:tl} == "yes"
 destination_files = ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}

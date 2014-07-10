@@ -1,0 +1,134 @@
+=========== {pre,do,post}_all ============
+==================================================
+clean ===> tests/predopost_targets/lib
+fake target pre_clean
+fake target do_clean
+fake target post_clean
+==================================================
+clean ===> tests/predopost_targets/others
+fake target pre_clean
+fake target do_clean
+fake target post_clean
+==================================================
+clean ===> tests/predopost_targets/lua
+fake target pre_clean
+fake target do_clean
+fake target post_clean
+rm -f /objdir/predopost_targets.test.out
+rm -rf /objdir/prefix /objdir/prefix
+==================================================
+cleandir ===> tests/predopost_targets/lib
+fake target pre_cleandir
+fake target do_cleandir
+fake target post_cleandir
+==================================================
+cleandir ===> tests/predopost_targets/others
+fake target pre_cleandir
+fake target do_cleandir
+fake target post_cleandir
+==================================================
+cleandir ===> tests/predopost_targets/lua
+fake target pre_cleandir
+fake target do_cleandir
+fake target post_cleandir
+rm -f /objdir/_mkc_* /objdir/predopost_targets.test.out
+rm -rf  /objdir/prefix /objdir/prefix
+==================================================
+install ===> tests/predopost_targets/lib
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+fake target pre_install
+fake target do_install
+fake target post_install
+==================================================
+install ===> tests/predopost_targets/others
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+fake target pre_install
+fake target do_install
+fake target post_install
+==================================================
+install ===> tests/predopost_targets/lua
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+fake target pre_install
+fake target do_install
+fake target post_install
+==================================================
+all ===> tests/predopost_targets/lib
+fake target pre_all
+fake target do_all
+fake target post_all
+==================================================
+all ===> tests/predopost_targets/others
+fake target pre_all
+fake target do_all
+fake target post_all
+==================================================
+all ===> tests/predopost_targets/lua
+fake target pre_all
+fake target do_all
+fake target post_all
+==================================================
+uninstall ===> tests/predopost_targets/lib
+fake target pre_uninstall
+fake target do_uninstall
+fake target post_uninstall
+==================================================
+uninstall ===> tests/predopost_targets/others
+fake target pre_uninstall
+fake target do_uninstall
+fake target post_uninstall
+==================================================
+uninstall ===> tests/predopost_targets/lua
+fake target pre_uninstall
+fake target do_uninstall
+fake target post_uninstall
+==================================================
+installdirs ===> tests/predopost_targets/lib
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+==================================================
+installdirs ===> tests/predopost_targets/others
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+==================================================
+installdirs ===> tests/predopost_targets/lua
+fake target pre_installdirs
+fake target do_installdirs
+fake target post_installdirs
+==================================================
+depend ===> tests/predopost_targets/lib
+fake target pre_depend
+fake target do_depend
+fake target post_depend
+==================================================
+depend ===> tests/predopost_targets/others
+fake target pre_depend
+fake target do_depend
+fake target post_depend
+==================================================
+depend ===> tests/predopost_targets/lua
+fake target pre_depend
+fake target do_depend
+fake target post_depend
+==================================================
+install ===> tests/predopost_targets/lib
+fake target pre_install
+fake target do_install
+fake target post_install
+==================================================
+install ===> tests/predopost_targets/others
+fake target pre_install
+fake target do_install
+fake target post_install
+==================================================
+install ===> tests/predopost_targets/lua
+fake target pre_install
+fake target do_install
+fake target post_install
