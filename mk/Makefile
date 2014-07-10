@@ -24,16 +24,16 @@ MKC_CHECK_PROGS    +=	makedepend
 
 .include <mkc.configure.mk>
 
-.if ${HAVE_PROG.makedepend:U0}
-makedepend_cmd =	${PROG.makedepend}
-mkdep_cmd  =		mkdep
-mkdep_type =		makedepend
-.elif !empty(CUSTOM.prog_nbmkdep)
+.if !empty(CUSTOM.prog_nbmkdep)
 mkdep_cmd  =		${CUSTOM.prog_nbmkdep}
 mkdep_type =		nbmkdep
 .elif !empty(CUSTOM.prog_mkdep)
 mkdep_cmd  =		${CUSTOM.prog_mkdep}
 mkdep_type =		mkdep
+.elif ${HAVE_PROG.makedepend:U0}
+makedepend_cmd =	${PROG.makedepend}
+mkdep_cmd  =		mkdep
+mkdep_type =		makedepend
 .else
 MKC_ERR_MSG +=		"mkdep(1) cannot be found"
 .endif
