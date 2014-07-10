@@ -147,3 +147,15 @@
 /objdir/mkfs_superfs/mkfs_superfs.cat8
 /objdir/mkfs_superfs/mkfs_superfs.o
 /objdir/test.mk
+=========== Michael mode: all ============
+/objdir/tmp/man/cat8/fsck_superfs.0
+/objdir/tmp/man/cat8/mkfs_superfs.0
+/objdir/tmp/man/man8/fsck_superfs.8
+/objdir/tmp/man/man8/mkfs_superfs.8
+/objdir/tmp/sbin/fsck_superfs
+/objdir/tmp/sbin/mkfs_superfs
+/objdir/tmp/share/doc/dict/LICENSE
+/objdir/tmp/share/doc/dict/NEWS
+/objdir/tmp/share/doc/dict/README
+=========== Michael mode: clean ============
+=========== Michael mode: cleandir ============

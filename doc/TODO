@@ -7,17 +7,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
 
-- During development of huge projects it may make sense to always keep
-  "installed" version of the software somewhere (FAKEPREFIX?)
-  and always keep it synced.
-  mk-configure needs a mechanism to always "install"
-  after "all" and "uninstall" before "clean". Options: develop this in
-  mk-c and make it optional feature; provide a mechanism for
-  auto-depend one target from TARGETS from another one. In the latter
-  case users will be able to implement this kind of things themself.
-  (myall   ->    "myall-* : all-* .WAIT install-*)
-  (myclean ->  "myclean-* : uninstall-* .WAIT clean-*)
-
 - VARIANTS for libraries.
 
 - _mkc_done_<prj>_<trg>
