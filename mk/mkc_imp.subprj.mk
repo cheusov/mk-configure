@@ -93,9 +93,6 @@ _ALLTARGDEPS :=	${_ALLTARGDEPS:N${excl}}
 ${prjtarg}: ${deptarg}
 .endfor
 
-# Make sure all of the standard targets are defined, even if they do nothing.
-${TARGETS}:
-
 .PHONY: print_deps
 print_deps:
 .for i in ${_ALLTARGDEPS} ${_ALLTARGDEPS2} ${_ALLTARGDEPS3} ${TARGETS}

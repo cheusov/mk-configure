@@ -10,8 +10,7 @@
 .if !defined(_MKC_IMP_PROG_MK)
 _MKC_IMP_PROG_MK := 1
 
-.PHONY:		proginstall
-proginstall:
+proginstall:	.PHONY # ensure existence
 
 CFLAGS +=	${COPTS}
 
@@ -71,9 +70,7 @@ CLEANFILES +=	${OBJS.${p}}
 
 .endfor # ${PROGS}
 
-.if !commands(do_all)
-do_all: ${PROGS}
-.endif
+realdo_all: ${PROGS}
 
 CLEANFILES += ${PROGS}
 

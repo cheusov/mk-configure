@@ -438,6 +438,8 @@ TARGETS +=	all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist obj
 TARGETS :=	${TARGETS:O:u}
 
+ALLTARGETS +=	all install clean cleandir depend uninstall installdirs
+
 VERBOSE_ECHO ?=	echo
 
 .endif # __initialized__

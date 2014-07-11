@@ -6,8 +6,7 @@
 .if !defined(_MKC_IMP_LINKS_MK)
 _MKC_IMP_LINKS_MK := 1
 
-.PHONY:		linksinstall
-linksinstall:
+linksinstall:	.PHONY # ensure existence
 
 do_install2:	linksinstall
 

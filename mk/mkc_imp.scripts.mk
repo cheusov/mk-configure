@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
@@ -10,12 +10,10 @@
 .if !defined(_MKC_IMP_SCRIPTS_MK)
 _MKC_IMP_SCRIPTS_MK := 1
 
-.PHONY:		scriptsinstall
+scriptsinstall:	.PHONY # ensure existence
 do_install1:	scriptsinstall
 
-.if !commands(do_all)
-do_all: ${SCRIPTS}
-.endif
+realdo_all: ${SCRIPTS}
 
 .if defined(SCRIPTS)
 .if ${MKINSTALL:tl} == "yes"
@@ -24,7 +22,7 @@ UNINSTALLFILES +=	${destination_scripts}
 INSTALLDIRS    +=	${destination_scripts:H}
 .endif # MKINSTALL
 
-scriptsinstall:: ${destination_scripts}
+scriptsinstall:  ${destination_scripts}
 .PRECIOUS:       ${destination_scripts}
 .PHONY:          ${destination_scripts}
 
@@ -39,8 +37,6 @@ __scriptinstall: .USE
 ${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}: ${S} __scriptinstall
 .endfor
 
-.else # defined(SCRIPTS)
-scriptsinstall:
 .endif # defined(SCRIPTS)
 
 .endif # _MKC_IMP_SCRIPTS_MK

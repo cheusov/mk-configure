@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
@@ -10,16 +10,15 @@
 .if !defined(_BSD_FILES_MK)
 _BSD_FILES_MK := 1
 
+filesinstall: .PHONY # ensure existence
+
 .include <mkc.init.mk>
 
-.PHONY:		filesinstall
-do_install1:	filesinstall
+do_install1:	.PHONY filesinstall
 
 .if defined(FILES) && !empty(FILES)
 
-.if !commands(do_all)
-do_all: ${FILES}
-.endif
+realdo_all: ${FILES}
 
 .if ${MKINSTALL:tl} == "yes"
 destination_files = ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
@@ -43,9 +42,5 @@ UNINSTALLFILES  +=	${destination_files}
 INSTALLDIRS     +=	${destination_files:H}
 .endif # MKINSTALL
 .endif # FILES
-
-.if !target(filesinstall)
-filesinstall:
-.endif
 
 .endif # _BSD_FILES_MK

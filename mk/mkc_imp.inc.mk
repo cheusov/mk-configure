@@ -7,9 +7,8 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.PHONY:		incinstall
 do_install1:	incinstall
-incinstall:	# ensure existence
+incinstall:	.PHONY # ensure existence
 
 .if defined(INCS)
 INCSSRCDIR  ?=	.

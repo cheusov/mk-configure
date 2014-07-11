@@ -29,17 +29,9 @@ export_cmd  +=	MAKEOBJDIR=${.OBJDIR}/${.TARGET:C/^.*-//}; \
 .endif
 
 ##########
-.PHONY: pre_clean do_clean post_clean
-pre_clean do_clean post_clean:
-.if !commands(clean)
-clean: pre_clean .WAIT do_clean .WAIT post_clean
-.if !commands(do_clean)
-do_clean: mkc_clean
-.endif
-.endif
+realdo_clean: mkc_clean
 
-# mkc_clean is deprecated since 2014-07-06, use do_clean
-mkc_clean:
+mkc_clean: .PHONY
 .if ${CLEANFILES:U} != ""
 	-${CLEANFILES_CMD} ${CLEANFILES}
 .endif
@@ -49,16 +41,9 @@ mkc_clean:
 
 #####
 distclean: cleandir
-.PHONY: pre_cleandir do_cleandir post_cleandir
-pre_cleandir do_cleandir post_cleandir:
-.if !commands(cleandir)
-cleandir: pre_cleandir .WAIT do_cleandir .WAIT post_cleandir
-.if !commands(do_cleandir)
-do_cleandir: mkc_cleandir
-.endif
-.endif
 
-# mkc_cleandir is deprecated since 2014-07-06, use do_cleandir
+realdo_cleandir: mkc_cleandir
+
 mkc_cleandir:
 .if ${CLEANFILES:U} != "" || ${DISTCLEANFILES:U} != ""
 	-${CLEANFILES_CMD} ${DISTCLEANFILES} ${CLEANFILES}
@@ -66,6 +51,18 @@ mkc_cleandir:
 .if ${CLEANDIRS:U} != "" || ${DISTCLEANDIRS:U} != ""
 	-${CLEANDIRS_CMD} ${DISTCLEANDIRS} ${CLEANDIRS}
 .endif
+
+##########
+# pre_, do_, post_ targets
+.for t in ${ALLTARGETS}
+${t}: pre_${t} .WAIT do_${t} .WAIT post_${t}
+pre_${t} do_${t} realdo_${t} post_${t}: .PHONY # ensure existence
+.if !commands(do_${t})
+do_${t}: realdo_${t}
+.endif
+.endfor
+
+${TARGETS}: .PHONY
 
 ##########
 

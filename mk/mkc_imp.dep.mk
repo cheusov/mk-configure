@@ -8,12 +8,8 @@ _MKC_IMP_DEP_MK := 1
 DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
 
 ##### Basic targets
-.PHONY: pre_depend do_depend do_depend1 do_depend2 post_depend
-pre_depend do_depend do_depend1 do_depend2 post_depend: # ensure existence
-.if !commands(do_depend)
-do_depend: do_depend1 .WAIT do_depend2
-.endif
-depend: pre_depend .WAIT do_depend .WAIT post_depend
+do_depend1 do_depend2: .PHONY # ensure existence
+realdo_depend: do_depend1 .WAIT do_depend2
 
 ##### Default values
 MKDEP          ?=	mkdep

@@ -24,46 +24,27 @@ _use_prog :=	1
 .include <mkc_imp.obj.mk>
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-.PHONY: ${TARGETS} pre_install do_install do_install1 do_install2 post_install do_all pre_uninstall do_uninstall post_uninstall
-${TARGETS} pre_install do_install do_install1 do_install2 post_install do_all pre_uninstall do_uninstall post_uninstall:
+do_install1 do_install2: .PHONY
 
-distclean:	cleandir
-
-all:		pre_all .WAIT do_all .WAIT post_all
-pre_all do_all post_all: # ensure existence
+distclean:	.PHONY cleandir
 
 .if ${MKINSTALLDIRS:tl} == "yes"
 install: pre_installdirs .WAIT do_installdirs .WAIT post_installdirs .WAIT \
          pre_install .WAIT do_install .WAIT post_install
-.else
-install: pre_install .WAIT do_install .WAIT post_install
 .endif
 
-.if !commands(do_install)
-do_install: do_install1 .WAIT do_install2
-.endif
-
-pre_installdirs do_installdirs post_installdirs: # ensure existence
+realdo_install: do_install1 .WAIT do_install2
 
 # skip uninstalling files and creating destination dirs for mkc.subprj.mk
 .if !defined(SUBPRJ)
 
-.PHONY: pre_uninstall do_uninstall post_uninstall
-uninstall: pre_uninstall .WAIT do_uninstall .WAIT post_uninstall
-
-.if !commands(do_uninstall)
-do_uninstall:
+realdo_uninstall:
 	-${UNINSTALL} ${UNINSTALLFILES}
-.endif
 
-installdirs: pre_installdirs .WAIT do_installdirs .WAIT post_installdirs
-
-.if !commands(do_installdirs)
-do_installdirs:
+realdo_installdirs:
 	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \
 		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
 	done
-.endif
 
 filelist:
 	@for d in ${UNINSTALLFILES:O:u}; do \
@@ -88,7 +69,7 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY: do_all realerrorcheck
+.PHONY: realerrorcheck
 
 __errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
@@ -142,7 +123,7 @@ CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 ########################################
 
 .include <mkc_imp.arch.mk>
-.include <mkc_imp.final.mk>
-#
 
 .endif # MKC_ERR_MSG
+
+.include <mkc_imp.final.mk>

@@ -10,13 +10,13 @@
 .if !defined(_MKC_IMP_INFO_MK) && defined(TEXINFO)
 _MKC_IMP_INFO_MK := 1
 
+infoinstall: .PHONY
+
 .include <mkc.init.mk>
 
 MAKEINFO     ?=	makeinfo
 INFOFLAGS    ?=	
 INSTALL_INFO ?=	install-info
-
-.PHONY:		infoinstall
 
 .SUFFIXES: .txi .texi .texinfo .info
 
@@ -27,23 +27,19 @@ MESSAGE.texinfo ?=	@${_MESSAGE} "TEXINFO: ${.TARGET}"
 	${_V}${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
 
 .if defined(TEXINFO) && !empty(TEXINFO)
-.if !commands(do_all)
-do_all: ${TEXINFO}
-.endif
+realdo_all: ${TEXINFO}
 
 INFOFILES =	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
 .NOPATH:	${INFOFILES}
 
 .if ${MKINFO:tl} != "no"
-.if !commands(do_all)
-do_all: ${INFOFILES}
-.endif
+realdo_all: ${INFOFILES}
 
 CLEANFILES +=	${INFOFILES}
 
 destination_infos = ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
 
-infoinstall:: ${destination_infos}
+infoinstall: ${destination_infos}
 .PRECIOUS: ${destination_infos}
 .PHONY: ${destination_infos}
 

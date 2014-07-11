@@ -68,9 +68,7 @@ TBL       ?=	tbl
 .endif
 
 .if defined(MAN) && !empty(MAN)
-.if !commands(do_all)
-do_all: ${MAN}
-.endif
+realdo_all: ${MAN}
 MANPAGES    =	${MAN}
 CATPAGES    =	${MANPAGES:C/(.*).([1-9])/\1.cat\2/}
 CLEANFILES +=	${CATPAGES}
@@ -103,9 +101,7 @@ __installpage: .USE
 
 # Rules for cat'ed man page installation
 .if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES:tl} != "no"
-.if !commands(do_all)
-do_all: ${CATPAGES}
-.endif
+realdo_all: ${CATPAGES}
 
 .if ${MKINSTALL:tl} == "yes"
 destination_capages = ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
@@ -182,14 +178,10 @@ CLEANFILES +=		${HTMLPAGES}
 
 .if ${MKHTML:tl} == "yes"
 do_install1: installhtml
-.if !commands(do_all)
-do_all: ${HTMLPAGES}
-.endif
+realdo_all: ${HTMLPAGES}
 UNINSTALLFILES +=	${destination_htmls}
 INSTALLDIRS    +=	${destination_htmls:H}
 .endif # MKHTML
 .endif # HTMLPAGES
-
-do_all:
 
 .endif # _MKC_IMP_MAN_MK

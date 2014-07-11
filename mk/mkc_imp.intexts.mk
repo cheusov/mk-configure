@@ -47,9 +47,7 @@ ${i:T} : ${i}.in
 
 CLEANFILES   +=	${INSCRIPTS:T} ${INFILES:T}
 
-.if !commands(do_all)
-do_all: ${INSCRIPTS:T} ${INFILES:T}
-.endif
+realdo_all: ${INSCRIPTS:T} ${INFILES:T}
 
 ######################################################################
 .endif # _MKC_IMP_INTEXTS_MK

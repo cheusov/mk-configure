@@ -67,9 +67,7 @@ _LIBS   +=	${SHLIBFN}
 
 .NOPATH: ${_LIBS}
 
-.if !commands(do_all)
-do_all: ${SRCS} ${_LIBS}
-.endif
+realdo_all: ${SRCS} ${_LIBS}
 
 _SRCS_ALL = ${SRCS}
 
