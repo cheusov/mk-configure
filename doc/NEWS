@@ -1,4 +1,34 @@
 ======================================================================
+Version 0.27.0, by Aleksey Cheusov, Sat, 12 Jul 2014 20:36:33 +0300
+
+  Fix pkg-config support (github issue #8).
+  Thanks to Andrew Shadura for the report. 
+
+  Fix support for mixed C/C++ projects.
+
+  Fixes for Interix and Cygwin where users and groups may have spaces.
+  Thanks to Michael Crogan for the report.
+
+  Fix in mkc_imp.f_SLIST.mk (we have to restore original MKC_NOAUTO)
+
+  mkc.lib.mk:
+    - MKPIE=yes also turns on PIC
+
+  pre_*, do_* and post_* targets were introduced. ALLTARGETS was
+  introduced which lists all targets with pre_/do_/post_
+  counterparts.
+
+  examples/hello_superfs:
+    - new interesting feature proposed by Michael Crogan
+
+  As makedepend(1) is broken on Linux, {b}mkdep(1) is used for
+  generating .depend by default.
+
+  mkc_install:
+    - new option -l for symlinking
+    - fixes for files and directories with spaces
+
+======================================================================
 Version 0.26.0, by Aleksey Cheusov, Mon,  3 Feb 2014 00:32:51 +0300
 
   "Features" framework was implemented (variable MKC_FEATURES).  In
