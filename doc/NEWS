@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.27.0, by Aleksey Cheusov, Sat, 12 Jul 2014 20:36:33 +0300
+Version 0.27.0, by Aleksey Cheusov, Sun, 13 Jul 2014 17:03:12 +0300
 
   Fix pkg-config support (github issue #8).
   Thanks to Andrew Shadura for the report. 
