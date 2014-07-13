@@ -1,4 +1,4 @@
-=========== {pre,do,post}_all ============
+=========== {pre,do,post}_recursive ============
 ==================================================
 clean ===> tests/predopost_targets/lib
 fake target pre_clean
@@ -130,3 +130,19 @@ install ===> tests/predopost_targets/lua
 fake target pre_install
 fake target do_install
 fake target post_install
+=========== {pre,do,post}_nonrec ============
+fake target pre_bin_tar
+fake target do_bin_tar
+fake target post_bin_tar
+fake target pre_bin_targz
+fake target do_bin_targz
+fake target post_bin_targz
+fake target pre_bin_tarbz2
+fake target do_bin_tarbz2
+fake target post_bin_tarbz2
+fake target pre_bin_zip
+fake target do_bin_zip
+fake target post_bin_zip
+fake target pre_bin_deb
+fake target do_bin_deb
+fake target post_bin_deb
