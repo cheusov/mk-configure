@@ -10,8 +10,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
 
-- VARIANTS for libraries.
-
 - _mkc_done_<prj>_<trg>
 
 - project "roundup" for testing 
