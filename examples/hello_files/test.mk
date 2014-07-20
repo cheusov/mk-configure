@@ -4,6 +4,11 @@ test_output:
 	MKCATPAGES=yes; export MKCATPAGES; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
+	echo =========== vars ============; \
+	echo CLEANFILES=${CLEANFILES:Q} | \
+	mkc_test_helper_paths; \
+	echo DISTCLEANFILES=${DISTCLEANFILES:Q} | \
+	mkc_test_helper_paths; \
 	echo =========== all ============; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
