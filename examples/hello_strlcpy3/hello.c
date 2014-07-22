@@ -4,6 +4,7 @@
 #include <mkc_strlcpy.h>
 #include <mkc_strlcat.h>
 #include <mkc_getline.h>
+#include <mkc_progname.h>
 
 static const char message [] = "Theo de Raadt said: \"The strlcpy() and strlcat() functions provide a consistent, unambiguous API to help the programmer write more bullet-proof code.\"";
 
@@ -14,6 +15,8 @@ int main (int argc, char ** argv)
 	ssize_t len = 0;
 	char small_buf [15];
 	char said [19];
+
+	setprogname (argv [0]);
 
 	while (len = getline (&buf, &size, stdin), len != -1){
 		len = strlen (buf);
@@ -27,6 +30,9 @@ int main (int argc, char ** argv)
 
 	strlcpy (said, message, sizeof (said));
 	puts (said);
+
+	printf ("short progname=%s\n", getprogname ());
+	printf ("full progname=%s\n", argv [0]);
 
 	return 0;
 }

@@ -22,10 +22,18 @@ foo17# CONTRAC
 foo17# ARISING
 foo17# POSSIBI
 Theo de Raadt said
+short progname=hello
+full progname=/path/to/hello
 =========== all ============
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_func0_getprogname_stdlib_h.c
+/objdir/_mkc_func0_getprogname_stdlib_h.err
+/objdir/_mkc_func0_getprogname_stdlib_h.res
+/objdir/_mkc_func1_setprogname_stdlib_h.c
+/objdir/_mkc_func1_setprogname_stdlib_h.err
+/objdir/_mkc_func1_setprogname_stdlib_h.res
 /objdir/_mkc_func3_getline_stdio_h.c
 /objdir/_mkc_func3_getline_stdio_h.err
 /objdir/_mkc_func3_getline_stdio_h.res
@@ -38,6 +46,12 @@ Theo de Raadt said
 /objdir/_mkc_funclib_getline.c
 /objdir/_mkc_funclib_getline.err
 /objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_getprogname.c
+/objdir/_mkc_funclib_getprogname.err
+/objdir/_mkc_funclib_getprogname.res
+/objdir/_mkc_funclib_setprogname.c
+/objdir/_mkc_funclib_setprogname.err
+/objdir/_mkc_funclib_setprogname.res
 /objdir/_mkc_funclib_strlcat.c
 /objdir/_mkc_funclib_strlcat.err
 /objdir/_mkc_funclib_strlcat.res
@@ -62,6 +76,12 @@ Theo de Raadt said
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_func0_getprogname_stdlib_h.c
+/objdir/_mkc_func0_getprogname_stdlib_h.err
+/objdir/_mkc_func0_getprogname_stdlib_h.res
+/objdir/_mkc_func1_setprogname_stdlib_h.c
+/objdir/_mkc_func1_setprogname_stdlib_h.err
+/objdir/_mkc_func1_setprogname_stdlib_h.res
 /objdir/_mkc_func3_getline_stdio_h.c
 /objdir/_mkc_func3_getline_stdio_h.err
 /objdir/_mkc_func3_getline_stdio_h.res
@@ -74,6 +94,12 @@ Theo de Raadt said
 /objdir/_mkc_funclib_getline.c
 /objdir/_mkc_funclib_getline.err
 /objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_getprogname.c
+/objdir/_mkc_funclib_getprogname.err
+/objdir/_mkc_funclib_getprogname.res
+/objdir/_mkc_funclib_setprogname.c
+/objdir/_mkc_funclib_setprogname.err
+/objdir/_mkc_funclib_setprogname.res
 /objdir/_mkc_funclib_strlcat.c
 /objdir/_mkc_funclib_strlcat.err
 /objdir/_mkc_funclib_strlcat.res

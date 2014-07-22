@@ -1,9 +1,10 @@
-FUNCS_RE=(strlcat|strlcpy|getline)[.]o
+FUNCS_RE=(strlcat|strlcpy|getline|progname)[.]o
 
 .PHONY : test_output
 test_output:
 	@set -e; \
-	${.OBJDIR}/hello < ${.CURDIR}/input.in; \
+	${.OBJDIR}/hello < ${.CURDIR}/input.in | \
+	mkc_test_helper_paths; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\

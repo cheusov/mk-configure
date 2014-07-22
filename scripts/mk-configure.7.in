@@ -1500,7 +1500,7 @@ mk-configure is added to SRCS and declaration is provided in
 mkc_strlcat.h header.
 .TP
 .B strlcpy
-The same as strlcat.
+Similar to strlcat.
 .TP
 .B getline
 This feature corresponds to getline(3) function which is a part of POSIX2008
@@ -1510,6 +1510,10 @@ whether getline declaration is available in stdio.h and
 implementation is available in libc. If not, getline.c provided by
 mk-configure is added to SRCS and declaration is provided in
 mkc_getline.h header.
+.TP
+.B progname
+This feature provides getprogname(3) and setprogname(3) functions
+available in *BSD.
 .TP
 .B libm
 This feature checks whether libm is available and if yes, adds -lm to
