@@ -3,12 +3,9 @@
  * See LICENSE file in the distribution.
  */
 
-
-/* 
-  Rejected in glibc (http://sourceware.org/ml/libc-alpha/2006-03/msg00125.html)
-*/
-
 #include <string.h>
+#include <stdlib.h>
+#include <errno.h>
 
 #include <mkc_progname.h>
 
@@ -16,16 +13,18 @@ static const char *__prog = NULL;
 
 const char * getprogname (void)
 {
-//#if defined(HAVE_PROGRAM_INVOCATION_SHORT_NAME)
-//	if (__progname == NULL)
-//		__progname = program_invocation_short_name;
-//#elif defined(HAVE_GETEXECNAME)
-//	/* getexecname(3) returns an absolute pathname, normalize it. */
-//	if (__progname == NULL)
-//		setprogname(getexecname());
-//#endif
+	if (__prog)
+		return __prog;
 
-	return __prog;
+#ifdef HAVE_FUNC0_GETEXECNAME_STDLIB_H
+	/* SunOS */
+	setprogname (getexecname ());
+	return getprogname ();
+#elif defined(HAVE_VAR_PROGRAM_INVOCATION_SHORT_NAME_ERRNO_H)
+	return program_invocation_short_name;
+#else
+	return "<unset_progname>";
+#endif
 }
 
 void setprogname (const char *progname)
