@@ -1,12 +1,16 @@
 ======= ex ==========
+hello: warnx test1: Cannot allocate memory
 hello: errx test1: Cannot allocate memory
 $?=21
+hello: warnx test2, six=6: Cannot allocate memory
 hello: errx test2, six=6: Cannot allocate memory
 $?=22
 errx(3): invalid argv
 $?=94
+hello: warn test1
 hello: err test1
 $?=11
+hello: warn test2, five=5
 hello: err test2, five=5
 $?=12
 err(3): invalid argv

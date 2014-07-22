@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 #include <mkc_err.h>
+#include <mkc_warn.h>
 
 int main (int argc, char ** argv)
 {
@@ -15,9 +16,11 @@ int main (int argc, char ** argv)
 	if (!strcmp (argv [0], "errx")){
 		switch (argv [1][0]){
 			case '1':
+				warnx ("warn test1");
 				errx (11, "err test1");
 				break;
 			case '2':
+				warnx ("warn test2, five=%d", 5);
 				errx (12, "err test2, five=%d", 5);
 				break;
 			default:
@@ -28,9 +31,13 @@ int main (int argc, char ** argv)
 		switch (argv [1][0]){
 			case '1':
 				errno = ENOMEM;
+				warn ("warnx test1");
+				errno = ENOMEM;
 				err (21, "errx test1");
 				break;
 			case '2':
+				errno = ENOMEM;
+				warn ("warnx test2, six=%d", 6);
 				errno = ENOMEM;
 				err (22, "errx test2, six=%d", 6);
 				break;

@@ -1518,6 +1518,9 @@ available in *BSD.
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
 .TP
+.B warn
+This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.
+.TP
 .B libm
 This feature checks whether libm is available and if yes, adds -lm to
 LDADD.  Most UNIX-like systems have libm but Haiku, for example, does

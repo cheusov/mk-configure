@@ -2,6 +2,9 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
+.ifndef _MKC_IMF.F_PROGNAME
+_MKC_IMF.F_PROGNAME := 1
+
 .include <mkc.configure.mk>
 
 MKC_COMMON_DEFINES      +=	-D_GNU_SOURCE
@@ -21,3 +24,5 @@ CFLAGS +=	-DMKC_PROGNAME_IS_FINE
 .else
 SRCS +=		${FEATURESDIR}/progname/progname.c
 .endif
+
+.endif # _MKC_IMF.F_PROGNAME
