@@ -1,0 +1,14 @@
+======= ex ==========
+hello: errx test1: Cannot allocate memory
+$?=21
+hello: errx test2, six=6: Cannot allocate memory
+$?=22
+errx(3): invalid argv
+$?=94
+hello: err test1
+$?=11
+hello: err test2, five=5
+$?=12
+err(3): invalid argv
+$?=93
+======= cleandir ==========

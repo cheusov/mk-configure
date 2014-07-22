@@ -1515,6 +1515,9 @@ mkc_getline.h header.
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.
 .TP
+.B err
+This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
+.TP
 .B libm
 This feature checks whether libm is available and if yes, adds -lm to
 LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
