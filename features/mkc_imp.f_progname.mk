@@ -2,8 +2,8 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
-.ifndef _MKC_IMF.F_PROGNAME
-_MKC_IMF.F_PROGNAME := 1
+.ifndef _MKC_IMP.F_PROGNAME_MK
+_MKC_IMP.F_PROGNAME_MK := 1
 
 .include <mkc.configure.mk>
 
@@ -25,4 +25,4 @@ CFLAGS +=	-DMKC_PROGNAME_IS_FINE
 SRCS +=		${FEATURESDIR}/progname/progname.c
 .endif
 
-.endif # _MKC_IMF.F_PROGNAME
+.endif # _MKC_IMP.F_PROGNAME_MK

@@ -2,6 +2,9 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
+.ifndef _MKC_IMP_F_ERR_MK
+_MKC_IMP_F_ERR_MK := 1
+
 .include <mkc.configure.mk>
 
 .include <mkc_imp.f_progname.mk>
@@ -22,3 +25,5 @@ CFLAGS +=	-DMKC_ERR_IS_FINE
 .else
 SRCS +=		${FEATURESDIR}/err/err.c
 .endif
+
+.endif #_MKC_IMP_F_ERR_MK

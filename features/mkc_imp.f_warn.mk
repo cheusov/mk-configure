@@ -2,6 +2,9 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
+.ifndef _MKC_IMP_F_WARN_MK
+_MKC_IMP_F_WARN_MK := 1
+
 .include <mkc.configure.mk>
 
 .include <mkc_imp.f_progname.mk>
@@ -22,3 +25,5 @@ CFLAGS +=	-DMKC_WARN_IS_FINE
 .else
 SRCS +=		${FEATURESDIR}/warn/warn.c
 .endif
+
+.endif # _MKC_IMP_F_WARN_MK

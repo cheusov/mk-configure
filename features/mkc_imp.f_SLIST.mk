@@ -2,6 +2,9 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
+.ifndef _MKC_IMP_F_SYSQUEUE_MK
+_MKC_IMP_F_SYSQUEUE_MK := 1
+
 .include <mkc.configure.mk>
 
 _macro = SLIST SIMPLEQ STAILQ LIST TAILQ TAILQ
@@ -35,3 +38,5 @@ MKC_NOAUTO :=	${MKC_NOAUTO.orig}
 .undef bad
 .undef _macro
 .undef MKC_NOAUTO.orig
+
+.endif # _MKC_IMP_F_SYSQUEUE_MK
