@@ -16,10 +16,10 @@ MKC_CHECK_VARS           +=	program_invocation_short_name:errno.h
 
 .include <mkc.configure.mk>
 
-.if ${HAVE_FUNCLIB.getprogname:U1} && \
-    ${HAVE_FUNCLIB.setprogname:U1} && \
-    ${HAVE_FUNC0.getprogname.stdlib_h:U1} && \
-    ${HAVE_FUNC1.setprogname.stdlib_h:U1}
+.if ${HAVE_FUNCLIB.getprogname:U0} && \
+    ${HAVE_FUNCLIB.setprogname:U0} && \
+    ${HAVE_FUNC0.getprogname.stdlib_h:U0} && \
+    ${HAVE_FUNC1.setprogname.stdlib_h:U0}
 CFLAGS +=	-DMKC_PROGNAME_IS_FINE
 .else
 SRCS +=		${FEATURESDIR}/progname/progname.c
