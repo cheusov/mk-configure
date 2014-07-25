@@ -17,13 +17,9 @@ Some thoughts inspired by talks with Michael Crogan
   in the PDF presentation. With and without mkc.minitest.mk.
 - One more example/ for TARGETS, demonstrating such things as
   "mkcmake all_clang/all_gcc" or "valgrind_test"/"gcov_test" etc.
-- Additional slides in PDF for virtual subprojects.
-  Notes about "virtual subproject" in examples/.
 - Notes in examples/hello_dictd and other examples based on
   mkc.subprj.mk about what mkc.subprj.mk really does. Reference (man page)
   is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
-- Better explain ../Makefile.inc included automatically. For those who
-  are not familiar with *BSD it is not obvious how to use it.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
 - Example is needed for how to embed autoconf-based subproject into a
