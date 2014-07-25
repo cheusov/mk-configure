@@ -1515,6 +1515,9 @@ mkc_getline.h header.
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.
 .TP
+.B fgetln
+This feature provides fgetln(3) BSD-ism.
+.TP
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
 .TP

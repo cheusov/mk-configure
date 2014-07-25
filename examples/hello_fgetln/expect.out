@@ -1,0 +1,99 @@
+# Copyright (c) 2009, Aleksey Cheusov <vle@gmx.net>
+# All rights reserved.
+# 
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+# 
+# THIS SOFTWARE IS PROVIDED BY THE NETBSD FOUNDATION, INC. AND CONTRIBUTORS
+# ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
+# TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE FOUNDATION OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
+/objdir/_mkc_func0_getexecname_stdlib_h.c
+/objdir/_mkc_func0_getexecname_stdlib_h.err
+/objdir/_mkc_func0_getexecname_stdlib_h.res
+/objdir/_mkc_func0_getprogname_stdlib_h.c
+/objdir/_mkc_func0_getprogname_stdlib_h.err
+/objdir/_mkc_func0_getprogname_stdlib_h.res
+/objdir/_mkc_func1_setprogname_stdlib_h.c
+/objdir/_mkc_func1_setprogname_stdlib_h.err
+/objdir/_mkc_func1_setprogname_stdlib_h.res
+/objdir/_mkc_func3_err_err_h.c
+/objdir/_mkc_func3_err_err_h.err
+/objdir/_mkc_func3_err_err_h.res
+/objdir/_mkc_func3_errx_err_h.c
+/objdir/_mkc_func3_errx_err_h.err
+/objdir/_mkc_func3_errx_err_h.res
+/objdir/_mkc_func3_fgetln_stdio_h.c
+/objdir/_mkc_func3_fgetln_stdio_h.err
+/objdir/_mkc_func3_fgetln_stdio_h.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
+/objdir/_mkc_func3_verr_err_h.c
+/objdir/_mkc_func3_verr_err_h.err
+/objdir/_mkc_func3_verr_err_h.res
+/objdir/_mkc_func3_verrx_err_h.c
+/objdir/_mkc_func3_verrx_err_h.err
+/objdir/_mkc_func3_verrx_err_h.res
+/objdir/_mkc_funclib_err.c
+/objdir/_mkc_funclib_err.err
+/objdir/_mkc_funclib_err.res
+/objdir/_mkc_funclib_errx.c
+/objdir/_mkc_funclib_errx.err
+/objdir/_mkc_funclib_errx.res
+/objdir/_mkc_funclib_fgetln.c
+/objdir/_mkc_funclib_fgetln.err
+/objdir/_mkc_funclib_fgetln.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_getprogname.c
+/objdir/_mkc_funclib_getprogname.err
+/objdir/_mkc_funclib_getprogname.res
+/objdir/_mkc_funclib_setprogname.c
+/objdir/_mkc_funclib_setprogname.err
+/objdir/_mkc_funclib_setprogname.res
+/objdir/_mkc_funclib_verr.c
+/objdir/_mkc_funclib_verr.err
+/objdir/_mkc_funclib_verr.res
+/objdir/_mkc_funclib_verrx.c
+/objdir/_mkc_funclib_verrx.err
+/objdir/_mkc_funclib_verrx.res
+/objdir/_mkc_header_err_h.c
+/objdir/_mkc_header_err_h.err
+/objdir/_mkc_header_err_h.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_variable_program_invocation_short_name_errno_h.c
+/objdir/_mkc_variable_program_invocation_short_name_errno_h.err
+/objdir/_mkc_variable_program_invocation_short_name_errno_h.res
+/objdir/expect.out
+/objdir/hello
+/objdir/hello.c
+/objdir/hello.o
+/objdir/hello_fgetln.test.out.tmp
+/objdir/test.mk
+======= CLEANFILES ==========
+getline.o
+fgetln.o
+hello.o
+progname.o
+err.o
+======= cleandir ==========

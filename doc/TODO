@@ -3,7 +3,6 @@ Plan 0.26.0
 
 - CLEANFILES: pod2htmd.tmp pod2htmi.tmp only if POD is built
 
-- MKC_FEATURES: fgetln(via getline(3))
 - Special marker for checks that cannot be possible in cross-compiling
 
 Some thoughts inspired by talks with Michael Crogan
