@@ -69,8 +69,6 @@ print-values2 :
 .endfor
 
 ###########
-.PHONY: realerrorcheck
-
 __errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
@@ -83,8 +81,8 @@ __errorcheck: .USE
 	    exit $$ex; \
 	fi
 
-do_all : realerrorcheck
-realerrorcheck: __errorcheck
+all: pre_errorcheck .WAIT do_errorcheck .WAIT post_errorcheck .WAIT pre_all .WAIT do_all .WAIT post_all
+realdo_errorcheck: __errorcheck
 
 .include <mkc_imp.checkprogs.mk>
 .include <configure.mk>

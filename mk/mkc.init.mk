@@ -438,7 +438,7 @@ TARGETS +=	all install clean cleandir depend test \
 		installdirs uninstall errorcheck filelist obj
 TARGETS :=	${TARGETS:O:u}
 
-ALLTARGETS +=	all install clean cleandir depend uninstall installdirs \
+ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
   bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
 
 VERBOSE_ECHO ?=	echo
