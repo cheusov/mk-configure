@@ -18,8 +18,10 @@ _use_prog :=	1
 
 .include <mkc_imp.lua.mk>
 .include <mkc_imp.pod.mk>
-
 .include <mkc.init.mk>
+.ifdef FOREIGN
+.include <mkc_imp.foreign_${FOREIGN}.mk>
+.endif
 .include <mkc_imp.rules.mk>
 .include <mkc_imp.obj.mk>
 

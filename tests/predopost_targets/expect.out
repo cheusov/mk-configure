@@ -14,7 +14,6 @@ errorcheck ===> tests/predopost_targets/lua
 fake target pre_errorcheck
 fake target do_errorcheck
 fake target post_errorcheck
-rm -rf /objdir/prefix /objdir/prefix
 ==================================================
 clean ===> tests/predopost_targets/lib
 fake target pre_clean

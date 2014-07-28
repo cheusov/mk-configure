@@ -86,6 +86,9 @@ output a list of destination files of the project, one per line, e.g.
 if MKOBJDIR is "yes", creates object directories (${.OBJDIR}) according
 to MAKEOBJDIR and MAKEOBJPREFIX variables. Current umask is used for
 this.
+.VE
+.IP mkgen
+.RB See " mkc_imp.foreign_autotools.mk" .
 .IP "bin_tar, bin_targz, bin_tarbz2, bin_zip, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
 and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
@@ -1913,6 +1916,41 @@ dependencies, but are not needed in ${SRCS}.
 Compiler passed to mkdep(1).
 .RI < "Iu" >
 .RI [ "${CC}" ].
+.SS "mkc_imp.foreign_autotools.mk"
+This module is activated if variable FOREIGN is set to "autotools" and provides
+support for building external projects using autotools.
+It also provides a recursive target
+.B mkgen
+for generating "configure" script, "Makefile.in" file etc. using
+.BR autoreconf(1) " utility."
+The following variables are provided:
+.IP FSRCDIR
+Relative (to ${.CURDIR}) or absolute directory to autotools-based sources.
+.IP AT_MAKE
+Make(1)-like utility for the project.
+.RI < "Imu" >
+.RI [ "${MAKE}" ].
+.IP AT_USE_AUTOMAKE
+If "yes",
+.B automake(1)
+is used.
+.RI < "M" >
+.RI [ yes ].
+.IP AT_CONFIGURE_ARGS
+Extra arguments passed to "configure" script set in addition to
+standard ones (--prefix, --bindir etc.).
+.RI < "Mu" >
+.RI [ "" ].
+.IP AT_CONFIGURE_ENV
+Environment variables for "configure" script set in addition to
+standard ones (CC, CFLAGS etc.).
+.RI < "Mu" >
+.RI [ "" ].
+.IP AT_AUTORECONF_ARGS
+Arguments passed to
+.BR autoreconf(1) .
+.RI < "U" >
+.RI [ "-sif" ].
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM

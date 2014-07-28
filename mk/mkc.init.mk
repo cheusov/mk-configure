@@ -394,6 +394,8 @@ YFLAGS    ?=
 YACC.y    ?=	${_V} ${YACC} ${YFLAGS}
 MESSAGE.y ?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
+MESSAGE.mkgen ?=	@${_MESSAGE} "MKGEN:"
+
 TAR       ?=	tar
 GZIP      ?=	gzip
 BZIP2     ?=	bzip2
@@ -435,11 +437,11 @@ MKCHECKS     =	no
 ###########
 
 TARGETS +=	all install clean cleandir depend test \
-		installdirs uninstall errorcheck filelist obj
+		installdirs uninstall errorcheck filelist obj mkgen
 TARGETS :=	${TARGETS:O:u}
 
 ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
-  bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
+  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
 
 VERBOSE_ECHO ?=	echo
 
