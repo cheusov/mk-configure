@@ -3,6 +3,8 @@ Plan 0.26.0
 
 - CLEANFILES: pod2htmd.tmp pod2htmi.tmp only if POD is built
 
+- CLEANFILES: all objects from MKC_FEATURES and
+  MKC_SOURCE_FUNC (.o, .op, .os)
 - Special marker for checks that cannot be possible in cross-compiling
 
 Some thoughts inspired by talks with Michael Crogan
@@ -22,10 +24,6 @@ Some thoughts inspired by talks with Michael Crogan
   is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
-- Example is needed for how to embed autoconf-based subproject into a
-  project based on mk-configure. The sad fact is autoconf/automake is
-  everywhere. So, it would be nice to integrate mk-c into reality.
-  mkc_imp.autotools.mk is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
   make info files
 - Higher priority for fixing handling of dependencies between
