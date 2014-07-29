@@ -6,8 +6,8 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
-SUBPRJ_DFLT =   custom helpers mk scripts features
-SUBPRJ      =	examples doc presentation ${SUBPRJ_DFLT}
+SUBPRJ_DFLT =   custom helpers mk scripts features doc
+SUBPRJ      =	examples presentation ${SUBPRJ_DFLT}
 
 tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    mkprofilelib mkdll pkg_config_0 pkg_config_1 pkg_config_1_1 pkg_config_2 \
