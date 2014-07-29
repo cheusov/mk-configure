@@ -114,8 +114,6 @@ Plan 3)
 
   = support for gettext
 
-  = xxxDIR variable for /var
-
   = mkclint?
 
   = Command line may be limited in size.

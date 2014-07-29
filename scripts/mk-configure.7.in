@@ -377,6 +377,18 @@ Target directory for system utilities.
 Target directory for architecture-independent text files.
 .RI < "Iu" >
 .RI [ ${PREFIX}/share ]
+.IP SHAREDSTATEDIR
+Target directory for modifiable architecture-independent data files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/com ]
+.IP VARDIR
+Target directory for modifiable single-machine data files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/var ]
+.IP INCSDIR
+Target directory for header files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/include ]
 .IP SYSCONFDIR
 Target directory for configuration files.
 .RI < "Iu" >
@@ -1676,6 +1688,8 @@ expanding the following @@ patterns:
 .RI @ "" "datadir@      ${DATADIR}"
 .RI @ "" "sysconfdir@   ${SYSCONFDIR}"
 .RI @ "" "incsdir@      ${INCSDIR}"
+.RI @ "" "vardir@       ${VARDIR}"
+.RI @ "" "sharedstate@  ${SHAREDSTATEDIR}"
 .VE
 The following variables are provided:
 .IP INFILES
@@ -1793,9 +1807,8 @@ Do not use it directly!
 This module provides installation of header files and provides
 the following variables:
 .IP INCSDIR
-Target directory for includes.
-.RI < "Iu" >
-.RI [ ${PREFIX}/include ]
+See 
+.BR mkc.init.mk .
 .IP INCS
 The list of include files.
 .RI < "M" >

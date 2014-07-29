@@ -27,10 +27,10 @@ _FSRCDIR = ${FSRCDIR}
 _FOBJDIR =	${.OBJDIR}
 
 _CONFIGURE_ARGS = --prefix ${PREFIX:Q} --bindir=${BINDIR:Q} \
-   --sbindir=${PREFIX:Q}/sbin --libexecdir=${LIBEXECDIR} \
-   --sysconfdir=${SYSCONFDIR:Q} --sharedstatedir=${PREFIX:Q}/com \
-   --localstatedir=${PREFIX:Q}/var --libdir=${LIBDIR:Q} \
-   --includedir=${PREFIX:Q}/include --datarootdir=${DATADIR:Q} \
+   --sbindir=${SBINDIR:Q} --libexecdir=${LIBEXECDIR} \
+   --sysconfdir=${SYSCONFDIR:Q} --sharedstatedir=${SHAREDSTATEDIR:Q} \
+   --localstatedir=${VARDIR:Q} --libdir=${LIBDIR:Q} \
+   --includedir=${INCSDIR:Q} --datarootdir=${DATADIR:Q} \
    --infodir=${INFODIR:Q} --localedir=${DATADIR:Q}/locale \
    --mandir=${MANDIR:Q} --docdir=${DATADIR:Q}/doc/${PROJECTNAME} \
    --srcdir=${_FSRCDIR} ${AT_CONFIGURE_ARGS}

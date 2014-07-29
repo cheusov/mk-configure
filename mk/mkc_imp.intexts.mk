@@ -22,6 +22,8 @@ INTEXTS_SED  +=	-e 's,@sbindir@,${SBINDIR},g'
 INTEXTS_SED  +=	-e 's,@datadir@,${DATADIR},g'
 INTEXTS_SED  +=	-e 's,@mandir@,${MANDIR},g'
 INTEXTS_SED  +=	-e 's,@incsdir@,${INCSDIR},g'
+INTEXTS_SED  +=	-e 's,@vardir@,${VARDIR},g'
+INTEXTS_SED  +=	-e 's,@sharedstatedir@,${SHAREDSTATEDIR},g'
 
 .if !make(clean) && !make(cleandir) && !make(distclean)
 .for _pattern _repl in ${INTEXTS_REPLS}
