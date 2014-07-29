@@ -91,9 +91,9 @@
 /objdir/hello_fgetln.test.out.tmp
 /objdir/test.mk
 ======= CLEANFILES ==========
+hello.o
 getline.o
 fgetln.o
-hello.o
 progname.o
 err.o
 ======= cleandir ==========

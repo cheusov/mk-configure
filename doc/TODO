@@ -3,8 +3,6 @@ Plan 0.26.0
 
 - CLEANFILES: pod2htmd.tmp pod2htmi.tmp only if POD is built
 
-- CLEANFILES: all objects from MKC_FEATURES and
-  MKC_SOURCE_FUNC (.o, .op, .os)
 - Special marker for checks that cannot be possible in cross-compiling
 
 Some thoughts inspired by talks with Michael Crogan

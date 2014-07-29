@@ -32,7 +32,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= CLEANFILES ==========; \
-	${MAKE} ${MAKEFLAGS} print-values VARS='CLEANFILES' MKCHECKS=no | \
-	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o$$/) print $$i}'
+	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
+	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'
 
 .include <mkc.minitest.mk>

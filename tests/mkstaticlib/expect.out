@@ -1,9 +1,15 @@
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
+/objdir/_mkc_funclib_dummy.c
+/objdir/_mkc_funclib_dummy.err
+/objdir/_mkc_funclib_dummy.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
+/objdir/dummy.os
 /objdir/expect.out
 /objdir/hello_msg1.os
 /objdir/hello_msg2.os
@@ -23,12 +29,27 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_compiler_type.err
+/objdir/_mkc_compiler_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
+/objdir/_mkc_funclib_dummy.c
+/objdir/_mkc_funclib_dummy.err
+/objdir/_mkc_funclib_dummy.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp
+======= CLEANFILES ==========
+hello_msg1.o
+hello_msg2.o
+dummy.o
+hello_msg1.op
+hello_msg2.op
+dummy.op
+hello_msg1.os
+hello_msg2.os
+dummy.os
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

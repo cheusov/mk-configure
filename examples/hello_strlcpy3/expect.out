@@ -133,8 +133,8 @@ full progname=/path/to/hello
 /objdir/input.in
 /objdir/test.mk
 ======= CLEANFILES ==========
+hello.o
 strlcpy.o
 strlcat.o
 getline.o
-hello.o
 progname.o

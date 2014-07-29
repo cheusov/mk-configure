@@ -58,14 +58,14 @@ test:
 .endif # SUBPRJ
 
 ###########
-.PHONY : print-values
-print-values :
+.PHONY : print_values
+print_values :
 .for v in ${VARS}
 	@printf "%s=%s\n" ${v} ${${v}:Q}
 .endfor
 
-.PHONY : print-values2
-print-values2 :
+.PHONY : print_values2
+print_values2 :
 .for v in ${VARS}
 	@printf "%s\n" ${${v}:Q}
 .endfor
