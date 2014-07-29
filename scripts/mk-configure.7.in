@@ -107,8 +107,12 @@ in Makefile override the standard behaviour.
 All targets in this list have 
 .IR pre\_* ", " do\_* " and " post\_*
 counterparts. See ALLTARGETS for details.
-.SS "Common variables"
-The following variables control how various files are compiled/built.
+.SS "mkc.init.mk"
+This file is included by
+.BR mkc.mk " and " mkc.configure.mk
+automatically but can be used by users directly.
+.B mkc.init.mk
+uses the following variables.
 .IP AR
 Create, modify, and extract from archives.
 .RI < Iu >
@@ -554,10 +558,6 @@ will be translated to
 Top-level object directory which
 defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
 .RI < I >
-.SS "mkc.init.mk"
-This file sets most important mk-configure variables, for example,
-OPSYS, PREFIX, CC_TYPE etc. and is included automatically by
-.BR mkc.files.mk ", " mkc.lib.mk ", " mkc.prog.mk ", " mkc.subdir.mk " and " mkc.subprj.mk
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
