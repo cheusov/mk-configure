@@ -27,6 +27,30 @@ is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .P
+There are only a few top-level makefiles:
+.BR mkc.init.mk ", " mkc.mk ", " mkc.configure.mk ", " mkc.minitest.mk .
+Usually mk-c makefiles consist of variables assignments
+and inclusion of
+.B mkc.mk
+in the and.
+One can also use
+.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk " and " mkc.subprj.mk
+instead of
+.BR mkc.mk .
+The latter activates
+.B mkc.lib.mk
+if variable LIB is set,
+.B mkc.prog.mk
+if variables PROG or PROGS are set,
+.B mkc.subprj.mk
+if variable SUBPRJ is set,
+.B mkc.subdir.mk
+if variable SUBDIR is set,
+and
+.B mkc.files.mk
+otherwise.
+.B 
+.P
 To get system-specific configuration parameters, mkc.*.mk include
 files try to include the file specified by the "MAKECONF"
 variable.  If MAKECONF is not set, or no such file exists, the system
@@ -51,8 +75,7 @@ means "May be set or changed in project's Makefile" and
 .I Mu
 means "May be set in project's Makefile but may be initialized or overriden by user".
 .SS "Targets"
-.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk ", and " mkc.subprj.mk
-include files provide the following targets:
+Mk-configure provides the following targets:
 .IP all
 build everything.
 .IP clean
@@ -573,10 +596,9 @@ defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
-handles the FILES variables and is included
+handles the FILES variable and is included
 from
 .BR mkc.lib.mk " and " mkc.prog.mk .
-.B mkc_imp.files.mk
 List of supported variables:
 .IP FILES
 The list of files to install.
@@ -763,8 +785,7 @@ and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
 The include file
 .B mkc.lib.mk
-has support for building a static or dynanic library.  It has a
-limited number of suffixes.
+has support for building a static and dynanic library or DLL.
 .B mkc.lib.mk
 uses the following variables:
 .IP LIB
