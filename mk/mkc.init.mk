@@ -125,6 +125,8 @@ PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
+.elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk-c.conf)
+.include "${MKC_SYSCONFDIR}/mk-c.conf"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)
 .include "${MKC_SYSCONFDIR}/mk.conf"
 .endif
