@@ -110,8 +110,6 @@ Plan 3)
     run generated executables, i.e. not ready
     for cross-compilation
 
-  = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
-
   = support for gettext
 
   = mkclint?
