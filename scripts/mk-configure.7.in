@@ -2024,9 +2024,7 @@ See SYSROOT.
 Path to mk.conf file .include-ed by mkc.*.mk files
 .SH "FILES"
 .IP @sysconfdir@/mk.conf
- .include-ed by mkc.*.mk if exists
-.IP /etc/mk.conf
- .include-ed by mkc.*.mk if exists
+ .include-ed by mkc.init.mk if exists
 .SH "BUGS"
 Target
 .IR errorcheck " (" configure ")"
