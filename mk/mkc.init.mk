@@ -127,8 +127,6 @@ PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 .include "${MAKECONF}"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)
 .include "${MKC_SYSCONFDIR}/mk.conf"
-.elif exists(/etc/mk.conf)
-.include "/etc/mk.conf"
 .endif
 
 .if ${OPSYS:Ux} == "SunOS"
