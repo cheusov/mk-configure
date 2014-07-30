@@ -11,11 +11,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - project "roundup" for testing 
 
-- One more example/ for TARGETS, demonstrating such things as
-  "mkcmake all_clang/all_gcc" or "valgrind_test"/"gcov_test" etc.
-- Notes in examples/hello_dictd and other examples based on
-  mkc.subprj.mk about what mkc.subprj.mk really does. Reference (man page)
-  is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
@@ -30,10 +25,6 @@ Some thoughts inspired by talks with Michael Crogan
   <<<depend-project1:errorcheck-autotools_based_project2>>>!!!
 - Steal cool features from Simon Gerraty's mk files and analyse
   "meta mode" he invented.
-- Better support for working without installation to /. -rpath, additional
-  directories for objects, binaries and libs.
-- symlinks in object directories to source files for easier running
-  unitest, for example. lndir(1).
 
 Some "targets" from TARGETS should set MKCHECKS to "no"
 

@@ -2,6 +2,7 @@ BUILD SYSTEM IN GENERAL AND MK-CONFIGURE IN PARTICULAR IS A COMPLEX
 SYSTEM. THIS FILE CONTAINS UNORDERED NOTES ABOUT HOW TO USE
 MK-CONFIGURE EFFICIENTLY. I HOPE THESE NOTES WILL BE VALUABLE ADDON TO
 MK-CONFIGURE(7) REFERENCE AND HELP USERS UNDERSTAND MK-CONFIGURE.
+TAKE A NOTE THAT THESE NOTES ARE UNSORTED.
 
 ***
 
@@ -10,6 +11,67 @@ For building projects with /usr prefix, run the following.
    export PREFIX=/usr
    export SYSCONFDIR=/etc
    mkcmake all
+
+***
+
+It's very important to understand what is a recursive target.
+See variable TARGETS.
+
+***
+
+The variable TARGETS is a way to extend mk-c functionality.
+See examples/hello_TARGETS.
+
+***
+
+Look at examples/hello_superfs/Makefile.inc.
+There you'll find a cool mk-configure's feature.
+
+***
+
+If you want to override values for MKC_CHECK_* checks, run mkcmake
+with additional parameters, like this
+
+   mkcmake all HAVE_HEADER.stdio_h=1 HAVE_HEADER.stdlib_h=1
+
+See mkc.configure.mk section in mk-configure.7 for details.
+
+***
+
+There are several ways of passing additional information from
+top-level project to subprojects:
+  - environment variables via .export and .export-env bmake directives.
+  - EXPORT_VARNAMES and NOEXPORT_VARNAMES variables from mkc.subprj.mk.
+  - Makefile.common and Makefile.inc files.
+
+***
+
+For prettifying mkcmake output, one can use
+
+  export SHRTOUT=yes
+  mkcmake all
+
+***
+
+If your top-level Makefile looks like this
+
+  Makefile:
+    SUBPRJ = libA:progA libB:progB
+    .include <mkc.subprj.mk>
+
+one can use
+
+  mkcmake all-progB
+
+for building progB subproject without probA and libA. In this case libB
+will also be built as it is a dependency. The same for
+
+  mkcmake install-progB
+  mkcmake test-progB
+  ...
+
+and others. "all", "install", "test" and others are listed in variable
+TARGETS.
 
 ***
 
