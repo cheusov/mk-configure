@@ -29,6 +29,17 @@ crossplatform development and software building.
 .P
 There are only a few top-level makefiles:
 .BR mkc.init.mk ", " mkc.mk ", " mkc.configure.mk ", " mkc.minitest.mk .
+Everything else
+.RB ( mkc_imp.*.mk " files)"
+is included implicitely. Do not use
+.B mkc_imp.*.mk
+files directly! If you do, I cannot guarantee backward compatibility.
+.B mkc.configure.mk
+is included automatically by
+.BR mkc.mk ,
+but can be included explicitely.
+.B mkc.minitest.mk
+provides a trivial support for regression tests and should be included explicitely.
 Usually mk-c makefiles consist of variables assignments
 and inclusion of
 .B mkc.mk

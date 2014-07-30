@@ -11,8 +11,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - project "roundup" for testing 
 
-- Better explain how "test" target works, maybe as a couple of slides
-  in the PDF presentation. With and without mkc.minitest.mk.
 - One more example/ for TARGETS, demonstrating such things as
   "mkcmake all_clang/all_gcc" or "valgrind_test"/"gcov_test" etc.
 - Notes in examples/hello_dictd and other examples based on
