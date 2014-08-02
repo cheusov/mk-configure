@@ -8,9 +8,44 @@ TAKE A NOTE THAT THESE NOTES ARE UNSORTED.
 
 For building projects with /usr prefix, run the following.
 
-   export PREFIX=/usr
-   export SYSCONFDIR=/etc
+   export PREFIX=/usr SYSCONFDIR=/etc VARDIR=/var
    mkcmake all
+   mkcmake install
+
+Packagers may use the following for creating a package using
+unprivileged user.
+
+   mkdir /tmp/destdir
+   mkcmake install DESTDIR=/tmp/destdir
+
+***
+
+mk-configure supports out-of-tree builds. Most of functionality is
+supported by bmake. Examples are below.
+
+1)
+   mkdir /tmp/xxxproj-obj
+   mkcmake MAKEOBJDIR=/tmp/xxxproj-obj
+
+In this case all objects and temporary files are created in
+/tmp/xxxproj-obj.  Obviously, this may work if different subprojects
+doesn't produce files with the same name. This features is supported
+directly by bmake.
+
+2)
+   mkdir /tmp/xxxproj-obj
+   mkcmake MAKEOBJDIRPREFIX=/tmp/xxxproj-obj
+
+Here all objects and temporary files are saved to
+${MAKEOBJDIRPREFIX}${.CURDIR} directory. This features is also
+supported by bmake.
+
+3)
+   mkdir /tmp/xxxproj-obj
+   env MKRELOBJDIR=yes MAKEOBJDIR=/tmp/xxxproj-obj mkcmake
+
+Unlike example 2) subdirectories under /tmp/xxxproj-obj for temporary
+files won't contain ${SRCTOP}. The variable MKRELOBJDIR is provided by mk-c.
 
 ***
 
