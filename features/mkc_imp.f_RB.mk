@@ -2,6 +2,10 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
+.ifndef _MKC_IMP_F_RB_MK
+_MKC_IMP_F_RB_MK := 1
 
 MKC_CHECK_DEFINES +=	RB_ENTRY:sys/tree.h
 MKC_CHECK_DEFINES +=	SPLAY_ENTRY:sys/tree.h
+
+.endif # _MKC_IMP_F_RB_MK

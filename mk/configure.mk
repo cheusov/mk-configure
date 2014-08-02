@@ -340,13 +340,16 @@ MKC_ERR_MSG +=		"ERROR: prototype test ${p} failed"
 # final assignment
 .include <mkc_imp.conf-final.mk>
 
-.endif # MKCHECKS == yes
+.else # MKCHECKS == yes
+
+.for i in ${_MKC_SOURCE_FUNCS}
+SRCS +=	${i} # for changing CLEANFILES
+.endfor
+
+.endif # MKCHECKS?
 
 ######################################################
 ######################################################
 ######################################################
-.for i in ${_MKC_SOURCE_FUNCS}
-CLEANFILES +=	${i}.o
-.endfor
 
 .undef MKC_SOURCE_FUNCLIBS

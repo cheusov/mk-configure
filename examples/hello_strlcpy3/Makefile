@@ -3,7 +3,7 @@ SRCS  =			hello.c
 
 WARNS =			4
 
-MKC_FEATURES  =	strlcpy strlcat getline
+MKC_FEATURES  =	strlcpy strlcat getline progname
 
 MKC_REQD =		0.26.0
 

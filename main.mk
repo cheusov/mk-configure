@@ -1,8 +1,13 @@
+# Copyright (c) 2014 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
-SUBPRJ_DFLT =   custom helpers mk scripts features
-SUBPRJ      =	examples doc presentation ${SUBPRJ_DFLT}
+SUBPRJ_DFLT =   custom helpers mk scripts features doc
+SUBPRJ      =	examples presentation ${SUBPRJ_DFLT}
 
 tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    mkprofilelib mkdll pkg_config_0 pkg_config_1 pkg_config_1_1 pkg_config_2 \
@@ -20,7 +25,9 @@ examples    =	hello_world hello_scripts hello_files hello_sizeof hello_lex \
    hello_strlcpy3 hello_customtests hello_customtests2 hello_requirements \
    hello_iconv hello_cxx hello_cxxlib hello_dictd hello_lua hello_lua2 \
    hello_lua3 hello_superfs hello_xxzip hello_progs hello_progs2 tools \
-   tools2 pkgconfig3 hello_SLIST hello_RBTREE # hello_require_tools
+   tools2 pkgconfig3 hello_SLIST hello_RBTREE hello_errwarn hello_fgetln \
+   hello_autotools
+   # hello_require_tools
 .for t in ${examples}
 SUBPRJ +=	examples/${t}:tests
 .endfor

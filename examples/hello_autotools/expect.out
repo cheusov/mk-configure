@@ -1,0 +1,75 @@
+Hello AutoShi^H^H^HTools!
+=========== all ============
+/objdir/.deps/main.Po
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile
+/objdir/Makefile.am
+/objdir/Makefile.in
+/objdir/NEWS
+/objdir/README
+/objdir/aclocal.m4
+/objdir/autom4te.cache/output.0
+/objdir/autom4te.cache/output.1
+/objdir/autom4te.cache/requests
+/objdir/autom4te.cache/traces.0
+/objdir/autom4te.cache/traces.1
+/objdir/config.log
+/objdir/config.status
+/objdir/configure
+/objdir/configure.ac
+/objdir/hello_autotools
+/objdir/hello_autotools-config.h
+/objdir/hello_autotools-config.h.in
+/objdir/hello_autotools.test.out.tmp
+/objdir/main.c
+/objdir/main.o
+/objdir/stamp-h1
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/hello_autotools
+======== uninstall =========
+/objdir/prefix
+/objdir/prefix/bin
+========== clean ===========
+/objdir/.deps/main.Po
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile
+/objdir/Makefile.am
+/objdir/Makefile.in
+/objdir/NEWS
+/objdir/README
+/objdir/aclocal.m4
+/objdir/autom4te.cache/output.0
+/objdir/autom4te.cache/output.1
+/objdir/autom4te.cache/requests
+/objdir/autom4te.cache/traces.0
+/objdir/autom4te.cache/traces.1
+/objdir/config.log
+/objdir/config.status
+/objdir/configure
+/objdir/configure.ac
+/objdir/hello_autotools-config.h
+/objdir/hello_autotools-config.h.in
+/objdir/hello_autotools.test.out.tmp
+/objdir/main.c
+/objdir/stamp-h1
+========== all SHRTOUT=yes ===========
+MKGEN:
+CONFIGURE:
+configure: creating ./config.status
+AUTOTOOLS:
+======= cleandir ==========
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile.am
+/objdir/NEWS
+/objdir/README
+/objdir/configure.ac
+/objdir/hello_autotools.test.out.tmp
+/objdir/main.c

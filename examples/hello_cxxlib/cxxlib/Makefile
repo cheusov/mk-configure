@@ -12,4 +12,7 @@ INCSSRCDIR =	include
 
 SRCS =		hello_msg1.cpp hello_msg2.cpp
 
+MKC_SOURCE_FUNCLIBS = dummy # a part of regression test
+MKC_SOURCE_DIR.dummy.c := ${.PARSEDIR}
+
 .include <mkc.lib.mk>

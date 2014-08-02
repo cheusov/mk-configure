@@ -27,11 +27,48 @@ is a collection of include files for bmake (portable version of
 NetBSD make) and a number of executables. It is intended to simplify
 crossplatform development and software building.
 .P
-To get system-specific configuration parameters, mkc.*.mk include
-files try to include the file specified by the "MAKECONF"
-variable.  If MAKECONF is not set, or no such file exists, the system
-make configuration file, @sysconfdir@/mk.conf or /etc/mk.conf, is
-included. If "${SRCTOP}/Makefile.common" file exists it is also included
+There are only a few top-level makefiles:
+.BR mkc.init.mk ", " mkc.mk ", " mkc.configure.mk ", " mkc.minitest.mk .
+Everything else
+.RB ( mkc_imp.*.mk " files)"
+is included implicitely. Do not use
+.B mkc_imp.*.mk
+files directly! If you do, I cannot guarantee backward compatibility.
+.B mkc.configure.mk
+is included automatically by
+.BR mkc.mk ,
+but can be included explicitely.
+.B mkc.minitest.mk
+provides a trivial support for regression tests and should be included explicitely.
+Usually mk-c makefiles consist of variables assignments
+and inclusion of
+.B mkc.mk
+in the and.
+One can also use
+.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk " and " mkc.subprj.mk
+instead of
+.BR mkc.mk .
+The latter activates
+.B mkc.lib.mk
+if variable LIB is set,
+.B mkc.prog.mk
+if variables PROG or PROGS are set,
+.B mkc.subprj.mk
+if variable SUBPRJ is set,
+.B mkc.subdir.mk
+if variable SUBDIR is set,
+and
+.B mkc.files.mk
+otherwise.
+.B 
+.P
+To get system-wide configuration parameters, mkc.init.mk loads
+"${MAKECONF}" file if it exists.
+Otherwise, it loads
+@sysconfdir@/mk-c.conf if it exists.
+If neither ${MAKECONF} nor @sysconfdir@/mk-c.conf exist,
+it tries to load @sysconfdir@/mk.conf file.
+If "${SRCTOP}/Makefile.common" file exists it is also included
 by all subprojects.
 Unless SRCTOP variable is set, "../Makefile.inc"
 is also included if exists.
@@ -51,8 +88,7 @@ means "May be set or changed in project's Makefile" and
 .I Mu
 means "May be set in project's Makefile but may be initialized or overriden by user".
 .SS "Targets"
-.BR mkc.prog.mk ", " mkc.lib.mk ", " mkc.files.mk ", " mkc.subdir.mk ", and " mkc.subprj.mk
-include files provide the following targets:
+Mk-configure provides the following targets:
 .IP all
 build everything.
 .IP clean
@@ -86,6 +122,9 @@ output a list of destination files of the project, one per line, e.g.
 if MKOBJDIR is "yes", creates object directories (${.OBJDIR}) according
 to MAKEOBJDIR and MAKEOBJPREFIX variables. Current umask is used for
 this.
+.VE
+.IP mkgen
+.RB See " mkc_imp.foreign_autotools.mk" .
 .IP "bin_tar, bin_targz, bin_tarbz2, bin_zip, bin_deb"
 build software, install it to a temporary directory (using DESTDIR)
 and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
@@ -104,8 +143,12 @@ in Makefile override the standard behaviour.
 All targets in this list have 
 .IR pre\_* ", " do\_* " and " post\_*
 counterparts. See ALLTARGETS for details.
-.SS "Common variables"
-The following variables control how various files are compiled/built.
+.SS "mkc.init.mk"
+This file is included by
+.BR mkc.mk " and " mkc.configure.mk
+automatically but can be used by users directly.
+.B mkc.init.mk
+uses the following variables.
 .IP AR
 Create, modify, and extract from archives.
 .RI < Iu >
@@ -370,6 +413,18 @@ Target directory for system utilities.
 Target directory for architecture-independent text files.
 .RI < "Iu" >
 .RI [ ${PREFIX}/share ]
+.IP SHAREDSTATEDIR
+Target directory for modifiable architecture-independent data files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/com ]
+.IP VARDIR
+Target directory for modifiable single-machine data files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/var ]
+.IP INCSDIR
+Target directory for header files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/include ]
 .IP SYSCONFDIR
 Target directory for configuration files.
 .RI < "Iu" >
@@ -551,17 +606,12 @@ will be translated to
 Top-level object directory which
 defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
 .RI < I >
-.SS "mkc.init.mk"
-This file sets most important mk-configure variables, for example,
-OPSYS, PREFIX, CC_TYPE etc. and is included automatically by
-.BR mkc.files.mk ", " mkc.lib.mk ", " mkc.prog.mk ", " mkc.subdir.mk " and " mkc.subprj.mk
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
-handles the FILES variables and is included
+handles the FILES variable and is included
 from
 .BR mkc.lib.mk " and " mkc.prog.mk .
-.B mkc_imp.files.mk
 List of supported variables:
 .IP FILES
 The list of files to install.
@@ -748,8 +798,7 @@ and therefore supports all variables supported by it.
 .SS "mkc.lib.mk"
 The include file
 .B mkc.lib.mk
-has support for building a static or dynanic library.  It has a
-limited number of suffixes.
+has support for building a static and dynanic library or DLL.
 .B mkc.lib.mk
 uses the following variables:
 .IP LIB
@@ -1500,7 +1549,7 @@ mk-configure is added to SRCS and declaration is provided in
 mkc_strlcat.h header.
 .TP
 .B strlcpy
-The same as strlcat.
+Similar to strlcat.
 .TP
 .B getline
 This feature corresponds to getline(3) function which is a part of POSIX2008
@@ -1510,6 +1559,19 @@ whether getline declaration is available in stdio.h and
 implementation is available in libc. If not, getline.c provided by
 mk-configure is added to SRCS and declaration is provided in
 mkc_getline.h header.
+.TP
+.B progname
+This feature provides getprogname(3) and setprogname(3) functions
+available in *BSD.
+.TP
+.B fgetln
+This feature provides fgetln(3) BSD-ism.
+.TP
+.B err
+This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
+.TP
+.B warn
+This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.
 .TP
 .B libm
 This feature checks whether libm is available and if yes, adds -lm to
@@ -1660,6 +1722,8 @@ expanding the following @@ patterns:
 .RI @ "" "datadir@      ${DATADIR}"
 .RI @ "" "sysconfdir@   ${SYSCONFDIR}"
 .RI @ "" "incsdir@      ${INCSDIR}"
+.RI @ "" "vardir@       ${VARDIR}"
+.RI @ "" "sharedstate@  ${SHAREDSTATEDIR}"
 .VE
 The following variables are provided:
 .IP INFILES
@@ -1777,9 +1841,8 @@ Do not use it directly!
 This module provides installation of header files and provides
 the following variables:
 .IP INCSDIR
-Target directory for includes.
-.RI < "Iu" >
-.RI [ ${PREFIX}/include ]
+See 
+.BR mkc.init.mk .
 .IP INCS
 The list of include files.
 .RI < "M" >
@@ -1900,6 +1963,41 @@ dependencies, but are not needed in ${SRCS}.
 Compiler passed to mkdep(1).
 .RI < "Iu" >
 .RI [ "${CC}" ].
+.SS "mkc_imp.foreign_autotools.mk"
+This module is activated if variable FOREIGN is set to "autotools" and provides
+support for building external projects using autotools.
+It also provides a recursive target
+.B mkgen
+for generating "configure" script, "Makefile.in" file etc. using
+.BR autoreconf(1) " utility."
+The following variables are provided:
+.IP FSRCDIR
+Relative (to ${.CURDIR}) or absolute directory to autotools-based sources.
+.IP AT_MAKE
+Make(1)-like utility for the project.
+.RI < "Imu" >
+.RI [ "${MAKE}" ].
+.IP AT_USE_AUTOMAKE
+If "yes",
+.B automake(1)
+is used.
+.RI < "M" >
+.RI [ yes ].
+.IP AT_CONFIGURE_ARGS
+Extra arguments passed to "configure" script set in addition to
+standard ones (--prefix, --bindir etc.).
+.RI < "Mu" >
+.RI [ "" ].
+.IP AT_CONFIGURE_ENV
+Environment variables for "configure" script set in addition to
+standard ones (CC, CFLAGS etc.).
+.RI < "Mu" >
+.RI [ "" ].
+.IP AT_AUTORECONF_ARGS
+Arguments passed to
+.BR autoreconf(1) .
+.RI < "U" >
+.RI [ "-sif" ].
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM
@@ -1928,9 +2026,7 @@ See SYSROOT.
 Path to mk.conf file .include-ed by mkc.*.mk files
 .SH "FILES"
 .IP @sysconfdir@/mk.conf
- .include-ed by mkc.*.mk if exists
-.IP /etc/mk.conf
- .include-ed by mkc.*.mk if exists
+ .include-ed by mkc.init.mk if exists
 .SH "BUGS"
 Target
 .IR errorcheck " (" configure ")"

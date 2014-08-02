@@ -125,10 +125,10 @@ PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
+.elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk-c.conf)
+.include "${MKC_SYSCONFDIR}/mk-c.conf"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)
 .include "${MKC_SYSCONFDIR}/mk.conf"
-.elif exists(/etc/mk.conf)
-.include "/etc/mk.conf"
 .endif
 
 .if ${OPSYS:Ux} == "SunOS"
@@ -155,6 +155,8 @@ FILESDIR   ?=	${PREFIX}/bin
 LIBEXECDIR ?=	${PREFIX}/libexec
 INCSDIR    ?=	${PREFIX}/include
 DATADIR    ?=	${PREFIX}/share
+SHAREDSTATEDIR    ?=	${PREFIX}/com
+VARDIR     ?=	${PREFIX}/var
 SYSCONFDIR ?=	${PREFIX}/etc
 INFODIR    ?=	${PREFIX}/info
 MANDIR     ?=	${PREFIX}/man
@@ -394,6 +396,8 @@ YFLAGS    ?=
 YACC.y    ?=	${_V} ${YACC} ${YFLAGS}
 MESSAGE.y ?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
+MESSAGE.mkgen ?=	@${_MESSAGE} "MKGEN:"
+
 TAR       ?=	tar
 GZIP      ?=	gzip
 BZIP2     ?=	bzip2
@@ -435,11 +439,11 @@ MKCHECKS     =	no
 ###########
 
 TARGETS +=	all install clean cleandir depend test \
-		installdirs uninstall errorcheck filelist obj
+		installdirs uninstall errorcheck filelist obj mkgen
 TARGETS :=	${TARGETS:O:u}
 
-ALLTARGETS +=	all install clean cleandir depend uninstall installdirs \
-  bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
+ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
+  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
 
 VERBOSE_ECHO ?=	echo
 

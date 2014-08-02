@@ -18,8 +18,10 @@ _use_prog :=	1
 
 .include <mkc_imp.lua.mk>
 .include <mkc_imp.pod.mk>
-
 .include <mkc.init.mk>
+.ifdef FOREIGN
+.include <mkc_imp.foreign_${FOREIGN}.mk>
+.endif
 .include <mkc_imp.rules.mk>
 .include <mkc_imp.obj.mk>
 
@@ -56,21 +58,19 @@ test:
 .endif # SUBPRJ
 
 ###########
-.PHONY : print-values
-print-values :
+.PHONY : print_values
+print_values :
 .for v in ${VARS}
 	@printf "%s=%s\n" ${v} ${${v}:Q}
 .endfor
 
-.PHONY : print-values2
-print-values2 :
+.PHONY : print_values2
+print_values2 :
 .for v in ${VARS}
 	@printf "%s\n" ${${v}:Q}
 .endfor
 
 ###########
-.PHONY: realerrorcheck
-
 __errorcheck: .USE
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
@@ -83,8 +83,8 @@ __errorcheck: .USE
 	    exit $$ex; \
 	fi
 
-do_all : realerrorcheck
-realerrorcheck: __errorcheck
+all: pre_errorcheck .WAIT do_errorcheck .WAIT post_errorcheck .WAIT pre_all .WAIT do_all .WAIT post_all
+realdo_errorcheck: __errorcheck
 
 .include <mkc_imp.checkprogs.mk>
 .include <configure.mk>

@@ -1,9 +1,10 @@
-FUNCS_RE=(strlcat|strlcpy|getline)[.]o
+FUNCS_RE=(strlcat|strlcpy|getline|progname)[.]o
 
 .PHONY : test_output
 test_output:
 	@set -e; \
-	${.OBJDIR}/hello < ${.CURDIR}/input.in; \
+	${.OBJDIR}/hello < ${.CURDIR}/input.in | \
+	mkc_test_helper_paths; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\
@@ -34,7 +35,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= CLEANFILES ==========; \
-	${MAKE} ${MAKEFLAGS} print-values VARS='CLEANFILES' MKCHECKS=no | \
-	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o$$/) print $$i}'
+	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
+	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'
 
 .include <mkc.minitest.mk>

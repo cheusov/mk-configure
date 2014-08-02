@@ -488,6 +488,7 @@ errorcheck
 filelist
 install
 installdirs
+mkgen
 obj
 test
 uninstall

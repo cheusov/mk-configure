@@ -1,40 +1,18 @@
 ============================================================
 Plan 0.26.0
 
-- CLEANFILES: pod2htmd.tmp pod2htmi.tmp only if POD is built
-
-- DISTCLEANFILES: .depend for C/C++ projects
-
-- MKC_FEATURES: err(err,warn etc.), fgetln(via getline(3))
 - Special marker for checks that cannot be possible in cross-compiling
 
 Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
 
-- VARIANTS for libraries.
-
 - _mkc_done_<prj>_<trg>
 
 - project "roundup" for testing 
 
-- Better explain how "test" target works, maybe as a couple of slides
-  in the PDF presentation. With and without mkc.minitest.mk.
-- One more example/ for TARGETS, demonstrating such things as
-  "mkcmake all_clang/all_gcc" or "valgrind_test"/"gcov_test" etc.
-- Additional slides in PDF for virtual subprojects.
-  Notes about "virtual subproject" in examples/.
-- Notes in examples/hello_dictd and other examples based on
-  mkc.subprj.mk about what mkc.subprj.mk really does. Reference (man page)
-  is not enough for newcomers. Notes about clean-SUBPRJ, all-SUBPRJ etc.
-- Better explain ../Makefile.inc included automatically. For those who
-  are not familiar with *BSD it is not obvious how to use it.
 - "errorcheck/configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
-- Example is needed for how to embed autoconf-based subproject into a
-  project based on mk-configure. The sad fact is autoconf/automake is
-  everywhere. So, it would be nice to integrate mk-c into reality.
-  mkc_imp.autotools.mk is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
   make info files
 - Higher priority for fixing handling of dependencies between
@@ -47,10 +25,6 @@ Some thoughts inspired by talks with Michael Crogan
   <<<depend-project1:errorcheck-autotools_based_project2>>>!!!
 - Steal cool features from Simon Gerraty's mk files and analyse
   "meta mode" he invented.
-- Better support for working without installation to /. -rpath, additional
-  directories for objects, binaries and libs.
-- symlinks in object directories to source files for easier running
-  unitest, for example. lndir(1).
 
 Some "targets" from TARGETS should set MKCHECKS to "no"
 
@@ -79,7 +53,6 @@ ronn(1) : markdown to man pages
 
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
-  - @sysconfdir@/mkc.conf
   - USE_RPATH
   - OBJCOPTS_<proj>
   - Regression tests:
@@ -125,11 +98,7 @@ Plan 3)
     run generated executables, i.e. not ready
     for cross-compilation
 
-  = symlinks to executables and libraries in ${OBJDIR}/{bin,lib}
-
   = support for gettext
-
-  = xxxDIR variable for /var
 
   = mkclint?
 

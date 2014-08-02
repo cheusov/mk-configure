@@ -2,7 +2,7 @@
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 
 ######################################################################
-.ifndef _MKC_IMP_DEP_MK
+.if !defined(_MKC_IMP_DEP_MK) && !empty(_SRCS_ALL)
 _MKC_IMP_DEP_MK := 1
 
 DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}

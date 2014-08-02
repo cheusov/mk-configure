@@ -258,7 +258,7 @@ WHAT MK-CONFIGURE CONSISTS OF?
   the samples.
 
 - mkc.configure.mk is a replacement for GNU autoconf. Its
-  functionality is large enough to describe here.  It short, it allows
+  functionality is large enough to describe here.  In short, it allows
   to check for presence of header files, function or variable
   declarations, presence of function in a particular library, defines,
   sizeof of data types and other useful things. Read the documentation
@@ -281,6 +281,8 @@ DOCUMENTATION:
 
    - Documentation for mk include files is in mk-configure(7).
 
+   - doc/NOTES contains a number of useful recipes.
+
    - Most programs (mkc_check_{decl,header,funclib,sizeof,prog,custom})
      have -h option and manual pages.
 
@@ -292,8 +294,6 @@ DOCUMENTATION:
       - AWK interpreter from NetBSD cvs tree,
                  ported to Darwin, Solaris, Linux and other BSD.
         http://mova.org/~cheusov/pub/mk-configure/nbawk/
-      - getopt_long(3) like module for Lua programming language (>=0.8.0)
-        http://sourceforge.net/projects/lua-alt-getopt/
 
 -------------------------------------------------------------------------
 IS MK-CONFIGURE STABLE?

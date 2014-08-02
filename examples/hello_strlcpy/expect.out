@@ -88,6 +88,6 @@
 /objdir/strlcpy.c
 /objdir/test.mk
 ======= CLEANFILES ==========
+hello.o
 strlcpy.o
 getline.o
-hello.o

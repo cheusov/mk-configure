@@ -4,7 +4,7 @@ test_output :
 	\
 	{ \
 	echo '=========== {pre,do,post}_recursive ============'; \
-	for t in clean cleandir install all uninstall installdirs depend; do \
+	for t in errorcheck clean cleandir install all uninstall installdirs depend; do \
 		${MAKE} ${MAKEFLAGS} -j1 $$t | \
 		grep -v checking; \
 	done ; \
