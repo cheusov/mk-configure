@@ -51,15 +51,22 @@
 /objdir/expect.out
 /objdir/mkprofilelib.test.out.tmp
 ======= CLEANFILES ==========
-hello_msg1.o
-hello_msg2.o
+/objdir/mkprofilelib.test.out
 dummy.o
-hello_msg1.op
-hello_msg2.op
 dummy.op
-hello_msg1.os
-hello_msg2.os
 dummy.os
+hello_msg1.o
+hello_msg1.op
+hello_msg1.os
+hello_msg2.o
+hello_msg2.op
+hello_msg2.os
+libcxxlib.a
+libcxxlib.so
+libcxxlib.so.1
+libcxxlib.so.1.0
+libcxxlib.so.1.0.5
+libcxxlib_p.a
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

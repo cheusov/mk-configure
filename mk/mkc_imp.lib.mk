@@ -110,9 +110,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 .endif # !commands(...)
 
 CLEANFILES += \
-	${OBJS} ${POBJS} ${SOBJS} \
-	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
-	lib${LIB}${SHLIB_EXT2} lib${LIB}${SHLIB_EXT3} ${SHLIBFN}
+	${OBJS} ${POBJS} ${SOBJS}
 
 .if !target(libinstall)
 # Make sure it gets defined
@@ -142,14 +140,11 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 
    # MKPICLIB
 .if ${MKPICLIB:tl} != "no"
-CLEANFILES +=	lib${LIB}_pic.a
-.endif
-
-.if ${MKPICLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+CLEANFILES +=		lib${LIB}_pic.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif
@@ -163,6 +158,11 @@ UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .if ${MKDLL:tl} == "no"
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
 			${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
+CLEANFILES += \
+	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
+	lib${LIB}${SHLIB_EXT2} ${SHLIB_EXT3:Dlib${LIB}${SHLIB_EXT3}}
+.else
+CLEANFILES += ${SHLIBFN}
 .endif
 
 ${DESTDIR}${LIBDIR}/${SHLIBFN}: ${SHLIBFN}

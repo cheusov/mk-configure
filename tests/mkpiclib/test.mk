@@ -27,7 +27,8 @@ test_output:
 	\
 	echo ======= CLEANFILES ==========; \
 	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
-	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'; \
+	awk '{for(i=1; i<=NF; ++i) print $$i}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \

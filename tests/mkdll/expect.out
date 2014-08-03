@@ -10,14 +10,10 @@
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/cxxlib.so
-/objdir/dummy.o
 /objdir/dummy.os
 /objdir/expect.out
-/objdir/hello_msg1.o
 /objdir/hello_msg1.os
-/objdir/hello_msg2.o
 /objdir/hello_msg2.os
-/objdir/libcxxlib.a
 /objdir/mkdll.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -28,7 +24,6 @@
 /objdir/prefix/include/impl/hello_msg2.h
 /objdir/prefix/lib
 /objdir/prefix/lib/cxxlib.so
-/objdir/prefix/lib/libcxxlib.a
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
@@ -44,15 +39,17 @@
 /objdir/expect.out
 /objdir/mkdll.test.out.tmp
 ======= CLEANFILES ==========
-hello_msg1.o
-hello_msg2.o
+/objdir/mkdll.test.out
+cxxlib.so
 dummy.o
-hello_msg1.op
-hello_msg2.op
 dummy.op
-hello_msg1.os
-hello_msg2.os
 dummy.os
+hello_msg1.o
+hello_msg1.op
+hello_msg1.os
+hello_msg2.o
+hello_msg2.op
+hello_msg2.os
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

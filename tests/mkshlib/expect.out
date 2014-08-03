@@ -39,15 +39,17 @@
 /objdir/expect.out
 /objdir/mkshlib.test.out.tmp
 ======= CLEANFILES ==========
-hello_msg1.o
-hello_msg2.o
+/objdir/mkshlib.test.out
 dummy.o
-hello_msg1.op
-hello_msg2.op
 dummy.op
-hello_msg1.os
-hello_msg2.os
 dummy.os
+hello_msg1.o
+hello_msg1.op
+hello_msg1.os
+hello_msg2.o
+hello_msg2.op
+hello_msg2.os
+libcxxlib.a
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
