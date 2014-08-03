@@ -794,6 +794,15 @@ objects), otherwise only symbols referenced by some object file will
 be exported.
 .RI < "M" >
 .RI [ no ]
+.IP DPINCDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLIBDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLDADD
+See LIBDEPS in section
+.BR mk.subprj.mk .
 .PP
 .B mkc.prog.mk
 includes
@@ -910,6 +919,15 @@ exported. This variable has no effect on some platforms.  By default
 all symbols are exported.
 .RI < "M" >
 []
+.IP DPINCDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLIBDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLDADD
+See LIBDEPS in section
+.BR mk.subprj.mk .
 .\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
@@ -981,11 +999,25 @@ used to group several subprojects into a new virtual one.
 .IP LIBDEPS
 A list of library dependencies. Each token is a colon-separated pair.
 Its first component is a library subproject (dependency), the second
-one is a subproject for library or executable. The value of this
+one is the subproject for library or executable. The value of this
 variable is automatically added to SUBPRJ. Library dependencies listed
 in LIBDEPS automatically change CPPFLAGS0, LDFLAGS0 and LDADD0 of
 approptiate subprojects.
 .RI < "M" >
+Suppose, we have <library:program> pair in LIBDEPS, also suppose that variable
+.B library
+is set to "library" subdirectory and variable
+.B program
+is set to "program" subdirectory.
+${SRCDIR_library}/linkme.mk file is automatically included from
+${SRCDIR_program}/Makefile if it exists. In this file
+.RI "DPLDADD [" "${library:T:S/^lib//}" "],"
+.RI "DPLIBDIRS [" "${OBJDIR_${library:S,/,_,g}}" "] and"
+.RI "DPINCDIRS [" "${SRCDIR_${library:S,/,_,g}} ${OBJDIR_${library:S,/,_,g}}" "],"
+may be set to non-default values. These three variables then changes
+LDADD0, LDFLAGS0 and CPPFLAGS0 respectively in subproject "program".
+The dependency graph specified by variable LIBDEPS is available to all
+subproject via environment.
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
 The default is all projects listed in SUBPRJ.

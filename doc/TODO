@@ -17,8 +17,7 @@ Some thoughts inspired by talks with Michael Crogan
   like shlock(1) or flock(1) is needed for this.
 - Alternative .depend generation, e.g. like it is described in GNU
   make info files
-- Higher priority for fixing handling of dependencies between
-  libraries and programs. In addition examples/ is needed for
+- Additional examples/ is needed for
   triggering rebuild of subproject if "something" was rebuild in
   another subproject (build script for example).
 - Interdependencies between targetX-subprjA and targetY-subprjB (for
@@ -31,16 +30,6 @@ Some thoughts inspired by talks with Michael Crogan
 Some "targets" from TARGETS should set MKCHECKS to "no"
 
 ronn(1) : markdown to man pages
-
-  Reimplement linkme.mk. It is not flexible enough.
-    - Additional type of dependencies in mkc.subprjs.mk (LIBDEPS =
-      libfoo:bar ...), pass them to subprojects using enironment and
-      include appropriate libfoo/linkme.mk if it is
-      available. Otherwise, use default -l and -I.
-    or
-    - keep linkme.mk and avoid direct use of CPPFLAGS, LDADD and
-      DPLIBDIRS.  Instead use special variables XXX.includes,
-      XXX.ldflags, XXX.ldadd, SRCDIR_<lib> and OBJDIR_<lib>.
 
   custom test failed -> exit status of mkcmake should not be zero
   MKC_CUSTOM_ERR.qqqq -> error message before exiting just like 

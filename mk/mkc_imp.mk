@@ -18,12 +18,42 @@ SUBPRJ   +=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
 
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
 all_deps != mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
-.for p in ${all_deps}
-LDADD0    +=	-l${p:T:S/^lib//}
-LDFLAGS0  +=	-L${OBJDIR_${p:S,/,_,g}}
-CPPFLAGS0 +=	-I${SRCDIR_${p:S,/,_,g}} -I${OBJDIR_${p:S,/,_,g}}
-.endfor
+.  for p in ${all_deps}
+_mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
+.    if exists(${_mkfile})
+.      include "${_mkfile}"
+.    endif
+DPLDADD   ?=	${p:T:S/^lib//}
+DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
+DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
+.    for i in ${DPLDADD}
+LDADD0    +=	-l${i}
+.    endfor
+.    for i in ${DPLIBDIRS}
+LDFLAGS0  +=	-L${i}
+.    endfor
+.    for i in ${DPINCDIRS:O:u}
+CPPFLAGS0 +=	-I${i}
+.    endfor
+.    undef DPLIBDIRS
+.    undef DPINCDIRS
+.    undef DPLDADD
+.  endfor
 .endif
+
+.ifdef DPLIBDIRS
+.  for _dir in ${DPLIBDIRS}
+.    ifndef DPLIBDIRS.${_dir}
+DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,^${SUBPRJSRCTOP}/,,:S,/,_,g}}
+.      if ${TARGET_OPSYS} == "HP-UX"
+LDFLAGS0  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
+.      endif
+LDFLAGS0  +=	-L${DPLIBDIRS.${_dir}}
+.    endif
+.  endfor
+
+.  undef DPLIBDIRS
+.endif # DPLIBDIRS
 
 .if defined(LIBDEPS)
 SUBPRJ          +=	${LIBDEPS} # library dependencies

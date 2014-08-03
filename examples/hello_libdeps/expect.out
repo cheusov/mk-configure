@@ -1,12 +1,38 @@
+=========== fooquxfoobar ============
 I am foo
    and qux
 I am foo
 I am bar
+=========== foobaz ============
+I am foo
+I am baz
 =========== depends ============
  bar.os bar.o: bar.c bar.h
+ baz.os baz.o: baz.c include/baz.h
  foo.os foo.o: foo.c foo.h
+ foobaz.os foobaz.o: foobaz.c /objdir/libs/libfoo/foo.h /objdir/libs/libbaz/include/baz.h
  fooqux.os fooqux.o: fooqux.c fooqux.h /objdir/libs/libfoo/foo.h
  fooquxfoobar.os fooquxfoobar.o: fooquxfoobar.c /objdir/libs/libfooqux/fooqux.h /objdir/libs/libfoo/foo.h /objdir/libs/libbar/bar.h
+======= install ==========
+/objdir/prefix/bin/foobaz
+/objdir/prefix/bin/fooquxfoobar
+/objdir/prefix/include/bar.h
+/objdir/prefix/include/baz.h
+/objdir/prefix/include/foo.h
+/objdir/prefix/include/fooqux.h
+/objdir/prefix/lib/libbar.a
+/objdir/prefix/lib/libbar.so
+/objdir/prefix/lib/libbar.so.0
+/objdir/prefix/lib/libbar.so.0.0
+/objdir/prefix/lib/libbazbaz.a
+/objdir/prefix/lib/libfoo.a
+/objdir/prefix/lib/libfoo.so
+/objdir/prefix/lib/libfoo.so.0
+/objdir/prefix/lib/libfoo.so.0.0
+/objdir/prefix/lib/libfooqux.a
+/objdir/prefix/lib/libfooqux.so
+/objdir/prefix/lib/libfooqux.so.0
+/objdir/prefix/lib/libfooqux.so.0.0
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
@@ -14,12 +40,19 @@ I am bar
 /objdir/libs/libbar/Makefile
 /objdir/libs/libbar/bar.c
 /objdir/libs/libbar/bar.h
+/objdir/libs/libbaz/Makefile
+/objdir/libs/libbaz/baz.c
+/objdir/libs/libbaz/include/baz.h
+/objdir/libs/libbaz/linkme.mk
 /objdir/libs/libfoo/Makefile
 /objdir/libs/libfoo/foo.c
 /objdir/libs/libfoo/foo.h
+/objdir/libs/libfoo/linkme.mk
 /objdir/libs/libfooqux/Makefile
 /objdir/libs/libfooqux/fooqux.c
 /objdir/libs/libfooqux/fooqux.h
+/objdir/progs/foobaz/Makefile
+/objdir/progs/foobaz/foobaz.c
 /objdir/progs/fooquxfoobar/Makefile
 /objdir/progs/fooquxfoobar/fooquxfoobar.c
 /objdir/test.mk
