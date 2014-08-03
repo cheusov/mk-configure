@@ -1,7 +1,7 @@
 ============================================================
 Plan 0.26.0
 
-- CPPFLAGS0, CFLAGS0
+- CFLAGS0
 
 - Special marker for checks that cannot be possible in cross-compiling
 

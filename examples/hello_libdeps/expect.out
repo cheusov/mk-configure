@@ -2,6 +2,11 @@ I am foo
    and qux
 I am foo
 I am bar
+=========== depends ============
+ bar.os bar.o: bar.c bar.h
+ foo.os foo.o: foo.c foo.h
+ fooqux.os fooqux.o: fooqux.c fooqux.h /objdir/libs/libfoo/foo.h
+ fooquxfoobar.os fooquxfoobar.o: fooquxfoobar.c /objdir/libs/libfooqux/fooqux.h /objdir/libs/libfoo/foo.h /objdir/libs/libbar/bar.h
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

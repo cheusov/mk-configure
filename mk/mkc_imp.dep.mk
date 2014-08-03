@@ -44,22 +44,22 @@ ddash=
 
 .if ${MKDEP_TYPE:U} == "makedepend"
 MKDEP.c   = ${MAKEDEPEND} -f- ${ddash} ${MKDEPFLAGS} \
-	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 MKDEP.m   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
-	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 MKDEP.cc  = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
-	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 MKDEP.s   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
-	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS} > ${.TARGET}
+	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 .else
 MKDEP.c   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 MKDEP.m   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 MKDEP.cc  = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${CPPFLAGS}
+	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 .endif
 
 .depend: ${__DPSRCS.d}

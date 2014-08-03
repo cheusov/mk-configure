@@ -21,7 +21,7 @@ all_deps != mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .for p in ${all_deps}
 LDADD0    +=	-l${p:T:S/^lib//}
 LDFLAGS0  +=	-L${OBJDIR_${p:S,/,_,g}}
-CPPFLAGS  +=	-I${SRCDIR_${p:S,/,_,g}} -I${OBJDIR_${p:S,/,_,g}}
+CPPFLAGS0 +=	-I${SRCDIR_${p:S,/,_,g}} -I${OBJDIR_${p:S,/,_,g}}
 .endfor
 .endif
 

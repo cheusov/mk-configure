@@ -12,7 +12,7 @@ incinstall:	.PHONY # ensure existence
 
 .if defined(INCS)
 INCSSRCDIR  ?=	.
-CPPFLAGS    +=	-I${INCSSRCDIR}
+CPPFLAGS0   +=	-I${INCSSRCDIR}
 
 .if ${MKINSTALL:tl} == "yes"
 destination_incs =	${INCS:@I@${DESTDIR}${INCSDIR}/$I@}

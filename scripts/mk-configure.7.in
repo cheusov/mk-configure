@@ -219,6 +219,10 @@ Additional flags to the C pre-processor.
 .IP CPPFLAGS_<project>
 Similar to CPPFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CPPFLAGS0
+The same as CPPFLAGS but CPPFLAGS0 are passed to the compiler before CPPFLAGS.
+Normally, CPPFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
 .IP FC
 Fortran compiler.
 .RI < Iu >
@@ -759,7 +763,7 @@ Additional linker flags. Often used for specifying library directories.
 Similar to LDFLAGS but for project ${PROJECTNAME}.
 .IP LDFLAGS0
 The same as LDFLAGS but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
-Normally LDFLAGS0 and LDADD0 should be modified in makefiles and should not
+Normally, LDFLAGS0 and LDADD0 should be modified in makefiles and should not
 be set from environment by user.
 .RI < "M" >
 .IP "BINDIR, BINMODE, BINOWN and BINGRP"
@@ -979,7 +983,7 @@ A list of library dependencies. Each token is a colon-separated pair.
 Its first component is a library subproject (dependency), the second
 one is a subproject for library or executable. The value of this
 variable is automatically added to SUBPRJ. Library dependencies listed
-in LIBDEPS automatically change CPPFLAGS, LDFLAGS0 and LDADD0 of
+in LIBDEPS automatically change CPPFLAGS0, LDFLAGS0 and LDADD0 of
 approptiate subprojects.
 .RI < "M" >
 .IP SUBPRJ_DFLT

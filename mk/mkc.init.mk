@@ -327,28 +327,30 @@ MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
 CC        ?=	cc
 CFLAGS    ?=
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${CPPFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${_CPPFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX        ?=	c++
 CXXFLAGS   +=	${CFLAGS}
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${CPPFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${_CPPFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 OBJC       ?=	${CC}
 OBJCFLAGS  ?=	${CFLAGS}
-COMPILE.m  ?=	${_V} ${OBJC} ${OBJCFLAGS} ${CPPFLAGS} -c
+COMPILE.m  ?=	${_V} ${OBJC} ${OBJCFLAGS} ${_CPPFLAGS} -c
 MESSAGE.m  ?=	@${_MESSAGE} "OBJC: ${.IMPSRC}"
 
 CPP        ?=	cpp
 CPPFLAGS   ?=	
+
+_CPPFLAGS   =	${CPPFLAGS0} ${CPPFLAGS}
 
 FC         ?=	f77
 FFLAGS     ?=	-O
 RFLAGS     ?=
 COMPILE.f  ?=	${_V} ${FC} ${FFLAGS} -c
 MESSAGE.f  ?=	@${_MESSAGE} "FC: ${.IMPSRC}"
-COMPILE.F  ?=	${_V} ${FC} ${FFLAGS} ${CPPFLAGS} -c
+COMPILE.F  ?=	${_V} ${FC} ${FFLAGS} ${_CPPFLAGS} -c
 MESSAGE.F  ?=	${MESSAGE.f}
 COMPILE.r  ?=	${_V} ${FC} ${FFLAGS} ${RFLAGS} -c
 MESSAGE.r  ?=	${MESSAGE.f}
@@ -382,7 +384,7 @@ MKDIR     ?=	mkdir
 
 PC        ?=	pc
 PFLAGS    ?=
-COMPILE.p ?=	${_V} ${PC} ${PFLAGS} ${CPPFLAGS} -c
+COMPILE.p ?=	${_V} ${PC} ${PFLAGS} ${_CPPFLAGS} -c
 MESSAGE.p ?=	@${_MESSAGE} "PC: ${.IMPSRC}"
 
 SHELL     ?=	sh

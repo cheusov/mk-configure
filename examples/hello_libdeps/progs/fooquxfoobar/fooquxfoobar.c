@@ -1,8 +1,7 @@
-#include <stdio.h>
+#include "fooqux.h"
+#include "bar.h"
 
-extern void foo (void);
-extern void bar (void);
-extern void fooqux (void);
+#include <stdio.h>
 
 int main (int argc, char **argv)
 {

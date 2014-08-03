@@ -371,7 +371,7 @@ LDFLAGS.relro := ${LDFLAGS.relro:S/^/-Wl,/g}
 .if ${TARGET_OPSYS:Unone} == "Darwin"
 
 COMPILE.s  ?=	${AS} ${AFLAGS}
-COMPILE.S  ?=	${CC} ${AFLAGS} ${CPPFLAGS} -c
+COMPILE.S  ?=	${CC} ${AFLAGS} ${_CPPFLAGS} -c
 
 .if ${MKDLL:U} != "no"
 
