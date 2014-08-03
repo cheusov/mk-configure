@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2013 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -12,13 +12,29 @@ SUBPRJ = ${SUBDIR}
 SUBPRJ   +=	${SUBPRJS} # for backward compatility only, use SUBPRJ!
 .endif # defined(SUBPRJS)
 
+.include <mkc_imp.lua.mk>
+.include <mkc_imp.pod.mk>
+.include <mkc.init.mk>
+
+.ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
+all_deps != mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
+.for p in ${all_deps}
+LDADD0    +=	-l${p:T:S/^lib//}
+LDFLAGS0  +=	-L${OBJDIR_${p:S,/,_,g}}
+CPPFLAGS  +=	-I${SRCDIR_${p:S,/,_,g}} -I${OBJDIR_${p:S,/,_,g}}
+.endfor
+.endif
+
+.if defined(LIBDEPS)
+SUBPRJ          +=	${LIBDEPS} # library dependencies
+AXCIENT_LIBDEPS :=	${LIBDEPS}
+EXPORT_VARNAMES +=	AXCIENT_LIBDEPS
+.endif # defined(LIBDEPS)
+
 .if !defined(LIB) && !defined(SUBPRJ)
 _use_prog :=	1
 .endif
 
-.include <mkc_imp.lua.mk>
-.include <mkc_imp.pod.mk>
-.include <mkc.init.mk>
 .ifdef FOREIGN
 .include <mkc_imp.foreign_${FOREIGN}.mk>
 .endif

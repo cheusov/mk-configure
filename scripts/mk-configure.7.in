@@ -974,6 +974,14 @@ List of subprojects (subdirectories) and dependencies. If the
 subdirectory doesn't exist the subproject becomes "virtual" and may be
 used to group several subprojects into a new virtual one.
 .RI < "M" >
+.IP LIBDEPS
+A list of library dependencies. Each token is a colon-separated pair.
+Its first component is a library subproject (dependency), the second
+one is a subproject for library or executable. The value of this
+variable is automatically added to SUBPRJ. Library dependencies listed
+in LIBDEPS automatically change CPPFLAGS, LDFLAGS0 and LDADD0 of
+approptiate subprojects.
+.RI < "M" >
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
 The default is all projects listed in SUBPRJ.

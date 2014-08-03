@@ -1,0 +1,43 @@
+#!/usr/bin/awk -f
+
+# Usage: mkc_get_deps
+# $1 -- project name
+# ENVIRON ["AXCIENT_LIBDEPS"] -- dep1:prj1 dep2:prj2 ...
+
+function print_all_deps (prj,             i,next_prj){
+	if (prj in processed)
+		return
+
+	processed [prj]=1
+
+	for (i=1; i <= count [prj]; ++i){
+		next_prj = graph[prj, i]
+		print_all_deps(next_prj)
+	}
+
+	if (topprj != prj)
+		result [++result_sz] = prj
+}
+
+BEGIN {
+	topprj = ARGV [1]
+	if (!topprj)
+		exit(10)
+
+	cnt = split(ENVIRON ["AXCIENT_LIBDEPS"], deps, / +|:/)
+	if (int(cnt/2)*2 != cnt)
+		exit(11)
+
+	for (i=1; i <= cnt; i += 2){
+		from = deps [i]
+		to   = deps [i+1]
+		graph[to, ++count [to]] = from
+	}
+
+	print_all_deps(topprj)
+
+	for (i=result_sz; i >= 1; --i)
+		print result [i]
+
+	print "" # for bmake
+}
