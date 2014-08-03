@@ -1042,6 +1042,10 @@ are used. Unlike MAKEOBJDIRPREFIX object directories do not contain
 top-level ${.CURDIR} in paths.
 .RI < "Iu" >
 .RI [ no ]
+.IP SUBPRJSRCTOP
+This variables contains ${.CURDIR} directory and is passed to subprojects.
+.RI < "I" >
+.RI [ ${.CURDIR} ]
 .P
 .B mkc.subprj.mk
 provides the following targets:

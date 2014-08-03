@@ -121,6 +121,9 @@ __recurse: .USE
 	esac
 
 ###########
+SUBPRJSRCTOP =	${.CURDIR}
+.export SUBPRJSRCTOP
+###########
 
 .include <mkc_imp.objdir.mk>
 
