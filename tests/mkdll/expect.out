@@ -50,6 +50,11 @@ hello_msg1.os
 hello_msg2.o
 hello_msg2.op
 hello_msg2.os
+======= UNINSTALLFILES ==========
+/usr/local/lib/cxxlib.so
+/usr/local/include/hello_msg.h
+/usr/local/include/impl/hello_msg1.h
+/usr/local/include/impl/hello_msg2.h
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

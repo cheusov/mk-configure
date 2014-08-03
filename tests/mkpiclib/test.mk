@@ -29,6 +29,9 @@ test_output:
 	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
 	awk '{for(i=1; i<=NF; ++i) print $$i}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo ======= UNINSTALLFILES ==========; \
+	${MAKE} ${MAKEFLAGS} print_values2 VARS='UNINSTALLFILES' MKCHECKS=no | \
+	awk '{for(i=1; i<=NF; ++i) print $$i}';\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
