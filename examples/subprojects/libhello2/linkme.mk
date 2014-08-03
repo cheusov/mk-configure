@@ -1,4 +1,4 @@
-PATH.hello2 :=	${.PARSEDIR}
+PATH.hello2 :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.hello2}/include
 DPLIBDIRS +=	${PATH.hello2}

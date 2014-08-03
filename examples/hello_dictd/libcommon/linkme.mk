@@ -1,4 +1,4 @@
-PATH.common :=	${.PARSEDIR}
+PATH.common :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.common}
 DPLIBDIRS +=	${PATH.common}

@@ -1,4 +1,4 @@
-PATH.bar  :=	${.PARSEDIR}
+PATH.bar  :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.bar}
 DPLIBDIRS +=	libs/${PATH.bar:T}

@@ -1,4 +1,4 @@
-PATH.dz :=	${.PARSEDIR}
+PATH.dz :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.dz}
 DPLIBDIRS +=	${PATH.dz}

@@ -20,11 +20,7 @@ SHORTPRJNAME   ?=	yes
 .ifdef DPLIBDIRS
 .for _dir in ${DPLIBDIRS}
 .ifndef DPLIBDIRS.${_dir}
-.if ${SHORTPRJNAME:tl} == "yes"
-DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:T}}
-.else
-DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,/,_,g}}
-.endif
+DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,^${SUBPRJSRCTOP}/,,:S,/,_,g}}
 .if ${TARGET_OPSYS} == "HP-UX"
 LDFLAGS0  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
 .endif

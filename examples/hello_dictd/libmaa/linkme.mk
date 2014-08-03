@@ -1,4 +1,4 @@
-PATH.maa :=	${.PARSEDIR}
+PATH.maa :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.maa}
 DPLIBDIRS +=	${PATH.maa}

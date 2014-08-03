@@ -1,4 +1,4 @@
-PATH.cxxlib :=	${.PARSEDIR}
+PATH.cxxlib :=	${.PARSEDIR:tA}
 
 CPPFLAGS  +=	-I${PATH.cxxlib}/include
 DPLIBDIRS +=	${PATH.cxxlib}
