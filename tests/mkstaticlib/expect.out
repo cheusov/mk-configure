@@ -56,12 +56,12 @@ libcxxlib.so.1
 libcxxlib.so.1.0
 libcxxlib.so.1.0.5
 ======= UNINSTALLFILES ==========
-/usr/local/lib/libcxxlib.so.1.0.5
-/usr/local/lib/libcxxlib.so
-/usr/local/lib/libcxxlib.so.1
-/usr/local/include/hello_msg.h
-/usr/local/include/impl/hello_msg1.h
-/usr/local/include/impl/hello_msg2.h
+/prefix/include/hello_msg.h
+/prefix/include/impl/hello_msg1.h
+/prefix/include/impl/hello_msg2.h
+/prefix/lib/libcxxlib.so
+/prefix/lib/libcxxlib.so.1
+/prefix/lib/libcxxlib.so.1.0.5
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out

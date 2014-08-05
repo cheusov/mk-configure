@@ -53,10 +53,10 @@ hello_msg2.op
 hello_msg2.os
 libcxxlib_pic.a
 ======= UNINSTALLFILES ==========
-/usr/local/lib/libcxxlib_pic.a
-/usr/local/include/hello_msg.h
-/usr/local/include/impl/hello_msg1.h
-/usr/local/include/impl/hello_msg2.h
+/prefix/include/hello_msg.h
+/prefix/include/impl/hello_msg1.h
+/prefix/include/impl/hello_msg2.h
+/prefix/lib/libcxxlib_pic.a
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
