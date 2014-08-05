@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2014 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -25,10 +25,14 @@ INTEXTS_SED  +=	-e 's,@incsdir@,${INCSDIR},g'
 INTEXTS_SED  +=	-e 's,@vardir@,${VARDIR},g'
 INTEXTS_SED  +=	-e 's,@sharedstatedir@,${SHAREDSTATEDIR},g'
 
-.if !make(clean) && !make(cleandir) && !make(distclean)
-.for _pattern _repl in ${INTEXTS_REPLS}
+.if !make(clean) && !make(cleandir) && !make(distclean) #&& empty(MKC_ERR_MSG)
+.  if !empty(INTEXTS_REPLS) && ${INTEXTS_REPLS:[\#]:M*[13579]} != ""
+MKC_ERR_MSG +=	"ERROR: odd number of tokens in INTEXTS_REPLS"
+.  else
+.    for _pattern _repl in ${INTEXTS_REPLS}
 INTEXTS_SED  +=	-e 's,@${_pattern}@,${_repl},g'
-.endfor
+.    endfor
+.  endif
 .endif
 
 .for i in ${INFILES}
