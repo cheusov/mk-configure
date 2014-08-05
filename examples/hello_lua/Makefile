@@ -7,7 +7,7 @@ INSCRIPTS =	foobar
 SCRIPTS   =	${INSCRIPTS}
 
 INTEXTS_REPLS   =	LUA ${PROG.lua}
-MKC_CHECK_PROGS =	lua
+MKC_REQUIRE_PROGS =	lua
 
 .include "test.mk"
 .include <mkc.lib.mk>
