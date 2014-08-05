@@ -320,11 +320,13 @@ LDFLAGS.soname.sunpro  =	${LDFLAGS.soname.sunld}
 .if ${TARGET_OPSYS:Unone} == "Darwin"
 .if ${MKDLL:U} == "no"
 LDFLAGS.shared.gcc.Darwin  =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+LDFLAGS.shared.clang.Darwin  =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
 SHLIB_MAJORp1 !=		expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname.gcc =		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
 LDFLAGS.soname.gcc +=		-compatibility_version ${SHLIB_MAJORp1}
 .else
 LDFLAGS.shared.gcc.Darwin =	-flat_namespace -bundle -undefined suppress
+LDFLAGS.shared.clang.Darwin =	-flat_namespace -bundle -undefined suppress
 .endif
 .elif ${TARGET_OPSYS:Unone} == "OSF1" && defined(LIB)
 CLEANFILES +=			${.OBJDIR}/${LIB}_so_locations
