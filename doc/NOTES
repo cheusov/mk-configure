@@ -49,6 +49,12 @@ files won't contain ${SRCTOP}. The variable MKRELOBJDIR is provided by mk-c.
 
 ***
 
+Even if you project is trivial, that is consists of single executable
+or library, I'd recommend to use mkc.subprj.mk in the top-level Makefile.
+In provides better flexibility and easier work for packagers.
+
+***
+
 It's very important to understand what is a recursive target.
 See variable TARGETS.
 
