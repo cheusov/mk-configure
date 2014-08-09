@@ -19,9 +19,9 @@ test_output:
 	\
 	echo ======= install ==========; \
 	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR}/usr/local -type f -o -type l | \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	rm -rf ${.OBJDIR}/usr/local; \
+	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/Users ${.OBJDIR}/home; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
