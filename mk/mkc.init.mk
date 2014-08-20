@@ -52,18 +52,11 @@ _srcsall +=	${SRCS}
 
 .if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc)
 src_type   +=	cxx
-LDCOMPILER  =	yes
 LDREAL     ?=	${CXX}
 .elif !empty(_srcsall:U:M*.pas) || !empty(_srcsall:U:M*.p)
 src_type   +=	pas
-LDCOMPILER  =	yes
 LDREAL     ?=	${PC}
 .endif
-
-LDCOMPILER.Interix =	yes
-LDCOMPILER.Darwin  =	yes
-#LDCOMPILER.HP-UX=	yes
-LDCOMPILER        ?=	${LDCOMPILER.${TARGET_OPSYS}:Uyes}
 
 .if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
 src_type  +=	c
@@ -71,9 +64,7 @@ src_type  +=	c
 
 src_type  ?=	0
 
-.if ${LDCOMPILER:tl} == "yes"
 LDREAL  ?=	${CC}
-.endif
 
 .if defined(PROGS)
 LDREAL  ?=	${CC}

@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Dec 1, 2013" "" ""
+.TH MK-CONFIGURE 7 "Aug 21, 2014" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -886,11 +886,6 @@ List of source files to build the library.  Suffix types
 .\" 
 .\" It has rules for building profiled objects; profiled libraries are
 .\" built by default.
-.IP LDCOMPILER
-If "yes", ${CC} is used for linking instead of ${LD}.
-For C++ sources ${CXX} is used for linking.
-.RI < "Iu" >
-.RI [ yes ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
 .RI < "IMu" >

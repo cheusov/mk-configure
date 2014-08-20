@@ -36,7 +36,6 @@ LUA_CMODDIR         ?=	${PKG_CONFIG.var.lua.INSTALL_CMOD}
 LIB        =		${LUA_CMODULE:S|.|/|:T}
 SRCS      ?=		${LUA_CMODULE:S/./_/g}.c
 MKDLL      =		Only
-LDCOMPILER =		Yes
 DLL_EXT    =		.so
 LIBDIR     =		${LUA_CMODDIR}/${LUA_CMODULE:S|.|/|g:H}
 .endif # defined(LUA_CMODULES)
