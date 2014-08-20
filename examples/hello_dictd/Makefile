@@ -1,12 +1,12 @@
-SUBPRJ  =	libcommon:dict
-SUBPRJ +=	libcommon:dictd
-SUBPRJ +=	libcommon:dictzip
-SUBPRJ +=	libcommon:dictfmt
-SUBPRJ +=	libmaa:dict
-SUBPRJ +=	libmaa:dictd
-SUBPRJ +=	libmaa:dictzip
-SUBPRJ +=	libmaa:dictfmt
-SUBPRJ +=	libdz:dictzip
+LIBDEPS  =	libcommon:dict
+LIBDEPS +=	libcommon:dictd
+LIBDEPS +=	libcommon:dictzip
+LIBDEPS +=	libcommon:dictfmt
+LIBDEPS +=	libmaa:dict
+LIBDEPS +=	libmaa:dictd
+LIBDEPS +=	libmaa:dictzip
+LIBDEPS +=	libmaa:dictfmt
+LIBDEPS +=	libdz:dictzip
 
 # Subproject "doc" has no dependencies
 SUBPRJ +=	doc

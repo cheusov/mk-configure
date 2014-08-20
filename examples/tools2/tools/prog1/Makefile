@@ -8,5 +8,4 @@ MKC_REQD =	0.10.0
 check:
 	@: do something useful
 
-.include "../../libs/foo/linkme.mk"
 .include <mkc.prog.mk>

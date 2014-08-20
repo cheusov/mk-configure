@@ -21,6 +21,7 @@ test_output :
 	echo ===== all SHRTOUT=yes ======; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	${MAKE} ${MAKEFLAGS} all SHRTOUT=YES 2>&1 | \
+	grep -v warning: | \
 	mkc_test_helper_paths; \
 	\
 	echo ========= installdirs ==========; \
