@@ -1,0 +1,18 @@
+#!/bin/sh
+
+############################################################
+# Copyright (c) 2014 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
+LC_ALL=C
+export LC_ALL
+
+pathpart=' ' # fake
+. mkc_check_common.sh
+
+find_n_match  make --version 'gnu make'
+find_n_match gmake --version 'gnu make'
+
+echo ''

@@ -26,34 +26,20 @@ _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
 DPLDADD   ?=	${p:T:S/^lib//}
 DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
 DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
-.    for i in ${DPLDADD}
-LDADD0    +=	-l${i}
-.    endfor
-.    for i in ${DPLIBDIRS}
-LDFLAGS0  +=	-L${i}
-.    endfor
-.    for i in ${DPINCDIRS:O:u}
-CPPFLAGS0 +=	-I${i}
-.    endfor
-.    undef DPLIBDIRS
-.    undef DPINCDIRS
-.    undef DPLDADD
+.include <mkc_imp.dpvars.mk>
 .  endfor
 .endif
 
 .ifdef DPLIBDIRS
-.  for _dir in ${DPLIBDIRS}
-.    ifndef DPLIBDIRS.${_dir}
-DPLIBDIRS.${_dir} = 	${OBJDIR_${_dir:S,^${SUBPRJSRCTOP}/,,:S,/,_,g}}
-.      if ${TARGET_OPSYS} == "HP-UX"
-LDFLAGS0  +=	${CFLAGS.cctold}+b ${CFLAGS.cctold}${LIBDIR}
-.      endif
-LDFLAGS0  +=	-L${DPLIBDIRS.${_dir}}
-.    endif
+.warning "This way of using DPLIBDIRS is deprecated since 2014-08-21"
+_DPLIBDIRS := ${DPLIBDIRS}
+.  for _dir in ${_DPLIBDIRS}
+DPLIBDIRS =	${OBJDIR_${_dir:S,^${SUBPRJSRCTOP}/,,:S,/,_,g}}
+.    include <mkc_imp.dpvars.mk>
 .  endfor
-
+.  undef _DPLIBDIRS
 .  undef DPLIBDIRS
-.endif # DPLIBDIRS
+.endif
 
 .if defined(LIBDEPS)
 SUBPRJ          +=	${LIBDEPS} # library dependencies

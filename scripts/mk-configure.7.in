@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Dec 1, 2013" "" ""
+.TH MK-CONFIGURE 7 "Aug 21, 2014" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -886,11 +886,6 @@ List of source files to build the library.  Suffix types
 .\" 
 .\" It has rules for building profiled objects; profiled libraries are
 .\" built by default.
-.IP LDCOMPILER
-If "yes", ${CC} is used for linking instead of ${LD}.
-For C++ sources ${CXX} is used for linking.
-.RI < "Iu" >
-.RI [ yes ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
 .RI < "IMu" >
@@ -1423,10 +1418,11 @@ Checks listed in MKC_CHECK_BUILTINS will be run.
 .RS
 Avalable values:
 .TP
-.BR prog_flex ", " prog_bison ", " prog_gawk ", " prog_gm4
-Find flex, bison, GNU awk or GNU m4 by analysing program's help and/or
-version messages. If found, BUILTIN.prog_<progname> is set to a path,
-otherwise it is set to an empty string. Note that
+.BR prog_flex ", " prog_bison ", " prog_gawk ", " prog_gm4 ", " prog_gmake
+Find flex, bison, GNU awk, GNU m4 or GNU make respectively
+by analysing program's help and/or
+version messages. If found, BUILTIN.prog_<progname> is set to the path,
+otherwise it is set to empty string. Note that
 .I gawk
 may be found as
 .IR awk ,
@@ -1435,11 +1431,13 @@ as
 .IR yacc ,
 .I gm4
 as
-.IR m4
-and
+.IR m4 ,
 .I flex
 as
-.IR lex .
+.IR lex " and"
+.I gmake
+as
+.IR make .
 .TP
 .BR prog_mkdep ", " prog_nbmkdep
 Find traditional BSD mkdep(1) or recent NetBSD version of it respectively.

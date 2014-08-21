@@ -1,7 +1,7 @@
-SUBPRJ  = libs/foo:tools/prog1
-SUBPRJ += libs/bar:tools/prog2
-SUBPRJ += libs/foo:tools/prog3 libs/bar:tools/prog3
-SUBPRJ += libs/qux:tools/prog4
+LIBDEPS  = libs/foo:tools/prog1
+LIBDEPS += libs/bar:tools/prog2
+LIBDEPS += libs/foo:tools/prog3 libs/bar:tools/prog3
+LIBDEPS += libs/qux:tools/prog4
 
 SUBPRJ += tools/prog1:tests/prog1
 SUBPRJ += tools/prog2:tests/prog2

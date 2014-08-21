@@ -51,16 +51,13 @@ check ===> tools/prog1
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
 /objdir/libs/qux/libqux.a
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h
 /objdir/libs/qux/qux.h.in
@@ -151,13 +148,10 @@ LD: prog4
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
 /objdir/libs/bar/bar.h
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -180,13 +174,10 @@ LD: prog4
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
 /objdir/libs/bar/bar.h
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -213,15 +204,12 @@ LD: prog4
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
 /objdir/libs/bar/bar.h
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -250,15 +238,12 @@ LD: prog4
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
 /objdir/libs/bar/bar.h
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -289,13 +274,10 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -326,13 +308,10 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -363,15 +342,12 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h.in
 /objdir/test.mk
@@ -403,14 +379,11 @@ LD: prog4
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
 /objdir/libs/bar/bar.h
-/objdir/libs/bar/linkme.mk
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
 /objdir/libs/foo/foo.h
-/objdir/libs/foo/linkme.mk
 /objdir/libs/qux/Makefile
 /objdir/libs/qux/libqux.a
-/objdir/libs/qux/linkme.mk
 /objdir/libs/qux/qux.c
 /objdir/libs/qux/qux.h
 /objdir/libs/qux/qux.h.in
@@ -455,15 +428,15 @@ obj/tools/prog3/prog3.o
 obj/tools/prog4/prog4
 obj/tools/prog4/prog4.o
 =========== print_deps ============
+all-tools/prog1 all-tests/prog1
+all-tools/prog2 all-tests/prog2
+all-tools/prog3 all-tests/prog3
+all-tools/prog4 all-tests/prog4
 all-libs/foo all-tools/prog1
 all-libs/bar all-tools/prog2
 all-libs/foo all-tools/prog3
 all-libs/bar all-tools/prog3
 all-libs/qux all-tools/prog4
-all-tools/prog1 all-tests/prog1
-all-tools/prog2 all-tests/prog2
-all-tools/prog3 all-tests/prog3
-all-tools/prog4 all-tests/prog4
 all-libs/bar libs/bar
 all-libs/foo libs/foo
 all-libs/qux libs/qux
