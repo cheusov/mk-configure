@@ -64,7 +64,8 @@ DISTCLEANFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
    ${_FSRCDIR}/missing ${_FSRCDIR}/compile ${_FOBJDIR}/stamp-h1
 
 .if ${AT_USE_AUTOMAKE:tl:U} == yes
-DISTCLEANFILES +=	${_FSRCDIR}/Makefile.in
+DISTCLEANFILES    +=	${_FSRCDIR}/Makefile.in
+MKC_REQUIRE_PROGS +=	automake
 .endif
 
 .endif # _MKC_IMP_FOREIGN_AUTOTOOLS_MK
