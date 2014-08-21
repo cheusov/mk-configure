@@ -1,4 +1,4 @@
-EXCL_RE='zzzz'
+EXCL_RE='autom4te[.]cache'
 
 .PHONY : test_output
 test_output:

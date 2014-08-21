@@ -7,11 +7,6 @@ Hello autoconf
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
-/objdir/autom4te.cache/output.0
-/objdir/autom4te.cache/output.1
-/objdir/autom4te.cache/requests
-/objdir/autom4te.cache/traces.0
-/objdir/autom4te.cache/traces.1
 /objdir/config.h
 /objdir/config.h.in
 /objdir/config.log
@@ -29,11 +24,6 @@ Hello autoconf
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
-/objdir/autom4te.cache/output.0
-/objdir/autom4te.cache/output.1
-/objdir/autom4te.cache/requests
-/objdir/autom4te.cache/traces.0
-/objdir/autom4te.cache/traces.1
 /objdir/config.h
 /objdir/config.h.in
 /objdir/config.log
