@@ -1,0 +1,17 @@
+#!/usr/bin/awk -f
+
+############################################################
+# Copyright (c) 2014 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
+# processes backslash in the end of line
+
+/\\$/ {
+	printf "%s", substr($0, 1, length($0)-1)
+	next
+}
+{
+	print
+}
