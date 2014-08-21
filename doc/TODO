@@ -5,6 +5,10 @@ Plan 0.26.0
 
 - Special marker for checks that cannot be possible in cross-compiling
 
+- regression tests without garbage, make it look like paexec\
+
+- MKC_FEATURES: inttypes
+
 Some thoughts inspired by talks with Michael Crogan
 
 - MKASNEEDED=yes => ld --as-needed
