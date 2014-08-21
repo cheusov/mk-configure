@@ -6,7 +6,7 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
-SUBPRJ_DFLT =   custom helpers mk scripts features doc
+SUBPRJ_DFLT =   builtins helpers mk scripts features doc
 SUBPRJ      =	examples presentation ${SUBPRJ_DFLT}
 
 tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
@@ -43,7 +43,7 @@ NOEXPORT_VARNAMES =	MKC_CACHEDIR
 DIST_TARGETS =		pdf clean-mk clean-scripts mkc_clean
 
 INSTALL      =		${.CURDIR}/scripts/mkc_install
-PATH        :=		${OBJDIR_custom}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
+PATH        :=		${OBJDIR_builtins}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
 
 .export SHRTOUT INSTALL PATH
 

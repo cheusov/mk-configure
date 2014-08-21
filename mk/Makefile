@@ -17,7 +17,7 @@ INFILES +=	mkc_imp.vars.mk
 #################################################
 .for i in prog_mkdep prog_nbmkdep
 MKC_CHECK_CUSTOM   +=	${i}
-MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../custom/${i}
+MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../builtins/${i}
 .endfor
 
 MKC_CHECK_PROGS    +=	makedepend
