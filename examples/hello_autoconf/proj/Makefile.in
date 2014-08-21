@@ -1,0 +1,26 @@
+# GNU Make is required
+
+srcdir    =	@srcdir@
+
+CC       ?=	@CC@
+
+CFLAGS   ?=	@CFLAGS@
+CPPFLAGS ?=	@CPPFLAGS@
+LDFLAGS  ?=	@LDFLAGS@
+LIBS     ?=	@LIBS@
+
+CPPFLAGS += -I. -I${srcdir}
+CFLAGS   += -DMSG='"$(shell echo Hello autoconf)"'
+
+.PHONY: all clean distclean
+
+all: hello_autoconf
+
+%: %.c
+	${CC} -o $@ ${CPPFLAGS} ${CFLAGS} $< ${LDFLAGS} ${LIBS}
+
+clean:
+	-rm -f hello_autoconf
+
+distclean: clean # mk-configure removes almost everything
+	-rm -f ${srcdir}/config.h.in config.h

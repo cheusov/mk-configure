@@ -1,0 +1,59 @@
+Hello autoconf
+=========== all ============
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile
+/objdir/Makefile.in
+/objdir/NEWS
+/objdir/README
+/objdir/autom4te.cache/output.0
+/objdir/autom4te.cache/output.1
+/objdir/autom4te.cache/requests
+/objdir/autom4te.cache/traces.0
+/objdir/autom4te.cache/traces.1
+/objdir/config.h
+/objdir/config.h.in
+/objdir/config.log
+/objdir/config.status
+/objdir/configure
+/objdir/configure.ac
+/objdir/hello_autoconf
+/objdir/hello_autoconf.c
+/objdir/hello_autoconf.test.out.tmp
+========== clean ===========
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile
+/objdir/Makefile.in
+/objdir/NEWS
+/objdir/README
+/objdir/autom4te.cache/output.0
+/objdir/autom4te.cache/output.1
+/objdir/autom4te.cache/requests
+/objdir/autom4te.cache/traces.0
+/objdir/autom4te.cache/traces.1
+/objdir/config.h
+/objdir/config.h.in
+/objdir/config.log
+/objdir/config.status
+/objdir/configure
+/objdir/configure.ac
+/objdir/hello_autoconf.c
+/objdir/hello_autoconf.test.out.tmp
+========== all SHRTOUT=yes ===========
+MKGEN:
+CONFIGURE:
+configure: creating ./config.status
+AUTOTOOLS:
+======= cleandir ==========
+/objdir/AUTHORS
+/objdir/COPYING
+/objdir/ChangeLog
+/objdir/Makefile.in
+/objdir/NEWS
+/objdir/README
+/objdir/configure.ac
+/objdir/hello_autoconf.c
+/objdir/hello_autoconf.test.out.tmp
