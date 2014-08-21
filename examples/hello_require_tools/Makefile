@@ -1,11 +1,12 @@
-MKC_REQUIRE_BUILTINS +=	prog_gawk prog_flex prog_gm4 prog_bison
+MKC_REQUIRE_BUILTINS +=	prog_gawk prog_flex prog_gm4 prog_bison prog_gmake
 
 SCRIPTS = fake
 
-test: error-check
-	@echo ${CUSTOM.prog_gawk}
-	@echo ${CUSTOM.prog_gm4}
-	@echo ${CUSTOM.prog_flex}
-	@echo ${CUSTOM.prog_bison}
+test: errorcheck
+	@echo GNU awk: ${CUSTOM.prog_gawk}
+	@echo GNU m4: ${CUSTOM.prog_gm4}
+	@echo GNU make: ${CUSTOM.prog_gmake}
+	@echo flex: ${CUSTOM.prog_flex}
+	@echo bison: ${CUSTOM.prog_bison}
 
 .include <mkc.prog.mk>
