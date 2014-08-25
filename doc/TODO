@@ -1,7 +1,8 @@
 ============================================================
 Plan 0.28.0
 
-- LIBDEPS: automatic _pic suffix
+- check awk capabilities at build time
+- LIBDEPS: automatic _pic suffix (for shlib or MKPIE)
 - INTERNAL_LIBS for internal libraries
 - features: a way to implement all missing functionality
   in internal library
