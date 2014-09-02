@@ -51,10 +51,13 @@ hello_msg1.os
 hello_msg2.o
 hello_msg2.op
 hello_msg2.os
+libcxxlib.a
 libcxxlib.so
 libcxxlib.so.1
 libcxxlib.so.1.0
 libcxxlib.so.1.0.5
+libcxxlib_p.a
+libcxxlib_pic.a
 ======= UNINSTALLFILES ==========
 /prefix/include/hello_msg.h
 /prefix/include/impl/hello_msg1.h

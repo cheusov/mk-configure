@@ -109,7 +109,6 @@ symbol fooqux
 /objdir/libs/libbar/Makefile
 /objdir/libs/libbar/bar.c
 /objdir/libs/libbar/bar.h
-/objdir/libs/libbar/libbar_pic.a
 /objdir/libs/libbaz/Makefile
 /objdir/libs/libbaz/baz.c
 /objdir/libs/libbaz/include/baz.h
@@ -117,7 +116,6 @@ symbol fooqux
 /objdir/libs/libfoo/Makefile
 /objdir/libs/libfoo/foo.c
 /objdir/libs/libfoo/foo.h
-/objdir/libs/libfoo/libfoo_pic.a
 /objdir/libs/libfoo/linkme.mk
 /objdir/libs/libfooqux/Makefile
 /objdir/libs/libfooqux/fooqux.c
