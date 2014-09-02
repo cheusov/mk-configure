@@ -26,7 +26,7 @@ _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
 DPLDADD   ?=	${p:T:S/^lib//}
 DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
 DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
-.include <mkc_imp.dpvars.mk>
+.    include <mkc_imp.dpvars.mk>
 .  endfor
 .endif
 

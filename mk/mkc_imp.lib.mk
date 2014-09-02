@@ -116,13 +116,14 @@ CLEANFILES += \
 # Make sure it gets defined
 libinstall::
 
+CLEANFILES   +=	lib${LIB}.a lib${LIB}_pic.a lib${LIB}_p.a
+
    # MKSTATICLIB
 .if ${MKSTATICLIB:tl} != "no"
 libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}.a
-CLEANFILES         +=	lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 .endif
@@ -133,7 +134,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
-CLEANFILES +=		lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 .endif
@@ -144,7 +144,6 @@ libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
-CLEANFILES +=		lib${LIB}_pic.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 .endif

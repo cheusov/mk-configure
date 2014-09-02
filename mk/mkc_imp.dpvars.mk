@@ -4,7 +4,11 @@
 ############################################################
 
 .for i in ${DPLDADD}
+.  if ( ${MKPIE:U:tl} == "yes" || defined(SHLIB_MAJOR) ) && !empty(STATICLIBS:Mlib${i})
+LDADD0    +=	-l${i}_pic
+.  else
 LDADD0    +=	-l${i}
+.  endif
 .endfor
 
 .for i in ${DPLIBDIRS}

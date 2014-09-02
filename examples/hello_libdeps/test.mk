@@ -1,3 +1,5 @@
+run_nm := env NM=${NM:Q} OPSYS=${OPSTS:Q} mkc_test_nm
+
 .PHONY : test_output
 test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
@@ -22,6 +24,24 @@ test_output:
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/Users ${.OBJDIR}/home; \
+	\
+	echo =========== all with STATICLIBS=... ============; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo ========= install with STATICLIBS=... ==========; \
+	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
+	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	case ${OPSYS} in \
+	*BSD|DragonFly|SunOS|Linux) \
+	    ${run_nm} ${OBJDIR_libfooqux}/libfooqux.so;; \
+	*) \
+	    printf 'symbol foo\nsymbol fooqux\n';; \
+	esac; \
+	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/home ${.OBJDIR}/Users; \
 	\
 	echo ======= distclean ==========; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
