@@ -1,0 +1,22 @@
+#!/bin/sh
+
+: ${OPSYS:=`uname -s`}
+: ${NM:=nm}
+
+case ${OPSYS} in
+    NetBSD|OpenBSD)
+	${NM} "$@" |
+	grep -Ev 'fini|init' |
+	awk '$2=="T" {print "symbol " $3}'
+	;;
+    *BSD|SunOS|DragonFly)
+	${NM} "$@" |
+	grep -Ev 'fini|init' |
+	awk 'NF==4 && $2=="T" {print "symbol " $1}'
+	;;
+    Linux)
+	${NM} "$@" |
+	grep -Ev 'fini|init' |
+	awk 'NF==4 && $2 ~ /^[DT]$/ {print "symbol " $1}'
+	;;
+esac

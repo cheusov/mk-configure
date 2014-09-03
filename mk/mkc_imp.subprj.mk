@@ -10,6 +10,8 @@
 .if !defined(_MKC_IMP_SUBPRJ_MK)
 _MKC_IMP_SUBPRJ_MK := 1
 
+EXPORT_VARNAMES +=	STATICLIBS
+
 .for dir in ${SUBPRJ:S/:/ /g}
 .if empty(NOSUBDIR:U:M${dir})
 __REALSUBPRJ += ${dir}

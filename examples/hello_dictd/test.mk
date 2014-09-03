@@ -1,5 +1,7 @@
 next_level !=	expr ${.MAKE.LEVEL} + 1
 
+run_nm := env NM=${NM:Q} OPSYS=${OPSTS:Q} mkc_test_nm
+
 .PHONY : test_output
 test_output :
 	@set -e; \
@@ -17,17 +19,12 @@ test_output :
 	\
 	echo =========== nm ============; \
 	case ${OPSYS} in \
-	  OpenBSD) \
-	    ${NM} ${.CURDIR}/libmaa/libmaa*.so | awk '$$2=="T" {print "libmaa " $$3}'; \
-	    ${NM} ${.CURDIR}/libdz/libdz*.so   | awk '$$2=="T" {print "libdz " $$3}';; \
-	  *BSD|SunOS|DragonFly) \
-	    ${NM} -P ${.CURDIR}/libmaa/libmaa*.so | awk 'NF==4 && $$2=="T" {print "libmaa " $$1}'; \
-	    ${NM} -P ${.CURDIR}/libdz/libdz*.so   | awk 'NF==4 && $$2=="T" {print "libdz " $$1}';; \
-	  Linux) \
-	    ${NM} -P ${.CURDIR}/libmaa/libmaa*.so | awk 'NF==4 && $$2 ~ /^[DT]$$/ {print "libmaa " $$1}'; \
-	    ${NM} -P ${.CURDIR}/libdz/libdz*.so   | awk 'NF==4 && $$2 ~ /^[DT]$$/ {print "libdz " $$1}';; \
+	  *BSD|DragonFly|SunOS|Linux) \
+	    ${run_nm} ${OBJDIR_libmaa}/libmaa*.so; \
+	    echo =; \
+	    ${run_nm} ${OBJDIR_libdz}/libdz*.so;; \
 	  *) \
-	    printf 'libmaa fake4\nlibmaa fake5\nlibmaa fake6\nlibdz fake3\n';; \
+	    printf 'symbol fake4\nsymbol fake5\nsymbol fake6\n=\nsymbol fake3\n';; \
 	esac; \
 	\
 	echo =========== all ============; \
@@ -167,6 +164,18 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	unset NOSUBDIR; \
+	\
+	echo =========== all with MKPIE=yes ============; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all MKPIE=yes > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	\
+	echo =========== all with STATICLIBS=everything... ============; \
+	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	env STATICLIBS='libmaa libdz' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
+	find ${.OBJDIR} -type f -o -type l | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== print_deps ============; \
 	${MAKE} ${MAKEFLAGS} print_deps | grep -E '^(all|test)'; \

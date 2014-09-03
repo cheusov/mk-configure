@@ -169,3 +169,11 @@ something like this.
   INTEXTS_REPLS += version ${VERSION}
 
 for replacing @version@ with real version.
+
+***
+
+If your project consists of libraries and executables, use
+mkc.subprj.mk and its LIBDEPS variable. Even if you prefer shared
+libraries, users will be able to link them statically with a help
+STATICLIBS variable specified in environment. For this to work you
+have to use += for STATICLIBS in Makefiles.

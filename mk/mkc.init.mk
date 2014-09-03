@@ -235,14 +235,19 @@ SHLIB_MINOR ?=	0
 SHLIB_MAJOR ?=	1
 .endif # MKDLL
 
-.if defined(SHLIB_MAJOR)
+.if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
 MKSHLIB  ?=	yes
 .else
 MKSHLIB  ?=	no
 .endif # SHLIB_MAJOR
 
-MKPICLIB ?=	no
-MKPROFILELIB ?=	no
+.if !empty(STATICLIBS:M${.CURDIR:T})
+MKPICLIB     ?=	yes
+.else
+MKPICLIB     ?=	no
+.endif
+
+MKPROFILELIB    ?=	no
 
 MKINSTALLDIRS   ?=	yes
 
