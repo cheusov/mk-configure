@@ -125,7 +125,7 @@ Plan 3)
   = shared libraries support for nwcc and other compilers.
 
   = Comparison with quagmire, kBuild, CMake, scons, waf, framewerk, pmk,
-    MagicMakefiles, bjam, pymake, bitmake, pkgconf,
+    MagicMakefiles, bjam, pymake, bitmake, pkgconf, Gradle
     http://sourceforge.net/projects/mkbuild etc.
 
   = Often compilers need special options to compile pthread code.
