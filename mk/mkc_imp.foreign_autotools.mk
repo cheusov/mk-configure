@@ -54,7 +54,11 @@ realdo_errorcheck:
 realdo_${i}: at_do_${i}
 at_do_${i}: .PHONY
 	${MESSAGE.autotools}
-	${_V} set -e; cd ${_FOBJDIR}; env ${_AT_MAKE_ENV} ${AT_MAKE} ${AT_MAKEFLAGS} ${.TARGET:S/^at_do_//:S/cleandir/distclean/}
+	${_V} set -e; \
+	cd ${_FOBJDIR}; \
+	if test -f Makefile; then \
+	    env ${_AT_MAKE_ENV} ${AT_MAKE} ${AT_MAKEFLAGS} ${.TARGET:S/^at_do_//:S/cleandir/distclean/}; \
+	fi
 .endfor
 
 DISTCLEANDIRS  +=	${_FSRCDIR}/autom4te.cache
