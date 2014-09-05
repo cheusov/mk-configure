@@ -32,6 +32,11 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========= INTERNALLIBS ==========; \
+	{ ${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR}; \
+	  ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR}; \
+	  ${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR}; } 2>&1 | awk '/^(un)?install/'; \
+	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/home ${.OBJDIR}/Users; \
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \

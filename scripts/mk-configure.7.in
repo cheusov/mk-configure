@@ -1014,11 +1014,16 @@ LDADD0, LDFLAGS0 and CPPFLAGS0 respectively in subproject "program".
 The dependency graph specified by variable LIBDEPS is available to all
 subproject via environment.
 .IP STATICLIBS
-A list of subprojects (basenames!) with static libraries. If dependency is
+A list of subprojects (basenames) with static libraries. If dependency is
 mentioned in this variable, the suffix _pic is automatically added
 for PIE-executables or shared libraries that depend on this library.
 This variable is automatically passed to subprojects via environment.
 .RI < Mu >
+.RI [ "" ]
+.IP INTERNALLIBS
+A list of subprojects (basenames) with internal libraries.
+These libraries are static and not installed by target "install".
+.RI < M >
 .RI [ "" ]
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.

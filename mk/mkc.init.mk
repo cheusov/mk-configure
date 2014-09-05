@@ -235,6 +235,8 @@ SHLIB_MINOR ?=	0
 SHLIB_MAJOR ?=	1
 .endif # MKDLL
 
+STATICLIBS +=	${INTERNALLIBS}
+
 .if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
 MKSHLIB  ?=	yes
 .else

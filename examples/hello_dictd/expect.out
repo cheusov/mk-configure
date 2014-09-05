@@ -103,6 +103,25 @@ symbol fake3
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
 /objdir/test.mk
+========= INTERNALLIBS ==========
+installdirs ===> examples/hello_dictd/libmaa
+installdirs ===> examples/hello_dictd/dict
+installdirs ===> examples/hello_dictd/dictd
+installdirs ===> examples/hello_dictd/libdz
+installdirs ===> examples/hello_dictd/dictzip
+installdirs ===> examples/hello_dictd/dictfmt
+install ===> examples/hello_dictd/libmaa
+install ===> examples/hello_dictd/dict
+install ===> examples/hello_dictd/dictd
+install ===> examples/hello_dictd/libdz
+install ===> examples/hello_dictd/dictzip
+install ===> examples/hello_dictd/dictfmt
+uninstall ===> examples/hello_dictd/libmaa
+uninstall ===> examples/hello_dictd/dict
+uninstall ===> examples/hello_dictd/dictd
+uninstall ===> examples/hello_dictd/libdz
+uninstall ===> examples/hello_dictd/dictzip
+uninstall ===> examples/hello_dictd/dictfmt
 ========= installdirs ==========
 /objdir/prefix
 /objdir/prefix/bin

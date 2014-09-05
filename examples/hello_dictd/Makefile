@@ -8,7 +8,7 @@ LIBDEPS +=	libmaa:dictzip
 LIBDEPS +=	libmaa:dictfmt
 LIBDEPS +=	libdz:dictzip
 
-STATICLIBS +=	libcommon
+INTERNALLIBS +=	libcommon
 
 # Subproject "doc" has no dependencies
 SUBPRJ +=	doc

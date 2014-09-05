@@ -21,6 +21,11 @@ __REALSUBPRJ += ${dir}
 .for dir in ${NOSUBDIR}
 NODEPS +=	*-${dir}:* *:*-${dir}   *-*/${dir}:* *:*-*/${dir}
 .endfor
+.for dir in ${INTERNALLIBS}
+NODEPS +=	install-${dir}:*     install-*/${dir}:* \
+         	uninstall-${dir}:*   uninstall-*/${dir}:* \
+        	installdirs-${dir}:* installdirs-*/${dir}:*
+.endfor
 
 .ifndef SUBDIR
 __REALSUBPRJ := ${__REALSUBPRJ:O:u}
