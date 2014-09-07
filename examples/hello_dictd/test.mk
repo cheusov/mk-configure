@@ -11,7 +11,8 @@ test_output :
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	LD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/libdz:${.CURDIR}/libmaa:$$LD_LIBRARY_PATH; \
-	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
+	LIBRARY_PATH=$$LIBRARY_PATH:$$LD_LIBRARY_PATH; \
+	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH LIBRARY_PATH; \
 	${.CURDIR}/dict/dict; \
 	${.CURDIR}/dictd/dictd; \
 	${.CURDIR}/dictfmt/dictfmt; \
