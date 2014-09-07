@@ -1,5 +1,5 @@
-FILES =	sys.mk mkc.configure.mk configure.mk mkc.mk \
-	mkc.init.mk mkc_imp.intexts.mk mkc_imp.mk \
+FILES =	sys.mk mkc.configure.mk mkc_imp.conf.mk mkc_imp.conf-cleanup.mk \
+	mkc.mk mkc.init.mk mkc_imp.intexts.mk mkc_imp.mk \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.dpvars.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.prog.mk \
