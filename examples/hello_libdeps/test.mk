@@ -5,7 +5,8 @@ test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
 	LD_LIBRARY_PATH=${OBJDIR_libs_libfoo}:${OBJDIR_libs_libfooqux}:${OBJDIR_libs_libbar}:${OBJDIR_libs_libbaz}; \
 	DYLD_LIBRARY_PATH=$$LD_LIBRARY_PATH; \
-	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
+	LIBRARY_PATH=$$LIBRARY_PATH:$$LD_LIBRARY_PATH; \
+	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH LIBRARY_PATH; \
 	echo =========== fooquxfoobar ============; \
 	${OBJDIR_progs_fooquxfoobar}/fooquxfoobar; \
 	echo =========== foobaz ============; \
