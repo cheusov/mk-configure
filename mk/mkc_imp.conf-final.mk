@@ -38,9 +38,11 @@ CFLAGS +=	${i}
 .for i in ${MKC_LDADD}
 LDADD +=	${i}
 .endfor
-.for i in ${MKC_SRCS}
+.if !${MKC_NOSRCSAUTO:U0}
+.  for i in ${MKC_SRCS}
 SRCS +=		${i}
-.endfor
+.  endfor
+.endif
 .endif # .if MKC_AUTO
 
 .undef MKC_CPPFLAGS

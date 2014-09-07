@@ -22,7 +22,9 @@ MKC_CHECK_VARS           +=	program_invocation_short_name:errno.h
     ${HAVE_FUNC1.setprogname.stdlib_h:U0}
 CFLAGS +=	-DMKC_PROGNAME_IS_FINE
 .else
-SRCS +=		${FEATURESDIR}/progname/progname.c
+MKC_SRCS +=		${FEATURESDIR}/progname/progname.c
 .endif
+
+.include <mkc_imp.conf-final.mk>
 
 .endif # _MKC_IMP.F_PROGNAME_MK

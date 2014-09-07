@@ -23,7 +23,9 @@ MKC_CHECK_FUNCS3        +=	err:err.h errx:err.h verr:err.h verrx:err.h
     ${HAVE_FUNC3.verr.err_h:U0} && ${HAVE_FUNC3.verrx.err_h:U0}
 CFLAGS +=	-DMKC_ERR_IS_FINE
 .else
-SRCS +=		${FEATURESDIR}/err/err.c
+MKC_SRCS +=		${FEATURESDIR}/err/err.c
 .endif
+
+.include <mkc_imp.conf-final.mk>
 
 .endif #_MKC_IMP_F_ERR_MK

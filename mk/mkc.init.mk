@@ -45,6 +45,9 @@ PROGS         ?=	${PROG}
 SRCS          ?=	${PROG}.c
 SRCS.${PROG}  ?=	${SRCS}
 _srcsall +=	${SRCS}
+.elif ${.CURDIR:T} == ${COMPATLIB:U}
+SRCS     ?=	${FEATURESDIR}/_mkcfake.c
+_srcsall +=	${SRCS}
 .elif defined(LIB)
 SRCS     ?=	${LIB}.c
 _srcsall +=	${SRCS}
@@ -235,7 +238,8 @@ SHLIB_MINOR ?=	0
 SHLIB_MAJOR ?=	1
 .endif # MKDLL
 
-STATICLIBS +=	${INTERNALLIBS}
+INTERNALLIBS +=	${COMPATLIB}
+STATICLIBS   +=	${INTERNALLIBS}
 
 .if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
 MKSHLIB  ?=	yes

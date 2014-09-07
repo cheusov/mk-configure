@@ -23,7 +23,9 @@ MKC_CHECK_FUNCS2        +=	warn:err.h warnx:err.h vwarn:err.h vwarnx:err.h
     ${HAVE_FUNC2.vwarn.err_h:U0} && ${HAVE_FUNC2.vwarnx.err_h:U0}
 CFLAGS +=	-DMKC_WARN_IS_FINE
 .else
-SRCS +=		${FEATURESDIR}/warn/warn.c
+MKC_SRCS +=	${FEATURESDIR}/warn/warn.c
 .endif
+
+.include <mkc_imp.conf-final.mk>
 
 .endif # _MKC_IMP_F_WARN_MK

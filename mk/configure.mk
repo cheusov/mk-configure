@@ -34,6 +34,11 @@ MKC_COMMON_HEADERS  ?=            # list of headers always #included
 MKC_NOCACHE         ?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR      ?=${.CURDIR}  # directory with custom tests.c
 MKC_SOURCE_DIR      ?=${.CURDIR}  # directory with missing strlcat.c etc.
+.if ${COMPATLIB:U} == ${.CURDIR:T}
+MKC_NOSRCSAUTO      ?=	1
+.else
+MKC_NOSRCSAUTO      ?=	0
+.endif
 
 #
 MKC_SOURCE_FUNCLIBS   ?=
@@ -336,17 +341,17 @@ MKC_ERR_MSG +=		"ERROR: prototype test ${p} failed"
 .undef MKC_CHECK_PROTOTYPES
 .undef MKC_REQUIRE_PROTOTYPES
 
-######################################################
-# final assignment
-.include <mkc_imp.conf-final.mk>
-
 .else # MKCHECKS == yes
 
 .for i in ${_MKC_SOURCE_FUNCS}
-SRCS +=	${i} # for changing CLEANFILES
+MKC_SRCS +=	${i} # for changing CLEANFILES
 .endfor
 
 .endif # MKCHECKS?
+
+######################################################
+# final assignments
+.include <mkc_imp.conf-final.mk>
 
 ######################################################
 ######################################################

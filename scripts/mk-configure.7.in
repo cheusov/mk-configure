@@ -1025,6 +1025,12 @@ A list of subprojects (basenames) with internal libraries.
 These libraries are static and not installed by target "install".
 .RI < M >
 .RI [ "" ]
+.IP COMPATLIB
+Subproject's basename for compatibility library.
+If this variable is set, MKC_SOURCE_FUNCLIBS and FEATURES
+do not change SRCS for subprojects other than ${COMPATLIB}.
+.RI < M >
+.RI [ "" ]
 .IP SUBPRJ_DFLT
 List of projects built and installed by default.
 The default is all projects listed in SUBPRJ.
