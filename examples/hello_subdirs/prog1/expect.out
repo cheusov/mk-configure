@@ -10,6 +10,7 @@ SRCDIR_prog2=hello_subdirs/prog2
 /objdir/expect.out
 /objdir/prog1
 /objdir/prog1.awk
+/objdir/prog1.awk.in
 /objdir/prog1.c
 /objdir/prog1.o
 /objdir/prog1.sh
@@ -23,7 +24,7 @@ SRCDIR_prog2=hello_subdirs/prog2
 ========== clean ===========
 /objdir/Makefile
 /objdir/expect.out
-/objdir/prog1.awk
+/objdir/prog1.awk.in
 /objdir/prog1.c
 /objdir/prog1.sh
 /objdir/prog1.test.out.tmp
@@ -31,7 +32,7 @@ SRCDIR_prog2=hello_subdirs/prog2
 ======= distclean ==========
 /objdir/Makefile
 /objdir/expect.out
-/objdir/prog1.awk
+/objdir/prog1.awk.in
 /objdir/prog1.c
 /objdir/prog1.sh
 /objdir/prog1.test.out.tmp
