@@ -4,12 +4,12 @@
 : ${NM:=nm}
 
 case ${OPSYS} in
-    NetBSD|OpenBSD)
+    *BSD|DragonFly)
 	${NM} "$@" |
 	grep -Ev 'fini|init' |
 	awk '$2=="T" {print "symbol " $3}'
 	;;
-    *BSD|SunOS|DragonFly)
+    SunOS)
 	${NM} "$@" |
 	grep -Ev 'fini|init' |
 	awk 'NF==4 && $2=="T" {print "symbol " $1}'
