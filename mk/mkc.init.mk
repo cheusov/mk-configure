@@ -36,7 +36,7 @@ __initialized__ := 1
 
 .for p in ${PROGS}
 SRCS.${p} ?=	${p}.c
-SRCS.${p} +=	${SRCS} # SRCS may be changed by mkc_imp.configure.mk
+SRCS.${p} +=	${SRCS} # SRCS may be changed by mkc_imp.conf.mk
 _srcsall +=	${SRCS.${p}}
 .endfor
 
@@ -77,7 +77,7 @@ LDREAL  ?=	${LD}
 
 MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
-init_make_level ?= 0 # for mkc.configure.mk
+init_make_level ?= 0 # for mkc_imp.conf.mk
 
 .if ${.MAKE.LEVEL} == ${init_make_level}
 SRCTOP       ?=	${.CURDIR}

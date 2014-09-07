@@ -6,7 +6,7 @@
 .include <mkc_imp.preinit.mk>
 .include <mkc.init.mk>
 
-.include <configure.mk>
+.include <mkc_imp.conf.mk>
 
 .PHONY: configure
 configure: errorcheck
