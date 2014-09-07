@@ -15,7 +15,7 @@ test_output:
 	echo =========== depends ============; \
 	${MAKE} ${MAKEFLAGS} -j4 depend > /dev/null; \
 	mkc_long_lines `find ${.CURDIR} -type f -name .depend` | \
-	awk '{for (i=1; i <= NF; ++i) if ($$i ~ /\/usr\//) $$i = ""; print $$0; }' | \
+	awk '!/^#/ {for (i=1; i <= NF; ++i) if ($$i ~ /^\// && $$i !~ /mk-configure/) $$i = ""; print $$0; }' | \
 	awk '{$$1 = $$1; gsub(/[.]o[ps]/, ".o"); print $$0}' | sort | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
