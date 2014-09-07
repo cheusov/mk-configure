@@ -5,7 +5,6 @@ Plan 0.28.0
 - features: avoid MKC_NOAUTO hacks
 - Hide regression tests details
 - "bmake -k regrtest/check" (mkc.minitest.mk?)
-- Haiku doesn't support hard links
 
 - autotools: make sure subdirectory is not empty
 

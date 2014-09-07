@@ -356,8 +356,13 @@ LD.OSF1   ?=	/usr/bin/ld
 LD        ?=	${LD.${TARGET_OPSYS}:Uld}
 LDFLAGS   ?=
 
+.if ${OPSYS} == "Haiku"
+LN        ?=	ln -s
+LN_S      ?=	ln -s
+.else
 LN        ?=	ln
 LN_S      ?=	${LN} -s
+.endif
 
 LORDER    ?=	lorder
 
