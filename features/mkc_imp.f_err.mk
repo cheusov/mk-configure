@@ -5,17 +5,15 @@
 .ifndef _MKC_IMP_F_ERR_MK
 _MKC_IMP_F_ERR_MK := 1
 
-.include <mkc.configure.mk>
-
 .include <mkc_imp.f_progname.mk>
 
-.include <mkc.configure.mk>
+.include <mkc_imp.conf-cleanup.mk>
 
 MKC_CHECK_HEADERS       +=	err.h
 MKC_CHECK_FUNCLIBS      +=	err errx verr verrx
 MKC_CHECK_FUNCS3        +=	err:err.h errx:err.h verr:err.h verrx:err.h
 
-.include <mkc.configure.mk>
+.include <mkc_imp.conf-cleanup.mk>
 
 .if ${HAVE_FUNCLIB.err:U0} && ${HAVE_FUNCLIB.errx:U0} && \
     ${HAVE_FUNCLIB.verr:U0} && ${HAVE_FUNCLIB.verrx:U0} && \

@@ -119,13 +119,13 @@ all: pre_errorcheck .WAIT do_errorcheck .WAIT post_errorcheck .WAIT pre_all .WAI
 realdo_errorcheck: __errorcheck
 
 .include <mkc_imp.checkprogs.mk>
-.include <configure.mk>
+.include <mkc_imp.conf-cleanup.mk>
 
 # features
 .for f in ${MKC_FEATURES}
 .include <mkc_imp.f_${f}.mk>
 .endfor
-.include <configure.mk>
+.include <mkc_imp.conf-cleanup.mk>
 CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)

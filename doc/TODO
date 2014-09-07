@@ -2,7 +2,6 @@
 Plan 0.28.0
 
 - check awk capabilities at build time
-- features: avoid MKC_NOAUTO hacks
 - Hide regression tests details
 - "bmake -k regrtest/check" (mkc.minitest.mk?)
 - Haiku doesn't support hard links
