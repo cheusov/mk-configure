@@ -75,7 +75,7 @@ MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 
 .c.d:
 	${MESSAGE.dep}
-	@env CC=${MKDEP_CC} ${MKDEP.c} ${.IMPSRC}
+	@env CC=${MKDEP_CC:Q} ${MKDEP.c} ${.IMPSRC}
 
 .m.d:
 	${MESSAGE.dep}
@@ -83,11 +83,11 @@ MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 
 .s.d .S.d:
 	${MESSAGE.dep}
-	@env CC=${MKDEP_CC} ${MKDEP.s} ${.IMPSRC}
+	@env CC=${MKDEP_CC:Q} ${MKDEP.s} ${.IMPSRC}
 
 .C.d .cc.d .cpp.d .cxx.d:
 	${MESSAGE.dep}
-	@env CC=${MKDEP_CC} ${MKDEP.cc} ${.IMPSRC}
+	@env CC=${MKDEP_CC:Q} ${MKDEP.cc} ${.IMPSRC}
 
 .endif # defined(SRCS)
 
