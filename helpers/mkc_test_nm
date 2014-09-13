@@ -17,6 +17,6 @@ case ${OPSYS} in
     Linux)
 	${NM} "$@" |
 	grep -Ev 'fini|init' |
-	awk 'NF==4 && $2 ~ /^[DT]$/ {print "symbol " $1}'
+	awk 'NF==3 && $2 ~ /^[DT]$/ {print "symbol " $3}'
 	;;
 esac
