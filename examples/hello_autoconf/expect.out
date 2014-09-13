@@ -15,7 +15,6 @@ Hello autoconf
 /objdir/configure.ac
 /objdir/hello_autoconf
 /objdir/hello_autoconf.c
-/objdir/hello_autoconf.test.out.tmp
 ========== clean ===========
 /objdir/AUTHORS
 /objdir/COPYING
@@ -31,7 +30,6 @@ Hello autoconf
 /objdir/configure
 /objdir/configure.ac
 /objdir/hello_autoconf.c
-/objdir/hello_autoconf.test.out.tmp
 ========== all SHRTOUT=yes ===========
 MKGEN:
 CONFIGURE:
@@ -46,4 +44,3 @@ AUTOTOOLS:
 /objdir/README
 /objdir/configure.ac
 /objdir/hello_autoconf.c
-/objdir/hello_autoconf.test.out.tmp

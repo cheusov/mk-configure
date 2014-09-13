@@ -17,7 +17,6 @@ Hello AutoShi^H^H^HTools!
 /objdir/hello_autotools
 /objdir/hello_autotools-config.h
 /objdir/hello_autotools-config.h.in
-/objdir/hello_autotools.test.out.tmp
 /objdir/main.c
 /objdir/main.o
 /objdir/stamp-h1
@@ -45,7 +44,6 @@ Hello AutoShi^H^H^HTools!
 /objdir/configure.ac
 /objdir/hello_autotools-config.h
 /objdir/hello_autotools-config.h.in
-/objdir/hello_autotools.test.out.tmp
 /objdir/main.c
 /objdir/stamp-h1
 ========== all SHRTOUT=yes ===========
@@ -61,5 +59,4 @@ AUTOTOOLS:
 /objdir/NEWS
 /objdir/README
 /objdir/configure.ac
-/objdir/hello_autotools.test.out.tmp
 /objdir/main.c
