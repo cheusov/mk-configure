@@ -15,7 +15,9 @@ AT_USE_AUTOMAKE ?=	yes
 AT_MAKE         ?=	${MAKE}
 AT_AUTORECONF_ARGS ?=	-is -f
 
-.if empty(FSRCDIR:M/*)
+.if empty(FSRCDIR)
+MKC_ERR_MSG +=	"FSRCDIR should not be empty"
+.elif empty(FSRCDIR:M/*)
 _FSRCDIR = ${.CURDIR}/${FSRCDIR}
 .else
 _FSRCDIR = ${FSRCDIR}
@@ -46,7 +48,9 @@ realdo_mkgen:
 	${MESSAGE.mkgen}
 	${_V} ${PROG.autoreconf} ${AT_AUTORECONF_ARGS} ${_FSRCDIR}
 
-realdo_errorcheck:
+realdo_errorcheck: check_mkc_err_msg .WAIT at_do_errorcheck
+
+at_do_errorcheck: .PHONY
 	${MESSAGE.atconf}
 	${_V} cd ${_FOBJDIR}; env ${_CONFIGURE_ENV} ${_FSRCDIR}/configure ${_CONFIGURE_ARGS}
 

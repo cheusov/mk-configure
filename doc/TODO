@@ -5,8 +5,6 @@ Plan 0.28.0
 - Hide regression tests details
 - "bmake -k regrtest/check" (mkc.minitest.mk?)
 
-- autotools: make sure subdirectory is not empty
-
 - PRId64
 - leveldb, strtoll, strtoull
 - wmemcpy, strnlen

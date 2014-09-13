@@ -103,7 +103,7 @@ print_values2 :
 .endfor
 
 ###########
-__errorcheck: .USE
+check_mkc_err_msg:
 	@if test -n '${MKC_ERR_MSG}'; then \
 	    for msg in '' ${MKC_ERR_MSG}; do \
 		fn=`printf '%s\n' "$$msg" | sed -n 's/^%%%: //p'`; \
@@ -116,7 +116,7 @@ __errorcheck: .USE
 	fi
 
 all: pre_errorcheck .WAIT do_errorcheck .WAIT post_errorcheck .WAIT pre_all .WAIT do_all .WAIT post_all
-realdo_errorcheck: __errorcheck
+realdo_errorcheck: check_mkc_err_msg
 
 .include <mkc_imp.checkprogs.mk>
 .include <mkc_imp.conf-cleanup.mk>
