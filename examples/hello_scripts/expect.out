@@ -5,6 +5,8 @@ Hello World 3!
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -13,6 +15,7 @@ Hello World 3!
 /objdir/hello_world1
 /objdir/hello_world2
 /objdir/hello_world3
+/objdir/hello_world3.in
 /objdir/main.c
 /objdir/main.o
 /objdir/more_scripts/script1
@@ -42,13 +45,15 @@ Hello World 3!
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
 /objdir/hello_world2
-/objdir/hello_world3
+/objdir/hello_world3.in
 /objdir/main.c
 /objdir/more_scripts/script1
 /objdir/more_scripts/script2
@@ -61,7 +66,7 @@ Hello World 3!
 /objdir/hello_scripts.test.out.tmp
 /objdir/hello_world.1
 /objdir/hello_world2
-/objdir/hello_world3
+/objdir/hello_world3.in
 /objdir/main.c
 /objdir/more_scripts/script1
 /objdir/more_scripts/script2
@@ -72,6 +77,8 @@ Hello World 3!
 /objdir/Makefile
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -81,6 +88,7 @@ Hello World 3!
 /objdir/hello_world1
 /objdir/hello_world2
 /objdir/hello_world3
+/objdir/hello_world3.in
 /objdir/main.c
 /objdir/main.o
 /objdir/more_scripts/script1
