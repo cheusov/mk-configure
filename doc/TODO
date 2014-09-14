@@ -5,6 +5,7 @@ Plan 0.28.0
 - Hide regression tests details
 - "bmake -k regrtest/check" (mkc.minitest.mk?)
 
+- strndup(SunOS-5.10, -fgetln,_compatlib)
 - PRId64
 - leveldb, strtoll, strtoull
 - wmemcpy, strnlen

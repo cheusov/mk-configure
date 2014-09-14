@@ -1,4 +1,67 @@
 ======================================================================
+Version 0.28.0, by Aleksey Cheusov, Sun, 14 Sep 2014 14:52:34 +0300
+
+  LIBDEPS, STATICLIBS, DPLDADD, DPLIBDIRS and DPINCDIRS variables were
+  introduced. With their help one can specify library dependencies in
+  the top-level Makefile. Users are also able to build some libraries
+  statically even if they were designed to be a dynamic libraries.
+
+  New variable FOREIGN was introduced. With its help one can embed
+  autotools-based projects (as a subproject) to mk-configure-based once.
+  See mkc_imp.foreign_autotools.mk section in man page for details.
+
+  Support for Darwin was fixed. Nowadays it uses clang.
+
+  New features were introduced:
+    - "progname" for setprogname(3) and getprogname(3) BSDisms;
+    - "err" for err(3), errx(3), verr(3) and verrx(3) BSDisms;
+    - "warn" for warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms;
+    - "fgetln" for fgetln(3) BSD-ism;
+
+  Support for Haiku was fixed. It does not support hard links
+  and uses LIBRARY_PATH.
+
+  LDCOMPILER variable was removed.
+  Compiler is always used for linking.
+
+  New builtin "prog_gmake" was introduced which search GNU make.
+
+  INTERNALLIBS variable was introduced. With its help one can
+  implement libraries common for several subprojects.
+
+  COMPATLIB variable was introduced. It is ideal solution for
+  portability code.
+
+  MKC_FEATURES: all objects are removed by target "clean"
+
+  Target "errorcheck" was added to ALLTARGETS. Therefore it also have
+  pre_, do_, post_ counterparts.
+
+  VARDIR, SHAREDSTATEDIR, SUBPRJSRCTOP, CPPFLAGS0 variables were introduced.
+
+  MKC_SOURCE_FUNCSLIBS: .o{s,p} objects are also removed by target "clean"
+
+  Hardcoded /etc/mk.conf is not included anymore. New mk-configure
+  specific configuration file @sysconfdir@/mk-c.conf was introduced.
+
+  Additions to doc/NOTES
+
+  .depends is added to DISTCLEANDIRS only for non-empty SRCS
+
+  mkc_imp.intexts.mk: new error type for odd tokens in INTEXTS_REPLS
+
+  MKDEP_CC is shquoted when passed to mkdep(1) as CC.
+
+  Code clean-ups, more regression tests.
+
+  This release was sucessfully tested on the following platforms.
+  NetBSD-6.1/x86_64/gcc-4.5, FreeBSD-9.0/i386/gcc-4.2,
+  OpenBSD-4.9/i386/gcc-4.2, DragonFlyBSD-3.4/x86_64/gcc-4.7,
+  Darwin-14.0/x86_64/clang-600.0.53, SunOS-5.11/i86pc/gcc-4.7,
+  SunOS-5.10/sparc/{gcc-4.8,SunStudio-12.3}, diverse
+  Linux-es/{gcc,icc-12.1,SunStudio-12.3}, Haiku/gcc-4.8.
+
+======================================================================
 Version 0.27.0, by Aleksey Cheusov, Sun, 13 Jul 2014 17:03:12 +0300
 
   Fix pkg-config support (github issue #8).
