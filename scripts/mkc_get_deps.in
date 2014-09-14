@@ -1,4 +1,4 @@
-#!/usr/bin/awk -f
+#!@AWK@ -f
 
 # Usage: mkc_get_deps
 # $1 -- project name
