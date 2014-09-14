@@ -19,7 +19,7 @@ INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}
 # /usr/xpg4/bin/awk sucks too but sucks less.
 PROG.awk ?=		/usr/xpg4/bin/awk
 .else
-MKC_REQUIRE_PROGS =	awk
+MKC_REQUIRE_PROGS +=	awk
 .endif
 
 BMAKE  ?=	bmake

@@ -38,12 +38,19 @@ mkdep_type =		makedepend
 MKC_ERR_MSG +=		"mkdep(1) cannot be found"
 .endif
 
+.if exists(/usr/xpg4/bin/nm)
+PROG.nm ?=              /usr/xpg4/bin/nm
+.else
+MKC_REQUIRE_PROGS +=    nm
+.endif
+
 makedepend_cmd ?=	makedepend
 
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
 INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
 INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
+INTEXTS_REPLS +=	NM             ${PROG.nm}
 
 #################################################
 .include <mkc.mk>

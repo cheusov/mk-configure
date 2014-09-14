@@ -10,7 +10,7 @@ case ${OPSYS} in
 	awk '$2=="T" {print "symbol " $3}'
 	;;
     SunOS)
-	${NM} "$@" |
+	${NM} -P "$@" |
 	grep -Ev 'fini|init' |
 	awk 'NF==4 && $2=="T" {print "symbol " $1}'
 	;;
