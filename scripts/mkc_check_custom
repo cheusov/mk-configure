@@ -107,7 +107,7 @@ done
 # functions
 
 compile (){
-    if $CC -c -o "$tmpo" $CPPFLAGS $CFLAGS "$src_or_exe" 2>"$tmperr"; then
+    if $CC -c $CARGS -o "$tmpo" $CPPFLAGS $CFLAGS "$src_or_exe" 2>"$tmperr"; then
 	echo 1
     else
 	echo 0
@@ -150,7 +150,7 @@ check_itself (){
 	return 1
     fi
 
-    if ! $compiler $CCARGS $flags; then
+    if ! $compiler $CARGS $flags; then
 	echo 0
     elif test -n "$empty_stderr" -a -s "$tmperr"; then
 	echo 0
