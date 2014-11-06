@@ -37,7 +37,7 @@ getline(char** lineptr, size_t* n, FILE* stream)
 		if (sz+1 >= *n){
 			/* +2 is for `c' and 0-terminator */
 			*n = *n * 3 / 2 + 2;
-			*lineptr = realloc (*lineptr, *n);
+			*lineptr = (char *) realloc (*lineptr, *n);
 			if (!*lineptr)
 				return -1;
 		}
@@ -54,7 +54,7 @@ getline(char** lineptr, size_t* n, FILE* stream)
 		if (feof (stream)){
 			return (ssize_t) -1;
 		}else if (!*n){
-			*lineptr = malloc (1);
+			*lineptr = (char *) malloc (1);
 			if (!*lineptr)
 				return -1;
 
