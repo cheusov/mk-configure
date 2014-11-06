@@ -323,6 +323,14 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 .undef MKC_REQUIRE_CUSTOM
 
 ######################################################
+# checks whether $CC accepts some arguments
+.for a in ${MKC_CHECK_CC_OPTS}
+.if !defined(HAVE_CC_OPT.${a:S/=/_/g})
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:Q} mkc_check_custom -e -p cc_option -n ${a:Q} -m 'whether $CC supports option '${a:Q} ${BUILTINSDIR}/easy.c
+.endif # !defined(HAVE_CC_OPT.${a})
+.endfor # a
+
+######################################################
 # prototype checks
 .for p in ${MKC_CHECK_PROTOTYPES} ${MKC_REQUIRE_PROTOTYPES}
 .if !defined(HAVE_PROTOTYPE.${p})
@@ -341,6 +349,7 @@ MKC_ERR_MSG +=		"ERROR: prototype test ${p} failed"
 .undef MKC_CHECK_PROTOTYPES
 .undef MKC_REQUIRE_PROTOTYPES
 
+######################################################
 .else # MKCHECKS == yes
 
 .for i in ${_MKC_SOURCE_FUNCS}

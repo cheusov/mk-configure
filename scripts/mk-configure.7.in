@@ -1547,6 +1547,17 @@ The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
 treated as a fatal error (See
 .B errorcheck
 target.
+.IP MKC_CHECK_CC_OPTS
+A list of C compiler options to check.
+If ${CC} -c support the specified option, variable
+HAVE_CC_OPT.<option:S/=/_/g> is set to 1 and 0 otherwise.
+.VS
+Ex.
+  MKC_CHECK_CC_OPTS = -Wall -errwarn=%all
+Res.
+ HAVE_CC_OPT.-Wall=1
+ HAVE_CC_OPT.-errwarn_%all=0
+.VE
 .IP MKC_NOAUTO_FUNCLIBS
 See MKC_CHECK_FUNCLIBS
 .IP MKC_NOAUTO
