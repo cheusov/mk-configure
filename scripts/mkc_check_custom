@@ -25,15 +25,16 @@ Usage:
  mkc_check_custom [OPTIONS] cmd [args...]
 
 OPTIONS:
-   -h                   display this help
-   -r                   build application and run it
-   -p text              prefix for cache filename, defaults to "custom"
-   -n text              a part of cache filename, defaults to
-                        `basename <source_file>` without extension
-   -m text              A part of verbose message, defaults to -n args
-   -s                   exit status of executable will be check
-   -d                   delete cache files
-   -e                   print 0 if compiler/cmd print something to stderr
+   -h          display this help
+   -r          build application and run it
+   -p text     prefix for cache filename, defaults to "custom"
+   -n text     a part of cache filename, defaults to
+               `basename <source_file>` without extension
+   -m text     A part of verbose message, defaults to -n args
+   -s          exit status of executable will be check
+   -d          delete cache files
+   -e          print 0 if compiler/cmd print something to stderr
+   -b          print yes/no instead of 1/0
 Examples:
    mkc_check_custom my_custom_test.c
    mkc_check_custom -r mmap_works_perfectly.c
@@ -68,6 +69,8 @@ while test $# -ne 0; do
 	    delcache=1;;
 	-e)
 	    empty_stderr=1;;
+	-b)
+	    boolean=1;;
 	-*)
 	    echo "Bad option $1" 1>&2
 	    exit 1;;
@@ -105,7 +108,6 @@ done
 
 ##################################################
 # functions
-
 compile (){
     if $CC -c $CARGS -o "$tmpo" $CPPFLAGS $CFLAGS "$src_or_exe" 2>"$tmperr"; then
 	echo 1
@@ -166,20 +168,15 @@ check_and_cache "checking ${msg}" "$cache"
 
 ##################################################
 # clean-ups
-
 KEEP_SOURCE=1 # do not delete user's source file!
 cleanup
 
 ##################################################
 # finishing
-
-case "$ret" in
-    1)
-	printme '1 (yes)\n' 1>&2;;
-    0)
-	printme '0 (no)\n' 1>&2;;
-    *)
-	printme '%s\n' "$ret" 1>&2;;
+case "${boolean}_$ret" in
+    1_0) printme 'no\n' 1>&2;;
+    1_1) printme 'yes\n' 1>&2;;
+    *)   printme '%s\n' "$ret" 1>&2;;
 esac
 
 echo $ret
