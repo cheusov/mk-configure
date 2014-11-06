@@ -33,6 +33,7 @@ OPTIONS:
    -m text              A part of verbose message, defaults to -n args
    -s                   exit status of executable will be check
    -d                   delete cache files
+   -e                   print 0 if compiler/cmd print something to stderr
 Examples:
    mkc_check_custom my_custom_test.c
    mkc_check_custom -r mmap_works_perfectly.c
@@ -65,6 +66,8 @@ while test $# -ne 0; do
 	    check_status=1;;
 	-d)
 	    delcache=1;;
+	-e)
+	    empty_stderr=1;;
 	-*)
 	    echo "Bad option $1" 1>&2
 	    exit 1;;
@@ -147,10 +150,12 @@ check_itself (){
 	return 1
     fi
 
-    if $compiler $flags; then
-	echo 1
-    else
+    if ! $compiler $CCARGS $flags; then
 	echo 0
+    elif test -n "$empty_stderr" -a -s "$tmperr"; then
+	echo 0
+    else
+	echo 1
     fi
 }
 
