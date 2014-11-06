@@ -1,4 +1,4 @@
-.include <mkc.configure.mk>
+.include <mkc.init.mk>
 
 .if ${CC_TYPE:U} == "sunpro"
 MKC_CHECK_CC_OPTS += -erroff=E_STATEMENT_NOT_REACHED
