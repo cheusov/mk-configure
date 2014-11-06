@@ -86,15 +86,6 @@ OBJTOP       ?=	${.OBJDIR}
 .endif
 
 ###########
-.if exists(${SRCTOP}/Makefile.common)
-.include "${SRCTOP}/Makefile.common"
-.endif
-
-.if ${SRCTOP:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
-.include "${.CURDIR}/../Makefile.inc"
-.endif
-
-###########
 
 PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 
@@ -118,29 +109,6 @@ _MKC_GROUP  !=	id -gn
 ROOT_USER  ?=	${_MKC_USER}
 ROOT_GROUP ?=	${_MKC_GROUP}
 .endif
-
-# Define MANZ to have the man pages compressed (gzip)
-#MANZ=		1
-
-PREFIX     ?=	/usr/local
-
-BINDIR     ?=	${PREFIX}/bin
-SBINDIR    ?=	${PREFIX}/sbin
-FILESDIR   ?=	${PREFIX}/bin
-LIBEXECDIR ?=	${PREFIX}/libexec
-INCSDIR    ?=	${PREFIX}/include
-DATADIR    ?=	${PREFIX}/share
-SHAREDSTATEDIR    ?=	${PREFIX}/com
-VARDIR     ?=	${PREFIX}/var
-SYSCONFDIR ?=	${PREFIX}/etc
-INFODIR    ?=	${PREFIX}/info
-MANDIR     ?=	${PREFIX}/man
-LIBDIR     ?=	${PREFIX}/lib
-SCRIPTSDIR ?=	${BINDIR}
-
-DOCDIR?     =	${DATADIR}/doc
-HTMLDOCDIR ?=	${DOCDIR}/html
-HTMLDIR    ?=	${MANDIR}
 
 BINGRP     ?=	${ROOT_GROUP}
 BINOWN     ?=	${ROOT_USER}
@@ -217,86 +185,14 @@ MKSHARE    ?=	yes
 #
 # MKOBJDIRS controls whether object dirs are created during "make all" or "make obj".
 #
-MKOBJDIRS     ?=	auto
+MKOBJDIRS    ?=	auto
 MKRELOBJDIR  ?=	no
 
-MKPIE     ?=	no
-USE_SSP   ?=	no
-USE_RELRO ?=	no
-USE_FORT  ?=	no
-
-MKDLL     ?=	no
-.if ${MKDLL:tl} == "only"
-MKDLL      =	yes
-MKSTATICLIB ?=	no
-.else
-MKSTATICLIB ?=	yes
-.endif # MKDLL
-
-SHLIB_MINOR ?=	0
-.if ${MKDLL:tl} != "no"
-SHLIB_MAJOR ?=	1
-.endif # MKDLL
-
-INTERNALLIBS +=	${COMPATLIB}
-STATICLIBS   +=	${INTERNALLIBS}
-
-.if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
-MKSHLIB  ?=	yes
-.else
-MKSHLIB  ?=	no
-.endif # SHLIB_MAJOR
-
-.if !empty(STATICLIBS:M${.CURDIR:T})
-MKPICLIB     ?=	yes
-.else
-MKPICLIB     ?=	no
-.endif
-
-MKPROFILELIB    ?=	no
-
 MKINSTALLDIRS   ?=	yes
-
-EXPORT_VARNAMES +=	MKC_CACHEDIR TARGETS SHORTPRJNAME
-
-EXPORT_DYNAMIC  ?=	no
 
 DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 
 .include <mkc_imp.platform.sys.mk>
-
-######
-.if ${MKPIE:U:tl} == "yes"
-LDFLAGS.prog +=	${LDFLAGS.pie}
-_CFLAGS.pie   +=	${CFLAGS.pie}
-_CXXFLAGS.pie +=	${CXXFLAGS.pie}
-.endif
-
-.if ${USE_SSP:U:tl} == "yes"
-_CFLAGS.ssp   =	${CFLAGS.ssp}
-_CXXFLAGS.ssp =	${CXXFLAGS.ssp}
-.endif
-
-.if ${USE_RELRO:U:tl} == "yes"
-LDFLAGS.prog +=	${LDFLAGS.relro}
-.endif
-
-.if ${USE_FORT:U:tl} == "yes"
-CPPFLAGS +=	-D_FORTIFY_SOURCE=2
-CFLAGS   +=	-O
-.endif
-
-SHRTOUT        ?=	no
-
-.if ${SHRTOUT:tl} != "no"
-_MESSAGE   ?=	echo
-_MESSAGE_V ?=	:
-_V         ?=	@
-.else
-_MESSAGE   ?=	:
-_MESSAGE_V ?=	echo
-_V         ?=
-.endif
 
 AR         ?=	ar
 ARFLAGS    ?=	rl
@@ -401,9 +297,14 @@ STRIP     ?=	strip
 
 RM        ?=	rm
 
-#ADDR2LINE ?=	addr2line
-#READELF   ?=	readelf
-#STRINGS   ?=	strings
+TARGETS +=	all install clean cleandir depend test \
+		installdirs uninstall errorcheck filelist obj mkgen
+TARGETS :=	${TARGETS:O:u}
+
+ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
+  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
+
+VERBOSE_ECHO ?=	echo
 
 _PN =	${PROJECTNAME} # short synonym
 # Lex
@@ -416,6 +317,109 @@ LEXLIB ?=	-ll
 # Yacc
 YFLAGS +=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
 
+MKDLL     ?=	no
+.if ${MKDLL:tl} == "only"
+MKDLL      =	yes
+MKSTATICLIB ?=	no
+.else
+MKSTATICLIB ?=	yes
+.endif # MKDLL
+
+SHLIB_MINOR ?=	0
+.if ${MKDLL:tl} != "no"
+SHLIB_MAJOR ?=	1
+.endif # MKDLL
+
+.if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
+MKSHLIB  ?=	yes
+.else
+MKSHLIB  ?=	no
+.endif # SHLIB_MAJOR
+
+.if !empty(STATICLIBS:M${.CURDIR:T})
+MKPICLIB     ?=	yes
+.else
+MKPICLIB     ?=	no
+.endif
+
+MKPROFILELIB    ?=	no
+
+EXPORT_VARNAMES +=	MKC_CACHEDIR TARGETS SHORTPRJNAME
+
+EXPORT_DYNAMIC  ?=	no
+
+INTERNALLIBS +=	${COMPATLIB}
+STATICLIBS   +=	${INTERNALLIBS}
+
+###########
+.if exists(${SRCTOP}/Makefile.common)
+.include "${SRCTOP}/Makefile.common"
+.endif
+
+.if ${SRCTOP:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
+.include "${.CURDIR}/../Makefile.inc"
+.endif
+
+###########
+
+PREFIX     ?=	/usr/local
+
+BINDIR     ?=	${PREFIX}/bin
+SBINDIR    ?=	${PREFIX}/sbin
+FILESDIR   ?=	${PREFIX}/bin
+LIBEXECDIR ?=	${PREFIX}/libexec
+INCSDIR    ?=	${PREFIX}/include
+DATADIR    ?=	${PREFIX}/share
+SHAREDSTATEDIR    ?=	${PREFIX}/com
+VARDIR     ?=	${PREFIX}/var
+SYSCONFDIR ?=	${PREFIX}/etc
+INFODIR    ?=	${PREFIX}/info
+MANDIR     ?=	${PREFIX}/man
+LIBDIR     ?=	${PREFIX}/lib
+SCRIPTSDIR ?=	${BINDIR}
+
+DOCDIR?     =	${DATADIR}/doc
+HTMLDOCDIR ?=	${DOCDIR}/html
+HTMLDIR    ?=	${MANDIR}
+
+MKPIE     ?=	no
+USE_SSP   ?=	no
+USE_RELRO ?=	no
+USE_FORT  ?=	no
+
+######
+.if ${MKPIE:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.pie}
+_CFLAGS.pie   +=	${CFLAGS.pie}
+_CXXFLAGS.pie +=	${CXXFLAGS.pie}
+.endif
+
+.if ${USE_SSP:U:tl} == "yes"
+_CFLAGS.ssp   =	${CFLAGS.ssp}
+_CXXFLAGS.ssp =	${CXXFLAGS.ssp}
+.endif
+
+.if ${USE_RELRO:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.relro}
+.endif
+
+.if ${USE_FORT:U:tl} == "yes"
+CPPFLAGS +=	-D_FORTIFY_SOURCE=2
+CFLAGS   +=	-O
+.endif
+
+SHRTOUT    ?=	no
+
+.if ${SHRTOUT:tl} != "no"
+_MESSAGE   ?=	echo
+_MESSAGE_V ?=	:
+_V         ?=	@
+.else
+_MESSAGE   ?=	:
+_MESSAGE_V ?=	echo
+_V         ?=
+.endif
+
 ###########
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)
@@ -427,14 +431,5 @@ MKCHECKS     =	no
 .endif
 
 ###########
-
-TARGETS +=	all install clean cleandir depend test \
-		installdirs uninstall errorcheck filelist obj mkgen
-TARGETS :=	${TARGETS:O:u}
-
-ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
-  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
-
-VERBOSE_ECHO ?=	echo
 
 .endif # __initialized__
