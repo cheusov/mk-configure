@@ -192,6 +192,33 @@ MKINSTALLDIRS   ?=	yes
 
 DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
 
+MKDLL     ?=	no
+.if ${MKDLL:tl} == "only"
+MKDLL      =	yes
+MKSTATICLIB ?=	no
+.else
+MKSTATICLIB ?=	yes
+.endif # MKDLL
+
+.if !empty(STATICLIBS:M${.CURDIR:T})
+MKPICLIB     ?=	yes
+.else
+MKPICLIB     ?=	no
+.endif
+
+SHLIB_MINOR ?=	0
+.if ${MKDLL:tl} != "no"
+SHLIB_MAJOR ?=	1
+.endif # MKDLL
+
+MKPROFILELIB    ?=	no
+
+.if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
+MKSHLIB  ?=	yes
+.else
+MKSHLIB  ?=	no
+.endif # SHLIB_MAJOR
+
 .include <mkc_imp.platform.sys.mk>
 
 AR         ?=	ar
@@ -316,33 +343,6 @@ LEXLIB ?=	-ll
 
 # Yacc
 YFLAGS +=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
-
-MKDLL     ?=	no
-.if ${MKDLL:tl} == "only"
-MKDLL      =	yes
-MKSTATICLIB ?=	no
-.else
-MKSTATICLIB ?=	yes
-.endif # MKDLL
-
-SHLIB_MINOR ?=	0
-.if ${MKDLL:tl} != "no"
-SHLIB_MAJOR ?=	1
-.endif # MKDLL
-
-.if defined(SHLIB_MAJOR) && empty(STATICLIBS:M${.CURDIR:T})
-MKSHLIB  ?=	yes
-.else
-MKSHLIB  ?=	no
-.endif # SHLIB_MAJOR
-
-.if !empty(STATICLIBS:M${.CURDIR:T})
-MKPICLIB     ?=	yes
-.else
-MKPICLIB     ?=	no
-.endif
-
-MKPROFILELIB    ?=	no
 
 EXPORT_VARNAMES +=	MKC_CACHEDIR TARGETS SHORTPRJNAME
 
