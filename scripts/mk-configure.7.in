@@ -1558,6 +1558,8 @@ Res.
  HAVE_CC_OPT.-Wall=1
  HAVE_CC_OPT.-errwarn_%all=0
 .VE
+.IP "MKC_CHECK_CXX_OPTS and HAVE_CXX_OPT.<option>"
+The same as MKC_CHECK_CC_OPTS and HAVE_CC_OPT but for C++ compiler.
 .IP MKC_NOAUTO_FUNCLIBS
 See MKC_CHECK_FUNCLIBS
 .IP MKC_NOAUTO

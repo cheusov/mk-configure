@@ -2,13 +2,20 @@ Hello world 1!
 hello world 2!
 =========== all ============
 /objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_option_-Os.err
+/objdir/_mkc_cc_option_-Os.res
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_cxx_option_-Os.err
+/objdir/_mkc_cxx_option_-Os.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_funclib_dummy.c
 /objdir/_mkc_funclib_dummy.err
 /objdir/_mkc_funclib_dummy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/cxxapp/Makefile
@@ -51,13 +58,20 @@ hello world 2!
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_option_-Os.err
+/objdir/_mkc_cc_option_-Os.res
 /objdir/_mkc_compiler_type.err
 /objdir/_mkc_compiler_type.res
+/objdir/_mkc_cxx_option_-Os.err
+/objdir/_mkc_cxx_option_-Os.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_funclib_dummy.c
 /objdir/_mkc_funclib_dummy.err
 /objdir/_mkc_funclib_dummy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
 /objdir/_mkc_prog_cxx.err
 /objdir/_mkc_prog_cxx.res
 /objdir/cxxapp/Makefile
@@ -75,6 +89,7 @@ hello world 2!
 /objdir/test.mk
 ======= distclean ==========
 /objdir/Makefile
+/objdir/Makefile.inc
 /objdir/cxxapp/Makefile
 /objdir/cxxapp/cxxapp.cc
 /objdir/cxxlib/Makefile
