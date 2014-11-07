@@ -127,7 +127,7 @@ CFLAGS               +=		${CFLAGS.dflt.${CC_TYPE}}
 
 # C++
 CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
-CXXFLAGS.dflt.icc     =		-we147
+CXXFLAGS.dflt.icc     =		${CFLAGS.dflt.icc}
 
 CXXFLAGS             +=		${CXXFLAGS.dflt.${CXX_TYPE}}
 
