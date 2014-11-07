@@ -3,7 +3,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.include <mkc_imp.preinit.mk>
 .include <mkc.init.mk>
 .include <mkc_imp.conf.mk>
 

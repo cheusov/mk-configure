@@ -21,6 +21,8 @@ SHORTPRJNAME   ?=	yes
 .ifndef __initialized__
 __initialized__ := 1
 
+.include <mkc_imp.preinit.mk>
+
 .MAIN:		all
 
 ###########

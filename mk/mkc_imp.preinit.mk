@@ -3,6 +3,9 @@
 # See LICENSE file in the distribution.
 ############################################################
 
+.ifndef _MKC_IMP.PREINIT.MK
+ _MKC_IMP.PREINIT.MK:=1
+
 ####################
 BMAKE_REQD ?=	20110606
 
@@ -30,3 +33,5 @@ MKCHECKS ?=	yes
 .else
 MKCHECKS ?=	no
 .endif # clean/cleandir/distclean
+
+.endif # _MKC_IMP.PREINIT.MK
