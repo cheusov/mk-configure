@@ -29,16 +29,7 @@ PROJECTNAME=hello_lua3
 /objdir/socket_foo.lua
 /objdir/test.mk
 ========= install ==========
-/objdir/prefix
-/objdir/prefix/lib
-/objdir/prefix/lib/lua
-/objdir/prefix/lib/lua/X.Y
-/objdir/prefix/lib/lua/X.Y/socket
 /objdir/prefix/lib/lua/X.Y/socket/baz.so
-/objdir/prefix/share
-/objdir/prefix/share/lua
-/objdir/prefix/share/lua/X.Y
-/objdir/prefix/share/lua/X.Y/socket
 /objdir/prefix/share/lua/X.Y/socket/bar.lua
 /objdir/prefix/share/lua/X.Y/socket/foo.lua
 ======== uninstall =========

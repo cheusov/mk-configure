@@ -12,7 +12,7 @@ test_output:
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
-	find ${.OBJDIR}/usr -type f -o -type d | \
+	find ${.OBJDIR}/usr -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \

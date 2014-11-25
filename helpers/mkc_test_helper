@@ -36,6 +36,8 @@ sed -e "s,$objdir,/objdir,g" \
     -e '/export[.]sym[.]tmp/ d' \
     -e '/pod2htmd.tmp/ d' \
     -e '/pod2htmi.tmp/ d' \
+    -e 's,lib64,lib,' \
+    -e 's,lib/[^/]*/lua,lib/lua,' \
     -e 's,lua/[0-9]*[.][0-9]*,lua/X.Y,' \
     -e 's,//,/,g' \
     -e 's,^bmake:.*line [0-9][0-9]*: "\(.*\)".*$,\1,g' \

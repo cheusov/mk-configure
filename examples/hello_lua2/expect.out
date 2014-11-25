@@ -14,12 +14,7 @@ foobar
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
 ========= install ==========
-/objdir/prefix
-/objdir/prefix/bin
 /objdir/prefix/bin/foobar
-/objdir/prefix/share
-/objdir/prefix/share/lua
-/objdir/prefix/share/lua/X.Y
 /objdir/prefix/share/lua/X.Y/bar.lua
 /objdir/prefix/share/lua/X.Y/foo.lua
 ======== uninstall =========

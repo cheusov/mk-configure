@@ -34,16 +34,8 @@ foobarbaz
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
 ========= install ==========
-/objdir/prefix
-/objdir/prefix/bin
 /objdir/prefix/bin/foobar
-/objdir/prefix/lib
-/objdir/prefix/lib/lua
-/objdir/prefix/lib/lua/X.Y
 /objdir/prefix/lib/lua/X.Y/baz.so
-/objdir/prefix/share
-/objdir/prefix/share/lua
-/objdir/prefix/share/lua/X.Y
 /objdir/prefix/share/lua/X.Y/bar.lua
 /objdir/prefix/share/lua/X.Y/foo.lua
 ======== uninstall =========
