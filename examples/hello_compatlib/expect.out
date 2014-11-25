@@ -79,6 +79,8 @@
 /objdir/libcmpt/Makefile
 /objdir/libcmpt/libcmpt.a
 /objdir/libcmpt/libcmpt_pic.a
+/objdir/test.mk
+===
 /objdir/prog1/Makefile
 /objdir/prog1/prog1
 /objdir/prog1/prog1.c
@@ -87,4 +89,3 @@
 /objdir/prog2/prog2
 /objdir/prog2/prog2.c
 /objdir/prog2/prog2.o
-/objdir/test.mk
