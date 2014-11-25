@@ -34,7 +34,7 @@ MKC_COMMON_HEADERS  ?=            # list of headers always #included
 MKC_NOCACHE         ?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR      ?=${.CURDIR}  # directory with custom tests.c
 MKC_SOURCE_DIR      ?=${.CURDIR}  # directory with missing strlcat.c etc.
-.if ${COMPATLIB:U} == ${.CURDIR:T}
+.if !empty(COMPATLIB) && ${COMPATLIB:U} != ${.CURDIR:T}
 MKC_NOSRCSAUTO      ?=	1
 .else
 MKC_NOSRCSAUTO      ?=	0

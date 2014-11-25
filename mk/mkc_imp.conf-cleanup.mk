@@ -6,4 +6,3 @@
 .include <mkc_imp.conf.mk>
 
 .undef MKC_NOAUTO
-.undef MKC_NOSRCSAUTO
