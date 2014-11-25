@@ -98,7 +98,8 @@ test_output :
 	\
 	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \
-	${MAKE} ${MAKEFLAGS} all installdirs install -j3 >&2; \
+	${MAKE} ${MAKEFLAGS} all -j3 >&2; \
+	${MAKE} ${MAKEFLAGS} install -j3 >&2; \
 	LD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	DYLD_LIBRARY_PATH=${.CURDIR}/usr/lib; \
 	export LD_LIBRARY_PATH DYLD_LIBRARY_PATH; \
