@@ -1,4 +1,4 @@
-FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|_mkcfake)[.]o
+FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|err|_mkcfake)[.]o
 
 .PHONY : test_output
 test_output :
