@@ -30,12 +30,6 @@
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err
 /objdir/_mkc_func3_strlcpy_string_h.res
-/objdir/_mkc_func3_verr_err_h.c
-/objdir/_mkc_func3_verr_err_h.err
-/objdir/_mkc_func3_verr_err_h.res
-/objdir/_mkc_func3_verrx_err_h.c
-/objdir/_mkc_func3_verrx_err_h.err
-/objdir/_mkc_func3_verrx_err_h.res
 /objdir/_mkc_funclib_err.c
 /objdir/_mkc_funclib_err.err
 /objdir/_mkc_funclib_err.res
@@ -71,6 +65,12 @@
 /objdir/_mkc_header_err_h.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
+/objdir/_mkc_prototype_void~verr_int,~const~char~8,~va_list__stdarg_h~err_h.c
+/objdir/_mkc_prototype_void~verr_int,~const~char~8,~va_list__stdarg_h~err_h.err
+/objdir/_mkc_prototype_void~verr_int,~const~char~8,~va_list__stdarg_h~err_h.res
+/objdir/_mkc_prototype_void~verrx_int,~const~char~8,~va_list__stdarg_h~err_h.c
+/objdir/_mkc_prototype_void~verrx_int,~const~char~8,~va_list__stdarg_h~err_h.err
+/objdir/_mkc_prototype_void~verrx_int,~const~char~8,~va_list__stdarg_h~err_h.res
 /objdir/_mkc_variable_program_invocation_short_name_errno_h.c
 /objdir/_mkc_variable_program_invocation_short_name_errno_h.err
 /objdir/_mkc_variable_program_invocation_short_name_errno_h.res
