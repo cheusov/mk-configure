@@ -1,4 +1,31 @@
 ======================================================================
+Version 0.29.0, by Aleksey Cheusov, Sun, 30 Nov 2014 15:35:42 +0300
+
+  mkc.configure.mk:
+    - New variables MKC_CHECK_CC_OPTS and MKC_CHECK_CXX_OPTS were
+      introduced for checking C/C++ compiler's options
+
+  Makefile.inc and Makefile.common are included after system variables
+  are set, in particular CC and CXX.
+
+  CC_TYPE is now set in mk.init.mk
+
+  Fixes for "err" and "warn" features.  Now verr(3), verrx(3),
+  vwarn(3) and vwarnx(3) functions are detected correctly (the problem
+  was seen on gcc-4.9/armv7).
+
+  Fix support for COMPATLIB.  Objects for "features" should not be
+  generated outside compatibility library.
+
+  A number of fixes in regression tests: support for latest GCC,
+  lib64 and lib/tri-ple-ts Linuxes.
+
+  mkc_check_custom:
+    - new option -e was introduced for checking stderr for emptyness
+    - new option -b was introduced for printing yes/no instead of 1/0
+    - additional options to compiler are passed via CARGS env. variable.
+
+======================================================================
 Version 0.28.0, by Aleksey Cheusov, Sun, 14 Sep 2014 14:52:34 +0300
 
   LIBDEPS, STATICLIBS, DPLDADD, DPLIBDIRS and DPINCDIRS variables were

@@ -1,5 +1,12 @@
+fix verr from err.h failure on bone-deb
+
 ============================================================
 Plan 0.28.0
+
+- test for "inline" keyword
+- test for CCLD option
+- bzero, bcopy
+- NetBSD style macroses
 
 - check awk capabilities at build time
 - Hide regression tests details
