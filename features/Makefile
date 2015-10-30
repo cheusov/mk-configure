@@ -1,4 +1,4 @@
-.for f in strlcat strlcpy getline
+.for f in strlcat strlcpy getline progname warn err fgetln
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
@@ -11,7 +11,7 @@ FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
 .endfor
 
-.for f in netbsd_sys_queue.h netbsd_sys_tree.h
+.for f in netbsd_sys_queue.h netbsd_sys_tree.h _mkcfake.c
 FILES         +=	${f}
 FILESDIR_${f}  =	${FEATURESDIR}
 .endfor
