@@ -1,4 +1,10 @@
 ======================================================================
+Version 0.29.1, by Aleksey Cheusov, Wed, 11 Nov 2015 00:35:49 +0300
+
+  FIX: features "progname", "warn", "err" and "fgetln" as well as
+  _mkcfake.c file were added to the list of installed ones.
+
+======================================================================
 Version 0.29.0, by Aleksey Cheusov, Sun, 30 Nov 2014 15:35:42 +0300
 
   mkc.configure.mk:
