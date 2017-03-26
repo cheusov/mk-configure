@@ -12,6 +12,9 @@ digraph FSA {
    "pkg_summary-utils";
    "nih";
    "pipestatus";
+   "herisvm";
+   "nbase";
+   "jrep";
 
  node [ shape = oval style=solid ];
 
