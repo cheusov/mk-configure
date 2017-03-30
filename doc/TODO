@@ -1,3 +1,49 @@
+FAQ for users who see mk-configure for the first time and want to
+build project with a help of mk-c.
+
+============================================================
+
+CPPFLAGS +=	-D__UNCONST\(a\)=${unconst_definition:Q}
+   before mkc.configure.mk --> failure of all tests
+
+============================================================
+
+MKCHECKS: should be available after inclusion of mkc.init.mk
+
+============================================================
+
+cheusov@corpo |
+0 tesseract>mkcmake clean all
+rm -f pod2htmd.tmp pod2htmi.tmp   wf_tesseract.o wf_tesseract  
+c++           -c     -o wf_tesseract.o wf_tesseract.cc
+wf_tesseract.cc:5:23: fatal error: json/json.h: No such file or directory
+ #include <json/json.h>
+                       ^
+compilation terminated.
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/cheusov/prjs/workfusion/tesseract
+
+cheusov@corpo |
+1 tesseract>
+
+============================================================
+
+PROG =			wf_tesseract
+SRCS =			wf_tesseract.cc
+
+PKG_CONFIG_DEPS =	lept jsoncpp
+MKC_REQUIRE_FUNCLIBS +=	main:tesseract
+
+????? LDADD +=		-ltesseract ?????
+
+WARNS =			4
+
+.include <mkc.mk>
+
+============================================================
+
 fix verr from err.h failure on bone-deb
 
 ============================================================
