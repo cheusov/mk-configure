@@ -1,6 +1,8 @@
+============================================================
+MKC_CHECK_FUNCLIBS -- functionality for adding arbitrary headers
+============================================================
 FAQ for users who see mk-configure for the first time and want to
 build project with a help of mk-c.
-
 ============================================================
 
 CPPFLAGS +=	-D__UNCONST\(a\)=${unconst_definition:Q}
@@ -41,7 +43,6 @@ MKC_REQUIRE_FUNCLIBS +=	main:tesseract
 WARNS =			4
 
 .include <mkc.mk>
-
 ============================================================
 
 fix verr from err.h failure on bone-deb
