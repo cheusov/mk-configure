@@ -1,5 +1,5 @@
--------------------------------------------------------------------------
-WHAT IS MK-CONFIGURE?
+What is mk-configure?
+---------------------
 
 mk-configure is a lightweight replacement for GNU autotools, written
 in and for bmake (portable version of NetBSD make) and UNIX tools
@@ -39,15 +39,15 @@ mk-configure features:
    use than GNU autotools, many people think that it is also easier
    than other competing projects like CMake, scons and others.
 
--------------------------------------------------------------------------
-WHAT MK-CONFIGURE IS NOT
+What mk-configure is not
+------------------------
 
  - mk-configure is not a replacement for traditional make(1)
 
  - mk-configure is not a silver bullet ;-)
 
--------------------------------------------------------------------------
-GOALS OF THE PROJECT
+Project goals
+-------------
 
  - No code generation! Library approach is used instead.  Instead of
    generating tons of unreadable blobs mk-configure uses bmake include
@@ -124,36 +124,36 @@ GOALS OF THE PROJECT
 
  - No heavy dependencies like Python or Perl.
 
--------------------------------------------------------------------------
-HOW TO USE MK-CONFIGURE?
+How to use mk-configure?
+------------------------
 
- Developers:
-    - Install bmake (and optionally sys.mk) to your system.
-    - Install mk-configure to your system.
-    - Develop your software using bmake and mkc.*.mk include files
-      provided by mk-configure.
-    - Run 'mkcmake' or 'mkcmake all' for building your program.
-      (mkcmake is a trivial wrapper over bmake).
-      You don't need autoconf/autoheader/automake/aclocal/config.guess/
-      /autoreconf/config.status/config.sub and blah-blah-blah
+Developers:
+ - Install bmake (and optionally sys.mk) to your system.
+ - Install mk-configure to your system.
+ - Develop your software using bmake and mkc.*.mk include files
+   provided by mk-configure.
+ - Run 'mkcmake' or 'mkcmake all' for building your program.
+   (mkcmake is a trivial wrapper over bmake).
+   You don't need autoconf/autoheader/automake/aclocal/config.guess/
+   /autoreconf/config.status/config.sub and blah-blah-blah
+   
+   BMAKE is magic enough ;-)
 
-      BMAKE is magic enough ;-)
+Users and software packagers:
+ - Install bmake (and optionally sys.mk) to your system.
+ - Install mk-configure to your system.
+ - Run mkcmake for building a software and pass to it
+   the building options, e.g.
+   
+     env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
+          mkcmake all install
+   
+   There is no need for "configure" script and analogs.
+   
+   BMAKE is magic enough ;-)
 
- Users and software packagers:
-    - Install bmake (and optionally sys.mk) to your system.
-    - Install mk-configure to your system.
-    - Run mkcmake for building a software and pass to it
-      the building options, e.g.
-
-         env CC=pcc CFLAGS='-O0 -g' PREFIX=/opt/software \
-              mkcmake all install
-
-      There is no need for "configure" script and analogs.
-
-      BMAKE is magic enough ;-)
-
--------------------------------------------------------------------------
-WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
+What's wrong with GNU autotools (in short)?
+-------------------------------------------
 
  1) Autotools are toooooo big and toooooo complex.  I fear most free
    and open source developers do not understand how to use autotools
@@ -193,8 +193,8 @@ WHAT'S WRONG WITH GNU AUTOTOOLS (IN SHORT)?
    be "portable".  Nowadays it is not a problem to install any kind of
    software building tools and use them more efficiently.
 
--------------------------------------------------------------------------
-WHAT MK-CONFIGURE CONSISTS OF?
+What mk-configure consists of?
+------------------------------
 
 - mkc.{files,lib,prog,subprj,subdir}.mk files.
 
@@ -270,8 +270,8 @@ WHAT MK-CONFIGURE CONSISTS OF?
   other programs that can be used without mkcmake and without mkc.*.mk
   files.  Read appropriate man pages.
 
--------------------------------------------------------------------------
-DOCUMENTATION:
+Documentation
+-------------
 
    - Presentation about mk-configure (basic ideas and simple samples of use).
      See INSTALLATION section for build instructions.
@@ -295,72 +295,76 @@ DOCUMENTATION:
                  ported to Darwin, Solaris, Linux and other BSD.
         http://mova.org/~cheusov/pub/mk-configure/nbawk/
 
--------------------------------------------------------------------------
-IS MK-CONFIGURE STABLE?
+Is mk-configure stable?
+-----------------------
 
 Basic functionality of "mk-configure" is stable
 but it is not feature-complete yet, see TODO file for details.
 
--------------------------------------------------------------------------
-INSTALLATION:
+Installation
+------------
 
-   1) Install bmake(1).
-      Sources are available here.
+1) Install bmake(1).
+   Sources are available here:
+    
+   * ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
+   * http://www.crufty.net/help/sjg/bmake.html
 
-        ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
-        http://www.crufty.net/help/sjg/bmake.html
+   NOTE: Some versions of bmake (shipped with NetBSD-5.1, for
+   example) have bugs which are critical for mk-configure.
+   Please make sure you install stable version of bmake and
+   'bmake test' succeeds (see section 3 below).
 
-      NOTE: Some versions of bmake (shipped with NetBSD-5.1, for
-      example) contains bugs which are critical for mk-configure.
-      Please make sure you install stable version of bmake and
-      'bmake test' succeeds (see section 3 below).
+2) Install NetBSD version of mkdep(1).
+   Sources are available here:
 
-   2) Install NetBSD version of mkdep(1).
-      Sources are available here.
+   * https://code.google.com/p/bmkdep/
 
-        https://code.google.com/p/bmkdep/
+   Traditional BSD mkdep(1) is also good but NetBSD version is just better.
 
-      Traditional BSD mkdep(1) is also good but NetBSD version is just better.
+3) Download mk-configure source from either
+   http://mova.org/~cheusov/pub/mk-configure or
+   http://sourceforge.net/projects/mk-configure and unpack tarball.
 
-   3) Download mk-configure source from either
-      http://mova.org/~cheusov/pub/mk-configure or
-      http://sourceforge.net/projects/mk-configure and unpack tarball.
+    # cd mk-configure-X.Y.Z/
+    
+    # export PREFIX=/usr/local (the default)
+      or
+    # export PREFIX=/usr SYSCONFDIR=/etc
+    
+    # emacs sys.mk # if needed
+    
+    # bmake all
 
-      # cd mk-configure-X.Y.Z/
+   Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
+   to whatever you want. PREFIX defaults to /usr/local.
 
-      # export PREFIX=/usr/local (the default)
-        or
-      # export PREFIX=/usr SYSCONFDIR=/etc
+4) Optionally, test mk-configure
 
-      # emacs sys.mk # if needed
+    # bmake test
+   
+   Note that testing requires lex(1), yacc(1),
+   pkg-config(1), glib2 library and other things
+   that are not mandatory for using mk-configure
+   and may be not available on your system.
+   If "bmake test" fails on your platform, please let
+   me know. If for some reason you want to exclude some
+   regression tests (they are in "tests" and "examples"
+   subdirectories), you may list them in NOSUBDIR variable,
+   e.g.
+   
+    # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
 
-      # bmake all
+5)
 
-      Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
-      to whatever you want. PREFIX defaults to /usr/local.
+    # bmake install
+      or
+    # env DESTDIR=/tmp/temproot bmake install
 
-   4)
-      # bmake test # For testing mk-configure, this step is optional.
-                   # Note that testing requires lex(1), yacc(1),
-                   # pkg-config(1), glib2 library and other things
-                   # that are not mandatory for using mk-configure
-                   # and may be not available on your system.
-                   # If "bmake test" fails on your platform, please let
-                   # me know. If for some reason you want to exclude some
-                   # regression tests (they are in "tests" and "examples"
-                   # subdirectories), you may list them in NOSUBDIR variable,
-                   # e.g.
-                   # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
+ 6) You can also build a simple presentation by running either of the
+    following commands:
 
-   5)
-      # bmake install
-        or
-      # env DESTDIR=/tmp/temproot bmake install
-
-   6) You can also build a simple presentation by running either of the
-      following commands:
-
-          bmake all-presentation
+    # bmake all-presentation
 
   NOTE: I'd recommend to use the latest stable version of bmake. Old
     bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
@@ -375,17 +379,17 @@ INSTALLATION:
     directory (${PREFIX}/share/mkc-mk by default) and the same for
     empty sys.mk file.
 
-   6) Usage
+6) Usage
 
-    For use of mk-configure for real-life development you may need the
-    following programs: C/C++/Fortran/Pascal/Objective-C compilers,
-    linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
-    pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
-    nm, tsort, pkg-config, zip and others.  Of course you'll
-    need awk, sed, grep and some other POSIX tools too.
+   For use of mk-configure for real-life development you may need the
+   following programs: C/C++/Fortran/Pascal/Objective-C compilers,
+   linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
+   pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
+   nm, tsort, pkg-config, zip and others.  Of course, you'll
+   need awk, sed, grep and some other POSIX tools too.
 
--------------------------------------------------------------------------
-MK-CONFIGURE BINARY PACKAGE
+mk-configure binary packages
+----------------------------
 
   Binary packages for mk-configure are available in the following systems:
      - NetBSD pkgsrc (devel/mk-configure).
@@ -394,8 +398,8 @@ MK-CONFIGURE BINARY PACKAGE
      - AltLinux (mk-configure)
      - RHEL (mk-configure in repoforge repository)
 
--------------------------------------------------------------------------
-FEEDBACK
+Feedback
+--------
 
 Send all your suggestions, bug reports etc.
 to Aleksey Cheusov <vle@gmx.net> or register them at project's site
