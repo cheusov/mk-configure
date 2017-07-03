@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-#ifndef HAVE_FUNC3_FGETLN_STDIO_H
+#ifndef HAVE_FUNC2_FGETLN_STDIO_H
 char *fgetln (FILE *stream, size_t *len);
 #endif
 
