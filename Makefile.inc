@@ -22,6 +22,9 @@ PROG.awk ?=		/usr/xpg4/bin/awk
 MKC_REQUIRE_PROGS +=	awk
 .endif
 
+MKC_CACHEDIR =	${.CURDIR}/..
+#.export MKC_CACHEDIR
+
 BMAKE  ?=	bmake
 PS2PDF ?=	ps2pdf
 DOT    ?=	dot
