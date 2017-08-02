@@ -326,15 +326,15 @@ Installation
    http://mova.org/~cheusov/pub/mk-configure or
    http://sourceforge.net/projects/mk-configure and unpack tarball.
 
-    # cd mk-configure-X.Y.Z/
+    ## cd mk-configure-X.Y.Z/
     
-    # export PREFIX=/usr/local (the default)
+    ## export PREFIX=/usr/local (the default)
       or
-    # export PREFIX=/usr SYSCONFDIR=/etc
+    ## export PREFIX=/usr SYSCONFDIR=/etc
     
-    # emacs sys.mk # if needed
+    ## emacs sys.mk # if needed
     
-    # bmake all
+    ## bmake all
 
    Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
    to whatever you want. PREFIX defaults to /usr/local.
