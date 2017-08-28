@@ -47,7 +47,7 @@ WARNS =			4
 
 fix verr from err.h failure on bone-deb
 
-============================================================
+===============================================
 
 MKC_CHECK_VARS fails on NetBSD on sys_signame
 

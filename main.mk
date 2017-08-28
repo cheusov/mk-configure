@@ -44,8 +44,9 @@ DIST_TARGETS =		pdf clean-mk clean-scripts mkc_clean
 
 INSTALL      =		${.CURDIR}/scripts/mkc_install
 PATH        :=		${OBJDIR_builtins}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
+CHECK_COMMON_SH_DIR =	${.CURDIR}/scripts
 
-.export SHRTOUT INSTALL PATH
+.export SHRTOUT INSTALL PATH CHECK_COMMON_SH_DIR
 
 ##################################################
 .PHONY: pdf

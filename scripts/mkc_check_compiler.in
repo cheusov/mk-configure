@@ -11,6 +11,8 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+: ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
+
 : ${TMPDIR:=/tmp}
 
 tmpfile="$TMPDIR/mk-c.$$.c"
@@ -63,7 +65,7 @@ BEGIN {
     awk 'BEGIN { ret="unknown"} $1 == "compiler" {ret=$2; exit} END {print ret}'
 }
 
-. mkc_check_common.sh
+. ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
 check_and_cache "checking for $langname compiler type" "$cache"
 

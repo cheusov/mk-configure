@@ -12,7 +12,7 @@ INTEXTS_REPLS +=	AWK            ${PROG.awk}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
 INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
-INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}
+INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 
 .if exists(/usr/xpg4/bin/awk)
 # Solaris' /usr/bin/awk is completely broken,
