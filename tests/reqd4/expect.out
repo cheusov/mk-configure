@@ -1,4 +1,4 @@
-ERROR: We need mk-configure v.999.0.0 while 0.29.1 is detected
+ERROR: We need mk-configure v.999.0.0 while 0.29.2 is detected
 "bmake-20110606 or newer is required"
 =========== all ============
 /objdir/Makefile

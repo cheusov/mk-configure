@@ -1,4 +1,11 @@
 ======================================================================
+Version 0.29.2, by Aleksey Cheusov, Sun, 19 Nov 2017 15:51:45 +0300
+
+  Fix MKC_FEATURES "fgenln"
+
+  mkc_check_common.sh is installed to libexec directory
+
+======================================================================
 Version 0.29.1, by Aleksey Cheusov, Wed, 11 Nov 2015 00:35:49 +0300
 
   FIX: features "progname", "warn", "err" and "fgetln" as well as

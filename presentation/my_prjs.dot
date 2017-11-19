@@ -52,15 +52,6 @@ digraph FSA {
    "herisvm";
    "nbase";
    "jrep";
-
-}
-
-digraph FSA {
- graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
-
-}
-
-digraph FSA {
- graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
+   "libmaa";
 
 }
