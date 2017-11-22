@@ -1,4 +1,10 @@
 ======================================================================
+Version 0.29.3, by Aleksey Cheusov, Wed, 22 Nov 2017 20:38:18 +0300
+
+  Fix build failure (mkc_check_prog not found).
+      Thanks a lot to Mykola Golub for pointing out!
+
+======================================================================
 Version 0.29.2, by Aleksey Cheusov, Sun, 19 Nov 2017 15:51:45 +0300
 
   Fix MKC_FEATURES "fgenln"

@@ -1,4 +1,4 @@
-VERSION   =		0.29.2
+VERSION   =		0.29.3
 
 BIRTHDATE =		2009-02-21
 
