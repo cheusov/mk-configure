@@ -30,3 +30,5 @@ PS2PDF ?=	ps2pdf
 DOT    ?=	dot
 DVIPS  ?=	dvips
 LATEX  ?=	latex
+
+generated_scripts =	mkc_check_prog mkc_which mkc_check_custom
