@@ -1,11 +1,11 @@
-checking for compiler type... known ;-)
+checking for C compiler type... known ;-)
 checking for header foobar.h... no
 checking for header string.h... yes
 checking for header unistd.h... yes
-checking for function strcasecmp... yes
-checking for function foobar... no
-checking for function barbaz ( -lz )... no
-checking for function barbaz... no
+checking for function implementation strcasecmp... yes
+checking for function implementation foobar... no
+checking for function implementation barbaz ( -lz )... no
+checking for function implementation barbaz... no
 checking for define FOOBAR... no
 checking for type long... yes
 checking for type size_t ( string.h )... yes
@@ -19,8 +19,8 @@ checking for member struct bad.member ( stdlib.h )... no
 checking for func strcmp ( string.h )... yes
 checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
-checking for custom test custom_check1... 1 (yes)
-checking for custom test custom_check2... 0 (no)
+checking custom test custom_check1... 1
+checking custom test custom_check2... 0
 checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... NOT FOUND

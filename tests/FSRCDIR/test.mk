@@ -3,7 +3,7 @@ test_output :
 	@set -e; \
 	\
 	echo =========== all ============; \
-	${MAKE} ${MAKEFLAGS} all 2>&1 | head -n 2; \
+	${MAKE} ${MAKEFLAGS} all 2>&1 | sed 's/ (continuing)//' | head -n 2; \
 	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 

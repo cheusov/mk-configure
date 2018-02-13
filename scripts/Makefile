@@ -1,13 +1,15 @@
 FILES    =	mkc_check_common.sh
-INFILES  =	mk-configure.7
-FILESDIR =	${BINDIR}
+FILESDIR_mkc_check_common.sh =	${MKC_LIBEXECDIR}
 
-SCRIPTS  =	mkc_check_funclib mkc_check_header \
+INFILES  =	mk-configure.7
+
+INSCRIPTS  =	mkc_check_funclib mkc_check_header \
 		mkc_check_sizeof  mkc_check_decl \
 		mkc_check_prog mkc_check_custom \
 		mkc_which mkc_check_compiler \
-		mkc_install ${INSCRIPTS}
-INSCRIPTS +=	mkc_check_version mkcmake mkc_get_deps
+		mkc_install \
+		mkc_check_version mkcmake mkc_get_deps
+SCRIPTS =	${INSCRIPTS}
 
 MAN =		mkc_check_funclib.1 mkc_check_header.1 \
 		mkc_check_sizeof.1  mkc_check_decl.1 \

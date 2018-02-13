@@ -56,9 +56,14 @@ pdf:
 	rm -f myprojects.*
 
 ##################################################
-cleandir:	cleandir-tests cleandir-presentation
-clean:		clean-tests clean-presentation
+cleandir:	cleandir-tests cleandir-presentation clean_bootstrap_scripts
+clean:		clean-tests clean-presentation clean_bootstrap_scripts
+
+clean_bootstrap_scripts:
+	rm -f ${generated_scripts:S|^|${.CURDIR}/|}
+
 test:		test-tests
+
 
 ##################################################
 .include "Makefile.inc"

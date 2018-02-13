@@ -1,4 +1,4 @@
-VERSION   =		0.29.1
+VERSION   =		0.29.3
 
 BIRTHDATE =		2009-02-21
 
@@ -12,7 +12,7 @@ INTEXTS_REPLS +=	AWK            ${PROG.awk}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
 INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
-INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}
+INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 
 .if exists(/usr/xpg4/bin/awk)
 # Solaris' /usr/bin/awk is completely broken,
@@ -22,8 +22,13 @@ PROG.awk ?=		/usr/xpg4/bin/awk
 MKC_REQUIRE_PROGS +=	awk
 .endif
 
+MKC_CACHEDIR =	${.CURDIR}/..
+#.export MKC_CACHEDIR
+
 BMAKE  ?=	bmake
 PS2PDF ?=	ps2pdf
 DOT    ?=	dot
 DVIPS  ?=	dvips
 LATEX  ?=	latex
+
+generated_scripts =	mkc_check_prog mkc_which mkc_check_custom
