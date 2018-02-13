@@ -52,10 +52,7 @@ pathpart=header_`echo $1 | tr /. __`
 check_itself (){
     cat > "$tmpc" <<EOF
 #include <$1>
-int main ()
-{
-   return 0;
-}
+int __fake_variable;
 EOF
 
     if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
