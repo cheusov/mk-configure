@@ -82,8 +82,9 @@ static void __fake__ () {}
 
 void $fname ();
 
-int main ()
+int main(int argc, char **argv)
 {
+   if (argc && argv) return 0;
    $fname ();
    return 0;
 }

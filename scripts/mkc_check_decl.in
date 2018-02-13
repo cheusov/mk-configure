@@ -115,7 +115,7 @@ is_define (){
 
     cat >> "$tmpc" <<EOF
 #if defined($declwhat)
-int main ()
+int func(void)
 {
    return 0;
 }
@@ -133,7 +133,7 @@ is_variable (){
     get_includes "$@" > "$tmpc"
 
     cat >> "$tmpc" <<EOF
-int main ()
+int func(void)
 {
    return sizeof (($declwhat)) && (&$declwhat != 0);
 }
@@ -147,7 +147,7 @@ has_size (){
     get_includes "$@" > "$tmpc"
 
     cat >> "$tmpc" <<EOF
-int main ()
+int func(void)
 {
    return sizeof ($declwhat);
 }
@@ -215,7 +215,7 @@ is_member (){
     member=`echo $declwhat | sed 's/^[^.]*[.]//'`
 
     cat >> "$tmpc" <<EOF
-int main ()
+int func(void)
 {
    $type_t var;
    return sizeof (var.$member);

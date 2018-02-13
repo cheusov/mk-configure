@@ -63,13 +63,12 @@ try_it (){
 	echo "#include <$f>"
     done > "$tmpc"
     cat >> "$tmpc" <<EOF
-int main ()
+void func(void)
 {
    switch (0){
       case sizeof ($type): break;
       case $sz:            break;
    }
-   return 0;
 }
 EOF
 
