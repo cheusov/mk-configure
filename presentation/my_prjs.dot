@@ -44,12 +44,14 @@ digraph FSA {
    "dictd" -> "pkg_online";
    "pipestatus" -> "pkg_summary-utils";
 
-}
-
-digraph FSA {
- graph [ ratio=compress layout=dot rankdir=UB ratio=0.4 ];
-
  node [ shape = hexagon style=filled fontsize=20 ];
    "lua-alt-getopt";
    "judyhash";
+
+ node [ shape = hexagon style=filled fontsize=20 ];
+   "herisvm";
+   "nbase";
+   "jrep";
+   "libmaa";
+
 }

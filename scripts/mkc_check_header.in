@@ -11,6 +11,8 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+: ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
+
 ##################################################
 # options
 usage (){
@@ -44,7 +46,7 @@ fi
 
 pathpart=header_`echo $1 | tr /. __`
 
-. mkc_check_common.sh
+. ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
 ##################################################
 # test
@@ -52,10 +54,7 @@ pathpart=header_`echo $1 | tr /. __`
 check_itself (){
     cat > "$tmpc" <<EOF
 #include <$1>
-int main ()
-{
-   return 0;
-}
+int __fake_variable;
 EOF
 
     if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
