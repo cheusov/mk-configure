@@ -4,8 +4,7 @@ test:
 	tmp_out=${.OBJDIR}/${.CURDIR:T}.test.out; \
 	rm -f $$tmp_out; \
 	${MAKE} ${MAKEFLAGS} all 2>&1 | \
-	grep ERROR: | grep -v 'has version' | \
-	sed 's/ 2\([.][0-9]*\)*/ 2.NN/' > $$tmp_out || true; \
+	awk '/ERROR:/ && !/has version/ {print $$1}' > $$tmp_out || true; \
 	if diff ${.CURDIR}/expect.out $$tmp_out; \
 	then echo '      succeeded' 1>&2; \
 	else echo '      FAILED' 1>&2; ex=1; \
