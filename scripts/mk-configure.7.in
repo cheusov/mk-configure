@@ -1168,7 +1168,8 @@ supports the following variables.
 If "no", none of the checks are performed. It is set to "yes" unless target
 is "clean", "cleandir or distclean".
 .IP MKC_CHECK_HEADERS
-List of headers to be checked.
+List of headers to check with a help of
+.IR "$CC -c" .
 As a result of the check bmake's variable
 .B HAVE_HEADER.<header>
 is set to
@@ -1191,9 +1192,23 @@ is added to CFLAGS unless MKC_NOAUTO is set to 1.
 The same as MKC_CHECK_HEADERS, but absense of header is
 treated as a fatal error (See
 .B errorcheck
-target.
+target).
+.IP MKC_CHECK_HEADER_FILES
+Same as
+.B MKC_CHECK_HEADERS
+but
+.I $CC -E
+is used for checking instead of
+.IR "$CC -c" .
+Also, HAVE_HEADER_FILE.<header> variables
+and HAVE_HEADER_FILE<HEADER> defines are set.
+.IP MKC_REQUIRE_HEADER_FILES
+The same as MKC_CHECK_HEADER_FILES, but absense of header is
+treated as a fatal error (See
+.B errorcheck
+target).
 .IP MKC_CHECK_FUNCLIBS
-List of <function>:<library> pairs to be checked,
+List of <function>:<library> pairs to check,
 <library> part is optional. If <library> is present,
 presense of <function> in libc is also checked automatically.
 

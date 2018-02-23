@@ -1,7 +1,7 @@
-checking for C compiler type... known ;-)
-checking for header foobar.h... no
-checking for header string.h... yes
-checking for header unistd.h... yes
+checking for compiler type... known ;-)
+checking foobar.h using compiler... no
+checking string.h using compiler... yes
+checking unistd.h using compiler... yes
 checking for function implementation strcasecmp... yes
 checking for function implementation foobar... no
 checking for function implementation barbaz ( -lz )... no
@@ -25,7 +25,7 @@ checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... NOT FOUND
 checking for program FOOBAR... /path/to/FOOBAR
-ERROR: cannot find header foobar.h
+ERROR: header foobar.h does not exist or is not compilable
 ERROR: cannot find function foobar
 ERROR: cannot find function barbaz:z
 ERROR: cannot find declaration of define FOOBAR

@@ -22,29 +22,39 @@ by compiling a test program.
 
 Usage: mkc_check_header [OPTIONS] header.h
 
+OPTIONS:
+   -h        display this screen
+   -d        delete cache file
+   -e        check for existance of header file (cc -E vs. cc -c)
 Examples:
    mkc_check_header stdint.h
    mkc_check_header getopt.h
 EOF
 }
 
+CC_OPTS='-c'
+partpath='header'
+msg_addon='using compiler'
+
+while test $# -ne 0; do
+    case "$1" in
+	-h) usage; exit 0;;
+	-d) delcache=1;;
+	-e) partpath=hdr; CC_OPTS='-E'; msg_addon='using preprocessor';;
+	*) break;;
+    esac
+    shift
+done
+
 if test $# -eq 0; then
     usage
     exit 1
-fi
-if test "_$1" = '_-h'; then
-    usage
-    exit 0
-fi
-if test "_$1" = '_-d'; then
-    delcache=1
-    shift
 fi
 
 ##################################################
 # initializing
 
-pathpart=header_`echo $1 | tr /. __`
+pathpart="$partpath"_`echo $1 | tr /. __`
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
@@ -57,7 +67,7 @@ check_itself (){
 int __fake_variable;
 EOF
 
-    if $CC -c -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+    if $CC $CC_OPTS -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
     then
 	echo 1
     else
@@ -65,7 +75,7 @@ EOF
     fi
 }
 
-check_and_cache "checking for header $1" "$cache" "$@"
+check_and_cache "checking $1 $msg_addon" "$cache" "$@"
 
 ##################################################
 # clean-ups

@@ -1,6 +1,6 @@
 =========== all ============
-ERROR: cannot find header trtrtr.h
-ERROR: cannot find header sys/brbrbr.h
+ERROR: header trtrtr.h does not exist or is not compilable
+ERROR: header sys/brbrbr.h does not exist or is not compilable
 ERROR: cannot find function trtrtr
 ERROR: cannot find function brbrbr:dl
 ERROR: cannot find declaration of define TRTRTR

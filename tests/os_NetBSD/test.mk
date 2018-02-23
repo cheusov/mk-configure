@@ -1,5 +1,3 @@
-VARIABLES_TO_CHECK=	HAVE_HEADER.vis_h
-
 .PHONY : test_output
 test_output:
 .for v in ${VARIABLES_TO_CHECK}

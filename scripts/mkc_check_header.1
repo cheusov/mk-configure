@@ -1,6 +1,6 @@
 .\"	$NetBSD$
 .\"
-.\" Copyright (c) 2009-2010 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) 2009-2018 by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -14,7 +14,7 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_HEADER 1 "Mar 15, 2009" "" ""
+.TH MKC_CHECK_HEADER 1 "Feb 23, 2018" "" ""
 .SH NAME
 mkc_check_header \- detects presense of header file.
 .SH SYNOPSIS
@@ -23,12 +23,23 @@ mkc_check_header \- detects presense of header file.
 .BI mkc_check_header " -h"
 .SH DESCRIPTION
 .B mkc_check_header
-detects presense of header file by compiling a test program.
+detects presense of header file.
 As a result it prints either 1 (true) or 0 (false) to stdout.
+By default
+.I "$CC -c"
+is used for checking.
 .SH OPTIONS
 .TP
 .B "-h"
-display help message
+Display help message.
+.TP
+.B "-e"
+Use
+.I "$CC -E"
+for checking.
+.TP
+.B "-d"
+Delete cache file.
 .SH ENVIRONMENT
 .TP
 .B CC
