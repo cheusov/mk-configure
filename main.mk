@@ -14,7 +14,8 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    lua_dirs rec_makefiles reqd reqd2 reqd3 reqd4 reqd_clean_cache \
    intexts_cleantrg require_prototype test_subprj_dash test_mkc_vs_PROG \
    test_mkc_vs_LIB test_mkc_vs_SUBDIR test_mkc_vs_SUBPRJ endianess \
-   create_cachedir sys_queue predopost_targets FSRCDIR
+   create_cachedir sys_queue predopost_targets FSRCDIR \
+   os_NetBSD
 .for t in ${tests}
 SUBPRJ +=	tests/${t}:tests
 .endfor
