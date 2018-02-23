@@ -3,8 +3,6 @@ foobar
 /objdir/Makefile
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
@@ -22,8 +20,6 @@ foobar
 /objdir/Makefile
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua

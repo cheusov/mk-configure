@@ -8,10 +8,6 @@ PROJECTNAME=hello_lua3
 /objdir/_mkc_header_lua_h.res
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
 /objdir/_mkc_pkgconfig_lua_cflags.err
 /objdir/_mkc_pkgconfig_lua_cflags.res
 /objdir/_mkc_pkgconfig_lua_libs.err
@@ -42,10 +38,6 @@ PROJECTNAME=hello_lua3
 /objdir/_mkc_header_lua_h.res
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
 /objdir/_mkc_pkgconfig_lua_cflags.err
 /objdir/_mkc_pkgconfig_lua_cflags.res
 /objdir/_mkc_pkgconfig_lua_libs.err

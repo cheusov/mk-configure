@@ -11,7 +11,7 @@ test_output:
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev 'INSTALL' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
@@ -27,7 +27,7 @@ test_output:
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev 'INSTALL' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
