@@ -25,6 +25,7 @@ grep -v CVS |
 grep -v '~$' |
 sed -e "s,$objdir,/objdir,g" \
     -e "s,$prefix,/prefix,g" \
+    -e "s,/usr/local,/prefix," \
     -e "s,/usr/pkg,/prefix," \
     -e "s,/usr,/prefix," \
     -e "s,/opt/local,/prefix," \
