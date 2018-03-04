@@ -2,6 +2,8 @@
 # case of failure
 HAVE_HEADER.sys_time_h=2
 HAVE_HEADER.string_h=2
+HAVE_HEADER_FILE.sys_time_h=2
+HAVE_HEADER_FILE.string_h=2
 HAVE_FUNCLIB.strcpy=2
 HAVE_FUNCLIB.sqrt.m=2
 SIZEOF.int=4

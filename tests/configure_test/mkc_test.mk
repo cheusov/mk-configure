@@ -17,7 +17,7 @@ MKC_COMMON_DEFINES.IRIX64=	-DSYSTEM_IRIX64
 MKC_COMMON_DEFINES=		-DMKC_COMMON_DEFINES_WORKS_FINE
 MKC_COMMON_DEFINES+=		-D__JUSTATEST
 
-MKC_COMMON_HEADERS+=	string.h
+MKC_COMMON_HEADERS+=		string.h
 
 MKC_SOURCE_FUNCLIBS+=	superfunc1
 MKC_SOURCE_FUNCLIBS+=	superfunc2:superlib2
@@ -26,7 +26,12 @@ MKC_CHECK_HEADERS+=	sys/time.h string.h
 MKC_CHECK_HEADERS+=	bad_dir/bad_header.h bad_header.h
 MKC_CHECK_HEADERS+=	include/mkc_test.h
 
-MKC_REQUIRE_HEADERS+=	stdio.h
+MKC_CHECK_HEADER_FILES+=	sys/time.h string.h
+MKC_CHECK_HEADER_FILES+=	bad_dir/bad_header.h bad_header.h
+MKC_CHECK_HEADER_FILES+=	include/mkc_test.h
+
+MKC_REQUIRE_HEADERS+=		stdio.h
+MKC_REQUIRE_HEADER_FILES+=	stdio.h
 
 MKC_CHECK_FUNCLIBS+=	strcpy sqrt:m
 MKC_CHECK_FUNCLIBS+=	bad_func:bad_lib bad_func
@@ -84,12 +89,14 @@ MKC_PROTOTYPE_HEADERS.strcmp_ok  = string.h
 MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
+	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
 	HAVE_TYPE.size_t.string_h \
 	HAVE_TYPE.bad_type \
 	HAVE_HEADER.bad_header_h HAVE_HEADER.bad_dir_bad_header_h \
+	HAVE_HEADER_FILE.bad_header_h HAVE_HEADER_FILE.bad_dir_bad_header_h \
 	HAVE_FUNCLIB.bad_func HAVE_FUNCLIB.bad_func.bad_lib \
 	HAVE_DEFINE.__BAD_DEFINE__ \
 	HAVE_FUNC1.bad_func HAVE_FUNC1.bad_func.bad_header \
@@ -100,6 +107,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_MEMBER.bad_member \
 	HAVE_MEMBER.bad_member.string_h \
 	HAVE_HEADER.include_mkc_test_h \
+	HAVE_HEADER_FILE.include_mkc_test_h \
 	HAVE_DEFINE.MKC_TEST_DEFINE.include_mkc_test_h \
 	HAVE_FUNC5.mkc_test_func.include_mkc_test_h \
 	HAVE_VAR.mkc_test_var.include_mkc_test_h \
