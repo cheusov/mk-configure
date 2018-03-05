@@ -18,7 +18,7 @@ EXPORT_VARNAMES += OBJDIR_${i:S,/,_,g}
 .  if ${MKRELOBJDIR:tl} == "yes"
 OBJDIR_${j} := ${.OBJDIR}/${i}
 .  elif defined(MAKEOBJDIRPREFIX)
-OBJDIR_${j} := ${MAKEOBJDIRPREFIX}${.CURDIR}
+OBJDIR_${j} := ${MAKEOBJDIRPREFIX}${.CURDIR}/${i}
 .  elif defined(MAKEOBJDIR)
 OBJDIR_${j} := ${MAKEOBJDIR}
 .  elif defined(_OBJ_MACHINE_DIR)
