@@ -121,11 +121,13 @@ HAVE_FUNCLIB.${f:S/:/./g} !=	env ${mkc.environ} mkc_check_funclib ${f:S/:/ /g}
 .if !defined(HAVE_FUNCLIB.${f:C/:.*//})
 HAVE_FUNCLIB.${f:C/:.*//} !=	env ${mkc.environ} mkc_check_funclib ${f:C/:.*//}
 .endif
-.if ${HAVE_FUNCLIB.${f:C/:.*//}} != ${HAVE_FUNCLIB.${f:S/:/./g}}
-.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1) && ${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
+
+.if ${HAVE_FUNCLIB.${f:S/:/./g}} == 1 && ( ${HAVE_FUNCLIB.${f:C/:.*//}} == 0 || ${f:C/:.*//} == "main" )
+.if empty(MKC_NOAUTO_FUNCLIBS:U:S/:/./g:M${f:S/:/./g}) && empty(MKC_NOAUTO_FUNCLIBS:U:M1)
 MKC_LDADD +=	-l${f:C/^.*://}
 .endif
 .endif
+
 .if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}} && !empty(_MKC_SOURCE_FUNCS:M${f:C/:.*//})
 MKC_SRCS +=	${MKC_SOURCE_DIR.${f:C/:.*//}.c:U${MKC_SOURCE_DIR}}/${f:C/:.*//}.c
 .endif
