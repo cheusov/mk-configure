@@ -1216,7 +1216,8 @@ As a result of the check bmake's variable
 HAVE_FUNCLIB.<function>.<library> (or HAVE_FUNCLIB.<function>)
 is set to either 0 or 1.
 
-By default, if <function> is found in <library> but not in libc,
+If <function> is found in <library> but not in libc
+or <function> is "main" and is found in <library>,
 "-l<library>" is automatically added to LDADD unless
 <function>:<library> is listed in MKC_NOAUTO_FUNCLIBS or
 MKC_NOAUTO_FUNCLIBS is equal to 1 or

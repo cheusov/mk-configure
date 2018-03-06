@@ -1,4 +1,20 @@
 ======================================================================
+Version 0.30.0, by Aleksey Cheusov, Tue,  6 Mar 2018 21:49:02 +0300
+
+  Variables MKC_{CHECK,REQUIRE}_HEADER_FILES were introduced.
+
+  Improvements and addons to regression tests.
+
+  Improvements and minor fixes in mkc_check_{header,decl,funclib,sizeof}
+  This may fix checking failure if -Werror=strict-prototyping
+      is passed to CFLAGS.
+
+  OBJDIR_<project> is now set correctly if MAKEOBJDIRPREFIX is set.
+
+  MKC_CHECK_FUNCLIBS:
+    if main function is checked and library is found, library is added to LDADD
+
+======================================================================
 Version 0.29.3, by Aleksey Cheusov, Wed, 22 Nov 2017 20:38:18 +0300
 
   Fix build failure (mkc_check_prog not found).
