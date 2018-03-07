@@ -11,9 +11,6 @@ Version 0.30.0, by Aleksey Cheusov, Tue,  6 Mar 2018 21:49:02 +0300
 
   OBJDIR_<project> is now set correctly if MAKEOBJDIRPREFIX is set.
 
-  MKC_CHECK_FUNCLIBS:
-    if main function is checked and library is found, library is added to LDADD
-
 ======================================================================
 Version 0.29.3, by Aleksey Cheusov, Wed, 22 Nov 2017 20:38:18 +0300
 
