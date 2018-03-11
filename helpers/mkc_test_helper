@@ -29,6 +29,7 @@ sed -e "s,$objdir,/objdir,g" \
     -e "s,/usr/pkg,/prefix," \
     -e "s,/usr,/prefix," \
     -e "s,/opt/local,/prefix," \
+    -e "s,/opt/pkgsrc4unix,/prefix," \
     -e "s,/opt,/prefix," \
     -e 's/\([.][^ ]*\)[.]dylib/.so\1/' \
     -e 's/[.]dylib/.so/' \
