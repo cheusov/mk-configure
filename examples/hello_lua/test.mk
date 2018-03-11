@@ -12,7 +12,7 @@ test_output:
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | grep -Ev 'INSTALL' | \
+	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
@@ -28,7 +28,7 @@ test_output:
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	find ${.OBJDIR} -type f | grep -Ev 'INSTALL' | \
+	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= distclean ==========; \
@@ -42,7 +42,7 @@ test_output:
 	    LUA_CMODDIR=/home/cheusov/local/lib/lua/5.1 \
 	    ${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
-	find ${.OBJDIR} -type f -o -type d | \
+	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
 	rm -rf ${.OBJDIR}/home; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null

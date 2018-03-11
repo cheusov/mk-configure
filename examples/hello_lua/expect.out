@@ -15,8 +15,6 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
-/objdir/_mkc_prog_lua.err
-/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
@@ -50,8 +48,6 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
-/objdir/_mkc_prog_lua.err
-/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
@@ -86,8 +82,6 @@ foobarbaz
 /objdir/_mkc_pkgconfig_lua_libs.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
-/objdir/_mkc_prog_lua.err
-/objdir/_mkc_prog_lua.res
 /objdir/_mkc_prog_pkg-config.err
 /objdir/_mkc_prog_pkg-config.res
 /objdir/bar.lua
