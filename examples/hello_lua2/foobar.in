@@ -1,4 +1,4 @@
-#!/usr/bin/env lua
+#!@LUA@
 
 require "foo"
 require "bar"

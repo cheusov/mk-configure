@@ -9,6 +9,7 @@ foobar
 /objdir/expect.out
 /objdir/foo.lua
 /objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
 ========= install ==========
@@ -25,7 +26,7 @@ foobar
 /objdir/bar.lua
 /objdir/expect.out
 /objdir/foo.lua
-/objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
 ======= distclean ==========
@@ -33,7 +34,7 @@ foobar
 /objdir/bar.lua
 /objdir/expect.out
 /objdir/foo.lua
-/objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
 ========= install2 ==========
@@ -43,6 +44,7 @@ foobar
 /objdir/expect.out
 /objdir/foo.lua
 /objdir/foobar
+/objdir/foobar.in
 /objdir/hello_lua2.test.out.tmp
 /objdir/home
 /objdir/home/cheusov
