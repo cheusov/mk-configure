@@ -1,4 +1,4 @@
-run_nm := env NM=${NM:Q} OPSYS=${OPSTS:Q} mkc_test_nm
+run_nm := env NM=${NM:Q} OPSYS=${OPSYS:Q} mkc_test_nm
 
 .PHONY : test_output
 test_output:
