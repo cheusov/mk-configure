@@ -22,7 +22,7 @@ case ${OPSYS}/${ARCH} in
 	grep -Ev 'fini|init' |
 	awk 'NF==3 && $2 == "D" {print "symbol " $3}'
 	;;
-    Linux)
+    Linux/*)
 	${NM} "$@" |
 	grep -Ev 'fini|init' |
 	awk 'NF==3 && $2 == "T" {print "symbol " $3}'
