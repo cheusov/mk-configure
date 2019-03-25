@@ -33,4 +33,6 @@ CFLAGS+=	-DMKC_SYS_QUEUE_IS_FINE=1
 .undef bad
 .undef _macro
 
+CPPFLAGS +=	-D_MKC_CHECK_SLIST
+
 .endif # _MKC_IMP_F_SYSQUEUE_MK

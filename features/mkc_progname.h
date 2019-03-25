@@ -7,6 +7,10 @@
 #ifndef _MKC_PROGNAME_H_
 #define _MKC_PROGNAME_H_
 
+#ifndef _MKC_CHECK_PROGNAME
+# error "Missing MKC_FEATURES += progname"
+#endif
+
 #ifdef MKC_PROGNAME_IS_FINE
 
 #include <stdlib.h>

@@ -7,6 +7,10 @@
 #ifndef _MKC_ERR_H_
 #define _MKC_ERR_H_
 
+#ifndef _MKC_CHECK_ERR
+# error "Missing MKC_FEATURES += err"
+#endif
+
 #include <stdarg.h>
 
 #if HAVE_HEADER_ERR_H

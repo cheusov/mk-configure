@@ -8,4 +8,6 @@ MKC_SOURCE_FUNCLIBS      +=	getline
 MKC_SOURCE_DIR.getline.c  =	${FEATURESDIR}/getline
 MKC_CHECK_FUNCS3         +=	getline:stdio.h
 
+CPPFLAGS +=	-D_MKC_CHECK_GETLINE
+
 .endif # _MKC_IMP.F_GETLINE_MK

@@ -25,4 +25,6 @@ MKC_SRCS +=		${FEATURESDIR}/progname/progname.c
 
 .include <mkc_imp.conf-final.mk>
 
+CPPFLAGS +=	-D_MKC_CHECK_PROGNAME
+
 .endif # _MKC_IMP.F_PROGNAME_MK

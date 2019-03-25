@@ -34,4 +34,6 @@ MKC_SRCS +=	${FEATURESDIR}/warn/warn.c
 
 .include <mkc_imp.conf-final.mk>
 
+CPPFLAGS +=	-D_MKC_CHECK_WARN
+
 .endif # _MKC_IMP_F_WARN_MK

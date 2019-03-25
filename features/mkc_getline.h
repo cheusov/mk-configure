@@ -7,6 +7,10 @@
 #ifndef _MKC_GETLINE_H_
 #define _MKC_GETLINE_H_
 
+#ifndef _MKC_CHECK_GETLINE
+# error "Missing MKC_FEATURES += getline"
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 
