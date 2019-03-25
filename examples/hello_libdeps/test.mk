@@ -18,6 +18,27 @@ test_output:
 	mkc_long_lines `find ${.CURDIR} -type f -name .depend` | \
 	awk '!/^#/ {for (i=1; i <= NF; ++i) if ($$i ~ /^\// && $$i !~ /mk-configure/) $$i = ""; print $$0; }' | \
 	awk '{$$1 = $$1; gsub(/[.]o[ps]/, ".o"); print $$0}' | sort | \
+	awk ' \
+	    / foo[.]o.*:.*[^a-z]foo[.]h/ { foo_foo_ok = 1; } \
+	    / bar[.]o.*:.*[^a-z]bar[.]h/ { bar_bar_ok = 1; } \
+	    / baz[.]o.*:.*[^a-z]baz[.]h/ { baz_baz_ok = 1; } \
+	    / foobaz[.]o.*:.*[^a-z]baz[.]h/ { foobaz_baz_ok = 1; } \
+	    / foobaz[.]o.*:.*[^a-z]foo[.]h/ { foobaz_foo_ok = 1; } \
+	    / fooqux[.]o.*:.*[^a-z]foo[.]h/ { fooqux_foo_ok = 1; } \
+	    / fooqux[.]o.*:.*[^a-z]fooqux[.]h/ { fooqux_fooqux_ok = 1; } \
+	    / fooquxfoobar[.]o.*:.*[^a-z]foo[.]h/ { fooquxfoobar_foo_ok = 1; } \
+	    / fooquxfoobar[.]o.*:.*[^a-z]bar[.]h/ { fooquxfoobar_bar_ok = 1; } \
+	    / fooquxfoobar[.]o.*:.*[^a-z]fooqux[.]h/ { fooquxfoobar_fooqux_ok = 1; } \
+	    END { \
+		print "foo_foo_ok=" foo_foo_ok;                          \
+		print "baz_baz_ok=" baz_baz_ok;                          \
+		print "foobaz_baz_ok=" foobaz_baz_ok;                    \
+		print "foobaz_foo_ok=" foobaz_foo_ok;                    \
+		print "fooqux_foo_ok=" fooqux_foo_ok;                    \
+		print "fooqux_fooqux_ok=" fooqux_fooqux_ok;              \
+		print "fooquxfoobar_foo_ok=" fooquxfoobar_foo_ok;        \
+		print "fooquxfoobar_fooqux_ok=" fooquxfoobar_fooqux_ok;  \
+	    }' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= install ==========; \

@@ -7,12 +7,14 @@ I am bar
 I am foo
 I am baz
 =========== depends ============
-bar.o bar.o bar.o: bar.c bar.h
-baz.o baz.o baz.o: baz.c include/baz.h
-foo.o foo.o foo.o: foo.c foo.h
-foobaz.o foobaz.o foobaz.o: foobaz.c /objdir/libs/libfoo/foo.h /objdir/libs/libbaz/include/baz.h
-fooqux.o fooqux.o fooqux.o: fooqux.c fooqux.h /objdir/libs/libfoo/foo.h
-fooquxfoobar.o fooquxfoobar.o fooquxfoobar.o: fooquxfoobar.c /objdir/libs/libfooqux/fooqux.h /objdir/libs/libfoo/foo.h /objdir/libs/libbar/bar.h
+baz_baz_ok=1
+foo_foo_ok=1
+foobaz_baz_ok=1
+foobaz_foo_ok=1
+fooqux_foo_ok=1
+fooqux_fooqux_ok=1
+fooquxfoobar_foo_ok=1
+fooquxfoobar_fooqux_ok=1
 ======= install ==========
 /objdir/prefix/bin/foobaz
 /objdir/prefix/bin/fooquxfoobar
