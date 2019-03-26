@@ -13,11 +13,11 @@ MKC_CHECK_HEADERS       +=	err.h
 MKC_CHECK_FUNCLIBS      +=	warn warnx vwarn vwarnx
 MKC_CHECK_FUNCS2        +=	warn:err.h warnx:err.h
 
-MKC_CHECK_PROTOTYPES       +=	vwarn
+MKC_CHECK_PROTOTYPES        +=	vwarn
 MKC_PROTOTYPE_FUNC.vwarn     =	void vwarn(const char *, va_list)
 MKC_PROTOTYPE_HEADERS.vwarn  =	stdarg.h err.h
 
-MKC_CHECK_PROTOTYPES       +=	vwarnx
+MKC_CHECK_PROTOTYPES        +=	vwarnx
 MKC_PROTOTYPE_FUNC.vwarnx    =	void vwarnx(const char *, va_list)
 MKC_PROTOTYPE_HEADERS.vwarnx =	${MKC_PROTOTYPE_HEADERS.vwarn}
 
