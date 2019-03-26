@@ -7,6 +7,10 @@
 #ifndef _MKC_STRLCPY_H_
 #define _MKC_STRLCPY_H_
 
+#ifndef _MKC_CHECK_STRLCPY
+# error "Missing MKC_FEATURES += strlcpy"
+#endif
+
 #include <string.h>
 
 #if !HAVE_FUNC3_STRLCPY_STRING_H

@@ -28,7 +28,7 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========== all SHRTOUT=yes ===========; \
-	${MAKE} ${MAKEFLAGS} all SHRTOUT=yes | \
+	${MAKE} ${MAKEFLAGS} all SHRTOUT=yes | grep -v 'loading site script' | \
 	grep -E '^[[:alpha:]]+:'; \
 	\
 	echo ======= cleandir ==========; \

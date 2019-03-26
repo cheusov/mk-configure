@@ -7,6 +7,10 @@
 #ifndef _MKC_FGETLN_H_
 #define _MKC_FGETLN_H_
 
+#ifndef _MKC_CHECK_FGETLN
+# error "Missing MKC_FEATURES += fgetln"
+#endif
+
 #include <stdio.h>
 
 #ifndef HAVE_FUNC2_FGETLN_STDIO_H

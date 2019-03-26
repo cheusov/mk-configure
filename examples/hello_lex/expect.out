@@ -50,9 +50,6 @@
 /objdir/input.txt
 /objdir/test.mk
 ==== SHRTOUT=yes depend ====
-checking for C compiler mmm... nnn
-checking for program mmm... nnn
-checking for program mmm... nnn
 LEX: hello_lex.l
 DEP: hello_lex.d
 DEP: .depend

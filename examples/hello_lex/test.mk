@@ -27,13 +27,13 @@ test_output:
 	\
 	echo ========== depend ===========; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	${MAKE} ${MAKEFLAGS} depend -j4 > /dev/null; \
+	${MAKE} ${MAKEFLAGS} depend -j4 > /dev/null 2>&1; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ==== SHRTOUT=yes depend ====; \
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
-	env ${MAKE} ${MAKEFLAGS} SHRTOUT=yes depend 2>&1 |\
+	env ${MAKE} ${MAKEFLAGS} SHRTOUT=yes depend 2>/dev/null |\
 	mkc_test_helper2; \
 	\
 	echo ==== SHRTOUT=yes all ====; \

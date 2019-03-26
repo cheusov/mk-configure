@@ -8,4 +8,6 @@ MKC_SOURCE_FUNCLIBS      +=	strlcpy
 MKC_SOURCE_DIR.strlcpy.c  =	${FEATURESDIR}/strlcpy
 MKC_CHECK_FUNCS3         +=	strlcpy:string.h
 
+CPPFLAGS +=	-D_MKC_CHECK_STRLCPY
+
 .endif #_MKC_IMP_F_STRLCPY_MK
