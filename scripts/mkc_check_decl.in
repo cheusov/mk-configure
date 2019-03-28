@@ -195,6 +195,12 @@ is_prototype (){
     get_includes "$@" > "$tmpc"
 
     cat >> "$tmpc" <<EOF
+void func2 (void);
+void func (void);
+void func2 (void)
+{
+   if (${funcname}) return;
+}
 ${declwhat};
 void func (void)
 {

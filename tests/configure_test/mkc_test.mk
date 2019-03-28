@@ -82,11 +82,13 @@ MKC_CUSTOM_FN.custom_check2=	my_check2.c
 
 MKC_REQUIRE_CUSTOM+=		custom_check3
 
-MKC_CHECK_PROTOTYPES =	strcmp_ok strcmp_bad
+MKC_CHECK_PROTOTYPES =	strcmp_ok strcmp_bad function_absent
 MKC_PROTOTYPE_FUNC.strcmp_ok  = int strcmp(const char*, const char*)
 MKC_PROTOTYPE_FUNC.strcmp_bad = int strcmp(const char*, const char*, int lalala)
+MKC_PROTOTYPE_FUNC.function_absent = int absent_function(int lalala)
 MKC_PROTOTYPE_HEADERS.strcmp_ok  = string.h
 MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
+MKC_PROTOTYPE_HEADERS.function_absent = string.h
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h \
@@ -113,7 +115,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h \
 	HAVE_VAR.mkc_test_var.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
-	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad \
+	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad HAVE_PROTOTYPE.function_absent \
 	\
 	CUSTOM.custom_check1 CUSTOM.custom_check2 \
 	\
