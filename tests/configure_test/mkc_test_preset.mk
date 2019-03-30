@@ -5,6 +5,7 @@ HAVE_HEADER.string_h=2
 HAVE_HEADER.unistd_h=2
 HAVE_HEADER_FILE.sys_time_h=2
 HAVE_HEADER_FILE.string_h=2
+HAVE_HEADER_FILE.unistd_h=2
 HAVE_FUNCLIB.strcpy=2
 HAVE_FUNCLIB.sqrt.m=2
 SIZEOF.int=4

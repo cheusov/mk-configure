@@ -26,7 +26,7 @@ MKC_CHECK_HEADERS+=	sys/time.h string.h stdlib.h,unistd.h
 MKC_CHECK_HEADERS+=	bad_dir/bad_header.h bad_header.h
 MKC_CHECK_HEADERS+=	include/mkc_test.h
 
-MKC_CHECK_HEADER_FILES+=	sys/time.h string.h
+MKC_CHECK_HEADER_FILES+=	sys/time.h string.h stdlib.h,unistd.h
 MKC_CHECK_HEADER_FILES+=	bad_dir/bad_header.h bad_header.h
 MKC_CHECK_HEADER_FILES+=	include/mkc_test.h
 
@@ -91,7 +91,7 @@ MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
 MKC_PROTOTYPE_HEADERS.function_absent = string.h
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
-	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h \
+	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h HAVE_HEADER_FILE.unistd_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \

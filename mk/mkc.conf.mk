@@ -77,12 +77,12 @@ MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
 ######################################################
 # checking for headers
 .for h in ${MKC_CHECK_HEADER_FILES} ${MKC_REQUIRE_HEADER_FILES}
-.if !defined(HAVE_HEADER_FILE.${h:S|.|_|g:S|/|_|g})
-HAVE_HEADER_FILE.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header -e ${h}
+.if !defined(HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g})
+HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header -e ${h}
 .endif
-.if ${HAVE_HEADER_FILE.${h:S|.|_|g:S|/|_|g}}
+.if ${HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .if empty(MKC_REQUIRE_HEADER_FILES:U:M${h})
-MKC_CFLAGS  +=	-DHAVE_HEADER_FILE_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER_FILE.${h:S|.|_|g:S|/|_|g}}
+MKC_CFLAGS  +=	-DHAVE_HEADER_FILE_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADER_FILES:U:M${h})
 _fake   !=   env ${mkc.environ} mkc_check_header -e -d ${h} && echo
