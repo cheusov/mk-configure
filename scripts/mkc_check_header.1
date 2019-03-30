@@ -14,20 +14,31 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_HEADER 1 "Feb 23, 2018" "" ""
+.TH MKC_CHECK_HEADER 1 "Mar 30, 2019" "" ""
 .SH NAME
 mkc_check_header \- detects presense of header file.
 .SH SYNOPSIS
-.BI mkc_check_header " <header>"
-.br
-.BI mkc_check_header " -h"
+.BI mkc_check_header " [OPTIONS] <headers>"
 .SH DESCRIPTION
 .B mkc_check_header
 detects presense of header file.
 As a result it prints either 1 (true) or 0 (false) to stdout.
+.I headers
+may be either a single header file or a list of headers separated by comma.
+In this case all mentioned headers are put into a single .c file and
+.I "${CC}"
+is run.
 By default
 .I "$CC -c"
 is used for checking.
+By default, temporary and cache files
+.RI _mkc_header_ lheader_h .{c,err,res}
+are created under
+.B MKC_CACHEDIR
+directory. Here,
+.I lheader_h
+is the last header from comma-separated list
+.IR headers .
 .SH OPTIONS
 .TP
 .B "-h"
@@ -36,7 +47,8 @@ Display help message.
 .B "-e"
 Use
 .I "$CC -E"
-for checking.
+for checking instead of
+.IR "$CC -c" .
 .TP
 .B "-d"
 Delete cache file.
@@ -48,8 +60,7 @@ Compiler. By default
 is used.
 .TP
 .B CPPFLAGS, CFLAGS
-Options passed to the compiler, for example -I for additional directories
-that contain header files.
+Options passed to the compiler.
 .TP
 .B MKC_VERBOSE
 If set to 1, verbose messages are output to stderr.
@@ -72,6 +83,14 @@ If set to 1, temporary files are removed.
 .VS
    mkc_check_header stdint.h
    mkc_check_header getopt.h
+   mkc_check_header sys/types.h,sys/stat.h,fts.h
+.VE
+.SH C FILE CONTENT
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+int __fake_variable;
 .VE
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>

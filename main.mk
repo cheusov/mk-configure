@@ -15,7 +15,7 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    intexts_cleantrg require_prototype test_subprj_dash test_mkc_vs_PROG \
    test_mkc_vs_LIB test_mkc_vs_SUBDIR test_mkc_vs_SUBPRJ endianess \
    create_cachedir sys_queue predopost_targets FSRCDIR \
-   os_NetBSD os_OpenBSD
+   os_NetBSD os_OpenBSD os_Linux
 .for t in ${tests}
 SUBPRJ +=	tests/${t}:tests
 .endfor
@@ -28,7 +28,7 @@ examples    =	hello_world hello_scripts hello_files hello_sizeof hello_lex \
    hello_lua3 hello_superfs hello_xxzip hello_progs hello_progs2 tools \
    tools2 pkgconfig3 hello_SLIST hello_RBTREE hello_errwarn hello_fgetln \
    hello_autotools hello_autoconf hello_libdeps hello_compatlib \
-   hello_require_tools check_compiler_opts
+   hello_require_tools check_compiler_opts # fts (fts.h)
 .for t in ${examples}
 SUBPRJ +=	examples/${t}:tests
 .endfor

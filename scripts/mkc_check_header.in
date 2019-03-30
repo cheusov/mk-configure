@@ -20,7 +20,7 @@ usage (){
 mkc_check_header detects presense of header file
 by compiling a test program.
 
-Usage: mkc_check_header [OPTIONS] header.h
+Usage: mkc_check_header [OPTIONS] <headers>
 
 OPTIONS:
    -h        display this screen
@@ -54,7 +54,7 @@ fi
 ##################################################
 # initializing
 
-pathpart="$partpath"_`echo $1 | tr /. __`
+pathpart="$partpath"_`echo "$1" | sed 's/^.*,//' | tr /. __`
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
@@ -62,8 +62,9 @@ pathpart="$partpath"_`echo $1 | tr /. __`
 # test
 
 check_itself (){
-    cat > "$tmpc" <<EOF
-#include <$1>
+    get_includes "$@" > "$tmpc"
+
+    cat >> "$tmpc" <<EOF
 int __fake_variable;
 EOF
 

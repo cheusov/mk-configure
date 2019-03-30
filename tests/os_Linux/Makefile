@@ -3,7 +3,7 @@ MKC_CHECK_HEADER_FILES +=	fts.h
 
 .include <mkc.init.mk>
 
-.if ${OPSYS:U} == "NetBSD"
+.if ${OPSYS:U} == "Linux"
 VARIABLES_TO_CHECK=	HAVE_HEADER.vis_h HAVE_HEADER.fts_h HAVE_HEADER_FILE.fts_h
 .include "test.mk"
 .else

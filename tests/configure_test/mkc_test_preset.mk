@@ -2,6 +2,7 @@
 # case of failure
 HAVE_HEADER.sys_time_h=2
 HAVE_HEADER.string_h=2
+HAVE_HEADER.unistd_h=2
 HAVE_HEADER_FILE.sys_time_h=2
 HAVE_HEADER_FILE.string_h=2
 HAVE_FUNCLIB.strcpy=2

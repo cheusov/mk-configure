@@ -95,6 +95,12 @@ find_n_match (){
     fi
 }
 
+get_includes (){
+    for i in $MKC_COMMON_HEADERS `echo "$1" | tr , ' '`; do
+	echo "#include <$i>"
+    done
+}
+
 if test -n "$delcache"; then
     cleanup_all
     exit 0

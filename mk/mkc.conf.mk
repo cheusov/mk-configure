@@ -96,12 +96,12 @@ MKC_ERR_MSG +=	"ERROR: header ${h} does not exist"
 ######################################################
 # checking for headers
 .for h in ${MKC_CHECK_HEADERS} ${MKC_REQUIRE_HEADERS}
-.if !defined(HAVE_HEADER.${h:S|.|_|g:S|/|_|g})
-HAVE_HEADER.${h:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
+.if !defined(HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g})
+HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_header ${h}
 .endif
-.if ${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+.if ${HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .if empty(MKC_REQUIRE_HEADERS:U:M${h})
-MKC_CFLAGS  +=	-DHAVE_HEADER_${h:tu:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:S|.|_|g:S|/|_|g}}
+MKC_CFLAGS  +=	-DHAVE_HEADER_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
 _fake   !=   env ${mkc.environ} mkc_check_header -d ${h} && echo
