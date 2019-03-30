@@ -3,6 +3,8 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.include <mkc_imp.conf.mk>
+.info "Deprecated single 30 Mar 2019"
+
+.include <mkc.conf.mk>
 
 .undef MKC_NOAUTO

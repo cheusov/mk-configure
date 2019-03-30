@@ -5,7 +5,7 @@
 .ifndef _MKC_IMP_F_SYSQUEUE_MK
 _MKC_IMP_F_SYSQUEUE_MK := 1
 
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 _macro = SLIST SIMPLEQ STAILQ LIST TAILQ TAILQ
 
@@ -14,7 +14,7 @@ MKC_CHECK_DEFINES +=	${m}_ENTRY:sys/queue.h
 _macro.${m}        =	1
 .endfor
 
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 .for f in ${MKC_FEATURES}
 .if defined(_macro.${f}) && !${HAVE_DEFINE.${m}_ENTRY.sys/queue.h:U0}

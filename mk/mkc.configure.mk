@@ -4,7 +4,7 @@
 ############################################################
 
 .include <mkc.init.mk>
-.include <mkc_imp.conf.mk>
+.include <mkc.conf.mk>
 .include <mkc_imp.conf-final.mk>
 
 .PHONY: configure

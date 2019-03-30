@@ -7,7 +7,7 @@ _MKC_IMP_F_WARN_MK := 1
 
 .include <mkc_imp.f_progname.mk>
 
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 MKC_CHECK_HEADERS       +=	err.h
 MKC_CHECK_FUNCLIBS      +=	warn warnx vwarn vwarnx
@@ -21,7 +21,7 @@ MKC_CHECK_PROTOTYPES        +=	vwarnx
 MKC_PROTOTYPE_FUNC.vwarnx    =	void vwarnx(const char *, va_list)
 MKC_PROTOTYPE_HEADERS.vwarnx =	${MKC_PROTOTYPE_HEADERS.vwarn}
 
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.warn:U0} && ${HAVE_FUNCLIB.warnx:U0} && \
     ${HAVE_FUNCLIB.vwarn:U0} && ${HAVE_FUNCLIB.vwarnx:U0} && \

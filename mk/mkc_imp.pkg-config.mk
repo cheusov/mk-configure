@@ -12,7 +12,7 @@ MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
 
 .if defined(MKC_CHECK_PKGCONFIG) && !make(clean) && !make(cleandir) && !make(distclean)
 MKC_REQUIRE_PROGS+=	pkg-config
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 .if ${HAVE_PROG.pkg-config}
 

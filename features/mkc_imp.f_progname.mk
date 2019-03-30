@@ -12,7 +12,7 @@ MKC_CHECK_FUNCS0        +=	getprogname:stdlib.h getexecname:stdlib.h
 MKC_CHECK_FUNCS1        +=	setprogname:stdlib.h
 MKC_CHECK_VARS          +=	program_invocation_short_name:errno.h
 
-.include <mkc_imp.conf-cleanup.mk>
+.include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.getprogname:U0} && \
     ${HAVE_FUNCLIB.setprogname:U0} && \

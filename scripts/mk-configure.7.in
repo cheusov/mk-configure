@@ -1691,6 +1691,17 @@ and appropriate macroses are available. If yes, mkc_SLIST.h and others
 include system-wide sys/queue.h, otherwise NetBSD version of
 sys/queue.h provided by mk-configure is included.
 .RE
+.SS mkc.conf.mk
+The same as
+.BR mkc.configure.mk " but " mkc.init.mk
+is not included in the beginning, and
+.BR CFLAGS " and " LDADD
+varibales are not modified. Instead, internal variables contain
+changes to
+.BR CFLAGS " and " LDADD
+and will be applied later. One can use this module for implementing your own
+"features" similar to
+.BR MKC_FEATURES .
 .SS mkc_imp.scripts.mk
 is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
