@@ -32,8 +32,6 @@ CFLAGS +=	-DMKC_ERR_IS_FINE
 MKC_SRCS +=		${FEATURESDIR}/err/err.c
 .endif
 
-.include <mkc_imp.conf-final.mk>
-
 CPPFLAGS +=	-D_MKC_CHECK_ERR
 
 .endif #_MKC_IMP_F_ERR_MK

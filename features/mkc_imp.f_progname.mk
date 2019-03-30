@@ -23,8 +23,6 @@ CFLAGS +=	-DMKC_PROGNAME_IS_FINE
 MKC_SRCS +=		${FEATURESDIR}/progname/progname.c
 .endif
 
-.include <mkc_imp.conf-final.mk>
-
 CPPFLAGS +=	-D_MKC_CHECK_PROGNAME
 
 .endif # _MKC_IMP.F_PROGNAME_MK

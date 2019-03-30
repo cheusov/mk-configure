@@ -126,6 +126,7 @@ realdo_errorcheck: check_mkc_err_msg
 .include <mkc_imp.f_${f}.mk>
 .endfor
 .include <mkc_imp.conf-cleanup.mk>
+.include <mkc_imp.conf-final.mk>
 CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
