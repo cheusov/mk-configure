@@ -30,17 +30,25 @@ MKC_AUTO_SRCS     :=	${MKC_AUTO_SRCS} ${MKC_SRCS}
 
 .if !${MKC_NOAUTO:U0}
 .for i in ${MKC_CPPFLAGS}
+.  if !empty(CPPFLAGS:M${i})
 CPPFLAGS +=	${i}
+.  endif
 .endfor
 .for i in ${MKC_CFLAGS}
+.  if !empty(CFLAGS:M${i})
 CFLAGS +=	${i}
+.  endif
 .endfor
 .for i in ${MKC_LDADD}
+.  if !empty(LDADD:M${i})
 LDADD +=	${i}
+.  endif
 .endfor
 .if !${MKC_NOSRCSAUTO:U0}
 .  for i in ${MKC_SRCS}
+.    if !empty(SRCS:M${i})
 SRCS +=		${i}
+.    endif
 .  endfor
 .endif
 .endif # .if MKC_AUTO
