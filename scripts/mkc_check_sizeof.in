@@ -59,9 +59,7 @@ try_it (){
     sz=$1
     shift
 
-    for f in $MKC_COMMON_HEADERS "$@"; do
-	echo "#include <$f>"
-    done > "$tmpc"
+    get_includes "$@" > "$tmpc"
     cat >> "$tmpc" <<EOF
 void func(void)
 {

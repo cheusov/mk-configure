@@ -57,7 +57,7 @@ MKC_CHECK_FUNCS5+=	mkc_test_func:stdlib.h,include/mkc_test.h
 
 MKC_REQUIRE_FUNCS0+=	mkc_test_func2:include/mkc_test.h
 
-MKC_CHECK_SIZEOF+=	int long-long void* size_t:string.h
+MKC_CHECK_SIZEOF+=	int long-long void* size_t:stdlib.h,unistd.h,string.h
 MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 
 MKC_CHECK_TYPES+=	size_t:string.h

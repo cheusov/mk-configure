@@ -145,11 +145,11 @@ MKC_ERR_MSG +=	"ERROR: cannot find function ${f}"
 ######################################################
 # checking for sizeof(xxx)
 .for t in ${MKC_CHECK_SIZEOF:U}
-.if !defined(SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g})
-SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/:/ /g}
+.if !defined(SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g})
+SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/:/ /g}
 .endif
-.if ${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}} != failed
-MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEOF.${t:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
+.if ${SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}} != failed
+MKC_CFLAGS  +=  -DSIZEOF_${t:C/:.*,/:/:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
 .endif
 .endfor
 
