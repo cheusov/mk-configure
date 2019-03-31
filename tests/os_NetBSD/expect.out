@@ -1,3 +1,4 @@
 HAVE_HEADER.vis_h=1
 HAVE_HEADER.fts_h=1
 HAVE_HEADER_FILE.fts_h=1
+HAVE_PROTOTYPE.fts_read=1
