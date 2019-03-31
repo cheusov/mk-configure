@@ -1,3 +1,6 @@
+remove hello_ prefix from all examples
+install target: introduce dependencies for target files
+
 MKC_CHECK_CUSTOM -- checks for compilation, we also need to
 check compilation + "linkable-ness".
 ============================================================
