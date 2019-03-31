@@ -1,8 +1,6 @@
 PROJECTNAME =	hello_cxx
 
-SUBDIR +=	cxxlib
-SUBDIR +=	.WAIT
-SUBDIR +=	cxxapp
+LIBDEPS =	cxxlib:cxxapp
 
 .include "test.mk"
 .include <mkc.subdir.mk>

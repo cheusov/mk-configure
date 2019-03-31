@@ -15,9 +15,6 @@ SCRIPTS =	${INSCRIPTS}
 
 .include <mkc.configure.mk>
 
-.include "../libhello1/linkme.mk"
-.include "../libhello2/linkme.mk"
-
 .include "../version.mk"
 
 .include "test.mk"
