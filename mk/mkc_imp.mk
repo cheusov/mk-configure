@@ -5,11 +5,11 @@
 .include <mkc_imp.preinit.mk>
 
 .ifdef SUBDIR
-SUBPRJ = ${SUBDIR}
+  SUBPRJ = ${SUBDIR}
 .endif
 
 .ifdef SUBPRJS
-SUBPRJ   +=	${SUBPRJS} # for backward compatibility only, use SUBPRJ!
+  SUBPRJ   +=	${SUBPRJS} # for backward compatibility only, use SUBPRJ!
 .endif # defined(SUBPRJS)
 
 .include <mkc_imp.lua.mk>
@@ -19,40 +19,29 @@ SUBPRJ   +=	${SUBPRJS} # for backward compatibility only, use SUBPRJ!
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
 all_deps != mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .  for p in ${all_deps}
-_mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
+     _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
 .    if exists(${_mkfile})
 .      include "${_mkfile}"
 .    endif
-DPLDADD   ?=	${p:T:S/^lib//}
-DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
-DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
+     DPLDADD   ?=	${p:T:S/^lib//}
+     DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
+     DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
 .    include <mkc_imp.dpvars.mk>
 .  endfor
-.endif
-
-.ifdef DPLIBDIRS
-.warning "This way of using DPLIBDIRS is deprecated since 2014-08-21"
-_DPLIBDIRS := ${DPLIBDIRS}
-.  for _dir in ${_DPLIBDIRS}
-DPLIBDIRS =	${OBJDIR_${_dir:S,^${SUBPRJSRCTOP}/,,:S,/,_,g}}
-.    include <mkc_imp.dpvars.mk>
-.  endfor
-.  undef _DPLIBDIRS
-.  undef DPLIBDIRS
 .endif
 
 .if defined(LIBDEPS)
-SUBPRJ          +=	${LIBDEPS} # library dependencies
-AXCIENT_LIBDEPS :=	${LIBDEPS}
-EXPORT_VARNAMES +=	AXCIENT_LIBDEPS
+  SUBPRJ          +=	${LIBDEPS} # library dependencies
+  AXCIENT_LIBDEPS :=	${LIBDEPS}
+  EXPORT_VARNAMES +=	AXCIENT_LIBDEPS
 .endif # defined(LIBDEPS)
 
 .if !defined(LIB) && !defined(SUBPRJ)
-_use_prog :=	1
+  _use_prog :=	1
 .endif
 
 .ifdef FOREIGN
-.include <mkc_imp.foreign_${FOREIGN}.mk>
+.  include <mkc_imp.foreign_${FOREIGN}.mk>
 .endif
 .include <mkc_imp.rules.mk>
 .include <mkc_imp.obj.mk>
@@ -87,7 +76,7 @@ filelist:
 
 test:
 
-.endif # SUBPRJ
+.endif # !SUBPRJ
 
 ###########
 .PHONY : print_values
@@ -123,7 +112,7 @@ realdo_errorcheck: check_mkc_err_msg
 
 # features
 .for f in ${MKC_FEATURES}
-.include <mkc_imp.f_${f}.mk>
+  .include <mkc_imp.f_${f}.mk>
 .endfor
 .include <mkc.conf.mk>
 .include <mkc_imp.conf-final.mk>
@@ -131,31 +120,31 @@ CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
 
-.if defined(LIB)
-.include <mkc_imp.lib.mk>
-.elif defined(_use_prog)
-.include <mkc_imp.prog.mk>
-.endif
+.  if defined(LIB)
+.    include <mkc_imp.lib.mk>
+.  elif defined(_use_prog)
+.    include <mkc_imp.prog.mk>
+.  endif
 
-.if defined(_use_prog) || defined(LIB)
-.include <mkc_imp.man.mk>
-.include <mkc_imp.info.mk>
-.include <mkc_imp.inc.mk>
-.include <mkc_imp.intexts.mk>
-.include <mkc_imp.pkg-config.mk>
-.include <mkc_imp.dep.mk>
-.include <mkc_imp.files.mk>
-.include <mkc_imp.scripts.mk>
-.include <mkc_imp.links.mk>
-.endif # _use_prog || LIB
+.  if defined(_use_prog) || defined(LIB)
+.    include <mkc_imp.man.mk>
+.    include <mkc_imp.info.mk>
+.    include <mkc_imp.inc.mk>
+.    include <mkc_imp.intexts.mk>
+.    include <mkc_imp.pkg-config.mk>
+.    include <mkc_imp.dep.mk>
+.    include <mkc_imp.files.mk>
+.    include <mkc_imp.scripts.mk>
+.    include <mkc_imp.links.mk>
+.  endif # _use_prog || LIB
 
-########################################
-.if defined(SUBPRJ)
-.include <mkc_imp.subprj.mk>
-.endif # SUBPRJ
-########################################
+   ########################################
+.  if defined(SUBPRJ)
+.    include <mkc_imp.subprj.mk>
+.  endif # SUBPRJ
+   ########################################
 
-.include <mkc_imp.arch.mk>
+.  include <mkc_imp.arch.mk>
 
 .endif # MKC_ERR_MSG
 
