@@ -1539,7 +1539,7 @@ unless MKC_NOAUTO is set to 1
 .IP MKC_CHECK_PROTOTYPES
 A list of checks (list of names) for C function prototypes.
 MKC_PROTOTYPE_FUNC.<name> is a C function prototype.
-MKC_PROTOTYPE_HEADERS.<name> is a list of headers to #include.
+MKC_PROTOTYPE_HEADERS.<name> is a list of headers separated by space or comma.
 mk-configure verifies that the specified prototype is correct and if
 so, HAVE_PROTOTYPE.<name> bmake variable is set to 1 and
 -DHAVE_PROTOTYPE_<NAME>=1 is added to CFLAGS unless MKC_NOAUTO is set to 1.

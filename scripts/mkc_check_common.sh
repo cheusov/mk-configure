@@ -96,7 +96,7 @@ find_n_match (){
 }
 
 get_includes (){
-    for i in $MKC_COMMON_HEADERS `echo "$1" | tr , ' '`; do
+    for i in $MKC_COMMON_HEADERS `echo "$@" | tr , ' '`; do
 	echo "#include <$i>"
     done
 }
