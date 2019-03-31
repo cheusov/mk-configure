@@ -253,7 +253,8 @@ MKC_ERR_MSG +=	"ERROR: cannot find member ${m}"
 
 .for d in ${MKC_CHECK_FUNCS${n}:U} ${MKC_REQUIRE_FUNCS${n}:U}
 .if !defined(HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
+or_define := ${MKC_FUNC_OR_DEFINE.${d:C/:.*//}:tl:S/yes/ordefine/}
+HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${or_define}${n} ${d:S/:/ /g}
 .endif
 .if ${HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_FUNCS${n}:U:M${d})

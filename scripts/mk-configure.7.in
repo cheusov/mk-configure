@@ -1382,7 +1382,7 @@ treated as a fatal error (See
 .B errorcheck
 target.
 .IP MKC_CHECK_FUNCS<N>
-List of <func>:<header> to be check. <header> part is optional.
+List of <func>:<header> to check. <header> part is optional.
 Here <N> means the number of arguments.
 As a result of the check bmake's variable
 HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
@@ -1393,16 +1393,22 @@ is set to either 0 or 1.
 Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
 (or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1))
 is added to CFLAGS if the specified function was detected
-unless MKC_NOAUTO is set to 1.
+unless MKC_NOAUTO is set to 1. If
+MKC_FUNC_OR_DEFINE.<func>
+is "yes", equivalent define leads to the same results.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
 .VS
  Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
       MKC_CHECK_FUNCS6 += pselect:sys/select.h
+      MKC_CHECK_FUNCS1 += htobe32:sys/endian.h
+      MKC_FUNC_OR_DEFINE.htobe32 += yes
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
       HAVE_FUNC6.pselect.sys.select_h = 1
+      HAVE_FUNC1.htobe32.sys_endian_h=1
       CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
-             += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1
+             += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
+	     += -DHAVE_FUNC1_HTOBE32_SYS_ENDIAN_H
 .VE
 .IP MKC_REQUIRE_FUNCS<N>
 The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
