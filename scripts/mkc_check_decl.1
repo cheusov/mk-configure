@@ -14,14 +14,12 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_DECL 1 "Mar 15, 2009" "" ""
+.TH MKC_CHECK_DECL 1 "Mar 30, 2019" "" ""
 .SH NAME
-mkc_check_decl \- checks for define, function, variable, type or
+mkc_check_decl \- checks for define, variable, function, type, member or
 function prototype.
 .SH SYNOPSIS
-.BI mkc_check_decl " <check_type> <what> [includes...]"
-.br
-.BI mkc_check_decl " -h"
+.BI mkc_check_decl " [OPTIONS] <check_type> <what> [headers...]"
 .SH DESCRIPTION
 .I check_type
 is either
@@ -29,12 +27,24 @@ is either
 .IR " prototype" .
 Depending on its value
 .B mkc_check_decl
-checks for define, variable, function with specified number
-of arguments, type or a member of structure 
-in a specified header files
-.I includes
+checks respectively for define, variable, function with the specified number
+of arguments, data type, member of structure or a function prototype
+in the specified
+.I headers
 by compiling a test program.
-As a result it prints either 1 (success) or 0 (failure) to stdout.
+.I headers
+is either a single header file or a list of headers, separated by comma.
+As a result
+.B mkc_check_decl
+prints either 1 (success) or 0 (failure) to stdout.
+By default, temporary and cache files
+.RI _mkc_ <check_type> _ <what> _ <lheader_h> .{c,err,res}
+are created under
+.B MKC_CACHEDIR
+directory. Here,
+.I lheader_h
+is the last header from comma-separated list
+.IR headers .
 .SH OPTIONS
 .TP
 .B "-h"
@@ -74,6 +84,7 @@ If set to 1, temporary files are removed.
 .VS
    mkc_check_decl define __GNUC__
    mkc_check_decl define RTLD_LAZY dlfcn.h
+   mkc_check_decl define FTS_W sys/types.h,sys/stat.h,fts.h
    mkc_check_decl variable sys_errlist errno.h
    mkc_check_decl variable __malloc_hook malloc.h
    mkc_check_decl func3 poll poll.h
@@ -82,8 +93,95 @@ If set to 1, temporary files are removed.
    mkc_check_decl type long-long
    mkc_check_decl member tm.tm_isdst time.h
    mkc_check_decl member ifreq.ifr_addr.sa_len net/if.h
-   mkc_check_decl prototype 'int connect(int __fd, const struct sockaddr * __addr, socklen_t __len)' sys/socket.h
-   mkc_check_decl prototype 'int connect(int __fd, struct sockaddr * __addr, socklen_t __len)' sys/socket.h
+   mkc_check_decl member struct-stat.st_mtimespec sys/stat.h
+   mkc_check_decl prototype 'int connect(int,const struct sockaddr*,socklen_t)' sys/socket.h
+   mkc_check_decl prototype 'int connect(int,struct sockaddr*,socklen_t)' sys/socket.h
+.VE
+.SH C FILE CONTENT
+.TP
+.B define
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+#if defined(WHAT)
+int func(void)
+{
+   return 0;
+}
+#else
+#error "WHAT is not a define"
+#endif
+.VE
+.TP
+.B variable
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+int func(void)
+{
+   return sizeof ((WHAT)) && (&WHAT != 0);
+}
+.VE
+.TP
+.BR func3 " (example for function with 3 arguments)"
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+void func (void)
+{
+   if (WHAT) return;
+   WHAT(0,0,0);
+}
+.VE
+.TP
+.B type
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+int func(void)
+{
+   return sizeof (WHAT);
+}
+.VE
+.TP
+.B member " (example for struct stat.st_mtimespec)"
+.VS
+#include <sys/stat.h>
+int func(void)
+{
+   struct_stat var;
+   return sizeof (var.st_mtimespec);
+}
+.VE
+.TP
+.BR prototype " (example for void ttt(int,char**) function)"
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+void func (void);
+void func2 (void);
+
+void func (void)
+{
+   if (ttt) return;
+}
+
+void ttt(int, char**);
+
+void func2 (void)
+{
+   if (ttt) return;
+}
 .VE
 .SH AUTHOR
 Aleksey Cheusov <vle@gmx.net>
