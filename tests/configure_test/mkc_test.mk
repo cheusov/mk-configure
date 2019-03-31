@@ -66,7 +66,7 @@ MKC_CHECK_TYPES+=	time_t:stddef.h,time.h
 
 MKC_REQUIRE_TYPES+=	size_t:stdlib.h
 
-MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:time.h
+MKC_CHECK_MEMBERS+=	struct-tm.tm_isdst:string.h,time.h
 MKC_CHECK_MEMBERS+=	struct-sockaddr_in.sin_addr.s_addr:arpa/inet.h:netinet/in.h
 MKC_CHECK_MEMBERS+=	bad.member
 MKC_CHECK_MEMBERS+=	bad.member:string.h

@@ -227,18 +227,18 @@ MKC_ERR_MSG +=	"ERROR: cannot find declaration of variable ${d}"
 ######################################################
 # checking for struct members
 .for m in ${MKC_CHECK_MEMBERS:U} ${MKC_REQUIRE_MEMBERS:U}
-.if !defined(HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g})
-HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
+.if !defined(HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g})
+HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.environ} mkc_check_decl member ${m:S/:/ /g}
 .endif
-.if ${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
+.if ${HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
 .if empty(MKC_REQUIRE_MEMBERS:U:M${m})
-MKC_CFLAGS  +=	-DHAVE_MEMBER_${m:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
+MKC_CFLAGS  +=	-DHAVE_MEMBER_${m:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 .endif
 .endif
 .endfor
 
 .for m in ${MKC_REQUIRE_MEMBERS:U}
-.if !${HAVE_MEMBER.${m:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
+.if !${HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
 _fake   !=   env ${mkc.environ} mkc_check_decl -d member ${m:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find member ${m}"
 .endif
