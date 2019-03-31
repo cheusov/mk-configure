@@ -163,7 +163,6 @@ HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc
 .endif
 .if ${HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_DEFINES:U:M${d})
-.info "-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1"
 MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
@@ -182,18 +181,18 @@ MKC_ERR_MSG +=	"ERROR: cannot find declaration of define ${d}"
 ######################################################
 # checking for declared type
 .for t in ${MKC_CHECK_TYPES:U} ${MKC_REQUIRE_TYPES:U}
-.if !defined(HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/:/ /g}
+.if !defined(HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g})
+HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl type ${t:S/:/ /g}
 .endif
-.if ${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
+.if ${HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_TYPES:U:M${t})
-MKC_CFLAGS  +=	-DHAVE_TYPE_${t:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_TYPE_${t:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for t in ${MKC_REQUIRE_TYPES:U}
-.if !${HAVE_TYPE.${t:S/./_/g:S/:/./g:S|/|_|g}}
+.if !${HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 _fake   !=   env ${mkc.environ} mkc_check_decl -d type ${t:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of type ${t}"
 .endif

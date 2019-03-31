@@ -21,6 +21,7 @@ HAVE_FUNC2.strcmp.string_h=2
 HAVE_FUNC3.strcpy=2
 HAVE_TYPE.size_t.string_h=2
 HAVE_TYPE.bad_type=2
+HAVE_TYPE.time_t.time_h=0
 CUSTOM.custom_check1=0
 CUSTOM.custom_check2=1
 PROG.awk=

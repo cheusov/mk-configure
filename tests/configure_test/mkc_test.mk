@@ -62,6 +62,7 @@ MKC_CHECK_SIZEOF+=	bad_type bad-type:bad_header.h
 
 MKC_CHECK_TYPES+=	size_t:string.h
 MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
+MKC_CHECK_TYPES+=	time_t:stddef.h,time.h
 
 MKC_REQUIRE_TYPES+=	size_t:stdlib.h
 
@@ -98,7 +99,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
 	HAVE_TYPE.size_t.string_h \
-	HAVE_TYPE.bad_type \
+	HAVE_TYPE.bad_type HAVE_TYPE.time_t.time_h \
 	HAVE_HEADER.bad_header_h HAVE_HEADER.bad_dir_bad_header_h \
 	HAVE_HEADER_FILE.bad_header_h HAVE_HEADER_FILE.bad_dir_bad_header_h \
 	HAVE_FUNCLIB.bad_func HAVE_FUNCLIB.bad_func.bad_lib \
