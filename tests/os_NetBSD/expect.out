@@ -3,3 +3,4 @@ HAVE_HEADER.fts_h=1
 HAVE_HEADER_FILE.fts_h=1
 HAVE_PROTOTYPE.fts_read=1
 HAVE_FUNC1.htobe32.sys_endian_h=1
+HAVE_FUNC1.bswap64.machine_bswap_h=1
