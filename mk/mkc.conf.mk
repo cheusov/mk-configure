@@ -252,18 +252,18 @@ MKC_ERR_MSG +=	"ERROR: cannot find member ${m}"
 .for n in 0 1 2 3 4 5 6 7 8 9
 
 .for d in ${MKC_CHECK_FUNCS${n}:U} ${MKC_REQUIRE_FUNCS${n}:U}
-.if !defined(HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
+.if !defined(HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g})
+HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl func${n} ${d:S/:/ /g}
 .endif
-.if ${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if ${HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_FUNCS${n}:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_FUNC${n}_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_FUNC${n}_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor # d
 
 .for d in ${MKC_REQUIRE_FUNCS${n}:U}
-.if !${HAVE_FUNC${n}.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if !${HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 _fake   !=   env ${mkc.environ} mkc_check_decl -d func${n} ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of function ${d}"
 .endif

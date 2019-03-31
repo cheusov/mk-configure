@@ -50,10 +50,10 @@ MKC_CHECK_VARS+=	mkc_test_var:string.h,include/mkc_test.h
 
 MKC_REQUIRE_VARS+=	mkc_test_var2:include/mkc_test.h
 
-MKC_CHECK_FUNCS2+=	strcmp:string.h
+MKC_CHECK_FUNCS2+=	strcmp:stdlib.h,string.h
 MKC_CHECK_FUNCS3+=	strcpy
-MKC_CHECK_FUNCS1+=	bad_func bad_func:bad_header
-MKC_CHECK_FUNCS5+=	mkc_test_func:include/mkc_test.h
+MKC_CHECK_FUNCS1+=	bad_func bad_func:stdlib.h,bad_header
+MKC_CHECK_FUNCS5+=	mkc_test_func:stdlib.h,include/mkc_test.h
 
 MKC_REQUIRE_FUNCS0+=	mkc_test_func2:include/mkc_test.h
 
