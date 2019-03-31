@@ -4,6 +4,7 @@
 ############################################################
 
 TEST_PREREQS ?= all
+MKC_DIFF     ?=	diff
 
 _tmp_out:=${.OBJDIR}/${.CURDIR:T}.test.out
 
@@ -19,7 +20,7 @@ test: ${TEST_PREREQS}
 	else \
 		expect=${.CURDIR}/expect.out; \
 	fi; \
-	diff $$expect ${_tmp_out} && \
+	${MKC_DIFF} $$expect ${_tmp_out} && \
 	echo '      succeeded' 1>&2 || \
 	{ echo '      FAILED' 1>&2; false; }
 

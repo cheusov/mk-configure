@@ -1974,6 +1974,10 @@ test_output" and compare generated output with expect.out.
 Prerequisites for target "test".
 .RI < "Iu" >
 .RI [ all ]
+.IP MKC_DIFF
+diff(1) command for comparing expected and actual results.
+.RI < "Iu" >
+.RI [ diff ]
 .SS "mkc_imp.pkg-config.mk"
 .B mkc_imp.pkg-config.mk
 is internal include file which is included from
