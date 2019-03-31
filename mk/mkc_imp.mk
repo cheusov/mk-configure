@@ -112,7 +112,7 @@ realdo_errorcheck: check_mkc_err_msg
 
 # features
 .for f in ${MKC_FEATURES}
-  .include <mkc_imp.f_${f}.mk>
+.  include <mkc_imp.f_${f}.mk>
 .endfor
 .include <mkc.conf.mk>
 .include <mkc_imp.conf-final.mk>
