@@ -40,6 +40,7 @@ MKC_NOAUTO_FUNCLIBS+=	sqrt:m
 
 MKC_CHECK_DEFINES+=	__BAD_DEFINE__
 MKC_CHECK_DEFINES+=	MKC_TEST_DEFINE:include/mkc_test.h
+MKC_CHECK_DEFINES+=	EINVAL:stdio.h,errno.h
 
 MKC_REQUIRE_DEFINES+=	__JUSTATEST
 
@@ -91,7 +92,8 @@ MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
 MKC_PROTOTYPE_HEADERS.function_absent = string.h
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
-	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h HAVE_HEADER_FILE.unistd_h \
+	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h \
+	HAVE_HEADER_FILE.unistd_h \
 	HAVE_FUNCLIB.strcpy HAVE_FUNCLIB.sqrt \
 	HAVE_FUNC2.strcmp.string_h HAVE_FUNC3.strcpy \
 	SIZEOF.int SIZEOF.long_long SIZEOF.voidP SIZEOF.size_t.string_h \
@@ -111,6 +113,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_HEADER.include_mkc_test_h \
 	HAVE_HEADER_FILE.include_mkc_test_h \
 	HAVE_DEFINE.MKC_TEST_DEFINE.include_mkc_test_h \
+	HAVE_DEFINE.EINVAL.errno_h \
 	HAVE_FUNC5.mkc_test_func.include_mkc_test_h \
 	HAVE_VAR.mkc_test_var.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \

@@ -13,6 +13,7 @@ SIZEOF.long_long=8
 SIZEOF.voidP=8
 SIZEOF.size_t.string_h=4
 HAVE_DEFINE.__BAD_DEFINE__=2
+HAVE_DEFINE.EINVAL.errno_h=0
 HAVE_VAR.mkc_test_var.include_mkc_test_h=2
 HAVE_MEMBER.bad_member=2
 HAVE_MEMBER.bad_member.string_h=2

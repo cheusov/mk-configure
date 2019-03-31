@@ -158,18 +158,19 @@ MKC_CFLAGS  +=  -DSIZEOF_${t:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:tu}=${SIZEO
 ######################################################
 # checking for declared #define
 .for d in ${MKC_CHECK_DEFINES:U} ${MKC_REQUIRE_DEFINES:U}
-.if !defined(HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
+.if !defined(HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g})
+HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl define ${d:S/:/ /g}
 .endif
-.if ${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if ${HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_DEFINES:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+.info "-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1"
+MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for d in ${MKC_REQUIRE_DEFINES:U}
-.if !${HAVE_DEFINE.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if !${HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 _fake   !=   env ${mkc.environ} mkc_check_decl -d define ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of define ${d}"
 .endif
