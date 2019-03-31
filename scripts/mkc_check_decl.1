@@ -23,12 +23,13 @@ function prototype.
 .SH DESCRIPTION
 .I check_type
 is either
-.IR " define" , " variable" , " func[0-9]" , " type" , " member " or
+.IR " define" , " variable" , " func[0-9]" , " funcordefine[0-9]" , " type" , " member " or
 .IR " prototype" .
 Depending on its value
 .B mkc_check_decl
 checks respectively for define, variable, function with the specified number
-of arguments, data type, member of structure or a function prototype
+of arguments (or equivalent define in case of funcordefine[0-9]),
+data type, member of structure or a function prototype
 in the specified
 .I headers
 by compiling a test program.
@@ -136,6 +137,18 @@ int func(void)
 void func (void)
 {
    if (WHAT) return;
+   WHAT(0,0,0);
+}
+.VE
+.TP
+.BR funcordefine3 " (example for function/define with 3 arguments)"
+.VS
+#include <header1.h>
+ ...
+#include <headerN.h>
+
+void func (void)
+{
    WHAT(0,0,0);
 }
 .VE

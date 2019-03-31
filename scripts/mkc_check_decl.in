@@ -29,7 +29,7 @@ in system header files by compiling a test program.
 Usage:
  mkc_check_decl [OPTIONS] <CHECKTYPE> <what> [includes...]
 where CHECKTYPE is either of the following: "define", "variable",
-"func[0-9]", "type", "member" or "prototype".
+"func[0-9]", "funcordefine[0-9]", "type", "member" or "prototype".
 
 OPTIONS:
    -h             display this help
@@ -42,6 +42,7 @@ Examples:
    mkc_check_decl variable __malloc_hook malloc.h
    mkc_check_decl func3 poll poll.h
    mkc_check_decl func2 fgetln stdio.h
+   mkc_check_decl funcordefine1 htobe32 sys/endian.h
    mkc_check_decl type mbstate_t wchar.h
    mkc_check_decl type long-long
    mkc_check_decl member tm.tm_isdst time.h
@@ -157,15 +158,17 @@ is_type (){
 }
 
 ##############################
-is_func (){
+is_func_basic (){
+    func_or_define="$1"
+    shift
+
     get_includes "$@" > "$tmpc"
 
-    cat >> "$tmpc" <<EOF
-void func (void)
-{
-   if (${declwhat}) return;
-   ${declwhat} (
-EOF
+    printf '%s\n' 'void func (void){' >> "$tmpc"
+    if test "$func_or_define" = 1; then
+	printf '%s\n' "    if (${declwhat}) return;" >> "$tmpc"
+    fi
+    printf '%s' "    ${declwhat}(" >> "$tmpc"
 
     awk -v N="$argscnt" '
 BEGIN {
@@ -181,6 +184,14 @@ BEGIN {
 
     #
     compile
+}
+
+is_func (){
+    is_func_basic 1 "$@"
+}
+
+is_funcordefine (){
+    is_func_basic 0 "$@"
 }
 
 ##############################
