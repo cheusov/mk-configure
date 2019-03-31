@@ -204,18 +204,18 @@ MKC_ERR_MSG +=	"ERROR: cannot find declaration of type ${t}"
 ######################################################
 # checking for declared variables
 .for d in ${MKC_CHECK_VARS:U} ${MKC_REQUIRE_VARS:U}
-.if !defined(HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g})
-HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
+.if !defined(HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g})
+HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_decl variable ${d:S/:/ /g}
 .endif
-.if ${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if ${HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_VARS:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_VAR_${d:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CFLAGS  +=	-DHAVE_VAR_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
 
 .for d in ${MKC_REQUIRE_VARS:U}
-.if !${HAVE_VAR.${d:S/./_/g:S/:/./g:S|/|_|g}}
+.if !${HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 _fake   !=   env ${mkc.environ} mkc_check_decl -d variable ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of variable ${d}"
 .endif

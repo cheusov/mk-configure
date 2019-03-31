@@ -46,7 +46,7 @@ MKC_REQUIRE_DEFINES+=	__JUSTATEST
 
 MKC_CHECK_VARS+=	errno:errno.h
 MKC_CHECK_VARS+=	bad_var:bar_header
-MKC_CHECK_VARS+=	mkc_test_var:include/mkc_test.h
+MKC_CHECK_VARS+=	mkc_test_var:string.h,include/mkc_test.h
 
 MKC_REQUIRE_VARS+=	mkc_test_var2:include/mkc_test.h
 
