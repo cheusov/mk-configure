@@ -3,9 +3,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if defined(PKG_CONFIG_DEPS) # PKG_CONFIG_DEPS -- deprecated 2014.01.15
-MKC_REQUIRE_PKGCONFIG +=	${PKG_CONFIG_DEPS}
-.endif
 .if defined(MKC_REQUIRE_PKGCONFIG)
 MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
 .endif
@@ -65,7 +62,6 @@ MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 ######################################################
 .include <mkc_imp.conf-final.mk>
 
-.undef PKG_CONFIG_DEPS
 .undef MKC_CHECK_PKGCONFIG
 .undef MKC_REQUIRE_PKGCONFIG
 

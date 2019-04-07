@@ -2014,9 +2014,6 @@ The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
 treated as a fatal error (See
 .B errorcheck
 target.
-.RI < "M" >
-.IP PKG_CONFIG_DEPS
-Synonym for MKC_REQUIRE_PKGCONFIG. Deprecated.
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
 Inside <lib> <=, >=, =, < and > and replaced with

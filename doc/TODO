@@ -40,7 +40,7 @@ cheusov@corpo |
 PROG =			wf_tesseract
 SRCS =			wf_tesseract.cc
 
-PKG_CONFIG_DEPS =	lept jsoncpp
+MKC_REQUIRE_PKGCONFIG =	lept jsoncpp
 MKC_REQUIRE_FUNCLIBS +=	main:tesseract
 
 ????? LDADD +=		-ltesseract ?????
