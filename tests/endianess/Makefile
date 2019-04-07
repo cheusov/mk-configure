@@ -1,6 +1,6 @@
 # this is a backward compatibility test for endianess (single n)
 
-MKC_CHECK_BUILTINS +=		endianess
+MKC_CHECK_BUILTINS +=		endianness
 
 MKC_REQD =		0.12.0
 
@@ -8,7 +8,7 @@ MKC_REQD =		0.12.0
 
 .PHONY: showme
 showme:
-	@echo BUILTIN.endianess=${BUILTIN.endianess}
+	@echo BUILTIN.endianness=${BUILTIN.endianness}
 
 .include "test.mk"
 .include <mkc.prog.mk>

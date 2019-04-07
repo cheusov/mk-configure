@@ -1,3 +1,2 @@
 =========== all ============
-warning: "endianess test deprecated; use endianness instead"
-BUILTIN.endianess=big
+BUILTIN.endianness=big
