@@ -288,9 +288,6 @@ MKC_CUSTOM_FN.${c} =	${c}.c
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
 MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
-.if ${c} == "endianess"
-.warning "endianess test deprecated; use endianness instead"
-.endif
 CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
 .endif
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
