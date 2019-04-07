@@ -8,10 +8,6 @@
   SUBPRJ = ${SUBDIR}
 .endif
 
-.ifdef SUBPRJS
-  SUBPRJ   +=	${SUBPRJS} # for backward compatibility only, use SUBPRJ!
-.endif # defined(SUBPRJS)
-
 .include <mkc_imp.lua.mk>
 .include <mkc_imp.pod.mk>
 .include <mkc.init.mk>
