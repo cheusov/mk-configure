@@ -1163,6 +1163,11 @@ This include file is included by
 automatically
 but in some cases it makes sense to include it explicitly.
 .B mkc.configure.mk
+itself includes
+.BR mkc.init.mk ", then " mkc.conf.mk
+, and finally internal include file which updates
+.BR CPPFLAGS ", " CFLAGS ", " LDADD " and " SRCS .
+.B mkc.configure.mk
 supports the following variables.
 .IP MKCHECKS
 If "no", none of the checks are performed. It is set to "yes" unless target
@@ -1704,7 +1709,9 @@ is not included by
 .B mkc.conf.mk
 in the beginning, and
 .BR CFLAGS ", " CPPFLAGS ", " LDADD " and " SRCS
-varibales are not modified. Instead, internal variables contain all
+varibales are not modified. Instead, internal variables
+.BR MKC_CFLAGS ", " MKC_CPPFLAGS ", " MKC_LDADD " and " MKC_SRCS
+contain all
 changes and will be applied later. One can use this module for implementing your own
 "features" similar to
 .BR MKC_FEATURES .
