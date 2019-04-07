@@ -1,4 +1,43 @@
 ======================================================================
+Version 0.31.0, by Aleksey Cheusov, Sat,  6 Apr 2019 19:34:18 +0300
+
+  Introduce publicly available mkc.conf.mk file.
+
+  MKC_CHECK_HEADERS,MKC_CHECK_HEADER_FILES,MKC_CHECK_DEFINES,MKC_CHECK_TYPES,MKC_CHECK_VARS,
+  MKC_CHECK_MEMBERS,MKC_CHECK_FUNCS<n>,MKC_CHECK_PROTOTYPES,MKC_CHECK_SIZEOF now accepts a list of comma-separated headers for checking them at once..
+      Good example is sys/types.h, sys/stat.h and sys/fts.h seen on NetBSD.
+
+  MKC_CHECK_FUNCS<n>: introduce new variable MKC_FUNC_OR_DEFINE.<func>.
+
+  mkc_imp.conf-final.mk: duplicated are not added to CPPFLAGS, CFLAGS, LDADD and SRCS.
+
+  mkc.minitest.mk: Introduce variable MKC_DIFF for diff(1) command.
+
+  mkc_check_decl: introduce new check type -- funcordefine.
+
+  MKC_PROTOTYPE_HEADERS.<name> supports both comma and space as a separator.
+
+  Update man page for mkc_check_decl.
+
+  Fix in MKC_CHECK_PROTOTYPES.  The problem was it says "found" for
+  undeclared prototypes.
+
+  Introduce _MKC_CHECK_<xxx> defines for every feature.  They
+  guarantee that #include <mkc_XXX.h> are not used without appropriate
+  MKC_FEATURES += <xxx> in Makefile.
+
+  Move invocations of mkc_imp.conf-final.mk from mkc_imp.conf.mk and
+  features/* to mkc_imp.mk.  This allows to run sequential tests
+  without affecting CFLAGS, LDADD etc.
+
+  Improvements for regression tests and examples.
+
+  Fix ij regression tests/* and examples/*.
+
+  helpers/mkc_test_nm: workaround for nm(1) wrapper that fixes tests
+  on Linux/ppc64 (CentOS-7)
+
+======================================================================
 Version 0.30.0, by Aleksey Cheusov, Tue,  6 Mar 2018 21:49:02 +0300
 
   Variables MKC_{CHECK,REQUIRE}_HEADER_FILES were introduced.
