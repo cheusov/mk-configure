@@ -32,3 +32,5 @@ DVIPS  ?=	dvips
 LATEX  ?=	latex
 
 generated_scripts =	mkc_check_prog mkc_which mkc_check_custom
+
+DIST_TARGETS =		pdf clean-mk clean-scripts mkc_clean

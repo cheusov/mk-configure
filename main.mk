@@ -41,8 +41,6 @@ PROJECTNAME =		mk-configure
 #
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
-DIST_TARGETS =		pdf clean-mk clean-scripts mkc_clean
-
 INSTALL      =		${.CURDIR}/scripts/mkc_install
 PATH        :=		${OBJDIR_builtins}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
 
