@@ -120,7 +120,7 @@ CXX_TYPE ?=	unknown
 # Default compiler-specific options
 
 # C
-CFLAGS.dflt.clang     =		-Qunused-arguments
+CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaration
 CFLAGS.dflt.icc       =		-we147 # 147 is required for MKC_CHECK_PROTOTYPES
 
 CFLAGS               +=		${CFLAGS.dflt.${CC_TYPE}}
