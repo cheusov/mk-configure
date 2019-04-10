@@ -4,6 +4,8 @@
 
 #define YYSTYPE int
 void yyerror (char const *s);
+int yylex (void);
+
 %}
 
 %token NUMBER
@@ -27,7 +29,7 @@ expr : expr '+' expr { $$ = $1 + $3; }
 
 %%
 
-yylex (){
+int yylex (void){
 	int c = getchar ();
 
 	if (c >= '0' && c <= '9'){

@@ -2,6 +2,10 @@
 %{
 #include <stdio.h>
 #include <mkc_libm.h>
+
+int yyerror (char *s);
+int yylex (void);
+
 %}
 
 %union {
