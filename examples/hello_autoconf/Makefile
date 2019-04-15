@@ -4,7 +4,7 @@ FSRCDIR =		proj
 AT_USE_AUTOMAKE =	no
 AT_MAKE         =	${BUILTIN.prog_gmake}
 
-MKC_CHECK_BUILTINS =	prog_gmake
+MKC_REQUIRE_BUILTINS =	prog_gmake
 MKCHECKS           =	yes # we need path to gmake for target "clean"
 
 # The following line is for regression tests.
