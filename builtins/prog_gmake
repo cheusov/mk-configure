@@ -12,7 +12,7 @@ export LC_ALL
 pathpart=' ' # fake
 . mkc_check_common.sh
 
-find_n_match  make -f /dev/null --version 'gnu make'
-find_n_match gmake -f /dev/null --version 'gnu make'
+find_n_match  make '-f /dev/null --version' 'gnu make'
+find_n_match gmake '-f /dev/null --version' 'gnu make'
 
 echo ''

@@ -91,7 +91,6 @@ find_n_match (){
 	grep -i "$3" > /dev/null
     then
 	echo "$__prog"
-	exit 0
     fi
 }
 
