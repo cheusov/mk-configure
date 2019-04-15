@@ -69,7 +69,7 @@ mkc.environ=CC='${CC}' CXX='${CXX}' FC='${FC}' CPPFLAGS='${_MKC_CPPFLAGS}' CFLAG
 ######################################################
 # checking for builtin checks
 .for i in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
-MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${i:S/endianess/endianness/}
+MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${i}
 MKC_CHECK_CUSTOM   +=	${i}
 MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
 .endfor
