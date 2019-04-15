@@ -13,6 +13,9 @@ MKC_REQUIRE_PROGS +=	autoreconf
 
 AT_USE_AUTOMAKE ?=	yes
 AT_MAKE         ?=	${MAKE}
+.if empty(AT_MAKE)
+AT_MAKE         =	false
+.endif
 AT_AUTORECONF_ARGS ?=	-is -f
 
 .if empty(FSRCDIR)
