@@ -1,6 +1,6 @@
 #!@LUA@
 
-require "foo"
-require "bar"
+local foo = require "foo"
+local bar = require "bar"
 
 io.write (foo.get () .. bar.get () .. "\n")

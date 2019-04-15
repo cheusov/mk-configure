@@ -1,5 +1,7 @@
-module ("bar")
+bar = {}
 
-function get ()
+function bar.get ()
    return "bar"
 end
+
+return bar

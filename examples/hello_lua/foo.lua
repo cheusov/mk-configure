@@ -1,5 +1,7 @@
-module ("foo")
+foo = {}
 
-function get ()
+function foo.get ()
    return "foo"
 end
+
+return foo
