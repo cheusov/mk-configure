@@ -1,9 +1,10 @@
 CLEANDIRS +=	${.OBJDIR}/home
+install_dirs =	${.OBJDIR}/usr ${.OBJDIR}/opt ${.OBJDIR}/home
 
 .PHONY : test_output
 test_output:
 	@set -e; \
-	rm -rf ${.OBJDIR}/usr ${.OBJDIR}/opt; \
+	rm -rf ${install_dirs}; \
 	echo PROJECTNAME=${PROJECTNAME}; \
 	LUA_PATH=${.CURDIR}/?.lua; \
 	LUA_CPATH=${.OBJDIR}/?.so; \
@@ -18,7 +19,7 @@ test_output:
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
-	find ${.OBJDIR}/usr ${.OBJDIR}/opt -type f | \
+	find ${install_dirs} -type f | \
 	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \
