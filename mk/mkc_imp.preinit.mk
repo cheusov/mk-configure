@@ -9,7 +9,7 @@
 ####################
 BMAKE_REQD ?=	20110606
 
-.ifdef MAKE_VERSION
+.if !empty(MAKE_VERSION:U)
 _bmake_ok != test ${MAKE_VERSION:Q} -ge ${BMAKE_REQD:Q} && echo 1 || echo 0
 .else
 _bmake_ok  = 0
