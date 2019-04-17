@@ -12,7 +12,6 @@ export LC_ALL
 pathpart=' ' # fake
 . mkc_check_common.sh
 
-find_n_match gm4 --version 'gnu m4'
-find_n_match  m4 --version 'gnu m4'
-
+find_n_match gm4 --version 'gnu m4' ||
+find_n_match  m4 --version 'gnu m4' ||
 echo ''
