@@ -12,7 +12,6 @@ export LC_ALL
 pathpart=' ' # fake
 . mkc_check_common.sh
 
-find_n_match flex --version 'flex'
-find_n_match  lex --version 'flex'
-
+find_n_match flex --version 'flex' ||
+find_n_match  lex --version 'flex' ||
 echo ''

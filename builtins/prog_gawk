@@ -12,8 +12,7 @@ export LC_ALL
 pathpart=' ' # fake
 . mkc_check_common.sh
 
-find_n_match gawk --version 'gnu awk'
-find_n_match nawk --version 'gnu awk'
-find_n_match  awk --version 'gnu awk'
-
+find_n_match gawk --version 'gnu awk' ||
+find_n_match nawk --version 'gnu awk' ||
+find_n_match  awk --version 'gnu awk' ||
 echo ''

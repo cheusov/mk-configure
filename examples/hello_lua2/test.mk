@@ -1,4 +1,5 @@
 CLEANDIRS +=	${.OBJDIR}/home
+install_dirs =	${.OBJDIR}/usr ${.OBJDIR}/opt ${.OBJDIR}/home
 
 .PHONY : test_output
 test_output:
@@ -17,12 +18,12 @@ test_output:
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
-	find ${.OBJDIR}/usr ${.OBJDIR}/opt -type f | \
+	find ${install_dirs} -type f | \
 	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
 	\
 	echo ======== uninstall =========; \
 	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
-	find ${.OBJDIR}/usr ${.OBJDIR}/opt  -type f | \
+	find ${install_dirs} -type f | \
 	mkc_test_helper /usr/local "${.OBJDIR}"; \
 	\
 	echo ========== clean ===========; \
