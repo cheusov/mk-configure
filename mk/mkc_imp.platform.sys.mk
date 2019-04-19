@@ -138,17 +138,10 @@ CFLAGS.warnerr.icc    =		-Werror
 CFLAGS.warnerr.sunpro =		-errwarn=%all
 CFLAGS.warnerr.clang  =		-Werror
 
-#WARNERR?=	${${WARNS:U0}==4:?yes:no} # Eh, buggy bmake :-(
-.if ${WARNS:U0} == 4
-WARNERR  ?=	yes
-.else
-WARNERR  ?=	no
-.endif
+WARNERR  ?=	${WARNS:U0:S/4/yes/}
 
-.if ${WARNERR:tl} == "yes"
-CFLAGS.warnerr   =	${CFLAGS.warnerr.${CC_TYPE}}
-CXXFLAGS.warnerr =	${CFLAGS.warnerr.${CXX_TYPE}}
-.endif
+CFLAGS.warnerr   =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CC_TYPE}}:}
+CXXFLAGS.warnerr =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CXX_TYPE}}:}
 
 ####################
 # C warns for GCC
