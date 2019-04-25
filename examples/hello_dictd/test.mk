@@ -89,7 +89,7 @@ test_output :
 	find ${.OBJDIR} -type d -o -type f -o -type l | grep -v 'obj[23]' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ===; \
-	find ${.OBJDIR}/obj2/${.OBJDIR} ${.OBJDIR}/obj3 \
+	find ${.OBJDIR}/obj2${.OBJDIR} ${.OBJDIR}/obj3 \
 	   -type d -o -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; rm -rf obj2 obj3; \
 	\
