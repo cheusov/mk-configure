@@ -74,7 +74,7 @@ test_output :
 	find ${.OBJDIR} -type d -o -type f -o -type l | grep -v obj1 | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ===; \
-	find ${.OBJDIR}/obj1/${.OBJDIR} -type d -o -type f -o -type l | \
+	find ${.OBJDIR}/obj1${.OBJDIR} -type d -o -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; rm -rf obj1; \
 	\
 	echo =========== MKOBJDIRS=yes ============; \
