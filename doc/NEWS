@@ -1,4 +1,37 @@
 ======================================================================
+Version 0.32.0, by Aleksey Cheusov, Wed,  1 May 2019 14:18:30 +0300
+
+  Calculate WARNERR and {CC,CXX}FLAGS.warnerr lazily.  This makes some
+  interesting scenaria possible, for example, setting WARNS in
+  Makefile.common or Makefile.inc top-level files.
+
+  Feature "prog_gmake": fix fork-bomb seen on FreeBSD 12.0-RELEASE-p3
+  due to features of native make(1).
+
+  Fixes for builtins prog_gm4, prog_gmake, prog_gawk and prog_flex
+  (multiline output)
+
+  MKC_BUILTINS_*: fix find_n_match function in mkc_check_common.sh
+
+  Minor fixes in examples/hello_{yaxx,calc2}
+
+  Always apply -Werror=implicit-function-declaration for clang.
+  This fixes MKC_CHECK_FUNCS on clang-5.0.1 and earlier versions.
+
+  mkc_imp.foreign_autotools.mk: if AT_MAKE is empty set it to "false"
+
+  Get rid of builtin "endianess" (with single N)
+
+  mkc_check_common.sh: always use mkc_which(1) instead of which(1)
+
+  Updates for Lua code in examples/
+
+  BMAKE_REQD check: workaround for broken bmake (seen on Darwin) that
+  defines empty MAKE_VERSION
+
+  examples/hello_dictd/test.mk: avoid double-slash in dirs
+
+======================================================================
 Version 0.31.0, by Aleksey Cheusov, Sun,  7 Apr 2019 23:39:47 +0300
 
   Fix in MKC_CHECK_PROTOTYPES.  The problem was it says "found" for
