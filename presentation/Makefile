@@ -4,7 +4,7 @@ MKC_REQUIRE_PROGS =	${PS2PDF} ${DOT} ${DVIPS} ${LATEX}
 
 ############################################################
 
-all : presentation.pdf myprojects.pdf
+do-all : presentation.pdf myprojects.pdf
 
 .PHONY : pdf dvi rtf
 pdf : presentation.pdf
