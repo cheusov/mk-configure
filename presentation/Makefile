@@ -2,6 +2,9 @@
 
 MKC_REQUIRE_PROGS =	${PS2PDF} ${DOT} ${DVIPS} ${LATEX}
 
+FILES             =	presentation.pdf myprojects.pdf
+FILESDIR          =	${DOCDIR}
+
 ############################################################
 
 do-all : presentation.pdf myprojects.pdf
