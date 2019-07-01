@@ -1942,7 +1942,7 @@ linked-to file coming first, followed by the linked
 file.  The files are hard-linked.  For example, to link
 ${BINDIR}/gzip and ${BINDIR}/gunzip, use:
 .VS
-    LINKS=   ${DESTDIR}/bin/gzip ${DESTDIR}${BINDIR}/gunzip
+    LINKS=   ${BINDIR}/gzip ${BINDIR}/gunzip
 .VE
 .RI < "M" >
 .IP SYMLINKS
