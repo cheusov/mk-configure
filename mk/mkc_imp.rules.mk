@@ -26,11 +26,11 @@
 	${MESSAGE.cc}
 	${COMPILE.cc} ${CPPFLAGS_${_PN}} ${CXXFLAGS_${_PN}} \
 		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
-.cc.op .C.op .cpp.op:
+.cc.op .C.op .cpp.op .cxx.op:
 	${MESSAGE.cc}
 	${COMPILE.cc} -pg ${CPPFLAGS_${_PN}} ${CXXFLAGS_${_PN}} \
 		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
-.cc.os .C.os .cpp.os:
+.cc.os .C.os .cpp.os .cxx.os:
 	${MESSAGE.cc}
 	${COMPILE.cc} ${CXXFLAGS.pic} ${CPPFLAGS_${_PN}} \
 		${CXXFLAGS_${_PN}} ${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
