@@ -53,7 +53,7 @@ _COMPILER_VERSION  mipspro
 '
 
 check_itself (){
-    awk '
+    @AWK@ '
 BEGIN {
    printf "#"
    for (i=1; i < ARGC; ++i){
@@ -62,7 +62,7 @@ BEGIN {
    printf "se\ncompiler unknown\n#endif\n"
 }' $checks >"$tmpfile"
     $CC -E "$tmpfile" |
-    awk 'BEGIN { ret="unknown"} $1 == "compiler" {ret=$2; exit} END {print ret}'
+    @AWK@ 'BEGIN { ret="unknown"} $1 == "compiler" {ret=$2; exit} END {print ret}'
 }
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
