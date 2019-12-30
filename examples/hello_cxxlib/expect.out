@@ -1,5 +1,6 @@
 Hello world 1!
 hello world 2!
+hello world 3!
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
@@ -38,6 +39,14 @@ hello world 2!
 /objdir/cxxlib/libcxxlib.a
 /objdir/cxxlib/libcxxlib.so.1.0.5
 /objdir/cxxlib/linkme.mk
+/objdir/cxxlib2/Makefile
+/objdir/cxxlib2/hello_msg3.cxx
+/objdir/cxxlib2/hello_msg3.o
+/objdir/cxxlib2/hello_msg3.os
+/objdir/cxxlib2/include/hello_msg2.h
+/objdir/cxxlib2/libcxxlib2.a
+/objdir/cxxlib2/libcxxlib2.so.0.0
+/objdir/cxxlib2/linkme.mk
 /objdir/expect.out
 /objdir/hello_cxxlib.test.out.tmp
 /objdir/test.mk
@@ -47,6 +56,7 @@ hello world 2!
 /objdir/prefix/bin/cxxapp
 /objdir/prefix/include
 /objdir/prefix/include/hello_msg.h
+/objdir/prefix/include/hello_msg2.h
 /objdir/prefix/include/impl
 /objdir/prefix/include/impl/hello_msg1.h
 /objdir/prefix/include/impl/hello_msg2.h
@@ -55,6 +65,10 @@ hello world 2!
 /objdir/prefix/lib/libcxxlib.so
 /objdir/prefix/lib/libcxxlib.so.1
 /objdir/prefix/lib/libcxxlib.so.1.0.5
+/objdir/prefix/lib/libcxxlib2.a
+/objdir/prefix/lib/libcxxlib2.so
+/objdir/prefix/lib/libcxxlib2.so.0
+/objdir/prefix/lib/libcxxlib2.so.0.0
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
@@ -84,6 +98,10 @@ hello world 2!
 /objdir/cxxlib/include/impl/hello_msg1.h
 /objdir/cxxlib/include/impl/hello_msg2.h
 /objdir/cxxlib/linkme.mk
+/objdir/cxxlib2/Makefile
+/objdir/cxxlib2/hello_msg3.cxx
+/objdir/cxxlib2/include/hello_msg2.h
+/objdir/cxxlib2/linkme.mk
 /objdir/expect.out
 /objdir/hello_cxxlib.test.out.tmp
 /objdir/test.mk
@@ -100,6 +118,10 @@ hello world 2!
 /objdir/cxxlib/include/impl/hello_msg1.h
 /objdir/cxxlib/include/impl/hello_msg2.h
 /objdir/cxxlib/linkme.mk
+/objdir/cxxlib2/Makefile
+/objdir/cxxlib2/hello_msg3.cxx
+/objdir/cxxlib2/include/hello_msg2.h
+/objdir/cxxlib2/linkme.mk
 /objdir/expect.out
 /objdir/hello_cxxlib.test.out.tmp
 /objdir/test.mk
