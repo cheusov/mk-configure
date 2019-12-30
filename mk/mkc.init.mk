@@ -235,12 +235,12 @@ MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
 CC        ?=	cc
 CFLAGS    ?=
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${_CPPFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${CFLAGS} ${_CPPFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} ${COPTS} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX        ?=	c++
 CXXFLAGS   +=	${CFLAGS}
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${_CPPFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${CXXFLAGS} ${_CPPFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${COPTS} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 OBJC       ?=	${CC}

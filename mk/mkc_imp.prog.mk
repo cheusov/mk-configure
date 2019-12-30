@@ -12,8 +12,6 @@ _MKC_IMP_PROG_MK := 1
 
 proginstall:	.PHONY # ensure existence
 
-CFLAGS +=	${COPTS}
-
 __proginstall: .USE
 	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${STRIPFLAG} \
 	    -o ${BINOWN:Q} -g ${BINGRP:Q} -m ${BINMODE} ${.ALLSRC} ${.TARGET}

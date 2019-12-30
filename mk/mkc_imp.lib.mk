@@ -33,7 +33,6 @@ UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
-CFLAGS  +=	${COPTS}
 FFLAGS  +=	${FOPTS}
 
 OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
