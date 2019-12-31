@@ -1,4 +1,4 @@
-SUBST_CMD=sed -e 's,Not enough space,Cannot allocate memory,'
+SUBST_CMD=sed -e 's,Not enough space,Cannot allocate memory,' -e 's,Out of memory,Cannot allocate memory,'
 
 .PHONY : test_output
 test_output:
