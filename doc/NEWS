@@ -1,4 +1,23 @@
 ======================================================================
+Version 0.32.1, by Aleksey Cheusov, Mon,  6 Jan 2020 01:11:46 +0300
+
+  Fix MKC_CHECK_SIZEOF when having slashes in the header part.
+  Thanks to Niclas Rosenvik for the fix!
+
+  Fix support for .cxx c++ files in profiled and shared libraries.
+  Thanks to Niclas Rosenvik for the fix!
+
+  Fix in presentation/Makefile
+
+  Fix in mk-configure.7 man page
+
+  Fix at_do_* target
+
+  Remove $(COPTS) from $(CFLAGS) and change COMPILE.{c,cc}
+
+  Fix regression test examples/hello_errwarn on musl-based Linuxes (Alpine Linux)
+
+======================================================================
 Version 0.32.0, by Aleksey Cheusov, Wed,  1 May 2019 14:18:30 +0300
 
   Calculate WARNERR and {CC,CXX}FLAGS.warnerr lazily.  This makes some
