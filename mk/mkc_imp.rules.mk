@@ -10,30 +10,24 @@
 
 .c.o:
 	${MESSAGE.c}
-	${COMPILE.c} ${CPPFLAGS_${_PN}} ${CFLAGS_${_PN}} \
-		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 .c.op:
 	${MESSAGE.c}
-	${COMPILE.c} -pg ${CPPFLAGS_${_PN}} ${CFLAGS_${_PN}} \
-		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} -pg ${.IMPSRC}
 .c.os:
 	${MESSAGE.c}
-	${COMPILE.c} ${CFLAGS.pic} ${CPPFLAGS_${_PN}} \
-		${CFLAGS_${_PN}} ${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.c} ${CFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 
 # C++
 .cc.o .cpp.o .cxx.o .C.o:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${CPPFLAGS_${_PN}} ${CXXFLAGS_${_PN}} \
-		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 .cc.op .cpp.op .cxx.op .C.op:
 	${MESSAGE.cc}
-	${COMPILE.cc} -pg ${CPPFLAGS_${_PN}} ${CXXFLAGS_${_PN}} \
-		${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} -pg ${.IMPSRC}
 .cc.os .cpp.os .cxx.os .C.os:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${CXXFLAGS.pic} ${CPPFLAGS_${_PN}} \
-		${CXXFLAGS_${_PN}} ${COPTS_${_PN}} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 
 # Fortran/Ratfor
 .f.o:

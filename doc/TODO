@@ -4,9 +4,6 @@ or from define (if exists). This is issue #7
 
 ============================================================
 
-Mark COPTS* variables as settable by user. Also, specify that CFLAGS is
-applied after CFLAGS0 and before COPTS.
-
 Introduce MKC_REQUIRE_BUILTINS in addition to MKC_CHECK_BUILTINS
 remove hello_ prefix from all examples
 install target: introduce dependencies for target files

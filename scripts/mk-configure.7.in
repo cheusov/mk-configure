@@ -808,6 +808,12 @@ See LIBDEPS in section
 includes
 .B mkc.files.mk
 and therefore supports all variables supported by it.
+.PP
+The order of options passed to the C compiler:
+.BR CPPFLAGS0 ", " CPPFLAGS ", " CPPFLAGS_<project> ", " CFLAGS ", " CFLAGS.ssp ", " CFLAGS.pie ", " CFLAGS.warns ", " CFLAGS_<project> ", " CFLAGS.pic " (for shared objects), " COPTS ", " COPTS_<project>
+.PP
+The order of options passed to the C++ compiler:
+.BR CPPFLAGS0 ", " CPPFLAGS ", " CPPFLAGS_<project> ", " CXXFLAGS ", " CXXFLAGS.ssp ", " CXXFLAGS.pie ", " CXXFLAGS.warns ", " CXXFLAGS_<project> ", " CXXFLAGS.pic " (for shared objects), " COPTS ", " COPTS_<project>
 .SS "mkc.lib.mk"
 The include file
 .B mkc.lib.mk
@@ -936,6 +942,9 @@ Libraries are ranlib'd when made.
 includes
 .B mkc.files.mk
 and therefore supports all variables supported by it.
+.PP
+The order of options passed to the C and C++ compilers are the same as in
+.BR mkc.prog.mk .
 .SS "mkc.subprj.mk"
 The include file
 .B mkc.subprj.mk
