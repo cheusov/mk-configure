@@ -1,3 +1,9 @@
+============================================================
+New feature "path_max" for detecting PATH_MAX from getconf
+or from define (if exists). This is issue #7
+
+============================================================
+
 Mark COPTS* variables as settable by user. Also, specify that CFLAGS is
 applied after CFLAGS0 and before COPTS.
 
