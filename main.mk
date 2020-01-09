@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Aleksey Cheusov
+# Copyright (c) 2014-2019 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -7,7 +7,8 @@
 
 ##################################################
 SUBPRJ_DFLT =   builtins helpers mk scripts features doc
-SUBPRJ      =	examples presentation ${SUBPRJ_DFLT}
+SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
+		scripts:builtins scripts:helpers scripts:mk scripts:features scripts:doc
 
 tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    mkprofilelib mkdll pkg_config_0 pkg_config_1 pkg_config_1_1 pkg_config_2 \
@@ -55,11 +56,8 @@ pdf:
 	rm -f myprojects.*
 
 ##################################################
-cleandir:	cleandir-tests cleandir-presentation clean_bootstrap_scripts
-clean:		clean-tests clean-presentation clean_bootstrap_scripts
-
-clean_bootstrap_scripts:
-	rm -f ${generated_scripts:S|^|${.CURDIR}/|}
+cleandir:	cleandir-tests cleandir-presentation
+clean:		clean-tests clean-presentation
 
 test:		test-tests
 
