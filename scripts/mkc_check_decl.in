@@ -167,6 +167,8 @@ is_func_basic (){
     printf '%s\n' 'void func (void){' >> "$tmpc"
     if test "$func_or_define" = 1; then
 	printf '%s\n' "    if (${declwhat}) return;" >> "$tmpc"
+    else
+	printf '#ifndef %s\n' "$declwhat\n#error \"Not a define\"\n#endif\n" >> "$tmpc"
     fi
     printf '%s' "    ${declwhat}(" >> "$tmpc"
 

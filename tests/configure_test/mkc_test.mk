@@ -55,6 +55,12 @@ MKC_CHECK_FUNCS3+=	strcpy
 MKC_CHECK_FUNCS1+=	bad_func bad_func:stdlib.h,bad_header
 MKC_CHECK_FUNCS5+=	mkc_test_func:stdlib.h,include/mkc_test.h
 
+MKC_CHECK_FUNCS1+=	bad_func1:string.h
+MKC_FUNC_OR_DEFINE.bad_func1 = yes
+
+MKC_CHECK_FUNCS2+=	strtok:string.h
+MKC_FUNC_OR_DEFINE.strtok = yes
+
 MKC_REQUIRE_FUNCS0+=	mkc_test_func2:include/mkc_test.h
 
 MKC_CHECK_SIZEOF+=	int long-long void* size_t:stdlib.h,unistd.h,string.h
@@ -105,6 +111,8 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_FUNCLIB.bad_func HAVE_FUNCLIB.bad_func.bad_lib \
 	HAVE_DEFINE.__BAD_DEFINE__ \
 	HAVE_FUNC1.bad_func HAVE_FUNC1.bad_func.bad_header \
+	HAVE_FUNC1.bad_func1.string_h \
+	HAVE_FUNC2.strtok.string_h \
 	SIZEOF.bad_type SIZEOF.bad_type.bad_header_h \
 	HAVE_FUNCLIB.superfunc1 HAVE_FUNCLIB.superfunc2.superlib2 \
 	HAVE_MEMBER.struct_tm_tm_isdst.time_h \
