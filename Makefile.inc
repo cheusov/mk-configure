@@ -19,18 +19,19 @@ INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 # Solaris' /usr/bin/awk is completely broken,
 # /usr/xpg4/bin/awk sucks too but sucks less.
 MKC_AWK        =	/usr/xpg4/bin/awk
-.  else
-MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in gawk || true
-.    if ${MKC_AWK} == ""
-MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in gawk || true
-.      if ${MKC_AWK} == ""
-MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in nawk || true
-.      else
-MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in awk || true
-.      endif
-.    endif
 .  endif
-
+.  if ${MKC_AWK:U} == ""
+MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in gawk 2>/dev/null || true
+.  endif
+.  if ${MKC_AWK:U} == ""
+MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in nawk 2>/dev/null || true
+.  endif
+.  if ${MKC_AWK:U} == ""
+MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in awk 2>/dev/null || true
+.  endif
+.  if ${MKC_AWK:U} == ""
+.    error "Cannot find AWK"
+.  endif
 .export MKC_AWK
 .endif
 
