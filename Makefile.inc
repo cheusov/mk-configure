@@ -9,6 +9,7 @@ FEATURESDIR   ?=	${PREFIX}/share/mk-configure/features
 
 INTEXTS_REPLS +=	version        ${VERSION}
 INTEXTS_REPLS +=	AWK            ${MKC_AWK}
+INTEXTS_REPLS +=	SH             ${MKC_SH}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
 INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
@@ -33,6 +34,16 @@ MKC_AWK       !=	${.CURDIR}/scripts/mkc_which.in awk 2>/dev/null || true
 .    error "Cannot find AWK"
 .  endif
 .export MKC_AWK
+.endif
+
+.ifndef MKC_SH
+.  if exists(/usr/xpg4/bin/sh)
+# Solaris-10's /bin/sh is completely broken,
+# /usr/xpg4/bin/sh sucks too but sucks less.
+MKC_SH        =	/usr/xpg4/bin/sh
+.  else
+MKC_SH        = /bin/sh
+.  endif
 .endif
 
 #MKC_CACHEDIR =	${.CURDIR}/..
