@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
+#include <mkc_strndup.h>
 #include <mkc_fgetln.h>
 #include <mkc_err.h>
 

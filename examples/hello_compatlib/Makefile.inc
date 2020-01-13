@@ -1,1 +1,1 @@
-MKC_FEATURES  =	strlcpy strlcat getline progname fgetln err
+MKC_FEATURES  =	strlcpy strlcat strndup getdelim progname fgetln err

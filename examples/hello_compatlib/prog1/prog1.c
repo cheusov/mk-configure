@@ -3,7 +3,7 @@
 
 #include <mkc_strlcpy.h>
 #include <mkc_strlcat.h>
-#include <mkc_getline.h>
+#include <mkc_getdelim.h>
 #include <mkc_progname.h>
 
 static const char message [] = "Theo de Raadt said: \"The strlcpy() and strlcat() functions provide a consistent, unambiguous API to help the programmer write more bullet-proof code.\"";
@@ -18,7 +18,7 @@ int main (int argc, char ** argv)
 
 	setprogname (argv [0]);
 
-	while (len = getline (&buf, &size, stdin), len != -1){
+	while (len = getdelim(&buf, &size, '\0', stdin), len != -1){
 		len = strlen (buf);
 		if (len > 0 && buf [len-1] == '\n')
 			buf [len-1] = 0;

@@ -15,6 +15,9 @@
 /objdir/_mkc_func2_fgetln_stdio_h.c
 /objdir/_mkc_func2_fgetln_stdio_h.err
 /objdir/_mkc_func2_fgetln_stdio_h.res
+/objdir/_mkc_func2_strndup_string_h.c
+/objdir/_mkc_func2_strndup_string_h.err
+/objdir/_mkc_func2_strndup_string_h.res
 /objdir/_mkc_func3_err_err_h.c
 /objdir/_mkc_func3_err_err_h.err
 /objdir/_mkc_func3_err_err_h.res
@@ -30,6 +33,9 @@
 /objdir/_mkc_func3_strlcpy_string_h.c
 /objdir/_mkc_func3_strlcpy_string_h.err
 /objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_func4_getdelim_stdio_h.c
+/objdir/_mkc_func4_getdelim_stdio_h.err
+/objdir/_mkc_func4_getdelim_stdio_h.res
 /objdir/_mkc_funclib_err.c
 /objdir/_mkc_funclib_err.err
 /objdir/_mkc_funclib_err.res
@@ -39,6 +45,9 @@
 /objdir/_mkc_funclib_fgetln.c
 /objdir/_mkc_funclib_fgetln.err
 /objdir/_mkc_funclib_fgetln.res
+/objdir/_mkc_funclib_getdelim.c
+/objdir/_mkc_funclib_getdelim.err
+/objdir/_mkc_funclib_getdelim.res
 /objdir/_mkc_funclib_getline.c
 /objdir/_mkc_funclib_getline.err
 /objdir/_mkc_funclib_getline.res
@@ -54,6 +63,9 @@
 /objdir/_mkc_funclib_strlcpy.c
 /objdir/_mkc_funclib_strlcpy.err
 /objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_funclib_strndup.c
+/objdir/_mkc_funclib_strndup.err
+/objdir/_mkc_funclib_strndup.res
 /objdir/_mkc_funclib_verr.c
 /objdir/_mkc_funclib_verr.err
 /objdir/_mkc_funclib_verr.res
