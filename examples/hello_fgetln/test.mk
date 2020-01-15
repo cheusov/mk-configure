@@ -1,4 +1,4 @@
-FUNCS_RE=(fgetln|getline|err|progname)[.]o
+FUNCS_RE=(fgetln|getline|err|progname|strndup)[.]o
 
 .PHONY : test_output
 test_output:

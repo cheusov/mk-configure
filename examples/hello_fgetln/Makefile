@@ -1,4 +1,4 @@
-MKC_FEATURES =	fgetln err
+MKC_FEATURES =	fgetln err strndup
 
 PROG  =		hello
 
