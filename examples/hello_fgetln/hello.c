@@ -4,6 +4,7 @@
 
 #include <mkc_fgetln.h>
 #include <mkc_err.h>
+#include <mkc_strndup.h>
 
 int main (int argc, char ** argv)
 {

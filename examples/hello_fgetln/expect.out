@@ -37,6 +37,9 @@
 /objdir/_mkc_func2_fgetln_stdio_h.c
 /objdir/_mkc_func2_fgetln_stdio_h.err
 /objdir/_mkc_func2_fgetln_stdio_h.res
+/objdir/_mkc_func2_strndup_string_h.c
+/objdir/_mkc_func2_strndup_string_h.err
+/objdir/_mkc_func2_strndup_string_h.res
 /objdir/_mkc_func3_err_err_h.c
 /objdir/_mkc_func3_err_err_h.err
 /objdir/_mkc_func3_err_err_h.res
@@ -64,6 +67,9 @@
 /objdir/_mkc_funclib_setprogname.c
 /objdir/_mkc_funclib_setprogname.err
 /objdir/_mkc_funclib_setprogname.res
+/objdir/_mkc_funclib_strndup.c
+/objdir/_mkc_funclib_strndup.err
+/objdir/_mkc_funclib_strndup.res
 /objdir/_mkc_funclib_verr.c
 /objdir/_mkc_funclib_verr.err
 /objdir/_mkc_funclib_verr.res
@@ -96,4 +102,5 @@ getline.o
 fgetln.o
 progname.o
 err.o
+strndup.o
 ======= cleandir ==========
