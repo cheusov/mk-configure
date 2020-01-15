@@ -318,13 +318,18 @@ Installation
 2) Install NetBSD version of mkdep(1).
    Sources are available here:
 
-   * https://code.google.com/p/bmkdep/
+   * https://github.com/trociny/bmkdep
 
    Traditional BSD mkdep(1) is also good but NetBSD version is just better.
+   Alternatively you can also use makedepend(1). mk-configure
+   selects the best variant available at build time.
 
 3) Download mk-configure source from either
-   http://mova.org/~cheusov/pub/mk-configure or
+   https://github.com/cheusov/mk-configure or
    http://sourceforge.net/projects/mk-configure and unpack tarball.
+
+   Difference between sourceforce and github is that sourceforge
+   tarball have a prebuild documentation (in PDF format) files.
 
     ## cd mk-configure-X.Y.Z/
     
@@ -355,13 +360,13 @@ Installation
    
     # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
 
-5)
+5) Install mk-configure
 
     # bmake install
       or
     # env DESTDIR=/tmp/temproot bmake install
 
- 6) You can also build a simple presentation by running either of the
+6)  You can also build a simple presentation by running either of the
     following commands:
 
     # bmake all-presentation
@@ -379,7 +384,7 @@ Installation
     directory (${PREFIX}/share/mkc-mk by default) and the same for
     empty sys.mk file.
 
-6) Usage
+7) Usage
 
    For use of mk-configure for real-life development you may need the
    following programs: C/C++/Fortran/Pascal/Objective-C compilers,
