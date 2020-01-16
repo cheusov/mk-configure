@@ -1,4 +1,9 @@
 ============================================================
+
+Add new feature for NetBSD-style defines like __dead,
+__pure etc.  and use them all in other feature when necessary.
+
+============================================================
 gcc on Solaris-10: gcc: error: -pie is not supported in this configuration ***
 Runtime check is needed for flags passed to compiler and linker
 
