@@ -7,24 +7,24 @@
 case ${OPSYS}/${ARCH} in
     *BSD/*|DragonFly/*)
 	${NM} "$@" |
-	grep -Ev 'fini|init' |
+	grep -Ev 'fini|init|_ftext' |
 	awk '$2=="T" {print "symbol " $3}'
 	;;
     SunOS/*)
 	${NM} -P "$@" |
-	grep -Ev 'fini|init' |
+	grep -Ev 'fini|init|_ftext' |
 	awk 'NF==4 && $2=="T" {print "symbol " $1}'
 	;;
     Linux/ppc64)
 	# I see something strange on Linux/ppc64 (PowerPC-7 machine, CentOS-7)
 	# All functions are in "D" section
 	${NM} "$@" |
-	grep -Ev 'fini|init' |
+	grep -Ev 'fini|init|_ftext' |
 	awk 'NF==3 && $2 == "D" {print "symbol " $3}'
 	;;
     Linux/*)
 	${NM} "$@" |
-	grep -Ev 'fini|init' |
+	grep -Ev 'fini|init|_ftext' |
 	awk 'NF==3 && $2 == "T" {print "symbol " $3}'
 	;;
 esac
