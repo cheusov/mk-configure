@@ -153,7 +153,7 @@ CFLAGS.warns.gcc.3 =		${CFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 CFLAGS.warns.gcc.4 =		${CFLAGS.warns.gcc.3}
 
 # C++ warns
-CXXFLAGS.warns.gcc.1 =		-Wabi -Wold-style-cast -Wctor-dtor-privacy \
+CXXFLAGS.warns.gcc.1 =		-Wold-style-cast -Wctor-dtor-privacy \
 				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
 				-Wno-non-template-friend -Woverloaded-virtual \
 				-Wno-pmf-conversions -Wsign-promo -Wsynth
