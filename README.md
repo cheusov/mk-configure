@@ -1,3 +1,8 @@
+Installation
+------------
+
+See doc/INSTALL.md file for build and installation instructions.
+
 What is mk-configure?
 ---------------------
 
@@ -274,7 +279,7 @@ Documentation
 -------------
 
    - Presentation about mk-configure (basic ideas and simple samples of use).
-     See INSTALLATION section for build instructions.
+     See doc/INSTALL.md section for build instructions.
 
    - Instead of screenshots :-) I've prepared a lot of examples under
      examples/ subdirectory.
@@ -300,98 +305,6 @@ Is mk-configure stable?
 
 Basic functionality of "mk-configure" is stable
 but it is not feature-complete yet, see TODO file for details.
-
-Installation
-------------
-
-1) Install bmake(1).
-   Sources are available here:
-    
-   * ftp://ftp.NetBSD.org/pub/NetBSD/misc/sjg/
-   * http://www.crufty.net/help/sjg/bmake.html
-
-   NOTE: Some versions of bmake (shipped with NetBSD-5.1, for
-   example) have bugs which are critical for mk-configure.
-   Please make sure you install stable version of bmake and
-   'bmake test' succeeds (see section 3 below).
-
-2) Install NetBSD version of mkdep(1).
-   Sources are available here:
-
-   * https://github.com/trociny/bmkdep
-
-   Traditional BSD mkdep(1) is also good but NetBSD version is just better.
-   Alternatively you can also use makedepend(1). mk-configure
-   selects the best variant available at build time.
-
-3) Download mk-configure source from either
-   https://github.com/cheusov/mk-configure or
-   http://sourceforge.net/projects/mk-configure and unpack tarball.
-
-   Difference between sourceforce and github is that sourceforge
-   tarball have a prebuild documentation (in PDF format) files.
-
-    ## cd mk-configure-X.Y.Z/
-    
-    ## export PREFIX=/usr/local (the default)
-      or
-    ## export PREFIX=/usr SYSCONFDIR=/etc
-    
-    ## emacs sys.mk # if needed
-    
-    ## bmake all
-
-   Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
-   to whatever you want. PREFIX defaults to /usr/local.
-
-4) Optionally, test mk-configure
-
-    # bmake test
-   
-   Note that testing requires lex(1), yacc(1),
-   pkg-config(1), glib2 library and other things
-   that are not mandatory for using mk-configure
-   and may be not available on your system.
-   If "bmake test" fails on your platform, please let
-   me know. If for some reason you want to exclude some
-   regression tests (they are in "tests" and "examples"
-   subdirectories), you may list them in NOSUBDIR variable,
-   e.g.
-   
-    # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
-
-5) Install mk-configure
-
-    # bmake install
-      or
-    # env DESTDIR=/tmp/temproot bmake install
-
-6)  You can also build a simple presentation by running either of the
-    following commands:
-
-    # bmake all-presentation
-
-  NOTE: I'd recommend to use the latest stable version of bmake. Old
-    bmake may not work, e.g., /usr/bin/make shipped with NetBSD-2.0 is
-    not supported. pmake-1.111 (an ancient version of NetBSD make)
-    found in some Linux distributions does't work too.
-
-  NOTE: In order to work properly bmake needs sys.mk file that defines
-    default variable values and suffix rules. mk-configure doesn't
-    need it, but bmake always tries to load this file. The problem
-    is that different Mk-files libraries may conflict due to common
-    sys.mk. This is why mk-c's own mk files are installed to its own
-    directory (${PREFIX}/share/mkc-mk by default) and the same for
-    empty sys.mk file.
-
-7) Usage
-
-   For use of mk-configure for real-life development you may need the
-   following programs: C/C++/Fortran/Pascal/Objective-C compilers,
-   linker, yacc/bison, lex/flex, ar, as, ln, nroff, pod2man,
-   pod2html, ranlib, mkdep, tar, gzip, bzip2, cpp, install, lorder,
-   nm, tsort, pkg-config, zip and others.  Of course, you'll
-   need awk, sed, grep and some other POSIX tools too.
 
 mk-configure binary packages
 ----------------------------

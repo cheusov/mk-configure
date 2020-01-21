@@ -37,7 +37,7 @@ test_output :
 	{ ${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR}; \
 	  ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR}; \
 	  ${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR}; } 2>&1 | awk '/^(un)?install/'; \
-	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/home ${.OBJDIR}/Users; \
+	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
@@ -67,7 +67,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	rm -rf ${.OBJDIR}${PREFIX} ${.OBJDIR}/usr ${.OBJDIR}/home ${.OBJDIR}/Users; \
+	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	echo =========== MKOBJDIRS=auto ============; \
 	env TARGETS=fake ${MAKE} ${MAKEFLAGS} fake \
 		MKCHECKS=no MAKEOBJDIRPREFIX=${.OBJDIR}/obj1 > /dev/null; \

@@ -1,4 +1,28 @@
 ======================================================================
+Version 0.33.0, by Aleksey Cheusov, Fri, 17 Jan 2020 21:56:16 +0300
+
+  Add new features "getdelin" and "strndup".
+
+  Fix MKC_CHECK_FUNCS<n> when MKC_FUNC_OR_DEFINE.<x> is "yes".
+
+  Fix awk in mkc_check_compiler. AWK is supposed to be replaced as
+  seen in Makefile.inc.  This makes awk work correctly on solaris etc.
+  Thanks to Niclas Rosenvik!
+
+  Change the order of options passed to the C and C++ compiler.  It
+  is: CPPFLAGS0, CPPFLAGS, CPPFLAGS_<project>, C{,XX}FLAGS,
+  C{,XX}FLAGS.ssp, C{,XX}FLAGS.pie, C{,XX}FLAGS.warns,
+  C{,XX}FLAGS_<project>, C{,XX}FLAGS.pic (for shared objects), COPTS,
+  COPTS_<project>.
+
+  scripts/mkc_check_custom: switch to /usr/xpg4/bin/sh on SunOS-5.10
+
+  Fixes in regression tests for Solaris 10 and 11.
+
+  examples/hello_libdeps: fix regression test on
+  Linux/mips64/eglibc-2.13.
+
+======================================================================
 Version 0.32.1, by Aleksey Cheusov, Mon,  6 Jan 2020 01:11:46 +0300
 
   Fix MKC_CHECK_SIZEOF when having slashes in the header part.
