@@ -1,5 +1,5 @@
 ERROR: We need mk-configure v.999.0.0 while N.N.N is detected
-"bmake-20110606 or newer is required"
+"bmake-20110606 or newer is required, but bmake-00000000 is provided"
 =========== all ============
 /objdir/Makefile
 /objdir/expect.out

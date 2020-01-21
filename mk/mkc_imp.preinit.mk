@@ -12,11 +12,11 @@ BMAKE_REQD ?=	20110606
 .if !empty(MAKE_VERSION:U)
 _bmake_ok != test ${MAKE_VERSION:Q} -ge ${BMAKE_REQD:Q} && echo 1 || echo 0
 .else
-_bmake_ok  = 0
+.error "bmake does not provide MAKE_VERSION variable"
 .endif
 
 .if !${_bmake_ok}
-.error "bmake-${BMAKE_REQD} or newer is required"
+.error "bmake-${BMAKE_REQD} or newer is required, but bmake-${MAKE_VERSION} is provided"
 .endif
 
 .ifdef _top_mk
