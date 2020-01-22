@@ -5,7 +5,10 @@
 
 .include "Makefile.inc"
 
+PROJECTNAME =		mk-configure
+
 .export CHECK_COMMON_SH_DIR=${.CURDIR}/scripts
+.export PROJECTNAME=${PROJECTNAME}
 
 .MAIN: all
 .DEFAULT:

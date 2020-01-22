@@ -37,8 +37,6 @@ SUBPRJ +=	examples/${t}:tests
 ##################################################
 SHRTOUT =		yes
 
-PROJECTNAME =		mk-configure
-
 #
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
