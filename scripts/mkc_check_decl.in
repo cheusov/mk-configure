@@ -72,7 +72,7 @@ decltype=`echo "$1" | sed -e 's/[0-9]//g'`
 argscnt=`echo "$1" | sed 's/[^0-9]//g'`
 shift
 
-declwhat=`echo "$1" | awk '{gsub(/-/, " "); gsub(/ +[(]/, "("); $1=$1; print}'`
+declwhat=`echo "$1" | @AWK@ '{gsub(/-/, " "); gsub(/ +[(]/, "("); $1=$1; print}'`
 shift
 
 typemsg="$decltype $declwhat"
@@ -174,7 +174,7 @@ is_func_basic (){
     fi
     printf '%s' "    ${declwhat}(" >> "$tmpc"
 
-    awk -v N="$argscnt" '
+    @AWK@ -v N="$argscnt" '
 BEGIN {
    for (i=0; i < N; ++i){
       if (i)
