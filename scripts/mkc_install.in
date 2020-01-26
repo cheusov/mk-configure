@@ -5,7 +5,7 @@
 # and was modified by Aleksey Cheusov <vle@gmx.net>.
 #
 # Copyright 1991 by the Massachusetts Institute of Technology
-# Copyright 2013-2014 by Aleksey Cheusov <vle@gmx.net>
+# Copyright 2013-2019 by Aleksey Cheusov <vle@gmx.net>
 #
 # Permission to use, copy, modify, distribute, and sell this software and its
 # documentation for any purpose is hereby granted without fee, provided that
@@ -41,7 +41,7 @@ stripprog="${STRIPPROG-strip}"
 rmprog="${RMPROG-rm}"
 mkdirprog="${MKDIRPROG-mkdir}"
 
-instcmd="$mvprog"
+instcmd="$cpprog"
 chmodcmd=mkcchmod; mod=0755;
 chowncmd=":"
 chgrpcmd=":"
@@ -60,8 +60,7 @@ mkcchmod () { $chmodprog "$mod" "$@"; }
 
 while [ x"$1" != x ]; do
     case "$1" in
-	-c) instcmd="$cpprog"
-	    shift
+	-c) shift
 	    continue;;
 
 	-l) instcmd="$lnsprog"
