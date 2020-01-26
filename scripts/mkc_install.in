@@ -101,7 +101,7 @@ while getopts cdg:l:m:o:s f; do
 done
 shift `expr $OPTIND - 1`
 
-if test "$instcmd"="$lnsprog" -o "$instcmd"="$lnprog"; then
+if test "$instcmd" = "$lnsprog" -o "$instcmd" = "$lnprog"; then
     chmodcmd=":"
     chowncmd=":"
     chgrpcmd=":"
