@@ -33,6 +33,7 @@ doit="${DOITPROG-}"
 : ${STRIP:=strip}
 mvprog="${MVPROG-mv}"
 cpprog="${CPPROG-cp}"
+lnprog="${LNSPROG-ln -f}"
 lnsprog="${LNSPROG-ln -f -s}"
 chmodprog="${CHMODPROG-chmod}"
 chownprog="${CHOWNPROG-chown}"
@@ -66,13 +67,23 @@ last_arg() {
     printf '%s\n' "$1"
 }
 
-while getopts cdg:lm:o:s f; do
+while getopts cdg:l:m:o:s f; do
     case "$f" in
         c)
 	    true;;
 	d)
 	    instcmd="$mkdirprog -p"
 	    dir_arg=true;;
+	l)
+	    case "$OPTARG" in
+		s)
+		    instcmd="$lnsprog";;
+		h)
+		    instcmd="$lnprog";;
+		*)
+		    echo "Incorrect linking type '$OPTARG'" 1>&2
+		    exit 1;;
+	    esac;;
 	m)
 	    mod="$OPTARG"
 	    chmodcmd=mkcchmod;;
@@ -89,6 +100,13 @@ while getopts cdg:lm:o:s f; do
     esac
 done
 shift `expr $OPTIND - 1`
+
+if test "$instcmd"="$lnsprog" -o "$instcmd"="$lnprog"; then
+    chmodcmd=":"
+    chowncmd=":"
+    chgrpcmd=":"
+    stripcmd=":"
+fi
 
 #
 copy_file () {

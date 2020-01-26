@@ -69,6 +69,11 @@ created as required.
 .BI "-g " group
 Specify a group.
 .TP
+.BR "-l " linkflags
+Instead of copying the file make a link to the source.
+The type of the link is determined by the linkflags
+argument.  Valid linkflags are: h (hard), s (symbolic).
+.TP
 .BI "-m " mode
 Specify an alternative mode.  The default mode is set
 to rwxr-xr-x (0755).  The specified mode may be either
