@@ -111,7 +111,7 @@ if test "_$instcmd" = "_$lnsprog"; then
 fi
 
 if [ x"$src" = x ]; then
-    echo "install:	no input file specified"
+    echo "install:	no input file specified" 1>&2
     exit 1
 fi
 
@@ -133,12 +133,12 @@ else
     if [ -f "$src" -o -d "$src" ]; then
 	true
     else
-	echo "install:  $src does not exist"
+	echo "install:  $src does not exist" 1>&2
 	exit 1
     fi
 
     if [ x"$dst" = x ]; then
-	echo "install:	no destination specified"
+	echo "install:	no destination specified" 1>&2
 	exit 1
     fi
 

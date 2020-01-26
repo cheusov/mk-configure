@@ -20,6 +20,9 @@ test_output:
 		empty_file.txt ${.CURDIR}/usr/local/share/empty_file; \
 	find ${.CURDIR}/usr -type f -o -type d; \
 	echo =====; \
+	mkc_install qqq 2>/dev/null || echo failed1;\
+	mkc_install qqq ${.CURDIR}/usr/local/empty_file 2>/dev/null || echo failed2;\
+	echo =====; \
 	rm -rf ${.CURDIR}/usr;
 
 .include <mkc.minitest.mk>

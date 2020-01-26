@@ -17,3 +17,6 @@ permissions ok
 /home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share
 /home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share/empty_file
 =====
+failed1
+failed2
+=====
