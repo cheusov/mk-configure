@@ -16,7 +16,7 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    intexts_cleantrg require_prototype test_subprj_dash test_mkc_vs_PROG \
    test_mkc_vs_LIB test_mkc_vs_SUBDIR test_mkc_vs_SUBPRJ endianness \
    create_cachedir sys_queue predopost_targets FSRCDIR \
-   os_NetBSD os_OpenBSD os_Linux dltest
+   os_NetBSD os_OpenBSD os_Linux dltest mkc_install
 .for t in ${tests}
 SUBPRJ +=	tests/${t}:tests
 .endfor

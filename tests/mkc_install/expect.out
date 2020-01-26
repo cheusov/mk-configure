@@ -1,0 +1,19 @@
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
+=====
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty_file.txt
+=====
+permissions ok
+=====
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty_file.txt
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty2
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share
+/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share/empty_file
+=====
