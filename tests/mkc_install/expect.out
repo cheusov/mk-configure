@@ -1,22 +1,33 @@
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
+/objdir/prefix
+/objdir/prefix/vendor
+/objdir/prefix/vendor/bin
 =====
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty_file.txt
+/objdir/prefix
+/objdir/prefix/vendor
+/objdir/prefix/vendor/bin
+/objdir/prefix/vendor/bin/empty_file.txt
 =====
-permissions ok
+permissions 0700 bin/empty2 ok
+permissions 0750 sbin ok
+permissions 0750 lib ok
 =====
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty_file.txt
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/bin/empty2
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share
-/home/cheusov/prjs/mk-configure/tests/mkc_install/usr/local/share/empty_file
+Stripping /objdir/prefix/vendor/share/#inst.<NUM>#
+Stripping /objdir/prefix/vendor/share/#inst.<NUM>#
+/objdir/prefix
+/objdir/prefix/vendor
+/objdir/prefix/vendor/bin
+/objdir/prefix/vendor/bin/empty2
+/objdir/prefix/vendor/bin/empty_file.txt
+/objdir/prefix/vendor/lib
+/objdir/prefix/vendor/sbin
+/objdir/prefix/vendor/share
+/objdir/prefix/vendor/share/empty_file.txt
+/objdir/prefix/vendor/share/empty_file_copy
+/objdir/prefix/vendor/share/expect.out
 =====
+failed0
 failed1
 failed2
+failed3
+failed4
 =====

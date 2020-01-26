@@ -1,0 +1,94 @@
+.\"	$NetBSD: install.1,v 1.47 2012/04/08 22:00:40 wiz Exp $
+.\"
+.\" Copyright (c) 1987, 1990, 1993
+.\"	The Regents of the University of California.  All rights reserved.
+.\" Copyright (c) 2020
+.\"     Aleksey Cheusov <vle@gmx.net> <cheusov@NetBSD.org>
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\" 3. Neither the name of the University nor the names of its contributors
+.\"    may be used to endorse or promote products derived from this software
+.\"    without specific prior written permission.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.\"     @(#)install.1	8.1 (Berkeley) 6/6/93
+.\"
+.de VS \" Verbatim Start
+.sp
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+.sp
+..
+.\" ------------------------------------------------------------------
+.TH MKC_INSTALL 1 "Jan 26, 2020" "" ""
+.SH NAME
+install \- install binaries
+.SH SYNOPSIS
+.BI install " -d [-o owner] [-g group] [-m mode] dir1 dir2 ... dirN"
+.br
+.BI install " [-cs] [-o owner] [-g group] [-m mode] file1 file2"
+.br
+.BI install " [-cs] [-o owner] [-g group] [-m mode] file1 file2 ... fileN dir"
+.SH DESCRIPTION
+The file(s) are copied to the
+target file or directory.  If the destination is a directory, then the
+file is copied into directory with its original filename.
+.SH OPTIONS
+.TP
+.B -c
+Copy the file.  This is the default behavior; the flag
+is maintained for backwards compatibility only.
+.TP
+.B -d
+Create directories.  Missing parent directories are
+created as required.
+.TP
+.BI "-g " group
+Specify a group.
+.TP
+.BI "-m " mode
+Specify an alternative mode.  The default mode is set
+to rwxr-xr-x (0755).  The specified mode may be either
+an octal or symbolic value; see chmod(1) for a description
+of possible mode values.
+.TP
+.BI "-o " owner
+Specify an owner.
+.TP
+.B -s
+install exec's the command strip(1) to strip binaries
+so that install can be portable over a large number of
+systems and binary types.  If the environment variable
+STRIP is set, it is used as the strip(1) program.
+.SH ENVIRONMENT
+.TP
+.RB STRIP ""
+The program used to strip installed binaries when the -s
+option is used.  If unspecified, strip is used.
+.SH EXIT STATUS
+     The install utility exits 0 on success, and >0 if an error occurs.
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>

@@ -1,5 +1,5 @@
 #!/bin/sh
-#
+
 # install - install a program, script, or datafile
 # This comes from X11R5 (mit/util/scripts/install.sh)
 # and was modified by Aleksey Cheusov <vle@gmx.net>.
@@ -25,19 +25,19 @@
 # from scratch.  It can only install one file at a time, a restriction
 # shared with many OS's install programs.
 
-
 # set DOITPROG to echo to test this script
 doit="${DOITPROG-}"
 
 # put in absolute paths if you don't have them in your path; or use env. vars.
 
+: ${STRIP:=strip}
 mvprog="${MVPROG-mv}"
 cpprog="${CPPROG-cp}"
 lnsprog="${LNSPROG-ln -f -s}"
 chmodprog="${CHMODPROG-chmod}"
 chownprog="${CHOWNPROG-chown}"
 chgrpprog="${CHGRPPROG-chgrp}"
-stripprog="${STRIPPROG-strip}"
+stripprog="${STRIPPROG-$STRIP}"
 rmprog="${RMPROG-rm}"
 mkdirprog="${MKDIRPROG-mkdir}"
 
@@ -58,140 +58,92 @@ mkcchgrp () { $chgrpprog "$grp" "$@"; }
 mkcchown () { $chownprog "$own" "$@"; }
 mkcchmod () { $chmodprog "$mod" "$@"; }
 
-while [ x"$1" != x ]; do
-    case "$1" in
-	-c) shift
-	    continue;;
+last_arg() {
+    while test $# -gt 1; do
+	shift
+    done
 
-	-l) instcmd="$lnsprog"
-	    shift
-	    continue;;
+    printf '%s\n' "$1"
+}
 
-	-d) dir_arg=true
-	    shift
-	    continue;;
-
-	-m) mod="$2"
-	    chmodcmd=mkcchmod
-	    shift
-	    shift
-	    continue;;
-
-	-o) own="$2"
-	    chowncmd=mkcchown
-	    shift
-	    shift
-	    continue;;
-
-	-g) grp="$2"
-	    chgrpcmd=mkcchgrp
-	    shift
-	    shift
-	    continue;;
-
-	-s) stripcmd="$stripprog"
-	    shift
-	    continue;;
-
-	*)  if [ x"$src" = x ]; then
-		src="$1"
-	    else
-		dst="$1"
-	    fi
-	    shift
-	    continue;;
+while getopts cdg:lm:o:s f; do
+    case "$f" in
+        c)
+	    true;;
+	d)
+	    instcmd="$mkdirprog -p"
+	    dir_arg=true;;
+	m)
+	    mod="$OPTARG"
+	    chmodcmd=mkcchmod;;
+	o)
+	    own="$OPTARG"
+	    chowncmd=mkcchown;;
+	g)
+	    grp="$OPTARG"
+	    chgrpcmd=mkcchgrp;;
+	s)
+	    stripcmd="$stripprog";;
+        *)
+	    exit 2;;
     esac
 done
+shift `expr $OPTIND - 1`
 
-if test "_$instcmd" = "_$lnsprog"; then
-    chowncmd=:
-    chgrpcmd=:
-    chmodcmd=:
-    stripcmd=:
-fi
-
-if [ x"$src" = x ]; then
-    echo "install:	no input file specified" 1>&2
-    exit 1
-fi
-
-if [ x"$dir_arg" != x ]; then
-    dst="$src"
-
-    if [ -d "$dst" ]; then
-	instcmd=:
-	chmodcmd=:
-    else
-	instcmd="$mkdirprog -p"
-    fi
-else
-
-# Waiting for this to be detected by the "$instcmd $src $dsttmp" command
-# might cause directories to be created, which would be especially bad 
-# if $src (and thus $dsttmp) contains '*'.
-
-    if [ -f "$src" -o -d "$src" ]; then
-	true
-    else
-	echo "install:  $src does not exist" 1>&2
-	exit 1
-    fi
-
-    if [ x"$dst" = x ]; then
-	echo "install:	no destination specified" 1>&2
-	exit 1
-    fi
-
-# If destination is a directory, append the input filename; if your system
-# does not like double slashes in filenames, you may need to add some logic
-
-    if [ -d "$dst" ]; then
-	dst="$dst"/`basename "$src"`
-    fi
-fi
-
-##
-dstdir=`dirname "$dst"`
-
-if [ x"$dir_arg" != x ]; then
-    $doit $instcmd "$dst"
-
-    $doit $chowncmd "$dst"
-    $doit $chgrpcmd "$dst"
-    $doit $stripcmd "$dst"
-    $doit $chmodcmd "$dst"
-else
-# Make sure that the destination directory exists.
-    if [ ! -d "$dstdir" ]; then
-	$mkdirprog -p "$dstdir"
-    fi
-
-# No renaming of the final executable
-    dstfile=`basename "$dst"`
-
-# Make a temp file name in the proper directory.
-
+#
+copy_file () {
     dsttmp="$dstdir/#inst.$$#"
-
-# Move or copy the file name to the temp name
+    trap "rm -f ${dsttmp}" 0
 
     $doit $instcmd "$src" "$dsttmp"
-
-    trap "rm -f '${dsttmp}'" 0
-
-# and set any options; do chmod last to preserve setuid bits
-
-# If any of these fail, we abort the whole thing.  If we want to
-# ignore errors from any of these, just make sure not to ignore
-# errors from the above "$doit $instcmd $src $dsttmp" command.
-
     $doit $chowncmd "$dsttmp"
     $doit $chgrpcmd "$dsttmp"
     $doit $stripcmd "$dsttmp"
     $doit $chmodcmd "$dsttmp"
 
-# Now rename the file to the real destination.
+    $doit $rmcmd -f "$dst"
+    $doit $mvcmd "$dsttmp" "$dst"
+}
 
-    $doit $rmcmd -f "$dstdir/$dstfile"
-    $doit $mvcmd "$dsttmp" "$dstdir/$dstfile"
+if test -n "$dir_arg"; then
+    # -d dir1 dir2 ... dirN
+    for f in "$@"; do
+	$doit $instcmd "$f"
+	$doit $chowncmd "$f"
+	$doit $chgrpcmd "$f"
+	$doit $chmodcmd "$f"
+    done
+elif test $# -eq 2; then
+    # src_file trg_file
+    if test -d "$2"; then
+	dst="$2/"`basename "$1"`
+	dstdir="$2"
+    else
+	dst="$2"
+	dstdir=`dirname "$2"`
+    fi
+
+    src="$1"
+    copy_file
+elif test $# -gt 2; then
+    # src_file1 src_file2 ... src_fileN trg_dir
+    dstdir=`last_arg "$@"`
+
+    if test -d "$dstdir"; then
+	:
+    else
+	echo "Last argument '$dstdir' is not a directory" 1>&2
+	exit 1
+    fi
+
+    while test $# -gt 1; do
+	src="$1"
+	dst="$dstdir"/`basename $1`
+	copy_file
+	shift
+    done
+else
+    # bad usage
+    echo "Missing target file or directory" 1>&2
+    exit 1
 fi

@@ -2,7 +2,7 @@
 .\"
 .\" This file contains parts of NetBSD's bsd.README file
 .\"
-.\" Copyright (c) 2009-2014 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) 2009-2020 by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 30, 2014" "" ""
+.TH MK-CONFIGURE 7 "Jan 26, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
