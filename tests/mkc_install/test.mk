@@ -16,7 +16,7 @@ test_output:
 	fi; \
 	echo =====; \
 	uid=`${ID} -u`; gid=`${ID} -g`; \
-	mkc_install -m 0644 -o "$$uid" -g "$$gid" \
+	mkc_install -c -m 0644 -o "$$uid" -g "$$gid" \
 		empty_file.txt ${.CURDIR}/usr/local/share/empty_file; \
 	find ${.CURDIR}/usr -type f -o -type d; \
 	echo =====; \
