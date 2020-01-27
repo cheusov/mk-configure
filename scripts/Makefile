@@ -1,5 +1,6 @@
 FILES    =	mkc_check_common.sh
 FILESDIR_mkc_check_common.sh =	${MKC_LIBEXECDIR}
+SCRIPTSDIR_mkc_get_deps      =	${MKC_LIBEXECDIR}
 
 INFILES  =	mk-configure.7
 

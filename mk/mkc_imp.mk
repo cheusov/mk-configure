@@ -13,7 +13,7 @@
 .include <mkc.init.mk>
 
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
-all_deps != mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
+all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .  for p in ${all_deps}
      _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
 .    if exists(${_mkfile})
