@@ -1,0 +1,26 @@
+.\"
+.\" Copyright (c) 2020 by Aleksey Cheusov <vle@gmx.net>
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.TH MKC_CHECK_VERSION 1 "Jan 27, 2020" "" ""
+.SH NAME
+compare two versions
+.SH SYNOPSIS
+.BI mkc_check_version " reqdVer actVer"
+.SH DESCRIPTION
+.B mkc_check_version
+compares
+.IR reqdVer " and " actVer
+and prints "1" to stdout is
+.IR reqdVer " is less than or equal to " actVer.
+Otherwise, "0" is output.
+.SH EXIT STATUS
+.TP
+.B 0
+if arguments are correct
+.TP
+.B 1
+otherwise
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
