@@ -47,11 +47,11 @@
 .SH NAME
 install \- install binaries
 .SH SYNOPSIS
-.BI install " -d [-o owner] [-g group] [-m mode] dir1 dir2 ... dirN"
+.BI install " -d [-o own] [-g grp] [-m mod] dir1 dir2 ... dirN"
 .br
-.BI install " [-cs] [-o owner] [-g group] [-m mode] file1 file2"
+.BI install " [-cs] [-l flags] [-o own] [-g grp] [-m mod] file1 file2"
 .br
-.BI install " [-cs] [-o owner] [-g group] [-m mode] file1 file2 ... fileN dir"
+.BI install " [-cs] [-l flags] [-o own] [-g grp] [-m mod] [files...] dir"
 .SH DESCRIPTION
 The file(s) are copied to the
 target file or directory.  If the destination is a directory, then the
@@ -69,7 +69,7 @@ created as required.
 .BI "-g " group
 Specify a group.
 .TP
-.BR "-l " linkflags
+.BI "-l " linkflags
 Instead of copying the file make a link to the source.
 The type of the link is determined by the linkflags
 argument.  Valid linkflags are: h (hard), s (symbolic).
