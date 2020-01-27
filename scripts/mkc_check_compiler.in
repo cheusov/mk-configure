@@ -33,6 +33,8 @@ while getopts x f; do
 	    langname='C++'
 	    CC="$CXX"
 	    export CC;;
+	*)
+	    exit 2;;
     esac
 done
 
