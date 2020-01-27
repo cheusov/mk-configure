@@ -28,24 +28,23 @@ Installation
    Difference between sourceforce and github is that sourceforge
    tarball have a prebuild documentation (in PDF format) files.
 
-    ## cd mk-configure-X.Y.Z/
-    
-    ## export PREFIX=/usr/local (the default)
-      or
-    ## export PREFIX=/usr SYSCONFDIR=/etc
+      # cd mk-configure-X.Y.Z/
+      # export PREFIX=/usr/local (the default)
+        or
+      # export PREFIX=/usr SYSCONFDIR=/etc
 
-    sys.mk contains initial settings and can be used
-    for overriding defaults. So you can edit it if needed.
-    ## emacs sys.mk
-    
-    ## bmake all
+sys.mk contains initial settings and can be used
+for overriding defaults. So you can edit it if needed.
+
+      # emacs sys.mk
+      # bmake all
 
    Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
    to whatever you want. PREFIX defaults to /usr/local.
 
 4) Optionally, test mk-configure
 
-    # bmake test
+      # bmake test
    
    Note that testing requires lex(1), yacc(1),
    pkg-config(1), glib2 library and other things
@@ -57,18 +56,18 @@ Installation
    subdirectories), you may list them in NOSUBDIR variable,
    e.g.
    
-    # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
+      # NOSUBDIR='hello_glib2 hello_lua lua_dirs' bmake test
 
 5) Install mk-configure
 
-    # bmake install
-      or
-    # env DESTDIR=/tmp/temproot bmake install
+      # bmake install
+        or
+      # env DESTDIR=/tmp/temproot bmake install
 
 6)You can also build a simple presentation by running the
   following command:
 
-    # bmake all-presentation
+      # bmake all-presentation
 
 7) Usage
 
