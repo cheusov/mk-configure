@@ -1,0 +1,73 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2020 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VS \" Verbatim Start
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKC_CHECK_COMPILE 1 "Jan 27, 2020" "" ""
+.SH NAME
+mkc_check_compile \- checks for C and C++ compiler type.
+.SH SYNOPSIS
+.BI mkc_check_compile " [OPTIONS]"
+.SH DESCRIPTION
+.B mkc_check_compile
+recognizes the compiler type and prints its identifier to stdout.
+By default, temporary and cache files
+.I _mkc_compiler_type.{err,res}
+(for C compiler) and
+.I _mkc_cxx_type.{err,res}
+(for C++ compiler)
+are created under
+.B MKC_CACHEDIR
+directory.
+.SH OPTIONS
+.TP
+.B "-x"
+Check C++ compiler type. By default C compiler type is checked.
+.SH ENVIRONMENT
+.TP
+.B CC
+C compiler. The default is
+.IR cc .
+.TP
+.B CXX
+C++ compiler. The default is
+.IR c++ .
+.TP
+.B MKC_VERBOSE
+If set to 1, verbose messages are output to stderr.
+.TP
+.B MKC_SHOW_CACHED
+If set to 1 and
+.B MKC_VERBOSE
+is set to 1, cached results
+are output to stderr.
+.TP
+.B MKC_CACHEDIR
+Directory where temporary and cache files are created.
+If unset they are created in a current directory.
+.TP
+.B MKC_NOCACHE
+All results are cached unless
+.B MKC_NOCACHE
+variable is set to 1.
+.TP
+.B MKC_DELETE_TMPFILES
+If set to 1, temporary files are removed.
+.SH EXAMPLES
+.VS
+   export CC=icc; mkc_check_compiler
+   export CXX=clang++; mkc_check_compiler -x
+.VE
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>
