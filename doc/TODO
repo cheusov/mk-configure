@@ -1,6 +1,5 @@
 ============================================================
-man pages for mkc_which, mkc_get_deps, mkc_check_version and
-mkc_check_compiler
+man pages for mkc_get_deps, mkc_check_version
 
 ============================================================
 Remove support for pascal, objc and fortran

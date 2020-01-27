@@ -8,12 +8,16 @@
 
 # Portable replacement for which(1)
 
-if test "$1" = "-x"; then
-    failure=0
-    shift
-else
-    failure=1
-fi
+failure=1
+while getopts x f; do
+    case "$f" in
+	x)
+	    failure=0;;
+	*)
+	    exit 2;;
+    esac
+done
+shift `expr $OPTIND - 1`
 
 if test $# -ne 1; then
     cat <<EOF
@@ -25,17 +29,17 @@ fi
 
 if echo "$1" | grep '^/' > /dev/null; then
     if test -x "$1"; then
-	echo $1
+	echo "$1"
 	exit 0
     fi
 else
     for i in `echo $PATH|tr : ' '`; do
 	if test -x "$i/$1" -a -f "$i/$1"; then
-	    echo $i/$1
+	    echo "$i/$1"
 	    exit 0
 	fi
     done
 fi
 
 echo "Cannot find $1" >&2
-exit $failure
+exit "$failure"
