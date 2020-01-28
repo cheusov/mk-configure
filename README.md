@@ -234,11 +234,7 @@ Documentation
    - Most of my [personal projects](https://github.com/cheusov) use **mk-configure**.
      You can use them for learning.
 
-Is mk-configure stable?
------------------------
-
-I think yes, but there is a room for improvements.
-See [doc/TODO](https://github.com/cheusov/mk-configure/blob/master/doc/TODO).
+   - Plans are here [doc/TODO](https://github.com/cheusov/mk-configure/blob/master/doc/TODO).
 
 mk-configure binary packages
 ----------------------------
