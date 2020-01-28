@@ -2,7 +2,7 @@
 Remove undocumented variables COPY, PRESERVE etc.
 
 ============================================================
-Remove support for pascal, objc and fortran
+Remove support for objc and fortran
 
 ============================================================
 Add support for armcc

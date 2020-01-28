@@ -288,18 +288,6 @@ mkdep(1) tool.
 List symbols from object files.
 .RI < Iu >
 .RI [ nm ]
-.IP PC
-Pascal compiler.
-.RI < Iu >
-.RI [ pc ]
-.IP PFLAGS
-Options to ${PC}.
-.RI < Iu >
-.RI [ "" ]
-.\" .IP OBJC
-.\" Objective C compiler.  [${CC}]
-.\" .IP OBJCFLAGS
-.\" Options to ${OBJC}.  [${CFLAGS}]
 .IP OBJCOPY
 Copy and translate object files.
 .RI < Iu >

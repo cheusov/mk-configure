@@ -50,11 +50,6 @@
 	${MESSAGE.r}
 	${COMPILE.r} -o ${.TARGET} ${.IMPSRC}
 
-# Pascal
-.p.o:
-	${MESSAGE.p}
-	${COMPILE.p} -o ${.TARGET} ${.IMPSRC}
-
 # Assembly
 .S.o .s.o:
 	${MESSAGE.s}

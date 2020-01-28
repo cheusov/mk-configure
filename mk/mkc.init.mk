@@ -58,9 +58,6 @@ _srcsall +=	${SRCS}
 .if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc)
 src_type   +=	cxx
 LDREAL     ?=	${CXX}
-.elif !empty(_srcsall:U:M*.pas) || !empty(_srcsall:U:M*.p)
-src_type   +=	pas
-LDREAL     ?=	${PC}
 .endif
 
 .if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
@@ -294,11 +291,6 @@ LORDER    ?=	lorder
 NM        ?=	nm
 
 MKDIR     ?=	mkdir
-
-PC        ?=	pc
-PFLAGS    ?=
-COMPILE.p ?=	${_V} ${PC} ${PFLAGS} ${_CPPFLAGS} -c
-MESSAGE.p ?=	@${_MESSAGE} "PC: ${.IMPSRC}"
 
 SHELL     ?=	sh
 

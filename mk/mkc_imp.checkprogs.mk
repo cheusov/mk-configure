@@ -22,8 +22,3 @@ MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
 MKC_REQUIRE_PROGS  +=			${FC:[1]}
 MKC_PROG.id.${FC:[1]:S/+/x/g}    =	fc
 .endif
-
-.if !empty(_srcsall:U:M*.p) && !empty(PC)
-MKC_REQUIRE_PROGS  +=			${PC:[1]}
-MKC_PROG.id.${PC:[1]:S/+/x/g}    =	pc
-.endif
