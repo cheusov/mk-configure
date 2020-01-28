@@ -153,13 +153,13 @@ What mk-configure consists of?
 
 - *mkc.{files,lib,prog,subprj,subdir}.mk* files.
 
-      These include files are responsible for building, installing and
-      uninstalling applications, static and shared libraries, scripts,
-      text files, man and info pages, hard and soft links etc...
+    These include files are responsible for building, installing and
+    uninstalling applications, static and shared libraries, scripts,
+    text files, man and info pages, hard and soft links etc...
 
-      NOTE FOR *BSD USERS: unlike well known Mk files from \*BSD
-      systems *mkc.\*.mk* files provide the following features (this list
-      is not complete, see *mk-configure.7* for details).
+    NOTE FOR *BSD USERS: unlike well known Mk files from \*BSD
+    systems *mkc.\*.mk* files provide the following features (this list
+    is not complete, see *mk-configure.7* for details).
 
     + PREFIX, BINDIR, MANDIR etc. variables default to directories
     under /usr/local.  By default the same variables in *bsd.\*.mk*
