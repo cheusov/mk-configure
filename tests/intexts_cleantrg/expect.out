@@ -15,7 +15,7 @@
 /objdir/foo.in
 /objdir/intexts_cleantrg.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/foo.in

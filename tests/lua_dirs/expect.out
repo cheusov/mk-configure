@@ -55,7 +55,7 @@
 /objdir/expect.out
 /objdir/lua_dirs.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/baz.c
 /objdir/expect.out

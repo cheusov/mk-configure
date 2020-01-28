@@ -42,6 +42,6 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null
 
 .include <mkc.minitest.mk>

@@ -59,7 +59,7 @@ libcxxlib_pic.a
 /prefix/include/impl/hello_msg1.h
 /prefix/include/impl/hello_msg2.h
 /prefix/lib/libcxxlib_pic.a
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/mkpiclib.test.out.tmp

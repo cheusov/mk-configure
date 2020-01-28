@@ -65,7 +65,7 @@ libcxxlib_pic.a
 /prefix/lib/libcxxlib.so
 /prefix/lib/libcxxlib.so.1
 /prefix/lib/libcxxlib.so.1.0.5
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp

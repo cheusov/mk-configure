@@ -33,8 +33,8 @@ test_output:
 	${MAKE} ${MAKEFLAGS} print_values2 VARS='UNINSTALLFILES' MKCHECKS=no | \
 	awk '{for(i=1; i<=NF; ++i) print $$i}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

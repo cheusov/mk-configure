@@ -18,6 +18,6 @@ test_output :
 	done ; \
 	\
 	true =========== cleandir ============; \
-	env REAL_TARGETS=1 ${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	env REAL_TARGETS=1 ${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

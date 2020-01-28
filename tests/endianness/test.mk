@@ -7,6 +7,6 @@ test_output:
 	echo =========== all ============; \
 	${MAKE} ${MAKEFLAGS} showme 2>&1 | \
 	sed -e 's,^.*warning:,warning:,' -e 's,little,big,'; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

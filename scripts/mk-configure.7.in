@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Jan 26, 2020" "" ""
+.TH MK-CONFIGURE 7 "Jan 28, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -98,8 +98,6 @@ ${CLEANFILES_CMD} and ${CLEANDIRS_CMD} commands.
 remove all of the files removed by the target clean, as
 well as cache files created by
 .BR mkc.configure.mk .
-.IP distclean
-synonym for target "cleandir".
 .IP installdirs
 create target directories.
 .IP install
@@ -671,17 +669,17 @@ Optional name to install <fn> as.
 .RI < "Mu" >
 .IP CLEANFILES
 Additional files to remove for the
-.IR clean ", " cleandir " and " distclean
+.IR clean " and " cleandir
 targets.
 .RI < "I M" >
 .IP DISTCLEANFILES
 Additional files to remove for the
-.IR cleandir " and " distclean
-targets.
+.IR cleandir
+target.
 .RI < "I M" >
 .IP CLEANDIRS
 Additional directories to remove (recursively) for the
-.IR clean ", " cleandir " and " distclean
+.IR clean " and " cleandir
 targets.
 .RI < "I M" >
 .IP DISTCLEANDIRS
@@ -1180,7 +1178,7 @@ itself includes
 supports the following variables.
 .IP MKCHECKS
 If "no", none of the checks are performed. It is set to "yes" unless target
-is "clean", "cleandir or distclean".
+is "clean" and "cleandir".
 .IP MKC_CHECK_HEADERS
 List of headers to check with a help of
 .IR "$CC -c" .
