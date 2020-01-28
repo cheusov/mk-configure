@@ -161,38 +161,38 @@ What mk-configure consists of?
       systems *mkc.\*.mk* files provide the following features (this list
       is not complete, see *mk-configure.7* for details).
 
-      - PREFIX, BINDIR, MANDIR etc. variables default to directories
+      * PREFIX, BINDIR, MANDIR etc. variables default to directories
         under /usr/local.  By default the same variables in *bsd.\*.mk*
         files are set to directories under /usr. The reason is that they
         are used mainly for maintaining \*BSD's own code while
         **mk-configure** is targeted to all UNIX-like systems, not only \*BSD.
 
-      - BINOWN, BINGRP, MANOWN etc. variables are set to 'id -u' and
+      * BINOWN, BINGRP, MANOWN etc. variables are set to 'id -u' and
         'id -g' if **mkcmake(1)** is run under an unprivileged user.
         By default *bsd.\*.mk* use root:wheel by default.
 
-      - A target 'install' installs the target directories if needed.
+      * A target 'install' installs the target directories if needed.
 
-      - A target 'uninstall' removes all installed files from
+      * A target 'uninstall' removes all installed files from
         destination directories. *bsd.\*.mk* files do not provide
         this functionality.
 
-      - A target 'test' of *mkc.subdir.mk* (by default) runs a "test"
+      * A target 'test' of *mkc.subdir.mk* (by default) runs a "test"
         target for each subdirectory listed in SUBDIR. Other *mkc.\*.mk*
         files provide "test" target too but does nothing by default.
         If you want to test your application, define your own "test"
         target in subprojects's Makefile.
 
-      - "cleandir" target removes all temporary
+      * "cleandir" target removes all temporary
         files and **mk-configure**'s cache files.
 
-      - support for texinfo/info files. There is no need to .include
+      * support for texinfo/info files. There is no need to .include
         a special include files such as _bsd.info.mk_ file.
 
-      - *mkc.subprj.mk* is a powerful replacement
+      * *mkc.subprj.mk* is a powerful replacement
         for traditional _bsd.subdir.mk_.
 
-      - Tons of other additions and improvements.
+      * Tons of other additions and improvements.
 
 - _mkc.intexts.mk_. Given a list of files in INFILES or INSCRIPTS *mkc.intexts.mk*
   generates them from appropriate *.in file replacing @prefix@,
