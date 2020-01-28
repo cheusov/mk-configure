@@ -26,13 +26,13 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== depend ===========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	${MAKE} ${MAKEFLAGS} depend -j4 > /dev/null 2>&1; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ==== SHRTOUT=yes depend ====; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	env ${MAKE} ${MAKEFLAGS} SHRTOUT=yes depend 2>/dev/null |\
 	mkc_test_helper2; \
 	\
@@ -43,8 +43,8 @@ test_output:
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

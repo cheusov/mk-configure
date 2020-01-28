@@ -4,6 +4,10 @@
 ############################################################
 .include <mkc_imp.preinit.mk>
 
+.if make(distclean)
+.warning "Target 'distclean' is deprecated, please use 'cleandir'"
+.endif
+
 .ifdef SUBDIR
   SUBPRJ = ${SUBDIR}
 .endif

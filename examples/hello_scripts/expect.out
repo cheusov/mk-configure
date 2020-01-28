@@ -60,7 +60,7 @@ Hello World 3!
 /objdir/more_scripts/script3
 /objdir/msg.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_scripts.test.out.tmp

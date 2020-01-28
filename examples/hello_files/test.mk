@@ -36,8 +36,8 @@ test_output:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -49,11 +49,11 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ==== SHRTOUT=yes ====; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	env MKCATPAGES=no MKHTML=no ${MAKE} ${MAKEFLAGS} SHRTOUT=yes all 2>&1 |\
 	mkc_test_helper2; \
 	\
-	true ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	true ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

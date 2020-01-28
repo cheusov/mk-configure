@@ -45,7 +45,7 @@ glib_micro_version=N
 /objdir/hello_glib2.c
 /objdir/hello_glib2.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_glib2.c

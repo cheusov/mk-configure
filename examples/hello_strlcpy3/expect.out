@@ -125,7 +125,7 @@ full progname=/path/to/hello
 /objdir/hello_strlcpy3.test.out.tmp
 /objdir/input.in
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello.c

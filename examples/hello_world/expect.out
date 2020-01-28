@@ -70,7 +70,7 @@ usr/local/share/doc/hello_world/README
 /usr/local/bin/hello_world
 /usr/local/share/doc/hello_world/COPYRIGHT
 /usr/local/share/doc/hello_world/README
-======= distclean ==========
+======= cleandir ==========
 /objdir/COPYRIGHT
 /objdir/Makefile
 /objdir/README

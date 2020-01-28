@@ -105,7 +105,7 @@ hello world 3!
 /objdir/expect.out
 /objdir/hello_cxxlib.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/Makefile.inc
 /objdir/cxxapp/Makefile

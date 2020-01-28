@@ -89,7 +89,7 @@
 /objdir/parser.h
 /objdir/parser.y
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/expressions.txt

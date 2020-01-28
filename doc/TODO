@@ -25,7 +25,6 @@ __pure etc.  and use them all in other feature when necessary.
 Use external BSD install
 
 ============================================================
-remove target "distclean"
 remove target "configure"
 
 ============================================================

@@ -251,7 +251,7 @@ uninstall ===> examples/hello_dictd/dictfmt
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/Makefile.inc
 /objdir/dict/Makefile

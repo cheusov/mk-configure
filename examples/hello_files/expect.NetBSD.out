@@ -66,7 +66,7 @@ DISTCLEANFILES=/path/to/_mkc_*
 /objdir/shell_func2
 /objdir/shell_func3
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out

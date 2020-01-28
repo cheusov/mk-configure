@@ -62,7 +62,7 @@ Plugin2 sucessfully activated
 /objdir/plugin2/Makefile
 /objdir/plugin2/plugin2.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/app/Makefile
 /objdir/app/app.c

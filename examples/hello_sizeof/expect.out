@@ -60,7 +60,7 @@ sizeof(void*)=n
 /objdir/hello_sizeof.test.out.tmp
 /objdir/sizeof_test.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_sizeof.test.out.tmp

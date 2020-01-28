@@ -78,7 +78,7 @@
 /objdir/input.in
 /objdir/strlcpy.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/getline.c

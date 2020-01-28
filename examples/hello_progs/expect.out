@@ -99,7 +99,7 @@ server: I am a server
 /objdir/server_puts.c
 /objdir/server_puts.d
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/client.c
 /objdir/client_puts.c

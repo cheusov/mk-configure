@@ -115,7 +115,7 @@ GEN: hello_subprojects2
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
 /objdir/version.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello/Makefile

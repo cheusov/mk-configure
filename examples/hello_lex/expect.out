@@ -74,7 +74,7 @@ LD: hello_lex
 /objdir/hello_lex.test.out.tmp
 /objdir/input.txt
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_lex.l

@@ -57,7 +57,7 @@ foobarbaz
 /objdir/foobar.in
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/bar.lua
 /objdir/baz.c

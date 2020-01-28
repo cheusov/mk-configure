@@ -32,8 +32,8 @@ test_output:
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -46,6 +46,6 @@ test_output:
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
 	rm -rf ${.OBJDIR}/home; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

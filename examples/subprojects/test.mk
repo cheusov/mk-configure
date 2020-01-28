@@ -47,8 +47,8 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
@@ -56,7 +56,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} errorcheck 2> /dev/null 1>&2; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	\
 	echo ========= libhello1 ==========; \
 	${MAKE} ${MAKEFLAGS} libhello1 DESTDIR=${.OBJDIR} > /dev/null; \
@@ -73,7 +73,7 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	\
 	echo ======= library dependencies =======; \
 	PREFIX=${.CURDIR}/usr; export PREFIX; \

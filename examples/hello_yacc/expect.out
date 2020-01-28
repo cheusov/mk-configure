@@ -56,7 +56,7 @@
 YACC: calc.y
 CC: calc.c
 LD: hello_calc
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/calc.y
 /objdir/expect.out

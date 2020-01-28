@@ -14,6 +14,6 @@ test_output :
 	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	true =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

@@ -29,7 +29,7 @@ foobar
 /objdir/foobar.in
 /objdir/hello_lua2.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/bar.lua
 /objdir/expect.out

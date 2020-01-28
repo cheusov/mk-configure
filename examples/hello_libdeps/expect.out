@@ -104,7 +104,7 @@ fooquxfoobar_fooqux_ok=1
 /objdir/prefix/lib/libfooqux.so.0.0
 symbol foo
 symbol fooqux
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_libdeps.test.out.tmp

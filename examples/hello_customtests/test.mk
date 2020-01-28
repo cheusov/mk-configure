@@ -36,8 +36,8 @@ test_output:
 	   MAKEOBJDIR=${.CURDIR}/testdir > /dev/null; \
 	printf 'true_is_available=%s\n' `cat ${.CURDIR}/testdir/_mkc_custom_true_is_available.res`; \
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean DESTDIR=${.OBJDIR} > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

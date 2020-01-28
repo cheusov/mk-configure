@@ -51,7 +51,7 @@ Seven: 7
 /objdir/seven.c
 /objdir/seven.h
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/five.c

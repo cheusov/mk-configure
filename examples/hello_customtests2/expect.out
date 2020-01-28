@@ -41,7 +41,7 @@ alloca(3) succeeded
 /objdir/test.mk
 ======= errorcheck + MAKEOBJDIR ===========
 true_is_available=1
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_customtests2.c

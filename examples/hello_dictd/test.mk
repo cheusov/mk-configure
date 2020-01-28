@@ -63,8 +63,8 @@ test_output :
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
@@ -164,7 +164,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== all with NOSUBDIR ============; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	NOSUBDIR='dictfmt dictzip'; export NOSUBDIR; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
@@ -172,13 +172,13 @@ test_output :
 	unset NOSUBDIR; \
 	\
 	echo =========== all with MKPIE=yes ============; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all MKPIE=yes > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== all with STATICLIBS=everything... ============; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	env STATICLIBS='libmaa libdz' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -194,6 +194,6 @@ test_output :
 	\
 	true =========== cleandir ============; \
 	unset NOSUBDIR || true; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

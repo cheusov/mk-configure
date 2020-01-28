@@ -52,7 +52,7 @@ PROJECTNAME=hello_lua3
 /objdir/socket_baz.c
 /objdir/socket_foo.lua
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_lua3.test.out.tmp

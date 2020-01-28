@@ -29,8 +29,8 @@ test_output:
 	find ${.OBJDIR} -type f | grep -vE '${FUNCS_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | grep -vE '${FUNCS_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\

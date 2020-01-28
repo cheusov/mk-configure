@@ -66,7 +66,7 @@ I am a server
 /objdir/hello_progs2.test.out.tmp
 /objdir/server.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/client.c
 /objdir/common.c

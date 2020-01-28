@@ -78,7 +78,7 @@
 /objdir/missing/getline.c
 /objdir/missing/strlcpy.c
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello.c

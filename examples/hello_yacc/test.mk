@@ -32,12 +32,12 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ==== SHRTOUT=yes ====; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	env MKCATPAGES=no MKHTML=no ${MAKE} ${MAKEFLAGS} SHRTOUT=yes \
 		all 2>/dev/null | mkc_test_helper2; \
 	\
-	echo ======= distclean ==========; \
-	${MAKE} ${MAKEFLAGS} distclean > /dev/null; \
+	echo ======= cleandir ==========; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 

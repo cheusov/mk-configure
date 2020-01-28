@@ -29,7 +29,7 @@ SRCDIR_prog2=hello_subdirs/prog2
 /objdir/prog1.sh
 /objdir/prog1.test.out.tmp
 /objdir/test.mk
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/prog1.awk.in

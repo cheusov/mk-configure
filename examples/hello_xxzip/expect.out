@@ -71,7 +71,7 @@ POD2HTML: tutorial.html
 /usr/local/man/man1/xxzcat.1
 /usr/local/man/man1/xxzip.1
 /usr/local/share/doc/xxzip/tutorial.html
-======= distclean ==========
+======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out
 /objdir/hello_xxzip.test.out.tmp
