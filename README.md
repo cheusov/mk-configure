@@ -194,15 +194,13 @@ What mk-configure consists of?
 
       - Tons of other additions and improvements.
 
-- mkc.intexts.in
+- _mkc.intexts.mk_. Given a list of files in INFILES or INSCRIPTS *mkc.intexts.mk*
+  generates them from appropriate *.in file replacing @prefix@,
+  @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ etc. with
+  real ${PREFIX}, ${SYSCONFDIR} etc. See examples/ subdirectory for
+  the samples.
 
-      Given a list of files in INFILES or INSCRIPTS *mkc.intexts.mk*
-      generates them from appropriate *.in file replacing @prefix@,
-      @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ etc. with
-      real ${PREFIX}, ${SYSCONFDIR} etc. See examples/ subdirectory for
-      the samples.
-
-- *mkc.configure.mk* is a replacement for _GNU autoconf_. Its
+- *mkc.configure.mk*. It is a replacement for _GNU autoconf_. Its
   functionality is large enough to describe here.  In short, it allows
   to check for presence of header files, function or variable
   declarations, presence of function in a particular library, defines,
