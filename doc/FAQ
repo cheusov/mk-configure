@@ -206,7 +206,7 @@ A: I personally don't like two-phase ideology. I see one phase
    "build the software taking into account my platform's features".
    If you want to check for errors first, run
 
-      bmake errorcheck
+      bmake configure
 
 ----------------------------------------------------------------------
 Q: Does mk-configure support caching?

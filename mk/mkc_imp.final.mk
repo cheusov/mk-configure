@@ -36,6 +36,8 @@ mkc_clean: .PHONY
 
 #####
 distclean: cleandir
+.PHONY: errorcheck
+errorcheck: configure
 
 realdo_cleandir: mkc_cleandir
 
@@ -54,8 +56,8 @@ ${t}: pre_${t} .WAIT do_${t} .WAIT post_${t}
 pre_${t} do_${t} realdo_${t} post_${t}: .PHONY # ensure existence
 .if !commands(do_${t})
 do_${t}: realdo_${t}
-.endif
-.endfor
+.endif # !command
+.endfor # t
 
 ${TARGETS}: .PHONY
 

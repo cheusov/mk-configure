@@ -104,8 +104,8 @@ check_mkc_err_msg:
 	    exit $$ex; \
 	fi
 
-all: pre_errorcheck .WAIT do_errorcheck .WAIT post_errorcheck .WAIT pre_all .WAIT do_all .WAIT post_all
-realdo_errorcheck: check_mkc_err_msg
+all: pre_configure .WAIT do_configure .WAIT post_configure .WAIT pre_all .WAIT do_all .WAIT post_all
+realdo_configure: check_mkc_err_msg
 
 .include <mkc_imp.checkprogs.mk>
 .include <mkc.conf.mk>

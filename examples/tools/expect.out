@@ -453,8 +453,8 @@ all
 check
 clean
 cleandir
+configure
 depend
-errorcheck
 filelist
 install
 installdirs

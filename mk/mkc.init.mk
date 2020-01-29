@@ -304,10 +304,10 @@ STRIP     ?=	strip
 RM        ?=	rm
 
 TARGETS +=	all install clean cleandir depend test \
-		installdirs uninstall errorcheck filelist obj mkgen
+		installdirs uninstall configure filelist obj mkgen
 TARGETS :=	${TARGETS:O:u}
 
-ALLTARGETS +=	errorcheck all install clean cleandir depend uninstall installdirs \
+ALLTARGETS +=	configure all install clean cleandir depend uninstall installdirs \
   mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
 
 VERBOSE_ECHO ?=	echo

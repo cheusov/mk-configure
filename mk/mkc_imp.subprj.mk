@@ -91,6 +91,14 @@ EXPORT_VARNAMES += SRCDIR_${dir:S,/,_,g}
 _ALLTARGDEPS += all-${dir}:${dir}
 .endfor # dir
 
+.for dir in ${__REALSUBPRJ}
+errorcheck-${dir}: configure-${dir}
+do_errorcheck-${dir}: do_configure-${dir}
+pre_errorcheck-${dir}: pre_configure-${dir}
+post_errorcheck-${dir}: post_configure-${dir}
+nodeps-errorcheck-${dir}: nodeps-configure-${dir}
+.endfor
+
 .for excl in ${NODEPS}
 _ALLTARGDEPS :=	${_ALLTARGDEPS:N${excl}}
 .endfor # excl

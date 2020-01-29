@@ -48,9 +48,9 @@ realdo_mkgen:
 	${MESSAGE.mkgen}
 	${_V} ${PROG.autoreconf} ${AT_AUTORECONF_ARGS} ${_FSRCDIR}
 
-realdo_errorcheck: check_mkc_err_msg .WAIT at_do_errorcheck
+realdo_configure: check_mkc_err_msg .WAIT at_do_configure
 
-at_do_errorcheck: .PHONY
+at_do_configure: .PHONY
 	${MESSAGE.atconf}
 	${_V} cd ${_FOBJDIR}; env ${_CONFIGURE_ENV} ${_FSRCDIR}/configure ${_CONFIGURE_ARGS}
 

@@ -644,14 +644,14 @@ LDADD +=        -lcommon -ldz -lmaa
 
   \begin{block}{How it fails ;-)}
   \begin{CodeNoLabel}
-\prompt{\$ mkcmake errorcheck-dictzip}
+\prompt{\$ mkcmake configure-dictzip}
 ==================================================
-errorcheck ===> \h{libcommon}
+configure ===> \h{libcommon}
 ...
-errorcheck ===> \h{libmaa}
+configure ===> \h{libmaa}
 ...
 ==================================================
-errorcheck ===> \h{libdz}
+configure ===> \h{libdz}
 checking for header zlib.h... \h{no}
 checking for function deflate ( -lz )... \h{no}
 checking for function deflate... \h{no}
@@ -712,7 +712,7 @@ LUA\_CMODULE =   baz     # Lua module written in C
 
   \begin{block}{How it works}
   \begin{CodeNoLabel}
-\prompt{\$ mkcmake errorcheck}
+\prompt{\$ mkcmake configure}
 checking for program pkg-config...
    /usr/pkg/bin/pkg-config
 checking for [pkg-config] lua... 1 (yes)

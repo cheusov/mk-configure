@@ -105,7 +105,7 @@ install programs, libraries, files, include files, manual pages etc.
 to the target directories with a help of ${INSTALL} program.
 .IP uninstall
 remove installed files with a help of ${UNINSTALL} command.
-.IP errorcheck
+.IP configure
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
@@ -134,7 +134,7 @@ for the sample.
 .P
 .B NOTE:
 Commands associated with targets
-.IR all ", " install ", " clean ", " cleandir ", " depend ", " test ", " installdirs ", " uninstall ", " errorcheck " and " filelist
+.IR all ", " install ", " clean ", " cleandir ", " depend ", " test ", " installdirs ", " uninstall ", " configure " and " filelist
 in Makefile override the standard behaviour.
 .P
 .B NOTE:
@@ -449,7 +449,7 @@ Minimal required version of
 .BR mk-configure .
 If required version is not found,
 the target
-.I errorcheck
+.I configure
 fails.
 .RI < "M" >
 .IP MKC_VERSION
@@ -1058,7 +1058,7 @@ for all subproject recursively (See
 .BR mkc.subprj.mk " and " mkc.subdir.mk ).
 .RI < "Im" >
 .RI [ all ", " install ", " installdirs ", " uninstall ", " clean ", "
-.IR cleandir ", " depends ", " test ", " errorcheck ", " filelist ", " obj ]
+.IR cleandir ", " depends ", " test ", " configure ", " filelist ", " obj ]
 By setting this variable in the Makefile one can add new targets for special
 purposes, for example, static code analysis, partial builds etc.
 .IP ALLTARGETS
@@ -1179,7 +1179,7 @@ is added to CFLAGS unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_HEADERS
 The same as MKC_CHECK_HEADERS, but absense of header is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target).
 .IP MKC_CHECK_HEADER_FILES
 Same as
@@ -1193,7 +1193,7 @@ and HAVE_HEADER_FILE<HEADER> defines are set.
 .IP MKC_REQUIRE_HEADER_FILES
 The same as MKC_CHECK_HEADER_FILES, but absense of header is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target).
 .IP MKC_CHECK_FUNCLIBS
 List of <function>:<library> pairs to check,
@@ -1233,7 +1233,7 @@ MKC_NOAUTO is set to 1
 .IP MKC_REQUIRE_FUNCLIBS
 The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_SOURCE_FUNCLIBS
 The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
@@ -1281,7 +1281,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_DEFINES
 The same as MKC_CHECK_DEFINES, but absense of the define is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_TYPES
 List of type:header to check. <header> part is optional.
@@ -1307,7 +1307,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_TYPES
 The same as MKC_CHECK_TYPES, but absense of the type declaration is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_VARS
 List of variable:header to check. <header> part is optional.
@@ -1332,7 +1332,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_VARS
 The same as MKC_CHECK_VARS, but absense of the variable declaration is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_MEMBERS
 List of <type>.<member>:<header> to check.
@@ -1367,7 +1367,7 @@ unless MKC_NOAUTO is set to 1.
 .IP MKC_REQUIRE_MEMBERS
 The same as MKC_CHECK_MEMBERS, but absense of the member is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_FUNCS<N>
 List of <func>:<header> to check. <header> part is optional.
@@ -1401,7 +1401,7 @@ is "yes", equivalent define leads to the same results.
 .IP MKC_REQUIRE_FUNCS<N>
 The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_CUSTOM
 A list of custom checks (list of names).
@@ -1433,7 +1433,7 @@ Note that script for the check should be an executable file.
 .IP MKC_REQUIRE_CUSTOM
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target. 0 and empty value of CUSTOM.xxx means failure.
 .IP MKC_CUSTOM_DIR
 Directory with custom checks source files.
@@ -1497,7 +1497,7 @@ MKC_PROG.id.<progname> also changes cache file names.
 .IP MKC_REQUIRE_PROGS
 The same as MKC_CHECK_PROGS, but absense of program is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target).
 .IP MKC_CHECK_SIZEOF
 List of <type>:<header> to check. <header> part is optional.
@@ -1555,7 +1555,7 @@ Res.
 .IP MKC_REQUIRE_PROTOTYPES
 The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP MKC_CHECK_CC_OPTS
 A list of C compiler options to check.
@@ -2001,7 +2001,7 @@ is also added to CFLAGS if <lib> was found. <LIB> is tr/a-z+.-/A-ZP__/ of <lib>.
 .IP MKC_REQUIRE_PKGCONFIG
 The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
 treated as a fatal error (See
-.B errorcheck
+.B configure
 target.
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
@@ -2136,11 +2136,11 @@ Path to mk.conf file .include-ed by mkc.*.mk files
  .include-ed by mkc.init.mk if exists
 .SH "BUGS"
 Target
-.IR errorcheck " (" configure ")"
+.IR configure " (" configure ")"
 doesn't support parallel builds. In order to build project in parallel,
 run it like the following
 .VS
-   mkcmake errorcheck
+   mkcmake configure
    mkcmake -j4 all
 .VE
 .SH "SEE ALSO"

@@ -1,19 +1,19 @@
 =========== {pre,do,post}_recursive ============
 ==================================================
-errorcheck ===> tests/predopost_targets/lib
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+configure ===> tests/predopost_targets/lib
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 ==================================================
-errorcheck ===> tests/predopost_targets/others
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+configure ===> tests/predopost_targets/others
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 ==================================================
-errorcheck ===> tests/predopost_targets/lua
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+configure ===> tests/predopost_targets/lua
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 ==================================================
 clean ===> tests/predopost_targets/lib
 fake target pre_clean
@@ -72,25 +72,25 @@ fake target do_install
 fake target post_install
 ==================================================
 all ===> tests/predopost_targets/lib
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 fake target pre_all
 fake target do_all
 fake target post_all
 ==================================================
 all ===> tests/predopost_targets/others
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 fake target pre_all
 fake target do_all
 fake target post_all
 ==================================================
 all ===> tests/predopost_targets/lua
-fake target pre_errorcheck
-fake target do_errorcheck
-fake target post_errorcheck
+fake target pre_configure
+fake target do_configure
+fake target post_configure
 fake target pre_all
 fake target do_all
 fake target post_all

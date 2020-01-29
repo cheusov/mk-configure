@@ -1,5 +1,5 @@
 .ifndef REAL_TARGETS
-.for i in errorcheck clean cleandir install all uninstall installdirs depend \
+.for i in configure clean cleandir install all uninstall installdirs depend \
     bin_tar bin_targz bin_tarbz2 bin_zip bin_deb
 pre_${i} do_${i} post_${i}:
 	@echo "fake target ${.TARGET}"
