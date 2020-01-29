@@ -29,27 +29,6 @@
 	${MESSAGE.cc}
 	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 
-# Fortran/Ratfor
-.f.o:
-	${MESSAGE.f}
-	${COMPILE.f} ${FFLAGS_${_PN}} -o ${.TARGET} ${.IMPSRC}
-.f.op:
-	${MESSAGE.f}
-	${COMPILE.f} -pg ${FFLAGS_${_PN}} -o ${.TARGET} ${.IMPSRC}
-.f.os:
-	${MESSAGE.f}
-	${COMPILE.f} ${FFLAGS.pic} ${FFLAGS_${_PN}} -o ${.TARGET} ${.IMPSRC}
-
-#.F:
-.F.o:
-	${MESSAGE.F}
-	${COMPILE.F} -o ${.TARGET} ${.IMPSRC}
-
-#.r:
-.r.o:
-	${MESSAGE.r}
-	${COMPILE.r} -o ${.TARGET} ${.IMPSRC}
-
 # Assembly
 .S.o .s.o:
 	${MESSAGE.s}

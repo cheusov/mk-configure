@@ -22,7 +22,7 @@ user's host for building a software.
 **mk-configure** features:
 
  - An easy way for building standalone executables, static and shared
-   libraries written in _C_, _C++_, _Fortran_ and _Objective
+   libraries written in _C_, _C++_ and _Objective
    C_; _.cat_ and _.html_ files from man pages; _.info_ pages from _texinfo_
    sources etc. _LEX_, _YACC_ are also supported. Support for other
    languages are planned.

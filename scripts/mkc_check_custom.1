@@ -1,6 +1,6 @@
 .\"	$NetBSD$
 .\"
-.\" Copyright (c) 2009-2014 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) 2009-2020 by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -14,7 +14,7 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_CUSTOM 1 "Nov 22, 2009" "" ""
+.TH MKC_CHECK_CUSTOM 1 "Jan 28, 2020" "" ""
 .SH NAME
 mkc_check_custom \- run user's custom checks.
 .SH SYNOPSIS
@@ -40,9 +40,7 @@ extension. '.c' corresponds to
 .I ${CC}
 (C language), '.cc', '.cxx', '.C' and '.cpp' correspond to
 .I ${CXX}
-(C++ language), '.f' -- to
-.I ${FC}
-(Fortran).
+(C++ language).
 .SH OPTIONS
 .TP
 .B "-h"
@@ -89,10 +87,7 @@ C compiler
 C++ compiler
 .TP
 .B CARGS
-Options passed to compiler (CC, CXX or FC)
-.TP
-.B FC
-Fortran compiler
+Options passed to compiler (CC and CXX)
 .TP
 .B CPPFLAGS
 Preprocessor flags for C and C++
@@ -102,9 +97,6 @@ Compilation flags for C
 .TP
 .B CXXFLAGS
 Compilation flags for C++
-.TP
-.B FFLAGS
-Compilation flags for Fortran
 .TP
 .B MKC_VERBOSE
 If set to 1, verbose messages are output to stderr.

@@ -26,14 +26,11 @@ UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 # LDFLAGS.soname:	Flags to tell ${LD} to emit shared library.
 #			with ELF, also set shared-lib version for ld.so.
 #
-# FFLAGS.pic:		flags for ${FC} to compile .[fF] files to .os objects.
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
 # CFLAGS.pic:		flags for ${CC} to compile .[cC] files to .os objects.
 # CAFLAGS.pic		flags for {$CC} to compiling .[Ss] files
 #		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
-
-FFLAGS  +=	${FOPTS}
 
 OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
 SOBJS  =	${OBJS:.o=.os}

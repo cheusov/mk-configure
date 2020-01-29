@@ -221,18 +221,6 @@ Similar to CPPFLAGS but for project ${PROJECTNAME}.
 The same as CPPFLAGS but CPPFLAGS0 are passed to the compiler before CPPFLAGS.
 Normally, CPPFLAGS0 should be modified in makefiles and should not
 be set from environment by user.
-.IP FC
-Fortran compiler.
-.RI < Iu >
-.RI [ f77 ]
-.IP FFLAGS
-Options to {$FC}.
-.RI < Iu >
-.RI [ -O ]
-.IP FFLAGS_<project>
-Similar to FFLAGS but for project
-.IR ${PROJECTNAME} .
-.RI < "U" >
 .IP INSTALL
 install(1) command.
 .RI < Iu >
@@ -1418,7 +1406,7 @@ target.
 .IP MKC_CHECK_CUSTOM
 A list of custom checks (list of names).
 MKC_CUSTOM_FN.<custom_check_name> is a
-"C", "C++" or "Fortran" source filename or an executable program
+"C" or "C++" source filename or an executable program
 for your custom check,
 e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
 filename.cpp, mychecks/filename.f or subdir/executable_script.

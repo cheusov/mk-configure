@@ -17,8 +17,3 @@ MKC_PROG.id.${CC:[1]:S|+|x|g}    =	cc
 MKC_REQUIRE_PROGS  +=			${CXX:[1]}
 MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
 .endif
-
-.if !empty(_srcsall:U:M*.f) && !empty(FC)
-MKC_REQUIRE_PROGS  +=			${FC:[1]}
-MKC_PROG.id.${FC:[1]:S/+/x/g}    =	fc
-.endif
