@@ -19,9 +19,6 @@ __pure etc.  and use them all in other feature when necessary.
 Use external BSD install
 
 ============================================================
-remove target "configure"
-
-============================================================
 features: do not add new sources to MKC_SRCS unless
 we build compatlib (if it exists)
 
