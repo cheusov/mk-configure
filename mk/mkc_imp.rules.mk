@@ -2,7 +2,7 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
-.SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .F .f .r .m .y .l .cl .p .h
+.SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
 
 .LIBS:		.a
 
@@ -39,17 +39,6 @@
 .S.os .s.os:
 	${MESSAGE.s}
 	${COMPILE.s} ${CAFLAGS.pic} -o ${.TARGET} ${.IMPSRC}
-
-# Objective-C
-.m.o:
-	${MESSAGE.m}
-	${COMPILE.m} ${.IMPSRC}
-.m.op:
-	${MESSAGE.m}
-	${COMPILE.m} -pg -o ${.TARGET} ${.IMPSRC}
-.m.os:
-	${MESSAGE.m}
-	${COMPILE.m} ${CMFLAGS.pic} -o ${.TARGET} ${.IMPSRC}
 
 # Lex
 .l.c:

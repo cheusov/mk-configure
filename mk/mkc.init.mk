@@ -240,11 +240,6 @@ CXXFLAGS   +=	${CFLAGS}
 COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CXXFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS_${_PN}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
-OBJC       ?=	${CC}
-OBJCFLAGS  ?=	${CFLAGS}
-COMPILE.m  ?=	${_V} ${OBJC} ${OBJCFLAGS} ${_CPPFLAGS} -c
-MESSAGE.m  ?=	@${_MESSAGE} "OBJC: ${.IMPSRC}"
-
 CPP        ?=	cpp
 CPPFLAGS   ?=	
 

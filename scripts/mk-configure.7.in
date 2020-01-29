@@ -903,7 +903,7 @@ See LIBDEPS in section
 .IP DPLDADD
 See LIBDEPS in section
 .BR mk.subprj.mk .
-.\" .IP "COPTS.lib<lib> OBJCCOPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
+.\" .IP "COPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
 .\" These provide a way to specify additions to the associated
 .\" variables in a way that applies only to a particular
 .\" library.  <lib> corresponds to a LIB variable.

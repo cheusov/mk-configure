@@ -2,9 +2,6 @@
 Remove undocumented variables COPY, PRESERVE etc.
 
 ============================================================
-Remove support for objc and fortran
-
-============================================================
 Add support for armcc
 
 ============================================================
@@ -132,11 +129,7 @@ ronn(1) : markdown to man pages
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - USE_RPATH
-  - OBJCOPTS_<proj>
   - Regression tests:
-    * optional .f tests
-    * optional .p tests
-    * optional .m tests
     * optional(!) glib2 tests
 
 ============================================================

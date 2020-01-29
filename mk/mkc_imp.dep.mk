@@ -45,8 +45,6 @@ ddash=
 .if ${MKDEP_TYPE:U} == "makedepend"
 MKDEP.c   = ${MAKEDEPEND} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
-MKDEP.m   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
-	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 MKDEP.cc  = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
 	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS} > ${.TARGET}
 MKDEP.s   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
@@ -54,8 +52,6 @@ MKDEP.s   = ${MKDEP} -f- ${ddash} ${MKDEPFLAGS} \
 .else
 MKDEP.c   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
-MKDEP.m   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
-	    ${OBJCFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 MKDEP.cc  = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${CXXFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
@@ -71,15 +67,11 @@ MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	@sed 's/^\([^ ]*\)[.]o\(.*\)$$/${MKDEP_SUFFIXES:C,^,\\\\1,}\2/' ${__DPSRCS.d} > ${.TARGET}
 .endif
 
-.SUFFIXES: .d .s .S .c .C .cc .cpp .cxx .m
+.SUFFIXES: .d .s .S .c .C .cc .cpp .cxx
 
 .c.d:
 	${MESSAGE.dep}
 	@env CC=${MKDEP_CC:Q} ${MKDEP.c} ${.IMPSRC}
-
-.m.d:
-	${MESSAGE.dep}
-	@${MKDEP.m} ${.IMPSRC}
 
 .s.d .S.d:
 	${MESSAGE.dep}
