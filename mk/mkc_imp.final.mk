@@ -12,10 +12,6 @@ LDADD +=	${LDADD_${PROJECTNAME}}
 
 LDFLAGS +=	${LDFLAGS_${PROJECTNAME}}
 
-.if !empty(SRCS:U:M*.l)
-LDADD +=	${LEXLIB}
-.endif
-
 .for i in ${EXPORT_VARNAMES}
 .if empty(NOEXPORT_VARNAMES:U:M${i})
 export_cmd  +=	${i}=${${i}:Q}; export ${i};
