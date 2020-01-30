@@ -14,6 +14,7 @@ export LC_ALL
 : ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
 
 : ${TMPDIR:=/tmp}
+: ${CC:=cc}
 : ${CXX:=c++}
 
 tmpfile="$TMPDIR/mk-c.$$.c"
