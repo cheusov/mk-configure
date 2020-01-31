@@ -21,7 +21,7 @@ mkc_check_compile \- checks for C and C++ compiler type.
 .BI mkc_check_compile " [OPTIONS]"
 .SH DESCRIPTION
 .B mkc_check_compile
-recognizes the compiler type and prints its identifier to stdout.
+recognizes the compiler type and version, and prints them to stdout.
 By default, temporary and cache files
 .I _mkc_compiler_type.{err,res}
 (for C compiler) and
@@ -33,7 +33,7 @@ directory.
 .SH OPTIONS
 .TP
 .B "-x"
-Check C++ compiler type. By default C compiler type is checked.
+Check C++ compiler type. By default C compiler type and version are checked.
 .SH ENVIRONMENT
 .TP
 .B CC

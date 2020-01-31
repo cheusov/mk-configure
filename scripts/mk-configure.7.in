@@ -507,11 +507,17 @@ decc      DEC C
 mipspro   MIPSpro C compiler
 .VE
 .RI < "Iu" >
+.IP CC_VERSION
+C compiler version.
+.RI < "I" >
 .IP CXX_TYPE
 C++ compiler type. This variable is set by
 .B mk-configure
 and can be overriden by user. It can get the same values as CC_TYPE variable.
 .RI < "Iu" >
+.IP CXX_VERSION
+C++ compiler version.
+.RI < "I" >
 .IP LD_TYPE
 Linker type. This variable is set by
 .B mk-configure

@@ -106,15 +106,24 @@ CPPFLAGS +=	${CPPFLAGS.${TARGET_OPSYS}:U}
 .elif ${MKCHECKS:Uno:tl} == "yes" && !defined(CC_TYPE) && (defined(PROGS) || defined(LIB) || defined(MKC_CHECK_PROTOTYPES))
 mkc.cc_type.environ = CC='${CC}' CXX='${CXX}' CPPFLAGS='${CPPFLAGS}' CFLAGS='${CFLAGS}' LDFLAGS='${LDFLAGS}' LDADD='${LDADD}' MKC_CACHEDIR='${MKC_CACHEDIR}' MKC_DELETE_TMPFILES='${MKC_DELETE_TMPFILES}' MKC_SHOW_CACHED='${MKC_SHOW_CACHED}' MKC_NOCACHE='${MKC_NOCACHE}' MKC_VERBOSE=1
 .if !empty(src_type:Mc)
-CC_TYPE  !=	env ${mkc.cc_type.environ} mkc_check_compiler
+CC_FULL_TYPE  !=	env ${mkc.cc_type.environ} mkc_check_compiler
+CC_TYPE       :=	${CC_FULL_TYPE:[1]}
+CC_VERSION    :=	${CC_FULL_TYPE:[2]}
+.undef CC_FULL_TYPE
 .endif
 .if !empty(src_type:Mcxx)
-CXX_TYPE !=	env ${mkc.cc_type.environ} mkc_check_compiler -x
+CXX_FULL_TYPE !=	env ${mkc.cc_type.environ} mkc_check_compiler -x
+CXX_TYPE       :=	${CXX_FULL_TYPE:[1]}
+CXX_VERSION    :=	${CXX_FULL_TYPE:[2]}
+.undef CXX_FULL_TYPE
 .endif # src_type
 .endif # cleandir|distclean|...
 
 CC_TYPE  ?=	unknown
 CXX_TYPE ?=	unknown
+
+CC_VERSION  ?=	0
+CXX_VERSION ?=	0
 
 ####################
 # Default compiler-specific options

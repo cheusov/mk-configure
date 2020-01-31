@@ -40,38 +40,52 @@ while getopts x f; do
 done
 
 ##################################################
-checks='
-       __clang__   clang
-           __ICC   icc
-__INTEL_COMPILER   icc
-         __PCC__   pcc
-        __GNUC__   gcc
-        _MSC_VER   msc
-        __HP_aCC   hpc
-         __HP_cc   hpc
-   __SUNPRO_C      sunpro
-  __SUNPRO_CC      sunpro
-     __IBMCPP__    ibmc
-       __IBMC__    ibmc
-    __BORLANDC__   bcc
-  __WATCOMC__      watcom
-       __COMO__    como
-         __DECC    decc
-       __DECCXX    decc
-_COMPILER_VERSION  mipspro
-'
+checks() {
+    cat <<'EOF'
+       __clang__   clang   __clang_major__.__clang_minor__.__clang_patchlevel__
+           __ICC   icc     __ICC
+__INTEL_COMPILER   icc     __INTEL_COMPILER
+         __PCC__   pcc     __PCC__.__PCC_MINOR__.__PCC_MINORMINOR__
+        __GNUC__   gcc     __GNUC__.__GNUC_MINOR__.__GNUC_PATCHLEVEL__
+        _MSC_VER   msc     _MSC_VER
+        __HP_aCC   hpc     __HP_aCC
+         __HP_cc   hpc     __HP_aCC
+   __SUNPRO_C      sunpro  __SUNPRO_C
+  __SUNPRO_CC      sunpro  __SUNPRO_C
+     __IBMCPP__    ibmc    __xlC__
+       __IBMC__    ibmc    __xlC__
+    __BORLANDC__   bcc     __BORLANDC__
+  __WATCOMC__      watcom  __WATCOMC__
+       __COMO__    como    __COMO_VERSION__
+         __DECC    decc    __DECC_VER
+       __DECCXX    decc    __DECCXX_VER
+_COMPILER_VERSION  mipspro __COMPILER_VERSION
+EOF
+}
 
 check_itself (){
+    checks |
     @AWK@ '
 BEGIN {
    printf "#"
-   for (i=1; i < ARGC; ++i){
-      printf "if defined(%s)\ncompiler %s\n#el", ARGV [i], ARGV [i+1]
-   }
-   printf "se\ncompiler unknown\n#endif\n"
-}' $checks >"$tmpfile"
+}
+{
+   printf "if defined(%s)\ncompiler %s %s\n#el", $1, $2, $3
+}
+END {
+   printf "se\ncompiler unknown 0\n#endif\n"
+}' >"$tmpfile"
+
     $CC -E "$tmpfile" |
-    @AWK@ 'BEGIN { ret="unknown"} $1 == "compiler" {ret=$2; exit} END {print ret}'
+    @AWK@ 'BEGIN { ret="unknown"}
+	$1 == "compiler" {
+	    compiler = $2
+	    $1 = $2 = ""
+	    gsub(/ /, "", $0)
+	    ret=(compiler " " $0)
+	    exit
+	}
+	END { print ret }' 
 }
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
