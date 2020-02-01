@@ -1,0 +1,9 @@
+============ VALUE = 7 =============
+VALUE=7
+=========== VALUE = 711 ============
+VALUE=711
+======= help ==========
+There are the following variables you may use to configure print_value:
+  * VALUE
+    - unset: the default value is 7 (the default)
+    - the specified value otherwise

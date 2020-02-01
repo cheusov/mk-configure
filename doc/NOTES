@@ -177,3 +177,12 @@ mkc.subprj.mk and its LIBDEPS variable. Even if you prefer shared
 libraries, users will be able to link them statically with a help
 STATICLIBS variable specified in environment. For this to work you
 have to use += for STATICLIBS in Makefiles.
+
+***
+
+Some projects may provide some special variables for configuring.
+You can see them by running the following command.
+
+  mkcmake help
+
+mk-configure itself provides some things to configure.

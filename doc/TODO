@@ -5,10 +5,6 @@ Add support for armcc
 markdown to html rules
 
 ============================================================
-"mkcmake help" that shows how to configure
-and build the project
-
-============================================================
 Add new feature for NetBSD-style defines like __dead,
 __pure etc.  and use them all in other feature when necessary.
 

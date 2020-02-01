@@ -8,7 +8,7 @@ FILES =	sys.mk mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
-	mkc_imp.objdir.mk mkc_imp.obj.mk ${INFILES}
+	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk ${INFILES}
 
 FILES += \
     mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk \

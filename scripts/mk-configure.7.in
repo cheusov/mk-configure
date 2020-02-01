@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Jan 28, 2020" "" ""
+.TH MK-CONFIGURE 7 "Feb 1, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -2117,6 +2117,27 @@ Arguments passed to
 .BR autoreconf(1) .
 .RI < "U" >
 .RI [ "-sif" ].
+.SS "mkc_imp.help.mk"
+This mk file implements target
+.B help
+which shows the configuring options available for the project and descriptions
+for their values.
+.IP USE_VARIABLES
+A list of configuring variables. Let's assume that the only
+configuring variable is
+.I USESOMETHING
+and the valid values for it are:
+.I "no"
+(the default) and
+.IR "yes" .
+Then developer may provide the following assignments in Makefile:
+.VS
+    USE_VARIABLES  += USESOMETHING
+    USESOMETHING.0  = "no: disable feature SOMETHING"
+    USESOMETHING.1  = "yes: enable feature SOMETHING"
+.VE
+.RI < "M" >
+.RI [ "" ]
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM

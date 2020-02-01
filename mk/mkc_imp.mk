@@ -143,6 +143,7 @@ CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
    ########################################
 
 .  include <mkc_imp.arch.mk>
+.  include <mkc_imp.help.mk>
 
 .endif # MKC_ERR_MSG
 
