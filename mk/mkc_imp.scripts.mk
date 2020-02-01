@@ -27,7 +27,7 @@ scriptsinstall:  ${destination_scripts}
 .PHONY:          ${destination_scripts}
 
 __scriptinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
+	${INSTALL} ${INSTALL_FLAGS} \
 	    -o ${SCRIPTSOWN_${.ALLSRC:T}:U${SCRIPTSOWN}:Q} \
 	    -g ${SCRIPTSGRP_${.ALLSRC:T}:U${SCRIPTSGRP}:Q} \
 	    -m ${SCRIPTSMODE_${.ALLSRC:T}:U${SCRIPTSMODE}} \

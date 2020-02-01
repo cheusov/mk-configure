@@ -66,7 +66,7 @@ realdo_uninstall:
 
 realdo_installdirs:
 	for d in _ ${INSTALLDIRS:O:u:S|/.$||}; do \
-		test "$$d" = _ || ${INSTALL} -d -m ${DIRMODE} "$$d"; \
+		test "$$d" = _ || ${INSTALL} ${INSTALL_FLAGS} -d -m ${DIRMODE} "$$d"; \
 	done
 
 filelist:

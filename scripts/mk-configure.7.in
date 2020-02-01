@@ -225,6 +225,10 @@ be set from environment by user.
 install(1) command.
 .RI < Iu >
 .RI [ install " or " mkc_install ]
+.IP INSTALL_FLAGS
+Flags passed to ${INSTALL} program.
+.RI < Iu >
+.RI [ "-c" ]
 .IP LEX
 Lexical analyzer.
 .RI < Iu >

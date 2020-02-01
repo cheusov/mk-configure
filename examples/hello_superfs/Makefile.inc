@@ -8,7 +8,7 @@ BINDIR    ?=	${SBINDIR}
 # and was proposed by Michael Crogan.
 PREFIX  =	${TMPPREFIX}
 INSTALL =	mkc_install
-COPY    =	-ls # symlinks instead of copying/moving
+INSTALL_FLAGS =	-ls # symlinks instead of copying/moving
 post_all: install
 pre_clean: uninstall
 .endif

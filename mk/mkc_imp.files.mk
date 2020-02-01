@@ -28,7 +28,7 @@ filesinstall: ${destination_files}
 .PHONY: ${destination_files}
 
 __fileinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
+	${INSTALL}  ${INSTALL_FLAGS} \
 	    -o ${FILESOWN_${.ALLSRC:T}:U${FILESOWN}:Q} \
 	    -g ${FILESGRP_${.ALLSRC:T}:U${FILESGRP}:Q} \
 	    -m ${FILESMODE_${.ALLSRC:T}:U${FILESMODE}} \

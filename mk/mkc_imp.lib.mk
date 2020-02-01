@@ -74,7 +74,7 @@ __archivebuild: .USE
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN:Q} \
+	${INSTALL}  ${INSTALL_FLAGS} -o ${LIBOWN:Q} \
 	    -g ${LIBGRP:Q} -m ${LIBMODE} ${.ALLSRC} ${.TARGET}
 
 DPSRCS     +=	${SRCS:M*.l:.l=.c} ${SRCS:M*.y:.y=.c}
@@ -161,7 +161,7 @@ CLEANFILES += ${SHLIBFN}
 .endif
 
 ${DESTDIR}${LIBDIR}/${SHLIBFN}: ${SHLIBFN}
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} -o ${LIBOWN:Q} \
+	${INSTALL}  ${INSTALL_FLAGS} -o ${LIBOWN:Q} \
 	    -g ${LIBGRP:Q} -m ${SHLIBMODE} ${.ALLSRC} ${.TARGET}
 .if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR) && ${MKDLL:tl} == "no"
 	/sbin/ldconfig -m ${LIBDIR}

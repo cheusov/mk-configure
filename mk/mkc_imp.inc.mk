@@ -22,7 +22,7 @@ incinstall: ${destination_incs}
 .PHONY: ${destination_incs}
 
 __incinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
+	${INSTALL}  ${INSTALL_FLAGS} \
 	    -o ${BINOWN:Q} \
 	    -g ${BINGRP:Q} -m ${NONBINMODE} ${.ALLSRC} ${.TARGET}
 

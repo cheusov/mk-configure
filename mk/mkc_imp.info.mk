@@ -44,7 +44,7 @@ infoinstall: ${destination_infos}
 .PHONY: ${destination_infos}
 
 __infoinstall: .USE
-	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} ${INSTPRIV} \
+	${INSTALL}  ${INSTALL_FLAGS} \
 	    -o ${INFOOWN_${.ALLSRC:T}:U${INFOOWN}:Q} \
 	    -g ${INFOGRP_${.ALLSRC:T}:U${INFOGRP}:Q} \
 	    -m ${INFOMODE_${.ALLSRC:T}:U${INFOMODE}} \

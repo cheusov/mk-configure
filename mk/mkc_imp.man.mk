@@ -76,7 +76,7 @@ CLEANFILES +=	${CATPAGES}
 HTMLPAGES   =	${MANPAGES:C/(.*).([1-9])/\1.html\2/}
 .endif
 
-MINSTALL    =	${INSTALL} ${RENAME} ${PRESERVE} ${COPY} \
+MINSTALL    =	${INSTALL}  ${INSTALL_FLAGS} \
 		    -o ${MANOWN:Q} -g ${MANGRP:Q} -m ${MANMODE}
 
 .if defined(MANZ)

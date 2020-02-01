@@ -168,9 +168,8 @@ SCRIPTSOWN  ?=	${BINOWN}
 SCRIPTSGRP  ?=	${BINGRP}
 SCRIPTSMODE ?=	${BINMODE}
 
-COPY        ?=		-c
-PRESERVE    ?=
-STRIPFLAG   ?=	-s
+INSTALL_FLAGS ?=	-c
+STRIPFLAG     ?=	-s
 
 MKINSTALL ?=	yes
 
