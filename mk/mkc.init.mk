@@ -232,12 +232,12 @@ MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
 CC        ?=	cc
 CFLAGS    ?=
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CFLAGS} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS_${_PN}} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
 CXX        ?=	c++
 CXXFLAGS   +=	${CFLAGS}
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CXXFLAGS} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS_${_PN}} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 CPP        ?=	cpp
