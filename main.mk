@@ -7,10 +7,12 @@
 
 ##################################################
 USE_VARIABLES += USE_AWK
+USE_AWK.descr = "AWK interpreter"
 USE_AWK.0 = "unset or \"auto\":  path to AWK interpreter is detected automatically"
 USE_AWK.1 = "path:  the specified path to AWK interpreter is used"
 
 USE_VARIABLES += USE_SH
+USE_SH.descr = "Shell interpreter"
 USE_SH.0 = "unset or \"auto\":  path to shell interpreter is detected automatically"
 USE_SH.1 = "path:  the specified path to shell interpreter is used"
 

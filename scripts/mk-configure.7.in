@@ -2133,6 +2133,7 @@ and the valid values for it are:
 Then developer may provide the following assignments in Makefile:
 .VS
     USE_VARIABLES  += USESOMETHING
+    USESOMETHING.descr  = "Configuring parameter SOMETHING"
     USESOMETHING.0  = "no: disable feature SOMETHING"
     USESOMETHING.1  = "yes: enable feature SOMETHING"
 .VE

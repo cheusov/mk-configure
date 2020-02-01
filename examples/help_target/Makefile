@@ -4,6 +4,7 @@ SRCS          =	print_value.c
 WARNS         =	4
 
 USE_VARIABLES =	VALUE
+VALUE.descr   =	"Value to print"
 VALUE.0       =	"unset: the default value is 7"
 VALUE.1       =	"the specified value otherwise"
 

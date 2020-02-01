@@ -14,8 +14,14 @@ help:
 .else
 	@echo "There are the following variables you may use to configure ${PROJECTNAME}:"
 .   for v in ${USE_VARIABLES}
-	@echo "  * ${v}"
-	@echo "    - ${${v}.0} (the default)"
+.       if !empty(${v}.descr)
+	    @echo "  * ${v} (${${v}.descr})"
+.	else
+	    @echo "  * ${v}"
+.	endif
+.       if !empty(${v}.0)
+	    @echo "    - ${${v}.0} (the default)"
+.       endif
 .       for n in 1 2 3 4 5 6 7 8 9 10
 .           if !empty(${v}.${n})
 		@echo "    - ${${v}.${n}}"
