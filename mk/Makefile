@@ -10,9 +10,24 @@ FILES =	sys.mk mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk ${INFILES}
 
+FILES += \
+    mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk \
+    mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
+
 FILESDIR =	${MKFILESDIR}
 
 INFILES +=	mkc_imp.vars.mk
+
+CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
+
+#################################################
+# the following three variables are necessary for detecting CC_TYPE and CXX_TYPE
+MKCHECKS              =	yes
+MKC_CHECK_PROTOTYPES  =
+src_type              =	c cxx
+
+.include <mkc.init.mk>
+.include "compiler_settings.mk"
 
 #################################################
 .for i in prog_mkdep prog_nbmkdep

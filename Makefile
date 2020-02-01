@@ -13,4 +13,5 @@ PROJECTNAME =		mk-configure
 .MAIN: all
 .DEFAULT:
 	@CHECK_COMMON_SH_DIR=${.CURDIR}/scripts; export CHECK_COMMON_SH_DIR; \
+	BUILTINSDIR=${.CURDIR}/builtins; export BUILTINSDIR; \
 	unset ROOT_GROUP; ${MAKE} ${MAKEFLAGS} -m ${.CURDIR}/mk -m ${.CURDIR}/features -f main.mk ${.TARGET}

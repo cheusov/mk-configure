@@ -124,7 +124,6 @@ ronn(1) : markdown to man pages
                     MKC_CUSTOM_FN.script_check=      checks/script_check
 
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
-  - Fix USE_SSP support for clang (-mllvm -stack-protector-buffer-size=1)
   - USE_RPATH
   - Regression tests:
     * optional(!) glib2 tests

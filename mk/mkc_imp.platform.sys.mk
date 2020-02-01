@@ -126,128 +126,33 @@ CC_VERSION  ?=	0
 CXX_VERSION ?=	0
 
 ####################
-# Default compiler-specific options
+# Compiler-specific options
+.sinclude <mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk>
+.sinclude <mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk>
 
-# C
-CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaration
-CFLAGS.dflt.icc       =		-we147 # 147 is required for MKC_CHECK_PROTOTYPES
-
-CFLAGS               +=		${CFLAGS.dflt.${CC_TYPE}}
-
-# C++
-CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
-CXXFLAGS.dflt.icc     =		${CFLAGS.dflt.icc}
-
-CXXFLAGS             +=		${CXXFLAGS.dflt.${CXX_TYPE}}
+# C/C++ default flags
+CFLAGS      +=		${CFLAGS.dflt.${CC_TYPE}}
+CXXFLAGS    +=		${CXXFLAGS.dflt.${CXX_TYPE}}
 
 ####################
 # Warnings as error
-CFLAGS.warnerr.gcc    =		-Werror
-CFLAGS.warnerr.icc    =		-Werror
-CFLAGS.warnerr.sunpro =		-errwarn=%all
-CFLAGS.warnerr.clang  =		-Werror
 
-WARNERR  ?=	${WARNS:U0:S/4/yes/}
+WARNERR     ?=		${WARNS:U0:S/4/yes/}
 
 CFLAGS.warnerr   =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CC_TYPE}}:}
-CXXFLAGS.warnerr =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CXX_TYPE}}:}
+CXXFLAGS.warnerr =	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr.${CXX_TYPE}}:}
 
-####################
-# C warns for GCC
-CFLAGS.warns.gcc.1 =		-Wall -Wstrict-prototypes -Wmissing-prototypes \
-				-Wpointer-arith
-CFLAGS.warns.gcc.2 =		${CFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
-CFLAGS.warns.gcc.3 =		${CFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
-				-Wno-unused-parameter
-CFLAGS.warns.gcc.4 =		${CFLAGS.warns.gcc.3}
-
-# C++ warns
-CXXFLAGS.warns.gcc.1 =		-Wold-style-cast -Wctor-dtor-privacy \
-				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
-				-Wno-non-template-friend -Woverloaded-virtual \
-				-Wno-pmf-conversions -Wsign-promo -Wsynth
-CXXFLAGS.warns.gcc.2 =		${CXXFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
-CXXFLAGS.warns.gcc.3 =		${CXXFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
-				-Wno-unused-parameter
-CXXFLAGS.warns.gcc.4 =		${CXXFLAGS.warns.gcc.3}
-
-####################
-# C warns for ICC
-CFLAGS.warns.icc.1 =		-Wall -we1011
-CFLAGS.warns.icc.2 =		${CFLAGS.warns.icc.1}
-CFLAGS.warns.icc.3 =		${CFLAGS.warns.icc.2}
-CFLAGS.warns.icc.4 =		${CFLAGS.warns.icc.3}
-
-# C++ warns
-CXXFLAGS.warns.icc.1 =		${CFLAGS.warns.icc.1}
-CXXFLAGS.warns.icc.2 =		${CFLAGS.warns.icc.2}
-CXXFLAGS.warns.icc.3 =		${CFLAGS.warns.icc.3}
-CXXFLAGS.warns.icc.4 =		${CFLAGS.warns.icc.4}
-
-####################
-# C warns for clang
-CFLAGS.warns.clang.1 =		-Wall
-CFLAGS.warns.clang.2 =		${CFLAGS.warns.clang.1}
-CFLAGS.warns.clang.3 =		${CFLAGS.warns.clang.2}
-CFLAGS.warns.clang.4 =		${CFLAGS.warns.clang.3}
-
-CXXFLAGS.warns.clang.1 =	${CFLAGS.warns.clang.1}
-CXXFLAGS.warns.clang.2 =	${CFLAGS.warns.clang.2}
-CXXFLAGS.warns.clang.3 =	${CFLAGS.warns.clang.3}
-CXXFLAGS.warns.clang.4 =	${CFLAGS.warns.clang.4}
-
-####################
-# C warns for HP-UX
-CFLAGS.warns.hpc.0 =		-w3
-CFLAGS.warns.hpc.1 =		-w2
-CFLAGS.warns.hpc.2 =		-w2
-CFLAGS.warns.hpc.3 =		-w2
-CFLAGS.warns.hpc.4 =		-w2
-
-# C++ warns
-CXXFLAGS.warns.hpc.0 =		${CFLAGS.warns.hpc.0}
-CXXFLAGS.warns.hpc.1 =		${CFLAGS.warns.hpc.1}
-CXXFLAGS.warns.hpc.2 =		${CFLAGS.warns.hpc.2}
-CXXFLAGS.warns.hpc.3 =		${CFLAGS.warns.hpc.3}
-CXXFLAGS.warns.hpc.4 =		${CFLAGS.warns.hpc.4}
-
-####################
-
-CFLAGS.warns   =		${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
-CXXFLAGS.warns =		${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
-
-####################
-CFLAGS.pic.gcc.Interix =
-CFLAGS.pic.gcc =		-fPIC -DPIC
-CFLAGS.pic.icc =		-fPIC -DPIC
-CFLAGS.pic.clang =		-fPIC -DPIC
-CFLAGS.pic.pcc =		-k -DPIC
-CFLAGS.pic.mipspro =		-KPIC
-CFLAGS.pic.sunpro =		-xcode=pic32 # -KPIC
-CFLAGS.pic.hpc =		+Z # +z
-CFLAGS.pic.ibmc =		-qpic=large # -qpic=small
-CFLAGS.pic.decc =		# ?
+CFLAGS.warns   =	${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
+CXXFLAGS.warns =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 
 CFLAGS.pic   ?=	${CFLAGS.pic.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CC_TYPE}:U}}
-CXXFLAGS.pic ?=	${CFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pic.${CXX_TYPE}:U}}
-
-####################
-CFLAGS.pie.gcc.Interix =
-CFLAGS.pie.gcc =		-fPIE -DPIC
-CFLAGS.pie.icc =		-fPIE -DPIC
-CFLAGS.pie.clang =		-fPIE -DPIC
+CXXFLAGS.pic ?=	${CXXFLAGS.pic.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pic.${CXX_TYPE}:U}}
 
 CFLAGS.pie   ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}}:U${CFLAGS.pic}}
-CXXFLAGS.pie ?=	${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CXX_TYPE}}:U${CXXFLAGS.pic}}
-
-####################
-CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param ssp-buffer-size=1
-CFLAGS.ssp.icc =		-fstack-security-check
-CFLAGS.ssp.ibmc =		-qstackprotect
-CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
+CXXFLAGS.pie ?=	${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pie.${CXX_TYPE}}:U${CXXFLAGS.pic}}
 
 CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CC_TYPE}:U}}
-CXXFLAGS.ssp ?=	${CFLAGS.ssp.${CXX_TYPE}.${TARGET_OPSYS}:U${CFLAGS.ssp.${CXX_TYPE}:U}}
+CXXFLAGS.ssp ?=	${CXXFLAGS.ssp.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.ssp.${CXX_TYPE}:U}}
 
 ####################
 RANLIB.IRIX64 =		true
