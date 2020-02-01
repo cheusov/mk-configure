@@ -33,7 +33,7 @@ Installation
         or
         # export PREFIX=/usr SYSCONFDIR=/etc
 
-You might want to configure some things before building mk-configure.
+You may want to configure some things before building mk-configure.
 The following command shows the configuring things.
 
         # bmake help
