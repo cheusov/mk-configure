@@ -3,7 +3,7 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.info "Deprecated single 30 Mar 2019"
+.info "Deprecated since 30 Mar 2019"
 
 .include <mkc.conf.mk>
 
