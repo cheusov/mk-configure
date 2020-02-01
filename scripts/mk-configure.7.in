@@ -1567,12 +1567,14 @@ target.
 A list of C compiler options to check.
 If ${CC} -c support the specified option, variable
 HAVE_CC_OPT.<option:S/=/_/g> is set to 1 and 0 otherwise.
+Double underline symbols in the option is considered as a single space character.
 .VS
 Ex.
-  MKC_CHECK_CC_OPTS = -Wall -errwarn=%all
+  MKC_CHECK_CC_OPTS = -Wall -errwarn=%all --param__ssp-buffer-size=1
 Res.
  HAVE_CC_OPT.-Wall=1
  HAVE_CC_OPT.-errwarn_%all=0
+ HAVE_CC_OPT.--param__ssp-buffer-size_1=1
 .VE
 .IP "MKC_CHECK_CXX_OPTS and HAVE_CXX_OPT.<option>"
 The same as MKC_CHECK_CC_OPTS and HAVE_CC_OPT but for C++ compiler.

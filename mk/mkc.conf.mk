@@ -342,14 +342,14 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
-HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:Q} mkc_check_custom -b -e -p cc_option -n ${a:Q} -m 'whether ${CC} supports option '${a:Q} ${BUILTINSDIR}/easy.c
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cc_option -n ${a:Q} -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${BUILTINSDIR}/easy.c
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXX_OPTS}
 .if !defined(HAVE_CXX_OPT.${a:S/=/_/g})
-HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:Q} mkc_check_custom -b -e -p cxx_option -n ${a:Q} -m 'whether ${CXX} supports option '${a:Q} ${BUILTINSDIR}/easy.cc
+HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cxx_option -n ${a:Q} -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${BUILTINSDIR}/easy.cc
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
 
