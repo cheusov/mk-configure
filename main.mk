@@ -6,6 +6,15 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
+USE_VARIABLES += USE_AWK
+USE_AWK.0 = "unset or \"auto\":  path to AWK interpreter is detected automatically"
+USE_AWK.1 = "path:  the specified path to AWK interpreter is used"
+
+USE_VARIABLES += USE_SH
+USE_SH.0 = "unset or \"auto\":  path to shell interpreter is detected automatically"
+USE_SH.1 = "path:  the specified path to shell interpreter is used"
+
+##################################################
 SUBPRJ_DFLT =   builtins helpers mk scripts features doc
 SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
 		scripts:builtins scripts:helpers scripts:mk scripts:features scripts:doc
