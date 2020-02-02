@@ -7,7 +7,7 @@
 MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
 .endif
 
-.if defined(MKC_CHECK_PKGCONFIG) && !make(clean) && !make(cleandir) && !make(distclean)
+.if defined(MKC_CHECK_PKGCONFIG) && ${MKCHECKS} == "yes"
 MKC_REQUIRE_PROGS+=	pkg-config
 .include <mkc.conf.mk>
 
@@ -73,4 +73,4 @@ MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 
 .endif # HAVE_PROG.pkg-config
 
-.endif # !make(clean) && !make(cleandir) && !make(distclean)
+.endif # ${MKCHECKS} == "yes" && ...

@@ -116,7 +116,7 @@ realdo_configure: check_mkc_err_msg
 .include <mkc_imp.conf-final.mk>
 CFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
-.if !defined(MKC_ERR_MSG) || make(clean) || make(cleandir) || make(distclean)
+.if !defined(MKC_ERR_MSG) || ${MKCHECKS} == "no"
 
 .  if defined(LIB)
 .    include <mkc_imp.lib.mk>

@@ -25,7 +25,7 @@ INTEXTS_SED  +=	-e 's,@incsdir@,${INCSDIR},g'
 INTEXTS_SED  +=	-e 's,@vardir@,${VARDIR},g'
 INTEXTS_SED  +=	-e 's,@sharedstatedir@,${SHAREDSTATEDIR},g'
 
-.if !make(clean) && !make(cleandir) && !make(distclean) #&& empty(MKC_ERR_MSG)
+.if ${MKCHECKS} == "yes"
 .  if !empty(INTEXTS_REPLS) && ${INTEXTS_REPLS:[\#]:M*[13579]} != ""
 MKC_ERR_MSG +=	"ERROR: odd number of tokens in INTEXTS_REPLS"
 .  else
