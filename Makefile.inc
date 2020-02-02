@@ -4,7 +4,7 @@ BIRTHDATE =		2009-02-21
 
 MKFILESDIR    ?=	${PREFIX}/share/mkc-mk
 DOCDIR        ?=	${PREFIX}/share/doc/mk-configure
-BUILTINSDIR   ?=	${PREFIX}/share/mk-configure/builtins
+BUILTINSDIR_  ?=	${PREFIX}/share/mk-configure/builtins
 FEATURESDIR   ?=	${PREFIX}/share/mk-configure/features
 
 INTEXTS_REPLS +=	version        ${VERSION}
@@ -12,7 +12,7 @@ INTEXTS_REPLS +=	AWK            ${USE_AWK:U}
 INTEXTS_REPLS +=	SH             ${USE_SH:U}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
-INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
+INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR_}
 INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 
 .if !make(clean) && !make(cleandir)
