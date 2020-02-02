@@ -28,7 +28,7 @@ _bmake_ok != test ${MAKE_VERSION:Q} -ge ${BMAKE_REQD:Q} && echo 1 || echo 0
 .endif
 
 ####################
-.if !make(clean) && !make(cleandir) && !make(distclean) && !make(obj)
+.if !make(clean) && !make(cleandir) && !make(distclean) && !make(obj) && !make(help)
 MKCHECKS ?=	yes
 .else
 MKCHECKS ?=	no
