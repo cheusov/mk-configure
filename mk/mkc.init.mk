@@ -26,8 +26,6 @@ __initialized__ := 1
 .MAIN:		all
 
 ###########
-.sinclude <mkc_imp.vars.mk> # .sinclude for bootstrapping
-
 #.if defined(MKC_SHELL)
 #.SHELL: name=${MKC_SHELL}
 #.elif ${OPSYS} == "SunOS"

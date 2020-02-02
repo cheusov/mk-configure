@@ -35,17 +35,20 @@ Installation
 
 You may want to configure some things before building mk-configure.
 The following command shows the configuring things.
+Of course, you can also change PREFIX, SYSCONFDIR, BINDIR
+and other standard mk-configure variables.
 
         # bmake help
 
-sys.mk contains initial settings and can be used
-for overriding defaults. So you can edit it if needed.
+Then, build mk-configure.
 
-        # emacs sys.mk
+        # bmake configure
         # bmake all
 
-Of course, you can change PREFIX, SYSCONFDIR, BINDIR etc.
-to whatever you want. PREFIX defaults to /usr/local.
+newsys.mk contains initial settings and can be used
+for overriding defaults. So you can edit it if needed.
+
+        # emacs newsys.mk
 
 4) Optionally, test mk-configure
 

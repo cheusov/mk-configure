@@ -1,4 +1,4 @@
-FILES =	sys.mk mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
+FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc.mk mkc.init.mk mkc_imp.intexts.mk mkc_imp.mk \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.dpvars.mk \
 	mkc_imp.files.mk mkc_imp.inc.mk mkc_imp.info.mk mkc_imp.lib.mk \
@@ -16,7 +16,9 @@ FILES += \
 
 FILESDIR =	${MKFILESDIR}
 
-INFILES +=	mkc_imp.vars.mk
+INFILES +=	newsys.mk
+
+FILESNAME_newsys.mk =	sys.mk
 
 CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 

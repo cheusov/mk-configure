@@ -34,4 +34,8 @@ MKCHECKS ?=	yes
 MKCHECKS ?=	no
 .endif # clean/cleandir/distclean
 
+.if !empty(MK_C_PROJECT)
+.sinclude <newsys.mk> # .sinclude for bootstrapping
+.endif
+
 .endif # _MKC_IMP.PREINIT.MK
