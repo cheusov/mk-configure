@@ -27,8 +27,33 @@ MKC_SYSCONFDIR =	@sysconfdir@
 MKDEP          =	@mkdep_cmd@
 MKDEP_TYPE     =	@mkdep_type@
 MAKEDEPEND     =	@makedepend_cmd@
-NM             =	@NM@
-ID            ?=	@ID@
+
+NM         =	@NM@
+ID        ?=	@ID@
+LORDER    ?=	lorder
+
+NM        ?=	nm
+
+MKDIR     ?=	mkdir
+
+SHELL     ?=	sh
+
+SIZE      ?=	size
+
+TSORT     ?= 	tsort -q
+
+TAR       ?=	tar
+GZIP      ?=	gzip
+BZIP2     ?=	bzip2
+ZIP       ?=	zip
+
+OBJCOPY   ?=    objcopy
+
+OBJDUMP   ?=    objdump
+
+STRIP     ?=	strip
+
+RM        ?=	rm
 
 # for build mk-configure only
 CHECK_COMMON_SH_DIR ?=	${MKC_LIBEXECDIR}

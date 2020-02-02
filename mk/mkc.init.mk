@@ -26,13 +26,6 @@ __initialized__ := 1
 .MAIN:		all
 
 ###########
-#.if defined(MKC_SHELL)
-#.SHELL: name=${MKC_SHELL}
-#.elif ${OPSYS} == "SunOS"
-#.SHELL: name=/usr/xpg4/bin/sh
-#.endif
-
-###########
 
 .for p in ${PROGS}
 SRCS.${p} ?=	${p}.c
@@ -268,37 +261,12 @@ LN        ?=	ln
 LN_S      ?=	${LN} -s
 .endif
 
-LORDER    ?=	lorder
-
-NM        ?=	nm
-
-MKDIR     ?=	mkdir
-
-SHELL     ?=	sh
-
-SIZE      ?=	size
-
-TSORT     ?= 	tsort -q
-
 YACC      ?=	yacc
 YFLAGS    ?=
 YACC.y    ?=	${_V} ${YACC} ${YFLAGS}
 MESSAGE.y ?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
 MESSAGE.mkgen ?=	@${_MESSAGE} "MKGEN:"
-
-TAR       ?=	tar
-GZIP      ?=	gzip
-BZIP2     ?=	bzip2
-ZIP       ?=	zip
-
-OBJCOPY   ?=    objcopy
-
-OBJDUMP   ?=    objdump
-
-STRIP     ?=	strip
-
-RM        ?=	rm
 
 TARGETS +=	all install clean cleandir depend test \
 		installdirs uninstall configure filelist obj mkgen
