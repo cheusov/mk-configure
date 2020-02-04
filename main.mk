@@ -11,6 +11,11 @@ USE_AWK.descr = "AWK interpreter"
 USE_AWK.0 = 'unset or "auto":  path to AWK interpreter is detected automatically'
 USE_AWK.1 = "path: the specified path to AWK interpreter is used"
 
+USE_VARIABLES += USE_ID
+USE_ID.descr = "POSIX-compatible id(1)"
+USE_ID.0 = 'unset or "auto":  path to id(1) is detected automatically'
+USE_ID.1 = "path: the specified path to id(1) is used"
+
 USE_VARIABLES += USE_NM
 USE_NM.descr = "List symbols from object files"
 USE_NM.0 = 'unset or "auto":  path to nm(1) is detected automatically'

@@ -63,10 +63,14 @@ MKC_REQUIRE_PROGS +=	nm
 PROG.nm  =		${USE_NM}
 .endif
 
-.if exists(/usr/xpg4/bin/id)
+.if empty(USE_ID) || ${USE_ID} == "auto"
+.  if exists(/usr/xpg4/bin/id)
 PROG.id ?=              /usr/xpg4/bin/id
-.else
+.  else
 MKC_REQUIRE_PROGS +=    id
+.  endif
+.else
+PROG.id  =		${USE_ID}
 .endif
 
 makedepend_cmd ?=	makedepend
