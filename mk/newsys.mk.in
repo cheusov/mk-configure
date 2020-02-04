@@ -43,7 +43,8 @@ LORDER    ?=	lorder
 
 MKDIR     ?=	mkdir
 
-INSTALL   ?=	@install@
+INSTALL       ?=	@install@
+INSTALL_FLAGS ?=	-c
 
 SHELL     ?=	sh
 
@@ -61,5 +62,36 @@ OBJCOPY   ?=    objcopy
 OBJDUMP   ?=    objdump
 
 STRIP     ?=	strip
+STRIPFLAG ?=	-s
 
 RM        ?=	rm
+
+YACC      ?=	yacc
+YFLAGS    ?=
+
+LEX       ?=	lex
+LFLAGS    ?=
+LPREFIX ?=	yy
+LEXLIB ?=	-ll
+
+AR         ?=	ar
+ARFLAGS    ?=	rl
+RANLIB     ?=	ranlib
+
+AS        ?=	as
+AFLAGS    ?=
+
+CC        ?=	cc
+CFLAGS    ?=
+
+CXX        ?=	c++
+CXXFLAGS   +=	${CFLAGS}
+
+CPP        ?=	cpp
+CPPFLAGS   ?=	
+
+CLEANFILES_CMD ?=	${RM} -f
+CLEANDIRS_CMD ?=	${RM} -rf
+
+UNINSTALL  ?=	${RM} -f
+

@@ -159,9 +159,6 @@ SCRIPTSOWN  ?=	${BINOWN}
 SCRIPTSGRP  ?=	${BINGRP}
 SCRIPTSMODE ?=	${BINMODE}
 
-INSTALL_FLAGS ?=	-c
-STRIPFLAG     ?=	-s
-
 MKINSTALL ?=	yes
 
 MKCATPAGES ?=	no
@@ -210,41 +207,21 @@ MKSHLIB  ?=	no
 
 .include <mkc_imp.platform.sys.mk>
 
-AR         ?=	ar
-ARFLAGS    ?=	rl
-RANLIB     ?=	ranlib
 MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
-AS        ?=	as
-AFLAGS    ?=
 COMPILE.s ?=	${_V} ${CC_PREFIX} ${CC} ${AFLAGS} -c
 MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
-CC        ?=	cc
-CFLAGS    ?=
 COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
-CXX        ?=	c++
-CXXFLAGS   +=	${CFLAGS}
 COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
-
-CPP        ?=	cpp
-CPPFLAGS   ?=	
 
 _CPPFLAGS   =	${CPPFLAGS0} ${CPPFLAGS}
 
 MESSAGE.ld ?=	@${_MESSAGE} "LD: ${.TARGET}"
 
-CLEANFILES_CMD ?=	${RM} -f
-CLEANDIRS_CMD ?=	${RM} -rf
-
-INSTALL    ?=	install
-UNINSTALL  ?=	${RM} -f
-
-LEX       ?=	lex
-LFLAGS    ?=
 LEX.l     ?=	${_V} ${LEX} ${LFLAGS}
 MESSAGE.l ?=	@${_MESSAGE} "LEX: ${.IMPSRC}"
 
@@ -261,8 +238,6 @@ LN        ?=	ln
 LN_S      ?=	${LN} -s
 .endif
 
-YACC      ?=	yacc
-YFLAGS    ?=
 YACC.y    ?=	${_V} ${YACC} ${YFLAGS}
 MESSAGE.y ?=	@${_MESSAGE} "YACC: ${.IMPSRC}"
 
@@ -279,11 +254,9 @@ VERBOSE_ECHO ?=	echo
 
 _PN =	${PROJECTNAME} # short synonym
 # Lex
-LPREFIX ?=	yy
 .if ${LPREFIX} != "yy"
 LFLAGS +=	-P${LPREFIX}
 .endif
-LEXLIB ?=	-ll
 
 # Yacc
 YFLAGS +=	${YPREFIX:D-p${YPREFIX}} ${YHEADER:D-d}
