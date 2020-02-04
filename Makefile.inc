@@ -4,15 +4,15 @@ BIRTHDATE =		2009-02-21
 
 MKFILESDIR    ?=	${PREFIX}/share/mkc-mk
 DOCDIR        ?=	${PREFIX}/share/doc/mk-configure
-builtinsdir   ?=	${PREFIX}/share/mk-configure/builtins
-featuresdir   ?=	${PREFIX}/share/mk-configure/features
+BUILTINSDIR   ?=	${PREFIX}/share/mk-configure/builtins
+FEATURESDIR   ?=	${PREFIX}/share/mk-configure/features
 
 INTEXTS_REPLS +=	version        ${VERSION}
 INTEXTS_REPLS +=	AWK            ${USE_AWK:U}
 INTEXTS_REPLS +=	SH             ${USE_SH:U}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
-INTEXTS_REPLS +=	syscustomdir   ${builtinsdir}
+INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
 INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 
 .if !make(clean) && !make(cleandir)
@@ -35,7 +35,7 @@ USE_AWK       !=	${.CURDIR}/scripts/mkc_which.in awk 2>/dev/null || true
 .     if ${USE_AWK:U} == ""
 .        error "Cannot find AWK"
 .     endif
-.  endif # !make(clean) ...
+.  endif # empty(USE_AWK) ...
 .  export USE_AWK
 
 .  if empty(USE_SH) || ${USE_SH} == "auto"
@@ -47,9 +47,9 @@ USE_SH        =	/usr/xpg4/bin/sh
 .     else
 USE_SH        = /bin/sh
 .     endif
-.  endif
+.  endif # empty(USE_SH)...
 .  export USE_SH
-.endif # defined(USE_AWK) ...
+.endif # !make(clean) ...
 
 BMAKE  ?=	bmake
 PS2PDF ?=	ps2pdf

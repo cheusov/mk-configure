@@ -78,7 +78,7 @@ makedepend_cmd ?=	makedepend
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
 INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
-INTEXTS_REPLS +=	featuresdir    ${featuresdir}
+INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	NM             ${PROG.nm}
 INTEXTS_REPLS +=	ID             ${PROG.id}
 

@@ -44,6 +44,9 @@ MKC_NOSRCSAUTO      ?=	0
 MKC_SOURCE_FUNCLIBS   ?=
 _MKC_SOURCE_FUNCS      =	${MKC_SOURCE_FUNCLIBS:C/:.*//}
 
+# the following variable is for mkc-configure testing only
+_BUILTINSDIR          ?=	${BUILTINSDIR}
+
 # .endif for the next .if is in the end of file
 .if ${MKCHECKS:Uno:tl} == "yes"
 
@@ -68,7 +71,7 @@ mkc.environ=CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${_MKC_CPPFLAGS:Q} CFLAGS=${_MKC_CF
 ######################################################
 # checking for builtin checks
 .for i in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
-MKC_CUSTOM_FN.${i} ?=	${BUILTINSDIR}/${i}
+MKC_CUSTOM_FN.${i} ?=	${_BUILTINSDIR}/${i}
 MKC_CHECK_CUSTOM   +=	${i}
 MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
 .endfor
@@ -342,14 +345,14 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
-HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cc_option -n ${a:Q} -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${BUILTINSDIR}/easy.c
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cc_option -n ${a:Q} -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXX_OPTS}
 .if !defined(HAVE_CXX_OPT.${a:S/=/_/g})
-HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cxx_option -n ${a:Q} -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${BUILTINSDIR}/easy.cc
+HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cxx_option -n ${a:Q} -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
 
