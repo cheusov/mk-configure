@@ -16,6 +16,7 @@
 .include <mkc_imp.pod.mk>
 .include <mkc.init.mk>
 
+.if ${MKCHECKS:tl} == "yes"
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
 all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .  for p in ${all_deps}
@@ -28,6 +29,7 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
      DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
 .    include <mkc_imp.dpvars.mk>
 .  endfor
+.endif
 .endif
 
 .if defined(LIBDEPS)

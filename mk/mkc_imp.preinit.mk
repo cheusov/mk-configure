@@ -36,6 +36,7 @@ MKCHECKS ?=	no
 
 .if !empty(MK_C_PROJECT)
 .sinclude <newsys.mk> # .sinclude for bootstrapping
+.sinclude <newsys.mk.in> # .sinclude for bootstrapping
 .endif
 
 .endif # _MKC_IMP.PREINIT.MK

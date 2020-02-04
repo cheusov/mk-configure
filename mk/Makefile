@@ -24,8 +24,6 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 
 #################################################
 # the following three variables are necessary for detecting CC_TYPE and CXX_TYPE
-MKCHECKS              =	yes
-MKC_CHECK_PROTOTYPES  =
 src_type              =	c cxx
 
 .include <mkc.init.mk>
@@ -72,7 +70,7 @@ makedepend_cmd ?=	makedepend
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
 INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
-INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
+INTEXTS_REPLS +=	featuresdir    ${featuresdir}
 INTEXTS_REPLS +=	NM             ${PROG.nm}
 INTEXTS_REPLS +=	ID             ${PROG.id}
 

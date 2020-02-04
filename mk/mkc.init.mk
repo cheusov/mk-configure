@@ -87,12 +87,12 @@ PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 .include "${MKC_SYSCONFDIR}/mk.conf"
 .endif
 
-.if ${OPSYS:Ux} == "SunOS"
-_MKC_USER   !=	/usr/xpg4/bin/id -un
-_MKC_GROUP  !=	/usr/xpg4/bin/id -gn
+.if ${ID} != "@ID@"  #empty(MK_C_PROJECT)
+_MKC_USER   !=	${ID:Uid} -un
+_MKC_GROUP  !=	${ID:Uid} -gn
 .else
-_MKC_USER   !=	id -un
-_MKC_GROUP  !=	id -gn
+_MKC_USER   =	fake
+_MKC_GROUP  =	fake
 .endif
 
 .if ${_MKC_USER} != root && ${OPSYS}${_MKC_USER} != "InterixAdministrator"
@@ -366,7 +366,7 @@ _V         ?=
 
 ###########
 
-.if defined(MKC_REQD) && defined(MKC_VERSION)
+.if defined(MKC_REQD) && defined(MKC_VERSION) && ${MKCHECKS:tl} == "yes"
 _mkc_version_ok  !=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
 .if !${_mkc_version_ok}
 MKC_ERR_MSG +=	"ERROR: We need mk-configure-${MKC_REQD} while ${MKC_VERSION} is detected"

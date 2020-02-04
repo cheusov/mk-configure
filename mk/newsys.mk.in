@@ -17,18 +17,20 @@
 # LUA_CMODDIR  ?= /usr/lib/lua/5.1
 # ...
 
-MKC_VERSION    =	@version@
+#.SHELL: name=sh path=@SH@
+
+MKC_VERSION   ?=	@version@
 
 BUILTINSDIR   ?=	@syscustomdir@
 FEATURESDIR   ?=	@featuresdir@
 MKC_LIBEXECDIR =	@mkc_libexecdir@
 MKC_SYSCONFDIR =	@sysconfdir@
 
-MKDEP          =	@mkdep_cmd@
-MKDEP_TYPE     =	@mkdep_type@
-MAKEDEPEND     =	@makedepend_cmd@
+MKDEP         ?=	@mkdep_cmd@
+MKDEP_TYPE    ?=	@mkdep_type@
+MAKEDEPEND    ?=	@makedepend_cmd@
 
-NM         =	@NM@
+NM        ?=	@NM@
 ID        ?=	@ID@
 LORDER    ?=	lorder
 
