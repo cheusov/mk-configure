@@ -126,10 +126,12 @@ copy_file () {
 if test -n "$dir_arg"; then
     # -d dir1 dir2 ... dirN
     for f in "$@"; do
-	$doit $instcmd "$f"
-	$doit $chowncmd "$f"
-	$doit $chgrpcmd "$f"
-	$doit $chmodcmd "$f"
+	if ! test -d "$f"; then
+	    $doit $instcmd "$f"
+	    $doit $chowncmd "$f"
+	    $doit $chgrpcmd "$f"
+	    $doit $chmodcmd "$f"
+	fi
     done
 elif test $# -eq 2; then
     # src_file trg_file
