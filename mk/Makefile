@@ -53,10 +53,14 @@ mkdep_type =		makedepend
 MKC_ERR_MSG +=		"mkdep(1) cannot be found"
 .endif
 
-.if exists(/usr/xpg4/bin/nm)
-PROG.nm ?=              /usr/xpg4/bin/nm
+.if empty(USE_NM) || ${USE_NM} == "auto"
+.  if exists(/usr/xpg4/bin/nm)
+PROG.nm ?=		/usr/xpg4/bin/nm
+.  else
+MKC_REQUIRE_PROGS +=	nm
+.  endif
 .else
-MKC_REQUIRE_PROGS +=    nm
+PROG.nm  =		${USE_NM}
 .endif
 
 .if exists(/usr/xpg4/bin/id)

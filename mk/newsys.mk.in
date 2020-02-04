@@ -34,8 +34,6 @@ NM        ?=	@NM@
 ID        ?=	@ID@
 LORDER    ?=	lorder
 
-NM        ?=	nm
-
 MKDIR     ?=	mkdir
 
 SHELL     ?=	sh
