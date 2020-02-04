@@ -73,6 +73,20 @@ MKC_REQUIRE_PROGS +=    id
 PROG.id  =		${USE_ID}
 .endif
 
+.if empty(USE_INSTALL) || ${USE_INSTALL} == "auto"
+install.NetBSD    =	/usr/bin/install
+install.OpenBSD   =	/usr/bin/install
+install.FreeBSD   =	/usr/bin/install
+install.DragonFly =	/usr/bin/install
+install.MirBSD    =	/usr/bin/install
+install.Haiku     =	/bin/install
+install  ?=		${INSTALL.${TARGET_OPSYS}:Umkc_install}
+.elif ${USE_INSTALL} == "mkc_install"
+install           =	mkc_install
+.else
+install           =	${USE_INSTALL}
+.endif
+
 makedepend_cmd ?=	makedepend
 
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd}
@@ -81,6 +95,7 @@ INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
 INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	NM             ${PROG.nm}
 INTEXTS_REPLS +=	ID             ${PROG.id}
+INTEXTS_REPLS +=	install        ${install}
 
 #################################################
 .include <mkc.mk>

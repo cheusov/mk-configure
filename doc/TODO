@@ -9,9 +9,6 @@ Add new feature for NetBSD-style defines like __dead,
 __pure etc.  and use them all in other feature when necessary.
 
 ============================================================
-Use external BSD install
-
-============================================================
 features: do not add new sources to MKC_SRCS unless
 we build compatlib (if it exists)
 
