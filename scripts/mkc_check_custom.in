@@ -43,44 +43,33 @@ Examples:
 EOF
 }
 
-if test $# -eq 0; then
-    usage
-    exit 1
-fi
-if test "_$1" = '_-h'; then
-    usage
-    exit 0
-fi
-
-while test $# -ne 0; do
-    case "$1" in
-	-r)
+while getopts bdehm:n:p:rs f; do
+    case "$f" in
+	h)
+	    usage
+	    exit 0;;
+	r)
 	    runit=1;;
-	-p)
-	    pref="$2"
-	    shift;;
-	-n)
-	    basefn="$2"
-	    shift;;
-	-m)
-	    msg="$2"
-	    shift;;
-	-s)
+	p)
+	    pref="$OPTARG";;
+	n)
+	    basefn="$OPTARG";;
+	m)
+	    msg="$OPTARG";;
+	s)
 	    check_status=1;;
-	-d)
+	d)
 	    delcache=1;;
-	-e)
+	e)
 	    empty_stderr=1;;
-	-b)
+	b)
 	    boolean=1;;
-	-*)
-	    echo "Bad option $1" 1>&2
-	    exit 1;;
 	*)
-	    break;
+	    echo "Bad option $f" 1>&2
+	    exit 1;;
     esac
-    shift
 done
+shift `expr $OPTIND - 1`
 
 if test $# -lt 1; then
     usage
