@@ -2,7 +2,7 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
-.SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .F .f .r .y .l .cl .p .h
+.SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .y .l .cl .p .h
 
 .LIBS:		.a
 
