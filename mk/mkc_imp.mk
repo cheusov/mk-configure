@@ -67,7 +67,7 @@ realdo_uninstall:
 	-${UNINSTALL} ${UNINSTALLFILES}
 
 realdo_installdirs:
-	${INSTALL} ${INSTALL_FLAGS} -d -m ${DIRMODE} ${INSTALLDIRS:O:u}
+	${INSTALL} ${INSTALL_FLAGS} -d -m ${DIRMODE} ${INSTALLDIRS:U/:O:u}
 
 filelist:
 	@for d in ${UNINSTALLFILES:O:u}; do \
