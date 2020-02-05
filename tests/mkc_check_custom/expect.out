@@ -1,39 +1,41 @@
+============= common tests ============
+Option -t should be specified
 =========== custom_check1.c ===========
 1
-checking custom test custom_check1... 1
+checking custom test check1... 1
 1
 1
-checking custom test custom_check1... 1
+checking custom test check1... 1
 1
-checking custom test custom_check1... (cached) 1
+checking custom test check1... (cached) 1
 1
-checking custom test custom_check1... (cached) yes
+checking custom test check1... (cached) yes
 1
-checking custom test custom_check1... yes
+checking custom test check1... yes
 1
-checking custom test custom_check1... yes
+checking custom test check1... yes
 1
-checking custom test custom_check1... no
+checking custom test check1... no
 0
-checking custom test custom_check1... yes
+checking custom test check1... yes
 1
-checking custom test custom_check1... no
+checking custom test check1... no
 0
 =========== custom_check3.c ===========
-checking custom test custom_check3... 1
+checking custom test check3... 1
 1
 =========== my_check2.c ===========
-checking custom test my_check2... no
+checking custom test check2... no
 0
-checking custom test my_check2... no
+checking custom test check2... no
 0
 =========== my_check4.c ===========
-checking custom test my_check4... 1
+checking custom test check4... 1
 1
-checking custom test my_check4... no
+checking custom test check4... no
 0
 checking trying to build my_check4 application... no
 0
-_mkc_cache_prefix_cache_filename.err
-_mkc_cache_prefix_cache_filename.res
+_mkc_custom_check4.err
+_mkc_custom_check4.res
 =======================================

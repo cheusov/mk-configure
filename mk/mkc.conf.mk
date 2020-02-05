@@ -290,8 +290,8 @@ MKC_CUSTOM_FN.${c} =	${c}.c
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
 MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
-_flags      =		${"${MKC_CUSTOM_LINK.${c}:tl}" == "yes":?-l -p link:}
-CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${_flags} ${MKC_CUSTOM_FN.${c}}
+_flags      =		${"${MKC_CUSTOM_LINK.${c}:tl}" == "yes":?-l:}
+CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t custom_${c:Q} ${_flags} ${MKC_CUSTOM_FN.${c}}
 .endif
 .undef _flags
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
@@ -303,7 +303,7 @@ MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 
 .for c in ${MKC_REQUIRE_CUSTOM}
 .if empty(CUSTOM.${c}) || ${CUSTOM.${c}} == 0
-_fake   !=   env ${mkc.environ} mkc_check_custom -d ${MKC_CUSTOM_FN.${c}} && echo
+_fake   !=   env ${mkc.environ} mkc_check_custom -t custom_${c:Q} -d ${MKC_CUSTOM_FN.${c}} && echo
 MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
@@ -347,14 +347,14 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
-HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cc_option -n ${a:Q} -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cc_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXX_OPTS}
 .if !defined(HAVE_CXX_OPT.${a:S/=/_/g})
-HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -b -e -p cxx_option -n ${a:Q} -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
 

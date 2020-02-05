@@ -21,21 +21,21 @@ _lp    :=	${_pcname} ${_lpair:[2]} ${_lpair:[3]}
 _ln     =	${l:S/>=/_ge_/:S/>/_gt_/:S/<=/_le_/:S/</_lt_/:S/=/_eq_/}
 
 PKG_CONFIG.exists.${_ln} != env ${mkc.environ} mkc_check_custom \
-    -p pkgconfig -s -n '${_ln}' -m '[pkg-config] ${_lp}' \
-    ${PROG.pkg-config} --print-errors --exists "${_lp}"
+    -s -t pkgconfig_${_ln:Q} -m '[pkg-config] '${_lp:Q} \
+    ${PROG.pkg-config} --print-errors --exists ${_lp:Q}
 
 .if ${PKG_CONFIG.exists.${_ln}}
 # --cflags and --libs
 .if defined(PROGS) || defined(LIB)
 .if !defined(CPPFLAGS.pkg-config.${_ln})
 CPPFLAGS.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
-    -p pkgconfig -n '${_ln}_cflags' -m '[pkg-config] ${_lp} --cflags' \
+    -t pkgconfig_${_ln:Q}_cflags -m '[pkg-config] ${_lp} --cflags' \
     ${PROG.pkg-config} --cflags "${_lp}"
 .endif # CPPFLAGS.pkg-config.${l}
 
 .if !defined(LDADD.pkg-config.${_ln})
 LDADD.pkg-config.${_ln} != env ${mkc.environ} mkc_check_custom \
-    -p pkgconfig -n '${_ln}_libs' -m '[pkg-config] ${_lp} --libs' \
+    -t pkgconfig_${_ln:Q}_libs -m '[pkg-config] ${_lp} --libs' \
     ${PROG.pkg-config} --libs "${_lp}"
 .endif # LDADD.pkg-config.${l}
 
@@ -46,7 +46,7 @@ MKC_LDADD    :=	${MKC_LDADD} ${LDADD.pkg-config.${_ln}}
 .for i in ${PKG_CONFIG_VARS.${_ln}}
 .if !defined(PKG_CONFIG.var.${_ln}.${i})
 PKG_CONFIG.var.${_ln}.${i} != env ${mkc.environ} mkc_check_custom \
-    -p pkgconfig -n '${_ln}_${i}' -m '[pkg-config] ${_lp} --variable=${i}' \
+    -t pkgconfig_${_ln:Q}_${i:Q} -m '[pkg-config] ${_lp} --variable=${i}' \
     ${PROG.pkg-config} --variable=${i} "${_lp}"
 .endif # PKG_CONFIG.var.${_ln}.${i}
 .endfor # i

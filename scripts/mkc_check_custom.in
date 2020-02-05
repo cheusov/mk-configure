@@ -28,11 +28,9 @@ Usage:
 
 OPTIONS:
    -h          display this help
+   -t          set the testname (mandatory option)
    -l          build application, not only compile it
    -r          build application and run it
-   -p text     prefix for cache filename, defaults to "custom"
-   -n text     a part of cache filename, defaults to
-               `basename <source_file>` without extension
    -m text     A part of verbose message, defaults to -n args
    -s          exit status of executable will be check
    -d          delete cache files
@@ -44,20 +42,18 @@ Examples:
 EOF
 }
 
-while getopts bdehlm:n:p:rs f; do
+while getopts bdehlm:rst: f; do
     case "$f" in
 	h)
 	    usage
 	    exit 0;;
+	t)
+	    testname="$OPTARG";;
 	l)
 	    buildit=1;;
 	r)
 	    buildit=1
 	    runit=1;;
-	p)
-	    pref="$OPTARG";;
-	n)
-	    basefn="$OPTARG";;
 	m)
 	    msg="$OPTARG";;
 	s)
@@ -80,12 +76,15 @@ if test $# -lt 1; then
     exit 1
 fi
 
+if test -z "$testname"; then
+    echo 'Option -t should be specified' 1>&2
+    usage
+    exit 1
+fi
+
 ##################################################
 # initializing
-if test -z "$basefn"; then
-    basefn=`basename $1 | sed 's|[.][^.]*$||'`
-fi
-pathpart="${pref-custom}_$basefn"
+pathpart="${testname}"
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
@@ -153,7 +152,8 @@ check_itself (){
 
 ##################################################
 # test
-msg=${msg-"custom test $basefn"}
+msg=${msg-"custom test $testname"}
+
 check_and_cache "checking ${msg}" "$cache"
 
 ##################################################
