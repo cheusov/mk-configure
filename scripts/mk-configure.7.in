@@ -1419,7 +1419,7 @@ MKC_CUSTOM_FN.<custom_check_name> is a
 "C" or "C++" source filename or an executable program
 for your custom check,
 e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
-filename.cpp, mychecks/filename.f or subdir/executable_script.
+filename.cpp or subdir/executable_script.
 .B mk-configure
 tries to compile or run the specified file and sets
 CUSTOM.<custom_check_name> variable to 1, 0 or other value.
