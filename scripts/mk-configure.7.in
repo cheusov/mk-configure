@@ -1424,13 +1424,13 @@ filename.cpp or subdir/executable_script.
 tries to compile or run the specified file and sets
 CUSTOM.<custom_check_name> variable to 1, 0 or other value.
 If MKC_CUSTOM_FN.<custom_check_name> is unset, it
-defaults to custom_check_name.c
-
+defaults to custom_check_name.c.
 Also -DCUSTOM_<CUSTOM_CHECK_NAME>=1
 is added to CFLAGS if the specified check succeeded
 unless MKC_NOAUTO is set to 1.
-.br
-<CUSTOM_CHECK_NAME>: tr|a-z|A-Z|g
+Here <CUSTOM_CHECK_NAME> is uppercase for <custom_check_name>.
+If MKC_CUSTOM_LINK.<custom_check_name> is "yes", then
+C or C++ source file is compiled and linked into executable.
 .VS
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c

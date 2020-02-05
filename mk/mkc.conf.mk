@@ -290,8 +290,10 @@ MKC_CUSTOM_FN.${c} =	${c}.c
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
 MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
-CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${MKC_CUSTOM_FN.${c}}
+_flags      =		${"${MKC_CUSTOM_LINK.${c}:tl}" == "yes":?-l -p link:}
+CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom ${_flags} ${MKC_CUSTOM_FN.${c}}
 .endif
+.undef _flags
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 .if empty(MKC_REQUIRE_CUSTOM:U:M${c})
 MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
