@@ -28,6 +28,7 @@ Usage:
 
 OPTIONS:
    -h          display this help
+   -l          build application, not only compile it
    -r          build application and run it
    -p text     prefix for cache filename, defaults to "custom"
    -n text     a part of cache filename, defaults to
@@ -43,12 +44,15 @@ Examples:
 EOF
 }
 
-while getopts bdehm:n:p:rs f; do
+while getopts bdehlm:n:p:rs f; do
     case "$f" in
 	h)
 	    usage
 	    exit 0;;
+	l)
+	    buildit=1;;
 	r)
+	    buildit=1
 	    runit=1;;
 	p)
 	    pref="$OPTARG";;
@@ -99,14 +103,6 @@ done
 
 ##################################################
 # functions
-compile (){
-    if $CC -c $CARGS -o "$tmpo" $CPPFLAGS $CFLAGS "$src_or_exe" 2>"$tmperr"; then
-	echo 1
-    else
-	echo 0
-    fi
-}
-
 check_itself (){
     if test -x "$src_or_exe"; then
 	if test -n "$check_status"; then
@@ -125,14 +121,20 @@ check_itself (){
 	case "$src_or_exe" in
 	    *.c)
 		compiler="$CC"
-		flags="-c -o $tmpo $CFLAGS $CPPFLAGS $src_or_exe";;
+		flags="-o $tmpo $CFLAGS $CPPFLAGS $src_or_exe";;
 	    *.cc|*.C|*.cxx|*.cpp)
 		compiler="$CXX"
-		flags="-c -o $tmpo $CXXFLAGS $CPPFLAGS $src_or_exe";;
+		flags="-o $tmpo $CXXFLAGS $CPPFLAGS $src_or_exe";;
 	    *)
 		echo 'Bad filename for custom check. What to do?' 1>&2
 		return 1
 	esac
+    fi
+
+    if test -n "$buildit"; then
+	flags="$flags $LDFLAGS $LDADD"
+    else
+	flags="-c $flags"
     fi
 
     if test -z "$compiler"; then
@@ -140,7 +142,7 @@ check_itself (){
 	return 1
     fi
 
-    if ! $compiler $CARGS $flags; then
+    if ! $compiler $CARGS $flags 2>"$tmperr"; then
 	echo 0
     elif test -n "$empty_stderr" -a -s "$tmperr"; then
 	echo 0
@@ -156,6 +158,7 @@ check_and_cache "checking ${msg}" "$cache"
 
 ##################################################
 # clean-ups
+
 KEEP_SOURCE=1 # do not delete user's source file!
 cleanup
 

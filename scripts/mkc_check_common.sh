@@ -58,7 +58,6 @@ check_and_cache (){
     # $1 - message
     # $2 - cache file name
     # $@ - args...
-
     _msg="$1"
     _cache="$2"
     shift; shift
