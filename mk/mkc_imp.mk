@@ -18,6 +18,7 @@
 
 .if ${MKCHECKS:tl} == "yes"
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
+CHECK_COMMON_SH_DIR ?=	${MKC_LIBEXECDIR}
 all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .  for p in ${all_deps}
      _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
