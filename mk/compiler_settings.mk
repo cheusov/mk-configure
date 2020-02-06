@@ -36,9 +36,9 @@ CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
 CFLAGS.ssp.icc =		-fstack-security-check
 CFLAGS.ssp.ibmc =		-qstackprotect
 
-CFLAGS.pic.gcc =		-fPIC -DPIC
-CFLAGS.pic.clang =		-fPIC -DPIC
-CFLAGS.pic.icc =		-fPIC -DPIC
+CFLAGS.pic.gcc =		-fPIC__-DPIC
+CFLAGS.pic.clang =		-fPIC__-DPIC
+CFLAGS.pic.icc =		-fPIC__-DPIC
 CFLAGS.pic.pcc =		-k -DPIC
 CFLAGS.pic.mipspro =		-KPIC
 CFLAGS.pic.sunpro =		-xcode=pic32 # -KPIC
@@ -46,9 +46,9 @@ CFLAGS.pic.hpc =		+Z # +z
 CFLAGS.pic.ibmc =		-qpic=large # -qpic=small
 CFLAGS.pic.decc =		# ?
 
-CFLAGS.pie.gcc =		-fPIE -DPIC
+CFLAGS.pie.gcc =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
-CFLAGS.pie.icc =		-fPIE -DPIC
+CFLAGS.pie.icc =		-fPIE__-DPIC
 
 _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
