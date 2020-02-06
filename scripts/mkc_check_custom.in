@@ -141,7 +141,7 @@ check_itself (){
 	return 1
     fi
 
-    if ! $compiler $CARGS $flags 2>"$tmperr"; then
+    if ! $compiler $flags 2>"$tmperr"; then
 	echo 0
     elif test -n "$empty_stderr" -a -s "$tmperr"; then
 	echo 0

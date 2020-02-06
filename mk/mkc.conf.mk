@@ -359,14 +359,18 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
-HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cc_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+_cflags =	${a:S/__/ /g}
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cc_option_${a:Q} -b -e -m 'whether ${CC} -c supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+.undef _cflags
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXX_OPTS}
 .if !defined(HAVE_CXX_OPT.${a:S/=/_/g})
-HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+_cxxflags =	${a:S/__/ /g}
+HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} -c supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+.undef _cxxflags
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
 
@@ -374,14 +378,18 @@ HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CCLD_OPTS}
 .if !defined(HAVE_CCLD_OPT.${a:S/=/_/g})
-HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -l -t ccld_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+_cflags =	${a:S/__/ /g}
+HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t ccld_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+.undef _cflags
 .endif # !defined(HAVE_CCLD_OPT.${a})
 .endfor # a
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXXLD_OPTS}
 .if !defined(HAVE_CXXLD_OPT.${a:S/=/_/g})
-HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+_cxxflags =	${a:S/__/ /g}
+HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t cxxld_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+.undef _cxxflags
 .endif # !defined(HAVE_CXXLD_OPT.${a})
 .endfor # a
 

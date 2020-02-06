@@ -1,6 +1,4 @@
-int two (void);
-
-int two (void)
+int main(int argc, char **argv)
 {
-  return 2;
+	return 0;
 }
