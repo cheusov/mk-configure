@@ -50,7 +50,7 @@ CFLAGS.pie.gcc =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
 CFLAGS.pie.icc =		-fPIE__-DPIC
 
-LDFLAGS.relro  =		-Wl,zrelro__-Wl,-znow
+LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
 _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
