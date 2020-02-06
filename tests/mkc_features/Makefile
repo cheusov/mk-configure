@@ -1,7 +1,5 @@
-MKC_FEATURES =	strlcat strlcpy getline progname fgetln err warn libm \
-    getdelim strndup libdl RB SLIST SIMPLEQ STAILQ LIST TAILQ CIRCLEQ SPLAY
+LIBDEPS   =	libcmpt:tool
+COMPATLIB =	libcmpt
 
-PROG =		test_features
-SRCS =		test_features.cxx
-
+.include "test.mk"
 .include <mkc.mk>
