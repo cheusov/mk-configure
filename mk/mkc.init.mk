@@ -206,10 +206,10 @@ MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 COMPILE.s ?=	${_V} ${CC_PREFIX} ${CC} ${AFLAGS} -c
 MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CFLAGS.ssp} ${_CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CFLAGS.ssp} ${CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${_CXXFLAGS.ssp} ${_CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CXXFLAGS.ssp} ${CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 _CPPFLAGS   =	${CPPFLAGS0} ${CPPFLAGS}
@@ -301,13 +301,13 @@ USE_FORT  ?=	no
 ######
 .if ${MKPIE:U:tl} == "yes"
 LDFLAGS.prog +=	${LDFLAGS.pie}
-_CFLAGS.pie   +=	${CFLAGS.pie}
-_CXXFLAGS.pie +=	${CXXFLAGS.pie}
+CFLAGS.pie   ?=	${CFLAGS.pie.${CC_TYPE}:U${CFLAGS.pic}}
+CXXFLAGS.pie ?=	${CXXFLAGS.pie.${CXX_TYPE}:U${CXXFLAGS.pic}}
 .endif
 
 .if ${USE_SSP:U:tl} == "yes"
-_CFLAGS.ssp   =	${CFLAGS.ssp}
-_CXXFLAGS.ssp =	${CXXFLAGS.ssp}
+CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}:U}
+CXXFLAGS.ssp ?=	${CXXFLAGS.ssp.${CXX_TYPE}:U}
 .endif
 
 .if ${USE_RELRO:U:tl} == "yes"
