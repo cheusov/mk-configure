@@ -54,6 +54,10 @@ _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TY
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
     CFLAGS.ssp.${CC_TYPE} CFLAGS.pic.${CC_TYPE} CFLAGS.pie.${CC_TYPE}
 
+LDFLAGS.pie.gcc =		-fPIE__-DPIC__-pie
+
+_ccld_vars = LDFLAGS.pie.${CC_TYPE}
+
 ### C++ variables
 CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
 CXXFLAGS.dflt.icc     =		${CFLAGS.dflt.icc}
@@ -110,29 +114,50 @@ _cxx_vars = CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
     CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
 
+_cxxld_vars = LDFLAGS.pie.${CXX_TYPE}
+
+#################################################
+.include <mkc.configure.mk>
+
 #################################################
 .for c in cc cxx
 .   for v in ${_${c}_vars}
 MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   endfor
+.   for v in ${_${c}ld_vars}
+MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
+.   endfor
 
 .   include <mkc.configure.mk>
 
 .   for v in ${_${c}_vars}
-#.   info "v=${v} ${${v}}"
 .       for _opt in ${${v}}
 .           if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
-#.info "${v}.new +=	${_opt}"
 ${v}.new +=	${_opt:S/__/ /g}
-.          endif
+.           endif
 .       endfor
-.    endfor
+.   endfor
+.   for v in ${_${c}ld_vars}
+.       for _opt in ${${v}}
+.           if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
+${v}.new +=	${_opt:S/__/ /g}
+.           endif
+.       endfor
+.   endfor
 
-#################################################
+LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
+LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
+
+######
 mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
-	@printf '' '' > $@.tmp;
-.for v in ${_${c}_vars}
+	@printf '' > $@.tmp;
+.   for v in ${_${c}_vars}
 	@echo ${v} = ${${v}.new} >> $@.tmp;
-.endfor
+.   endfor
+	@printf '' >> $@.tmp;
+.   for v in ${_${c}ld_vars}
+	@echo ${v} = ${${v}.new} >> $@.tmp;
+.   endfor
 	@mv $@.tmp $@
 .endfor
+#################################################

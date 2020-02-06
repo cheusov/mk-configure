@@ -244,14 +244,6 @@ LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLA
 .endif
 
 ####################
-LDFLAGS.pie.gcc =		-pie
-
-.if ${LDREAL:U0} == ${CC:U0}
-LDFLAGS.pie ?=			${LDFLAGS.pie.${CC_TYPE}}
-.elif ${LDREAL:U0} == ${CXX:U0}
-LDFLAGS.pie ?=			${LDFLAGS.pie.${CXX_TYPE}}
-.endif
-####################
 LDFLAGS.relro.gnuld =		-zrelro -znow
 
 LDFLAGS.relro ?=		${LDFLAGS.relro.${LD_TYPE}}

@@ -16,10 +16,6 @@ we build compatlib (if it exists)
 Add feature "alloca"
 
 ============================================================
-gcc on Solaris-10: gcc: error: -pie is not supported in this configuration ***
-Runtime check is needed for flags passed to compiler and linker
-
-============================================================
 FAQ for users who see mk-configure for the first time and want to
 build project with a help of mk-c.
 
