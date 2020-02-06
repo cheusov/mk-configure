@@ -59,12 +59,6 @@ src_type  ?=	0
 
 LDREAL  ?=	${CC}
 
-.if defined(PROGS)
-LDREAL  ?=	${CC}
-.else
-LDREAL  ?=	${LD}
-.endif
-
 MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
 init_make_level ?= 0 # for mkc.conf.mk

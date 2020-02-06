@@ -50,7 +50,6 @@ DLL_EXT        ?=	${DLL_EXT.${TARGET_OPSYS}:U${SHLIB_EXT}}
 
 ####################
 ####################
-
 CC.SunOS  =	cc
 CXX.SunOS =	CC
 
@@ -232,10 +231,7 @@ CXXFLAGS.cctold ?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wl,}
 
 LDFLAGS.soname.ld =		${LDFLAGS.soname.${LD_TYPE}:U}
 
-.if ${LDREAL:U0} == ${LD:U0}
-LDFLAGS.shared ?=		${LDFLAGS.shared.${LD_TYPE}:U-shared}
-LDFLAGS.soname ?=		${LDFLAGS.soname.ld}
-.elif ${LDREAL:U0} == ${CC:U0}
+.if ${LDREAL:U0} == ${CC:U0}
 LDFLAGS.shared ?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}:U-shared}}
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CC_TYPE}:U${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}}
 .elif ${LDREAL:U0} == ${CXX:U0}
@@ -323,11 +319,9 @@ LDFLAGS.expsym.sunld    =	-M ${EXPORT_SYMBOLS}.tmp
 LDFLAGS.expsym.darwinld =	-exported_symbols_list ${EXPORT_SYMBOLS}.tmp
 .endif # EXPORT_SYMBOLS
 
-.if ${LDREAL:U0} == ${LD:U0}
-LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}}
-.elif defined(LDFLAGS.expsym.${LD_TYPE})
+.if defined(LDFLAGS.expsym.${LD_TYPE})
 LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
-.endif # LDREAL == LD
+.endif
 
 ############################################################
 ############################################################
