@@ -12,6 +12,7 @@
 #include "mkc_strndup.h"
 #include "mkc_libdl.h"
 #include "mkc_RB.h"
+#include "mkc_SPLAY.h"
 #include "mkc_SLIST.h"
 #include "mkc_SIMPLEQ.h"
 #include "mkc_STAILQ.h"
