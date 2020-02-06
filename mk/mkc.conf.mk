@@ -322,6 +322,9 @@ MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 BUILTIN.${c} =		${CUSTOM.${c}}
 .endfor
 
+.undef MKC_CHECK_CUSTOM
+.undef MKC_REQUIRE_CUSTOM
+
 ######################################################
 # checking for programs
 .for p in ${MKC_CHECK_PROGS} ${MKC_REQUIRE_PROGS}
@@ -349,9 +352,6 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 
 .undef MKC_CHECK_PROGS
 .undef MKC_REQUIRE_PROGS
-
-.undef MKC_CHECK_CUSTOM
-.undef MKC_REQUIRE_CUSTOM
 
 ######################################################
 # checks whether $CC accepts some arguments
