@@ -108,7 +108,7 @@ CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
 _cxx_vars = CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.1 CXXFLAGS.warns.${CXX_TYPE}.2 \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
-    CXXFLAGS.ssp.${CC_TYPE} CXXFLAGS.pic.${CC_TYPE} CXXFLAGS.pie.${CC_TYPE}
+    CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
 
 #################################################
 .for c in cc cxx
