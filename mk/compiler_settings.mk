@@ -50,6 +50,8 @@ CFLAGS.pie.gcc =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
 CFLAGS.pie.icc =		-fPIE__-DPIC
 
+LDFLAGS.relro  =		-Wl,zrelro__-Wl,-znow
+
 _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
     CFLAGS.ssp.${CC_TYPE} CFLAGS.pic.${CC_TYPE} CFLAGS.pie.${CC_TYPE}
@@ -57,7 +59,7 @@ _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TY
 LDFLAGS.pie.gcc   =		-fPIE__-DPIC__-pie
 LDFLAGS.pie.clang =		-fPIE__-DPIC__-pie
 
-_ccld_vars = LDFLAGS.pie.${CC_TYPE}
+_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro
 
 ### C++ variables
 CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
@@ -115,7 +117,7 @@ _cxx_vars = CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
     CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
 
-_cxxld_vars = LDFLAGS.pie.${CXX_TYPE}
+_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
 
 #################################################
 .include <mkc.configure.mk>

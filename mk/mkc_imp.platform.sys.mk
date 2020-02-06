@@ -243,18 +243,6 @@ LDFLAGS.shared ?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.share
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
 
-####################
-LDFLAGS.relro.gnuld =		-zrelro -znow
-
-LDFLAGS.relro ?=		${LDFLAGS.relro.${LD_TYPE}}
-
-####################
-.if ${LDREAL:U0} != ${LD:U0}
-.if !empty(LDFLAGS.relro)
-LDFLAGS.relro := ${LDFLAGS.relro:S/^/-Wl,/g}
-.endif
-.endif
-
 ############################################################
 ############################################################
 .if ${TARGET_OPSYS:Unone} == "Darwin"
