@@ -5,10 +5,6 @@ helpers/ => test_helpers/
 CFLAGS.check
 
 ============================================================
-features: do not add new sources to MKC_SRCS unless
-we build compatlib (if it exists)
-
-============================================================
 CFLAGS0
 
 ============================================================
@@ -24,6 +20,8 @@ __always_inline, __returns_twice, __noclone, __unused,
 __used, __packed, __aligned, __section, __restrict,
 __printflike, __sysloglike, __scanflike, __format_arg,
 __arraycount, __MIN, __MAX
+
+and glibc-style defines like __wur, __deprecated, __nonnull
 
 ============================================================
 Add feature "alloca"
