@@ -1,4 +1,17 @@
 ============================================================
+helpers/ => test_helpers/
+
+============================================================
+CFLAGS.check
+
+============================================================
+features: do not add new sources to MKC_SRCS unless
+we build compatlib (if it exists)
+
+============================================================
+CFLAGS0
+
+============================================================
 Add support for armcc
 
 ============================================================
@@ -6,11 +19,11 @@ markdown to html rules
 
 ============================================================
 Add new feature for NetBSD-style defines like __dead,
-__pure etc.  and use them all in other feature when necessary.
-
-============================================================
-features: do not add new sources to MKC_SRCS unless
-we build compatlib (if it exists)
+__pure, __printflike, __UNCONST, __constfunc, __noinline,
+__always_inline, __returns_twice, __noclone, __unused,
+__used, __packed, __aligned, __section, __restrict,
+__printflike, __sysloglike, __scanflike, __format_arg,
+__arraycount, __MIN, __MAX
 
 ============================================================
 Add feature "alloca"
@@ -50,22 +63,19 @@ Plan 0.28.0
 - test for "inline" keyword
 - test for CCLD option
 - bzero, bcopy
-- NetBSD style macroses
 
 - check awk capabilities at build time
 - Hide regression tests details
 - "bmake -k regrtest/check" (mkc.minitest.mk?)
 
-- strndup(SunOS-5.10, -fgetln,_compatlib)
 - PRId64
 - leveldb, strtoll, strtoull
 - wmemcpy, strnlen
 - wcsdup
-- CFLAGS0
 
 - Special marker for checks that cannot be possible in cross-compiling
 
-- regression tests without garbage, make it look like paexec\
+- regression tests without garbage, make it look like paexec
 
 - MKC_FEATURES: inttypes
 
@@ -101,11 +111,6 @@ ronn(1) : markdown to man pages
   mkcmake configure doesn't work
   New variable MKC_CUSTOM_ENV.xxx
 
-  Add script_check to MKC_CHECK_CUSTOM
-               Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
-                    MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
-                    MKC_CUSTOM_FN.script_check=      checks/script_check
-
   - BINSUBDIR, LIBSUBDIR, LIBEXECSUBDIR etc...
   - USE_RPATH
   - Regression tests:
@@ -118,11 +123,6 @@ Plan 1)
   - .lua.luac:
   - Implement mkc_imp.libtool.mk to build
     the shared libraries using GNU libtool(1).
-  - MKSTRIP, STRIP, mkc_install: use STRIP, not STRIPPROG
-
-  Slides for:
-    - Slide "extensibility" about Lua module.
-    - code specific to GNU ld(1) (.def?)
 
 ============================================================
 Plan 2)
@@ -172,8 +172,6 @@ Plan 3)
 
   = implement MANBZ2?
 
-  = man page for mkc_check_compiler
-
 ============================================================
 Plan 4)
 
@@ -184,15 +182,6 @@ Plan 4)
 
   = Targets bin_rpm, bin_epm
   = Targets src_tar, src_targz, src_tarbz2
-
-  = mkc.subdir.mk:
-    - continue bulding even if some subprojects failed
-
-  = MKC_CHECK_CUSTOM:
-    - MKC_CUSTOM_FN=xxx.f
-    - MKC_CUSTOM_FN=xxx.objc
-
-  = Implement mkc.qt.mk
 
   = Implement mkc.doxygen.mk?
 
