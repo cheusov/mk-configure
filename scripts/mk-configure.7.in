@@ -1431,6 +1431,11 @@ unless MKC_NOAUTO is set to 1.
 Here <CUSTOM_CHECK_NAME> is uppercase for <custom_check_name>.
 If MKC_CUSTOM_LINK.<custom_check_name> is "yes", then
 C or C++ source file is compiled and linked into executable.
+Also, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, LDADD,
+MKC_CUSTOM_CPPFLAGS.<custom_check_name>, MKC_CUSTOM_CFLAGS.<custom_check_name>,
+MKC_CUSTOM_CXXFLAGS.<custom_check_name>,
+MKC_CUSTOM_LDFLAGS.<custom_check_name> and MKC_CUSTOM_LDADD.<custom_check_name>
+flags are passed to the compiler.
 .VS
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c

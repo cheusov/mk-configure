@@ -66,7 +66,7 @@ _MKC_CXXFLAGS :=	${CXXFLAGS}
 _MKC_LDFLAGS  :=	${LDFLAGS}
 _MKC_LDADD    :=	${LDADD}
 
-mkc.environ=CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${_MKC_CPPFLAGS:Q} CFLAGS=${_MKC_CFLAGS:Q} CXXFLAGS=${_MKC_CXXFLAGS:Q} LDFLAGS=${_MKC_LDFLAGS:Q} LDADD=${_MKC_LDADD:Q} LEX=${LEX:Q} YACC=${YACC:Q} MKC_CACHEDIR=${MKC_CACHEDIR:Q} MKC_COMMON_HEADERS=${MKC_COMMON_HEADERS:Q} MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES:Q} MKC_SHOW_CACHED=${MKC_SHOW_CACHED:Q} MKC_NOCACHE=${MKC_NOCACHE:Q} MKC_VERBOSE=1
+mkc.environ=CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${_MKC_CPPFLAGS:Q}\ ${_cppflags:Q} CFLAGS=${_MKC_CFLAGS:Q}\ ${_cflags:Q} CXXFLAGS=${_MKC_CXXFLAGS:Q}\ ${_cxxflags:Q} LDFLAGS=${_MKC_LDFLAGS:Q}\ ${_ldflags:Q} LDADD=${_MKC_LDADD:Q}\ ${_ldadd:Q} LEX=${LEX:Q} YACC=${YACC:Q} MKC_CACHEDIR=${MKC_CACHEDIR:Q} MKC_COMMON_HEADERS=${MKC_COMMON_HEADERS:Q} MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES:Q} MKC_SHOW_CACHED=${MKC_SHOW_CACHED:Q} MKC_NOCACHE=${MKC_NOCACHE:Q} MKC_VERBOSE=1
 
 ######################################################
 # checking for builtin checks
@@ -290,10 +290,20 @@ MKC_CUSTOM_FN.${c} =	${c}.c
 .if empty(MKC_CUSTOM_FN.${c}:M/*)
 MKC_CUSTOM_FN.${c} :=	${MKC_CUSTOM_DIR}/${MKC_CUSTOM_FN.${c}}
 .endif
-_flags      =		${"${MKC_CUSTOM_LINK.${c}:tl}" == "yes":?-l:}
-CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t custom_${c:Q} ${_flags} ${MKC_CUSTOM_FN.${c}}
+_opts      =		${"${MKC_CUSTOM_LINK.${c}:tl}" == "yes":?-l:}
+_cppflags  =		${MKC_CUSTOM_CPPFLAGS.${c}:U}
+_cflags    =		${MKC_CUSTOM_CFLAGS.${c}:U}
+_cxxflags  =		${MKC_CUSTOM_CXXFLAGS.${c}:U}
+_ldflags   =		${MKC_CUSTOM_LDFLAGS.${c}:U}
+_ldadd     =		${MKC_CUSTOM_LDADD.${c}:U}
+CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t custom_${c:Q} ${_opts} ${MKC_CUSTOM_FN.${c}}
 .endif
-.undef _flags
+.undef _opts
+.undef _cppflags
+.undef _cflags
+.undef _cxxflags
+.undef _ldflags
+.undef _ldadd
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 .if empty(MKC_REQUIRE_CUSTOM:U:M${c})
 MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}

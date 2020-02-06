@@ -128,7 +128,7 @@ ${v}.new +=	${_opt:S/__/ /g}
 .       endfor
 .    endfor
 
-###
+#################################################
 mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 	@printf '' '' > $@.tmp;
 .for v in ${_${c}_vars}
