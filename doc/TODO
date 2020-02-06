@@ -32,9 +32,6 @@ Introduce MKC_REQUIRE_BUILTINS in addition to MKC_CHECK_BUILTINS
 remove hello_ prefix from all examples
 install target: introduce dependencies for target files
 
-MKC_CHECK_CUSTOM -- checks for compilation, we also need to
-check compilation + "linkable-ness".
-
 ===============================================
 
 MKC_CHECK_VARS fails on NetBSD on sys_signame
