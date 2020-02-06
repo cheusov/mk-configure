@@ -1,3 +1,6 @@
+FILES                      +=	mkc_imp.f_libl.mk
+FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
+
 FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 

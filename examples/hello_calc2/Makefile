@@ -17,7 +17,6 @@ lex.o: parser.h
 
 YACC   =	${"${BUILTIN.prog_bison}" != "":?${BUILTIN.prog_bison} -y:}
 LEX    =	${BUILTIN.prog_flex}
-LEXLIB =	#-lfl
 
 .if empty(BUILTIN.prog_flex)
 MKC_ERR_MSG += "Cannot find flex, good bye!"

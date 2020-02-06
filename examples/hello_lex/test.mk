@@ -6,7 +6,7 @@ test_output:
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -v '_mkc_funclib_yywrap_fl' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
@@ -22,13 +22,13 @@ test_output:
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -v '_mkc_funclib_yywrap_fl' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== depend ===========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	${MAKE} ${MAKEFLAGS} depend -j4 > /dev/null 2>&1; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -v '_mkc_funclib_yywrap_fl' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ==== SHRTOUT=yes depend ====; \
@@ -40,7 +40,7 @@ test_output:
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	env MKCATPAGES=no MKHTML=no ${MAKE} ${MAKEFLAGS} all SHRTOUT=yes 2>&1 |\
 	mkc_test_helper2; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -v '_mkc_funclib_yywrap_fl' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= cleandir ==========; \

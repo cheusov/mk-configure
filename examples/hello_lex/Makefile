@@ -3,7 +3,7 @@ SRCS   =	hello_lex.l
 
 DPSRCS =	hello_lex.c
 
-LDADD +=	${LEXLIB}
+MKC_FEATURES =	libl
 
 .include "test.mk"
 .include <mkc.prog.mk>
