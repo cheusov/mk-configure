@@ -175,6 +175,11 @@ Prefix command for ${CC}, for example, distcc or ccache.
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
 .RI < "IM" >
+.IP CFLAGS.check
+Same as CFLAGS but every option is checked whether it is a valid one for C compiler.
+Double underline in the flag is considered as a single space character.
+.RI < M >
+.RI [ "" ]
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -204,6 +209,10 @@ Prefix command for ${CXX}, for example, distcc or ccache.
 Additional flags to the compiler when creating C++ objects.
 .RI < "Iu" >
 .RI [ ${CFLAGS} ]
+.IP CXXFLAGS.check
+Same as CXXFLAGS but every option is checked whether it is a valid one for C++ compiler.
+.RI < M >
+.RI [ "" ]
 .IP CXXFLAGS_<project>
 Similar to CXXFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -1577,7 +1586,7 @@ target.
 A list of C compiler options to check.
 If ${CC} -c support the specified option, variable
 HAVE_CC_OPT.<option:S/=/_/g> is set to 1 and 0 otherwise.
-Double underline symbols in the option is considered as a single space character.
+Double underline in the option is considered as a single space character.
 .VS
 Ex.
   MKC_CHECK_CC_OPTS = -Wall -errwarn=%all --param__ssp-buffer-size=1

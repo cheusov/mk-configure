@@ -356,6 +356,15 @@ MKC_ERR_MSG +=	"ERROR: cannot find program ${p}"
 .undef MKC_REQUIRE_PROGS
 
 ######################################################
+# <begin CFLAGS.check and CXXFLAGS.check>
+.for c in ${CFLAGS.check}
+MKC_CHECK_CC_OPTS +=	${c}
+.endfor
+.for c in ${CXXFLAGS.check}
+MKC_CHECK_CXX_OPTS +=	${c}
+.endfor
+
+######################################################
 # checks whether $CC accepts some arguments
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
@@ -392,6 +401,22 @@ HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t cxxld_o
 .undef _cxxflags
 .endif # !defined(HAVE_CXXLD_OPT.${a})
 .endfor # a
+
+######################################################
+# <end CFLAGS.check and CXXFLAGS.check>
+.for c in ${CFLAGS.check}
+.   if ${HAVE_CC_OPT.${c:S/=/_/g}:U0} == 1
+MKC_CFLAGS +=	${c:S/__/ /g}
+.   endif
+.endfor
+.undef CFLAGS.check
+
+.for c in ${CXXFLAGS.check}
+.   if ${HAVE_CXX_OPT.${c:S/=/_/g}:U0} == 1
+MKC_CXXFLAGS +=	${c:S/__/ /g}
+.   endif
+.endfor
+.undef CXXFLAGS.check
 
 ######################################################
 # prototype checks

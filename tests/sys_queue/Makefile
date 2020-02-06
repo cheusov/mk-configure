@@ -9,6 +9,8 @@ MKC_FEATURES  =	CIRCLEQ LIST SIMPLEQ SLIST STAILQ TAILQ
 
 MKC_REQD =		0.26.0
 
+CFLAGS.check   =	--invalid-option -fPIE__-DPIE__-pie
+
 test: all
 .include "test.mk"
 .include <mkc.prog.mk>
