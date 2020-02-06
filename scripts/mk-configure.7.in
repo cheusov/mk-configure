@@ -227,9 +227,10 @@ Additional flags to the C pre-processor.
 Similar to CPPFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
 .IP CPPFLAGS0
-The same as CPPFLAGS but CPPFLAGS0 are passed to the compiler before CPPFLAGS.
+The same as CPPFLAGS but CPPFLAGS0 is passed to the compiler before CPPFLAGS.
 Normally, CPPFLAGS0 should be modified in makefiles and should not
 be set from environment by user.
+.RI < "M" >
 .IP INSTALL
 install(1) command.
 .RI < Iu >
