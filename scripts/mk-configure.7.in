@@ -1586,8 +1586,16 @@ Res.
  HAVE_CC_OPT.-errwarn_%all=0
  HAVE_CC_OPT.--param__ssp-buffer-size_1=1
 .VE
-.IP "MKC_CHECK_CXX_OPTS and HAVE_CXX_OPT.<option>"
-The same as MKC_CHECK_CC_OPTS and HAVE_CC_OPT but for C++ compiler.
+.IP MKC_CHECK_CXX_OPTS
+Same as MKC_CHECK_CC_OPTS but for C++ compiler.
+As a result HAVE_CXX_OPT.<option:S/=/_/g> is set to 1 or 0.
+.IP MKC_CHECK_CCLD_OPTS
+Same as MKC_CHECK_CC_OPTS except that option "-c" is not passed to the compiler,
+so, executable is created.
+As a result HAVE_CCLD_OPT.<option:S/=/_/g> is set to 1 or 0.
+.IP MKC_CHECK_CXXLD_OPTS
+Same as MKC_CHECK_CCLD_OPTS but for C++ compiler.
+As a result HAVE_CXXOPT_OPT.<option:S/=/_/g> is set to 1 or 0.
 .IP MKC_NOAUTO_FUNCLIBS
 See MKC_CHECK_FUNCLIBS
 .IP MKC_NOAUTO

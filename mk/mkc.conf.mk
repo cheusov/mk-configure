@@ -371,6 +371,21 @@ HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_
 .endfor # a
 
 ######################################################
+# checks whether $CC accepts some arguments
+.for a in ${MKC_CHECK_CCLD_OPTS}
+.if !defined(HAVE_CCLD_OPT.${a:S/=/_/g})
+HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -l -t ccld_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+.endif # !defined(HAVE_CCLD_OPT.${a})
+.endfor # a
+
+# checks whether $CXX accepts some arguments
+.for a in ${MKC_CHECK_CXXLD_OPTS}
+.if !defined(HAVE_CXXLD_OPT.${a:S/=/_/g})
+HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} CARGS=${a:S/__/ /g:Q} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+.endif # !defined(HAVE_CXXLD_OPT.${a})
+.endfor # a
+
+######################################################
 # prototype checks
 .for p in ${MKC_CHECK_PROTOTYPES} ${MKC_REQUIRE_PROTOTYPES}
 .if !defined(HAVE_PROTOTYPE.${p})

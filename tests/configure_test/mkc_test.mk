@@ -100,7 +100,7 @@ MKC_CUSTOM_FN.custom_check5_noauto     =	my_check5.c
 MKC_CUSTOM_NOAUTO.custom_check5_noauto =	yes
 MKC_CUSTOM_CACHE.custom_check5_noauto  =	cache2
 
-MKC_REQUIRE_CUSTOM+=		custom_check3
+MKC_REQUIRE_CUSTOM+=	custom_check3
 
 MKC_CHECK_PROTOTYPES =	strcmp_ok strcmp_bad function_absent
 MKC_PROTOTYPE_FUNC.strcmp_ok  = int strcmp(const char*, const char*)
@@ -109,6 +109,11 @@ MKC_PROTOTYPE_FUNC.function_absent = int absent_function(int lalala)
 MKC_PROTOTYPE_HEADERS.strcmp_ok  = string.h
 MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
 MKC_PROTOTYPE_HEADERS.function_absent = string.h
+
+MKC_CHECK_CC_OPTS =	-DMACRO=zzz --zzz
+MKC_CHECK_CCLD_OPTS =	-DMACRO=zzz --zzz
+MKC_CHECK_CXX_OPTS =	-DMACRO=zzz --zzz
+MKC_CHECK_CXXLD_OPTS =	-DMACRO=zzz --zzz
 
 vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_HEADER_FILE.sys_time_h HAVE_HEADER_FILE.string_h \
@@ -140,6 +145,10 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
 	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad HAVE_PROTOTYPE.function_absent \
+	HAVE_CC_OPT.-DMACRO_zzz HAVE_CXX_OPT.-DMACRO_zzz \
+	HAVE_CCLD_OPT.-DMACRO_zzz HAVE_CXXLD_OPT.-DMACRO_zzz \
+	HAVE_CC_OPT.--zzz HAVE_CXX_OPT.--zzz \
+	HAVE_CCLD_OPT.--zzz HAVE_CXXLD_OPT.--zzz \
 	\
 	CUSTOM.custom_check1 CUSTOM.custom_check2 CUSTOM.custom_check2_link \
 	CUSTOM.custom_check5 CUSTOM.custom_check5_link CUSTOM.custom_check5_noauto \
@@ -171,6 +180,6 @@ all:
 		sed "s/^.*-DSYSTEM_.*$$/KNOWN_SYSTEM/"
 	@printf "%s\n" "${CPPFLAGS}" | \
 		sed 's/^.*\(MKC_COMMON_DEFINES_WORKS_FINE\).*$$/\1/'
-	@ls -1 _mkc_* | grep cache2
+	@ls -1 _mkc_* | grep -E 'cache2|cc_opt|cxx_opt|ccld_opt|cxxld_opt' | sort
 
 .include <mkc.mk>
