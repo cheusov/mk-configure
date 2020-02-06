@@ -83,9 +83,10 @@ MKC_REQUIRE_MEMBERS+=	struct-mkc_test_t.d:include/mkc_test.h
 
 MKC_CHECK_PROGS+=	awk sh megaprog-x34
 
-MKC_CUSTOM_DIR=			${.CURDIR}/custom
+MKC_CUSTOM_DIR=		${.CURDIR}/custom
 
-MKC_CHECK_CUSTOM+=		custom_check1 custom_check2 custom_check2_link custom_check5 custom_check5_link
+MKC_CHECK_CUSTOM+=	custom_check1 custom_check2 custom_check2_link \
+   custom_check5 custom_check5_link custom_check5_noauto
 
 MKC_CUSTOM_FN.custom_check2        =	my_check2.c
 MKC_CUSTOM_FN.custom_check2_link   =	my_check2.c
@@ -94,6 +95,9 @@ MKC_CUSTOM_LINK.custom_check2_link =	YES
 MKC_CUSTOM_FN.custom_check5        =	my_check5.c
 MKC_CUSTOM_FN.custom_check5_link   =	my_check5.c
 MKC_CUSTOM_LINK.custom_check5_link =	YES
+
+MKC_CUSTOM_FN.custom_check5_noauto     =	my_check5.c
+MKC_CUSTOM_NOAUTO.custom_check5_noauto =	yes
 
 MKC_REQUIRE_CUSTOM+=		custom_check3
 
@@ -137,7 +141,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad HAVE_PROTOTYPE.function_absent \
 	\
 	CUSTOM.custom_check1 CUSTOM.custom_check2 CUSTOM.custom_check2_link \
-	CUSTOM.custom_check5 CUSTOM.custom_check5_link \
+	CUSTOM.custom_check5 CUSTOM.custom_check5_link CUSTOM.custom_check5_noauto \
 	\
 	HAVE_PROG.sh           PROG.sh \
 	HAVE_PROG.awk          PROG.awk \

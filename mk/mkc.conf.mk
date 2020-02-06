@@ -305,7 +305,7 @@ CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t custom_${c:Q} ${_opts} ${
 .undef _ldflags
 .undef _ldadd
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
-.if empty(MKC_REQUIRE_CUSTOM:U:M${c})
+.if empty(MKC_REQUIRE_CUSTOM:U:M${c}) && ${MKC_CUSTOM_NOAUTO.${c}:U:tl} != "yes"
 MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 .endif
 .endif
