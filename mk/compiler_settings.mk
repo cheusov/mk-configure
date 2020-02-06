@@ -54,7 +54,8 @@ _cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TY
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
     CFLAGS.ssp.${CC_TYPE} CFLAGS.pic.${CC_TYPE} CFLAGS.pie.${CC_TYPE}
 
-LDFLAGS.pie.gcc =		-fPIE__-DPIC__-pie
+LDFLAGS.pie.gcc   =		-fPIE__-DPIC__-pie
+LDFLAGS.pie.clang =		-fPIE__-DPIC__-pie
 
 _ccld_vars = LDFLAGS.pie.${CC_TYPE}
 
