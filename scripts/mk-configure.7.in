@@ -1435,7 +1435,8 @@ Also, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, LDADD,
 MKC_CUSTOM_CPPFLAGS.<custom_check_name>, MKC_CUSTOM_CFLAGS.<custom_check_name>,
 MKC_CUSTOM_CXXFLAGS.<custom_check_name>,
 MKC_CUSTOM_LDFLAGS.<custom_check_name> and MKC_CUSTOM_LDADD.<custom_check_name>
-flags are passed to the compiler.
+flags are passed to the compiler. Normally cache file name contains <custom_check_name>
+unless MKC_CUSTOM_CACHE.<custom_check_name> is set to something else.
 .VS
  Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
       MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c

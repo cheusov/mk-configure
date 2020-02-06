@@ -63,6 +63,8 @@ MKC_AUTO_LDADD=
 
 KNOWN_SYSTEM
 MKC_COMMON_DEFINES_WORKS_FINE
+_mkc_cache2.err
+_mkc_cache2.res
 ===============================
 HAVE_HEADER.sys_time_h=2
 HAVE_HEADER.string_h=2
@@ -129,4 +131,6 @@ MKC_AUTO_LDADD=
 
 KNOWN_SYSTEM
 MKC_COMMON_DEFINES_WORKS_FINE
+_mkc_cache2.err
+_mkc_cache2.res
 ===============================

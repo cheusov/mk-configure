@@ -296,8 +296,10 @@ _cflags    =		${MKC_CUSTOM_CFLAGS.${c}:U}
 _cxxflags  =		${MKC_CUSTOM_CXXFLAGS.${c}:U}
 _ldflags   =		${MKC_CUSTOM_LDFLAGS.${c}:U}
 _ldadd     =		${MKC_CUSTOM_LDADD.${c}:U}
-CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t custom_${c:Q} ${_opts} ${MKC_CUSTOM_FN.${c}}
+_cachename =		${MKC_CUSTOM_CACHE.${c}:Ucustom_${c}}
+CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t ${_cachename:Q} ${_opts} ${MKC_CUSTOM_FN.${c}}
 .endif
+.undef _cachename
 .undef _opts
 .undef _cppflags
 .undef _cflags

@@ -98,6 +98,7 @@ MKC_CUSTOM_LINK.custom_check5_link =	YES
 
 MKC_CUSTOM_FN.custom_check5_noauto     =	my_check5.c
 MKC_CUSTOM_NOAUTO.custom_check5_noauto =	yes
+MKC_CUSTOM_CACHE.custom_check5_noauto  =	cache2
 
 MKC_REQUIRE_CUSTOM+=		custom_check3
 
@@ -170,5 +171,6 @@ all:
 		sed "s/^.*-DSYSTEM_.*$$/KNOWN_SYSTEM/"
 	@printf "%s\n" "${CPPFLAGS}" | \
 		sed 's/^.*\(MKC_COMMON_DEFINES_WORKS_FINE\).*$$/\1/'
+	@ls -1 _mkc_* | grep cache2
 
 .include <mkc.mk>
