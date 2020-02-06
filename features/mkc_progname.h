@@ -17,6 +17,10 @@
 
 #else
 
+#include "mkc_externc.h"
+
+__MKC_BEGIN_DECLS
+
 #if !HAVE_FUNC1_SETPROGNAME_STDLIB_H
 void setprogname (const char *progname);
 #endif
@@ -24,6 +28,8 @@ void setprogname (const char *progname);
 #if !HAVE_FUNC0_GETPROGNAME_STDLIB_H
 const char * getprogname (void);
 #endif
+
+__MKC_END_DECLS
 
 #endif /* MKC_PROGNAME_IS_FINE */
 

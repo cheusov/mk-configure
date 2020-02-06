@@ -13,8 +13,14 @@
 
 #include <string.h>
 
+#include "mkc_externc.h"
+
+__MKC_BEGIN_DECLS
+
 #if !HAVE_FUNC2_STRNDUP_STRING_H
 char *strndup(const char *str, size_t n);
 #endif
+
+__MKC_END_DECLS
 
 #endif // _MKC_STRNDUP_H_

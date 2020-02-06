@@ -22,6 +22,11 @@
 #include <err.h>
 
 #else
+
+#include "mkc_externc.h"
+
+__MKC_BEGIN_DECLS
+
 #if !HAVE_FUNC2_WARN_ERR_H
 void warn (const char *, ...);
 #endif
@@ -34,6 +39,8 @@ void vwarn (const char *, va_list);
 #if !HAVE_FUNC2_VWARNX_ERR_H
 void vwarnx (const char *, va_list);
 #endif
+
+__MKC_END_DECLS
 
 #endif /* MKC_WARN_IS_FINE */
 

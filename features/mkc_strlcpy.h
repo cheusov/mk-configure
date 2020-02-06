@@ -13,8 +13,12 @@
 
 #include <string.h>
 
+#include "mkc_externc.h"
+
 #if !HAVE_FUNC3_STRLCPY_STRING_H
+__MKC_BEGIN_DECLS
 size_t strlcpy(char *dst, const char *src, size_t size);
+__MKC_END_DECLS
 #endif
 
 #endif // _MKC_STRLCPY_H_

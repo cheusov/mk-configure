@@ -22,6 +22,11 @@
 #include <err.h>
 
 #else
+
+#include "mkc_externc.h"
+
+__MKC_BEGIN_DECLS
+
 #if !HAVE_FUNC3_ERR_ERR_H
 void err (int, const char *, ...);
 #endif
@@ -34,6 +39,8 @@ void verr (int, const char *, va_list);
 #if !HAVE_FUNC3_VERRX_ERR_H
 void verrx (int, const char *, va_list);
 #endif
+
+__MKC_END_DECLS
 
 #endif /* MKC_ERR_IS_FINE */
 
