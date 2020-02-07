@@ -5,4 +5,5 @@ INSCRIPTS   =	mkc_long_lines
 
 SCRIPTSDIR  =	${MKC_LIBEXECDIR}
 
+.include "../../Makefile.inc"
 .include <mkc.mk>
