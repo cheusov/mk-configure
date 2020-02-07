@@ -6,8 +6,8 @@
 .ifndef _MKC_IMP_HELP_MK
 _MKC_IMP_HELP_MK   :=   1
 
-.PHYNY: help
-help:
+.if !commands(do_help)
+do_help: .PHONY
 .if empty(USE_VARIABLES)
 	@echo "${PROJECTNAME} does not provide any special USE_* variables."
 	@echo "So, there is nothing to configure in a special way."
@@ -29,5 +29,6 @@ help:
 .       endfor # n
 .   endfor # USE_VARIABLES
 .endif # USE_VARIABLES
+.endif # !commands(do_help)
 
 .endif # _MKC_IMP_HELP_MK
