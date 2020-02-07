@@ -7,7 +7,28 @@
 _MKC_IMP_HELP_MK   :=   1
 
 .if !commands(do_help)
-do_help: .PHONY
+.PHONY: do_help
+do_help: _do_help_print_use_variables .WAIT _do_help_print_projects
+.endif # !commands(do_help)
+
+_do_help_print_projects: .PHONY
+.ifdef SUBPRJ
+	@echo "${PROJECTNAME} provides the following subprojects enabled by default"
+	@echo "  Enabled by default:"
+.   for p in ${SUBPRJ_DFLT:S/:/ /Wg:O:u}
+.       if ${p} != "$COMPATLIB"
+	@printf "    %-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
+.       endif
+.   endfor
+	@echo "  Others:"
+.   for p in ${SUBPRJ:S/:/ /Wg:O:u}
+.       if empty(SUBPRJ_DFLT:M${p})
+	@printf "    %-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
+.       endif
+.   endfor
+.endif # SUBPRJS
+
+_do_help_print_use_variables: .PHONY
 .if empty(USE_VARIABLES)
 	@echo "${PROJECTNAME} does not provide any special USE_* variables."
 	@echo "So, there is nothing to configure in a special way."
@@ -29,6 +50,5 @@ do_help: .PHONY
 .       endfor # n
 .   endfor # USE_VARIABLES
 .endif # USE_VARIABLES
-.endif # !commands(do_help)
 
 .endif # _MKC_IMP_HELP_MK
