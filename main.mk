@@ -19,8 +19,8 @@ USE_ID.1 = "path: the specified path to id(1) is used"
 USE_VARIABLES += USE_INSTALL
 USE_INSTALL.descr = "install(1) utility"
 USE_INSTALL.0 = 'unset or "auto":  path to install(1) is detected automatically'
-USE_INSTALL.0 = '"mkc_install":  use local mkc_install utility'
-USE_INSTALL.1 = "path: the specified path to install(1) is used"
+USE_INSTALL.1 = '"mkc_install":  use local mkc_install utility'
+USE_INSTALL.2 = "path: the specified path to install(1) is used"
 
 USE_VARIABLES += USE_NM
 USE_NM.descr = "List symbols from object files"
