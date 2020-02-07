@@ -24,7 +24,7 @@ test_output:
 	rm -f _mkc_*; \
 	env LDFLAGS='--zzz' mkc_check_custom -t check1 -b ${SRCDIR_configure_test}/custom/custom_check1.c 2>&1; \
 	rm -f _mkc_*; \
-	env CFLAGS='--zzz' mkc_check_custom -t check1 -b ${SRCDIR_configure_test}/custom/custom_check1.c 2>&1; \
+	env CFLAGS='--zzz' mkc_check_custom -e -t check1 -b ${SRCDIR_configure_test}/custom/custom_check1.c 2>&1; \
 	echo =========== custom_check3.c ===========; \
 	rm -f _mkc_*; \
 	mkc_check_custom -t check3 ${SRCDIR_configure_test}/custom/custom_check3.c 2>&1; \
