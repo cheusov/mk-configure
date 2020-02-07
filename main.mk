@@ -58,7 +58,7 @@ examples    =	hello_world hello_scripts hello_files hello_sizeof hello_lex \
    hello_autotools hello_autoconf hello_libdeps hello_compatlib \
    hello_require_tools check_compiler_opts help_target # fts (fts.h)
 .for t in ${examples}
-SUBPRJ +=	examples/${t}:tests
+SUBPRJ +=	examples/${t}:examples
 .endfor
 
 NODEPS +=	install-examples/helpers:install
@@ -85,7 +85,7 @@ pdf:
 cleandir:	cleandir-tests cleandir-presentation
 clean:		clean-tests clean-presentation
 
-test:		test-tests
+test:		test-tests test-examples
 
 ##################################################
 .include "Makefile.inc"
