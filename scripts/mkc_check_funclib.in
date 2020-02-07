@@ -78,7 +78,8 @@ check_itself (){
     fi
 
     cat > "$tmpc" <<EOF
-static void __fake__ () {}
+void yylex ();
+void yylex () {}
 
 void $fname ();
 
