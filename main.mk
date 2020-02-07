@@ -38,6 +38,8 @@ HELP_MSG.examples/helpers      = "Helper scripts for regression tests, not a par
 HELP_MSG.features = "Features strlcpy, fgetln, getdelim etc..."
 HELP_MSG.mk       = ".mk files"
 HELP_MSG.scripts  = "mkc_* scripts"
+HELP_MSG.examples = "samples of use for mk-configure and tests"
+HELP_MSG.tests    = "tests for mk-configure"
 
 ##################################################
 SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc

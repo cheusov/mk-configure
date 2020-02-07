@@ -8,24 +8,41 @@ _MKC_IMP_HELP_MK   :=   1
 
 .if !commands(do_help)
 .PHONY: do_help
-do_help: _do_help_print_use_variables .WAIT _do_help_print_projects
+do_help: _do_help_print_use_variables .WAIT _do_help_nl .WAIT _do_help_print_projects
 .endif # !commands(do_help)
 
 _do_help_print_projects: .PHONY
 .ifdef SUBPRJ
-	@echo "${PROJECTNAME} provides the following subprojects enabled by default"
+	@echo "${PROJECTNAME} provides the following subprojects."
 	@echo "  Enabled by default:"
 .   for p in ${SUBPRJ_DFLT:S/:/ /Wg:O:u}
 .       if ${p} != "$COMPATLIB"
-	@printf "    %-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
+.	    if exists(${p}/Makefile)
+		@printf '    - '
+.	    else
+		@printf '    + '
+.	    endif
+	    @printf "%-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
 .       endif
 .   endfor
 	@echo "  Others:"
 .   for p in ${SUBPRJ:S/:/ /Wg:O:u}
-.       if empty(SUBPRJ_DFLT:M${p})
-	@printf "    %-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
+.       if empty(SUBPRJ_DFLT:M${p}) && !empty(HELP_MSG.${p})
+.	    if exists(${p}/Makefile)
+		@printf '    - '
+.	    else
+		@printf '    + '
+.	    endif
+	@printf "%-20s: %s\n" ${p} ${HELP_MSG.${p}:U}
 .       endif
 .   endfor
+	@printf "     "
+.   for p in ${SUBPRJ:S/:/ /Wg:O:u}
+.       if empty(SUBPRJ_DFLT:M${p}) && empty(HELP_MSG.${p})
+	@printf " %s" ${p:Q}
+.       endif
+.   endfor
+	@printf "\n"
 .endif # SUBPRJS
 
 _do_help_print_use_variables: .PHONY
@@ -50,5 +67,8 @@ _do_help_print_use_variables: .PHONY
 .       endfor # n
 .   endfor # USE_VARIABLES
 .endif # USE_VARIABLES
+
+_do_help_nl: .PHONY
+	@echo ''
 
 .endif # _MKC_IMP_HELP_MK
