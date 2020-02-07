@@ -1,7 +1,8 @@
-SCRIPTS   =	mkc_test_helper ${INSCRIPTS}
-INSCRIPTS =	mkc_long_lines
+SCRIPTS     =	mkc_test_helper mkc_fake_strip mkc_long_lines \
+   mkc_test_helper mkc_test_helper2 mkc_test_helper_paths \
+   mkc_test_nm ${INSCRIPTS}
+INSCRIPTS   =	mkc_long_lines
 
-SCRIPTSDIR_mkc_long_lines  =	${MKC_LIBEXECDIR}
-SCRIPTSDIR_mkc_test_helper =	${MKC_LIBEXECDIR}
+SCRIPTSDIR  =	${MKC_LIBEXECDIR}
 
 .include <mkc.mk>
