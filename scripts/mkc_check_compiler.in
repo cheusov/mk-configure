@@ -51,7 +51,7 @@ __INTEL_COMPILER   icc     __INTEL_COMPILER
         __HP_aCC   hpc     __HP_aCC
          __HP_cc   hpc     __HP_aCC
    __SUNPRO_C      sunpro  __SUNPRO_C
-  __SUNPRO_CC      sunpro  __SUNPRO_C
+  __SUNPRO_CC      sunpro  __SUNPRO_CC
      __IBMCPP__    ibmc    __xlC__
        __IBMC__    ibmc    __xlC__
     __BORLANDC__   bcc     __BORLANDC__
