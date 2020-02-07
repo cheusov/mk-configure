@@ -2,6 +2,7 @@
 ### C variables
 CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaration
 CFLAGS.dflt.icc       =		-we147 # 147 is required for MKC_CHECK_PROTOTYPES
+CFLAGS.dflt.sunpro    =		-errtags
 
 CFLAGS.warnerr.gcc =		-Werror
 CFLAGS.warnerr.clang  =		-Werror
