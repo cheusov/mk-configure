@@ -32,6 +32,13 @@ USE_SH.descr = "Shell interpreter"
 USE_SH.0 = 'unset or "auto":  path to shell interpreter is detected automatically'
 USE_SH.1 = "path: the specified path to shell interpreter is used"
 
+HELP_MSG.builtins = "Builtins prog_gm4, prog_gmake etc..."
+HELP_MSG.doc      = "README.md, INSTALL, NEWS etc..."
+HELP_MSG.examples/helpers      = "Helper scripts for regression tests, not a part of mk-configure distribution"
+HELP_MSG.features = "Features strlcpy, fgetln, getdelim etc..."
+HELP_MSG.mk       = ".mk files"
+HELP_MSG.scripts  = "mkc_* scripts"
+
 ##################################################
 SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc
 SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
