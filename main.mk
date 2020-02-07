@@ -33,9 +33,9 @@ USE_SH.0 = 'unset or "auto":  path to shell interpreter is detected automaticall
 USE_SH.1 = "path: the specified path to shell interpreter is used"
 
 ##################################################
-SUBPRJ_DFLT =   builtins helpers mk scripts features doc
+SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc
 SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
-		scripts:builtins scripts:helpers scripts:mk scripts:features scripts:doc
+		scripts:builtins scripts:examples/helpers scripts:mk scripts:features scripts:doc
 
 tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    mkprofilelib mkdll pkg_config_0 pkg_config_1 pkg_config_1_1 pkg_config_2 \
@@ -61,13 +61,15 @@ examples    =	hello_world hello_scripts hello_files hello_sizeof hello_lex \
 SUBPRJ +=	examples/${t}:tests
 .endfor
 
+NODEPS +=	install-examples/helpers:install
+
 ##################################################
 SHRTOUT =		yes
 
 #
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
-PATH        :=		${OBJDIR_builtins}:${OBJDIR_helpers}:${.CURDIR}/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
+PATH        :=		${OBJDIR_builtins}:${OBJDIR_examples_helpers}:${.CURDIR}/examples/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
 
 .export SHRTOUT INSTALL PATH
 
