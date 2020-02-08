@@ -10,6 +10,12 @@
 .ifndef _MKC_PLATFORM_MK
 _MKC_PLATFORM_MK := 1
 
+.ifdef MK_C_PROJECT
+_MKFILESDIR         =	${MK_C_PROJECT}/mk
+.else
+_MKFILESDIR         =	${MKFILESDIR}
+.endif
+
 ####################
 # cross tools
 .ifdef SYSROOT
@@ -90,20 +96,23 @@ CPPFLAGS +=	${CPPFLAGS.${TARGET_OPSYS}:U}
 ############################################################
 # CC compiler type
 .if ${MKCHECKS} == "no"
-.elif ${MKCHECKS:Uno:tl} == "yes" && !empty(src_type)
+.elif ${MKCHECKS:Uno:tl} == "yes"
 mkc.cc_type.environ = CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${CPPFLAGS:Q} CFLAGS=${CFLAGS:Q} LDFLAGS=${LDFLAGS:Q} LDADD=${LDADD:Q} MKC_CACHEDIR=${MKC_CACHEDIR:Q} MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES:Q} MKC_SHOW_CACHED=${MKC_SHOW_CACHED:Q} MKC_NOCACHE=${MKC_NOCACHE:Q} MKC_VERBOSE=1
-.if !empty(src_type:Mcc)
-CC_FULL_TYPE  !=	env ${mkc.cc_type.environ} mkc_check_compiler
-CC_TYPE       :=	${CC_FULL_TYPE:[1]}
-CC_VERSION    :=	${CC_FULL_TYPE:[2]}
-.undef CC_FULL_TYPE
-.endif
-.if !empty(src_type:Mcxx)
-CXX_FULL_TYPE !=	env ${mkc.cc_type.environ} mkc_check_compiler -x
-CXX_TYPE       :=	${CXX_FULL_TYPE:[1]}
-CXX_VERSION    :=	${CXX_FULL_TYPE:[2]}
-.undef CXX_FULL_TYPE
-.endif # src_type
+.   for c in ${src_type}
+_full_type         !=	env ${mkc.cc_type.environ} mkc_check_compiler
+${c:tu}_TYPE       :=	${_full_type:[1]}
+${c:tu}_VERSION    :=	${_full_type:[2]}
+.       undef _full_type
+_mkfile=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+.       if exists(${HOME}/.mk-c/${_mkfile})
+.           include <${HOME}/.mk-c/${_mkfile}>
+.       elif exists(${_MKFILESDIR}/${_mkfile})
+.           include <${_MKFILESDIR}/${_mkfile}>
+.       elif !defined(MK_C_PROJECT) && !make(compiler_settings)
+.           error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, see  target "compiler_settings"'
+.       endif # exists(...)
+.       undef _mkfile
+.   endfor # .for c in ${src_type}
 .endif # cleandir|distclean|...
 
 CC_TYPE  ?=	unknown
@@ -111,11 +120,6 @@ CXX_TYPE ?=	unknown
 
 CC_VERSION  ?=	0
 CXX_VERSION ?=	0
-
-####################
-# Compiler-specific options
-.sinclude <mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk>
-.sinclude <mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk>
 
 # C/C++ default flags
 CFLAGS      +=		${CFLAGS.dflt.${CC_TYPE}}

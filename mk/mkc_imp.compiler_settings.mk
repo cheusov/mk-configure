@@ -133,7 +133,7 @@ MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
 .   endfor
 
-.   include <mkc.configure.mk>
+.   include <mkc.conf.mk>
 
 .   for v in ${_${c}_vars}
 .       for _opt in ${${v}}
@@ -165,6 +165,7 @@ mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 	@echo ${v} = ${${v}.new} >> $@.tmp;
 .   endfor
 	@mv $@.tmp $@
-.endif
-.endfor
+
+.endif #!empty(${c:tu}
+.endfor # .for c in cc cxx
 #################################################

@@ -55,7 +55,7 @@ LDREAL     ?=	${CXX}
 src_type  +=	cc
 .endif
 
-src_type  ?=	0
+src_type  ?=
 
 LDREAL  ?=	${CC}
 

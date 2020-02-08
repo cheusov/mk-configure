@@ -30,6 +30,7 @@ EXPORT_VARNAMES     +=	CHECK_COMMON_SH_DIR
 _BUILTINSDIR         =	${MK_C_PROJECT}/builtins
 .endif
 FEATURESDIR    ?=	@featuresdir@
+MKFILESDIR      =	@mkfilesdir@
 MKC_LIBEXECDIR ?=	@mkc_libexecdir@
 MKC_SYSCONFDIR ?=	@sysconfdir@
 

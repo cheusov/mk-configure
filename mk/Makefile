@@ -8,7 +8,8 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
-	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk ${INFILES}
+	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk \
+	mkc_imp.compiler_settings.mk ${INFILES}
 
 FILESDIR =	${MKFILESDIR}
 
@@ -28,10 +29,10 @@ USE_CC_COMPILERS  ?=	${CC}
 USE_CXX_COMPILERS ?=	${CXX}
 
 .if ${RECURS:U} == 1
-.include "compiler_settings.mk"
+.include "mkc_imp.compiler_settings.mk"
 .endif
 
-.if !defined(RECURS) && (defined(USE_CC_COMPILERS) || defined(USE_CXX_COMPILERS))
+.if !defined(RECURS)
 post_all:
 .for CC in ${USE_CC_COMPILERS:U}
 	@env CC=${CC} ${MAKE} ${MAKE_FLAGS} all USE_CXX_COMPILERS= \
