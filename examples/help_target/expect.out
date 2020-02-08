@@ -7,3 +7,12 @@ There are the following variables you may use to configure print_value:
   * VALUE (Value to print)
     - unset: the default value is 7 (the default)
     - the specified value otherwise
+
+===== help_subprj =====
+===== help_use =====
+There are the following variables you may use to configure print_value:
+  * VALUE (Value to print)
+    - unset: the default value is 7 (the default)
+    - the specified value otherwise
+
+=======================

@@ -242,7 +242,7 @@ TARGETS +=	all install clean cleandir depend test \
 TARGETS :=	${TARGETS:O:u}
 
 ALLTARGETS +=	configure all install clean cleandir depend uninstall installdirs \
-  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb help
+  mkgen bin_tar bin_targz bin_tarbz2 bin_zip bin_deb help help_use help_subprj
 
 VERBOSE_ECHO ?=	echo
 

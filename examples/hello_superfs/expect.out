@@ -61,6 +61,31 @@
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
 /objdir/test.mk
+========== help =============
+hello_superfs does not provide any special USE_* variables.
+So, there is nothing to configure in a special way.
+
+hello_superfs provides the following subprojects.
+  Enabled by default:
+    - docs                : Documentation files
+    + tools               : mkfs_superfs and fsck_superfs
+  Others:
+    - fsck_superfs        : Checks super file system
+    - mkfs_superfs        : Creates super file system
+
+======== help_subprj ========
+hello_superfs provides the following subprojects.
+  Enabled by default:
+    - docs                : Documentation files
+    + tools               : mkfs_superfs and fsck_superfs
+  Others:
+    - fsck_superfs        : Checks super file system
+    - mkfs_superfs        : Creates super file system
+
+======== help_use ========
+hello_superfs does not provide any special USE_* variables.
+So, there is nothing to configure in a special way.
+
 ========== depend ===========
 /objdir/Makefile
 /objdir/Makefile.inc

@@ -2146,10 +2146,16 @@ Arguments passed to
 .RI < "U" >
 .RI [ "-sif" ].
 .SS "mkc_imp.help.mk"
-This mk file implements target
-.B help
-which shows the configuring options available for the project and descriptions
-for their values.
+This mk file implements targets
+.BR help ", " help_subprj " and " help_use.
+.IP help_use
+Outputs the configuring options available for the project and descriptions
+for their values. Configuring options should be specified in USE_VARIABLES variable
+described below.
+.IP help_subprj
+Outputs the list of subprojects (mkc.subprj.mk) and their descriptions.
+Subprojects are mentioned in SUBPRJ and SUBPRJ_DFLT variables. Description
+are specified in HELP_MSG.<subproject> variable.
 .IP USE_VARIABLES
 A list of configuring variables. Let's assume that the only
 configuring variable is
@@ -2167,6 +2173,8 @@ Then developer may provide the following assignments in Makefile:
 .VE
 .RI < "M" >
 .RI [ "" ]
+.IP HELP_MSG.<subproject>
+Description for project <subproject>.
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM

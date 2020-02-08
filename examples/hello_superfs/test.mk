@@ -26,6 +26,15 @@ test_output:
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
+	echo ========== help =============; \
+	${MAKE} ${MAKEFLAGS} help; \
+	\
+	echo ======== help_subprj ========; \
+	${MAKE} ${MAKEFLAGS} help_subprj; \
+	\
+	echo ======== help_use ========; \
+	${MAKE} ${MAKEFLAGS} help_use; \
+	\
 	echo ========== depend ===========; \
 	${MAKE} ${MAKEFLAGS} depend DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
