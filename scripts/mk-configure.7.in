@@ -92,7 +92,7 @@ Mk-configure provides the following targets:
 .IP all
 build everything.
 .IP clean
-clean temporary files and directories with a help of
+clean temporary files and directories with the help of
 ${CLEANFILES_CMD} and ${CLEANDIRS_CMD} commands.
 .IP cleandir
 remove all of the files removed by the target clean, as
@@ -102,9 +102,9 @@ well as cache files created by
 create target directories.
 .IP install
 install programs, libraries, files, include files, manual pages etc.
-to the target directories with a help of ${INSTALL} program.
+to the target directories with the help of ${INSTALL} program.
 .IP uninstall
-remove installed files with a help of ${UNINSTALL} command.
+remove installed files with the help of ${UNINSTALL} command.
 .IP configure
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
@@ -1176,7 +1176,7 @@ supports the following variables.
 If "no", none of the checks are performed. It is set to "yes" unless target
 is "clean" and "cleandir".
 .IP MKC_CHECK_HEADERS
-List of headers to check with a help of
+List of headers to check with the help of
 .IR "$CC -c" .
 As a result of the check bmake's variable
 .B HAVE_HEADER.<header>
@@ -1822,13 +1822,13 @@ SRCS defaults to
 .RI < "M" >
 .IP LUA_LMODDIR
 Directory for Lua modules written in Lua. It is assigned
-with a help of
+with the help of
 .I "pkg-config --variable=INSTALL_LMOD lua"
 command and can be overriden by user.
 .RI < "Iu" >
 .IP LUA_CMODDIR
 Directory for compiled Lua modules written in, e.g., C or C++.
-It is assigned with a help of
+It is assigned with the help of
 .I "pkg-config --variable=INSTALL_CMOD lua"
 command and can be overriden by user.
 .RI < "Iu" >
