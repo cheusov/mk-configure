@@ -121,9 +121,6 @@ _cxx_vars = CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
 _cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
 
 #################################################
-.include <mkc.configure.mk>
-
-#################################################
 .for c in cc cxx
 .if !empty(${c:tu})
 .   for v in ${_${c}_vars}
@@ -154,7 +151,9 @@ LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
 LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 ######
+.ifdef RECURS
 FILES += mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+.endif
 mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 	@printf '' > $@.tmp;
 .   for v in ${_${c}_vars}
@@ -168,4 +167,20 @@ mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 
 .endif #!empty(${c:tu}
 .endfor # .for c in cc cxx
+
 #################################################
+USE_CC_COMPILERS  ?=	${CC}
+USE_CXX_COMPILERS ?=	${CXX}
+
+.ifdef RECURS
+.else
+post_all:
+.for CC in ${USE_CC_COMPILERS:U}
+	@env ${MAKE} ${MAKE_FLAGS} all USE_CXX_COMPILERS= \
+	    MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
+.endfor # CC
+.for CXX in ${USE_CXX_COMPILERS:U}
+	@env ${MAKE} ${MAKE_FLAGS} all USE_CC_COMPILERS= \
+	    MKC_NOCACHE=1 MKC_VERBOSE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
+.endfor # CXX
+.endif # RECURS

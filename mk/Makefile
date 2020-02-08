@@ -21,28 +21,11 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 
 #################################################
 # the following three variables are necessary for detecting CC_TYPE and CXX_TYPE
-src_type              =	cc cxx
+#src_type              =	cc cxx
 
 .include <mkc.init.mk>
 
-USE_CC_COMPILERS  ?=	${CC}
-USE_CXX_COMPILERS ?=	${CXX}
-
-.if ${RECURS:U} == 1
 .include "mkc_imp.compiler_settings.mk"
-.endif
-
-.if !defined(RECURS)
-post_all:
-.for CC in ${USE_CC_COMPILERS:U}
-	@env CC=${CC} ${MAKE} ${MAKE_FLAGS} all USE_CXX_COMPILERS= \
-	    MKC_NOCACHE=1 RECURS=1 CXX=
-.endfor
-.for CXX in ${USE_CXX_COMPILERS:U}
-	@env CXX=${CXX} ${MAKE} ${MAKE_FLAGS} all USE_CC_COMPILERS= \
-	    MKC_NOCACHE=1 RECURS=1 CC=
-.endfor
-.endif
 
 post_install:
 	for f in ${.OBJDIR}/mkc_imp.cc_*.mk ${.OBJDIR}/mkc_imp.cxx_*.mk; do \
