@@ -32,6 +32,16 @@ USE_SH.descr = "Shell interpreter"
 USE_SH.0 = 'unset or "auto":  path to shell interpreter is detected automatically'
 USE_SH.1 = "path: the specified path to shell interpreter is used"
 
+USE_VARIABLES += USE_CC_COMPILERS
+USE_CC_COMPILERS.descr = "A list of C compilers for which initial settings are generated"
+USE_CC_COMPILERS.0 = "unset:  initial settings are generated for default C compiler"
+USE_CC_COMPILERS.1 = "list: example -- gcc-4.8 gcc-6 clang"
+
+USE_VARIABLES += USE_CXX_COMPILERS
+USE_CXX_COMPILERS.descr = "A list of C++ compilers for which initial settings are generated"
+USE_CXX_COMPILERS.0 = "unset:  initial settings are generated for default C++ compiler"
+USE_CXX_COMPILERS.1 = "list: example -- g++-4.8 g++-6 clang++"
+
 HELP_MSG.builtins = "Builtins prog_gm4, prog_gmake etc..."
 HELP_MSG.doc      = "README.md, INSTALL, NEWS etc..."
 HELP_MSG.examples/helpers      = "Helper scripts for regression tests, not a part of mk-configure distribution"

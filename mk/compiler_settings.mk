@@ -125,6 +125,7 @@ _cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
 
 #################################################
 .for c in cc cxx
+.if !empty(${c:tu})
 .   for v in ${_${c}_vars}
 MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   endfor
@@ -153,6 +154,7 @@ LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
 LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 ######
+FILES += mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 	@printf '' > $@.tmp;
 .   for v in ${_${c}_vars}
@@ -163,5 +165,6 @@ mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 	@echo ${v} = ${${v}.new} >> $@.tmp;
 .   endfor
 	@mv $@.tmp $@
+.endif
 .endfor
 #################################################

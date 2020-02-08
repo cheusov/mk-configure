@@ -10,10 +10,6 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk ${INFILES}
 
-FILES += \
-    mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk \
-    mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
-
 FILESDIR =	${MKFILESDIR}
 
 INFILES +=	newsys.mk
@@ -27,7 +23,32 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 src_type              =	c cxx
 
 .include <mkc.init.mk>
+
+USE_CC_COMPILERS  ?=	${CC}
+USE_CXX_COMPILERS ?=	${CXX}
+
+.if ${RECURS:U} == 1
 .include "compiler_settings.mk"
+.endif
+
+.if !defined(RECURS) && (defined(USE_CC_COMPILERS) || defined(USE_CXX_COMPILERS))
+post_all:
+.for CC in ${USE_CC_COMPILERS:U}
+	@env CC=${CC} ${MAKE} ${MAKE_FLAGS} all USE_CXX_COMPILERS= \
+	    MKC_NOCACHE=1 RECURS=1 CXX=
+.endfor
+.for CXX in ${USE_CXX_COMPILERS:U}
+	@env CXX=${CXX} ${MAKE} ${MAKE_FLAGS} all USE_CC_COMPILERS= \
+	    MKC_NOCACHE=1 RECURS=1 CC=
+.endfor
+.endif
+
+post_install:
+	for f in ${.OBJDIR}/mkc_imp.cc_*.mk ${.OBJDIR}/mkc_imp.cxx_*.mk; do \
+	    test -f "$$f" && \
+		${INSTALL} -o ${FILESOWN} -g ${FILESGRP} -m ${FILESMODE} \
+		${INSTALL_FLAGS} $$f ${MKFILESDIR}; \
+	done
 
 #################################################
 .for i in prog_mkdep prog_nbmkdep
