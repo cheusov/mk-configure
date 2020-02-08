@@ -20,7 +20,7 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 
 #################################################
 # the following three variables are necessary for detecting CC_TYPE and CXX_TYPE
-src_type              =	c cxx
+src_type              =	cc cxx
 
 .include <mkc.init.mk>
 

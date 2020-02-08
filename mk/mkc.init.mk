@@ -52,7 +52,7 @@ LDREAL     ?=	${CXX}
 .endif
 
 .if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
-src_type  +=	c
+src_type  +=	cc
 .endif
 
 src_type  ?=	0
