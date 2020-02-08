@@ -1,5 +1,5 @@
 ============================================================
-Add USE_CC_COMPILERS and USE_CXX_COMPILERS
+settings fallback for gcc/clang on Linux and BSD
 
 ============================================================
 CFLAGS0

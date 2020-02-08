@@ -197,6 +197,12 @@ Additional flags to the compiler when creating C objects.
 .IP COPTS_<project>
 Similar to COPTS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CXXOPTS
+Additional flags to the compiler when creating C++ objects.
+.RI < "U" >
+.IP CXXOPTS_<project>
+Similar to CXXOPTS but for project ${PROJECTNAME}.
+.RI < "U" >
 .IP CXX
 C++ compiler.
 .RI < Iu >

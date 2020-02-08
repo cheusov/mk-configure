@@ -21,13 +21,13 @@
 # C++
 .cc.o .cpp.o .cxx.o .C.o:
 	${MESSAGE.cc}
-	${COMPILE.cc} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 .cc.op .cpp.op .cxx.op .C.op:
 	${MESSAGE.cc}
-	${COMPILE.cc} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} -pg ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} -pg ${.IMPSRC}
 .cc.os .cpp.os .cxx.os .C.os:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
+	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 
 # Assembly
 .S.o .s.o:
