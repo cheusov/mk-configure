@@ -373,6 +373,7 @@ HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cc_option_${a
 .undef _cflags
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
+.undef MKC_CHECK_CC_OPTS
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXX_OPTS}
@@ -382,6 +383,7 @@ HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cxx_option_$
 .undef _cxxflags
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
+.undef MKC_CHECK_CXX_OPTS
 
 ######################################################
 # checks whether $CC accepts some arguments
@@ -392,6 +394,7 @@ HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t ccld_opt
 .undef _cflags
 .endif # !defined(HAVE_CCLD_OPT.${a})
 .endfor # a
+.undef MKC_CHECK_CCLD_OPTS
 
 # checks whether $CXX accepts some arguments
 .for a in ${MKC_CHECK_CXXLD_OPTS}
@@ -401,6 +404,7 @@ HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t cxxld_o
 .undef _cxxflags
 .endif # !defined(HAVE_CXXLD_OPT.${a})
 .endfor # a
+.undef MKC_CHECK_CXXLD_OPTS
 
 ######################################################
 # <end CFLAGS.check and CXXFLAGS.check>
