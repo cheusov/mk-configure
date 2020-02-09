@@ -129,7 +129,6 @@ MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   for v in ${_${c}ld_vars}
 MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
 .   endfor
-
 .   include <mkc.conf.mk>
 
 .   for v in ${_${c}_vars}
@@ -152,9 +151,9 @@ LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 ######
 .ifdef RECURS
-FILES += mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
-.endif
-mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
+all: post_all
+post_all: mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk: .PHONY # always regenerate!
 	@printf '' > $@.tmp;
 .   for v in ${_${c}_vars}
 	@echo ${v} = ${${v}.new} >> $@.tmp;
@@ -165,22 +164,22 @@ mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk:
 .   endfor
 	@mv $@.tmp $@
 
-.endif #!empty(${c:tu}
+.endif # RECURS
+.endif # !empty(${c:tu}
 .endfor # .for c in cc cxx
 
 #################################################
 USE_CC_COMPILERS  ?=	${CC}
 USE_CXX_COMPILERS ?=	${CXX}
 
-.ifdef RECURS
-.else
+.ifndef RECURS
 post_all:
 .for CC in ${USE_CC_COMPILERS:U}
-	@env ${MAKE} ${MAKE_FLAGS} all USE_CXX_COMPILERS= \
-	    MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
+	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CXX_COMPILERS= \
+	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
 .endfor # CC
 .for CXX in ${USE_CXX_COMPILERS:U}
-	@env ${MAKE} ${MAKE_FLAGS} all USE_CC_COMPILERS= \
-	    MKC_NOCACHE=1 MKC_VERBOSE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
+	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CC_COMPILERS= \
+	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
 .endfor # CXX
 .endif # RECURS

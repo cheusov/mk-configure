@@ -1,0 +1,50 @@
+.\"	$NetBSD$
+.\"
+.\" Copyright (c) 2020 by Aleksey Cheusov (vle@gmx.net)
+.\" Absolutely no warranty.
+.\"
+.\" ------------------------------------------------------------------
+.de VS \" Verbatim Start
+.ft CW
+.nf
+.ne \\$1
+..
+.de VE \" Verbatim End
+.ft R
+.fi
+..
+.\" ------------------------------------------------------------------
+.TH MKC_COMPILER_SETTINGS 1 "Feb 10, 2020" "" ""
+.SH NAME
+mkc_compiler_settings \- generates initial settings for C/C++ compiler
+.SH SYNOPSIS
+.BI mkc_compiler_settings
+.SH DESCRIPTION
+.B mkc_compiler_settings
+checks compiler capabilities and store initial
+settings required by
+.B mk-configure
+to
+.br
+.I ~/.mk-c/mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk
+or
+.br
+.I ~/.mk-c/mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
+files for C and C++ compilers respectively.
+.SH ENVIRONMENT
+.TP
+.B CC
+C compiler to check.
+.TP
+.B CXX
+C++ compiler to check.
+.TP
+.B USE_CC_COMPILERS
+A space-separated list of C compilers to check. This variable has higher priority than
+.IR CC .
+.TP
+.B USE_CXX_COMPILERS
+A space-separated list of C++ compilers to check. This variable has higher priority than
+.IR CXX .
+.SH AUTHOR
+Aleksey Cheusov <vle@gmx.net>

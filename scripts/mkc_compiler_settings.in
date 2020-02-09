@@ -1,0 +1,13 @@
+#!@SH@
+
+set -e
+
+export compiler_settings=1
+export MAKEOBJDIR=$HOME/.mk-c
+export MKC_CACHEDIR="$MAKEOBJDIR"
+export MKC_NOCACHE=1
+export COMPILER_SETTINGS_MK='-f @mkfilesdir@/mkc.compiler_settings.mk'
+export SRCTOP=/baddir
+
+BMAKE=${MKC_BMAKE-@BMAKE@}
+$BMAKE -m @mkfilesdir@ ${COMPILER_SETTINGS_MK} post_all

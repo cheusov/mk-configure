@@ -9,7 +9,7 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk \
-	mkc_imp.compiler_settings.mk ${INFILES}
+	mkc_imp.compiler_settings.mk mkc.compiler_settings.mk ${INFILES}
 
 FILESDIR =	${MKFILESDIR}
 
@@ -24,6 +24,8 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 #src_type              =	cc cxx
 
 .include <mkc.init.mk>
+
+MKC_NOCACHE=1
 
 .include "mkc_imp.compiler_settings.mk"
 

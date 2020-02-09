@@ -9,7 +9,8 @@ INSCRIPTS  =	mkc_check_funclib mkc_check_header \
 		mkc_check_prog mkc_check_custom \
 		mkc_which mkc_check_compiler \
 		mkc_install \
-		mkc_check_version mkcmake mkc_get_deps
+		mkc_check_version mkcmake mkc_get_deps \
+		mkc_compiler_settings
 SCRIPTS =	${INSCRIPTS}
 
 MAN =		mkc_check_funclib.1 mkc_check_header.1 \

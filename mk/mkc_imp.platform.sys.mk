@@ -108,8 +108,8 @@ _mkfile=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .           include <${HOME}/.mk-c/${_mkfile}>
 .       elif exists(${_MKFILESDIR}/${_mkfile})
 .           include <${_MKFILESDIR}/${_mkfile}>
-.       elif !defined(MK_C_PROJECT) && !make(compiler_settings)
-.           error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, see  target "compiler_settings"'
+.       elif !defined(MK_C_PROJECT) && empty(compiler_settings)
+.           error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, run "mkc_compiler_settings" utility'
 .       endif # exists(...)
 .       undef _mkfile
 .   endfor # .for c in ${src_type}
