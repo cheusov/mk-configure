@@ -2,7 +2,7 @@ VERSION   =		0.33.91
 
 BIRTHDATE =		2009-02-21
 
-MKFILESDIR     =	${PREFIX}/share/mkc-mk                # = overrides newsys.mk.in
+MKFILESDIR     =	${PREFIX}/share/mk-configure/mk       # = overrides newsys.mk.in
 DOCDIR        ?=	${PREFIX}/share/doc/mk-configure
 BUILTINSDIR    =	${PREFIX}/share/mk-configure/builtins # = overrides newsys.mk.in
 FEATURESDIR    =	${PREFIX}/share/mk-configure/features # = overrides newsys.mk.in
