@@ -33,14 +33,14 @@ Installation
         or
         # export PREFIX=/usr SYSCONFDIR=/etc
 
-You may want to configure some things before building mk-configure.
-The following command shows the configuring things.
-Of course, you can also change PREFIX, SYSCONFDIR, BINDIR
-and other standard mk-configure variables.
+   You may want to configure some things before building mk-configure.
+   The following command shows the configuring things.
+   Of course, you can also change PREFIX, SYSCONFDIR, BINDIR
+   and other standard mk-configure variables.
 
         # bmake help
 
-Then, build mk-configure like the following.
+   Then, build mk-configure like the following.
 
         # export USE_AWK=/usr/bin/gawk
         # export USE_INSTALL=/usr/bin/install
@@ -50,8 +50,8 @@ Then, build mk-configure like the following.
         # bmake configure
         # bmake all
 
-newsys.mk contains initial settings and can be used
-for overriding defaults. So you can edit it if needed.
+   newsys.mk contains initial settings and can be used
+   for overriding defaults. So you can edit it if needed.
 
         # emacs newsys.mk
 
