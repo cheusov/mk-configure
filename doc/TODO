@@ -6,9 +6,6 @@ mkc_compiler_settings:
 libl feature: we require libfl is libl was not found
 
 ============================================================
-examples/README -- notes about helpers
-
-============================================================
 CFLAGS0
 
 ============================================================

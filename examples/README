@@ -1,0 +1,5 @@
+This directory contains the samples of use of mk-configure.
+Each subdirectory contains one independent project.
+Directory "helpers" contains the scripts used
+for tests. So, if you want to run "mkcmake test",
+add "helpers" directory to PATH environment variable.
