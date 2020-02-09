@@ -1,10 +1,4 @@
 ============================================================
-Documentation about ~/.mk-c
-
-============================================================
-mention "mkcmake help" in documentation
-
-============================================================
 mkc_compiler_settings:
   check CC, CXX, USE_* for non-emptyness
 

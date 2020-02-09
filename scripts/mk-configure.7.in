@@ -62,8 +62,9 @@ and
 otherwise.
 .B 
 .P
-To get system-wide configuration parameters, mkc.init.mk loads
-"${MAKECONF}" file if it exists.
+To get system-wide configuration parameters,
+.B mkc.init.mk
+loads "${MAKECONF}" file if it exists.
 Otherwise, it loads
 @sysconfdir@/mk-c.conf if it exists.
 If neither ${MAKECONF} nor @sysconfdir@/mk-c.conf exist,
@@ -73,7 +74,14 @@ by all subprojects.
 Unless SRCTOP variable is set, "../Makefile.inc"
 is also included if exists.
 These files may define any of the variables described
-below. Below in square brackets the default value for variables are specified.
+below.
+Compiler-specific defaults are also loaded from
+"~/.mk-c" or system directories. This compiler-specific defaults
+are determined at build time or with the help of
+.B mkc_compiler_settings
+utility.
+.P
+Below in square brackets the default value for variables are specified.
 In triangle brackets -- typical way of use, where
 .I I
 means "Initialized by mk-configure",
@@ -179,7 +187,7 @@ Additional flags to the compiler when creating C objects.
 Same as CFLAGS but every option is checked whether it is a valid one for C compiler.
 Double underline in the flag is considered as a single space character.
 .RI < M >
-.RI [ "" ]
+.RI [ unset ]
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -218,7 +226,7 @@ Additional flags to the compiler when creating C++ objects.
 .IP CXXFLAGS.check
 Same as CXXFLAGS but every option is checked whether it is a valid one for C++ compiler.
 .RI < M >
-.RI [ "" ]
+.RI [ unset ]
 .IP CXXFLAGS_<project>
 Similar to CXXFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -2178,9 +2186,11 @@ Then developer may provide the following assignments in Makefile:
     USESOMETHING.1  = "yes: enable feature SOMETHING"
 .VE
 .RI < "M" >
-.RI [ "" ]
+.RI [ unset ]
 .IP HELP_MSG.<subproject>
 Description for project <subproject>.
+.RI < "M" >
+.RI [ unset ]
 .SH "CROSS COMPILATION"
 The following variables are used for compiling software using cross-tools.
 .IP MACHINE_GNU_PLATFORM

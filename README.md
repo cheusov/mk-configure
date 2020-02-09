@@ -70,7 +70,8 @@ Project goals
    should be aware of during development is 'Makefile'.  Users just
    run
 
-        env <variables> mkcmake all <options>
+        $ mkcmake help
+        $ env <variables> mkcmake all <options>
 
    to build a software. The
    same for developers -- for building a software, just run **mkcmake**.
@@ -143,10 +144,10 @@ Users and software packagers:
  - Run **mkcmake** for building a software and pass to it
    the building options, e.g.
 
-    $ export CC=pcc
-    $ export CFLAGS='-O0 -g'
-    $ export PREFIX=$HOME/local
-    $ mkcmake all install
+        $ export CC=pcc
+        $ export CFLAGS='-O0 -g'
+        $ export PREFIX=$HOME/local
+        $ mkcmake all install
 
 What mk-configure consists of?
 ------------------------------

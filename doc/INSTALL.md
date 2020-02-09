@@ -40,8 +40,13 @@ and other standard mk-configure variables.
 
         # bmake help
 
-Then, build mk-configure.
+Then, build mk-configure like the following.
 
+        # export USE_AWK=/usr/bin/gawk
+        # export USE_INSTALL=/usr/bin/install
+        # export USE_CC_COMPILERS='gcc-4.8 gcc-4.9 gcc-6 clang'
+        # export USE_CXX_COMPILERS='g++-4.8 g++-4.9 g++-6 clang++'
+        # export PREFIX=/opt/cheusov/mk-configure
         # bmake configure
         # bmake all
 
@@ -72,10 +77,9 @@ for overriding defaults. So you can edit it if needed.
           or
         # env DESTDIR=/tmp/temproot bmake install
 
-6)You can also build a simple presentation by running the
-  following command:
+6) You may also want to build and install PDF presentation.
 
-        # bmake all-presentation
+        # bmake all-presentation install-presentation
 
 7) Usage
 
