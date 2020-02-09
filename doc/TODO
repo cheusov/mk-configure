@@ -1,4 +1,17 @@
 ============================================================
+Documentation about ~/.mk-c
+
+============================================================
+mention "mkcmake help" in documentation
+
+============================================================
+mkc_compiler_settings:
+  check CC, CXX, USE_* for non-emptyness
+
+============================================================
+libl feature: we require libfl is libl was not found
+
+============================================================
 examples/README -- notes about helpers
 
 ============================================================

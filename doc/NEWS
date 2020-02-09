@@ -1,4 +1,101 @@
 ======================================================================
+Version 0.33.91, by Aleksey Cheusov, Sun,  9 Feb 2020 17:49:19 +0300
+
+  This release introduces some incompatibilities with older releases:
+    - mk_install -l is changed
+    - target "distclean" is considered deprecated, use "configure"!
+    - Remove support for Pascal, Fortran and ObjC.
+      Only C and C++ are supported.
+    - Do not add ${LEXLIB} to LDADD if SRCS contains .l files.
+    - mkc_check_custom: remove options -p and -n
+    - LDREAL is either C or C++ compiler, but linker
+    - mkc_check_custom: do not use CARGS anymore
+    - Introduce CXXOPTS and CXXOPTS_<prj> variables and
+      do not pass COPTS* to C++ compiler
+
+  Move helpers/* scripts to examples/helpers/ subdirectory. They are
+  for testing mk-configure only.
+
+  Add virtual targets "examples" in addition to "tests"
+
+  C{,XX}FLAGS.{warns,ssp,pie,pic}, LDFLAGS.pie etc...:
+    - Defaults for these values are determined at build time
+      by checking whether compiler/linker accepts the corresponding option.
+      Load compiler specific options from ~/.mk-c and MKFILESDIR directories,
+      and exit with error if they do not exist. For generating such settings
+      for compiler absent at build time, use newly introduced script
+      "mkc_compiler_settings".
+
+  C{,XX}FLAGS:
+    - Pass these flags to the compiler after C{,XX}FLAGS.warns
+      for overriding bad warnings/errors
+
+  MKC_CHECK_{CC,CXX}_OPTS:
+    - double underline symbols in the option is considered as a single space
+
+  MKC_CHECK_CUSTOM:
+    - pass MKC_CUSTOM_{CPPFLAGS,CFLAGS,CXXFLAGS,LDFLAGS,LDADD}.<custom_check_name>
+      flags to the compiler
+    - introduce variable MKC_CUSTOM_NOAUTO.<checkname>
+    - introduce variable MKC_CUSTOM_CACHE.<checkname>
+    - introduce variable MKC_CHECK_CCLD_OPTS and MKC_CHECK_CXXLD_OPTS
+
+  Features:
+    - add support for C++ (extern "C") for all feature header files
+    - add new feature "libl" for libl.a or libfl.a
+
+  Introduce new targets "help", "help_subprj" and "help_use" and
+  appropriate framework for documenting the software project.
+  See mkc_imp.help.mk makefile. mk-configure itself uses this framework,
+  so, you can run "bmake help" before build. Also introduce the following
+  configuring variables for mk-configure: USE_AWK, USE_ID, USE_INSTALL,
+  USE_NM, USE_SH, USE_CC_COMPILERS, USE_CXX_COMPILERS.
+
+  mk files:
+    - Introduce new variables CC_VERSION and CXX_VERSION determined
+      by mkc_check_compiler
+    - Introduce INSTALL_FLAGS variables and remove undocumented
+      COPY, PRESERVE, INSTPRIV and RENAME
+    - Keep initial settings for mk-configure in sys.mk
+      instead of mkc_imp.vars.mk
+    - Introduce MKC_CUSTOM_LINK.<custom_check_name> variable for link testing
+    - Introduce CFLAGS.check and CXXFLAGS.check variables
+    - Set CFLAGS.dflt.sunpro to -errtags
+    - mkc.conf.mk: undefine MKC_CHECK_CC_OPTS, MKC_CHECK_CXX_OPTS,
+      MKC_CHECK_CCLD_OPTS and MKC_CHECK_CXXLD_OPTS after usage
+
+  mkc_install:
+    - "move" semantic is disabled forever, so flag -c
+      is silently ignored
+    - add manual page
+    - flag -l is changed and becomes compatible with NetBSD install(1)
+
+  mkc_check_compiler:
+    - add man page
+    - exit status is 2, if bad option is specified
+    - CC defaults to "cc" as documentation says
+    - Detects not only compiler type, but also a version
+
+  mkc_check_custom:
+    - switch to getopts
+    - add option -l and support for LDFLAGS and LDADD
+    - add new option -t and remove options -p and -n
+    - do not use CARGS anymore, use CFLAGS and CPPFLAGS instead
+
+  mkc_which:
+    - add man page
+
+  mkc_check_version:
+    - add man page
+
+  mkc_get_deps:
+    - installed to libexec/ instead of bin/
+
+  Documentation update
+
+  Code clean-ups and minor fixes
+
+======================================================================
 Version 0.33.1, by Aleksey Cheusov, Wed, 22 Jan 2020 19:13:55 +0300
 
   Clarify problems with MAKE_VERSION variable.
