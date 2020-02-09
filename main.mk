@@ -50,6 +50,7 @@ HELP_MSG.mk       = ".mk files"
 HELP_MSG.scripts  = "mkc_* scripts"
 HELP_MSG.examples = "samples of use for mk-configure and tests"
 HELP_MSG.tests    = "tests for mk-configure"
+HELP_MSG.presentation = "Very old but still helpful presentation in PDF format"
 
 ##################################################
 SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc
