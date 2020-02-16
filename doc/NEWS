@@ -75,6 +75,7 @@ Version 0.33.91, by Aleksey Cheusov, Sun,  9 Feb 2020 17:49:19 +0300
       - exit status is 2, if bad option is specified
       - CC defaults to "cc" as the documentation says
       - detects not only compiler type, but also a version
+      - cache file name for C compiler type is _mkc_cc_type.*
     * mkc_check_custom:
       - switch to getopts
       - add option -l and support for LDFLAGS and LDADD
