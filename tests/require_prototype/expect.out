@@ -1,1 +1,2 @@
+checking for C compiler type... mmm nnn
 checking for prototype pid_t fork(void) ( unistd.h unistd.h )... yes

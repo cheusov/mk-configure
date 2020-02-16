@@ -26,6 +26,8 @@
 # See  mk-configure(7) for documentation
 #
 
+.include "mkc_imp.compiler_type.mk"
+
 # user defined variables
 MKC_SHOW_CACHED     ?= 0          # set it to `1' to show "...(cached)..." lines
 MKC_DELETE_TMPFILES ?= 0          # set it to `1' to delete temporary files

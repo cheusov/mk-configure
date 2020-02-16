@@ -9,7 +9,8 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk \
-	mkc_imp.compiler_settings.mk mkc.compiler_settings.mk ${INFILES}
+	mkc_imp.compiler_settings.mk mkc.compiler_settings.mk \
+	mkc_imp.compiler_type.mk ${INFILES}
 
 FILESDIR =	${MKFILESDIR}
 

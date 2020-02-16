@@ -11,4 +11,4 @@ set -e
 LC_ALL=C
 export LC_ALL
 
-sed '/^checking / s|^\(.*\) [^ ]*[.][.][.].*$|\1 mmm... nnn|' "$@"
+sed -e '/checking for C\([+]\)* compiler type/ s|[.][.][.] .*|... mmm nnn|'

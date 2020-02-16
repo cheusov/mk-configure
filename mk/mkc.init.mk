@@ -46,14 +46,7 @@ SRCS     ?=	${LIB}.c
 _srcsall +=	${SRCS}
 .endif # defined(PROG)
 
-.if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc)
-src_type   +=	cxx
-LDREAL     ?=	${CXX}
-.endif
-
-.if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || !empty(_srcsall:U:M*.y) || defined(MKC_SOURCE_FUNCLIBS)
-src_type  +=	cc
-.endif
+.include "mkc_imp.compiler_type.mk"
 
 src_type  ?=
 
