@@ -90,7 +90,7 @@ END {
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
-check_and_cache "checking for $langname compiler type" "$cache"
+check_and_cache "checking $langname compiler type" "$cache"
 
 printme '%s\n' "$ret" 1>&2
 
