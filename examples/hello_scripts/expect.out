@@ -3,8 +3,8 @@ Hello World 2!
 Hello World 3!
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_awk.err
 /objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err
@@ -43,8 +43,8 @@ Hello World 3!
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_awk.err
 /objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err
@@ -75,8 +75,8 @@ Hello World 3!
 /objdir/test.mk
 ==== install MKINSTALL=no ====
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_awk.err
 /objdir/_mkc_prog_awk.res
 /objdir/_mkc_prog_cc.err

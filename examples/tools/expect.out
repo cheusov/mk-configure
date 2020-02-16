@@ -34,8 +34,8 @@ check ===> tools/prog4
 check ===> tools/prog1
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_sizeof_int.c
@@ -129,8 +129,8 @@ LD: prog4
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_sizeof_int.c
@@ -180,8 +180,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= all-tools/prog1 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -210,8 +210,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= -C tools/prog1 all ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -240,8 +240,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= all-prog1 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -270,8 +270,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= all-tools/prog2 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -300,8 +300,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= -C tools/prog2 all ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -330,8 +330,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= all-tools/prog3 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -362,8 +362,8 @@ LD: prog4
 /objdir/tools/prog4/prog4.c
 ========= -C tools/prog4 all ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/_mkc_sizeof_int.c

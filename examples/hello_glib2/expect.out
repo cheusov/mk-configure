@@ -4,8 +4,8 @@ glib_minor_version=N
 glib_micro_version=N
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1.err
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1_cflags.err
@@ -29,8 +29,8 @@ glib_micro_version=N
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1.err
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1.res
 /objdir/_mkc_pkgconfig_glib-2.0_ge_2.1_cflags.err

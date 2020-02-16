@@ -6,8 +6,8 @@ hello world 3!
 /objdir/Makefile.inc
 /objdir/_mkc_cc_option_-Os.err
 /objdir/_mkc_cc_option_-Os.res
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_option_-Os.err
 /objdir/_mkc_cxx_option_-Os.res
 /objdir/_mkc_cxx_type.err
@@ -75,8 +75,8 @@ hello world 3!
 /objdir/Makefile.inc
 /objdir/_mkc_cc_option_-Os.err
 /objdir/_mkc_cc_option_-Os.res
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_option_-Os.err
 /objdir/_mkc_cxx_option_-Os.res
 /objdir/_mkc_cxx_type.err

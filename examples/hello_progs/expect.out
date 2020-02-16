@@ -3,8 +3,8 @@ client: I am a client
 server: I am a server
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client
@@ -28,8 +28,8 @@ server: I am a server
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client.c
@@ -42,8 +42,8 @@ server: I am a server
 ========== depend ===========
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client.c
@@ -60,8 +60,8 @@ server: I am a server
 ========== server ===========
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client.c
@@ -81,8 +81,8 @@ server: I am a server
 ========== client ===========
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/client

@@ -22,8 +22,8 @@ ERROR: prototype test bad999 failed
 Stop.
 bmake: stopped in /objdir
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/expect.out
 /objdir/reqd_clean_cache.test.out.tmp
 /objdir/test.mk

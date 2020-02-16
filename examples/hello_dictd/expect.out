@@ -28,8 +28,8 @@ symbol fake3
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_deflate.c
 /objdir/_mkc_funclib_deflate.err
 /objdir/_mkc_funclib_deflate.res
@@ -387,8 +387,8 @@ obj1 does not exist
 ======= errorcheck ==========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_deflate.c
 /objdir/_mkc_funclib_deflate.err
 /objdir/_mkc_funclib_deflate.res
@@ -431,8 +431,8 @@ obj1 does not exist
 ======= all-dict ==========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/dict/Makefile
@@ -485,8 +485,8 @@ obj1 does not exist
 ======= -C dict all ==========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/dict/Makefile
@@ -575,8 +575,8 @@ obj1 does not exist
 ========== -C dict clean ===========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/dict/Makefile
@@ -653,8 +653,8 @@ obj1 does not exist
 =========== all with NOSUBDIR ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/dict/Makefile
@@ -710,8 +710,8 @@ obj1 does not exist
 =========== all with MKPIE=yes ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_deflate.c
 /objdir/_mkc_funclib_deflate.err
 /objdir/_mkc_funclib_deflate.res
@@ -788,8 +788,8 @@ obj1 does not exist
 =========== all with STATICLIBS=everything... ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_deflate.c
 /objdir/_mkc_funclib_deflate.err
 /objdir/_mkc_funclib_deflate.res

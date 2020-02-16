@@ -1,8 +1,8 @@
 PROJECTNAME=hello_lua3
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_lua_h.c
 /objdir/_mkc_header_lua_h.err
 /objdir/_mkc_header_lua_h.res
@@ -31,8 +31,8 @@ PROJECTNAME=hello_lua3
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_lua_h.c
 /objdir/_mkc_header_lua_h.err
 /objdir/_mkc_header_lua_h.res

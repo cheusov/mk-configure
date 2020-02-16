@@ -1,8 +1,8 @@
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func0_getexecname_stdlib_h.c
 /objdir/_mkc_func0_getexecname_stdlib_h.err
 /objdir/_mkc_func0_getexecname_stdlib_h.res

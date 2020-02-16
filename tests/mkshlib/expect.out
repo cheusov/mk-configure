@@ -1,7 +1,7 @@
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_funclib_dummy.c
@@ -27,8 +27,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_funclib_dummy.c

@@ -26,8 +26,8 @@ short progname=hello
 full progname=/path/to/hello
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func0_getexecname_stdlib_h.c
 /objdir/_mkc_func0_getexecname_stdlib_h.err
 /objdir/_mkc_func0_getexecname_stdlib_h.res
@@ -80,8 +80,8 @@ full progname=/path/to/hello
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func0_getexecname_stdlib_h.c
 /objdir/_mkc_func0_getexecname_stdlib_h.err
 /objdir/_mkc_func0_getexecname_stdlib_h.res

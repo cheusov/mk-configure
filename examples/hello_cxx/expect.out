@@ -3,8 +3,8 @@ Five: 5
 Seven: 7
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_prog_cc.err
@@ -33,8 +33,8 @@ Seven: 7
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_cxx_type.err
 /objdir/_mkc_cxx_type.res
 /objdir/_mkc_prog_cc.err

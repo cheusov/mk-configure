@@ -24,7 +24,7 @@ trap 'rm -f "$tmpfile"' 0
 
 ##################################################
 
-pathpart=compiler_type
+pathpart=cc_type
 langname='C'
 
 while getopts x f; do

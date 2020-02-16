@@ -10,8 +10,8 @@ Plugin1 sucessfully activated
 Plugin1 sucessfully activated
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_dlopen.c
 /objdir/_mkc_funclib_dlopen.err
 /objdir/_mkc_funclib_dlopen.res
@@ -49,8 +49,8 @@ Plugin1 sucessfully activated
 /usr/local/lib/plugin2.so
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_dlopen.c
 /objdir/_mkc_funclib_dlopen.err
 /objdir/_mkc_funclib_dlopen.res

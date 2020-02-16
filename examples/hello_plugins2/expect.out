@@ -2,8 +2,8 @@ Plugin1 sucessfully activated
 Plugin2 sucessfully activated
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func2_dlopen_dlfcn_h.c
 /objdir/_mkc_func2_dlopen_dlfcn_h.err
 /objdir/_mkc_func2_dlopen_dlfcn_h.res
@@ -40,8 +40,8 @@ Plugin2 sucessfully activated
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func2_dlopen_dlfcn_h.c
 /objdir/_mkc_func2_dlopen_dlfcn_h.err
 /objdir/_mkc_func2_dlopen_dlfcn_h.res

@@ -1,7 +1,7 @@
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_lua_h.c
 /objdir/_mkc_header_lua_h.err
 /objdir/_mkc_header_lua_h.res
@@ -36,8 +36,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_lua_h.c
 /objdir/_mkc_header_lua_h.err
 /objdir/_mkc_header_lua_h.res

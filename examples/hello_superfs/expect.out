@@ -1,8 +1,8 @@
 =========== all ============
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/docs/LICENSE
@@ -44,8 +44,8 @@
 ========== clean ===========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/docs/LICENSE
@@ -89,8 +89,8 @@ So, there is nothing to configure in a special way.
 ========== depend ===========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/docs/LICENSE
@@ -129,8 +129,8 @@ So, there is nothing to configure in a special way.
 ======= errorcheck ==========
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/docs/LICENSE
@@ -149,8 +149,8 @@ So, there is nothing to configure in a special way.
 ==== install MKINSTALL=no ====
 /objdir/Makefile
 /objdir/Makefile.inc
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/docs/LICENSE

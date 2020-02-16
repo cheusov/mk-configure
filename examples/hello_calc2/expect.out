@@ -8,8 +8,8 @@
 73
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_custom_prog_bison.err
 /objdir/_mkc_custom_prog_bison.res
 /objdir/_mkc_custom_prog_flex.err
@@ -41,8 +41,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_custom_prog_bison.err
 /objdir/_mkc_custom_prog_bison.res
 /objdir/_mkc_custom_prog_flex.err
@@ -64,8 +64,8 @@
 ========== depend ===========
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_custom_prog_bison.err
 /objdir/_mkc_custom_prog_bison.res
 /objdir/_mkc_custom_prog_flex.err

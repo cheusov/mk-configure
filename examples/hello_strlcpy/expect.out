@@ -23,8 +23,8 @@
 # POSSIBI
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func3_getline_stdio_h.c
 /objdir/_mkc_func3_getline_stdio_h.err
 /objdir/_mkc_func3_getline_stdio_h.res
@@ -55,8 +55,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_func3_getline_stdio_h.c
 /objdir/_mkc_func3_getline_stdio_h.err
 /objdir/_mkc_func3_getline_stdio_h.res

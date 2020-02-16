@@ -1,8 +1,8 @@
 2
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_define__COMPILER_VERSION.c
 /objdir/_mkc_define__COMPILER_VERSION.err
 /objdir/_mkc_define__COMPILER_VERSION.res
@@ -39,8 +39,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_define__COMPILER_VERSION.c
 /objdir/_mkc_define__COMPILER_VERSION.err
 /objdir/_mkc_define__COMPILER_VERSION.res

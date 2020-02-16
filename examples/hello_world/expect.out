@@ -4,8 +4,8 @@ Hello World!
 /objdir/COPYRIGHT
 /objdir/Makefile
 /objdir/README
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -28,8 +28,8 @@ Hello World!
 /objdir/COPYRIGHT
 /objdir/Makefile
 /objdir/README
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out

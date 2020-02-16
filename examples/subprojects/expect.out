@@ -6,8 +6,8 @@ Hello World! version 1.2.3
 My email is vle@gmx.net
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_stdio_h.c
 /objdir/_mkc_header_stdio_h.err
 /objdir/_mkc_header_stdio_h.res
@@ -90,8 +90,8 @@ GEN: hello_subprojects2
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_stdio_h.c
 /objdir/_mkc_header_stdio_h.err
 /objdir/_mkc_header_stdio_h.res
@@ -137,8 +137,8 @@ GEN: hello_subprojects2
 /objdir/version.mk
 ======== errorcheck ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_header_stdio_h.c
 /objdir/_mkc_header_stdio_h.err
 /objdir/_mkc_header_stdio_h.res
@@ -164,8 +164,8 @@ GEN: hello_subprojects2
 /objdir/version.mk
 ========= libhello1 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
@@ -194,8 +194,8 @@ GEN: hello_subprojects2
 /objdir/version.mk
 ========= all-libhello2 ==========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out

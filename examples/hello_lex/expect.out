@@ -1,8 +1,8 @@
 # of lines = 2, # of chars = 26
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
 /objdir/_mkc_funclib_yywrap.err
 /objdir/_mkc_funclib_yywrap.res
@@ -28,8 +28,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
 /objdir/_mkc_funclib_yywrap.err
 /objdir/_mkc_funclib_yywrap.res
@@ -48,8 +48,8 @@
 ========== depend ===========
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
 /objdir/_mkc_funclib_yywrap.err
 /objdir/_mkc_funclib_yywrap.res
@@ -77,8 +77,8 @@ CC: hello_lex.c
 LD: hello_lex
 /objdir/.depend
 /objdir/Makefile
-/objdir/_mkc_compiler_type.err
-/objdir/_mkc_compiler_type.res
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
 /objdir/_mkc_funclib_yywrap.err
 /objdir/_mkc_funclib_yywrap.res
