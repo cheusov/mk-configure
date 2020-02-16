@@ -1,4 +1,4 @@
-checking for compiler type... known ;-)
+checking C compiler type... known ;-)
 checking foobar.h using compiler... no
 checking string.h using compiler... yes
 checking unistd.h using compiler... yes
@@ -19,8 +19,8 @@ checking for member struct bad.member ( stdlib.h )... no
 checking for func strcmp ( string.h )... yes
 checking for func foobar ( stdlib.h )... no
 checking for func barbaz... no
-checking custom test custom_check1... 1
-checking custom test custom_check2... 0
+checking custom test custom_custom_check1... 1
+checking custom test custom_custom_check2... 0
 checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... /path/to/FOOBAR
 checking for program FOOBAR... NOT FOUND
