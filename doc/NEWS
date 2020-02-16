@@ -59,6 +59,7 @@ Version 0.33.91, by Aleksey Cheusov, Sun,  9 Feb 2020 17:49:19 +0300
     * mkc.conf.mk: undefine MKC_CHECK_CC_OPTS, MKC_CHECK_CXX_OPTS after use
     * Introduce new checks MKC_CHECK_CCLD_OPTS and MKC_CHECK_CXXLD_OPTS
     * Introduce new "help" framework, see mkc_imp.help.mk section in man page
+    * mkc.minitest.mk: minor fix in target "cleandir"
 
   Features:
     - add support for C++ (extern "C") to all feature header files

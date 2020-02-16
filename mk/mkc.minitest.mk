@@ -24,5 +24,5 @@ test: ${TEST_PREREQS}
 	echo '      succeeded' 1>&2 || \
 	{ echo '      FAILED' 1>&2; false; }
 
-CLEANFILES   +=		${.OBJDIR}/${.CURDIR:T}.test.out
+CLEANFILES   +=		${_tmp_out}
 #DISTCLEANFILES+=	${.OBJDIR}/${.CURDIR:T}.test.out.tmp
