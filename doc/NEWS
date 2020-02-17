@@ -1,5 +1,5 @@
 ======================================================================
-Version 0.33.91, by Aleksey Cheusov, Sun,  9 Feb 2020 17:49:19 +0300
+Version 0.33.92, by Aleksey Cheusov, Mon, 17 Feb 2020 19:10:47 +0300
 
   This release introduces some incompatibilities with older releases:
     - mkc_install -l is changed
