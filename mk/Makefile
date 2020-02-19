@@ -34,7 +34,7 @@ post_install:
 	for f in ${.OBJDIR}/mkc_imp.cc_*.mk ${.OBJDIR}/mkc_imp.cxx_*.mk; do \
 	    test -f "$$f" && \
 		${INSTALL} -o ${FILESOWN} -g ${FILESGRP} -m ${FILESMODE} \
-		${INSTALL_FLAGS} $$f ${MKFILESDIR}; \
+		${INSTALL_FLAGS} $$f ${DESTDIR}${MKFILESDIR}; \
 	done
 
 #################################################
