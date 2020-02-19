@@ -34,13 +34,13 @@ EOF
 
 CC_OPTS='-c'
 partpath='header'
-msg_addon='using compiler'
+msg_addon="using ${CC} -c"
 
 while test $# -ne 0; do
     case "$1" in
 	-h) usage; exit 0;;
 	-d) delcache=1;;
-	-e) partpath=hdr; CC_OPTS='-E'; msg_addon='using preprocessor';;
+	-e) partpath=hdr; CC_OPTS='-E'; msg_addon="using ${CC} -E";;
 	*) break;;
     esac
     shift

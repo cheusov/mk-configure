@@ -1,0 +1,24 @@
+#!/bin/sh
+
+############################################################
+# Copyright (c) 2020 by Aleksey Cheusov
+#
+# See LICENSE file in the distribution.
+############################################################
+
+set -e
+
+LC_ALL=C
+export LC_ALL
+
+awk -v print_var="$1" '
+/checking.*[.]h/ {
+   sub(/using.*-E.* /, "using preprocessor... ")
+   sub(/using.*-c.* /, "using compiler... ")
+   print $0
+   next
+}
+print_var != "" {
+   print $0
+}
+'

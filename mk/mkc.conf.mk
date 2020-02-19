@@ -371,7 +371,7 @@ MKC_CHECK_CXX_OPTS +=	${c}
 .for a in ${MKC_CHECK_CC_OPTS}
 .if !defined(HAVE_CC_OPT.${a:S/=/_/g})
 _cflags =	${a:S/__/ /g}
-HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cc_option_${a:Q} -b -e -m 'whether ${CC} -c supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cc_option_${a:Q} -b -e -m 'if ${CC} -c accepts '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
 .undef _cflags
 .endif # !defined(HAVE_CC_OPT.${a})
 .endfor # a
@@ -381,7 +381,7 @@ HAVE_CC_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cc_option_${a
 .for a in ${MKC_CHECK_CXX_OPTS}
 .if !defined(HAVE_CXX_OPT.${a:S/=/_/g})
 _cxxflags =	${a:S/__/ /g}
-HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'whether ${CXX} -c supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cxx_option_${a:Q} -b -e -m 'if ${CXX} -c accepts '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
 .undef _cxxflags
 .endif # !defined(HAVE_CXX_OPT.${a})
 .endfor # a
@@ -392,7 +392,7 @@ HAVE_CXX_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -t cxx_option_$
 .for a in ${MKC_CHECK_CCLD_OPTS}
 .if !defined(HAVE_CCLD_OPT.${a:S/=/_/g})
 _cflags =	${a:S/__/ /g}
-HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t ccld_option_${a:Q} -b -e -m 'whether ${CC} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
+HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t ccld_option_${a:Q} -b -e -m 'if ${CC} accepts '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.c
 .undef _cflags
 .endif # !defined(HAVE_CCLD_OPT.${a})
 .endfor # a
@@ -402,7 +402,7 @@ HAVE_CCLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t ccld_opt
 .for a in ${MKC_CHECK_CXXLD_OPTS}
 .if !defined(HAVE_CXXLD_OPT.${a:S/=/_/g})
 _cxxflags =	${a:S/__/ /g}
-HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t cxxld_option_${a:Q} -b -e -m 'whether ${CXX} supports option '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
+HAVE_CXXLD_OPT.${a:S/=/_/g} !=	env ${mkc.environ} mkc_check_custom -l -t cxxld_option_${a:Q} -b -e -m 'if ${CXX} accepts '${a:S/__/ /g:Q} ${_BUILTINSDIR}/easy.cc
 .undef _cxxflags
 .endif # !defined(HAVE_CXXLD_OPT.${a})
 .endfor # a
