@@ -20,5 +20,3 @@ id			[a-zA-Z]+
 \n|[-+\/*^()]	{ return yytext[0]; }
 
 %%
-
-YYSTYPE calc_lval;
