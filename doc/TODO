@@ -8,9 +8,6 @@ Initialize CC/CXX_TYPE if MKC_CHECK_CUSTOM
 Improve test tests/reqd_clean_cache
 
 ============================================================
-MKC_CHECK_* requires CFLAGS.dflt and therefore {CC,CXX}_TYPE
-
-============================================================
 mkc_compiler_settings:
   check CC, CXX, USE_* for non-emptyness
 
