@@ -3,17 +3,17 @@ EXCL_RE='autom4te[.]cache'
 .PHONY : test_output
 test_output:
 	@ \
-	${.OBJDIR}/hello_autoconf; \
+	${.OBJDIR}/proj/hello_autoconf; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | grep -Ev '${EXCL_RE}' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	find ${.OBJDIR}/proj -type f | grep -Ev '${EXCL_RE}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}/proj"; \
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	find ${.OBJDIR} -type f | grep -vE '${EXCL_RE}' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	find ${.OBJDIR}/proj -type f | grep -vE '${EXCL_RE}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}/proj"; \
 	\
 	echo ========== all SHRTOUT=yes ===========; \
 	${MAKE} ${MAKEFLAGS} all SHRTOUT=yes | grep -v 'loading site script' | \
@@ -21,7 +21,7 @@ test_output:
 	\
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
-	find ${.OBJDIR} -type f | grep -vE '${EXCL_RE}' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	find ${.OBJDIR}/proj -type f | grep -vE '${EXCL_RE}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}/proj"
 
 .include <mkc.minitest.mk>

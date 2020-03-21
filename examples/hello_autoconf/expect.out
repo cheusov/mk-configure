@@ -7,10 +7,6 @@ Hello autoconf
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
-/objdir/_mkc_custom_prog_gmake.err
-/objdir/_mkc_custom_prog_gmake.res
-/objdir/_mkc_prog_autoreconf.err
-/objdir/_mkc_prog_autoreconf.res
 /objdir/config.h
 /objdir/config.h.in
 /objdir/config.log
@@ -27,10 +23,6 @@ Hello autoconf
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
-/objdir/_mkc_custom_prog_gmake.err
-/objdir/_mkc_custom_prog_gmake.res
-/objdir/_mkc_prog_autoreconf.err
-/objdir/_mkc_prog_autoreconf.res
 /objdir/config.h
 /objdir/config.h.in
 /objdir/config.log

@@ -23,10 +23,11 @@ _FSRCDIR = ${.CURDIR}/${FSRCDIR}
 _FSRCDIR = ${FSRCDIR}
 .endif
 
-.if ${.OBJDIR} == ${.CURDIR}
-.OBJDIR  =	${_FSRCDIR}
-.endif
+.if defined(MAKEOBJDIR) || defined(MAKEOBJDIRPREFIX)
 _FOBJDIR =	${.OBJDIR}
+.else
+_FOBJDIR =	${_FSRCDIR}
+.endif
 
 _CONFIGURE_ARGS = --prefix ${PREFIX:Q} --bindir=${BINDIR:Q} \
    --sbindir=${SBINDIR:Q} --libexecdir=${LIBEXECDIR} \
