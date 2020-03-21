@@ -9,9 +9,12 @@
 LC_ALL=C
 export LC_ALL
 
-pathpart=' ' # fake
-. mkc_check_common.sh
+: ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
 
-find_n_match gm4 --version 'gnu m4' ||
-find_n_match  m4 --version 'gnu m4' ||
+pathpart=' ' # fake
+. ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
+
+find_n_match gawk --version 'gnu awk' ||
+find_n_match nawk --version 'gnu awk' ||
+find_n_match  awk --version 'gnu awk' ||
 echo ''

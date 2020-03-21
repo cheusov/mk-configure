@@ -9,9 +9,11 @@
 LC_ALL=C
 export LC_ALL
 
+: ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
+
 pathpart=' ' # fake
-. mkc_check_common.sh
+. ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
-find_n_match bison --version 'bison'
-
+find_n_match gm4 --version 'gnu m4' ||
+find_n_match  m4 --version 'gnu m4' ||
 echo ''

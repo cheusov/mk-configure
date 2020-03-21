@@ -11,10 +11,12 @@ set -e
 LC_ALL=C
 export LC_ALL
 
+: ${CHECK_COMMON_SH_DIR:=@mkc_libexecdir@}
+
 ##################################################
 
 pathpart=endianness
-. mkc_check_common.sh
+. ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
 
 trap "rm -f $tmpc $tmpo" 0
 
