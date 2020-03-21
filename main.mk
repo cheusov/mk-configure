@@ -58,6 +58,7 @@ SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
 		scripts:builtins scripts:examples/helpers scripts:mk scripts:features scripts:doc
 
 .include "tests.mk"
+
 .for t in ${tests}
 SUBPRJ +=	tests/${t}:tests
 .endfor
@@ -87,8 +88,8 @@ pdf:
 	rm -f myprojects.*
 
 ##################################################
-cleandir:	cleandir-tests cleandir-presentation
-clean:		clean-tests clean-presentation
+cleandir:	cleandir-tests cleandir-presentation cleandir-examples
+clean:		clean-tests clean-presentation clean-examples
 
 test:		test-tests test-examples
 
