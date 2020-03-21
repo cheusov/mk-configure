@@ -377,7 +377,7 @@ from <file>.y to <file>.h and <file>.c, and add
 If defined, add "-p ${YPREFIX}" to YFLAGS.
 .IP WARNERR
 If "yes", force warnings to be reported as errors.
-At the moment this is supported for GCC, Intel C/C++ and Sun's C/C++ compilers.
+At the moment this is supported for GCC, clang, Intel C/C++ and Sun's C/C++ compilers.
 .RI < "Iu" >
 .RI [ yes " if WARNS=4, " no " otherwise ]"
 .IP WARNS
