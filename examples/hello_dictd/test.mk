@@ -36,7 +36,9 @@ test_output :
 	echo ========= INTERNALLIBS ==========; \
 	{ ${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR}; \
 	  ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR}; \
-	  ${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR}; } 2>&1 | awk '/^(un)?install/'; \
+	  ${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR}; \
+	} 2>&1 | \
+	awk '/^(un)?install/ {sub(/examples\//, ""); print $0}'; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} > /dev/null; \

@@ -104,24 +104,24 @@ symbol fake3
 /objdir/libmaa/set.os
 /objdir/test.mk
 ========= INTERNALLIBS ==========
-installdirs ===> examples/hello_dictd/libmaa
-installdirs ===> examples/hello_dictd/dict
-installdirs ===> examples/hello_dictd/dictd
-installdirs ===> examples/hello_dictd/libdz
-installdirs ===> examples/hello_dictd/dictzip
-installdirs ===> examples/hello_dictd/dictfmt
-install ===> examples/hello_dictd/libmaa
-install ===> examples/hello_dictd/dict
-install ===> examples/hello_dictd/dictd
-install ===> examples/hello_dictd/libdz
-install ===> examples/hello_dictd/dictzip
-install ===> examples/hello_dictd/dictfmt
-uninstall ===> examples/hello_dictd/libmaa
-uninstall ===> examples/hello_dictd/dict
-uninstall ===> examples/hello_dictd/dictd
-uninstall ===> examples/hello_dictd/libdz
-uninstall ===> examples/hello_dictd/dictzip
-uninstall ===> examples/hello_dictd/dictfmt
+installdirs ===> hello_dictd/libmaa
+installdirs ===> hello_dictd/dict
+installdirs ===> hello_dictd/dictd
+installdirs ===> hello_dictd/libdz
+installdirs ===> hello_dictd/dictzip
+installdirs ===> hello_dictd/dictfmt
+install ===> hello_dictd/libmaa
+install ===> hello_dictd/dict
+install ===> hello_dictd/dictd
+install ===> hello_dictd/libdz
+install ===> hello_dictd/dictzip
+install ===> hello_dictd/dictfmt
+uninstall ===> hello_dictd/libmaa
+uninstall ===> hello_dictd/dict
+uninstall ===> hello_dictd/dictd
+uninstall ===> hello_dictd/libdz
+uninstall ===> hello_dictd/dictzip
+uninstall ===> hello_dictd/dictfmt
 ========= installdirs ==========
 /objdir/prefix
 /objdir/prefix/bin
