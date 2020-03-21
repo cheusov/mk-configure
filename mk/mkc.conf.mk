@@ -322,7 +322,7 @@ MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 .endif
 .endfor
 
-.for c in ${MKC_CHECK_BUILTINS} 
+.for c in ${MKC_CHECK_BUILTINS} ${MKC_REQUIRE_BUILTINS}
 BUILTIN.${c} =		${CUSTOM.${c}}
 .endfor
 
