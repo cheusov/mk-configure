@@ -9,6 +9,10 @@ Hello AutoShi^H^H^HTools!
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
+/objdir/_mkc_prog_automake.err
+/objdir/_mkc_prog_automake.res
+/objdir/_mkc_prog_autoreconf.err
+/objdir/_mkc_prog_autoreconf.res
 /objdir/aclocal.m4
 /objdir/config.log
 /objdir/config.status
@@ -37,6 +41,10 @@ Hello AutoShi^H^H^HTools!
 /objdir/Makefile.in
 /objdir/NEWS
 /objdir/README
+/objdir/_mkc_prog_automake.err
+/objdir/_mkc_prog_automake.res
+/objdir/_mkc_prog_autoreconf.err
+/objdir/_mkc_prog_autoreconf.res
 /objdir/aclocal.m4
 /objdir/config.log
 /objdir/config.status
