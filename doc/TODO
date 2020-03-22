@@ -1,4 +1,8 @@
 ============================================================
+OBJDIR_* and SRCDIR_* variable should be available
+after mkc.init.mk and initialized again in mkc.mk
+
+============================================================
 LDFLAGS.check
 
 ============================================================
