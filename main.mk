@@ -74,8 +74,7 @@ SHRTOUT =		yes
 #
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
-PATH        :=		${OBJDIR_builtins}:${OBJDIR_examples_helpers}:${.CURDIR}/examples/helpers:${OBJDIR_scripts}:${.CURDIR}/scripts:${PATH}
-
+PATH        :=		${.CURDIR}/examples/helpers:${.CURDIR}/scripts:${PATH}
 .export SHRTOUT INSTALL PATH
 
 ##################################################
