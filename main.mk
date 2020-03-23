@@ -69,13 +69,10 @@ SUBPRJ +=	examples/${t}:examples
 NODEPS +=	install-examples/helpers:install
 
 ##################################################
-SHRTOUT =		yes
-
-#
 NOEXPORT_VARNAMES =	MKC_CACHEDIR
 
 PATH        :=		${.CURDIR}/examples/helpers:${.CURDIR}/scripts:${PATH}
-.export SHRTOUT INSTALL PATH
+.export INSTALL PATH
 
 ##################################################
 .PHONY: pdf
