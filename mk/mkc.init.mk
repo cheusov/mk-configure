@@ -260,7 +260,7 @@ STATICLIBS   +=	${INTERNALLIBS}
 .include "${SRCTOP}/Makefile.common"
 .endif
 
-.if ${SRCTOP:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
+.if ${.MAKE.LEVEL} != ${init_make_level} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 
