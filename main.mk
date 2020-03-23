@@ -86,8 +86,8 @@ pdf:
 	rm -f myprojects.*
 
 ##################################################
-cleandir:	cleandir-tests cleandir-presentation
-clean:		clean-tests clean-presentation
+cleandir:	cleandir-tests cleandir-examples cleandir-presentation
+clean:		clean-tests clean-examples clean-presentation
 
 test:		test-tests test-examples
 
