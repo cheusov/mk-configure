@@ -6,6 +6,7 @@
 .sinclude "cheusov_local_settings.mk" # for debugging
 
 ##################################################
+.include "help.mk"
 USE_VARIABLES += USE_AWK
 USE_AWK.descr = "AWK interpreter"
 USE_AWK.0 = 'unset or "auto":  path to AWK interpreter is detected automatically'
@@ -41,16 +42,6 @@ USE_VARIABLES += USE_CXX_COMPILERS
 USE_CXX_COMPILERS.descr = "A list of C++ compilers for which initial settings are generated"
 USE_CXX_COMPILERS.0 = "unset:  initial settings are generated for default C++ compiler"
 USE_CXX_COMPILERS.1 = "list: example -- g++-4.8 g++-6 clang++"
-
-HELP_MSG.builtins = "Builtins prog_gm4, prog_gmake etc..."
-HELP_MSG.doc      = "README.md, INSTALL, NEWS etc..."
-HELP_MSG.examples/helpers      = "Helper scripts for regression tests, not a part of mk-configure distribution"
-HELP_MSG.features = "Features strlcpy, fgetln, getdelim etc..."
-HELP_MSG.mk       = ".mk files"
-HELP_MSG.scripts  = "mkc_* scripts"
-HELP_MSG.examples = "samples of use for mk-configure and tests"
-HELP_MSG.tests    = "tests for mk-configure"
-HELP_MSG.presentation = "Very old but still helpful presentation in PDF format"
 
 ##################################################
 SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc
