@@ -16,9 +16,6 @@ mkc_compiler_settings:
   check CC, CXX, USE_* for non-emptyness
 
 ============================================================
-libl feature: we require libfl is libl was not found
-
-============================================================
 CFLAGS0
 
 ============================================================
