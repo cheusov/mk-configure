@@ -1268,7 +1268,7 @@ MKC_NOAUTO is set to 1
 The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_SOURCE_FUNCLIBS
 The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
 both in the specified <library> and in libc, function.c is
@@ -1316,7 +1316,7 @@ unless MKC_NOAUTO is set to 1.
 The same as MKC_CHECK_DEFINES, but absense of the define is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_TYPES
 List of type:header to check. <header> part is optional.
 
@@ -1342,7 +1342,7 @@ unless MKC_NOAUTO is set to 1.
 The same as MKC_CHECK_TYPES, but absense of the type declaration is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_VARS
 List of variable:header to check. <header> part is optional.
        
@@ -1367,7 +1367,7 @@ unless MKC_NOAUTO is set to 1.
 The same as MKC_CHECK_VARS, but absense of the variable declaration is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_MEMBERS
 List of <type>.<member>:<header> to check.
 <header> part is optional.
@@ -1402,7 +1402,7 @@ unless MKC_NOAUTO is set to 1.
 The same as MKC_CHECK_MEMBERS, but absense of the member is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_FUNCS<N>
 List of <func>:<header> to check. <header> part is optional.
 Here <N> means the number of arguments.
@@ -1436,7 +1436,7 @@ is "yes", equivalent define leads to the same results.
 The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_CUSTOM
 A list of custom checks (list of names).
 MKC_CUSTOM_FN.<custom_check_name> is a
@@ -1474,7 +1474,7 @@ Note that script for the check should be an executable file.
 The same as MKC_CHECK_CUSTOM, but failure is
 treated as a fatal error (See
 .B configure
-target. 0 and empty value of CUSTOM.xxx means failure.
+target). 0 and empty value of CUSTOM.xxx means failure.
 .IP MKC_CUSTOM_DIR
 Directory with custom checks source files.
 See MKC_CHECK_CUSTOM. It defaults to ${.CURDIR}.
@@ -1601,7 +1601,7 @@ Res.
 The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP MKC_CHECK_CC_OPTS
 A list of C compiler options to check.
 If ${CC} -c support the specified option, variable
@@ -2061,7 +2061,7 @@ is also added to CFLAGS if <lib> was found. <LIB> is tr/a-z+.-/A-ZP__/ of <lib>.
 The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
 treated as a fatal error (See
 .B configure
-target.
+target).
 .IP PKG_CONFIG.exists.<lib>
 If "1", <lib> exists, "0" otherwise.
 Inside <lib> <=, >=, =, < and > and replaced with
