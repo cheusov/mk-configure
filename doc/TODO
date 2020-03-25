@@ -46,7 +46,6 @@ New feature "path_max" for detecting PATH_MAX from getconf
 or from define (if exists). This is issue #7
 
 ============================================================
-Introduce MKC_REQUIRE_BUILTINS in addition to MKC_CHECK_BUILTINS
 remove hello_ prefix from all examples
 install target: introduce dependencies for target files
 

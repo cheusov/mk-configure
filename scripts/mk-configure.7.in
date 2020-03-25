@@ -1515,6 +1515,11 @@ BUILTIN.endianness variable is set to either
 .IR little ", " big " or " unknown
 depending on a hardware.
 .RE
+.IP MKC_REQUIRE_BUILTINS
+The same as MKC_CHECK_BUILTINS, but failure is
+treated as a fatal error (See
+.B configure
+target).
 .IP MKC_CHECK_PROGS
 List of <progname>s to check.
 As a result of the check bmake's variable
