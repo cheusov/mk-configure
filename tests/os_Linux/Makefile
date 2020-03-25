@@ -10,7 +10,9 @@ VARIABLES_TO_CHECK=	HAVE_HEADER.sys_stat_h SIZEOF.int.sys_types_h
 .else
 .PHONY: test
 test:
-	@echo '      skipped'
+	@echo '      skipped'; \
+	: =========== cleandir ============; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 .endif
 
 .include <mkc.mk>
