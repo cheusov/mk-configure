@@ -62,6 +62,7 @@ SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
 SUBPRJ +=	tests/${t}:tests
 .endfor
 
+.include "examples.mk"
 .for t in ${examples}
 SUBPRJ +=	examples/${t}:examples
 .endfor
