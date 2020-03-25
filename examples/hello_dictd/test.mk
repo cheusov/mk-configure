@@ -38,7 +38,7 @@ test_output :
 	  ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR}; \
 	  ${MAKE} ${MAKEFLAGS} uninstall DESTDIR=${.OBJDIR}; \
 	} 2>&1 | \
-	awk '/^(un)?install/ {sub(/examples\//, ""); print $0}'; \
+	awk '/^(un)?install/ {sub(/examples\//, ""); sub(/hello_dictd\//, ""); print $0}'; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs DESTDIR=${.OBJDIR} > /dev/null; \
