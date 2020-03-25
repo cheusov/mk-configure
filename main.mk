@@ -1,10 +1,6 @@
 # Copyright (c) 2014-2019 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
-############################################################
-
-.sinclude "cheusov_local_settings.mk" # for debugging
-
 ##################################################
 .include "help.mk"
 .include "use.mk"
