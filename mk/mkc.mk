@@ -6,11 +6,10 @@
 .ifndef _MKC_MK
 _MKC_MK := 1
 
-init_make_level ?= 0
+.include <mkc_imp.preinit.mk>
 
 .if defined(SRCTOP) && ${SRCTOP:U} != ${.CURDIR} && ${.MAKE.LEVEL} == ${init_make_level}
 MKC_CACHEDIR ?=	${SRCTOP}
-.export MKC_CACHEDIR
 .MAIN: all
 .DEFAULT:
 	@set -e; cd ${SRCTOP}; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:S,${SRCTOP}/,,}

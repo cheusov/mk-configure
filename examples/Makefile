@@ -5,6 +5,7 @@
 
 SUBPRJ = ${examples}
 
-NOEXPORT_VARNAMES= MKC_CACHEDIR
+# The following is necessary for target "test"
+NOEXPORT_VARNAMES= MKC_CACHEDIR SRCTOP OBJTOP
 
 .include <mkc.mk>

@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Feb 1, 2020" "" ""
+.TH MK-CONFIGURE 7 "Mar 25, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -1055,7 +1055,7 @@ The default is all projects listed in SUBPRJ.
 .IP EXPORT_VARNAMES
 List of variables to export before running make for subdirectories.
 .RI < "Mu" >
-.RI [ MKC_CACHEDIR ] 
+.RI [ MKC_CACHEDIR SRCTOP OBJTOP STATICLIBS COMPATLIB ] 
 .IP NOEXPORT_VARNAMES
 List of variables excluded from EXPORT_VARNAMES.
 .RI < "Mu" >

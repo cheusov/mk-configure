@@ -27,8 +27,10 @@ SUBPRJ +=	examples/${t}:examples
 NODEPS +=	install-examples/helpers:install
 
 ##################################################
-NOEXPORT_VARNAMES =	MKC_CACHEDIR
+# The following is necessary for target "test-examples"
+NOEXPORT_VARNAMES =	MKC_CACHEDIR SRCTOP OBJDIR
 
+#
 PATH        :=		${.CURDIR}/examples/helpers:${.CURDIR}/scripts:${PATH}
 .export INSTALL PATH
 
