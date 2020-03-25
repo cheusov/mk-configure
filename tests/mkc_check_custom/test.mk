@@ -41,6 +41,8 @@ test_output:
 	mkc_check_custom -lbd -t check4 ${SRCDIR_configure_test}/custom/my_check4.c 2>&1; \
 	mkc_check_custom -t custom_check4 -m 'trying to build my_check4 application' -lb ${SRCDIR_configure_test}/custom/my_check4.c 2>&1; \
 	ls -1 _mkc_* | sort; \
-	echo =======================================
+	echo =======================================; \
+	: =========== cleandir ============; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>
