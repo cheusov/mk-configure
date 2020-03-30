@@ -36,7 +36,7 @@ pdf: all-presentation
 pdf:
 	@set -e; cd presentation; \
 	${MAKE} ${MAKEFLAGS} clean-garbage; \
-	rm -f myprojects.*
+	rm -f myprojects.* _mkc_*
 
 ##################################################
 cleandir:	cleandir-tests cleandir-examples cleandir-presentation
