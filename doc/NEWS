@@ -1,4 +1,40 @@
 ======================================================================
+Version 0.34.1, by Aleksey Cheusov, Mon, 30 Mar 2020 02:35:15 +0300
+
+  Fixes in mk-configure:
+    - broken builtins prog_* (broken since 0.29.2)
+    - MKC_REQUIRE_BUILTINS also sets BUILTIN.<builtin> variable
+      (broken -- always)
+    - mk/ also installs mkc_imp.foreign_autotools.mk (broken -- always)
+    - mkc_compiler_settings(1): unexpected loading of ../Makefile.inc
+      (broken -- 0.34.0)
+    - mk-configure.7:
+      * clang also supports WARNERR
+      * add documentation for MKC_REQUIRE_BUILTINS
+      * other minor clean-ups and fixes
+    - mkc_imp.foreign_autotools.mk: do not change .OBJDIR!
+
+  Fixes and improvements in tests/, examples/ and build infrastructure:
+    - examples/hello_calc2: build failure with gcc-10 (multiple
+      definition of `calc_lval'). Thanks to Sergei Trofimovich.
+    - examples/hello_autoconf: out-of-tree build failure
+    - examples/check_compiler_opts: run "cleandir" at the end of "test"
+    - examples/hello_require_tools: run "cleandir" at the end of "test"
+    - examples/subprojects/test.mk: better ignore nroff
+      warning "cannot adjust line"
+    - tests/dltest: run "cleandir" at the end of "test"
+    - tests/mkc_check_custom: run "cleandir" at the end of "test"
+    - tests/os_OpenBSD: run "cleandir" at the end of "test"
+    - tests/os_Linux: run "cleandir" at the end of "test"
+    - tests/require_prototype: run "cleandir" at the end of "test"
+    - tests/os_NetBSD: run "cleandir" at the end of "test"
+    - examples/hello_autoconf: use MKC_REQUIRE_BUILTINS
+      instead of MKC_CHECK_BUILTINS
+    - main.mk: clean -> clean-examples; cleandir -> cleandir-examples
+
+  Add example/Makefile for running tests after installing mk-configure
+
+======================================================================
 Version 0.34.0, by Aleksey Cheusov, Wed, 19 Feb 2020 22:46:40 +0300
 
   This release introduces some incompatibilities with older releases:
