@@ -54,14 +54,6 @@ LDREAL  ?=	${CC}
 
 MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
 
-init_make_level ?= 0 # for mkc.conf.mk
-
-.if ${.MAKE.LEVEL} == ${init_make_level}
-SRCTOP       ?=	${.CURDIR}
-OBJTOP       ?=	${.OBJDIR}
-.export SRCTOP OBJTOP
-.endif
-
 ###########
 
 PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
@@ -260,7 +252,7 @@ STATICLIBS   +=	${INTERNALLIBS}
 .include "${SRCTOP}/Makefile.common"
 .endif
 
-.if ${SRCTOP:U} != ${.CURDIR} && exists(${.CURDIR}/../Makefile.inc)
+.if ${.MAKE.LEVEL} != ${init_make_level} && exists(${.CURDIR}/../Makefile.inc)
 .include "${.CURDIR}/../Makefile.inc"
 .endif
 

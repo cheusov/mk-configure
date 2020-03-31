@@ -7,6 +7,8 @@ cmd=echo Wall: 1; echo Zhopa: 0; echo errwarn=%all: 1
 .PHONY : test_output
 test_output:
 	@echo ========== lalala ==========; \
-	${cmd}
+	${cmd}; \
+	: =========== cleandir ============; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

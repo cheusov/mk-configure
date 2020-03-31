@@ -39,4 +39,10 @@ MKCHECKS ?=	no
 .sinclude <newsys.mk.in> # .sinclude for bootstrapping
 .endif
 
+init_make_level ?= 0
+.if ${.MAKE.LEVEL} == ${init_make_level}
+SRCTOP   ?=	${.CURDIR}
+OBJTOP   ?=	${.OBJDIR}
+.endif
+
 .endif # _MKC_IMP.PREINIT.MK

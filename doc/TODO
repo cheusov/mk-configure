@@ -1,18 +1,25 @@
 ============================================================
+MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
+
+New rules for .by (bison without -y option)
+
+============================================================
+============================================================
+============================================================
+
+============================================================
+OBJDIR_* and SRCDIR_* variable should be available
+after mkc.init.mk and initialized again in mkc.mk
+
+============================================================
 LDFLAGS.check
 
 ============================================================
 Initialize CC/CXX_TYPE if MKC_CHECK_CUSTOM
 
 ============================================================
-Improve test tests/reqd_clean_cache
-
-============================================================
 mkc_compiler_settings:
   check CC, CXX, USE_* for non-emptyness
-
-============================================================
-libl feature: we require libfl is libl was not found
 
 ============================================================
 CFLAGS0
@@ -45,7 +52,6 @@ New feature "path_max" for detecting PATH_MAX from getconf
 or from define (if exists). This is issue #7
 
 ============================================================
-Introduce MKC_REQUIRE_BUILTINS in addition to MKC_CHECK_BUILTINS
 remove hello_ prefix from all examples
 install target: introduce dependencies for target files
 
