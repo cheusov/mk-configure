@@ -1,4 +1,8 @@
 ============================================================
+MKC_PATH environment variable for mkcmake(1)
+and mkc_compiler_settings(1)
+
+============================================================
 MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
 
 New rules for .by (bison without -y option)
