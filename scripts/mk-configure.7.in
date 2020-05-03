@@ -1200,7 +1200,7 @@ either 0 or 1.
 <header>: tr|./|__|g
 .br
 Also -DHAVE_HEADER_<HEADER>=(0 or 1)
-is added to CFLAGS unless MKC_NOAUTO is set to 1.
+is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
 .VS
@@ -1298,7 +1298,7 @@ is set to either 0 or 1.
 .br
 Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
 or   -DHAVE_DEFINE_<DEFINE>=1
-is added to CFLAGS if the specified define was detected
+is added to CPPFLAGS if the specified define was detected
 unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
@@ -1327,7 +1327,7 @@ is set to either 0 or 1.
 <header>: tr|./|__|g
 
 Also -DHAVE_TYPE_<TYPE>_<HEADER>=1 (or   -DHAVE_TYPE_<TYPE>=1)
-is added to CFLAGS if the specified type was detected
+is added to CPPFLAGS if the specified type was detected
 unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
@@ -1354,7 +1354,7 @@ is set to either 0 or 1
 .br
 Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
 (or -DHAVE_DEFINE_<VARIABLE>=1)
-is added to CFLAGS if the specified variable was detected
+is added to CPPFLAGS if the specified variable was detected
 unless MKC_NOAUTO is set to 1.
 .br
 <HEADER>: tr|a-z./|A-Z__|g
@@ -1381,7 +1381,7 @@ is set to either 0 or 1 depending on the result.
 .br
 Also -DHAVE_MEMBER_<TYPE>_<MEMBER>_<HEADER>=1
 (or   -DHAVE_MEMBER_<TYPE>_<MEMBER>=1)
-is added to CFLAGS if the specified member was found in
+is added to CPPFLAGS if the specified member was found in
 appropriate type
 unless MKC_NOAUTO is set to 1.
 .br
@@ -1414,7 +1414,7 @@ is set to either 0 or 1.
 .br
 Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
 (or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1))
-is added to CFLAGS if the specified function was detected
+is added to CPPFLAGS if the specified function was detected
 unless MKC_NOAUTO is set to 1. If
 MKC_FUNC_OR_DEFINE.<func>
 is "yes", equivalent define leads to the same results.
@@ -1450,7 +1450,7 @@ CUSTOM.<custom_check_name> variable to 1, 0 or other value.
 If MKC_CUSTOM_FN.<custom_check_name> is unset, it
 defaults to custom_check_name.c.
 Also -DCUSTOM_<CUSTOM_CHECK_NAME>=1
-is added to CFLAGS if the specified check succeeded
+is added to CPPFLAGS if the specified check succeeded
 unless MKC_NOAUTO is set to 1 and MKC_CUSTOM_NOAUTO.<custom_check_name> is set to "yes".
 Here <CUSTOM_CHECK_NAME> is uppercase for <custom_check_name>.
 If MKC_CUSTOM_LINK.<custom_check_name> is "yes", then
@@ -1557,7 +1557,7 @@ is set to the data type size or string "failed".
 .br
 Also -DSIZEOF_<TYPE>_<HEADER>=<failed|1|2|...>
 (or -DSIZEOF_<TYPE>=<failed|1|2|...>)
-is added to CFLAGS
+is added to CPPFLAGS
 if sizeof() check was successful
 unless MKC_NOAUTO is set to 1
 .br
@@ -1581,7 +1581,7 @@ MKC_PROTOTYPE_FUNC.<name> is a C function prototype.
 MKC_PROTOTYPE_HEADERS.<name> is a list of headers separated by space or comma.
 mk-configure verifies that the specified prototype is correct and if
 so, HAVE_PROTOTYPE.<name> bmake variable is set to 1 and
--DHAVE_PROTOTYPE_<NAME>=1 is added to CFLAGS unless MKC_NOAUTO is set to 1.
+-DHAVE_PROTOTYPE_<NAME>=1 is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
 Otherwise, HAVE_PROTOTYPE.<name> variable is set to 0.
 .VS
 Ex.

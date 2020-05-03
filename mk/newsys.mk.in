@@ -86,7 +86,6 @@ CC        ?=	cc
 CFLAGS    ?=
 
 CXX        ?=	c++
-CXXFLAGS   +=	${CFLAGS}
 
 CPP        ?=	cpp
 CPPFLAGS   ?=	
@@ -95,4 +94,3 @@ CLEANFILES_CMD ?=	${RM} -f
 CLEANDIRS_CMD ?=	${RM} -rf
 
 UNINSTALL  ?=	${RM} -f
-

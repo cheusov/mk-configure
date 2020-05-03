@@ -157,7 +157,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_PROG.awk          PROG.awk \
 	HAVE_PROG.megaprog-x34 PROG.megaprog-x34 \
 	\
-	MKC_AUTO_CFLAGS MKC_AUTO_SRCS MKC_AUTO_LDADD
+	MKC_AUTO_CPPFLAGS MKC_AUTO_SRCS MKC_AUTO_LDADD
 
 .include <mkc.configure.mk>
 
