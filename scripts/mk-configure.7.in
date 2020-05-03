@@ -235,7 +235,7 @@ C Pre-Processor.
 .RI < Iu >
 .RI [ cpp ]
 .IP CPPFLAGS
-Additional flags to the C pre-processor.
+Additional flags to the C/C++ pre-processor.
 .RI < "Iu" >
 .IP CPPFLAGS_<project>
 Similar to CPPFLAGS but for project ${PROJECTNAME}.
@@ -1624,7 +1624,7 @@ so, executable is created.
 As a result HAVE_CCLD_OPT.<option:S/=/_/g> is set to 1 or 0.
 .IP MKC_CHECK_CXXLD_OPTS
 Same as MKC_CHECK_CCLD_OPTS but for C++ compiler.
-As a result HAVE_CXXOPT_OPT.<option:S/=/_/g> is set to 1 or 0.
+As a result HAVE_CXXLD_OPT.<option:S/=/_/g> is set to 1 or 0.
 .IP MKC_NOAUTO_FUNCLIBS
 See MKC_CHECK_FUNCLIBS
 .IP MKC_NOAUTO
