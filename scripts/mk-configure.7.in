@@ -2055,7 +2055,7 @@ Spaces around <=, >=, =, < and > are not allowed.
 As a result of the check bmake's variable
 PKG_CONFIG.exists.<lib> is set to 1 for success or 0 for failure.
 Unless MKC_NOAUTO is set to 1 -DHAVE_PKGCONFIG_<LIB>=1
-is also added to CFLAGS if <lib> was found. <LIB> is tr/a-z+.-/A-ZP__/ of <lib>.
+is also added to CPPFLAGS if <lib> was found. <LIB> is tr/a-z+.-/A-ZP__/ of <lib>.
 .RI < "M" >
 .IP MKC_REQUIRE_PKGCONFIG
 The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
