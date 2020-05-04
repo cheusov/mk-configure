@@ -102,12 +102,12 @@ MKC_CUSTOM_CACHE.custom_check5_noauto  =	cache2
 
 MKC_REQUIRE_CUSTOM+=	custom_check3
 
-MKC_CHECK_PROTOTYPES =	strcmp_ok strcmp_bad function_absent
-MKC_PROTOTYPE_FUNC.strcmp_ok  = int strcmp(const char*, const char*)
-MKC_PROTOTYPE_FUNC.strcmp_bad = int strcmp(const char*, const char*, int lalala)
+MKC_CHECK_PROTOTYPES =	strstr_ok strstr_bad function_absent
+MKC_PROTOTYPE_FUNC.strstr_ok  = char* strstr   (const  char*,  const char* )
+MKC_PROTOTYPE_FUNC.strstr_bad = char* strstr(const char*, const char*, int lalala)
 MKC_PROTOTYPE_FUNC.function_absent = int absent_function(int lalala)
-MKC_PROTOTYPE_HEADERS.strcmp_ok  = string.h
-MKC_PROTOTYPE_HEADERS.strcmp_bad = string.h
+MKC_PROTOTYPE_HEADERS.strstr_ok  = string.h
+MKC_PROTOTYPE_HEADERS.strstr_bad = string.h
 MKC_PROTOTYPE_HEADERS.function_absent = string.h
 
 MKC_CHECK_CC_OPTS =	-DMACRO=zzz --zzz
@@ -144,7 +144,7 @@ vars+=	HAVE_HEADER.sys_time_h HAVE_HEADER.string_h HAVE_HEADER.unistd_h \
 	HAVE_VAR.mkc_test_var.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h \
 	HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h \
-	HAVE_PROTOTYPE.strcmp_ok HAVE_PROTOTYPE.strcmp_bad HAVE_PROTOTYPE.function_absent \
+	HAVE_PROTOTYPE.strstr_ok HAVE_PROTOTYPE.strstr_bad HAVE_PROTOTYPE.function_absent \
 	HAVE_CC_OPT.-DMACRO_zzz HAVE_CXX_OPT.-DMACRO_zzz \
 	HAVE_CCLD_OPT.-DMACRO_zzz HAVE_CXXLD_OPT.-DMACRO_zzz \
 	HAVE_CC_OPT.--zzz HAVE_CXX_OPT.--zzz \
