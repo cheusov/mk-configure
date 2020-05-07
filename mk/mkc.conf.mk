@@ -86,7 +86,7 @@ HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_chec
 .endif
 .if ${HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .if empty(MKC_REQUIRE_HEADER_FILES:U:M${h})
-MKC_CFLAGS  +=	-DHAVE_HEADER_FILE_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}}
+MKC_CPPFLAGS  +=	-DHAVE_HEADER_FILE_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER_FILE.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADER_FILES:U:M${h})
 _fake   !=   env ${mkc.environ} mkc_check_header -e -d ${h} && echo
@@ -105,7 +105,7 @@ HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}   !=   env ${mkc.environ} mkc_check_hea
 .endif
 .if ${HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .if empty(MKC_REQUIRE_HEADERS:U:M${h})
-MKC_CFLAGS  +=	-DHAVE_HEADER_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}}
+MKC_CPPFLAGS  +=	-DHAVE_HEADER_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h:C/.*,//:S|.|_|g:S|/|_|g}}
 .endif
 .elif !empty(MKC_REQUIRE_HEADERS:U:M${h})
 _fake   !=   env ${mkc.environ} mkc_check_header -d ${h} && echo
@@ -153,7 +153,7 @@ MKC_ERR_MSG +=	"ERROR: cannot find function ${f}"
 SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}   !=   env ${mkc.environ} mkc_check_sizeof ${t:S/:/ /g}
 .endif
 .if ${SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}} != failed
-MKC_CFLAGS  +=  -DSIZEOF_${t:C/:.*,/:/:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:S|/|_|g:tu}=${SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
+MKC_CPPFLAGS  +=  -DSIZEOF_${t:C/:.*,/:/:S/-/_/g:S| |_|g:S|*|P|g:S|:|_|g:S|.|_|g:S|/|_|g:tu}=${SIZEOF.${t:C/:.*,/:/:S|.|_|g:S|-|_|g:S|*|P|g:S|/|_|g:S|:|.|g}}
 .endif
 .endfor
 
@@ -167,7 +167,7 @@ HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc
 .endif
 .if ${HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_DEFINES:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CPPFLAGS  +=	-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
@@ -190,7 +190,7 @@ HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_c
 .endif
 .if ${HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_TYPES:U:M${t})
-MKC_CFLAGS  +=	-DHAVE_TYPE_${t:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CPPFLAGS  +=	-DHAVE_TYPE_${t:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
@@ -213,7 +213,7 @@ HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} mkc_ch
 .endif
 .if ${HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_VARS:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_VAR_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CPPFLAGS  +=	-DHAVE_VAR_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor
@@ -236,7 +236,7 @@ HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}   !=   env ${mkc.envi
 .endif
 .if ${HAVE_MEMBER.${m:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g:S/-/_/g}}
 .if empty(MKC_REQUIRE_MEMBERS:U:M${m})
-MKC_CFLAGS  +=	-DHAVE_MEMBER_${m:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
+MKC_CPPFLAGS  +=	-DHAVE_MEMBER_${m:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g:S/-/_/g}=1
 .endif
 .endif
 .endfor
@@ -262,7 +262,7 @@ HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}   !=   env ${mkc.environ} m
 .endif
 .if ${HAVE_FUNC${n}.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
 .if empty(MKC_REQUIRE_FUNCS${n}:U:M${d})
-MKC_CFLAGS  +=	-DHAVE_FUNC${n}_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
+MKC_CPPFLAGS  +=	-DHAVE_FUNC${n}_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .endif
 .endif
 .endfor # d
@@ -310,7 +310,7 @@ CUSTOM.${c} !=		env ${mkc.environ} mkc_check_custom -t ${_cachename:Q} ${_opts} 
 .undef _ldadd
 .if !empty(CUSTOM.${c}) && ${CUSTOM.${c}} != 0
 .if empty(MKC_REQUIRE_CUSTOM:U:M${c}) && ${MKC_CUSTOM_NOAUTO.${c}:U:tl} != "yes"
-MKC_CFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
+MKC_CPPFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 .endif
 .endif
 .endfor
@@ -432,7 +432,7 @@ HAVE_PROTOTYPE.${p} !=	env ${mkc.environ} mkc_check_decl prototype \
 	${MKC_PROTOTYPE_FUNC.${p}:Q} ${MKC_PROTOTYPE_HEADERS.${p}}
 .endif # !defined(HAVE_PROTOTYPE.${p})
 .if ${HAVE_PROTOTYPE.${p}}
-MKC_CFLAGS  +=	-DHAVE_PROTOTYPE_${p:tu}=1
+MKC_CPPFLAGS  +=	-DHAVE_PROTOTYPE_${p:tu}=1
 .elif !empty(MKC_REQUIRE_PROTOTYPES:U:M${p})
 _fake       !=	env ${mkc.environ} mkc_check_decl -d prototype \
 	${MKC_PROTOTYPE_FUNC.${p}:Q} ${MKC_PROTOTYPE_HEADERS.${p}}; echo

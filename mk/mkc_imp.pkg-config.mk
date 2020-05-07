@@ -51,7 +51,7 @@ PKG_CONFIG.var.${_ln}.${i} != env ${mkc.environ} mkc_check_custom \
 .endif # PKG_CONFIG.var.${_ln}.${i}
 .endfor # i
 
-MKC_CFLAGS :=	${MKC_CFLAGS} -DHAVE_PKGCONFIG_${_id:S/-/_/g:S/+/P/g:S/./_/g}=1
+MKC_CPPFLAGS :=	${MKC_CPPFLAGS} -DHAVE_PKGCONFIG_${_id:S/-/_/g:S/+/P/g:S/./_/g}=1
 
 .elif !empty(MKC_REQUIRE_PKGCONFIG:M${l})
 MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
