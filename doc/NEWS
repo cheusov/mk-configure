@@ -1,4 +1,20 @@
 ======================================================================
+Version 0.34.2, by Aleksey Cheusov, Thu, 14 May 2020 18:42:58 +0300
+
+  Do not pass *all* CFLAGS flags to CXXFLAGS.  This fixes builds
+  where, for example, clang is used as a C compile and gcc is used as
+  a C++ compiler. Also, MKC_CHECK_* variables update MKC_CPPFLAGS
+  instead of MKC_CFLAGS.
+
+  Avoid "install -d /" if there is nothing to install.  This fixes
+  some failures on some systems/conditions and improves support for
+  foreign install(1) programs, e.g., (UCB install on Solaris)
+
+  Fixes for CFLAGS containing -O2 and -D_FORTIFY_SOURCE=n
+
+  main.mk: clean-ups for target "cleandir" and "clean"
+
+======================================================================
 Version 0.34.1, by Aleksey Cheusov, Mon, 30 Mar 2020 02:35:15 +0300
 
   Fixes in mk-configure:
