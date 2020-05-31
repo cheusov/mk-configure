@@ -160,7 +160,7 @@ Version 0.33.1, by Aleksey Cheusov, Wed, 22 Jan 2020 19:13:55 +0300
 ======================================================================
 Version 0.33.0, by Aleksey Cheusov, Fri, 17 Jan 2020 21:56:16 +0300
 
-  Add new features "getdelin" and "strndup".
+  Add new features "getdelim" and "strndup".
 
   Fix MKC_CHECK_FUNCS<n> when MKC_FUNC_OR_DEFINE.<x> is "yes".
 
