@@ -1,3 +1,5 @@
+@@@@@@@@@@@@@@@@@@@ Version 0.35.0: @@@@@@@@@@@@@@@@@@@@@@@@
+
 ============================================================
 More efun features: e{read,write,setenv} from FreeBSD
 
@@ -18,8 +20,28 @@ is set.
 Feature "arc4random": use code from OpenBSD/NetBSD?
 
 ============================================================
+Initialize CC/CXX_TYPE if MKC_CHECK_CUSTOM
+
+============================================================
+mkc_compiler_settings:
+  check CC, CXX, USE_* for non-emptyness
+
+============================================================
+remove hello_ prefix from all examples
+install target: introduce dependencies for target files
+
+============================================================
+OBJDIR_* and SRCDIR_* variable should be available
+after mkc.init.mk and initialized again in mkc.mk
+
+============================================================
 MKC_PATH environment variable for mkcmake(1)
 and mkc_compiler_settings(1)
+
+===============================================
+MKC_CHECK_VARS fails on NetBSD on sys_signame
+
+@@@@@@@@@@@@@@@@@@@@@@@@  Later  @@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 ============================================================
 MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
@@ -27,18 +49,7 @@ MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
 New rules for .by (bison without -y option)
 
 ============================================================
-OBJDIR_* and SRCDIR_* variable should be available
-after mkc.init.mk and initialized again in mkc.mk
-
-============================================================
 LDFLAGS.check
-
-============================================================
-Initialize CC/CXX_TYPE if MKC_CHECK_CUSTOM
-
-============================================================
-mkc_compiler_settings:
-  check CC, CXX, USE_* for non-emptyness
 
 ============================================================
 CFLAGS0
@@ -69,14 +80,6 @@ build project with a help of mk-c.
 ============================================================
 New feature "path_max" for detecting PATH_MAX from getconf
 or from define (if exists). This is issue #7
-
-============================================================
-remove hello_ prefix from all examples
-install target: introduce dependencies for target files
-
-===============================================
-
-MKC_CHECK_VARS fails on NetBSD on sys_signame
 
 ============================================================
 
