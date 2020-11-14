@@ -12,7 +12,7 @@ MKC_CHECK_FUNCS4   +=	vdprintf:stdio.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.dprintf:U} != 1 || ${HAVE_FUNCLIB.vdprintf:U} != 1
-MKC_SRCS +=	dprintf.c
+MKC_SRCS +=	${FEATURESDIR}/dprintf/dprintf.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_DPRINTF
