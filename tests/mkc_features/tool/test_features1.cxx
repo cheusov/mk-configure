@@ -20,6 +20,7 @@
 #include "mkc_TAILQ.h"
 #include "mkc_CIRCLEQ.h"
 #include "mkc_bswap.h"
+#include "mkc_dprintf.h"
 
 int main(int argc, char** argv)
 {
@@ -39,6 +40,7 @@ int main(int argc, char** argv)
 	bswap16(1);
 	bswap32(1);
 	bswap64(1);
+	dprintf(2, "lalala\n");
 
 	return 0;
 }
