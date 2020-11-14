@@ -21,12 +21,14 @@
 #include "mkc_CIRCLEQ.h"
 #include "mkc_bswap.h"
 #include "mkc_dprintf.h"
+#include "mkc_efun.h"
 
 int main(int argc, char** argv)
 {
 	char buffer[100];
 	char *line = NULL;
 	size_t line_size = 0;
+	char *ptr = NULL;
 
 	strlcpy(buffer, "foo", sizeof(buffer));
 	strlcat(buffer, "bar", sizeof(buffer));
@@ -41,6 +43,16 @@ int main(int argc, char** argv)
 	bswap32(1);
 	bswap64(1);
 	dprintf(2, "lalala\n");
+	emalloc(100);
+	erealloc(NULL, 200);
+	ecalloc(100, 1);
+	efopen("/path", "r");
+	estrdup("papa");
+	estrndup("papa", 5);
+	estrlcat(buffer, "papa", sizeof(buffer));
+	estrlcpy(buffer, "papa", sizeof(buffer));
+	easprintf(&ptr, "%s", "papa");
+	free(ptr);
 
 	return 0;
 }

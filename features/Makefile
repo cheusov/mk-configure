@@ -5,7 +5,7 @@ FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
 .for f in strlcat strlcpy getline progname warn err fgetln getdelim strndup \
-    arc4random dprintf
+    arc4random dprintf efun
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
