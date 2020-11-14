@@ -1,5 +1,10 @@
 =======
 Add CFLAGS.<C_source_file> variable
+============================================================
+
+Generate .d files at the same time as compilation and load
+in the very beginning by default if appropriate variable
+is set.
 
 ============================================================
 MKC_PATH environment variable for mkcmake(1)
