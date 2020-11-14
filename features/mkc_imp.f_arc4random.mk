@@ -10,7 +10,7 @@ MKC_CHECK_FUNCS0 +=	arc4random:stdlib.h
 .include <mkc.conf.mk>
 
 . if ${HAVE_FUNC0.arc4random.stdlib_h:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/arc4random/mkc_arc4random.c
+MKC_SRCS +=	${FEATURESDIR}/arc4random/arc4random.c
 . endif
 
 CPPFLAGS +=	-D_MKC_CHECK_ARC4RANDOM
