@@ -1,3 +1,5 @@
+CFLAGS  +=	-U_FORTIFY_SOURCE
+
 .PHONY: test_output
 test_output:
 	@set -e; cd ${.CURDIR}; \
