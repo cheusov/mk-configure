@@ -1702,6 +1702,9 @@ implementation is available in libc. If not, getline.c provided by
 mk-configure is added to SRCS and declaration is provided in
 mkc_getline.h header.
 .TP
+.B arc4random
+This feature provides arc4random(3) function available in *BSD.
+.TP
 .B progname
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.
