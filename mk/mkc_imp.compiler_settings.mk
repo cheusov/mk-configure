@@ -10,8 +10,8 @@ CFLAGS.warnerr.icc    =		-Werror
 CFLAGS.warnerr.sunpro =		-errwarn=%all
 
 CFLAGS.warns.gcc.1 =		-Wall -Wstrict-prototypes -Wmissing-prototypes \
-				-Wpointer-arith
-CFLAGS.warns.gcc.2 =		${CFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
+				-Wpointer-arith -Wreturn-type
+CFLAGS.warns.gcc.2 =		${CFLAGS.warns.gcc.1} -Wswitch -Wshadow
 CFLAGS.warns.gcc.3 =		${CFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wno-unused-parameter
 CFLAGS.warns.gcc.4 =		${CFLAGS.warns.gcc.3}
@@ -69,11 +69,12 @@ CXXFLAGS.dflt.icc     =		${CFLAGS.dflt.icc}
 CXXFLAGS.warnerr.gcc =		${CFLAGS.warnerr.gcc}
 CXXFLAGS.warnerr.clang =	${CXXFLAGS.warnerr.gcc}
 
-CXXFLAGS.warns.gcc.1 =		-Wold-style-cast -Wctor-dtor-privacy \
+CXXFLAGS.warns.gcc.1 =		-Wold-style-cast -Wctor-dtor-privacy -Wreturn-type \
 				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
 				-Wno-non-template-friend -Woverloaded-virtual \
-				-Wno-pmf-conversions -Wsign-promo -Wsynth
-CXXFLAGS.warns.gcc.2 =		${CXXFLAGS.warns.gcc.1} -Wreturn-type -Wswitch -Wshadow
+				-Wno-pmf-conversions -Wsign-promo -Wsynth \
+				-Werror=return-type
+CXXFLAGS.warns.gcc.2 =		${CXXFLAGS.warns.gcc.1} -Wswitch -Wshadow
 CXXFLAGS.warns.gcc.3 =		${CXXFLAGS.warns.gcc.2} -Wcast-qual -Wwrite-strings \
 				-Wno-unused-parameter
 CXXFLAGS.warns.gcc.4 =		${CXXFLAGS.warns.gcc.3}
