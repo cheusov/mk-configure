@@ -1685,6 +1685,10 @@ Currently the following features are provided:
 .B arc4random
 This feature provides arc4random(3) function available in *BSD.
 .TP
+.B bswap
+This feature provides bswap16(3), bswap32(3) and bswap64(3)
+functions available in *BSD.
+.TP
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
 .TP

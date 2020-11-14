@@ -19,6 +19,7 @@
 #include "mkc_LIST.h"
 #include "mkc_TAILQ.h"
 #include "mkc_CIRCLEQ.h"
+#include "mkc_bswap.h"
 
 int main(int argc, char** argv)
 {
@@ -35,6 +36,9 @@ int main(int argc, char** argv)
 	fgetln(stdin, &line_size);
 	strndup("foo", 10);
 	arc4random();
+	bswap16(1);
+	bswap32(1);
+	bswap64(1);
 
 	return 0;
 }
