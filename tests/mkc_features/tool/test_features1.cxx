@@ -6,7 +6,6 @@
 #include "mkc_getline.h"
 #include "mkc_progname.h"
 #include "mkc_fgetln.h"
-#include "mkc_err.h"
 #include "mkc_warn.h"
 #include "mkc_libm.h"
 #include "mkc_getdelim.h"
@@ -36,10 +35,6 @@ int main(int argc, char** argv)
 	fgetln(stdin, &line_size);
 	strndup("foo", 10);
 	arc4random();
-
-	// do not insert anything after this
-	err(0, "error: %s", "error");
-	errx(0, "error: %s", "error");
 
 	return 0;
 }
