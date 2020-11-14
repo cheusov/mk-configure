@@ -1,4 +1,12 @@
-=======
+============================================================
+More efun features: e{read,write,setenv} from FreeBSD
+
+============================================================
+More features from nbase: vis, sys_signame, strsep,
+reallocarray, raise_default_signal, fparseln, errc,
+posix_getopt
+
+============================================================
 Add CFLAGS.<C_source_file> variable
 ============================================================
 
