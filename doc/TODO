@@ -7,10 +7,6 @@ in the very beginning by default if appropriate variable
 is set.
 
 ============================================================
-Feature "bswap": use __bultin_bswapNN if available or
-glibc's byteswap.h
-
-============================================================
 Feature "arc4random": use code from OpenBSD/NetBSD?
 
 ============================================================
