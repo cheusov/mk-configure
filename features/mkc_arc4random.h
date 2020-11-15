@@ -12,6 +12,7 @@
 #endif
 
 #if HAVE_FUNC0_ARC4RANDOM_STDLIB_H
+#include <stdint.h>
 #include <stdlib.h>
 #else
 #include <stdint.h>

@@ -3,7 +3,7 @@
 
 int main (int argc, char **argv)
 {
-	uint32_t random = arc4random();
-	printf("random: %lu\n", (long unsigned) random);
+	uint32_t rnd = arc4random();
+	printf("random: %lu\n", (long unsigned) rnd);
 	return 0;
 }
