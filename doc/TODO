@@ -4,9 +4,6 @@
 More efun features: e{read,write,setenv} from FreeBSD
 
 ============================================================
-More features from nbase: sys_signame
-
-============================================================
 Add CFLAGS.<C_source_file> variable
 
 ============================================================
@@ -17,9 +14,6 @@ is set.
 
 ============================================================
 Feature "arc4random": use code from OpenBSD/NetBSD?
-
-============================================================
-Initialize CC/CXX_TYPE if MKC_CHECK_CUSTOM
 
 ============================================================
 mkc_compiler_settings:

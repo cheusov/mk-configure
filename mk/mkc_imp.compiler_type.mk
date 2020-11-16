@@ -31,3 +31,20 @@ LDREAL     ?=	${CXX}
 src_type  +=	cc
 .endif
 .endif
+
+.if empty(src_type:Mcc)
+.  for c in ${MKC_CHECK_CUSTOM:U} ${MKC_REQUIRE_CUSTOM:U}
+.    if empty(MKC_CUSTOM_FN.${c}) || !empty(MKC_CUSTOM_FN.${c}:M*.c)
+src_type  +=	cc
+.    endif
+.  endfor
+.endif
+
+.if empty(src_type:Mcxx)
+.  for c in ${MKC_CHECK_CUSTOM:U} ${MKC_REQUIRE_CUSTOM:U}
+.    if !empty(MKC_CUSTOM_FN.${c}:U:M*.cxx) || !empty(MKC_CUSTOM_FN.${c}:U:M*.cpp) || \
+    !empty(MKC_CUSTOM_FN.${c}:U:M*.C) || !empty(MKC_CUSTOM_FN.${c}:U:M*.cc)
+src_type  +=	cxx
+.    endif
+.  endfor
+.endif

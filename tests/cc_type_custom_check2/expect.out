@@ -1,0 +1,14 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_custom_alloca_in_alloca_h.err
+/objdir/_mkc_custom_alloca_in_alloca_h.res
+/objdir/alloca_in_alloca_h.c
+/objdir/expect.out
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/alloca_in_alloca_h.c
+/objdir/expect.out
+/objdir/test.mk

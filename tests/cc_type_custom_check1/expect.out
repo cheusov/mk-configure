@@ -1,0 +1,12 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_custom_check.err
+/objdir/_mkc_custom_check.res
+/objdir/expect.out
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/test.mk

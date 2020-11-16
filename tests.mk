@@ -5,4 +5,5 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    test_mkc_vs_LIB test_mkc_vs_SUBDIR test_mkc_vs_SUBPRJ endianness \
    create_cachedir sys_queue predopost_targets FSRCDIR mkc_features \
    os_NetBSD os_OpenBSD os_Linux dltest mkc_install mkc_check_custom \
-   cccxx_type
+   cccxx_type cc_type_custom_check1 cc_type_custom_check2 \
+   cc_type_custom_check3 cxx_type_custom_check
