@@ -1733,6 +1733,10 @@ LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
 not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 -lm is added to LDADD.
 .TP
+.B posix_getopt
+It is well-known that glibc getopt(3) does not conform to POSIX by default.
+This feature provides POSIX-ly correct getopt.
+.TP
 .B progname
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.

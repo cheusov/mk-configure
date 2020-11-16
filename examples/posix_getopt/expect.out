@@ -1,0 +1,6 @@
+flags=1; tfnd=1; nsecs=123; optind=4
+name argument = freeargument
+flags=1; tfnd=0; nsecs=0; optind=2
+name argument = freeargument
+flags=0; tfnd=1; nsecs=123; optind=4
+name argument = -n

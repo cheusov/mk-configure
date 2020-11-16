@@ -23,6 +23,7 @@
 #include "mkc_dprintf.h"
 #include "mkc_efun.h"
 #include "mkc_strsep.h"
+#include "mkc_posix_getopt.h"
 
 int main(int argc, char** argv)
 {
@@ -56,6 +57,7 @@ int main(int argc, char** argv)
 	strsep(NULL, "\0");
 	stresep(NULL, " \t", '\0');;
 	free(ptr);
+	posix_getopt(0, NULL, NULL);
 
 	return 0;
 }
