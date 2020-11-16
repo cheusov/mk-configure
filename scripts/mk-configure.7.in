@@ -1700,6 +1700,9 @@ estrlcat(3), easprintf(3), and evasprintf(3) functions from NetBSD.
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
 .TP
+.B errc
+This feature provides errc(3) and verrc(3) BSD-isms.
+.TP
 .B fgetln
 This feature provides fgetln(3) BSD-ism.
 .TP

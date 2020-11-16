@@ -5,12 +5,15 @@ FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
 .for f in strlcat strlcpy getline progname warn err fgetln getdelim strndup \
-    arc4random dprintf efun strsep
+    arc4random dprintf efun strsep errc
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
 FILESDIR_${f}/${f}.c       =	${FEATURESDIR}/${f}
 .endfor
+
+FILES +=	errc/verrc.c
+FILESDIR_errc/verrc.c       =	${FEATURESDIR}/errc
 
 .for f in libm libdl SLIST RB bswap
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk

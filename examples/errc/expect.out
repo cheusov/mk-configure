@@ -1,0 +1,2 @@
+prog: Cannot open file /bad/file.txt: No such file or directory
+exit status = 15
