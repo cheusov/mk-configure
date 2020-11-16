@@ -26,6 +26,7 @@
 #include "mkc_posix_getopt.h"
 #include "mkc_raise_default_signal.h"
 #include "mkc_reallocarray.h"
+#include "mkc_fparseln.h"
 
 int main(int argc, char** argv)
 {
@@ -62,6 +63,7 @@ int main(int argc, char** argv)
 	posix_getopt(0, NULL, NULL);
 	raise_default_signal(15);
 	reallocarray(NULL, 0, 0);
+	fparseln(NULL, NULL, NULL, "\\\\#", 0);
 
 	return 0;
 }

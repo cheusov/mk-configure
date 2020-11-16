@@ -4,10 +4,11 @@
 More efun features: e{read,write,setenv} from FreeBSD
 
 ============================================================
-More features from nbase: vis, sys_signame, fparseln
+More features from nbase: vis, sys_signame
 
 ============================================================
 Add CFLAGS.<C_source_file> variable
+
 ============================================================
 
 Generate .d files at the same time as compilation and load

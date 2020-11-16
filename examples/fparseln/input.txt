@@ -1,0 +1,8 @@
+# comment line number 1
+# comment line number 2
+real line\
+ continued on the next line
+
+# yet another comment
+tab\ttab
+line with backslash in the end \\
