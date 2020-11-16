@@ -1762,6 +1762,9 @@ Similar to strlcat.
 .B strndup
 This feature provides strndup(3) from POSIX.
 .TP
+.B strsep
+This features provides strsep(3) and stresep(3) functions.
+.TP
 .B warn
 This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.
 .RE

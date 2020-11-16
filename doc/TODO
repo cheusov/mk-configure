@@ -4,7 +4,7 @@
 More efun features: e{read,write,setenv} from FreeBSD
 
 ============================================================
-More features from nbase: vis, sys_signame, strsep,
+More features from nbase: vis, sys_signame,
 reallocarray, raise_default_signal, fparseln, errc,
 posix_getopt
 

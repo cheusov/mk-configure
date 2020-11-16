@@ -22,6 +22,7 @@
 #include "mkc_bswap.h"
 #include "mkc_dprintf.h"
 #include "mkc_efun.h"
+#include "mkc_strsep.h"
 
 int main(int argc, char** argv)
 {
@@ -52,6 +53,8 @@ int main(int argc, char** argv)
 	estrlcat(buffer, "papa", sizeof(buffer));
 	estrlcpy(buffer, "papa", sizeof(buffer));
 	easprintf(&ptr, "%s", "papa");
+	strsep(NULL, "\0");
+	stresep(NULL, " \t", '\0');;
 	free(ptr);
 
 	return 0;
