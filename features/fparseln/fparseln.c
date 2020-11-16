@@ -44,7 +44,7 @@ __RCSID("$NetBSD: fparseln.c,v 1.10 2009/10/21 01:07:45 snj Exp $");
 
 #include "mkc_fparseln.h"
 
-#define _DIAGASSERT(c)
+#define _DIAGASSERT(c) assert(c)
 
 static int isescaped(const char *, const char *, int);
 

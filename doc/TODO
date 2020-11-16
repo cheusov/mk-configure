@@ -4,7 +4,7 @@
 More efun features: e{read,write,setenv} from FreeBSD
 
 ============================================================
-More features from nbase: vis, sys_signame
+More features from nbase: sys_signame
 
 ============================================================
 Add CFLAGS.<C_source_file> variable
