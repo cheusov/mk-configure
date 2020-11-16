@@ -25,6 +25,7 @@
 #include "mkc_strsep.h"
 #include "mkc_posix_getopt.h"
 #include "mkc_raise_default_signal.h"
+#include "mkc_reallocarray.h"
 
 int main(int argc, char** argv)
 {
@@ -60,6 +61,7 @@ int main(int argc, char** argv)
 	free(ptr);
 	posix_getopt(0, NULL, NULL);
 	raise_default_signal(15);
+	reallocarray(NULL, 0, 0);
 
 	return 0;
 }
