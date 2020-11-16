@@ -7,5 +7,5 @@ examples    =	hello_world hello_scripts hello_files hello_sizeof hello_lex \
    tools2 pkgconfig3 hello_SLIST hello_RBTREE hello_errwarn hello_fgetln \
    hello_autotools hello_autoconf hello_libdeps hello_compatlib \
    hello_require_tools check_compiler_opts help_target \
-   arc4random bswap dprintf efun strsep errc posix_getopt
+   arc4random bswap dprintf efun strsep errc posix_getopt raise_default_signal
 # fts (fts.h)

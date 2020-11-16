@@ -24,6 +24,7 @@
 #include "mkc_efun.h"
 #include "mkc_strsep.h"
 #include "mkc_posix_getopt.h"
+#include "mkc_raise_default_signal.h"
 
 int main(int argc, char** argv)
 {
@@ -58,6 +59,7 @@ int main(int argc, char** argv)
 	stresep(NULL, " \t", '\0');;
 	free(ptr);
 	posix_getopt(0, NULL, NULL);
+	raise_default_signal(15);
 
 	return 0;
 }

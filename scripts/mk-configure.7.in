@@ -1741,6 +1741,9 @@ This feature provides POSIX-ly correct getopt.
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.
 .TP
+.B raise_default_signal
+This feature provides function raise_default_signal(3) from NetBSD.
+.TP
 .B "RB SPLAY"
 BSD systems provide sys/tree.h header where RB_* and SPLAY_* macroses
 are defined for red-black tree and splay. These features check whether
