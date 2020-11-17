@@ -1,9 +1,7 @@
-ERROR: We need mk-configure-999.0.0 while N.N.N is detected
-"bmake-20110606 or newer is required, but bmake-00000000 is provided"
+ERROR: mk-configure-999.0.0 is required but N.N.N is provided
+ERROR: bmake-20110606 or newer is required, but bmake-00000000 is provided
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
 /objdir/expect.out
 /objdir/hello.in
 /objdir/reqd4.test.out

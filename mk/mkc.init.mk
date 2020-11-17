@@ -318,14 +318,6 @@ _V         ?=
 
 ###########
 
-.if defined(MKC_REQD) && defined(MKC_VERSION) && ${MKCHECKS:tl} == "yes"
-_mkc_version_ok  !=	mkc_check_version ${MKC_REQD} ${MKC_VERSION}
-.if !${_mkc_version_ok}
-MKC_ERR_MSG +=	"ERROR: We need mk-configure-${MKC_REQD} while ${MKC_VERSION} is detected"
-MKCHECKS     =	no
-.endif
-.endif
-
 ###########
 
 .endif # __initialized__

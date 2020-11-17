@@ -1,1 +1,1 @@
-ERROR: We need mk-configure-999.0.0 while N.N.N is detected
+ERROR: mk-configure-999.0.0 is required but N.N.N is provided
