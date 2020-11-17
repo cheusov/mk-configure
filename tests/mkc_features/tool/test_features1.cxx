@@ -61,7 +61,7 @@ int main(int argc, char** argv)
 	strsep(NULL, "\0");
 	stresep(NULL, " \t", '\0');;
 	free(ptr);
-	posix_getopt(0, NULL, NULL);
+	getopt(0, NULL, NULL);
 	raise_default_signal(15);
 	reallocarray(NULL, 0, 0);
 	fparseln(NULL, NULL, NULL, "\\\\#", 0);
