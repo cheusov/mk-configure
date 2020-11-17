@@ -35,7 +35,6 @@
 #include "nbtool_config.h"
 #endif
 
-#include <sys/cdefs.h>
 #if defined(LIBC_SCCS) && !defined(lint)
 __RCSID("$NetBSD: raise_default_signal.c,v 1.3 2008/04/28 20:23:03 martin Exp $");
 #endif
