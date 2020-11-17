@@ -21,7 +21,7 @@ __MKC_BEGIN_DECLS
 int dprintf(int fd, const char * /*__restrict*/ format, ...);
 #endif
 
-#if !HAVE_FUNC4_VDPRINTF_STDIO_H
+#if !HAVE_PROTOTYPE_VDPRINTF
 int vdprintf(int fd, const char * /*__restrict*/ format, va_list ap);
 #endif
 
