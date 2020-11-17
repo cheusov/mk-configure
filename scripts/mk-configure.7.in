@@ -476,9 +476,10 @@ exits with error.
 Minimal required version of
 .BR mk-configure .
 If required version is not found,
-the target
-.I configure
-fails.
+.I mkcmake
+fails. This variable should be set before
+.B mkc.init.mk
+is included, directly or indirectly.
 .RI < "M" >
 .IP MKC_VERSION
 Version of
