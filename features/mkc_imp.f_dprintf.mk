@@ -9,7 +9,7 @@ MKC_CHECK_FUNCLIBS +=	dprintf vdprintf
 MKC_CHECK_FUNCS3   +=	dprintf:stdio.h
 MKC_CHECK_PROTOTYPES =	vdprintf
 MKC_PROTOTYPE_FUNC.vdprintf =	int vdprintf(int, const char *, va_list);
-MKC_PROTOTYPE_HEADERS.vdprintf +=	stdio.h
+MKC_PROTOTYPE_HEADERS.vdprintf +=	stdio.h stdarg.h
 
 .include <mkc.conf.mk>
 
