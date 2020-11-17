@@ -16,10 +16,6 @@ is set.
 Feature "arc4random": use code from OpenBSD/NetBSD?
 
 ============================================================
-mkc_compiler_settings:
-  check CC, CXX, USE_* for non-emptyness
-
-============================================================
 install target: introduce dependencies for target files
 
 ============================================================
