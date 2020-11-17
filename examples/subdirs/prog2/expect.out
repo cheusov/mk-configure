@@ -1,0 +1,28 @@
+Hello World2
+OBJDIR_prog1=/path/to/prog1
+OBJDIR_prog2=/path/to/prog2
+SRCDIR_prog1=subdirs/prog1
+SRCDIR_prog2=subdirs/prog2
+=========== all ============
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2
+/objdir/prog2.c
+/objdir/prog2.o
+/objdir/prog2.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix/bin/program2
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2.c
+/objdir/prog2.test.out.tmp
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/prog2.c
+/objdir/prog2.test.out.tmp
+/objdir/test.mk

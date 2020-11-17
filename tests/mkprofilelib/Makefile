@@ -1,6 +1,6 @@
-.PATH: ../../examples/hello_cxxlib/cxxlib
+.PATH: ../../examples/cxxlib/cxxlib
 
 MKPROFILELIB=	yes
 
-.include "../../examples/hello_cxxlib/cxxlib/Makefile"
+.include "../../examples/cxxlib/cxxlib/Makefile"
 .include "../mkpiclib/test.mk"

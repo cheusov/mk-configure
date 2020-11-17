@@ -1,0 +1,186 @@
+=========== all ============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/fsck_superfs/fsck_superfs.o
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/mkfs_superfs/mkfs_superfs.o
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/man
+/objdir/prefix/man/cat8
+/objdir/prefix/man/cat8/fsck_superfs.0
+/objdir/prefix/man/cat8/mkfs_superfs.0
+/objdir/prefix/man/man8
+/objdir/prefix/man/man8/fsck_superfs.8
+/objdir/prefix/man/man8/mkfs_superfs.8
+/objdir/prefix/sbin
+/objdir/prefix/sbin/fsck_superfs
+/objdir/prefix/sbin/mkfs_superfs
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/dict
+/objdir/prefix/share/doc/dict/LICENSE
+/objdir/prefix/share/doc/dict/NEWS
+/objdir/prefix/share/doc/dict/README
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+========== help =============
+superfs does not provide any special USE_* variables.
+So, there is nothing to configure in a special way.
+
+superfs provides the following subprojects.
+  Enabled by default:
+    - docs                : Documentation files
+    + tools               : mkfs_superfs and fsck_superfs
+  Others:
+    - fsck_superfs        : Checks super file system
+    - mkfs_superfs        : Creates super file system
+
+======== help_subprj ========
+superfs provides the following subprojects.
+  Enabled by default:
+    - docs                : Documentation files
+    + tools               : mkfs_superfs and fsck_superfs
+  Others:
+    - fsck_superfs        : Checks super file system
+    - mkfs_superfs        : Creates super file system
+
+======== help_use ========
+superfs does not provide any special USE_* variables.
+So, there is nothing to configure in a special way.
+
+========== depend ===========
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/.depend
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/fsck_superfs/fsck_superfs.d
+/objdir/mkfs_superfs/.depend
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/mkfs_superfs/mkfs_superfs.d
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+======= errorcheck ==========
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+==== install MKINSTALL=no ====
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/docs/LICENSE
+/objdir/docs/Makefile
+/objdir/docs/NEWS
+/objdir/docs/README
+/objdir/expect.out
+/objdir/fsck_superfs/Makefile
+/objdir/fsck_superfs/fsck_superfs
+/objdir/fsck_superfs/fsck_superfs.8
+/objdir/fsck_superfs/fsck_superfs.c
+/objdir/fsck_superfs/fsck_superfs.cat8
+/objdir/fsck_superfs/fsck_superfs.o
+/objdir/mkfs_superfs/Makefile
+/objdir/mkfs_superfs/mkfs_superfs
+/objdir/mkfs_superfs/mkfs_superfs.8
+/objdir/mkfs_superfs/mkfs_superfs.c
+/objdir/mkfs_superfs/mkfs_superfs.cat8
+/objdir/mkfs_superfs/mkfs_superfs.o
+/objdir/superfs.test.out.tmp
+/objdir/test.mk
+=========== Michael mode: all ============
+/objdir/tmp/man/cat8/fsck_superfs.0
+/objdir/tmp/man/cat8/mkfs_superfs.0
+/objdir/tmp/man/man8/fsck_superfs.8
+/objdir/tmp/man/man8/mkfs_superfs.8
+/objdir/tmp/sbin/fsck_superfs
+/objdir/tmp/sbin/mkfs_superfs
+/objdir/tmp/share/doc/dict/LICENSE
+/objdir/tmp/share/doc/dict/NEWS
+/objdir/tmp/share/doc/dict/README
+=========== Michael mode: clean ============
+=========== Michael mode: cleandir ============

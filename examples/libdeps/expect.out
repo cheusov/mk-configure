@@ -1,0 +1,129 @@
+=========== fooquxfoobar ============
+I am foo
+   and qux
+I am foo
+I am bar
+=========== foobaz ============
+I am foo
+I am baz
+=========== depends ============
+baz_baz_ok=1
+foo_foo_ok=1
+foobaz_baz_ok=1
+foobaz_foo_ok=1
+fooqux_foo_ok=1
+fooqux_fooqux_ok=1
+fooquxfoobar_foo_ok=1
+fooquxfoobar_fooqux_ok=1
+======= install ==========
+/objdir/prefix/bin/foobaz
+/objdir/prefix/bin/fooquxfoobar
+/objdir/prefix/include/bar.h
+/objdir/prefix/include/baz.h
+/objdir/prefix/include/foo.h
+/objdir/prefix/include/fooqux.h
+/objdir/prefix/lib/libbar.a
+/objdir/prefix/lib/libbar.so
+/objdir/prefix/lib/libbar.so.0
+/objdir/prefix/lib/libbar.so.0.0
+/objdir/prefix/lib/libbazbaz.a
+/objdir/prefix/lib/libfoo.a
+/objdir/prefix/lib/libfoo.so
+/objdir/prefix/lib/libfoo.so.0
+/objdir/prefix/lib/libfoo.so.0.0
+/objdir/prefix/lib/libfooqux.a
+/objdir/prefix/lib/libfooqux.so
+/objdir/prefix/lib/libfooqux.so.0
+/objdir/prefix/lib/libfooqux.so.0.0
+=========== all with STATICLIBS=... ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/libdeps.test.out.tmp
+/objdir/libs/libbar/Makefile
+/objdir/libs/libbar/bar.c
+/objdir/libs/libbar/bar.h
+/objdir/libs/libbar/bar.o
+/objdir/libs/libbar/bar.os
+/objdir/libs/libbar/libbar.a
+/objdir/libs/libbar/libbar_pic.a
+/objdir/libs/libbaz/Makefile
+/objdir/libs/libbaz/baz.c
+/objdir/libs/libbaz/baz.o
+/objdir/libs/libbaz/include/baz.h
+/objdir/libs/libbaz/libbazbaz.a
+/objdir/libs/libbaz/linkme.mk
+/objdir/libs/libfoo/Makefile
+/objdir/libs/libfoo/foo.c
+/objdir/libs/libfoo/foo.h
+/objdir/libs/libfoo/foo.o
+/objdir/libs/libfoo/foo.os
+/objdir/libs/libfoo/libfoo.a
+/objdir/libs/libfoo/libfoo_pic.a
+/objdir/libs/libfoo/linkme.mk
+/objdir/libs/libfooqux/Makefile
+/objdir/libs/libfooqux/fooqux.c
+/objdir/libs/libfooqux/fooqux.h
+/objdir/libs/libfooqux/fooqux.o
+/objdir/libs/libfooqux/fooqux.os
+/objdir/libs/libfooqux/libfooqux.a
+/objdir/libs/libfooqux/libfooqux.so
+/objdir/libs/libfooqux/libfooqux.so.0
+/objdir/libs/libfooqux/libfooqux.so.0.0
+/objdir/progs/foobaz/Makefile
+/objdir/progs/foobaz/foobaz
+/objdir/progs/foobaz/foobaz.c
+/objdir/progs/foobaz/foobaz.o
+/objdir/progs/fooquxfoobar/Makefile
+/objdir/progs/fooquxfoobar/fooquxfoobar
+/objdir/progs/fooquxfoobar/fooquxfoobar.c
+/objdir/progs/fooquxfoobar/fooquxfoobar.o
+/objdir/test.mk
+========= install with STATICLIBS=... ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/foobaz
+/objdir/prefix/bin/fooquxfoobar
+/objdir/prefix/include
+/objdir/prefix/include/bar.h
+/objdir/prefix/include/baz.h
+/objdir/prefix/include/foo.h
+/objdir/prefix/include/fooqux.h
+/objdir/prefix/lib
+/objdir/prefix/lib/libbar.a
+/objdir/prefix/lib/libbar_pic.a
+/objdir/prefix/lib/libbazbaz.a
+/objdir/prefix/lib/libfoo.a
+/objdir/prefix/lib/libfoo_pic.a
+/objdir/prefix/lib/libfooqux.a
+/objdir/prefix/lib/libfooqux.so
+/objdir/prefix/lib/libfooqux.so.0
+/objdir/prefix/lib/libfooqux.so.0.0
+symbol foo
+symbol fooqux
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/libdeps.test.out.tmp
+/objdir/libs/libbar/Makefile
+/objdir/libs/libbar/bar.c
+/objdir/libs/libbar/bar.h
+/objdir/libs/libbaz/Makefile
+/objdir/libs/libbaz/baz.c
+/objdir/libs/libbaz/include/baz.h
+/objdir/libs/libbaz/linkme.mk
+/objdir/libs/libfoo/Makefile
+/objdir/libs/libfoo/foo.c
+/objdir/libs/libfoo/foo.h
+/objdir/libs/libfoo/linkme.mk
+/objdir/libs/libfooqux/Makefile
+/objdir/libs/libfooqux/fooqux.c
+/objdir/libs/libfooqux/fooqux.h
+/objdir/progs/foobaz/Makefile
+/objdir/progs/foobaz/foobaz.c
+/objdir/progs/fooquxfoobar/Makefile
+/objdir/progs/fooquxfoobar/fooquxfoobar.c
+/objdir/test.mk

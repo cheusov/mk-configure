@@ -1,0 +1,68 @@
+sizeof(int)=n
+sizeof(long)=n
+sizeof(long long)=n
+sizeof(size_t)=n
+sizeof(void*)=n
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_sizeof_int.c
+/objdir/_mkc_sizeof_int.err
+/objdir/_mkc_sizeof_int.res
+/objdir/_mkc_sizeof_long.c
+/objdir/_mkc_sizeof_long.err
+/objdir/_mkc_sizeof_long.res
+/objdir/_mkc_sizeof_long~long.c
+/objdir/_mkc_sizeof_long~long.err
+/objdir/_mkc_sizeof_long~long.res
+/objdir/_mkc_sizeof_size_t.c
+/objdir/_mkc_sizeof_size_t.err
+/objdir/_mkc_sizeof_size_t.res
+/objdir/_mkc_sizeof_voidP.c
+/objdir/_mkc_sizeof_voidP.err
+/objdir/_mkc_sizeof_voidP.res
+/objdir/expect.out
+/objdir/sizeof.test.out.tmp
+/objdir/sizeof_test
+/objdir/sizeof_test.c
+/objdir/sizeof_test.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/sizeof_test
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_sizeof_int.c
+/objdir/_mkc_sizeof_int.err
+/objdir/_mkc_sizeof_int.res
+/objdir/_mkc_sizeof_long.c
+/objdir/_mkc_sizeof_long.err
+/objdir/_mkc_sizeof_long.res
+/objdir/_mkc_sizeof_long~long.c
+/objdir/_mkc_sizeof_long~long.err
+/objdir/_mkc_sizeof_long~long.res
+/objdir/_mkc_sizeof_size_t.c
+/objdir/_mkc_sizeof_size_t.err
+/objdir/_mkc_sizeof_size_t.res
+/objdir/_mkc_sizeof_voidP.c
+/objdir/_mkc_sizeof_voidP.err
+/objdir/_mkc_sizeof_voidP.res
+/objdir/expect.out
+/objdir/sizeof.test.out.tmp
+/objdir/sizeof_test.c
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/sizeof.test.out.tmp
+/objdir/sizeof_test.c
+/objdir/test.mk

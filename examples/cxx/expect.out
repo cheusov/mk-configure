@@ -1,0 +1,65 @@
+Hello world!
+Five: 5
+Seven: 7
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/cxx.test.out.tmp
+/objdir/expect.out
+/objdir/five.c
+/objdir/five.h
+/objdir/five.o
+/objdir/hello_cxx
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/hello_msg.o
+/objdir/main.cc
+/objdir/main.o
+/objdir/seven.c
+/objdir/seven.h
+/objdir/seven.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/hello_cxx
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_cxx_type.err
+/objdir/_mkc_cxx_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_cxx.err
+/objdir/_mkc_prog_cxx.res
+/objdir/cxx.test.out.tmp
+/objdir/expect.out
+/objdir/five.c
+/objdir/five.h
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/main.cc
+/objdir/seven.c
+/objdir/seven.h
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/cxx.test.out.tmp
+/objdir/expect.out
+/objdir/five.c
+/objdir/five.h
+/objdir/hello_msg.cc
+/objdir/hello_msg.h
+/objdir/main.cc
+/objdir/seven.c
+/objdir/seven.h
+/objdir/test.mk

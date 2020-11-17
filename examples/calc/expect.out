@@ -1,0 +1,65 @@
+4
+45
+-1
+45
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_yacc.err
+/objdir/_mkc_prog_yacc.res
+/objdir/calc
+/objdir/calc.c
+/objdir/calc.o
+/objdir/calc.test.out.tmp
+/objdir/calc.y
+/objdir/expect.out
+/objdir/input.txt
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/calc
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_yacc.err
+/objdir/_mkc_prog_yacc.res
+/objdir/calc.test.out.tmp
+/objdir/calc.y
+/objdir/expect.out
+/objdir/input.txt
+/objdir/test.mk
+========== depend ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_yacc.err
+/objdir/_mkc_prog_yacc.res
+/objdir/calc.c
+/objdir/calc.d
+/objdir/calc.test.out.tmp
+/objdir/calc.y
+/objdir/expect.out
+/objdir/input.txt
+/objdir/test.mk
+==== SHRTOUT=yes ====
+YACC: calc.y
+CC: calc.c
+LD: calc
+======= cleandir ==========
+/objdir/Makefile
+/objdir/calc.test.out.tmp
+/objdir/calc.y
+/objdir/expect.out
+/objdir/input.txt
+/objdir/test.mk

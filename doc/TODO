@@ -20,7 +20,6 @@ mkc_compiler_settings:
   check CC, CXX, USE_* for non-emptyness
 
 ============================================================
-remove hello_ prefix from all examples
 install target: introduce dependencies for target files
 
 ============================================================

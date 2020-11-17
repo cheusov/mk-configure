@@ -1,0 +1,99 @@
+Hello World 1!
+Hello World 2!
+Hello World 3!
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/files2.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world1
+/objdir/hello_world2
+/objdir/hello_world3
+/objdir/hello_world3.in
+/objdir/main.c
+/objdir/main.o
+/objdir/more_scripts/script1
+/objdir/more_scripts/script2
+/objdir/more_scripts/script3
+/objdir/msg.c
+/objdir/msg.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/hello_world1
+/objdir/prefix/bin/hello_world2
+/objdir/prefix/bin/hello_world3
+/objdir/prefix/bin/myscript2
+/objdir/prefix/bin/subdir1
+/objdir/prefix/bin/subdir1/script1
+/objdir/prefix/bin/subdir3
+/objdir/prefix/bin/subdir3/myscript3
+/objdir/prefix/man
+/objdir/prefix/man/cat1
+/objdir/prefix/man/cat1/hello_world.0
+/objdir/prefix/man/man1
+/objdir/prefix/man/man1/hello_world.1
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/files2.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world2
+/objdir/hello_world3.in
+/objdir/main.c
+/objdir/more_scripts/script1
+/objdir/more_scripts/script2
+/objdir/more_scripts/script3
+/objdir/msg.c
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/files2.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world2
+/objdir/hello_world3.in
+/objdir/main.c
+/objdir/more_scripts/script1
+/objdir/more_scripts/script2
+/objdir/more_scripts/script3
+/objdir/msg.c
+/objdir/test.mk
+==== install MKINSTALL=no ====
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_awk.err
+/objdir/_mkc_prog_awk.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/files2.test.out.tmp
+/objdir/hello_world.1
+/objdir/hello_world.cat1
+/objdir/hello_world1
+/objdir/hello_world2
+/objdir/hello_world3
+/objdir/hello_world3.in
+/objdir/main.c
+/objdir/main.o
+/objdir/more_scripts/script1
+/objdir/more_scripts/script2
+/objdir/more_scripts/script3
+/objdir/msg.c
+/objdir/msg.o
+/objdir/test.mk

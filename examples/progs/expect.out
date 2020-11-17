@@ -1,0 +1,110 @@
+PROJECTNAME=progs
+client: I am a client
+server: I am a server
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client
+/objdir/client.c
+/objdir/client.o
+/objdir/client_puts.c
+/objdir/client_puts.o
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server
+/objdir/server.c
+/objdir/server.o
+/objdir/server_puts.c
+/objdir/server_puts.o
+/objdir/test.mk
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/client
+/objdir/prefix/bin/server
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client.c
+/objdir/client_puts.c
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server.c
+/objdir/server_puts.c
+/objdir/test.mk
+========== depend ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client.c
+/objdir/client.d
+/objdir/client_puts.c
+/objdir/client_puts.d
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server.c
+/objdir/server.d
+/objdir/server_puts.c
+/objdir/server_puts.d
+/objdir/test.mk
+========== server ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client.c
+/objdir/client.d
+/objdir/client_puts.c
+/objdir/client_puts.d
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server
+/objdir/server.c
+/objdir/server.d
+/objdir/server.o
+/objdir/server_puts.c
+/objdir/server_puts.d
+/objdir/server_puts.o
+/objdir/test.mk
+========== client ===========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/client
+/objdir/client.c
+/objdir/client.d
+/objdir/client.o
+/objdir/client_puts.c
+/objdir/client_puts.d
+/objdir/client_puts.o
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server.c
+/objdir/server.d
+/objdir/server_puts.c
+/objdir/server_puts.d
+/objdir/test.mk
+======= cleandir ==========
+/objdir/Makefile
+/objdir/client.c
+/objdir/client_puts.c
+/objdir/expect.out
+/objdir/progs.test.out.tmp
+/objdir/server.c
+/objdir/server_puts.c
+/objdir/test.mk

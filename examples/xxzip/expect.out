@@ -1,0 +1,81 @@
+=========== all ============
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pod2html.err
+/objdir/_mkc_prog_pod2html.res
+/objdir/_mkc_prog_pod2man.err
+/objdir/_mkc_prog_pod2man.res
+/objdir/expect.out
+/objdir/test.mk
+/objdir/tutorial.html
+/objdir/tutorial.pod
+/objdir/xxzip
+/objdir/xxzip.1
+/objdir/xxzip.c
+/objdir/xxzip.o
+/objdir/xxzip.pod
+/objdir/xxzip.test.out.tmp
+===== all SHRTOUT=yes ======
+CC: xxzip.c
+LD: xxzip
+POD2MAN: xxzip.1
+NROFF: xxzip.cat1
+POD2HTML: tutorial.html
+========= install ==========
+/objdir/prefix
+/objdir/prefix/bin
+/objdir/prefix/bin/xxunzip
+/objdir/prefix/bin/xxzcat
+/objdir/prefix/bin/xxzip
+/objdir/prefix/man
+/objdir/prefix/man/cat1
+/objdir/prefix/man/cat1/xxunzip.0
+/objdir/prefix/man/cat1/xxzcat.0
+/objdir/prefix/man/cat1/xxzip.0
+/objdir/prefix/man/man1
+/objdir/prefix/man/man1/xxunzip.1
+/objdir/prefix/man/man1/xxzcat.1
+/objdir/prefix/man/man1/xxzip.1
+/objdir/prefix/share
+/objdir/prefix/share/doc
+/objdir/prefix/share/doc/xxzip
+/objdir/prefix/share/doc/xxzip/tutorial.html
+======== uninstall =========
+========== clean ===========
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/_mkc_prog_pod2html.err
+/objdir/_mkc_prog_pod2html.res
+/objdir/_mkc_prog_pod2man.err
+/objdir/_mkc_prog_pod2man.res
+/objdir/expect.out
+/objdir/test.mk
+/objdir/tutorial.pod
+/objdir/xxzip.c
+/objdir/xxzip.pod
+/objdir/xxzip.test.out.tmp
+======== filelist ==========
+/usr/local/bin/xxunzip
+/usr/local/bin/xxzcat
+/usr/local/bin/xxzip
+/usr/local/man/cat1/xxunzip.0
+/usr/local/man/cat1/xxzcat.0
+/usr/local/man/cat1/xxzip.0
+/usr/local/man/man1/xxunzip.1
+/usr/local/man/man1/xxzcat.1
+/usr/local/man/man1/xxzip.1
+/usr/local/share/doc/xxzip/tutorial.html
+======= cleandir ==========
+/objdir/Makefile
+/objdir/expect.out
+/objdir/test.mk
+/objdir/tutorial.pod
+/objdir/xxzip.c
+/objdir/xxzip.pod
+/objdir/xxzip.test.out.tmp
