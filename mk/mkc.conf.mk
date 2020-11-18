@@ -446,10 +446,6 @@ MKC_ERR_MSG +=		"ERROR: prototype test ${p} failed"
 ######################################################
 .else # MKCHECKS == yes
 
-.for i in ${_MKC_SOURCE_FUNCS}
-MKC_SRCS +=	${i} # for changing CLEANFILES
-.endfor
-
 .endif # MKCHECKS?
 
 ######################################################

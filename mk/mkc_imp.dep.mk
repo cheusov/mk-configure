@@ -1,11 +1,11 @@
-# Copyright (c) 2010-1013 by Aleksey Cheusov
+# Copyright (c) 2010-2013,2020 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 
 ######################################################################
 .if !defined(_MKC_IMP_DEP_MK) && !empty(_SRCS_ALL)
 _MKC_IMP_DEP_MK := 1
 
-DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
+DISTCLEANFILES  +=	.depend *.d ${CLEANDEPEND}
 
 ##### Basic targets
 do_depend1 do_depend2: .PHONY # ensure existence

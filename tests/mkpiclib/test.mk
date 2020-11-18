@@ -26,11 +26,11 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= CLEANFILES ==========; \
-	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
+	echo '${CLEANFILES}' | \
 	awk '{for(i=1; i<=NF; ++i) print $$i}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ======= UNINSTALLFILES ==========; \
-	${MAKE} ${MAKEFLAGS} print_values2 VARS='UNINSTALLFILES' MKCHECKS=no | \
+	echo '${UNINSTALLFILES}' | \
 	awk '{for(i=1; i<=NF; ++i) print $$i}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo ======= cleandir ==========; \

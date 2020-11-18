@@ -48,12 +48,17 @@
 /objdir/missing/strlcpy.c
 /objdir/strlcpy2.test.out.tmp
 /objdir/test.mk
+========== depend ==========
+/objdir/hello.d
+/objdir/missing/getline.c
+/objdir/missing/strlcpy.c
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -73,6 +78,7 @@
 /objdir/_mkc_prog_cc.res
 /objdir/expect.out
 /objdir/hello.c
+/objdir/hello.d
 /objdir/input.in
 /objdir/missing/getline.c
 /objdir/missing/strlcpy.c
@@ -88,6 +94,4 @@
 /objdir/strlcpy2.test.out.tmp
 /objdir/test.mk
 ======= CLEANFILES ==========
-hello.o
-strlcpy.o
-getline.o
+*.o

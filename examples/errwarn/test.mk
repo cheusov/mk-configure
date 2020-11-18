@@ -11,7 +11,7 @@ test_output:
 	${.OBJDIR}/hello errx 2 2>&1 >/dev/null; echo '$$?='$$?; \
 	${.OBJDIR}/hello errx 3 2>&1 >/dev/null; echo '$$?='$$?; \
 	echo ======= CLEANFILES ==========; \
-	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \
+	echo '${CLEANFILES}' | \
 	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'; \
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null

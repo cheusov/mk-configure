@@ -1,4 +1,4 @@
-FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|err|getdelim|strndup|_mkcfake)[.]o
+FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|err|getdelim|strndup|_mkcfake)[.][do]
 
 .PHONY : test_output
 test_output :
@@ -13,7 +13,18 @@ test_output :
 	} | \
 	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
-	true =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	echo =========== depend ============; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	find ${.OBJDIR} -type f | LC_ALL=C sort | \
+	grep '[.]d$$' | grep -Ev '${FUNCS_RE}' | \
+	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo =========== clean ============; \
+	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	find ${.OBJDIR} -type f | grep -v _mkc | grep -Ev '${FUNCS_RE}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo =========== cleandir ============; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	find ${.OBJDIR} -type f | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
 
 .include <mkc.minitest.mk>
