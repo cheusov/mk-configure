@@ -120,5 +120,5 @@
 /objdir/test.mk
 ======= CLEANFILES ==========
 *.o
-======= DISTCLEANFILES ==========
+======= CLEANDIRFILES ==========
 *.d

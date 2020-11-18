@@ -5,7 +5,7 @@
 .if !defined(_MKC_IMP_DEP_MK) && !empty(_SRCS_ALL)
 _MKC_IMP_DEP_MK := 1
 
-DISTCLEANFILES  +=	.depend *.d ${CLEANDEPEND}
+CLEANDIRFILES  +=	.depend *.d ${CLEANDEPEND}
 
 ##### Basic targets
 do_depend1 do_depend2: .PHONY # ensure existence

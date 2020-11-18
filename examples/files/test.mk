@@ -7,7 +7,7 @@ test_output:
 	echo =========== vars ============; \
 	echo CLEANFILES=${CLEANFILES:Q} | \
 	mkc_test_helper_paths; \
-	echo DISTCLEANFILES=${DISTCLEANFILES:Q} | \
+	echo CLEANDIRFILES=${CLEANDIRFILES:Q} | \
 	mkc_test_helper_paths; \
 	echo =========== all ============; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \

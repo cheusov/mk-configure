@@ -155,7 +155,7 @@ MKRELOBJDIR  ?=	no
 
 MKINSTALLDIRS   ?=	yes
 
-DISTCLEANFILES  +=	${MKC_CACHEDIR}/_mkc_*
+CLEANDIRFILES  +=	${MKC_CACHEDIR}/_mkc_*
 
 MKDLL     ?=	no
 .if ${MKDLL:tl} == "only"

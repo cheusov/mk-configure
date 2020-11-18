@@ -68,13 +68,13 @@ at_do_${i}: .PHONY
 .endfor
 
 DISTCLEANDIRS  +=	${_FSRCDIR}/autom4te.cache
-DISTCLEANFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
+CLEANDIRFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
    ${_FOBJDIR}/config.status ${_FSRCDIR}/configure ${_FSRCDIR}/depcomp \
    ${_FSRCDIR}/INSTALL ${_FSRCDIR}/install-sh ${_FOBJDIR}/Makefile \
    ${_FSRCDIR}/missing ${_FSRCDIR}/compile ${_FOBJDIR}/stamp-h1
 
 .if ${AT_USE_AUTOMAKE:tl:U} == yes
-DISTCLEANFILES    +=	${_FSRCDIR}/Makefile.in
+CLEANDIRFILES    +=	${_FSRCDIR}/Makefile.in
 MKC_REQUIRE_PROGS +=	automake
 .endif
 

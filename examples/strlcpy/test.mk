@@ -42,8 +42,8 @@ test_output:
 	echo ======= CLEANFILES ==========; \
 	echo "${CLEANFILES}" | \
 	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.][do].?$$/) print $$i}'; \
-	echo ======= DISTCLEANFILES ==========; \
-	echo "${DISTCLEANFILES}" | \
+	echo ======= CLEANDIRFILES ==========; \
+	echo "${CLEANDIRFILES}" | \
 	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.][do].?$$/) print $$i}'
 
 .include <mkc.minitest.mk>
