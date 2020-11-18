@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Mar 25, 2020" "" ""
+.TH MK-CONFIGURE 7 "Nov 17, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -137,7 +137,7 @@ and create .tar/.tar.gz/.tar.bz2/.zip/.deb archive
 containing all installed files.
 The target
 .I bin_deb
-expects debian control files in DEBIAN subdirectory, see examples/hello_files
+expects debian control files in DEBIAN subdirectory, see examples/files
 for the sample.
 .P
 .B NOTE:
