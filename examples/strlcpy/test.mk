@@ -44,6 +44,14 @@ test_output:
 	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.][do].?$$/) print $$i}'; \
 	echo ======= CLEANDIRFILES ==========; \
 	echo "${CLEANDIRFILES}" | \
-	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.][do].?$$/) print $$i}'
+	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.][do].?$$/) print $$i}'; \
+	echo ======= depend to OBJDIR ==========; \
+	mkdir obj; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	find ${.OBJDIR}/obj -type f | grep -vE '${FUNCS_RE}' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	rm -rf obj; \
+	true _______ cleandir _______; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

@@ -38,6 +38,15 @@ test_output:
 	\
 	echo ======= CLEANFILES ==========; \
 	echo '${CLEANFILES}' | \
-	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'
+	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'; \
+	echo ======= depend to OBJDIR ==========; \
+	mkdir obj; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	find ${.OBJDIR}/obj -type f | \
+	grep -vE '(strlcpy|getline)[.]d$$' | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	rm -rf obj; \
+	true _______ cleandir _______ %%; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

@@ -138,3 +138,6 @@ full progname=/path/to/hello
 /objdir/test.mk
 ======= CLEANFILES ==========
 *.o
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/hello.d

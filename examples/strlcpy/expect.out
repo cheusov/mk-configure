@@ -122,3 +122,6 @@
 *.o
 ======= CLEANDIRFILES ==========
 *.d
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/hello.d
