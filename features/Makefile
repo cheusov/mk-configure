@@ -17,7 +17,7 @@ FILES +=	errc/verrc.c
 FILESDIR_errc/verrc.c       =	${FEATURESDIR}/errc
 
 FILES +=	vis/unvis.c
-FILESDIR_vis/unvis.c       =	${FEATURESDIR}/unvis
+FILESDIR_vis/unvis.c       =	${FEATURESDIR}/vis
 
 .for f in libm libdl SLIST RB bswap
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk
