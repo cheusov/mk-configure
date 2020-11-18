@@ -131,3 +131,7 @@
 /objdir/prog2/Makefile
 /objdir/prog2/prog2.c
 /objdir/test.mk
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/prog1.d
+/objdir/obj/prog2.d

@@ -25,6 +25,15 @@ test_output :
 	echo =========== cleandir ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	echo ======= depend to OBJDIR ==========; \
+	mkdir obj; MAKEOBJDIR=${.OBJDIR}/obj; export MAKEOBJDIR; \
+	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	find ${.OBJDIR}/obj -type f | grep -vE '${FUNCS_RE}' | \
+	grep -v _mkc | \
+	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	rm -rf obj; unset MAKEOBJDIR; \
+	true _______ cleandir _______; \
+	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
 .include <mkc.minitest.mk>
