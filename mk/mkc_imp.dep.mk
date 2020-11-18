@@ -20,8 +20,8 @@ MKDEP_CC       ?=	${CC}
 # some of the rules involve .h sources, so remove them from mkdep line
 
 .if defined(_SRCS_ALL)
-__DPSRCS.all  =	${_SRCS_ALL:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
-		${DPSRCS:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
+__DPSRCS.all  =	${_SRCS_ALL:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
+		${DPSRCS:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
 __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
