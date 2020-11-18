@@ -1,6 +1,6 @@
 =========== vars ============
 CLEANFILES=/path/to/files.test.out pod2htmd.tmp pod2htmi.tmp  shell_func.cat7 shell_func.html7 shell_func.info  
-CLEANDIRFILES=/path/to/_mkc_*
+CLEANDIRFILES= /path/to/_mkc_*
 =========== all ============
 /objdir/DEBIAN/control
 /objdir/Makefile

@@ -693,7 +693,7 @@ Additional directories to remove (recursively) for the
 .IR clean " and " cleandir
 targets.
 .RI < "I M" >
-.IP DISTCLEANDIRS
+.IP CLEANDIRDIRS
 Additional directories to remove (recursively) for the
 .IR cleandir
 target.

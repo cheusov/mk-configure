@@ -67,7 +67,7 @@ at_do_${i}: .PHONY
 	fi
 .endfor
 
-DISTCLEANDIRS  +=	${_FSRCDIR}/autom4te.cache
+CLEANDIRDIRS  +=	${_FSRCDIR}/autom4te.cache
 CLEANDIRFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
    ${_FOBJDIR}/config.status ${_FSRCDIR}/configure ${_FSRCDIR}/depcomp \
    ${_FSRCDIR}/INSTALL ${_FSRCDIR}/install-sh ${_FOBJDIR}/Makefile \
