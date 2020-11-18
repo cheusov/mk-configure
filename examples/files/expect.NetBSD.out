@@ -1,12 +1,12 @@
 =========== vars ============
-CLEANFILES=/path/to/hello_files.test.out pod2htmd.tmp pod2htmi.tmp  shell_func.cat7 shell_func.html7 shell_func.info  
+CLEANFILES=/path/to/files.test.out pod2htmd.tmp pod2htmi.tmp  shell_func.cat7 shell_func.html7 shell_func.info  
 DISTCLEANFILES=/path/to/_mkc_*
 =========== all ============
 /objdir/DEBIAN/control
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
-/objdir/hello_files.test.out.tmp
+/objdir/files.test.out.tmp
 /objdir/shell_func.7
 /objdir/shell_func.cat7
 /objdir/shell_func.info
@@ -20,7 +20,7 @@ DISTCLEANFILES=/path/to/_mkc_*
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
-/objdir/hello_files.test.out.tmp
+/objdir/files.test.out.tmp
 /objdir/shell_func.7
 /objdir/shell_func.cat7
 /objdir/shell_func.html7
@@ -59,7 +59,7 @@ DISTCLEANFILES=/path/to/_mkc_*
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
-/objdir/hello_files.test.out.tmp
+/objdir/files.test.out.tmp
 /objdir/shell_func.7
 /objdir/shell_func.texinfo
 /objdir/shell_func1
@@ -71,7 +71,7 @@ DISTCLEANFILES=/path/to/_mkc_*
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
-/objdir/hello_files.test.out.tmp
+/objdir/files.test.out.tmp
 /objdir/shell_func.7
 /objdir/shell_func.texinfo
 /objdir/shell_func1
@@ -83,7 +83,7 @@ DISTCLEANFILES=/path/to/_mkc_*
 /objdir/Makefile
 /objdir/expect.NetBSD.out
 /objdir/expect.out
-/objdir/hello_files.test.out.tmp
+/objdir/files.test.out.tmp
 /objdir/shell_func.7
 /objdir/shell_func.cat7
 /objdir/shell_func.html7
