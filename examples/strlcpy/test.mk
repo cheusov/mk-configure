@@ -49,6 +49,7 @@ test_output:
 	mkdir obj; \
 	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
 	find ${.OBJDIR}/obj -type f | grep -vE '${FUNCS_RE}' | \
+	grep -v _mkc | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	rm -rf obj; \
 	true _______ cleandir _______; \
