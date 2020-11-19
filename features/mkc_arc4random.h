@@ -12,14 +12,19 @@
 #endif
 
 #if HAVE_FUNC0_ARC4RANDOM_STDLIB_H
-#include <stdint.h>
-#include <stdlib.h>
+
+# include <stdint.h>
+# include <stdlib.h>
+
 #else
-#include <stdint.h>
-#include "mkc_externc.h"
+
+# include <stdint.h>
+# include "mkc_externc.h"
+
 __MKC_BEGIN_DECLS
 uint32_t arc4random(void);
 __MKC_END_DECLS
+
 #endif
 
 #endif // _MKC_ARC4RANDOM_H_
