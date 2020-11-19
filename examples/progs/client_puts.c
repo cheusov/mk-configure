@@ -1,9 +1,8 @@
-#include <stdio.h>
+#include <mkc_dprintf.h>
 
 void puts_stdout (const char *);
 
 void puts_stdout (const char *s)
 {
-	printf ("client: ");
-	puts (s);
+	dprintf(1, "client: %s\n", s);
 }

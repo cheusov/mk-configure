@@ -1,7 +1,13 @@
+#include <stdlib.h>
+#include <mkc_efun.h>
+
 void puts_stdout (const char *);
 
 int main (int argc, char **argv)
 {
-	puts_stdout ("I am a client");
+	char *ptr = estrdup("I am a client");
+	puts_stdout (ptr);
+	free(ptr);
+
 	return 0;
 }
