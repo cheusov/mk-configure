@@ -5,6 +5,7 @@
 .ifndef _MKC_IMP_F_VIS_MK
 _MKC_IMP_F_VIS_MK := 1
 
+.if ${OPSYS} != "OpenBSD"
 old :=			${MKC_COMMON_HEADERS}
 
 MKC_COMMON_HEADERS =	stdlib.h
@@ -29,6 +30,7 @@ MKC_CHECK_FUNCLIBS +=	vis nvis strvis stravis strnvis strvisx strnvisx \
 
 MKC_COMMON_HEADERS :=	${old}
 .undef old
+.endif # OpenBSD
 
 .if ${HAVE_FUNCLIB.vis:U} != 1 || ${HAVE_FUNCLIB.nvis:U} != 1 || \
      ${HAVE_FUNCLIB.strvis:U} != 1 || ${HAVE_FUNCLIB.stravis:U} != 1 || \
