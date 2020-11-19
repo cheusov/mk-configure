@@ -110,7 +110,10 @@ char	*snvis(char *, size_t, int, int, int, const char *);
 #if !HAVE_FUNC3_STRVIS_VIS_H
 int	strvis(char *, const char *, int);
 #endif
-#if !HAVE_FUNC4_STRNVIS_VIS_H
+#ifdef __OpenBSD__
+int	_strnvis(char *, size_t, const char *, int);
+#define strnvis(a,b,c,d) _strnvis(a,b,c,d)
+#elif !HAVE_FUNC4_STRNVIS_VIS_H
 int	strnvis(char *, size_t, const char *, int);
 #endif
 
@@ -144,7 +147,10 @@ int	strsenvisx(char *, size_t, const char *, size_t, int, const char *, int *);
 #if !HAVE_FUNC2_STRUNVIS_VIS_H
 int	strunvis(char *, const char *);
 #endif
-#if !HAVE_FUNC3_STRNUNVIS_VIS_H
+#ifdef __OpenBSD__
+int	_strnunvis(char *, size_t, const char *);
+#define strnunvis(a,b,c) _strnunvis(a,b,c)
+#elif !HAVE_FUNC3_STRNUNVIS_VIS_H
 int	strnunvis(char *, size_t, const char *);
 #endif
 
@@ -155,7 +161,10 @@ int	strunvisx(char *, const char *, int);
 int	strnunvisx(char *, size_t, const char *, int);
 #endif
 
-#if !HAVE_FUNC4_UNVIS_VIS_H
+#ifdef __OpenBSD__
+int	_unvis(char *, int, int *, int);
+#define unvis(a,b,c,d) _unvis(a,b,c,d)
+#elif !HAVE_FUNC4_UNVIS_VIS_H
 int	unvis(char *, int, int *, int);
 #endif
 
