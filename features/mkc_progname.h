@@ -13,8 +13,6 @@
 
 #include <stdlib.h>
 
-#else
-
 #include "mkc_externc.h"
 
 __MKC_BEGIN_DECLS
