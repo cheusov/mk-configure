@@ -117,7 +117,7 @@ remove installed files with the help of ${UNINSTALL} command.
 check for MKC_ERR_MSG variable and fails if it set printing
 an error message
 .IP depend
-create .depend file containing list of dependencies (see mkdep(1)).
+create .depend_${.CURDIR:T} file containing list of dependencies (see mkdep(1)).
 .IP filelist
 output a list of destination files of the project, one per line, e.g.
 .VS
@@ -2141,9 +2141,9 @@ Flags passed to ${POD2HTML}
 is internal include file which is included from
 .BR mkc.prog.mk " and " mkc.lib.mk .
 Do not use it directly!  This include file contains the default
-targets for building .depend files.  It creates .d files from entries
+targets for building .depend_${.CURDIR:T} files.  It creates .d files from entries
 in SRCS and DPSRCS that are C, C++, or Objective C source files, and
-builds .depend from the .d files.  All other files in SRCS and all of
+builds .depend_${PROJECTNAME} from the .d files.  All other files in SRCS and all of
 DPSRCS will be used as dependencies for the .d files.
 The following variables are provided:
 .IP SRCS

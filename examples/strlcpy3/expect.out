@@ -81,7 +81,7 @@ full progname=/path/to/hello
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
-/objdir/.depend
+/objdir/.depend_strlcpy3
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -139,5 +139,5 @@ full progname=/path/to/hello
 ======= CLEANFILES ==========
 *.o
 ======= depend to OBJDIR ==========
-/objdir/obj/.depend
+/objdir/obj/.depend_strlcpy3
 /objdir/obj/hello.d

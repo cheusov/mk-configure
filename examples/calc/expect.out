@@ -37,7 +37,7 @@
 /objdir/input.txt
 /objdir/test.mk
 ========== depend ===========
-/objdir/.depend
+/objdir/.depend_calc
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res

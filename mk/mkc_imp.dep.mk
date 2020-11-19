@@ -5,7 +5,8 @@
 .if !defined(_MKC_IMP_DEP_MK) && !empty(_SRCS_ALL)
 _MKC_IMP_DEP_MK := 1
 
-CLEANDIRFILES  +=	.depend *.d ${CLEANDEPEND}
+.MAKE.DEPENDFILE=.depend_${.CURDIR:T}
+CLEANDIRFILES  +=	${.MAKE.DEPENDFILE} *.d ${CLEANDEPEND}
 
 ##### Basic targets
 do_depend1 do_depend2: .PHONY # ensure existence
@@ -26,11 +27,11 @@ __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
 do_depend1: ${DPSRCS}
-do_depend2: .depend
+do_depend2: ${.MAKE.DEPENDFILE}
 
 MESSAGE.dep ?=	@${_MESSAGE} "DEP: ${.TARGET}"
 
-.NOPATH: .depend ${__DPSRCS.d}
+.NOPATH: ${.MAKE.DEPENDFILE} ${__DPSRCS.d}
 
 .if !empty(__DPSRCS.d)
 ${__DPSRCS.d}: ${__DPSRCS.notd} ${DPSRCS}
@@ -58,7 +59,7 @@ MKDEP.s   = ${MKDEP} -f ${.TARGET} ${ddash} ${MKDEPFLAGS} \
 	    ${AFLAGS:C/-([IDU])[  ]*/-\1/Wg:M-[IDU]*} ${_CPPFLAGS}
 .endif
 
-.depend: ${__DPSRCS.d}
+${.MAKE.DEPENDFILE}: ${__DPSRCS.d}
 	${MESSAGE.dep}
 	@${RM} -f ${.TARGET}
 .if ${MKDEP_TYPE:U} == "nbmkdep"

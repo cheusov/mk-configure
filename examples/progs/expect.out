@@ -40,7 +40,7 @@ server: I am a server
 /objdir/server_puts.c
 /objdir/test.mk
 ========== depend ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -58,7 +58,7 @@ server: I am a server
 /objdir/server_puts.d
 /objdir/test.mk
 ========== server ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -79,7 +79,7 @@ server: I am a server
 /objdir/server_puts.o
 /objdir/test.mk
 ========== client ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res

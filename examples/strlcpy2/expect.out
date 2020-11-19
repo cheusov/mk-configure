@@ -58,7 +58,7 @@
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
-/objdir/.depend
+/objdir/.depend_strlcpy2
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -96,5 +96,5 @@
 ======= CLEANFILES ==========
 *.o
 ======= depend to OBJDIR ==========
-/objdir/obj/.depend
+/objdir/obj/.depend_strlcpy2
 /objdir/obj/hello.d

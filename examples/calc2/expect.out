@@ -62,7 +62,7 @@
 /objdir/parser.y
 /objdir/test.mk
 ========== depend ===========
-/objdir/.depend
+/objdir/.depend_calc2
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
