@@ -8,6 +8,13 @@ MKC_IMP.FINAL.MK = 1
 
 .PATH: ${SRC_PATHADD}
 
+.if !empty(DISTCLEANFILES)
+.warning "DISTCLEANFILES variable is deprecated since 2020-11-19, please use CLEANDIRFILES"
+.endif
+.if !empty(DISTCLEANDIRS)
+.warning "DISTCLEANDIRS variable is deprecated since 2020-11-19, please use CLEANDIRDIRS"
+.endif
+
 LDADD +=	${LDADD_${PROJECTNAME}}
 
 LDFLAGS +=	${LDFLAGS_${PROJECTNAME}}
@@ -42,11 +49,11 @@ errorcheck: configure
 realdo_cleandir: mkc_cleandir
 
 mkc_cleandir:
-.if ${CLEANFILES:U} != "" || ${DISTCLEANFILES:U} != ""
-	-${CLEANFILES_CMD} ${DISTCLEANFILES} ${CLEANFILES}
+.if ${CLEANFILES:U} != "" || ${CLEANDIRFILES:U} != ""
+	-${CLEANFILES_CMD} ${CLEANDIRFILES} ${CLEANFILES}
 .endif
-.if ${CLEANDIRS:U} != "" || ${DISTCLEANDIRS:U} != ""
-	-${CLEANDIRS_CMD} ${DISTCLEANDIRS} ${CLEANDIRS}
+.if ${CLEANDIRS:U} != "" || ${CLEANDIRDIRS:U} != ""
+	-${CLEANDIRS_CMD} ${CLEANDIRDIRS} ${CLEANDIRS}
 .endif
 
 ##########

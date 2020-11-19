@@ -64,9 +64,11 @@ proginstall: ${dest_prog.${p}}
 
 ${DESTDIR}${BINDIR}/${PROGNAME.${p}}: ${p} __proginstall
 
-CLEANFILES +=	${OBJS.${p}}
-
 .endfor # ${PROGS}
+
+.if !empty(PROGS)
+CLEANFILES +=	*.o
+.endif
 
 realdo_all: ${PROGS}
 

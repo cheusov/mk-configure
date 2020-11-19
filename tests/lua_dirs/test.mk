@@ -1,4 +1,4 @@
-DISTCLEANDIRS+=	${.CURDIR}/usr
+CLEANDIRDIRS+=	${.CURDIR}/usr
 
 .PHONY : test_output
 test_output:

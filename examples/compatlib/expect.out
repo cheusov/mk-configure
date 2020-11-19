@@ -101,3 +101,37 @@
 /objdir/prog2/prog2
 /objdir/prog2/prog2.c
 /objdir/prog2/prog2.o
+=========== depend ============
+/objdir/prog1/prog1.d
+/objdir/prog2/prog2.d
+=========== clean ============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/compatlib.test.out.tmp
+/objdir/expect.out
+/objdir/libcmpt/.depend
+/objdir/libcmpt/Makefile
+/objdir/prog1/.depend
+/objdir/prog1/Makefile
+/objdir/prog1/prog1.c
+/objdir/prog1/prog1.d
+/objdir/prog2/.depend
+/objdir/prog2/Makefile
+/objdir/prog2/prog2.c
+/objdir/prog2/prog2.d
+/objdir/test.mk
+=========== cleandir ============
+/objdir/Makefile
+/objdir/Makefile.inc
+/objdir/compatlib.test.out.tmp
+/objdir/expect.out
+/objdir/libcmpt/Makefile
+/objdir/prog1/Makefile
+/objdir/prog1/prog1.c
+/objdir/prog2/Makefile
+/objdir/prog2/prog2.c
+/objdir/test.mk
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/prog1.d
+/objdir/obj/prog2.d

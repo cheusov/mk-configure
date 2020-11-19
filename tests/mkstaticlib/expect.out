@@ -41,16 +41,10 @@
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp
 ======= CLEANFILES ==========
+*.o
+*.op
+*.os
 /objdir/mkstaticlib.test.out
-dummy.o
-dummy.op
-dummy.os
-hello_msg1.o
-hello_msg1.op
-hello_msg1.os
-hello_msg2.o
-hello_msg2.op
-hello_msg2.os
 libcxxlib.a
 libcxxlib.so
 libcxxlib.so.1

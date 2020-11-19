@@ -105,8 +105,7 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 .endif # ELF
 .endif # !commands(...)
 
-CLEANFILES += \
-	${OBJS} ${POBJS} ${SOBJS}
+CLEANFILES += *.o *.os *.op
 
 .if !target(libinstall)
 # Make sure it gets defined

@@ -73,12 +73,15 @@ full progname=/path/to/hello
 /objdir/input.in
 /objdir/strlcpy3.test.out.tmp
 /objdir/test.mk
+========== depend ==========
+/objdir/hello.d
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -122,6 +125,7 @@ full progname=/path/to/hello
 /objdir/_mkc_variable_program_invocation_short_name_errno_h.res
 /objdir/expect.out
 /objdir/hello.c
+/objdir/hello.d
 /objdir/input.in
 /objdir/strlcpy3.test.out.tmp
 /objdir/test.mk
@@ -133,8 +137,7 @@ full progname=/path/to/hello
 /objdir/strlcpy3.test.out.tmp
 /objdir/test.mk
 ======= CLEANFILES ==========
-hello.o
-strlcpy.o
-strlcat.o
-getline.o
-progname.o
+*.o
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/hello.d

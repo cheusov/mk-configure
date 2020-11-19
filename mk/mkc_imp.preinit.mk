@@ -9,6 +9,9 @@
 ####################
 BMAKE_REQD ?=	20110606
 
+CLEANDIRFILES += ${DISTCLEANFILES}
+CLEANDIRDIRS += ${DISTCLEANDIRS}
+
 .if !empty(MAKE_VERSION:U)
 _bmake_ok != test ${MAKE_VERSION:Q} -ge ${BMAKE_REQD:Q} && echo 1 || echo 0
 .else

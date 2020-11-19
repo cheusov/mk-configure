@@ -97,10 +97,5 @@
 /objdir/hello.o
 /objdir/test.mk
 ======= CLEANFILES ==========
-hello.o
-getline.o
-fgetln.o
-progname.o
-err.o
-strndup.o
+*.o
 ======= cleandir ==========

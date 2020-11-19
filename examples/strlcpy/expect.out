@@ -21,7 +21,35 @@
 # CONTRAC
 # ARISING
 # POSSIBI
+========== depend ==========
+/objdir/.depend
+/objdir/Makefile
+/objdir/_mkc_cc_type.err
+/objdir/_mkc_cc_type.res
+/objdir/_mkc_func3_getline_stdio_h.c
+/objdir/_mkc_func3_getline_stdio_h.err
+/objdir/_mkc_func3_getline_stdio_h.res
+/objdir/_mkc_func3_strlcpy_string_h.c
+/objdir/_mkc_func3_strlcpy_string_h.err
+/objdir/_mkc_func3_strlcpy_string_h.res
+/objdir/_mkc_funclib_getline.c
+/objdir/_mkc_funclib_getline.err
+/objdir/_mkc_funclib_getline.res
+/objdir/_mkc_funclib_strlcpy.c
+/objdir/_mkc_funclib_strlcpy.err
+/objdir/_mkc_funclib_strlcpy.res
+/objdir/_mkc_prog_cc.err
+/objdir/_mkc_prog_cc.res
+/objdir/expect.out
+/objdir/getline.c
+/objdir/hello.c
+/objdir/hello.d
+/objdir/input.in
+/objdir/strlcpy.c
+/objdir/strlcpy.test.out.tmp
+/objdir/test.mk
 =========== all ============
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -43,6 +71,7 @@
 /objdir/getline.c
 /objdir/hello
 /objdir/hello.c
+/objdir/hello.d
 /objdir/hello.o
 /objdir/input.in
 /objdir/strlcpy.c
@@ -54,6 +83,7 @@
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
+/objdir/.depend
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -74,6 +104,7 @@
 /objdir/expect.out
 /objdir/getline.c
 /objdir/hello.c
+/objdir/hello.d
 /objdir/input.in
 /objdir/strlcpy.c
 /objdir/strlcpy.test.out.tmp
@@ -88,6 +119,9 @@
 /objdir/strlcpy.test.out.tmp
 /objdir/test.mk
 ======= CLEANFILES ==========
-hello.o
-strlcpy.o
-getline.o
+*.o
+======= CLEANDIRFILES ==========
+*.d
+======= depend to OBJDIR ==========
+/objdir/obj/.depend
+/objdir/obj/hello.d

@@ -1,11 +1,11 @@
-# Copyright (c) 2010-1013 by Aleksey Cheusov
+# Copyright (c) 2010-2013,2020 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 
 ######################################################################
 .if !defined(_MKC_IMP_DEP_MK) && !empty(_SRCS_ALL)
 _MKC_IMP_DEP_MK := 1
 
-DISTCLEANFILES  +=	.depend ${__DPSRCS.d} ${CLEANDEPEND}
+CLEANDIRFILES  +=	.depend *.d ${CLEANDEPEND}
 
 ##### Basic targets
 do_depend1 do_depend2: .PHONY # ensure existence
@@ -20,8 +20,8 @@ MKDEP_CC       ?=	${CC}
 # some of the rules involve .h sources, so remove them from mkdep line
 
 .if defined(_SRCS_ALL)
-__DPSRCS.all  =	${_SRCS_ALL:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
-		${DPSRCS:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
+__DPSRCS.all  =	${_SRCS_ALL:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
+		${DPSRCS:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
 __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
