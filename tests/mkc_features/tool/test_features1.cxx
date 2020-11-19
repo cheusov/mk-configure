@@ -66,6 +66,24 @@ int main(int argc, char** argv)
 	reallocarray(NULL, 0, 0);
 	fparseln(NULL, NULL, NULL, "\\\\#", 0);
 	vis(NULL, 0, 0, 0);
+	nvis(NULL, 0, 0, 0, 0);
+	svis(NULL, 0, 0, 0, NULL);
+	snvis(NULL, 0, 0, 0, 0, NULL);
+	strvis(NULL, NULL, 0);
+	strnvis(NULL, 0, NULL, 0);
+	strsvis(NULL, NULL, 0, NULL);
+	strsnvis(NULL, 0, NULL, 0, NULL);
+	strvisx(NULL, NULL, 0, 0);
+	strnvisx(NULL, 0, NULL, 0, 0);
+	strenvisx(NULL, 0, NULL, 0, 0, NULL);
+	strsvisx(NULL, NULL, 0, 0, NULL);
+	strsnvisx(NULL, 0, NULL, 0, 0, NULL);
+	strsenvisx(NULL, 0, NULL, 0, 0, NULL, NULL);
+	strunvis(NULL, NULL);
+	strnunvis(NULL, 0, NULL);
+	strunvisx(NULL, NULL, 0);
+	strnunvisx(NULL, 0, NULL, 0);
+	unvis(NULL, 0, NULL, 0);
 
 	return 0;
 }

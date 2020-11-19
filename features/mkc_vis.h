@@ -38,9 +38,9 @@
 # error "Missing MKC_FEATURES += vis"
 #endif
 
-#if HAVE_SVIS && HAVE_VIS
-#include <stdlib.h> /* for OpenBSD-5.3 */
-#include <vis.h>
+#if HAVE_HEADER_FILE_VIS_H
+# include <stdlib.h> /* for OpenBSD-5.3 */
+# include <vis.h>
 #else
 
 #include <sys/types.h>
@@ -87,40 +87,78 @@
  */
 #define	UNVIS_END	_VIS_END	/* no more characters */
 
+#endif /* HAVE_HEADER_FILE_VIS_H */
+
 #include "mkc_externc.h"
 
 __MKC_BEGIN_DECLS
+
+#if !HAVE_FUNC4_VIS_VIS_H
 char	*vis(char *, int, int, int);
+#endif
+#if !HAVE_FUNC5_NVIS_VIS_H
 char	*nvis(char *, size_t, int, int, int);
+#endif
 
+#if !HAVE_FUNC5_SVIS_VIS_H
 char	*svis(char *, int, int, int, const char *);
+#endif
+#if !HAVE_FUNC6_SNVIS_VIS_H
 char	*snvis(char *, size_t, int, int, int, const char *);
+#endif
 
+#if !HAVE_FUNC3_STRVIS_VIS_H
 int	strvis(char *, const char *, int);
+#endif
+#if !HAVE_FUNC4_STRNVIS_VIS_H
 int	strnvis(char *, size_t, const char *, int);
+#endif
 
+#if !HAVE_FUNC4_STRSVIS_VIS_H
 int	strsvis(char *, const char *, int, const char *);
+#endif
+#if !HAVE_FUNC5_STRSNVIS_VIS_H
 int	strsnvis(char *, size_t, const char *, int, const char *);
+#endif
 
+#if !HAVE_FUNC4_STRVISX_VIS_H
 int	strvisx(char *, const char *, size_t, int);
+#endif
+#if !HAVE_FUNC5_STRNVISX_VIS_H
 int	strnvisx(char *, size_t, const char *, size_t, int);
-int 	strenvisx(char *, size_t, const char *, size_t, int, int *);
+#endif
+#if !HAVE_FUNC6_STRENVISX_VIS_H
+int strenvisx(char *, size_t, const char *, size_t, int, int *);
+#endif
 
+#if !HAVE_FUNC5_STRSVISX_VIS_H
 int	strsvisx(char *, const char *, size_t, int, const char *);
+#endif
+#if !HAVE_FUNC6_STRSNVISX_VIS_H
 int	strsnvisx(char *, size_t, const char *, size_t, int, const char *);
-int	strsenvisx(char *, size_t, const char *, size_t , int, const char *,
-    int *);
+#endif
+#if !HAVE_FUNC7_STRSENVISX_VIS_H
+int	strsenvisx(char *, size_t, const char *, size_t, int, const char *, int *);
+#endif
 
+#if !HAVE_FUNC2_STRUNVIS_VIS_H
 int	strunvis(char *, const char *);
+#endif
+#if !HAVE_FUNC3_STRNUNVIS_VIS_H
 int	strnunvis(char *, size_t, const char *);
+#endif
 
+#if !HAVE_FUNC3_STRUNVISX_VIS_H
 int	strunvisx(char *, const char *, int);
+#endif
+#if !HAVE_FUNC4_STRNUNVISX_VIS_H
 int	strnunvisx(char *, size_t, const char *, int);
+#endif
 
+#if !HAVE_FUNC4_UNVIS_VIS_H
 int	unvis(char *, int, int *, int);
+#endif
 
 __MKC_END_DECLS
 
-#endif /* HAVE_HEADER_FILE_VIS_H */
-
-#endif /* !_MKC_VIS_H_ */
+#endif /* _MKC_VIS_H_ */
