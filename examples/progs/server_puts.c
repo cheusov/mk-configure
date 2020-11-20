@@ -1,9 +1,8 @@
-#include <stdio.h>
+#include <mkc_dprintf.h>
 
 void puts_stdout (const char *);
 
 void puts_stdout (const char *s)
 {
-	printf ("server: ");
-	puts (s);
+	dprintf(1, "server: %s\n", s);
 }

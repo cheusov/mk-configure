@@ -46,7 +46,7 @@
 /objdir/lexer.test.out.tmp
 /objdir/test.mk
 ========== depend ===========
-/objdir/.depend
+/objdir/.depend_lexer
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -70,12 +70,12 @@
 ==== SHRTOUT=yes depend ====
 LEX: lexer.l
 DEP: lexer.d
-DEP: .depend
+DEP: .depend_lexer
 ==== SHRTOUT=yes all ====
 LEX: lexer.l
 CC: lexer.c
 LD: lexer
-/objdir/.depend
+/objdir/.depend_lexer
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res

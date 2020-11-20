@@ -50,7 +50,6 @@ __RCSID("$NetBSD: unvis.c,v 1.41 2012/12/15 04:29:53 matt Exp $");
 #include <stdio.h>
 #include <errno.h>
 
-#if !HAVE_VIS
 /*
  * decode driven by state machine
  */
@@ -184,6 +183,7 @@ static const struct nv {
 	{ "yuml",	255 }, /* small y, dieresis or umlaut mark  */
 };
 
+#if !HAVE_UNVIS || defined(__OpenBSD__)
 /*
  * unvis - decode characters previously encoded by vis
  */
@@ -223,22 +223,30 @@ unvis(char *cp, int c, int *astate, int flag)
 
 	case S_GROUND:
 		*cp = 0;
+#ifdef VIS_NOESCAPE
 		if ((flag & VIS_NOESCAPE) == 0 && c == '\\') {
 			*astate = SS(0, S_START);
 			return UNVIS_NOCHAR;
 		}
+#endif
+#ifdef VIS_HTTP1808
 		if ((flag & VIS_HTTP1808) && c == '%') {
 			*astate = SS(0, S_HEX1);
 			return UNVIS_NOCHAR;
 		}
+#endif
+#ifdef VIS_HTTP1866
 		if ((flag & VIS_HTTP1866) && c == '&') {
 			*astate = SS(0, S_AMP);
 			return UNVIS_NOCHAR;
 		}
+#endif
+#ifdef VIS_MIMESTYLE
 		if ((flag & VIS_MIMESTYLE) && c == '=') {
 			*astate = SS(0, S_MIME1);
 			return UNVIS_NOCHAR;
 		}
+#endif
 		*cp = c;
 		return UNVIS_VALID;
 
@@ -474,6 +482,7 @@ unvis(char *cp, int c, int *astate, int flag)
 		return UNVIS_SYNBAD;
 	}
 }
+#endif
 
 /*
  * strnunvisx - decode src into dst
@@ -482,6 +491,7 @@ unvis(char *cp, int c, int *astate, int flag)
  *	Dst is null terminated.
  */
 
+#if !HAVE_STRNUNVISX
 int
 strnunvisx(char *dst, size_t dlen, const char *src, int flag)
 {
@@ -530,19 +540,25 @@ strnunvisx(char *dst, size_t dlen, const char *src, int flag)
 	*dst = '\0';
 	return (int)(dst - start);
 }
+#endif
 
+#if !HAVE_STRUNVISX
 int
 strunvisx(char *dst, const char *src, int flag)
 {
 	return strnunvisx(dst, (size_t)~0, src, flag);
 }
+#endif
 
+#if !HAVE_STRUNVIS
 int
 strunvis(char *dst, const char *src)
 {
 	return strnunvisx(dst, (size_t)~0, src, 0);
 }
+#endif
 
+#if !HAVE_STRNUNVIS || defined(__OpenBSD__)
 int
 strnunvis(char *dst, size_t dlen, const char *src)
 {

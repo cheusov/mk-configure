@@ -22,7 +22,7 @@
 # ARISING
 # POSSIBI
 ========== depend ==========
-/objdir/.depend
+/objdir/.depend_strlcpy
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -49,7 +49,7 @@
 /objdir/strlcpy.test.out.tmp
 /objdir/test.mk
 =========== all ============
-/objdir/.depend
+/objdir/.depend_strlcpy
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -83,7 +83,7 @@
 /objdir/prefix/bin/hello
 ======== uninstall =========
 ========== clean ===========
-/objdir/.depend
+/objdir/.depend_strlcpy
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
@@ -123,5 +123,5 @@
 ======= CLEANDIRFILES ==========
 *.d
 ======= depend to OBJDIR ==========
-/objdir/obj/.depend
+/objdir/obj/.depend_strlcpy
 /objdir/obj/hello.d

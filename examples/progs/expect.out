@@ -3,10 +3,6 @@ client: I am a client
 server: I am a server
 =========== all ============
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/client
 /objdir/client.c
 /objdir/client.o
@@ -28,10 +24,6 @@ server: I am a server
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/client.c
 /objdir/client_puts.c
 /objdir/expect.out
@@ -40,12 +32,8 @@ server: I am a server
 /objdir/server_puts.c
 /objdir/test.mk
 ========== depend ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/client.c
 /objdir/client.d
 /objdir/client_puts.c
@@ -58,12 +46,8 @@ server: I am a server
 /objdir/server_puts.d
 /objdir/test.mk
 ========== server ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/client.c
 /objdir/client.d
 /objdir/client_puts.c
@@ -79,12 +63,8 @@ server: I am a server
 /objdir/server_puts.o
 /objdir/test.mk
 ========== client ===========
-/objdir/.depend
+/objdir/.depend_progs
 /objdir/Makefile
-/objdir/_mkc_cc_type.err
-/objdir/_mkc_cc_type.res
-/objdir/_mkc_prog_cc.err
-/objdir/_mkc_prog_cc.res
 /objdir/client
 /objdir/client.c
 /objdir/client.d

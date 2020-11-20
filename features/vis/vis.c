@@ -71,7 +71,6 @@ __RCSID("$NetBSD: vis.c,v 1.60 2013/02/21 16:21:20 joerg Exp $");
 #include <wctype.h>
 #include <inttypes.h>
 
-#if !HAVE_VIS || !HAVE_SVIS
 #include <ctype.h>
 #include <limits.h>
 #include <stdio.h>
@@ -123,6 +122,7 @@ static wchar_t *do_svis(wchar_t *, wint_t, int, wint_t, const wchar_t *);
 #endif /* !__NetBSD__ */
 #endif
 
+#ifdef VIS_HTTPSTYLE
 /*
  * This is do_hvis, for HTTP style (RFC 1808)
  */
@@ -144,7 +144,9 @@ do_hvis(wchar_t *dst, wint_t c, int flags, wint_t nextc, const wchar_t *extra)
 
 	return dst;
 }
+#endif
 
+#ifdef VIS_MIMESTYLE
 /*
  * This is do_mvis, for Quoted-Printable MIME (RFC 2045)
  * NB: No handling of long lines or CRLF.
@@ -166,6 +168,7 @@ do_mvis(wchar_t *dst, wint_t c, int flags, wint_t nextc, const wchar_t *extra)
 		dst = do_svis(dst, c, flags, nextc, extra);
 	return dst;
 }
+#endif
 
 /*
  * Output single byte of multibyte character.
@@ -288,10 +291,14 @@ typedef wchar_t *(*visfun_t)(wchar_t *, wint_t, int, wint_t, const wchar_t *);
 static visfun_t
 getvisfun(int flags)
 {
+#ifdef VIS_HTTPSTYLE
 	if (flags & VIS_HTTPSTYLE)
 		return do_hvis;
+#endif
+#ifdef VIS_MIMESTYLE
 	if (flags & VIS_MIMESTYLE)
 		return do_mvis;
+#endif
 	return do_svis;
 }
 
@@ -521,9 +528,7 @@ out:
 	free(psrc);
 	return error;
 }
-#endif
 
-#if !HAVE_SVIS
 /*
  *	The "svis" variants all take an "extra" arg that is a pointer
  *	to a NUL-terminated list of characters to be encoded, too.
@@ -531,6 +536,7 @@ out:
  *	way so that they are not interpreted by a shell.
  */
 
+#if !HAVE_SVIS
 char *
 svis(char *mbdst, int c, int flags, int nextc, const char *mbextra)
 {
@@ -545,7 +551,9 @@ svis(char *mbdst, int c, int flags, int nextc, const char *mbextra)
 		return NULL;
 	return mbdst + ret;
 }
+#endif
 
+#if !HAVE_SNVIS
 char *
 snvis(char *mbdst, size_t dlen, int c, int flags, int nextc, const char *mbextra)
 {
@@ -560,32 +568,42 @@ snvis(char *mbdst, size_t dlen, int c, int flags, int nextc, const char *mbextra
 		return NULL;
 	return mbdst + ret;
 }
+#endif
 
+#if !HAVE_STRSVIS
 int
 strsvis(char *mbdst, const char *mbsrc, int flags, const char *mbextra)
 {
 	return istrsenvisx(mbdst, NULL, mbsrc, 0, flags, mbextra, NULL);
 }
+#endif
 
+#if !HAVE_STRSNVIS
 int
 strsnvis(char *mbdst, size_t dlen, const char *mbsrc, int flags, const char *mbextra)
 {
 	return istrsenvisx(mbdst, &dlen, mbsrc, 0, flags, mbextra, NULL);
 }
+#endif
 
+#if !HAVE_STRSVISX
 int
 strsvisx(char *mbdst, const char *mbsrc, size_t len, int flags, const char *mbextra)
 {
 	return istrsenvisx(mbdst, NULL, mbsrc, len, flags, mbextra, NULL);
 }
+#endif
 
+#if !HAVE_STRSNVISX
 int
 strsnvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     const char *mbextra)
 {
 	return istrsenvisx(mbdst, &dlen, mbsrc, len, flags, mbextra, NULL);
 }
+#endif
 
+#if !HAVE_STRSENVISX
 int
 strsenvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     const char *mbextra, int *cerr_ptr)
@@ -594,10 +612,10 @@ strsenvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
 }
 #endif
 
-#if !HAVE_VIS
 /*
  * vis - visually encode characters
  */
+#if !HAVE_VIS
 char *
 vis(char *mbdst, int c, int flags, int nextc)
 {
@@ -612,7 +630,9 @@ vis(char *mbdst, int c, int flags, int nextc)
 		return NULL;
 	return mbdst + ret;
 }
+#endif
 
+#if !HAVE_NVIS
 char *
 nvis(char *mbdst, size_t dlen, int c, int flags, int nextc)
 {
@@ -627,6 +647,7 @@ nvis(char *mbdst, size_t dlen, int c, int flags, int nextc)
 		return NULL;
 	return mbdst + ret;
 }
+#endif
 
 /*
  * strvis - visually encode characters from src into dst
@@ -636,17 +657,21 @@ nvis(char *mbdst, size_t dlen, int c, int flags, int nextc)
  *	is returned.
  */
 
+#if !HAVE_STRVIS
 int
 strvis(char *mbdst, const char *mbsrc, int flags)
 {
 	return istrsenvisx(mbdst, NULL, mbsrc, 0, flags, "", NULL);
 }
+#endif
 
+#if !HAVE_STRNVIS || defined(__OpenBSD__)
 int
 strnvis(char *mbdst, size_t dlen, const char *mbsrc, int flags)
 {
 	return istrsenvisx(mbdst, &dlen, mbsrc, 0, flags, "", NULL);
 }
+#endif
 
 /*
  * strvisx - visually encode characters from src into dst
@@ -659,18 +684,23 @@ strnvis(char *mbdst, size_t dlen, const char *mbsrc, int flags)
  *	This is useful for encoding a block of data.
  */
 
+#if !HAVE_STRVISX
 int
 strvisx(char *mbdst, const char *mbsrc, size_t len, int flags)
 {
 	return istrsenvisx(mbdst, NULL, mbsrc, len, flags, "", NULL);
 }
+#endif
 
+#if !HAVE_STRNVISX
 int
 strnvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags)
 {
 	return istrsenvisx(mbdst, &dlen, mbsrc, len, flags, "", NULL);
 }
+#endif
 
+#if !HAVE_STRENVISX
 int
 strenvisx(char *mbdst, size_t dlen, const char *mbsrc, size_t len, int flags,
     int *cerr_ptr)

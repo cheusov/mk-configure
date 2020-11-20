@@ -1,3 +1,5 @@
+FEATURES_RE=_mkc_|efun|progname|strlc|dprintf|strndup|err
+
 .PHONY : test_output
 test_output:
 	@set -e; \
@@ -8,7 +10,7 @@ test_output:
 	MKCATPAGES=yes; export MKCATPAGES; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev '${FEATURES_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install ==========; \
@@ -24,23 +26,23 @@ test_output:
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev '${FEATURES_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== depend ===========; \
 	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev '${FEATURES_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== server ===========; \
 	${MAKE} ${MAKEFLAGS} server > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev '${FEATURES_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ========== client ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	${MAKE} ${MAKEFLAGS} client > /dev/null; \
-	find ${.OBJDIR} -type f | \
+	find ${.OBJDIR} -type f | grep -Ev '${FEATURES_RE}' | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}";\
 	\
 	echo ======= cleandir ==========; \

@@ -11,11 +11,7 @@
 # error "Missing MKC_FEATURES += progname"
 #endif
 
-#ifdef MKC_PROGNAME_IS_FINE
-
 #include <stdlib.h>
-
-#else
 
 #include "mkc_externc.h"
 
@@ -30,7 +26,5 @@ const char * getprogname (void);
 #endif
 
 __MKC_END_DECLS
-
-#endif /* MKC_PROGNAME_IS_FINE */
 
 #endif // _MKC_PROGNAME_H_

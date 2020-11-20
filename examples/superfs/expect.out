@@ -98,12 +98,12 @@ So, there is nothing to configure in a special way.
 /objdir/docs/NEWS
 /objdir/docs/README
 /objdir/expect.out
-/objdir/fsck_superfs/.depend
+/objdir/fsck_superfs/.depend_fsck_superfs
 /objdir/fsck_superfs/Makefile
 /objdir/fsck_superfs/fsck_superfs.8
 /objdir/fsck_superfs/fsck_superfs.c
 /objdir/fsck_superfs/fsck_superfs.d
-/objdir/mkfs_superfs/.depend
+/objdir/mkfs_superfs/.depend_mkfs_superfs
 /objdir/mkfs_superfs/Makefile
 /objdir/mkfs_superfs/mkfs_superfs.8
 /objdir/mkfs_superfs/mkfs_superfs.c
