@@ -38,7 +38,7 @@
 # error "Missing MKC_FEATURES += vis"
 #endif
 
-#if HAVE_HEADER_FILE_VIS_H
+#if HAVE_HEADER_FILE_VIS_H && HAVE_VIS
 # include <stdlib.h> /* for OpenBSD-5.3 */
 # include <vis.h>
 #else
