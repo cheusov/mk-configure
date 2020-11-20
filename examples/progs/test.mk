@@ -1,4 +1,4 @@
-FEATURES_RE=_mkc_|efun|progname|strlc
+FEATURES_RE=_mkc_|efun|progname|strlc|dprintf|strndup|err
 
 .PHONY : test_output
 test_output:
