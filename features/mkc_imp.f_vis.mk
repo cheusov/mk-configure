@@ -5,7 +5,7 @@
 .ifndef _MKC_IMP_F_VIS_MK
 _MKC_IMP_F_VIS_MK := 1
 
-.if ${OPSYS} != "OpenBSD" && ${OPSYS} != "FreeBSD"
+.if ${OPSYS} == "NetBSD"
 old :=			${MKC_COMMON_HEADERS}
 
 MKC_COMMON_HEADERS =	stdlib.h
