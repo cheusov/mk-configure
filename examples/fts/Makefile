@@ -1,5 +1,11 @@
-PROG =	fts
+PROG =			prog
+SRCS =			prog.c
 
-MKC_REQUIRE_HEADERS +=	sys/types.h,sys/stat.h,fts.h
+WARNS =			4
 
-.include <mkc.mk>
+MKC_FEATURES +=		fts
+
+MKC_REQD =		0.34.99
+
+.include "test.mk"
+.include <mkc.prog.mk>

@@ -8,5 +8,5 @@ examples    =	hello_world files files2 sizeof lexer \
    autotools autoconf libdeps compatlib \
    require_tools check_compiler_opts help_target \
    arc4random bswap dprintf efun strsep errc posix_getopt \
-   raise_default_signal reallocarray fparseln vis
-# fts (fts.h)
+   raise_default_signal reallocarray fparseln vis \
+   fts

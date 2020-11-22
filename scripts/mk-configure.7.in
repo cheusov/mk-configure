@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 19, 2020" "" ""
+.TH MK-CONFIGURE 7 "Nov 22, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -1706,6 +1706,12 @@ This feature provides errc(3) and verrc(3) BSD-isms.
 .TP
 .B fgetln
 This feature provides fgetln(3) BSD-ism.
+.TP
+.B fts
+This feature provides fts_open(3), fts_read(3) etc. functions
+available on BSDs and Linux. If it is absent on your system,
+you have to install libfts (both headers and library).
+libfts is a part of musl project.
 .TP
 .B getdelim
 This feature provides getdelim(3) from POSIX.

@@ -28,6 +28,7 @@
 #include "mkc_reallocarray.h"
 #include "mkc_fparseln.h"
 #include "mkc_vis.h"
+#include "mkc_fts.h"
 
 int main(int argc, char** argv)
 {
@@ -84,6 +85,7 @@ int main(int argc, char** argv)
 	strunvisx(NULL, NULL, 0);
 	strnunvisx(NULL, 0, NULL, 0);
 	unvis(NULL, 0, NULL, 0);
+	fts_read(NULL);
 
 	return 0;
 }
