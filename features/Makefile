@@ -1,7 +1,7 @@
 FILES                      +=	mkc_imp.f_libl.mk
 FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
 
-FILES                     +=	mkc_externc.h mkc_fts.h
+FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
 .for f in strlcat strlcpy getline progname warn err fgetln getdelim strndup \
@@ -19,7 +19,7 @@ FILESDIR_errc/verrc.c       =	${FEATURESDIR}/errc
 FILES +=	vis/unvis.c
 FILESDIR_vis/unvis.c       =	${FEATURESDIR}/vis
 
-.for f in libm libdl SLIST RB bswap
+.for f in libm libdl SLIST RB bswap fts
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
