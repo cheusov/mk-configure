@@ -6,6 +6,11 @@ MKC_CHECK_PROTOTYPES   +=	fts_read
 MKC_PROTOTYPE_FUNC.fts_read =	FTSENT*fts_read(FTS*ftsp)
 MKC_PROTOTYPE_HEADERS.fts_read=	sys/types.h,sys/stat.h,fts.h
 
+MKC_CHECK_PROTOTYPES         +=	fts_open
+MKC_PROTOTYPE_FUNC.fts_open   =	FTS *fts_open(char * const *, int, \
+	int (*)(const FTSENT **, const FTSENT **));
+MKC_PROTOTYPE_HEADERS.fts_open=	sys/types.h sys/stat.h fts.h
+
 MKC_CHECK_FUNCS1 +=		htobe32:sys/endian.h
 MKC_FUNC_OR_DEFINE.htobe32 +=	yes
 
@@ -16,8 +21,8 @@ MKC_FUNC_OR_DEFINE.bswap64 +=	yes
 
 .if ${OPSYS:U} == "NetBSD"
 VARIABLES_TO_CHECK=	HAVE_HEADER.vis_h HAVE_HEADER.fts_h HAVE_HEADER_FILE.fts_h \
-	HAVE_PROTOTYPE.fts_read HAVE_FUNC1.htobe32.sys_endian_h \
-	HAVE_FUNC1.bswap64.machine_bswap_h
+	HAVE_PROTOTYPE.fts_read HAVE_PROTOTYPE.fts_open \
+	HAVE_FUNC1.htobe32.sys_endian_h HAVE_FUNC1.bswap64.machine_bswap_h
 .include "test.mk"
 .else
 .PHONY: test
