@@ -25,6 +25,9 @@
     _mkc_funclib_fts_read_fts.res
     _mkc_prog_cc.err
     _mkc_prog_cc.res
+    _mkc_prototype_FTS~8fts_open_char~8~const~8,~int,~int_8__const~FTSENT~88,~const~FTSENT~88__;_sys_types_h~sys_stat_h~fts_h.c
+    _mkc_prototype_FTS~8fts_open_char~8~const~8,~int,~int_8__const~FTSENT~88,~const~FTSENT~88__;_sys_types_h~sys_stat_h~fts_h.err
+    _mkc_prototype_FTS~8fts_open_char~8~const~8,~int,~int_8__const~FTSENT~88,~const~FTSENT~88__;_sys_types_h~sys_stat_h~fts_h.res
     dir
         subdir
     expect.out

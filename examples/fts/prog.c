@@ -1,9 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <sys/types.h>
-#include <fts.h>
 #include <string.h>
 #include <errno.h>
+
+#include "mkc_fts.h"
 
 static int compare(const FTSENT** one, const FTSENT** two)
 {
