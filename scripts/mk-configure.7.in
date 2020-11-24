@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 22, 2020" "" ""
+.TH MK-CONFIGURE 7 "Nov 24, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -1684,7 +1684,10 @@ Currently the following features are provided:
 .RS
 .TP
 .B arc4random
-This feature provides arc4random(3) function available in *BSD.
+This feature provides arc4random(3), arc4random_buf(3) and
+arc4random_uniform(3) functions available in BSDs.
+If these functions are absent on your system,
+install libbsd library.
 .TP
 .B bswap
 This feature provides bswap16(3), bswap32(3) and bswap64(3)
