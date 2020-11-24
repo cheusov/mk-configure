@@ -5,13 +5,14 @@
 
 int main (int argc, char **argv)
 {
+	int i;
 	uint32_t rnd = arc4random();
 	printf("random: %llu\n", (long long unsigned) rnd);
 	putc('\n', stdout);
 
 	char buffer[BUF_SIZE];
 	arc4random_buf(buffer, BUF_SIZE);
-	for (int i = 0; i < BUF_SIZE; ++i){
+	for (i = 0; i < BUF_SIZE; ++i){
 		printf("buf[%d]: 0x%02x\n", i, (unsigned char) buffer[i]);
 	}
 	putc('\n', stdout);
