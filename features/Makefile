@@ -5,7 +5,7 @@ FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
 .for f in strlcat strlcpy getline progname warn err fgetln getdelim strndup \
-    arc4random dprintf efun strsep errc posix_getopt raise_default_signal \
+    dprintf efun strsep errc posix_getopt raise_default_signal \
     reallocarray fparseln vis
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
@@ -19,7 +19,7 @@ FILESDIR_errc/verrc.c       =	${FEATURESDIR}/errc
 FILES +=	vis/unvis.c
 FILESDIR_vis/unvis.c       =	${FEATURESDIR}/vis
 
-.for f in libm libdl SLIST RB bswap fts
+.for f in libm libdl SLIST RB bswap fts arc4random
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}

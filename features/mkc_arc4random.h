@@ -11,20 +11,33 @@
 # error "Missing MKC_FEATURES += arc4random"
 #endif
 
-#if HAVE_FUNC0_ARC4RANDOM_STDLIB_H
-
 # include <stdint.h>
 # include <stdlib.h>
 
-#else
-
-# include <stdint.h>
 # include "mkc_externc.h"
 
 __MKC_BEGIN_DECLS
-uint32_t arc4random(void);
-__MKC_END_DECLS
 
+#if !HAVE_FUNC0_ARC4RANDOM_STDLIB_H
+uint32_t arc4random(void);
 #endif
+
+#if !HAVE_FUNC0_ARC4RANDOM_STIR_STDLIB_H
+void arc4random_stir(void);
+#endif
+
+#if !HAVE_FUNC1_ARC4RANDOM_UNIFORM_STDLIB_H
+uint32_t arc4random_uniform(uint32_t upper_bound);
+#endif
+
+#if !HAVE_FUNC2_ARC4RANDOM_BUF_STDLIB_H
+void arc4random_buf(void *buf, size_t nbytes);
+#endif
+
+#if !HAVE_FUNC2_ARC4RANDOM_ADDRANDOM_STDLIB_H
+void arc4random_addrandom(unsigned char *dat, int datlen);
+#endif
+
+__MKC_END_DECLS
 
 #endif // _MKC_ARC4RANDOM_H_
