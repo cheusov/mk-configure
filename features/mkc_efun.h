@@ -38,13 +38,16 @@
 #if defined(HAVE_FUNC2_ECALLOC_UTIL_H)
 #  include <util.h>
 #else
-#  include "mkc_efun.h"
 
-#include <stdarg.h>
-#include <stdint.h>
-#include <stdio.h>
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
 
-#include <mkc_externc.h>
+#  include <stdarg.h>
+#  include <stdint.h>
+#  include <stdio.h>
+
+#  include <mkc_externc.h>
 
 __MKC_BEGIN_DECLS
 
