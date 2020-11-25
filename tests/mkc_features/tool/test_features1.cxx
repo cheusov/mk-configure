@@ -1,6 +1,5 @@
 #include <stdio.h>
 
-#include "mkc_arc4random.h"
 #include "mkc_strlcat.h"
 #include "mkc_strlcpy.h"
 #include "mkc_getline.h"
@@ -45,7 +44,6 @@ int main(int argc, char** argv)
 	setprogname("baz");
 	fgetln(stdin, &line_size);
 	strndup("foo", 10);
-	arc4random();
 	bswap16(1);
 	bswap32(1);
 	bswap64(1);
