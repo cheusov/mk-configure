@@ -3,7 +3,7 @@ SRCS =			prog.c
 
 WARNS =			4
 
-MKC_FEATURES +=		errc
+MKC_FEATURES +=		errc progname
 
 MKC_REQD =		0.34.99
 
