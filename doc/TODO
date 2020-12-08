@@ -1,4 +1,26 @@
 ============================================================
+Speed-up processing by .ifdef-ing unnecessary .include-s.
+In particular mkc.conf should be splitter into small
+portions each of which should ne included only if necessary
+
+============================================================
+MKC_REQUIRE_xxx: avoid use of :M. Use iteration
+over ${MKC_REQUIRE_xxx} instead.
+
+============================================================
+Add feature "humanize_number" from NetBSD
+
+============================================================
+SHRTOUT -- set -x and redirect everything to temporary
+log file and print it only if the target fails?
+
+============================================================
+${SYSCONFDIR}/mkcmake.conf instead of ${SYSCONFDIR}/etc/mk-c.conf?
+
+Example for ${SYSCONFDIR}/mk-c.conf
+that loads ${HOME}/.mkcmake.conf?
+
+============================================================
 All targets:
    make_me ... > $@.tmp && mv $@
 
