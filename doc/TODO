@@ -21,6 +21,10 @@ Example for ${SYSCONFDIR}/mk-c.conf
 that loads ${HOME}/.mkcmake.conf?
 
 ============================================================
+Make sure ${MAKECONF} and ${SYSCONFDIR}/mkcmake.conf are
+included after PROJECTNAME is set.
+
+============================================================
 All targets:
    make_me ... > $@.tmp && mv $@
 
