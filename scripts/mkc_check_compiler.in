@@ -47,6 +47,7 @@ checks() {
 __INTEL_COMPILER   icc     __INTEL_COMPILER
          __PCC__   pcc     __PCC__.__PCC_MINOR__.__PCC_MINORMINOR__
         __GNUC__   gcc     __GNUC__.__GNUC_MINOR__.__GNUC_PATCHLEVEL__
+ __ARMCC_VERSION   armcc    __ARMCC_VERSION
         _MSC_VER   msc     _MSC_VER
         __HP_aCC   hpc     __HP_aCC
          __HP_cc   hpc     __HP_aCC
@@ -79,6 +80,7 @@ END {
     $CC -E "$tmpfile" |
     @AWK@ 'BEGIN { ret="unknown"}
 	$1 == "compiler" {
+	    sub(/\r$/, "")
 	    compiler = $2
 	    $1 = $2 = ""
 	    gsub(/ /, "", $0)

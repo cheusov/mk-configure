@@ -4,10 +4,11 @@ CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaratio
 CFLAGS.dflt.icc       =		-we147 -we10006 # 147 is required for MKC_CHECK_PROTOTYPES
 CFLAGS.dflt.sunpro    =		-errtags
 
-CFLAGS.warnerr.gcc =		-Werror
+CFLAGS.warnerr.gcc    =		-Werror
 CFLAGS.warnerr.clang  =		-Werror
 CFLAGS.warnerr.icc    =		-Werror
 CFLAGS.warnerr.sunpro =		-errwarn=%all
+CFLAGS.warnerr.armcc  =		--diag_error=warning
 
 CFLAGS.warns.gcc.1 =		-Wall -Wstrict-prototypes -Wmissing-prototypes \
 				-Wpointer-arith -Wreturn-type

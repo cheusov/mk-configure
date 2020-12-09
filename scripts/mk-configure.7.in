@@ -538,6 +538,7 @@ gcc       GNU C/C++ compiler
 pcc       Portable C compiler
 icc       Intel C/C++ compiler
 msc       Microsoft C/C++ compiler
+armcc     ARM C/C++ compiler
 hpc       HP-UX C/C++ compiler
 sunpro    SUNWspro C/C++ compiler
 ibmc      IBM C/C++ compiler (Visual Age for C/C++?)
