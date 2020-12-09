@@ -6,4 +6,4 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    create_cachedir sys_queue predopost_targets FSRCDIR mkc_features \
    os_NetBSD os_OpenBSD os_Linux dltest mkc_install mkc_check_custom \
    cccxx_type cc_type_custom_check1 cc_type_custom_check2 \
-   cc_type_custom_check3 cxx_type_custom_check
+   cc_type_custom_check3 cxx_type_custom_check failed_requirements

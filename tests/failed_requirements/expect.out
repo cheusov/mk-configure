@@ -1,0 +1,11 @@
+=========== all ============
+ERROR: header bad_header.h does not exist
+ERROR: header bad_header.h does not exist or is not compilable
+ERROR: cannot find function bad_func
+ERROR: cannot find declaration of define ZZZZ:string.h
+ERROR: cannot find declaration of type zzzz_t:sys/cdefs.h
+ERROR: cannot find declaration of variable zzzz:string.h
+ERROR: cannot find member struct-stat.st_atimespec:foo.h
+ERROR: cannot find declaration of function zzzz:unistd.h
+ERROR: cannot find program zzz_tool
+ERROR: prototype test proto failed

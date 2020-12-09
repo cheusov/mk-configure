@@ -4,10 +4,6 @@ In particular mkc.conf should be splitter into small
 portions each of which should ne included only if necessary
 
 ============================================================
-MKC_REQUIRE_xxx: avoid use of :M. Use iteration
-over ${MKC_REQUIRE_xxx} instead.
-
-============================================================
 Add features "humanize_number" and shquote(3) from NetBSD
 
 ============================================================
