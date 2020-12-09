@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 24, 2020" "" ""
+.TH MK-CONFIGURE 7 "Dec 9, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -191,6 +191,10 @@ Double underline in the flag is considered as a single space character.
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CFLAGS_<source>
+Similar to CFLAGS but for the specified source file.
+Basename of the source file is used.
+.RI < "Mu" >
 .IP CLEANFILES_CMD
 Command for removing files used by targets "clean" and "cleandir".
 .RI < Iu >
@@ -230,6 +234,10 @@ Same as CXXFLAGS but every option is checked whether it is a valid one for C++ c
 .IP CXXFLAGS_<project>
 Similar to CXXFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CXXFLAGS_<source>
+Similar to CXXFLAGS but for the specified source file.
+Basename of the source file is used.
+.RI < "Mu" >
 .IP CPP
 C Pre-Processor.
 .RI < Iu >
@@ -240,6 +248,10 @@ Additional flags to the C/C++ pre-processor.
 .IP CPPFLAGS_<project>
 Similar to CPPFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
+.IP CPPFLAGS_<source>
+Similar to CPPFLAGS but for the specified source file.
+Basename of the source file is used.
+.RI < "Mu" >
 .IP CPPFLAGS0
 The same as CPPFLAGS but CPPFLAGS0 is passed to the compiler before CPPFLAGS.
 Normally, CPPFLAGS0 should be modified in makefiles and should not

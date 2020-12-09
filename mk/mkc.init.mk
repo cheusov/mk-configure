@@ -191,10 +191,10 @@ MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 COMPILE.s ?=	${_V} ${CC_PREFIX} ${CC} ${AFLAGS} -c
 MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CFLAGS.ssp} ${CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CFLAGS.ssp} ${CFLAGS.pie} ${CFLAGS.warns} ${CFLAGS} ${CFLAGS_${_PN}} ${CFLAGS_${<:T}} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CXXFLAGS.ssp} ${CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CXXFLAGS.ssp} ${CXXFLAGS.pie} ${CXXFLAGS.warns} ${CXXFLAGS} ${CXXFLAGS_${_PN}} ${CXXFLAGS_${<:T}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 _CPPFLAGS   =	${CPPFLAGS0} ${CPPFLAGS}
