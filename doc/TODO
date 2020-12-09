@@ -1,7 +1,4 @@
 ============================================================
-Deprecate implicit MAN page where file exists
-
-============================================================
 Speed-up processing by .ifdef-ing unnecessary .include-s.
 In particular mkc.conf should be splitter into small
 portions each of which should ne included only if necessary

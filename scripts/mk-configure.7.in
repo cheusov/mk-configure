@@ -2004,8 +2004,7 @@ If not "no", compress manual pages at installation time.
 .RI < "Iu" >
 .RI [ no ]
 .IP MAN
-Manual pages (should end in .1 - .9).  If no MAN variable is
-defined, "MAN=${PROG}.1" is assumed if it exists.
+Manual pages (usually end in .1 - .9).
 .RI < "M" >
 .IP MKMAN
 If "no", don't build or install the man pages,
