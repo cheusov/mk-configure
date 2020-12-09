@@ -1,7 +1,5 @@
 ============================================================
 Speed-up processing by .ifdef-ing unnecessary .include-s.
-In particular mkc.conf should be splitter into small
-portions each of which should ne included only if necessary
 
 ============================================================
 Add features "humanize_number" and shquote(3) from NetBSD
