@@ -43,13 +43,19 @@
 #define   HN_AUTOSCALE            0x20
 #endif
 
+#include "mkc_externc.h"
+
 #ifndef HAVE_FUNC6_HUMANIZE_NUMBER_STDLIB_H
+__MKC_BEGIN_DECLS
 int humanize_number(char *buf, size_t len, int64_t bytes,
 					const char *suffix, int scale, int flags);
+__MKC_END_DECLS
 #endif
 
 #ifndef HAVE_FUNC2_DEHUMANIZE_NUMBER_STDLIB_H
+__MKC_BEGIN_DECLS
 int dehumanize_number(const char *str, int64_t *result);
+__MKC_END_DECLS
 #endif
 
 #endif // _MKC_HUMANIZE_NUMBER_H_

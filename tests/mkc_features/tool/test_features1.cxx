@@ -28,6 +28,8 @@
 #include "mkc_fparseln.h"
 #include "mkc_vis.h"
 #include "mkc_fts.h"
+#include "mkc_humanize_number.h"
+#include "mkc_shquote.h"
 
 int main(int argc, char** argv)
 {
@@ -84,6 +86,8 @@ int main(int argc, char** argv)
 	strnunvisx(NULL, 0, NULL, 0);
 	unvis(NULL, 0, NULL, 0);
 	fts_read(NULL);
+	humanize_number(NULL, 0, 0, NULL, 0, 0);
+	shquote(NULL, NULL, 0);
 
 	return 0;
 }
