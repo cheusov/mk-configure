@@ -7,9 +7,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_MAN_MK)
-_MKC_IMP_MAN_MK := 1
-
 MESSAGE.nroff ?=	@${_MESSAGE} "NROFF: ${.TARGET}"
 
 .if ${MKSHARE:tl} == "no"
@@ -183,5 +180,3 @@ UNINSTALLFILES +=	${destination_htmls}
 INSTALLDIRS    +=	${destination_htmls:H}
 .endif # MKHTML
 .endif # HTMLPAGES
-
-.endif # _MKC_IMP_MAN_MK

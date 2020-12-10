@@ -3,9 +3,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_LINKS_MK)
-_MKC_IMP_LINKS_MK := 1
-
 linksinstall:	.PHONY # ensure existence
 
 do_install2:	linksinstall
@@ -31,4 +28,3 @@ INSTALLDIRS    +=	${DESTDIR}${r:H}
 .endfor
 
 .endif # MKINSTALL=yes
-.endif # _MKC_IMP_LINKS_MK

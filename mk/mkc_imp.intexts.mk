@@ -8,9 +8,6 @@
 # @sysconfdir@, @libdir@, @bindir@, @sbindir@, @datadir@ etc. with
 # real ${PREFIX}, ${SYSCONFDIR} etc. See examples/ projects.
 
-.ifndef _MKC_IMP_INTEXTS_MK
-_MKC_IMP_INTEXTS_MK := 1
-
 MESSAGE.gen ?=	@${_MESSAGE} "GEN: ${.TARGET}"
 
 INTEXTS_SED  +=	-e 's,@sysconfdir@,${SYSCONFDIR},g'
@@ -54,6 +51,3 @@ ${i:T} : ${i}.in
 CLEANFILES   +=	${INSCRIPTS:T} ${INFILES:T}
 
 realdo_all: ${INSCRIPTS:T} ${INFILES:T}
-
-######################################################################
-.endif # _MKC_IMP_INTEXTS_MK

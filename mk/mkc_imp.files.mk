@@ -7,16 +7,9 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_BSD_FILES_MK)
-_BSD_FILES_MK := 1
-
 filesinstall: .PHONY # ensure existence
 
-.include <mkc.init.mk>
-
 do_install1:	.PHONY filesinstall
-
-.if defined(FILES) && !empty(FILES)
 
 realdo_all: ${FILES}
 
@@ -41,6 +34,3 @@ ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}:
 UNINSTALLFILES  +=	${destination_files}
 INSTALLDIRS     +=	${destination_files:H}
 .endif # MKINSTALL
-.endif # FILES
-
-.endif # _BSD_FILES_MK

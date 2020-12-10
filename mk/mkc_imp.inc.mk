@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2020 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
