@@ -21,10 +21,10 @@ MKC_CHECK_FUNCLIBS      +=	errc verrc
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.errc:U0} == 0
-MKC_SRCS +=	${FEATURESDIR}/errc/errc.c
+MKC_SRCS +=	${FEATURESDIR}/errc/mkc_errc.c
 .endif
 .if ${HAVE_FUNCLIB.verrc:U0} == 0
-MKC_SRCS +=	${FEATURESDIR}/errc/verrc.c
+MKC_SRCS +=	${FEATURESDIR}/errc/mkc_verrc.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_ERRC

@@ -4,9 +4,14 @@
 .ifndef _MKC_IMP.F_GETLINE_MK
 _MKC_IMP.F_GETLINE_MK := 1
 
-MKC_SOURCE_FUNCLIBS      +=	getline
-MKC_SOURCE_DIR.getline.c  =	${FEATURESDIR}/getline
-MKC_CHECK_FUNCS3         +=	getline:stdio.h
+MKC_CHECK_FUNCLIBS      +=	getline
+MKC_CHECK_FUNCS3        +=	getline:stdio.h
+
+.include <mkc.conf.mk>
+
+.if ${HAVE_FUNCLIB.getline:U} != 1
+MKC_SRCS +=	${FEATURESDIR}/getline/mkc_getline.c
+.endif
 
 CPPFLAGS +=	-D_MKC_CHECK_GETLINE
 

@@ -13,7 +13,7 @@ MKC_FUNC_OR_DEFINE.strsep  = yes
 .include <mkc.conf.mk>
 
 . if ${HAVE_FUNCLIB.stresep:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/strsep/strsep.c
+MKC_SRCS +=	${FEATURESDIR}/strsep/mkc_strsep.c
 . endif
 
 CPPFLAGS +=	-D_MKC_CHECK_STRSEP

@@ -29,7 +29,7 @@ MKC_PROTOTYPE_HEADERS.vwarnx =	${MKC_PROTOTYPE_HEADERS.vwarn}
     ${HAVE_PROTOTYPE.vwarn:U0} && ${HAVE_PROTOTYPE.vwarnx:U0}
 CFLAGS +=	-DMKC_WARN_IS_FINE
 .else
-MKC_SRCS +=	${FEATURESDIR}/warn/warn.c
+MKC_SRCS +=	${FEATURESDIR}/warn/mkc_warn.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_WARN

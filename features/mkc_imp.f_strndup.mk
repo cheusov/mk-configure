@@ -11,7 +11,7 @@ MKC_CHECK_FUNCS2   +=	strndup:string.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.strndup:U} != 1
-MKC_SRCS  +=	${FEATURESDIR}/strndup/strndup.c
+MKC_SRCS  +=	${FEATURESDIR}/strndup/mkc_strndup.c
 .endif
 
 CPPFLAGS  +=	-D_MKC_CHECK_STRNDUP

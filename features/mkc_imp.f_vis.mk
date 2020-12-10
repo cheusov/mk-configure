@@ -40,13 +40,13 @@ MKC_COMMON_HEADERS :=	${old}
      ${HAVE_FUNCLIB.strsvis:U} != 1 || ${HAVE_FUNCLIB.strsnvis:U} != 1 || \
      ${HAVE_FUNCLIB.strsvisx:U} != 1 || ${HAVE_FUNCLIB.strsnvisx:U} != 1 || \
      ${HAVE_FUNCLIB.strsenvisx:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/vis/vis.c
+MKC_SRCS +=	${FEATURESDIR}/vis/mkc_vis.c
 .endif
 
 .if ${HAVE_FUNCLIB.strunvis:U} != 1 || ${HAVE_FUNCLIB.strnunvis:U} != 1 || \
      ${HAVE_FUNCLIB.strunvisx:U} != 1 || ${HAVE_FUNCLIB.strnunvisx:U} != 1 || \
      ${HAVE_FUNCLIB.unvis:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/vis/unvis.c
+MKC_SRCS +=	${FEATURESDIR}/vis/mkc_unvis.c
 .endif
 
 .if ${HAVE_FUNCLIB.vis:U} == 1

@@ -11,7 +11,7 @@ MKC_CHECK_FUNCS4   +=	getdelim:stdio.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.getdelim:U} != 1
-MKC_SRCS  +=	${FEATURESDIR}/getdelim/getdelim.c
+MKC_SRCS  +=	${FEATURESDIR}/getdelim/mkc_getdelim.c
 .endif
 
 CPPFLAGS  +=	-D_MKC_CHECK_GETDELIM

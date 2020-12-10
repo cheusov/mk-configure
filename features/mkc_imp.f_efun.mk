@@ -18,7 +18,7 @@ MKC_CHECK_FUNCLIBS +=	ecalloc:util
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.ecalloc:U} != 1 && ${HAVE_FUNCLIB.ecalloc.util:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/efun/efun.c
+MKC_SRCS +=	${FEATURESDIR}/efun/mkc_efun.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_EFUN

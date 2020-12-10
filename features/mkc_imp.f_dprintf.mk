@@ -14,7 +14,7 @@ MKC_PROTOTYPE_HEADERS.vdprintf +=	stdio.h stdarg.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.dprintf:U} != 1 || ${HAVE_PROTOTYPE.vdprintf:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/dprintf/dprintf.c
+MKC_SRCS +=	${FEATURESDIR}/dprintf/mkc_dprintf.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_DPRINTF

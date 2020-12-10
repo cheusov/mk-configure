@@ -11,7 +11,7 @@ MKC_CHECK_DEFINES   +=	__GLIBC__:string.h
 
 .if ${HAVE_DEFINE.__GLIBC__.string_h:U1} == 1
 .include "mkc_imp.f_efun.mk"
-MKC_SRCS     +=	${FEATURESDIR}/posix_getopt/posix_getopt.c
+MKC_SRCS     +=	${FEATURESDIR}/posix_getopt/mkc_posix_getopt.c
 .else
 CPPFLAGS +=	-DHAVE_POSIX_GETOPT=1
 .endif

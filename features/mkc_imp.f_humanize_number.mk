@@ -12,7 +12,7 @@ MKC_CHECK_FUNCLIBS +=	humanize_number #dehumanize_number
 .include <mkc.conf.mk>
 
 . if ${HAVE_FUNCLIB.humanize_number:U} != 1 #|| ${HAVE_FUNCLIB.dehumanize_number:U} != 1
-SRCS +=	${FEATURESDIR}/humanize_number/humanize_number.c
+SRCS +=	${FEATURESDIR}/humanize_number/mkc_humanize_number.c
 . endif
 
 CPPFLAGS +=	-D_MKC_CHECK_HUMANIZE_NUMBER

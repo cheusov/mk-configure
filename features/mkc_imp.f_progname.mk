@@ -15,7 +15,7 @@ MKC_CHECK_VARS          +=	program_invocation_short_name:errno.h
 .include <mkc.conf.mk>
 
 .if !${HAVE_FUNCLIB.getprogname:U0} || !${HAVE_FUNCLIB.setprogname:U0}
-MKC_SRCS +=	${FEATURESDIR}/progname/progname.c
+MKC_SRCS +=	${FEATURESDIR}/progname/mkc_progname.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_PROGNAME

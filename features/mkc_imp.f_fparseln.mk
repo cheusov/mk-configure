@@ -13,7 +13,7 @@ MKC_CHECK_FUNCS5   +=	fparseln:stdio.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.fparseln:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/fparseln/fparseln.c
+MKC_SRCS +=	${FEATURESDIR}/fparseln/mkc_fparseln.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_FPARSELN

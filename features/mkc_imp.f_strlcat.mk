@@ -4,9 +4,14 @@
 .ifndef _MKC_IMP_F_STRLCAT_MK
 _MKC_IMP_F_STRLCAT_MK := 1
 
-MKC_SOURCE_FUNCLIBS      +=	strlcat
-MKC_SOURCE_DIR.strlcat.c  =	${FEATURESDIR}/strlcat
+MKC_CHECK_FUNCLIBS      +=	strlcat
 MKC_CHECK_FUNCS3         +=	strlcat:string.h
+
+.include <mkc.conf.mk>
+
+.if ${HAVE_FUNCLIB.strlcat:U} != 1
+MKC_SRCS +=	${FEATURESDIR}/strlcat/mkc_strlcat.c
+.endif
 
 CPPFLAGS +=	-D_MKC_CHECK_STRLCAT
 

@@ -11,7 +11,7 @@ MKC_CHECK_FUNCS3   +=	reallocarray:stdlib.h
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.reallocarray:U} != 1
-MKC_SRCS +=	${FEATURESDIR}/reallocarray/reallocarray.c
+MKC_SRCS +=	${FEATURESDIR}/reallocarray/mkc_reallocarray.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_REALLOCARRAY

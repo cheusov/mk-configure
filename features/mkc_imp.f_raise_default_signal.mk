@@ -11,7 +11,7 @@ MKC_CHECK_FUNCLIBS +=	raise_default_signal:util
 .include <mkc.conf.mk>
 
 .if ${HAVE_FUNCLIB.raise_default_signal.util:U} == 0
-MKC_SRCS +=	${FEATURESDIR}/raise_default_signal/raise_default_signal.c
+MKC_SRCS +=	${FEATURESDIR}/raise_default_signal/mkc_raise_default_signal.c
 .endif
 
 CPPFLAGS +=	-D_MKC_CHECK_RAISE_DEFAULT_SIGNAL
