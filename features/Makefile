@@ -4,9 +4,9 @@ FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
 FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
-.for f in strlcat strlcpy getline progname warn err fgetln getdelim strndup \
-    dprintf efun strsep errc posix_getopt raise_default_signal \
-    reallocarray fparseln vis
+.for f in dprintf efun err errc fgetln fparseln getdelim getline \
+    humanize_number posix_getopt progname raise_default_signal \
+    reallocarray strlcat strlcpy strndup strsep vis warn
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}

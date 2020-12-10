@@ -2,7 +2,7 @@
 Speed-up processing by .ifdef-ing unnecessary .include-s.
 
 ============================================================
-Add features "humanize_number" and shquote(3) from NetBSD
+Add feature shquote(3) from NetBSD
 
 ============================================================
 SHRTOUT -- set -x and redirect everything to temporary

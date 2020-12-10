@@ -1741,6 +1741,9 @@ implementation is available in libc. If not, getline.c provided by
 mk-configure is added to SRCS and declaration is provided in
 mkc_getline.h header.
 .TP
+.B humanize_number
+This feature provides humanize_number(3) function from NetBSD.
+.TP
 .B libdl
 This feature checks whether libdl library is available and dlopen(3)
 is declared in dlfcn.h.  If yes, -ldl is added to LDADD. mkc_libdl.h
