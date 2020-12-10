@@ -13,9 +13,10 @@ tests = \
 	MKC_REQUIRE_PROTOTYPES=proto
 
 .for t in ${tests}
-command += printf "MKC_PROTOTYPE_FUNC.proto=void proto(void)\n" ${t} > ${.OBJDIR}/test.mk;
-command += printf "MKC_PROTOTYPE_HEADERS.proto=err.h\n" ${t} >> ${.OBJDIR}/test.mk;
-command += printf "%s\n.include <mkc.mk>\n" ${t} >> ${.OBJDIR}/test.mk;
+command += printf "MKC_PROTOTYPE_FUNC.proto=void proto(void)\n" > ${.OBJDIR}/test.mk;
+command += printf "MKC_PROTOTYPE_HEADERS.proto=err.h\n" >> ${.OBJDIR}/test.mk;
+command += printf "${t}\n" >> ${.OBJDIR}/test.mk;
+command += printf ".include <mkc.mk>\n" >> ${.OBJDIR}/test.mk;
 command += ${MAKE} -f ${.OBJDIR}/test.mk ${MAKEFLAGS} all 2>&1 || true;
 .endfor
 
