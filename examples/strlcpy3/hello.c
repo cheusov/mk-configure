@@ -16,23 +16,22 @@ int main (int argc, char ** argv)
 	char small_buf [15];
 	char said [19];
 
-	setprogname (argv [0]);
+	setprogname(argv [0]);
 
-	while (len = getline (&buf, &size, stdin), len != -1){
-		len = strlen (buf);
-		if (len > 0 && buf [len-1] == '\n')
-			buf [len-1] = 0;
+	while (len = getline(&buf, &size, stdin), len != -1){
+		if (len > 0 && buf[len-1] == '\n')
+			buf[len-1] = 0;
 
-		strlcpy (small_buf, "foo17", sizeof (small_buf));
-		strlcat (small_buf, buf, sizeof (small_buf));
-		puts (small_buf);
+		strlcpy(small_buf, "foo17", sizeof(small_buf));
+		strlcat(small_buf, buf, sizeof(small_buf));
+		puts(small_buf);
 	}
 
-	strlcpy (said, message, sizeof (said));
-	puts (said);
+	strlcpy(said, message, sizeof(said));
+	puts(said);
 
-	printf ("short progname=%s\n", getprogname ());
-	printf ("full progname=%s\n", argv [0]);
+	printf("short progname=%s\n", getprogname());
+	printf("full progname=%s\n", argv[0]);
 
 	return 0;
 }
