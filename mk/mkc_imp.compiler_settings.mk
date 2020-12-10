@@ -178,10 +178,10 @@ USE_CXX_COMPILERS ?=	${CXX}
 post_all:
 .for CC in ${USE_CC_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CXX_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
+	    MKCHECKS=yes RECURS=1 CC=${CC} CXX= src_type=cc
 .endfor # CC
 .for CXX in ${USE_CXX_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CC_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
+	    MKCHECKS=yes RECURS=1 CC= CXX=${CXX} src_type=cxx
 .endfor # CXX
 .endif # RECURS
