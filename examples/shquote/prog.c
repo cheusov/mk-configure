@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 		if (old_buf != buf)
 			shquoted_buf = erealloc(shquoted_buf, size * 4 + 1);
 
-		if ((size_t) -1 == shquote(buf, shquoted_buf, len * 4 + 1))
+		if ((size_t) -1 == shquote(buf, shquoted_buf, size * 4 + 1))
 			errx(1, "shquote(3) failed: %s", strerror(errno));
 
 		puts(shquoted_buf);
