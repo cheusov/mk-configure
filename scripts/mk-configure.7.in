@@ -1777,6 +1777,9 @@ sys/tree.h and appropriate macroses are available. If yes, mkc_RB.h
 and mkc_SPLAY.h include system-wide sys/tree.h, otherwise NetBSD
 version of sys/tree.h provided by mk-configure is included.
 .TP
+.B shquote
+This feature provides shquote(3) function from NetBSD.
+.TP
 .B "SLIST SIMPLEQ STAILQ LIST TAILQ CIRCLEQ"
 BSD systems provide sys/queue.h header where SLIST_* etc. macroses are
 defined for lists and queues. These features check whether sys/queue.h
