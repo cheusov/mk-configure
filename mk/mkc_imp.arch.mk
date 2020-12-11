@@ -16,7 +16,8 @@ bin_cleanup: .PHONY
 
 realdo_bin_tar: bin_cleanup
 	@set -e; ${RM} -f ${basefile}.tar; cd ${destdir}; \
-	${TAR} -cf ${basefile}.tar .; cd /; ${RM} -rf ${destdir}
+	${TAR} -cf ${basefile}.tar.tmp .; \
+	mv ${basefile}.tar.tmp ${basefile}.tar; cd /; ${RM} -rf ${destdir}
 
 realdo_bin_targz: bin_tar
 	@${GZIP} ${basefile}.tar
@@ -30,7 +31,8 @@ realdo_bin_zip: bin_cleanup
 
 realdo_bin_deb: DEBIAN/control bin_cleanup
 	@set -e; cp -rp DEBIAN ${destdir}; ${RM} -rf ${destdir}/DEBIAN/CVS; \
-	dpkg-deb -b ${destdir} ${.CURDIR:T:S/_/-/g}.deb; \
+	dpkg-deb -b ${destdir} ${.CURDIR:T:S/_/-/g}.deb.tmp; \
+	mv ${.CURDIR:T:S/_/-/g}.deb.tmp ${.CURDIR:T:S/_/-/g}.deb; \
 	${RM} -rf ${destdir}
 
 .endif # _MKC_IMP_ARCH_MK

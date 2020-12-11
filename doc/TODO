@@ -7,8 +7,7 @@ Make sure ${MAKECONF} and ${SYSCONFDIR}/mkcmake.conf are
 included after PROJECTNAME is set.
 
 ============================================================
-All targets:
-   make_me ... > $@.tmp && mv $@
+Tests for MCOMPRESS?
 
 ============================================================
 MKC_PATH environment variable for mkcmake(1)

@@ -88,9 +88,10 @@ maninstall: manlinks
 __installpage: .USE
 .if defined(MCOMPRESS) && !empty(MCOMPRESS)
 	@${RM} -f ${.TARGET}
-	${MCOMPRESS} ${.ALLSRC} > ${.TARGET}
-	@chown ${MANOWN:Q}:${MANGRP:Q} ${.TARGET}
-	@chmod ${MANMODE} ${.TARGET}
+	@${MCOMPRESS} ${.ALLSRC} > ${.TARGET}.tmp
+	@chown ${MANOWN:Q}:${MANGRP:Q} ${.TARGET}.tmp
+	@chmod ${MANMODE} ${.TARGET}.tmp
+	@mv ${.TARGET}.tmp ${.TARGET}
 .else
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endif
