@@ -61,7 +61,10 @@ PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
 .if defined(MAKECONF) && exists(${MAKECONF})
 .include "${MAKECONF}"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk-c.conf)
+.warning "Directory ${MKC_SYSCONFDIR}/mk-c.conf is deprecated since 2020-12-11, please rename it to ${MKC_SYSCONFDIR}/mkcmake.conf"
 .include "${MKC_SYSCONFDIR}/mk-c.conf"
+.elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mkcmake.conf)
+.include "${MKC_SYSCONFDIR}/mkcmake.conf"
 .elif defined(MKC_SYSCONFDIR) && exists(${MKC_SYSCONFDIR}/mk.conf)
 .include "${MKC_SYSCONFDIR}/mk.conf"
 .endif

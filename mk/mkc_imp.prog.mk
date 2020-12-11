@@ -47,7 +47,7 @@ ${p}: ${LIBCRT0} ${DPSRCS.${p}} ${OBJS.${p}} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND}
 .endif	# defined(OBJS.${p}) && !empty(OBJS.${p})
 
 .if !defined(MAN) && exists(${p}.1)
-.info "Implicit manual pages are deprecated since 2020-12-09, please set variable MAN"
+.warning "Implicit manual pages are deprecated since 2020-12-09, please set variable MAN"
 MAN +=		${p}.1
 .endif # !defined(MAN)
 

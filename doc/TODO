@@ -3,12 +3,6 @@ SHRTOUT -- set -x and redirect everything to temporary
 log file and print it only if the target fails?
 
 ============================================================
-${SYSCONFDIR}/mkcmake.conf instead of ${SYSCONFDIR}/etc/mk-c.conf?
-
-Example for ${SYSCONFDIR}/mk-c.conf
-that loads ${HOME}/.mkcmake.conf?
-
-============================================================
 Make sure ${MAKECONF} and ${SYSCONFDIR}/mkcmake.conf are
 included after PROJECTNAME is set.
 
