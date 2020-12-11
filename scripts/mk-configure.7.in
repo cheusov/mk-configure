@@ -195,6 +195,11 @@ Similar to CFLAGS but for project ${PROJECTNAME}.
 Similar to CFLAGS but for the specified source file.
 Basename of the source file is used.
 .RI < "Mu" >
+.IP CFLAGS0
+The same as CFLAGS but CFLAGS0 is passed to the compiler before CFLAGS.
+Normally, CFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
 .IP CLEANFILES_CMD
 Command for removing files used by targets "clean" and "cleandir".
 .RI < Iu >
@@ -238,6 +243,11 @@ Similar to CXXFLAGS but for project ${PROJECTNAME}.
 Similar to CXXFLAGS but for the specified source file.
 Basename of the source file is used.
 .RI < "Mu" >
+.IP CXXFLAGS0
+The same as CXXFLAGS but CXXFLAGS0 is passed to the compiler before CXXFLAGS.
+Normally, CXXFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
 .IP CPP
 C Pre-Processor.
 .RI < Iu >
