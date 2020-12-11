@@ -1767,6 +1767,10 @@ This feature provides POSIX-ly correct getopt.
 This feature provides getprogname(3) and setprogname(3) functions
 available in *BSD.
 .TP
+.B pwdgrp
+This feature provides user_from_uid(3), uid_from_user(3), group_from_gid(3), gid_from_group(3)
+functions from *BSD.
+.TP
 .B raise_default_signal
 This feature provides function raise_default_signal(3) from NetBSD.
 .TP

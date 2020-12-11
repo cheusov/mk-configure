@@ -30,6 +30,7 @@
 #include "mkc_fts.h"
 #include "mkc_humanize_number.h"
 #include "mkc_shquote.h"
+#include "mkc_pwdgrp.h"
 
 int main(int argc, char** argv)
 {
@@ -88,6 +89,10 @@ int main(int argc, char** argv)
 	fts_read(NULL);
 	humanize_number(NULL, 0, 0, NULL, 0, 0);
 	shquote(NULL, NULL, 0);
+	user_from_uid(0, 0);
+	group_from_gid(0, 0);
+	uid_from_user(NULL, NULL);
+	gid_from_group(NULL, NULL);
 
 	return 0;
 }

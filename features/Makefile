@@ -5,7 +5,7 @@ FILES                     +=	mkc_externc.h
 FILESDIR_mkc_externc.h     =	${FEATURESDIR}
 
 .for f in dprintf efun err errc fgetln fparseln getdelim getline \
-    humanize_number posix_getopt progname raise_default_signal \
+    humanize_number posix_getopt progname pwdgrp raise_default_signal \
     reallocarray strlcat strlcpy strndup strsep vis warn
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/mkc_${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}

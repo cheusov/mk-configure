@@ -9,4 +9,4 @@ examples    =	hello_world files files2 sizeof lexer \
    require_tools check_compiler_opts help_target \
    arc4random bswap dprintf efun strsep errc posix_getopt \
    raise_default_signal reallocarray fparseln vis \
-   fts humanize_number shquote
+   fts humanize_number shquote tiny_id
