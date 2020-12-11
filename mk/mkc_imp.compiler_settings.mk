@@ -124,6 +124,7 @@ _cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
 
 #################################################
 .for c in cc cxx
+cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .if !empty(${c:tu})
 .   for v in ${_${c}_vars}
 MKC_CHECK_${c:tu}_OPTS +=	${${v}}
@@ -154,8 +155,8 @@ LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 ######
 .ifdef RECURS
 all: post_all
-post_all: mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
-mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk: .PHONY # always regenerate!
+post_all: ${cc_cxx_capabilities_filename}
+${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 	@printf '' > $@.tmp;
 .   for v in ${_${c}_vars}
 	@echo ${v} = ${${v}.new} >> $@.tmp;
@@ -178,10 +179,10 @@ USE_CXX_COMPILERS ?=	${CXX}
 post_all:
 .for CC in ${USE_CC_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CXX_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
+	    MKCHECKS=yes RECURS=1 CC=${CC} CXX= src_type=cc
 .endfor # CC
 .for CXX in ${USE_CXX_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CC_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
+	    MKCHECKS=yes RECURS=1 CC= CXX=${CXX} src_type=cxx
 .endfor # CXX
 .endif # RECURS

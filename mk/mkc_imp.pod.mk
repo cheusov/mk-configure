@@ -3,9 +3,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_POD_MK)
-_MKC_IMP_POD_MK := 1
-
 POD2MAN  ?=		pod2man
 POD2MAN_FLAGS   :=	-r '' -n '${.TARGET:T:R}' -c ''
 MESSAGE.pod2man ?=	@${_MESSAGE} "POD2MAN: ${.TARGET}"
@@ -30,5 +27,3 @@ COMPILE.pod2html ?=	${_V} ${POD2HTML} ${POD2HTML_FLAGS}
 	${COMPILE.pod2html} < ${.IMPSRC} > ${.TARGET}
 
 CLEANFILES  +=	pod2htmd.tmp pod2htmi.tmp
-
-.endif # _MKC_IMP_POD_MK

@@ -12,7 +12,10 @@
   SUBPRJ = ${SUBDIR}
 .endif
 
-.include <mkc_imp.lua.mk>
+.if !empty(LUA_LMODULES) || !empty(LUA_CMODULES) || !empty(LUA_MODULES)
+.  include <mkc_imp.lua.mk>
+.endif
+
 .include <mkc_imp.pod.mk>
 .include <mkc.init.mk>
 
@@ -128,15 +131,44 @@ CPPFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 .  endif
 
 .  if defined(_use_prog) || defined(LIB)
+.if !empty(MAN)
 .    include <mkc_imp.man.mk>
+.else
+# for backward compatibility with my own tools (2020-12-10)
+# and should be depeted.
+.PHONY: manpages
+manpages:
+.endif
+
+.if !empty(TEXINFO)
 .    include <mkc_imp.info.mk>
+.endif
+
+.if !empty(INCS)
 .    include <mkc_imp.inc.mk>
+.endif
+
+.if !empty(INFILES) || !empty(INSCRIPTS)
 .    include <mkc_imp.intexts.mk>
+.endif
+
+.if !empty(MKC_REQUIRE_PKGCONFIG) || !empty(MKC_CHECK_PKGCONFIG)
 .    include <mkc_imp.pkg-config.mk>
+.endif
+
 .    include <mkc_imp.dep.mk>
+
+.if !empty(FILES)
 .    include <mkc_imp.files.mk>
+.endif
+
+.if !empty(SCRIPTS)
 .    include <mkc_imp.scripts.mk>
+.endif
+
+.if !empty(LINKS) || !empty(SYMLINKS)
 .    include <mkc_imp.links.mk>
+.endif
 .  endif # _use_prog || LIB
 
    ########################################

@@ -3,9 +3,6 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.ifndef _MKC_IMP_OBJ_MK
-_MKC_IMP_OBJ_MK := 1
-
 obj: # ensure existence
 
 .ifdef MAKEOBJDIRPREFIX
@@ -31,4 +28,3 @@ __objdir_made != if ${MKDIR} -p ${__objdir}; then echo 1; else echo 0; fi
 .endif # MKOBJDIRS
 
 .endif # defined(__objdir)...
-.endif # _MKC_IMP_OBJ_MK

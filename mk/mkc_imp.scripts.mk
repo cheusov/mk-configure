@@ -7,15 +7,11 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_SCRIPTS_MK)
-_MKC_IMP_SCRIPTS_MK := 1
-
 scriptsinstall:	.PHONY # ensure existence
 do_install1:	scriptsinstall
 
 realdo_all: ${SCRIPTS}
 
-.if defined(SCRIPTS)
 .if ${MKINSTALL:tl} == "yes"
 destination_scripts = ${SCRIPTS:@S@${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}@}
 UNINSTALLFILES +=	${destination_scripts}
@@ -36,7 +32,3 @@ __scriptinstall: .USE
 .for S in ${SCRIPTS:O:u}
 ${DESTDIR}${SCRIPTSDIR_${S:S|/|_|g}:U${SCRIPTSDIR}}/${SCRIPTSNAME_${S:S|/|_|g}:U${SCRIPTSNAME:U${S:T}}}: ${S} __scriptinstall
 .endfor
-
-.endif # defined(SCRIPTS)
-
-.endif # _MKC_IMP_SCRIPTS_MK

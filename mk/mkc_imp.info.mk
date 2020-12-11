@@ -7,12 +7,7 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.if !defined(_MKC_IMP_INFO_MK) && defined(TEXINFO)
-_MKC_IMP_INFO_MK := 1
-
 infoinstall: .PHONY
-
-.include <mkc.init.mk>
 
 MAKEINFO     ?=	makeinfo
 INFOFLAGS    ?=	
@@ -26,7 +21,6 @@ MESSAGE.texinfo ?=	@${_MESSAGE} "TEXINFO: ${.TARGET}"
 	${MESSAGE.texinfo}
 	${_V}${MAKEINFO} ${INFOFLAGS} --no-split -o $@ $<
 
-.if defined(TEXINFO) && !empty(TEXINFO)
 realdo_all: ${TEXINFO}
 
 INFOFILES =	${TEXINFO:S/.texinfo/.info/g:S/.texi/.info/g:S/.txi/.info/g}
@@ -62,7 +56,3 @@ UNINSTALLFILES  +=	${destination_infos}
 INSTALLDIRS     +=	${destination_infos:H}
 .endif # MKINSTALL
 .endif # MKINFO
-
-.endif # TEXINFO
-
-.endif # _MKC_IMP_INFO_MK
