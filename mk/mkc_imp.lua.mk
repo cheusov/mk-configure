@@ -15,7 +15,7 @@ LUA_SRCS.${i:T:R}  =	${i}
 .if !defined(LUA_LMODDIR)
 MKC_REQUIRE_PKGCONFIG +=	lua
 PKG_CONFIG_VARS.lua   +=	INSTALL_LMOD
-LUA_LMODDIR           ?=	${PKG_CONFIG.var.lua.INSTALL_LMOD}
+LUA_LMODDIR            =	${PKG_CONFIG.var.lua.INSTALL_LMOD}
 .endif
 .for i in ${LUA_MODULES}
 LUA_SRCS.${i}       ?=	${i:S/./_/g}.lua
