@@ -136,11 +136,11 @@ WARNERR     ?=		${WARNS:U0:S/4/yes/}
 CFLAGS.warnerr   =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CC_TYPE}}:}
 CXXFLAGS.warnerr =	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr.${CXX_TYPE}}:}
 
-CFLAGS.warns   =	${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
-CXXFLAGS.warns =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
+CFLAGS.warns     =	${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
+CXXFLAGS.warns   =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 
-CFLAGS.pic   ?=	${CFLAGS.pic.${CC_TYPE}:U}
-CXXFLAGS.pic ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
+CFLAGS.pic      ?=	${CFLAGS.pic.${CC_TYPE}:U}
+CXXFLAGS.pic    ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
 
 ####################
 RANLIB.IRIX64 =		true
