@@ -2,7 +2,7 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
-.include <mkc_imp.preinit.mk>
+.include "mkc_imp.preinit.mk"
 
 .if make(distclean)
 .warning "Target 'distclean' is deprecated, please use 'cleandir'"
@@ -13,11 +13,11 @@
 .endif
 
 .if !empty(LUA_LMODULES) || !empty(LUA_CMODULES) || !empty(LUA_MODULES)
-.  include <mkc_imp.lua.mk>
+.  include "mkc_imp.lua.mk"
 .endif
 
-.include <mkc_imp.pod.mk>
-.include <mkc.init.mk>
+.include "mkc_imp.pod.mk"
+.include "mkc.init.mk"
 
 .if ${MKCHECKS:tl} == "yes"
 .ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
@@ -31,7 +31,7 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
      DPLDADD   ?=	${p:T:S/^lib//}
      DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
      DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
-.    include <mkc_imp.dpvars.mk>
+.    include "mkc_imp.dpvars.mk"
 .  endfor
 .endif
 .endif
@@ -47,10 +47,10 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .endif
 
 .ifdef FOREIGN
-.  include <mkc_imp.foreign_${FOREIGN}.mk>
+.  include "mkc_imp.foreign_${FOREIGN}.mk"
 .endif
-.include <mkc_imp.rules.mk>
-.include <mkc_imp.obj.mk>
+.include "mkc_imp.rules.mk"
+.include "mkc_imp.obj.mk"
 
 # Make sure all of the standard targets are defined, even if they do nothing.
 do_install1 do_install2: .PHONY
@@ -111,28 +111,28 @@ check_mkc_err_msg:
 all: pre_configure .WAIT do_configure .WAIT post_configure .WAIT pre_all .WAIT do_all .WAIT post_all
 realdo_configure: check_mkc_err_msg
 
-.include <mkc_imp.checkprogs.mk>
-.include <mkc.conf.mk>
+.include "mkc_imp.checkprogs.mk"
+.include "mkc.conf.mk"
 
 # features
 .for f in ${MKC_FEATURES}
 .  include <mkc_imp.f_${f}.mk>
 .endfor
-.include <mkc.conf.mk>
-.include <mkc_imp.conf-final.mk>
+.include "mkc.conf.mk"
+.include "mkc_imp.conf-final.mk"
 CPPFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || ${MKCHECKS} == "no"
 
 .  if defined(LIB)
-.    include <mkc_imp.lib.mk>
+.    include "mkc_imp.lib.mk"
 .  elif defined(_use_prog)
-.    include <mkc_imp.prog.mk>
+.    include "mkc_imp.prog.mk"
 .  endif
 
 .  if defined(_use_prog) || defined(LIB)
 .if !empty(MAN)
-.    include <mkc_imp.man.mk>
+.    include "mkc_imp.man.mk"
 .else
 # for backward compatibility with my own tools (2020-12-10)
 # and should be depeted.
@@ -141,45 +141,45 @@ manpages:
 .endif
 
 .if !empty(TEXINFO)
-.    include <mkc_imp.info.mk>
+.    include "mkc_imp.info.mk"
 .endif
 
 .if !empty(INCS)
-.    include <mkc_imp.inc.mk>
+.    include "mkc_imp.inc.mk"
 .endif
 
 .if !empty(INFILES) || !empty(INSCRIPTS)
-.    include <mkc_imp.intexts.mk>
+.    include "mkc_imp.intexts.mk"
 .endif
 
 .if !empty(MKC_REQUIRE_PKGCONFIG) || !empty(MKC_CHECK_PKGCONFIG)
-.    include <mkc_imp.pkg-config.mk>
+.    include "mkc_imp.pkg-config.mk"
 .endif
 
-.    include <mkc_imp.dep.mk>
+.    include "mkc_imp.dep.mk"
 
 .if !empty(FILES)
-.    include <mkc_imp.files.mk>
+.    include "mkc_imp.files.mk"
 .endif
 
 .if !empty(SCRIPTS)
-.    include <mkc_imp.scripts.mk>
+.    include "mkc_imp.scripts.mk"
 .endif
 
 .if !empty(LINKS) || !empty(SYMLINKS)
-.    include <mkc_imp.links.mk>
+.    include "mkc_imp.links.mk"
 .endif
 .  endif # _use_prog || LIB
 
    ########################################
 .  if defined(SUBPRJ)
-.    include <mkc_imp.subprj.mk>
+.    include "mkc_imp.subprj.mk"
 .  endif # SUBPRJ
    ########################################
 
-.  include <mkc_imp.arch.mk>
-.  include <mkc_imp.help.mk>
+.  include "mkc_imp.arch.mk"
+.  include "mkc_imp.help.mk"
 
 .endif # MKC_ERR_MSG
 
-.include <mkc_imp.final.mk>
+.include "mkc_imp.final.mk"

@@ -12,7 +12,7 @@ MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
 MKC_CHECK_PKGCONFIG +=	${MKC_REQUIRE_PKGCONFIG:U}
 MKC_REQUIRE_PROGS   +=	pkg-config
 
-.include <mkc.conf.mk>
+.include "mkc.conf.mk"
 
 .if ${HAVE_PROG.pkg-config}
 
@@ -63,7 +63,7 @@ MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
 .endfor # .for l in MKC_CHECK_PKGCONFIG
 
 ######################################################
-.include <mkc_imp.conf-final.mk>
+.include "mkc_imp.conf-final.mk"
 
 .undef MKC_CHECK_PKGCONFIG
 .undef MKC_REQUIRE_PKGCONFIG

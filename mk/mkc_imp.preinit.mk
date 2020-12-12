@@ -23,8 +23,8 @@ _bmake_ok != test ${MAKE_VERSION:Q} -ge ${BMAKE_REQD:Q} && echo 1 || echo 0
 .endif
 
 .if !empty(MK_C_PROJECT)
-.sinclude <newsys.mk> # .sinclude for bootstrapping
-.sinclude <newsys.mk.in> # .sinclude for bootstrapping
+.sinclude "newsys.mk" # .sinclude for bootstrapping
+.sinclude "newsys.mk.in" # .sinclude for bootstrapping
 .endif
 
 .if defined(MKC_REQD) && defined(MKC_VERSION)

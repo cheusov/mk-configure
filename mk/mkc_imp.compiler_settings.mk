@@ -132,7 +132,7 @@ MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   for v in ${_${c}ld_vars}
 MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
 .   endfor
-.   include <mkc.conf.mk>
+.   include "mkc.conf.mk"
 
 .   for v in ${_${c}_vars}
 .       for _opt in ${${v}}

@@ -21,7 +21,7 @@ SHORTPRJNAME   ?=	yes
 .ifndef __initialized__
 __initialized__ := 1
 
-.include <mkc_imp.preinit.mk>
+.include "mkc_imp.preinit.mk"
 
 .MAIN:		all
 
@@ -187,7 +187,7 @@ MKSHLIB  ?=	yes
 MKSHLIB  ?=	no
 .endif # SHLIB_MAJOR
 
-.include <mkc_imp.platform.sys.mk>
+.include "mkc_imp.platform.sys.mk"
 
 MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
