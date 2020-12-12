@@ -31,6 +31,8 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 
 .include <mkc.init.mk>
 
+MKC_NOCACHE=1
+
 .include "mkc_imp.compiler_settings.mk"
 
 post_install:
