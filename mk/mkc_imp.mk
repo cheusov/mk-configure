@@ -31,6 +31,7 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
      DPLDADD   ?=	${p:T:S/^lib//}
      DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
      DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
+     _LIBDEPSDONEFILES :=	${_LIBDEPSDONEFILES} ${DPLIBDIRS}/${p:T}.done
 .    include "mkc_imp.dpvars.mk"
 .  endfor
 .endif

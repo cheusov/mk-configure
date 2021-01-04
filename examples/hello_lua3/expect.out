@@ -18,6 +18,7 @@ PROJECTNAME=hello_lua3
 /objdir/_mkc_prog_pkg-config.res
 /objdir/baz.so
 /objdir/expect.out
+/objdir/hello_lua3.done
 /objdir/hello_lua3.test.out.tmp
 /objdir/socket_bar.lua
 /objdir/socket_baz.c

@@ -29,6 +29,7 @@ My email is vle@gmx.net
 /objdir/libhello1/hello1.o
 /objdir/libhello1/hello1.os
 /objdir/libhello1/libhello1.a
+/objdir/libhello1/libhello1.done
 /objdir/libhello1/libhello1.so
 /objdir/libhello1/libhello1.so.1
 /objdir/libhello1/libhello1.so.1.0
@@ -39,6 +40,7 @@ My email is vle@gmx.net
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/libhello2.a
+/objdir/libhello2/libhello2.done
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
@@ -180,6 +182,7 @@ GEN: hello_subprojects2
 /objdir/libhello1/hello1.o
 /objdir/libhello1/hello1.os
 /objdir/libhello1/libhello1.a
+/objdir/libhello1/libhello1.done
 /objdir/libhello1/libhello1.so
 /objdir/libhello1/libhello1.so.1
 /objdir/libhello1/libhello1.so.1.0
@@ -210,6 +213,7 @@ GEN: hello_subprojects2
 /objdir/libhello1/hello1.o
 /objdir/libhello1/hello1.os
 /objdir/libhello1/libhello1.a
+/objdir/libhello1/libhello1.done
 /objdir/libhello1/libhello1.so
 /objdir/libhello1/libhello1.so.1
 /objdir/libhello1/libhello1.so.1.0
@@ -221,6 +225,7 @@ GEN: hello_subprojects2
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/libhello2.a
+/objdir/libhello2/libhello2.done
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk
@@ -244,6 +249,7 @@ GEN: hello_subprojects2
 /objdir/libhello2/hello2.o
 /objdir/libhello2/include/hello2.h
 /objdir/libhello2/libhello2.a
+/objdir/libhello2/libhello2.done
 /objdir/libhello2/linkme.mk
 /objdir/subprojects.test.out.tmp
 /objdir/test.mk

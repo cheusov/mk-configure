@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Dec 12, 2020" "" ""
+.TH MK-CONFIGURE 7 "Jan 04, 2021" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -987,11 +987,18 @@ See LIBDEPS in section
 .\" set to "-g", "-g" will be added to COPTS only when compiling
 .\" the "libfoobar" library.
 .PP
-Libraries are ranlib'd when made.
+Static libraries are
+.BR ranlib 'd
+when made.
 .B mkc.lib.mk
 includes
 .B mkc.files.mk
-and therefore supports all variables supported by it.
+and therefore supports all its variables as well.
+After creaion of libraries
+.I ${.CURDIR:T}.done
+file is created and used for handling inter-project
+.RB "(See " LIBDEPS " variable)"
+dependencies.
 .PP
 The order of options passed to the C and C++ compilers are the same as in
 .BR mkc.prog.mk .

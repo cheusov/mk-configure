@@ -25,6 +25,7 @@ foobarbaz
 /objdir/foo.lua
 /objdir/foobar
 /objdir/foobar.in
+/objdir/hello_lua.done
 /objdir/hello_lua.test.out.tmp
 /objdir/test.mk
 ========= install ==========
@@ -92,6 +93,7 @@ foobarbaz
 /objdir/foo.lua
 /objdir/foobar
 /objdir/foobar.in
+/objdir/hello_lua.done
 /objdir/hello_lua.test.out.tmp
 /objdir/home
 /objdir/home/cheusov

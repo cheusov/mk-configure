@@ -22,6 +22,7 @@
 /objdir/libcxxlib.a
 /objdir/libcxxlib.so.1.0.5
 /objdir/libcxxlib_p.a
+/objdir/mkprofilelib.done
 /objdir/mkprofilelib.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -51,6 +52,7 @@
 /objdir/expect.out
 /objdir/mkprofilelib.test.out.tmp
 ======= CLEANFILES ==========
+*.done
 *.o
 *.op
 *.os

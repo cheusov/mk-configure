@@ -49,11 +49,13 @@ fooquxfoobar_fooqux_ok=1
 /objdir/libs/libbar/bar.o
 /objdir/libs/libbar/bar.os
 /objdir/libs/libbar/libbar.a
+/objdir/libs/libbar/libbar.done
 /objdir/libs/libbar/libbar_pic.a
 /objdir/libs/libbaz/Makefile
 /objdir/libs/libbaz/baz.c
 /objdir/libs/libbaz/baz.o
 /objdir/libs/libbaz/include/baz.h
+/objdir/libs/libbaz/libbaz.done
 /objdir/libs/libbaz/libbazbaz.a
 /objdir/libs/libbaz/linkme.mk
 /objdir/libs/libfoo/Makefile
@@ -62,6 +64,7 @@ fooquxfoobar_fooqux_ok=1
 /objdir/libs/libfoo/foo.o
 /objdir/libs/libfoo/foo.os
 /objdir/libs/libfoo/libfoo.a
+/objdir/libs/libfoo/libfoo.done
 /objdir/libs/libfoo/libfoo_pic.a
 /objdir/libs/libfoo/linkme.mk
 /objdir/libs/libfooqux/Makefile
@@ -70,6 +73,7 @@ fooquxfoobar_fooqux_ok=1
 /objdir/libs/libfooqux/fooqux.o
 /objdir/libs/libfooqux/fooqux.os
 /objdir/libs/libfooqux/libfooqux.a
+/objdir/libs/libfooqux/libfooqux.done
 /objdir/libs/libfooqux/libfooqux.so
 /objdir/libs/libfooqux/libfooqux.so.0
 /objdir/libs/libfooqux/libfooqux.so.0.0

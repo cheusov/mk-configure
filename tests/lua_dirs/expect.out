@@ -20,6 +20,7 @@
 /objdir/baz.so
 /objdir/expect.out
 /objdir/foobar
+/objdir/lua_dirs.done
 /objdir/lua_dirs.test.out.tmp
 /objdir/test.mk
 ========= install ==========

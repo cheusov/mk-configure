@@ -14,6 +14,7 @@
 /objdir/expect.out
 /objdir/hello_msg1.os
 /objdir/hello_msg2.os
+/objdir/mkdll.done
 /objdir/mkdll.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -39,6 +40,7 @@
 /objdir/expect.out
 /objdir/mkdll.test.out.tmp
 ======= CLEANFILES ==========
+*.done
 *.o
 *.op
 *.os

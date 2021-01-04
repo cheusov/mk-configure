@@ -44,17 +44,20 @@ check ===> tools/prog1
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.done
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.done
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
 /objdir/libs/qux/Makefile
 /objdir/libs/qux/libqux.a
 /objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.done
 /objdir/libs/qux/qux.h
 /objdir/libs/qux/qux.h.in
 /objdir/libs/qux/qux.o
@@ -190,6 +193,7 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.done
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
@@ -220,6 +224,7 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.done
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
@@ -250,6 +255,7 @@ LD: prog4
 /objdir/libs/bar/bar.h
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.done
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
@@ -277,6 +283,7 @@ LD: prog4
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.done
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
@@ -307,6 +314,7 @@ LD: prog4
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.done
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
@@ -337,11 +345,13 @@ LD: prog4
 /objdir/expect.out
 /objdir/libs/bar/Makefile
 /objdir/libs/bar/bar.c
+/objdir/libs/bar/bar.done
 /objdir/libs/bar/bar.h
 /objdir/libs/bar/bar.o
 /objdir/libs/bar/libbar.a
 /objdir/libs/foo/Makefile
 /objdir/libs/foo/foo.c
+/objdir/libs/foo/foo.done
 /objdir/libs/foo/foo.h
 /objdir/libs/foo/foo.o
 /objdir/libs/foo/libfoo.a
@@ -379,6 +389,7 @@ LD: prog4
 /objdir/libs/qux/Makefile
 /objdir/libs/qux/libqux.a
 /objdir/libs/qux/qux.c
+/objdir/libs/qux/qux.done
 /objdir/libs/qux/qux.h
 /objdir/libs/qux/qux.h.in
 /objdir/libs/qux/qux.o

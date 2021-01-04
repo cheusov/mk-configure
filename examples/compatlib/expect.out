@@ -90,6 +90,7 @@
 /objdir/expect.out
 /objdir/libcmpt/Makefile
 /objdir/libcmpt/libcmpt.a
+/objdir/libcmpt/libcmpt.done
 /objdir/libcmpt/libcmpt_pic.a
 /objdir/test.mk
 ===
