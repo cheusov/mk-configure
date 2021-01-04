@@ -309,6 +309,9 @@ CPPFLAGS +=	-D_FORTIFY_SOURCE=2
 CFLAGS   +=	-O
 .endif
 
+CFLAGS     +=	${CFLAGS.std.${CCSTD}.${CC_TYPE}}
+CXXFLAGS   +=	${CXXFLAGS.std.${CXXSTD}.${CXX_TYPE}}
+
 SHRTOUT    ?=	no
 
 .if ${SHRTOUT:tl} != "no"

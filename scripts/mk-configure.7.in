@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Dec 9, 2020" "" ""
+.TH MK-CONFIGURE 7 "Dec 12, 2020" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -180,6 +180,15 @@ C compiler.
 Prefix command for ${CC}, for example, distcc or ccache.
 .RI < Iu >
 .RI [ "" ]
+.IP CCSTD
+C language standard required by program. Supported options:
+.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
+" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
+c17 ", " gnu17 " (C17 with GNU extensions)."
+If compiler is not known for mk-configure developer or does not
+support appropriate option, no additional options are applied.
+.RI < M >
+.RI [ "" ]
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
 .RI < "IM" >
@@ -227,6 +236,15 @@ C++ compiler.
 .IP CXX_PREFIX
 Prefix command for ${CXX}, for example, distcc or ccache.
 .RI < Iu >
+.RI [ "" ]
+.IP CXXSTD
+C++ language standard required by program. Supported options:
+.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
+" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
+c17 ", " gnu17 " (C17 with GNU extensions)."
+If compiler is not known for mk-configure developer or does not
+support appropriate option, no additional options are applied.
+.RI < M >
 .RI [ "" ]
 .IP CXXFLAGS
 Additional flags to the compiler when creating C++ objects.
@@ -1835,7 +1853,7 @@ changes and will be applied later. One can use this module for implementing your
 "features" similar to
 .BR MKC_FEATURES .
 .SS mkc_imp.scripts.mk
-is internal include file which is included from
+It is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly!
 It provides installing and uninstalling the scripts.
@@ -2099,8 +2117,12 @@ CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 .B mkc.minitest.mk
 is an auxiliary include file that implement simple framework for unit
 tests.  Idea: application provides the target test_output and
-expect.out file that contains ideal output. "bmake test" runs "bmake
-test_output" and compare generated output with expect.out.
+expect.out file that contains ideal output.
+.B mkcmake test
+runs
+.B mkcmake test_output
+and compare generated output with
+.IR expect.out .
 .IP TEST_PREREQS
 Prerequisites for target "test".
 .RI < "Iu" >

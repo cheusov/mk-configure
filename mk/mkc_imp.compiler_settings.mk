@@ -33,6 +33,17 @@ CFLAGS.warns.hpc.2 =		-w2
 CFLAGS.warns.hpc.3 =		-w2
 CFLAGS.warns.hpc.4 =		-w2
 
+_CSTD_LIST := c89 gnu89 c99 gnu99 c11 gnu11 c17 gnu17
+_CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17
+
+.for c in C CXX
+. for std in ${_${c}STD_LIST}
+.  for t in gcc clang icc pcc
+${c}FLAGS.std.${std}.${t} :=		-std=${std}
+.  endfor
+. endfor
+.endfor
+
 CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param__ssp-buffer-size=1
 CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
 CFLAGS.ssp.icc =		-fstack-security-check
@@ -54,9 +65,19 @@ CFLAGS.pie.icc =		-fPIE__-DPIC
 
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
-_cc_vars = CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
+_cc_vars += CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
     CFLAGS.ssp.${CC_TYPE} CFLAGS.pic.${CC_TYPE} CFLAGS.pie.${CC_TYPE}
+
+.for std in ${_CSTD_LIST}
+_cc_vars +=	CFLAGS.std.${std}.${CC_TYPE}
+.endfor
+.for std in ${_CXXSTD_LIST}
+_cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
+.endfor
+
+.undef _CSTD_LIST
+.undef _CXXSTD_LIST
 
 LDFLAGS.pie.gcc   =		-fPIE__-DPIC__-pie
 LDFLAGS.pie.clang =		-fPIE__-DPIC__-pie
@@ -115,7 +136,7 @@ CXXFLAGS.pie.gcc     =		${CFLAGS.pie.gcc}
 CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
 
-_cxx_vars = CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
+_cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.1 CXXFLAGS.warns.${CXX_TYPE}.2 \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
     CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
