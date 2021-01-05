@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Jan 04, 2021" "" ""
+.TH MK-CONFIGURE 7 "Jan 05, 2021" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -482,6 +482,28 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
    .endif # MKC_VERSION
 .VE
 .RI < "I" >
+.IP MKCOMPILERSETTINGS
+At build time mk-configure detects some compilers capabilities and saves them
+to system-wide
+.I mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk
+(for C compiler)
+and
+.I mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
+(for C++ compiler) files. At run time mk-configure loads these files
+if necessary. If they are absent, that is, if you use compilers
+unknown to mk-configure, it exits with error. If order to fix this,
+you have to run
+.B mkc_compiler_setting(1)
+utility manually. This utility generates similar files in
+.IR ${HOME}/.mkcmake " directory."
+However, if
+.B MKCOMPILERSETTINGS
+variable is set to
+.IR yes ,
+.B mkc_compiler_setting(1)
+is run automaticlly and mk-configure loads the generated files.
+.RI < Iu >
+.RI [ no ]
 .IP MKDEP
 mkdep(1) tool.
 .RI < Iu >
