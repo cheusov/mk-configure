@@ -38,7 +38,7 @@ _CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17
 
 .for c in C CXX
 . for std in ${_${c}STD_LIST}
-.  for t in gcc clang icc pcc
+.  for t in gcc clang icc pcc sunpro
 ${c}FLAGS.std.${std}.${t} :=		-std=${std}
 .  endfor
 . endfor
