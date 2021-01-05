@@ -1,4 +1,59 @@
 ======================================================================
+Version 0.36.0, by Aleksey Cheusov, Tue,  5 Jan 2021 19:29:08 +0300
+
+  Introduce new variables:
+    * CFLAGS_<source>, CXXFLAGS_<source> and CPPFLAGS_<source>.
+      Now one can add some C/C++ compilation flags on per source file
+      basis.
+    * CCSTD and CXXSTD.
+      Now projects based on mk-configure may require
+      standard-compliant compiler, for example, C99.
+    * CFLAGS0 and CXXFLAGS0
+
+  Internal mk files are included only if it is really necessary.  For
+  example, mkc_imp.incs.mk is included only if variable INCS is not
+  empty. In theory, this should speed-up mkcmake.
+
+  New features: humanize_number, shquote and pwdgrp.
+
+  Deprecate some things:
+    * implicit MAN page, that is when MAN variable is not set,
+      but man file exists
+    * ~/.mk-c directory and @sysconfdir@/mk-c.conf file.
+      Please rename them to ~/.mkcmake and
+      @sysconfdir@/mkcmake.conf respectively.
+
+  Add preliminary support for ARMCC compiler.
+
+  Optimize installation of directories, run "install -d" once for all
+  created directories.
+
+  mkc.lib.mk: after building libraries ${.CURDIR:T}.done file is
+  created.  This file is used later for handling inter-project
+  dependencies specified by LIBDEPS variable.
+
+  mk-configure.7: document all variables in alphabetic order.
+  I hope this makes navigation in the documentation easier.
+
+  Introduce MKCOMPILERSETTINGS variable for generating configs for
+  unknown compilers automatically. Dear software packagers! Build
+  projects based on mk-configure like the following. Of course, it
+  whould be nice if this scheme was implemented as a part of
+  mk-configure package.
+     export HOME=/path/to/temporary/home
+     mkdir -p "$HOME"
+     export MKCOMPILERSETTINGS=yes
+     ... other settings, e.g., PREFIX, SYSCONFDIR etc.
+     mkcmake all install
+  In this case package won't fail if compiler is updated on your system
+  but mk-configure package is not.
+
+  Fixes:
+    * tests/failed_requirements: fix failure on freebsd
+      (strict printf(1))
+    * examples/require_tools/fake: make it a real script
+
+======================================================================
 Version 0.35.0, by Aleksey Cheusov, Wed, 25 Nov 2020 16:01:23 +0300
 
   Add the following new features: arc4random, bswap, dprintf, efun,

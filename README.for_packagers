@@ -1,0 +1,26 @@
+Since mk-configure-0.34.0 special mk files
+(mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk for C compiler and
+mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk for C++ compiler) are
+created and installed, there some compiler settings are stored.  That
+is, mk-configure learns some important things about compilers at build
+time and uses this information at the time of mk-configure-based
+project build.  By default if required mkc_imp.cc_XXX or
+mkc_imp.cxx_XXX file is absent, mk-configure fails, because it doesn't
+know how to work with unknown compiler.  This may lead to package
+(based on mk-configure) failures, when system-wide compiler is updated
+but mk-configure package is not. On some Linux distributions (e.g.,
+Debian unstable), where compiler is updated regularly, such failures
+is a typical situation. In order to fix this, I'd recommend to build
+mk-configure-based packages like the following:
+
+     export HOME=/path/to/temporary/home
+     mkdir -p "$HOME"
+     export MKCOMPILERSETTINGS=yes
+     ... other settings, e.g., PREFIX, SYSCONFDIR etc.
+     mkcmake all install
+
+As you can see, MKCOMPILERSETTINGS is set to "yes". This means that
+appropriate mkc_imp.cc_XXX or mkc_imp.cxx_XXX files are created in
+temporary HOME directory automatically, if system-wide mk files
+correspond to a different compiler. Note that MKCOMPILERSETTINGS
+variable appeared in mk-configure-0.36.0.
