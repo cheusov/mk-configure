@@ -66,8 +66,8 @@ To get system-wide configuration parameters,
 .B mkc.init.mk
 loads "${MAKECONF}" file if it exists.
 Otherwise, it loads
-@sysconfdir@/mk-c.conf if it exists.
-If neither ${MAKECONF} nor @sysconfdir@/mk-c.conf exist,
+@sysconfdir@/mkcmake.conf if it exists.
+If neither ${MAKECONF} nor @sysconfdir@/mkcmake.conf exist,
 it tries to load @sysconfdir@/mk.conf file.
 If "${SRCTOP}/Makefile.common" file exists it is also included
 by all subprojects.
@@ -76,7 +76,7 @@ is also included if exists.
 These files may define any of the variables described
 below.
 Compiler-specific defaults are also loaded from
-"~/.mk-c" or system directories. This compiler-specific defaults
+"~/.mkcmake" or system directories. This compiler-specific defaults
 are determined at build time or with the help of
 .B mkc_compiler_settings
 utility.
@@ -2267,10 +2267,12 @@ See SYSROOT.
 .RI [ "${MACHINE_GNU_PLATFORM}-" ].
 .SH "ENVIRONMENT VARIABLES"
 .IP MAKECONF
-Path to mk.conf file .include-ed by mkc.*.mk files
+Path to mk.conf file included by mkc.*.mk files
 .SH "FILES"
+.IP @sysconfdir@/mkcmake.conf
+included by mkc.init.mk if exists
 .IP @sysconfdir@/mk.conf
- .include-ed by mkc.init.mk if exists
+included by mkc.init.mk if exists
 .SH "BUGS"
 Target
 .IR configure " (" configure ")"
