@@ -65,9 +65,7 @@ _LIBS   +=	${SHLIBFN}
 
 realdo_all: ${SRCS} ${_LIBS}
 realdo_all: ${.CURDIR:T}.done
-
 ${.CURDIR:T}.done: ${_LIBS}
-	@printf '' > $@
 
 ${_LIBS}: ${_LIBDEPSDONEFILES}
 

@@ -96,6 +96,9 @@ print_values2 :
 	@printf "%s\n" ${${v}:Q}
 .endfor
 
+${.CURDIR:T}.done:
+	@printf '' > $@
+
 ###########
 check_mkc_err_msg:
 	@if test -n '${MKC_ERR_MSG}'; then \
