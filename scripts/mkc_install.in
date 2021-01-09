@@ -120,7 +120,6 @@ copy_file () {
     $doit $stripcmd "$dsttmp"
     $doit $chmodcmd "$dsttmp"
 
-    $doit $rmcmd -f "$dst"
     $doit $mvcmd "$dsttmp" "$dst"
 }
 
