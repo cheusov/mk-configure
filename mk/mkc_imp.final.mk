@@ -34,10 +34,10 @@ export_cmd  +=	MAKEOBJDIR=${.OBJDIR}/${.TARGET:C/^.*-//}; \
 realdo_clean: mkc_clean
 
 mkc_clean: .PHONY
-.if ${CLEANFILES:U} != ""
+.if !empty(CLEANFILES)
 	-${CLEANFILES_CMD} ${CLEANFILES}
 .endif
-.if ${CLEANDIRS:U} != ""
+.if !empty(CLEANDIRS)
 	-${CLEANDIRS_CMD} ${CLEANDIRS}
 .endif
 
@@ -49,10 +49,10 @@ errorcheck: configure
 realdo_cleandir: mkc_cleandir
 
 mkc_cleandir:
-.if ${CLEANFILES:U} != "" || ${CLEANDIRFILES:U} != ""
+.if !empty(CLEANFILES) || !empty(CLEANDIRFILES)
 	-${CLEANFILES_CMD} ${CLEANDIRFILES} ${CLEANFILES}
 .endif
-.if ${CLEANDIRS:U} != "" || ${CLEANDIRDIRS:U} != ""
+.if !empty(CLEANDIRS) || !empty(CLEANDIRDIRS)
 	-${CLEANDIRS_CMD} ${CLEANDIRDIRS} ${CLEANDIRS}
 .endif
 

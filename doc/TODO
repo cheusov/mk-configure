@@ -2,9 +2,6 @@
 Add recursive lint and ctags (by David Young) targets
 
 ============================================================
-SRC_PATHADD, CC_PREFIX and CXX_PREFIX?
-
-============================================================
 SHRTOUT -- set -x and redirect everything to temporary
 log file and print it only if the target fails?
 
