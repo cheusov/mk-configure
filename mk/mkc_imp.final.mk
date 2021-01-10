@@ -56,6 +56,12 @@ mkc_cleandir:
 	-${CLEANDIRS_CMD} ${CLEANDIRDIRS} ${CLEANDIRS}
 .endif
 
+#####
+realdo_installdirs:
+.if !empty(INSTALLDIRS)
+	${INSTALL} ${INSTALL_FLAGS} -d -m ${DIRMODE} ${INSTALLDIRS:O:u}
+.endif
+
 ##########
 # pre_, do_, post_ targets
 .for t in ${ALLTARGETS}
