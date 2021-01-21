@@ -1,3 +1,6 @@
+MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
+when this check fails.
+
 ============================================================
 SHRTOUT -- set -x and redirect everything to temporary
 log file and print it only if the target fails?
