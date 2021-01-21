@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Dec 9, 2020" "" ""
+.TH MK-CONFIGURE 7 "Jan 05, 2021" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -66,8 +66,8 @@ To get system-wide configuration parameters,
 .B mkc.init.mk
 loads "${MAKECONF}" file if it exists.
 Otherwise, it loads
-@sysconfdir@/mk-c.conf if it exists.
-If neither ${MAKECONF} nor @sysconfdir@/mk-c.conf exist,
+@sysconfdir@/mkcmake.conf if it exists.
+If neither ${MAKECONF} nor @sysconfdir@/mkcmake.conf exist,
 it tries to load @sysconfdir@/mk.conf file.
 If "${SRCTOP}/Makefile.common" file exists it is also included
 by all subprojects.
@@ -76,7 +76,7 @@ is also included if exists.
 These files may define any of the variables described
 below.
 Compiler-specific defaults are also loaded from
-"~/.mk-c" or system directories. This compiler-specific defaults
+"~/.mkcmake" or system directories. This compiler-specific defaults
 are determined at build time or with the help of
 .B mkc_compiler_settings
 utility.
@@ -155,6 +155,11 @@ This file is included by
 automatically but can be used by users directly.
 .B mkc.init.mk
 uses the following variables.
+.IP AFLAGS
+Options to ${CC} when compiling or linking .s or .S
+assembly source files.  []
+.\" .IP ADDR2LINE
+.\" Path to addr2line.  [addr2line]
 .IP AR
 Create, modify, and extract from archives.
 .RI < Iu >
@@ -167,11 +172,21 @@ Options to ${AR}.
 Assembler.
 .RI < Iu >
 .RI [ as ]
-.IP AFLAGS
-Options to ${CC} when compiling or linking .s or .S
-assembly source files.  []
-.\" .IP ADDR2LINE
-.\" Path to addr2line.  [addr2line]
+.IP BINDIR
+Target directory for utilities.
+.RI < "Iu Mu" >
+.RI [ ${PREFIX}/bin ]
+.IP BMAKE_REQD
+Minimal required version of
+.BR bmake .
+If it is older,
+.B mkcmake
+exits with error.
+.RI < "Im" >
+.IP BZIP2
+bzip2 copression tool.
+.RI < Iu >
+.RI [ bzip2 ]
 .IP CC
 C compiler.
 .RI < Iu >
@@ -180,14 +195,81 @@ C compiler.
 Prefix command for ${CC}, for example, distcc or ccache.
 .RI < Iu >
 .RI [ "" ]
+.IP CC_TYPE
+C compiler type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the following values:
+.VS
+Value     Description
+----------------------
+gcc       GNU C/C++ compiler
+pcc       Portable C compiler
+icc       Intel C/C++ compiler
+msc       Microsoft C/C++ compiler
+armcc     ARM C/C++ compiler
+hpc       HP-UX C/C++ compiler
+sunpro    SUNWspro C/C++ compiler
+ibmc      IBM C/C++ compiler (Visual Age for C/C++?)
+bcc       Borland C/C++ compiler
+watcom    Watcom C/C++ compiler
+como      COMO C/C++ compiler
+decc      DEC C
+mipspro   MIPSpro C compiler
+.VE
+.RI < "Iu" >
+.RI [ no ]
+.IP CC_VERSION
+C compiler version.
+.RI < "I" >
+.IP CCSTD
+C language standard required by program. Supported options:
+.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
+" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
+c17 ", " gnu17 " (C17 with GNU extensions)."
+If compiler is not known for mk-configure developer or does not
+support appropriate option, no additional options are applied.
+.RI < M >
+.RI [ "" ]
 .IP CFLAGS
 Additional flags to the compiler when creating C objects.
 .RI < "IM" >
+.IP CFLAGS0
+The same as CFLAGS but CFLAGS0 is passed to the compiler before CFLAGS.
+Normally, CFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
 .IP CFLAGS.check
 Same as CFLAGS but every option is checked whether it is a valid one for C compiler.
 Double underline in the flag is considered as a single space character.
 .RI < M >
 .RI [ unset ]
+.IP "CFLAGS.dflt.<cctype>, CXXFLAGS.dflt.<cxxtype>"
+Additional flags passed to
+C or C++ compilers according to their types (CC_TYPE and CXX_TYPE).
+.RI < "Iu" >
+.IP "CFLAGS.pic, CXXFLAGS.pic"
+Options for C and C++ compilers for generating position independent
+code.  On some platforms it makes sense to override these variables
+(initialized by mk-configure) for better performance, for example,
+one may use -fpic instead of -fPIC with GNU C/C++ compilers.
+See SHLIB_MAJOR, MKPIE etc. variables for more information.
+.RI < "Iu" >
+.IP "CFLAGS.pie, CXXFLAGS.pie"
+Options for C and C++ compilers for generating position independent
+executables.  On some platforms it makes sense to override these variables
+(initialized by mk-configure) for better performance, for example,
+one may use -fpic instead of -fPIC with GNU C/C++ compilers.
+See MKPIE variable for more information.
+.RI < "Iu" >
+.IP "CFLAGS.ssp, CXXFLAGS.ssp"
+Options for C and C++ compilers for generating stack protection code.
+See USE_SSP variable for more information.
+.RI < "Iu" >
+.IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
+These variables are set by mk-configure and enable warning messages
+for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
+and warning level (WARNS).
+.RI < "Iu" >
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -195,31 +277,39 @@ Similar to CFLAGS but for project ${PROJECTNAME}.
 Similar to CFLAGS but for the specified source file.
 Basename of the source file is used.
 .RI < "Mu" >
-.IP CFLAGS0
-The same as CFLAGS but CFLAGS0 is passed to the compiler before CFLAGS.
-Normally, CFLAGS0 should be modified in makefiles and should not
-be set from environment by user.
-.RI < "M" >
-.IP CLEANFILES_CMD
-Command for removing files used by targets "clean" and "cleandir".
-.RI < Iu >
-.RI [ "${RM} -f" ]
 .IP CLEANDIRS_CMD
 Command for removing directories used by targets "clean" and "cleandir".
 .RI < Iu >
 .RI [ "${RM} -rf" ]
+.IP CLEANFILES_CMD
+Command for removing files used by targets "clean" and "cleandir".
+.RI < Iu >
+.RI [ "${RM} -f" ]
 .IP COPTS
 Additional flags to the compiler when creating C objects.
 .RI < "U" >
 .IP COPTS_<project>
 Similar to COPTS but for project ${PROJECTNAME}.
 .RI < "U" >
-.IP CXXOPTS
-Additional flags to the compiler when creating C++ objects.
+.IP CPP
+C Pre-Processor.
+.RI < Iu >
+.RI [ cpp ]
+.IP CPPFLAGS
+Additional flags to the C/C++ pre-processor.
+.RI < "Iu" >
+.IP CPPFLAGS0
+The same as CPPFLAGS but CPPFLAGS0 is passed to the compiler before CPPFLAGS.
+Normally, CPPFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
+.IP CPPFLAGS_<project>
+Similar to CPPFLAGS but for project ${PROJECTNAME}.
 .RI < "U" >
-.IP CXXOPTS_<project>
-Similar to CXXOPTS but for project ${PROJECTNAME}.
-.RI < "U" >
+.IP CPPFLAGS_<source>
+Similar to CPPFLAGS but for the specified source file.
+Basename of the source file is used.
+.RI < "Mu" >
 .IP CXX
 C++ compiler.
 .RI < Iu >
@@ -228,10 +318,23 @@ C++ compiler.
 Prefix command for ${CXX}, for example, distcc or ccache.
 .RI < Iu >
 .RI [ "" ]
+.IP CXX_TYPE
+C++ compiler type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the same values as CC_TYPE variable.
+.RI < "Iu" >
+.IP CXX_VERSION
+C++ compiler version.
+.RI < "I" >
 .IP CXXFLAGS
 Additional flags to the compiler when creating C++ objects.
 .RI < "Iu" >
-.RI [ ${CFLAGS} ]
+.RI [ "" ]
+.IP CXXFLAGS0
+The same as CXXFLAGS but CXXFLAGS0 is passed to the compiler before CXXFLAGS.
+Normally, CXXFLAGS0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
 .IP CXXFLAGS.check
 Same as CXXFLAGS but every option is checked whether it is a valid one for C++ compiler.
 .RI < M >
@@ -243,30 +346,41 @@ Similar to CXXFLAGS but for project ${PROJECTNAME}.
 Similar to CXXFLAGS but for the specified source file.
 Basename of the source file is used.
 .RI < "Mu" >
-.IP CXXFLAGS0
-The same as CXXFLAGS but CXXFLAGS0 is passed to the compiler before CXXFLAGS.
-Normally, CXXFLAGS0 should be modified in makefiles and should not
-be set from environment by user.
-.RI < "M" >
-.IP CPP
-C Pre-Processor.
-.RI < Iu >
-.RI [ cpp ]
-.IP CPPFLAGS
-Additional flags to the C/C++ pre-processor.
-.RI < "Iu" >
-.IP CPPFLAGS_<project>
-Similar to CPPFLAGS but for project ${PROJECTNAME}.
+.IP CXXOPTS
+Additional flags to the compiler when creating C++ objects.
 .RI < "U" >
-.IP CPPFLAGS_<source>
-Similar to CPPFLAGS but for the specified source file.
-Basename of the source file is used.
-.RI < "Mu" >
-.IP CPPFLAGS0
-The same as CPPFLAGS but CPPFLAGS0 is passed to the compiler before CPPFLAGS.
-Normally, CPPFLAGS0 should be modified in makefiles and should not
-be set from environment by user.
-.RI < "M" >
+.IP CXXOPTS_<project>
+Similar to CXXOPTS but for project ${PROJECTNAME}.
+.RI < "U" >
+.IP CXXSTD
+C++ language standard required by program. Supported options:
+.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
+" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
+c17 ", " gnu17 " (C17 with GNU extensions)."
+If compiler is not known for mk-configure developer or does not
+support appropriate option, no additional options are applied.
+.RI < M >
+.RI [ "" ]
+.IP DATADIR
+Target directory for architecture-independent text files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/share ]
+.IP DESTDIR
+Installation prefix.
+.RI < "U" >
+.RI [ "" ]
+.IP GZIP
+gzip copression tool.
+.RI < Iu >
+.RI [ gzip ]
+.IP INCSDIR
+Target directory for header files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/include ]
+.IP INFODIR
+Target directory for .info files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/info ]
 .IP INSTALL
 install(1) command.
 .RI < Iu >
@@ -275,160 +389,40 @@ install(1) command.
 Flags passed to ${INSTALL} program.
 .RI < Iu >
 .RI [ "-c" ]
-.IP LEX
-Lexical analyzer.
-.RI < Iu >
-.RI [ lex ]
-.IP LFLAGS
-Options to ${LEX}.
-.RI < Iu >
-.RI [ "" ]
-.IP LN
-ln(1) tool.
-.RI < Iu >
-.RI [ ln ]
-.IP LN_S
-Tool equivalent to ln -s.
-.RI < Iu >
-.RI [ "${LN} -s" ]
-.IP LPREFIX
-Symbol prefix for ${LEX} (see -P option in lex(1)).
-.RI < Iu >
-.RI [ yy ]
-.RI < Iu >
-.RI [ yy ]
-.IP LEXLIB
-Object file for lex.
-.RI < Iu >
-.RI [ -ll ]
 .IP LD
 Linker.
 .RI < Iu >
 .RI [ ld ]
-.IP LORDER
-List dependencies for object files.
-.RI < Iu >
-.RI [ lorder ]
-.IP MAKE
-bmake(1).
-.RI [ bmake " or " make " on NetBSD]"
-.IP MAKEDEPEND
-makedepend(1) tool.
-.RI < Iu >
-.IP MKDIR
-mkdir(1) tool.
-.RI < Iu >
-.RI [ mkdir ]
-.IP MKDEP
-mkdep(1) tool.
-.RI < Iu >
-.IP NM
-List symbols from object files.
-.RI < Iu >
-.RI [ nm ]
-.IP OBJCOPY
-Copy and translate object files.
-.RI < Iu >
-.RI [ objcopy ]
-.IP OBJDUMP
-Display information from object files.
-.RI < Iu >
-.RI [ objdump ]
-.IP RANLIB
-Generate index to archive.
-.RI < Iu >
-.RI [ ranlib ]
-.IP RM
-rm(1) tool.
-.RI < Iu >
-.RI [ rm ]
-.IP SIZE
-List section sizes and total size.
-.RI < Iu >
-.RI [ size ]
-.IP SRC_PATHADD
-List of directories added to
-.IR .PATH .
-.RI < Im >
-.RI [ "" ]
-.IP STRIP
-Discard symbols from object files.
-.RI < Iu >
-.RI [ strip ]
-.IP STRIPFLAG
-The flag passed to the install program to cause the binary
-to be stripped.
-.RI < Iu >
-.IP TSORT
-Topological sort of a directed graph.
-.RI < Iu >
-.RI [ "tsort -q" ]
-.IP UNINSTALL
-Command for removing files used by target "uninstall".
-.RI < Iu >
-.RI [ "${RM} -f" ]
-.IP YACC
-LALR(1) parser generator.
-.RI < Iu >
-.RI [ yacc ]
-.IP TAR
-tar archiver.
-.RI < Iu >
-.RI [ tar ]
-.IP GZIP
-gzip copression tool.
-.RI < Iu >
-.RI [ gzip ]
-.IP BZIP2
-bzip2 copression tool.
-.RI < Iu >
-.RI [ bzip2 ]
-.IP ZIP
-zip copression tool.
-.RI < Iu >
-.RI [ zip ]
-.IP YFLAGS
-Options to ${YACC}.
-.RI < Iu >
-.RI [ "" ]
-.IP YHEADER
-If defined, add "-d" to YFLAGS, and add dependencies
-from <file>.y to <file>.h and <file>.c, and add
-<foo>.h to CLEANFILES.
-.IP YPREFIX
-If defined, add "-p ${YPREFIX}" to YFLAGS.
-.IP WARNERR
-If "yes", force warnings to be reported as errors.
-At the moment this is supported for GCC, clang, Intel C/C++ and Sun's C/C++ compilers.
-.RI < "Iu" >
-.RI [ yes " if WARNS=4, " no " otherwise ]"
-.IP WARNS
-Crank up warning options; the distinct levels are (the higher the
-more strict):
+.IP LD_TYPE
+Linker type. This variable is set by
+.B mk-configure
+and can be overriden by user. It can get the following values:
 .VS
-    WARNS=0
-    WARNS=1
-    WARNS=2
-    WARNS=3
-    WARNS=4
+Value        Description
+----------------------
+aixld        AIX linker
+darwinld     Darwin linker (MacOS-X)
+gnuld        GNU linker
+hpld         HP-UX linker
+interixld    Interix linker
+scold        SCO linker
+sunld        SunOS linker
+osf1ld       OSF1 linker (Tru64)
+irixld       IRIX linker
 .VE
-At the moment WARNS is supported for GCC and HP-UX C/C++ only.
-WARNS=0 means disabling all warnings if such feature is provided by compiler
-and mk-configure.
-.RI < Mu >
-.RI [ 0 ]
-.IP PREFIX
-Target directory.
-.RI < "U" >
-.RI [ /usr/local ]
-.IP BINDIR
-Target directory for utilities.
-.RI < "Iu Mu" >
-.RI [ ${PREFIX}/bin ]
-.IP SBINDIR
-Target directory for administration utilities.
 .RI < "Iu" >
-.RI [ ${PREFIX}/sbin ]
+.IP LEX
+Lexical analyzer.
+.RI < Iu >
+.RI [ lex ]
+.IP LEXLIB
+Object file for lex.
+.RI < Iu >
+.RI [ -ll ]
+.IP LFLAGS
+Options to ${LEX}.
+.RI < Iu >
+.RI [ "" ]
 .IP LIBDIR
 Target directory for libraries.
 .RI < "Iu" >
@@ -437,63 +431,34 @@ Target directory for libraries.
 Target directory for system utilities.
 .RI < "Iu" >
 .RI [ ${PREFIX}/libexec ]
-.IP DATADIR
-Target directory for architecture-independent text files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/share ]
-.IP SHAREDSTATEDIR
-Target directory for modifiable architecture-independent data files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/com ]
-.IP VARDIR
-Target directory for modifiable single-machine data files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/var ]
-.IP INCSDIR
-Target directory for header files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/include ]
-.IP SYSCONFDIR
-Target directory for configuration files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/etc ]
-.IP INFODIR
-Target directory for .info files.
-.RI < "Iu" >
-.RI [ ${PREFIX}/info ]
-.IP DESTDIR
-Installation prefix.
-.RI < "U" >
-.RI [ "" ]
+.IP LN
+ln(1) tool.
+.RI < Iu >
+.RI [ ln ]
+.IP LN_S
+Tool equivalent to ln -s.
+.RI < Iu >
+.RI [ "${LN} -s" ]
+.IP LORDER
+List dependencies for object files.
+.RI < Iu >
+.RI [ lorder ]
+.IP LPREFIX
+Symbol prefix for ${LEX} (see -P option in lex(1)).
+.RI < Iu >
+.RI [ yy ]
+.RI < Iu >
+.RI [ yy ]
+.IP MAKE
+bmake(1).
+.RI [ bmake " or " make " on NetBSD]"
+.IP MAKEDEPEND
+makedepend(1) tool.
+.RI < Iu >
 .IP MKC_ERR_MSG
 If set, keep an error message.
 .RI < "I M" >
 .RI [ "" ]
-.IP MKINSTALL
-If not "yes", build everything but do not install. This option is useful
-for e.g. internal libraries.
-.RI < "Mu" >
-.RI [ yes ]
-.IP MKINSTALLDIRS
-If "yes", install target directories (target
-.IR installdirs )
-before installing files (target 
-.IR install ).
-.RI < "Iu" >
-.RI [ yes ]
-.IP MKOBJDIR
-If "yes", the target "obj" creates object directories, if "auto",
-object directories are created automatically. Otherwise object
-directories are not created.
-.RI < "Iu" >
-.RI [ auto ]
-.IP BMAKE_REQD
-Minimal required version of
-.BR bmake .
-If it is older,
-.B mkcmake
-exits with error.
-.RI < "Im" >
 .IP MKC_REQD
 Minimal required version of
 .BR mk-configure .
@@ -517,6 +482,73 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
    .endif # MKC_VERSION
 .VE
 .RI < "I" >
+.IP MKCOMPILERSETTINGS
+At build time mk-configure detects some compilers capabilities and saves them
+to system-wide
+.I mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk
+(for C compiler)
+and
+.I mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
+(for C++ compiler) files. At run time mk-configure loads these files
+if necessary. If they are absent, that is, if you use compilers
+unknown to mk-configure, it exits with error. If order to fix this,
+you have to run
+.B mkc_compiler_setting(1)
+utility manually. This utility generates similar files in
+.IR ${HOME}/.mkcmake " directory."
+However, if
+.B MKCOMPILERSETTINGS
+variable is set to
+.IR yes ,
+.B mkc_compiler_setting(1)
+is run automaticlly and mk-configure loads the generated files.
+.RI < Iu >
+.RI [ no ]
+.IP MKDEP
+mkdep(1) tool.
+.RI < Iu >
+.IP MKDIR
+mkdir(1) tool.
+.RI < Iu >
+.RI [ mkdir ]
+.IP MKINSTALL
+If not "yes", build everything but do not install. This option is useful
+for e.g. internal libraries.
+.RI < "Mu" >
+.RI [ yes ]
+.IP MKINSTALLDIRS
+If "yes", install target directories (target
+.IR installdirs )
+before installing files (target 
+.IR install ).
+.RI < "Iu" >
+.RI [ yes ]
+.IP MKOBJDIR
+If "yes", the target "obj" creates object directories, if "auto",
+object directories are created automatically. Otherwise object
+directories are not created.
+.RI < "Iu" >
+.RI [ auto ]
+.IP NM
+List symbols from object files.
+.RI < Iu >
+.RI [ nm ]
+.IP OBJCOPY
+Copy and translate object files.
+.RI < Iu >
+.RI [ objcopy ]
+.IP OBJDUMP
+Display information from object files.
+.RI < Iu >
+.RI [ objdump ]
+.IP OBJTOP
+Top-level object directory which
+defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
+.RI < I >
+.IP PREFIX
+Target directory.
+.RI < "U" >
+.RI [ /usr/local ]
 .IP PROJECTNAME
 The name of a project. By default it is set to ${PROG}, ${LIB} or ${.CURDIR:T}.
 For a top-level project using either mkc.subdir.mk or mkc.subprj.mk
@@ -537,95 +569,36 @@ to change build options, e.g. during development process.
    .endif # MKC_VERSION
 .VE
 .RI < "Im" >
-.IP CC_TYPE
-C compiler type. This variable is set by
-.B mk-configure
-and can be overriden by user. It can get the following values:
-.VS
-Value     Description
-----------------------
-gcc       GNU C/C++ compiler
-pcc       Portable C compiler
-icc       Intel C/C++ compiler
-msc       Microsoft C/C++ compiler
-armcc     ARM C/C++ compiler
-hpc       HP-UX C/C++ compiler
-sunpro    SUNWspro C/C++ compiler
-ibmc      IBM C/C++ compiler (Visual Age for C/C++?)
-bcc       Borland C/C++ compiler
-watcom    Watcom C/C++ compiler
-como      COMO C/C++ compiler
-decc      DEC C
-mipspro   MIPSpro C compiler
-.VE
+.IP RANLIB
+Generate index to archive.
+.RI < Iu >
+.RI [ ranlib ]
+.IP RM
+rm(1) tool.
+.RI < Iu >
+.RI [ rm ]
+.IP SBINDIR
+Target directory for administration utilities.
 .RI < "Iu" >
-.IP CC_VERSION
-C compiler version.
-.RI < "I" >
-.IP CXX_TYPE
-C++ compiler type. This variable is set by
-.B mk-configure
-and can be overriden by user. It can get the same values as CC_TYPE variable.
+.RI [ ${PREFIX}/sbin ]
+.IP SHAREDSTATEDIR
+Target directory for modifiable architecture-independent data files.
 .RI < "Iu" >
-.IP CXX_VERSION
-C++ compiler version.
-.RI < "I" >
-.IP LD_TYPE
-Linker type. This variable is set by
-.B mk-configure
-and can be overriden by user. It can get the following values:
-.VS
-Value        Description
-----------------------
-aixld        AIX linker
-darwinld     Darwin linker (MacOS-X)
-gnuld        GNU linker
-hpld         HP-UX linker
-interixld    Interix linker
-scold        SCO linker
-sunld        SunOS linker
-osf1ld       OSF1 linker (Tru64)
-irixld       IRIX linker
-.VE
-.RI < "Iu" >
+.RI [ ${PREFIX}/com ]
 .IP SHRTOUT
 If not "no", output messages about compiling, linking and creating libraries
 are shortened and formatted.
 .RI < "Iu" >
 .RI [ no ]
-.IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
-These variables are set by mk-configure and enable warning messages
-for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
-and warning level (WARNS).
-.RI < "Iu" >
-.IP "CFLAGS.dflt.<cctype>, CXXFLAGS.dflt.<cxxtype>"
-Additional flags passed to
-C or C++ compilers according to their types (CC_TYPE and CXX_TYPE).
-.RI < "Iu" >
-.IP "CFLAGS.pic, CXXFLAGS.pic"
-Options for C and C++ compilers for generating position independent
-code.  On some platforms it makes sense to override these variables
-(initialized by mk-configure) for better performance, for example,
-one may use -fpic instead of -fPIC with GNU C/C++ compilers.
-See SHLIB_MAJOR, MKPIE etc. variables for more information.
-.RI < "Iu" >
-.IP "CFLAGS.pie, CXXFLAGS.pie"
-Options for C and C++ compilers for generating position independent
-executables.  On some platforms it makes sense to override these variables
-(initialized by mk-configure) for better performance, for example,
-one may use -fpic instead of -fPIC with GNU C/C++ compilers.
-See MKPIE variable for more information.
-.RI < "Iu" >
-.IP "CFLAGS.ssp, CXXFLAGS.ssp"
-Options for C and C++ compilers for generating stack protection code.
-See USE_SSP variable for more information.
-.RI < "Iu" >
-.IP USE_SSP
-If "yes", enables stack protection code, which detects stack overflows
-and aborts the program. This enhances security but imposes some
-performance penalty.
-.RI < "U" >
-.RI [ no ]
+.IP SIZE
+List section sizes and total size.
+.RI < Iu >
+.RI [ size ]
+.IP SRC_PATHADD
+List of directories added to
+.IR .PATH .
+.RI < Im >
+.RI [ "" ]
 .IP SRCTOP
 Top-level project's directory which
 defaults to ${.CURDIR} if ${.MAKE.LEVEL} is 0.
@@ -638,10 +611,77 @@ will be translated to
 .br
    cd ${SRCTOP}; mkcmake target-subproject
 .RI < Iu >
-.IP OBJTOP
-Top-level object directory which
-defaults to ${.OBJDIR} if ${.MAKE.LEVEL} is 0.
-.RI < I >
+.IP STRIP
+Discard symbols from object files.
+.RI < Iu >
+.RI [ strip ]
+.IP STRIPFLAG
+The flag passed to the install program to cause the binary
+to be stripped.
+.RI < Iu >
+.IP SYSCONFDIR
+Target directory for configuration files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/etc ]
+.IP TAR
+tar archiver.
+.RI < Iu >
+.RI [ tar ]
+.IP TSORT
+Topological sort of a directed graph.
+.RI < Iu >
+.RI [ "tsort -q" ]
+.IP UNINSTALL
+Command for removing files used by target "uninstall".
+.RI < Iu >
+.RI [ "${RM} -f" ]
+.IP USE_SSP
+If "yes", enables stack protection code, which detects stack overflows
+and aborts the program. This enhances security but imposes some
+performance penalty.
+.RI < "U" >
+.IP VARDIR
+Target directory for modifiable single-machine data files.
+.RI < "Iu" >
+.RI [ ${PREFIX}/var ]
+.IP WARNERR
+If "yes", force warnings to be reported as errors.
+At the moment this is supported for GCC, clang, Intel C/C++ and Sun's C/C++ compilers.
+.RI < "Iu" >
+.RI [ yes " if WARNS=4, " no " otherwise ]"
+.IP WARNS
+Crank up warning options; the distinct levels are (the higher the
+more strict):
+.VS
+    WARNS=0
+    WARNS=1
+    WARNS=2
+    WARNS=3
+    WARNS=4
+.VE
+At the moment WARNS is supported for GCC and HP-UX C/C++ only.
+WARNS=0 means disabling all warnings if such feature is provided by compiler
+and mk-configure.
+.RI < Mu >
+.RI [ 0 ]
+.IP YACC
+LALR(1) parser generator.
+.RI < Iu >
+.RI [ yacc ]
+.IP YFLAGS
+Options to ${YACC}.
+.RI < Iu >
+.RI [ "" ]
+.IP YHEADER
+If defined, add "-d" to YFLAGS, and add dependencies
+from <file>.y to <file>.h and <file>.c, and add
+<foo>.h to CLEANFILES.
+.IP YPREFIX
+If defined, add "-p ${YPREFIX}" to YFLAGS.
+.IP ZIP
+zip copression tool.
+.RI < Iu >
+.RI [ zip ]
 .SS "mkc.files.mk"
 The include file
 .B mkc.files.mk
@@ -649,6 +689,26 @@ handles the FILES variable and is included
 from
 .BR mkc.lib.mk " and " mkc.prog.mk .
 List of supported variables:
+.IP CLEANDIRDIRS
+Additional directories to remove (recursively) for the
+.IR cleandir
+target.
+.RI < "I M" >
+.IP CLEANDIRFILES
+Additional files to remove for the
+.IR cleandir
+target.
+.RI < "I M" >
+.IP CLEANDIRS
+Additional directories to remove (recursively) for the
+.IR clean " and " cleandir
+targets.
+.RI < "I M" >
+.IP CLEANFILES
+Additional files to remove for the
+.IR clean " and " cleandir
+targets.
+.RI < "I M" >
 .IP FILES
 The list of files to install.
 .\" .IP CONFIGFILES Similar semantics to FILES, except that the files
@@ -663,30 +723,18 @@ The location to install the files.
 .IP FILESDIR_<fn>
 The location to install the specific file <fn>.
 .RI < "Mu" >
-.IP FILESOWN
-File owner. If
-.B bmake
-is run with root privileges, it defaults to
-.I ${BINOWN}
-or to
-.I "`id -u`"
-otherwise.
-.RI < "Mu" >
-.IP FILESOWN_<fn>
-File owner of the specific file <fn>.
-.RI < "Mu" >
 .IP FILESGRP
 File group. If
 .B bmake
 is run with root privileges, it defaults to
 .RI < "Mu" >
+.IP FILESGRP_<fn>
+File group of the specific file <fn>.
+.RI < "Mu" >
 .I ${BINGRP}
 or to
 .I "`id -g`"
 otherwise.
-.RI < "Mu" >
-.IP FILESGRP_<fn>
-File group of the specific file <fn>.
 .RI < "Mu" >
 .IP FILESMODE
 File mode.
@@ -701,44 +749,18 @@ Optional name to install each file as.
 .IP FILESNAME_<fn>
 Optional name to install <fn> as.
 .RI < "Mu" >
-.IP CLEANFILES
-Additional files to remove for the
-.IR clean " and " cleandir
-targets.
-.RI < "I M" >
-.IP CLEANDIRFILES
-Additional files to remove for the
-.IR cleandir
-target.
-.RI < "I M" >
-.IP CLEANDIRS
-Additional directories to remove (recursively) for the
-.IR clean " and " cleandir
-targets.
-.RI < "I M" >
-.IP CLEANDIRDIRS
-Additional directories to remove (recursively) for the
-.IR cleandir
-target.
-.RI < "I M" >
-.\" .IP FILESBUILD_<fn> A value different from "no" will add the file
- \" to the list of
-.\" targets to be built by `realall'.  Users of that variable
-.\" should provide a target to build the file.
-.\" .IP BUILDSYMLINKS List of two word items:
-.\" lnsrc lntgt
-.\" For each lnsrc item, create a symlink named lntgt.
-.\" The lntgt symlinks are removed by the cleandir target.
-.\" .IP UUDECODE_FILES List of files which are stored as <file>.uue in
- \" the source
-.\" tree. Each one will be decoded with ${TOOL_UUDECODE}.
-.\" The source files have a `.uue' suffix, the generated files do 
-.\" not.
-.\" .IP UUDECODE_FILES_RENAME_<fn>
-.\" Rename the output from the decode to the provided name.
-.\" *NOTE: These files are simply decoded, with no install or other
-.\" rule applying implicitly except being added to the clean
-.\" target.
+.IP FILESOWN
+File owner. If
+.B bmake
+is run with root privileges, it defaults to
+.I ${BINOWN}
+or to
+.I "`id -u`"
+otherwise.
+.RI < "Mu" >
+.IP FILESOWN_<fn>
+File owner of the specific file <fn>.
+.RI < "Mu" >
 .SS "mkc.prog.mk"
 The include file
 .B mkc.prog.mk
@@ -746,20 +768,68 @@ handles building program from one or
 more source files, along with their manual pages.  It has a limited
 number of suffixes.
 List of supported variables:
+.IP DPINCDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLDADD
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLIBDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP EXPORT_DYNAMIC
+If "yes", add all symbols to the dynamic symbol table, that is make
+all symbols visible from dynamic objects at run time (e.g. dlopen-ed
+objects), otherwise only symbols referenced by some object file will
+be exported.
+.RI < "M" >
+.RI [ no ]
+.IP LDADD
+Additional objects.  Usually used for libraries.
+For example, to link with the compatibility and utility
+libraries, use:
+.VS
+    LDADD+=  -lutil -lcompat
+.VE
+.RI < "U" >
+.IP LDADD0
+The same as LDADD but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
+.RI < "M" >
+.IP LDADD_<project>
+Similar to LDADD but for project ${PROJECTNAME}.
+.IP LDFLAGS
+Additional linker flags. Often used for specifying library directories.
+.VS
+    LDFLAGS+=  -L/opt/company/software/lib
+.VE
+.RI < "Mu I" >
+.IP LDFLAGS0
+The same as LDFLAGS but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
+Normally, LDFLAGS0 and LDADD0 should be modified in makefiles and should not
+be set from environment by user.
+.RI < "M" >
+.IP LDFLAGS_<project>
+Similar to LDFLAGS but for project ${PROJECTNAME}.
+.IP MKPIE
+If "yes", create Position Independent Executable (PIE), otherwise
+create a regular executable.
+.RI < "Mu" >
+.RI [ no ]
+.IP MKSHARE
+If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
+I.e, don't build catman pages, man pages, info
+documentation,...
+.RI < "Iu" >
+.RI [ yes ]
 .IP PROG
 The name of the program to build.
-.IP PROGS
-The names of the programs to build.  If neither PROG nor PROGS
-is not supplied, nothing is built.
-.\" .IP PROG_CXX
-.\" If defined, the name of the program to build.  Also
-.\" causes mkc.prog.mk to link the program with the C++
-.\" compiler rather than the C compiler.  PROG_CXX overrides
-.\" the value of PROG if PROG is also set.
-.RI < "M" >
 .IP PROGNAME
 The name that the above program will be installed as, if
 different from ${PROG}.
+.RI < "M" >
+.IP PROGS
+The names of the programs to build.  If neither PROG nor PROGS
+is not supplied, nothing is built.
 .RI < "M" >
 .IP SRCS
 List of source files to build the program.  If SRCS is not
@@ -772,69 +842,12 @@ listed in
 .IR PROGS .
 If SRCS.<prog> is not defined, it's assumed to be prog.c.
 .RI < "M" >
-.IP LDADD
-Additional objects.  Usually used for libraries.
-For example, to link with the compatibility and utility
-libraries, use:
-.VS
-    LDADD+=  -lutil -lcompat
-.VE
-.RI < "U" >
-.IP LDADD_<project>
-Similar to LDADD but for project ${PROJECTNAME}.
-.IP LDADD0
-The same as LDADD but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
-.RI < "M" >
-.IP LDFLAGS
-Additional linker flags. Often used for specifying library directories.
-.VS
-    LDFLAGS+=  -L/opt/company/software/lib
-.VE
-.RI < "Mu I" >
-.IP LDFLAGS_<project>
-Similar to LDFLAGS but for project ${PROJECTNAME}.
-.IP LDFLAGS0
-The same as LDFLAGS but LDFLAGS0 and LDADD0 are passed to the linker before LDFLAGS and LDADD.
-Normally, LDFLAGS0 and LDADD0 should be modified in makefiles and should not
-be set from environment by user.
-.RI < "M" >
-.IP "BINDIR, BINMODE, BINOWN and BINGRP"
-See
-.IR "Common variables " and " mkc.files.mk"
-sections.
-.IP MKSHARE
-If "no", act as "MKHTML=no MKINFO=no MKCATPAGES=no MKMAN=no".
-I.e, don't build catman pages, man pages, info
-documentation,...
-.RI < "Iu" >
-.RI [ yes ]
-.IP MKPIE
-If "yes", create Position Independent Executable (PIE), otherwise
-create a regular executable.
-.RI < "Mu" >
-.RI [ no ]
 .IP USE_RELRO
 If "yes", enables a technique to harden the data sections of an ELF
 binary/process.  For security reasons it makes sense to set it to YES, it
 may slow down application startup, though.
 .RI < "Iu" >
 .RI [ no ]
-.IP EXPORT_DYNAMIC
-If "yes", add all symbols to the dynamic symbol table, that is make
-all symbols visible from dynamic objects at run time (e.g. dlopen-ed
-objects), otherwise only symbols referenced by some object file will
-be exported.
-.RI < "M" >
-.RI [ no ]
-.IP DPINCDIRS
-See LIBDEPS in section
-.BR mk.subprj.mk .
-.IP DPLIBDIRS
-See LIBDEPS in section
-.BR mk.subprj.mk .
-.IP DPLDADD
-See LIBDEPS in section
-.BR mk.subprj.mk .
 .PP
 .B mkc.prog.mk
 includes
@@ -852,6 +865,27 @@ The include file
 has support for building a static and dynanic library or DLL.
 .B mkc.lib.mk
 uses the following variables:
+.IP DPINCDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLDADD
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP DPLIBDIRS
+See LIBDEPS in section
+.BR mk.subprj.mk .
+.IP EXPORT_SYMBOLS
+Only symbols listed in a specified file (one symbol per line) are
+exported. This variable has no effect on some platforms.  By default
+all symbols are exported.
+.RI < "M" >
+[]
+.IP "LDADD LDADD_<project>"
+Additional objects. See
+.B mkc.prog.mk
+.IP "LDFLAGS LDFLAGS_<project>"
+Additional linker flags. See
+.B mkc.prog.mk
 .IP LIB
 The name of the library to build.
 .RI < "M" >
@@ -859,23 +893,6 @@ The name of the library to build.
 See
 .IR "Common variables " and " mkc.files.mk"
 sections.
-.IP SHLIB_MAJOR
-Major shared library number. If unset, shared library is not built.
-.RI < "M" >
-.IP SHLIB_MINOR
-Minor shared library number.
-.RI < "M" >
-.RI [ 0 ]
-.IP SHLIB_TEENY
-Minor shared library number.
-.RI < "M" >
-.RI [ "" ]
-.IP LIBOWN
-Library owner. If
-.B bmake
-is run by an unprivileged user, it defaults to
-.IR "`id -u`" .
-.RI < "Iu" >
 .IP LIBGRP
 Library group. If
 .B bmake
@@ -886,44 +903,20 @@ is run by an unprivileged user, it defaults to
 Library mode.
 .RI < "Iu" >
 .RI [ ${NONBINMODE} ]
-.IP SHLIBMODE
-Shared library mode.
+.IP LIBOWN
+Library owner. If
+.B bmake
+is run by an unprivileged user, it defaults to
+.IR "`id -u`" .
 .RI < "Iu" >
-.IP "LDADD LDADD_<project>"
-Additional objects. See
-.B mkc.prog.mk
-.IP "LDFLAGS LDFLAGS_<project>"
-Additional linker flags. See
-.B mkc.prog.mk
 .IP MAN
 The manual pages to be installed (use a .1 - .9 suffix).
 .RI < "M" >
-.IP SRCS
-List of source files to build the library.  Suffix types
- .s, .c, and .f are supported.  Note, .s files are preferred
- to .c files of the same name.
+.IP MKDLL
+If "yes", build and install the dynamically loaded library (<lib>.so)
+instead of shared library. If "only", do not make static library.
 .RI < "M" >
-.\" (This is not the default for
-.\"  versions of make.)
-.\" LIBDPLIBS	A list of the tuples:
-.\" 			libname  path-to-srcdir-of-libname
-.\" 		For each tuple;
-.\" 		     *	LIBDO.libname contains the .OBJDIR of the library
-.\" 			`libname', and if it is not set it is determined
-.\" 			from the srcdir and added to MAKEOVERRIDES (the
-.\" 			latter is to allow for build time optimization).
-.\" 		     *	LDADD gets  -L${LIBDO.libname} -llibname    added.
-.\" 		     *	DPADD gets  ${LIBDO.libname}/liblibname.so  or
-.\" 				    ${LIBDO.libname}/liblibname.a   added.
-.\" 		This variable may be used for individual libraries, as
-.\" 		well as in parent directories to cache common libraries 
-.\" 		as a build-time optimization.
-.\" 
-.\" The include file <bsd.lib.mk> includes the file named "../Makefile.inc"
-.\" if it exists, as well as the include file <bsd.man.mk>.
-.\" 
-.\" It has rules for building profiled objects; profiled libraries are
-.\" built by default.
+.RI [ no ]
 .IP MKSHLIB
 If not "no", build and install shared library provided that SHLIB_MAJOR is defined.
 .RI < "IMu" >
@@ -941,39 +934,38 @@ If not "no", build and install *_pic.a library.
 If "no", don't build or install the profiling (*_p.a) libraries.
 .RI < "Iu" >
 .RI [ no ]
-.IP MKDLL
-If "yes", build and install the dynamically loaded library (<lib>.so)
-instead of shared library. If "only", do not make static library.
+.IP SHLIBMODE
+Shared library mode.
+.RI < "Iu" >
+.IP SHLIB_MAJOR
+Major shared library number. If unset, shared library is not built.
 .RI < "M" >
-.RI [ no ]
-.IP EXPORT_SYMBOLS
-Only symbols listed in a specified file (one symbol per line) are
-exported. This variable has no effect on some platforms.  By default
-all symbols are exported.
+.IP SHLIB_MINOR
+Minor shared library number.
 .RI < "M" >
-[]
-.IP DPINCDIRS
-See LIBDEPS in section
-.BR mk.subprj.mk .
-.IP DPLIBDIRS
-See LIBDEPS in section
-.BR mk.subprj.mk .
-.IP DPLDADD
-See LIBDEPS in section
-.BR mk.subprj.mk .
-.\" .IP "COPTS.lib<lib> LDADD.lib<lib> CPPFLAGS.lib<lib> CXXFLAGS.lib<lib>"
-.\" These provide a way to specify additions to the associated
-.\" variables in a way that applies only to a particular
-.\" library.  <lib> corresponds to a LIB variable.
-.\" For example, if COPTS.libfoobar is
-.\" set to "-g", "-g" will be added to COPTS only when compiling
-.\" the "libfoobar" library.
+.RI [ 0 ]
+.IP SHLIB_TEENY
+Minor shared library number.
+.RI < "M" >
+.RI [ "" ]
+.IP SRCS
+List of source files to build the library.  Suffix types
+ .s, .c, and .f are supported.  Note, .s files are preferred
+ to .c files of the same name.
+.RI < "M" >
 .PP
-Libraries are ranlib'd when made.
+Static libraries are
+.BR ranlib 'd
+when made.
 .B mkc.lib.mk
 includes
 .B mkc.files.mk
-and therefore supports all variables supported by it.
+and therefore supports all its variables as well.
+After creaion of libraries
+.I ${.CURDIR:T}.done
+file is created and used for handling inter-project
+.RB "(See " LIBDEPS " variable)"
+dependencies.
 .PP
 The order of options passed to the C and C++ compilers are the same as in
 .BR mkc.prog.mk .
@@ -1027,11 +1019,31 @@ subdirectory for the sample of use.
 .P
 .B mkc.subprj.mk
 provides the following variables:
-.IP SUBPRJ
-List of subprojects (subdirectories) and dependencies. If the
-subdirectory doesn't exist the subproject becomes "virtual" and may be
-used to group several subprojects into a new virtual one.
-.RI < "M" >
+.IP ALLTARGETS
+A list of targets for which pre\_*, do_* and post\_* counterparts exist, for example,
+pre\_all, do\_all and post\_all. pre\_* target runs before do\_* target which in turn
+runs before post\_*. Unless action is provided for do\_* targets
+they implement the standard behaviour of
+.BR mk-configure .
+No action is provided for targets pre\_* and post\_*, so they are
+for user's extensions. The standard behaviour for ${ALLTARGETS}
+may also be extended by adding new prerequisites
+to targets do\_*.
+.IP COMPATLIB
+Subproject's basename for compatibility library.
+If this variable is set, MKC_SOURCE_FUNCLIBS and FEATURES
+do not change SRCS for subprojects other than ${COMPATLIB}.
+.RI < M >
+.RI [ "" ]
+.IP EXPORT_VARNAMES
+List of variables to export before running make for subdirectories.
+.RI < "Mu" >
+.RI [ MKC_CACHEDIR SRCTOP OBJTOP STATICLIBS COMPATLIB ] 
+.IP INTERNALLIBS
+A list of subprojects (basenames) with internal libraries.
+These libraries are static and not installed by target "install".
+.RI < M >
+.RI [ "" ]
 .IP LIBDEPS
 A list of library dependencies. Each token is a colon-separated pair.
 Its first component is a library subproject (dependency), the second
@@ -1054,36 +1066,13 @@ may be set to non-default values. These three variables then changes
 LDADD0, LDFLAGS0 and CPPFLAGS0 respectively in subproject "program".
 The dependency graph specified by variable LIBDEPS is available to all
 subproject via environment.
-.IP STATICLIBS
-A list of subprojects (basenames) with static libraries. If dependency is
-mentioned in this variable, the suffix _pic is automatically added
-for PIE-executables or shared libraries that depend on this library.
-This variable is automatically passed to subprojects via environment.
-.RI < Mu >
-.RI [ "" ]
-.IP INTERNALLIBS
-A list of subprojects (basenames) with internal libraries.
-These libraries are static and not installed by target "install".
-.RI < M >
-.RI [ "" ]
-.IP COMPATLIB
-Subproject's basename for compatibility library.
-If this variable is set, MKC_SOURCE_FUNCLIBS and FEATURES
-do not change SRCS for subprojects other than ${COMPATLIB}.
-.RI < M >
-.RI [ "" ]
-.IP SUBPRJ_DFLT
-List of projects built and installed by default.
-The default is all projects listed in SUBPRJ.
-.RI < "IMu" >
-.IP EXPORT_VARNAMES
-List of variables to export before running make for subdirectories.
-.RI < "Mu" >
-.RI [ MKC_CACHEDIR SRCTOP OBJTOP STATICLIBS COMPATLIB ] 
-.IP NOEXPORT_VARNAMES
-List of variables excluded from EXPORT_VARNAMES.
-.RI < "Mu" >
-.RI [ "" ]
+.IP MKRELOBJDIR
+If "yes", object directories
+.RI ${OBJTOP}/ dir
+are used. Unlike MAKEOBJDIRPREFIX object directories do not contain
+top-level ${.CURDIR} in paths.
+.RI < "Iu" >
+.RI [ no ]
 .IP NODEPS
 This variable specifies a list of patterns that describes edges from dependency
 graph in
@@ -1093,6 +1082,10 @@ or
 formats to be excluded from dependency graph.
 .RI < "M" >
 .RI []
+.IP NOEXPORT_VARNAMES
+List of variables excluded from EXPORT_VARNAMES.
+.RI < "Mu" >
+.RI [ "" ]
 .IP NOSUBDIR
 If for some reason you want to exclude some subdirectories from build,
 list them in this variable.
@@ -1104,12 +1097,36 @@ Value of ${.OBJDIR} inside
 subdirectory. Slash symbols inside <dir> are replaced with underlines.
 In addition, OBJDIR_<dir:T> variable is set to ${OBJDIR_<dir>}
 if ${SHORTPRJNAME} is "yes".
+.IP SHORTPRJNAME
+If "yes", special targets with last component of the subprojects are provided.
+.RI < "Im" >
+.RI [ yes ]
 .IP SRCDIR_<dir>
 Value of ${.CURDIR} inside 
 .I dir
 subdirectory. Slash symbols inside <dir> are replaced with underlines.
 In addition, SRCDIR_<dir:T> variable is set to ${SRCDIR_<dir>}
 if ${SHORTPRJNAME} is "yes".
+.IP STATICLIBS
+A list of subprojects (basenames) with static libraries. If dependency is
+mentioned in this variable, the suffix _pic is automatically added
+for PIE-executables or shared libraries that depend on this library.
+This variable is automatically passed to subprojects via environment.
+.RI < Mu >
+.RI [ "" ]
+.IP SUBPRJ
+List of subprojects (subdirectories) and dependencies. If the
+subdirectory doesn't exist the subproject becomes "virtual" and may be
+used to group several subprojects into a new virtual one.
+.RI < "M" >
+.IP SUBPRJ_DFLT
+List of projects built and installed by default.
+The default is all projects listed in SUBPRJ.
+.RI < "IMu" >
+.IP SUBPRJSRCTOP
+This variables contains ${.CURDIR} directory and is passed to subprojects.
+.RI < "I" >
+.RI [ ${.CURDIR} ]
 .IP TARGETS
 A list of recursive targets. "Recursive" means that the target will be called
 for all subproject recursively (See 
@@ -1119,31 +1136,6 @@ for all subproject recursively (See
 .IR cleandir ", " depends ", " test ", " configure ", " filelist ", " obj ]
 By setting this variable in the Makefile one can add new targets for special
 purposes, for example, static code analysis, partial builds etc.
-.IP ALLTARGETS
-A list of targets for which pre\_*, do_* and post\_* counterparts exist, for example,
-pre\_all, do\_all and post\_all. pre\_* target runs before do\_* target which in turn
-runs before post\_*. Unless action is provided for do\_* targets
-they implement the standard behaviour of
-.BR mk-configure .
-No action is provided for targets pre\_* and post\_*, so they are
-for user's extensions. The standard behaviour for ${ALLTARGETS}
-may also be extended by adding new prerequisites
-to targets do\_*.
-.IP SHORTPRJNAME
-If "yes", special targets with last component of the subprojects are provided.
-.RI < "Im" >
-.RI [ yes ]
-.IP MKRELOBJDIR
-If "yes", object directories
-.RI ${OBJTOP}/ dir
-are used. Unlike MAKEOBJDIRPREFIX object directories do not contain
-top-level ${.CURDIR} in paths.
-.RI < "Iu" >
-.RI [ no ]
-.IP SUBPRJSRCTOP
-This variables contains ${.CURDIR} directory and is passed to subprojects.
-.RI < "I" >
-.RI [ ${.CURDIR} ]
 .P
 .B mkc.subprj.mk
 provides the following targets:
@@ -1213,295 +1205,13 @@ supports the following variables.
 .IP MKCHECKS
 If "no", none of the checks are performed. It is set to "yes" unless target
 is "clean" and "cleandir".
-.IP MKC_CHECK_HEADERS
-List of headers to check with the help of
-.IR "$CC -c" .
-As a result of the check bmake's variable
-.B HAVE_HEADER.<header>
-is set to
-either 0 or 1.
-.br
-<header>: tr|./|__|g
-.br
-Also -DHAVE_HEADER_<HEADER>=(0 or 1)
-is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.VS
- Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
- Res: HAVE_HEADER.sys_time_h = 1
-      HAVE_HEADER.fcntl_h    = 1
-      HAVE_HEADER.execinfo_h = 1
-      CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 -DHAVE_HEADER_FCNTL=1
-.VE
-.IP MKC_REQUIRE_HEADERS
-The same as MKC_CHECK_HEADERS, but absense of header is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_HEADER_FILES
-Same as
-.B MKC_CHECK_HEADERS
-but
-.I $CC -E
-is used for checking instead of
-.IR "$CC -c" .
-Also, HAVE_HEADER_FILE.<header> variables
-and HAVE_HEADER_FILE<HEADER> defines are set.
-.IP MKC_REQUIRE_HEADER_FILES
-The same as MKC_CHECK_HEADER_FILES, but absense of header is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_FUNCLIBS
-List of <function>:<library> pairs to check,
-<library> part is optional. If <library> is present,
-presense of <function> in libc is also checked automatically.
-
-As a result of the check bmake's variable
-HAVE_FUNCLIB.<function>.<library> (or HAVE_FUNCLIB.<function>)
-is set to either 0 or 1.
-
-If <function> is found in <library> but not in libc
-or <function> is "main" and is found in <library>,
-"-l<library>" is automatically added to LDADD unless
-<function>:<library> is listed in MKC_NOAUTO_FUNCLIBS or
-MKC_NOAUTO_FUNCLIBS is equal to 1 or
-MKC_NOAUTO is set to 1
-.VS
- Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
-      MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
-      MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
-      MKC_NOAUTO_FUNCLIBS += ftime:compat
- Res: HAVE_FUNCLIB.strlcat      = 1
-      HAVE_FUNCLIB.fgetln       = 1
-      HAVE_FUNCLIB.getline      = 0
-      HAVE_FUNCLIB.getopt_long  = 1
-      HAVE_FUNCLIB.crypt        = 0
-      HAVE_FUNCLIB.crypt.crypt  = 1
-      HAVE_FUNCLIB.dlopen       = 1
-      HAVE_FUNCLIB.dlopen.dl    = 0
-      HAVE_FUNCLIB.nanosleep    = 1
-      HAVE_FUNCLIB.nanosleep.rt = 1
-      HAVE_FUNCLIB.ftime        = 0
-      HAVE_FUNCLIB.ftime.compat = 1
-      HAVE_FUNCLIB.gettimeofday = 1
-      LDADD += -lcrypt
-.VE
-.IP MKC_REQUIRE_FUNCLIBS
-The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_SOURCE_FUNCLIBS
-The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
-both in the specified <library> and in libc, function.c is
-added to SRCS unless MKC_NOAUTO=1.
-.VS
- Ex:  MKC_SOURCE_FUNCLIBS+= getline
- Res: SRCS+= getline.c
-      HAVE_FUNCLIB.getline= 0
-.VE
-.IP "MKC_SOURCE_DIR, MKC_SOURCE_DIR.<source>"
-Directory with sources for MKC_SOURCE_FUNCLIBS. If MKC_SOURCE_DIR.<source> is unset,
-MKC_SOURCE_DIR is used that defaults to ${.CURDIR}.
-.VS
- Ex:  MKC_SOURCE_FUNCLIBS += getline
-      MKC_SOURCE_DIR.getline.c = ${.CURDIR}/../missing
- Res: SRCS+= ${.CURDIR}/../missing/getline.c
-      HAVE_FUNCLIB.getline= 0
-.VE
-.IP MKC_CHECK_DEFINES
-List of define:header to check. <header> part is optional.
-
-As a result of the check bmake's variable
-HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
-is set to either 0 or 1.
-.br
-<header>: tr|./|__|g
-.br
-Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
-or   -DHAVE_DEFINE_<DEFINE>=1
-is added to CPPFLAGS if the specified define was detected
-unless MKC_NOAUTO is set to 1.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.br
-<DEFINE>: tr|a-z|A-Z|g
-.VS
- Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
- Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
-      HAVE_DEFINE.__GNUC__          = 1
-      HAVE_DEFINE._MSC_VER_         = 0
-      CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \\
-                -DHAVE_DEFINE___GNUC__=1
-.VE
-.IP MKC_REQUIRE_DEFINES
-The same as MKC_CHECK_DEFINES, but absense of the define is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_TYPES
-List of type:header to check. <header> part is optional.
-
-As a result of the check bmake's variable
-HAVE_TYPE.<type>.<header> (or HAVE_TYPE.<type>)
-is set to either 0 or 1.
-.br
-<header>: tr|./|__|g
-
-Also -DHAVE_TYPE_<TYPE>_<HEADER>=1 (or   -DHAVE_TYPE_<TYPE>=1)
-is added to CPPFLAGS if the specified type was detected
-unless MKC_NOAUTO is set to 1.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.br
-<TYPE>:   tr|a-z|A-Z|g
-.VS
- Ex:  MKC_CHECK_TYPES += size_t:string.h
- Res: HAVE_TYPE.size_t.string_h = 1
-      CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
-.VE
-.IP MKC_REQUIRE_TYPES
-The same as MKC_CHECK_TYPES, but absense of the type declaration is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_VARS
-List of variable:header to check. <header> part is optional.
-       
-As a result of the check bmake's variable
-HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
-is set to either 0 or 1
-.br
-<header>: tr|./|__|g
-.br
-Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
-(or -DHAVE_DEFINE_<VARIABLE>=1)
-is added to CPPFLAGS if the specified variable was detected
-unless MKC_NOAUTO is set to 1.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.VS
- Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
- Res: HAVE_VAR.sys_errlist.errno_h = 1
-      CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
-.VE
-.IP MKC_REQUIRE_VARS
-The same as MKC_CHECK_VARS, but absense of the variable declaration is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_MEMBERS
-List of <type>.<member>:<header> to check.
-<header> part is optional.
-
-As a result of the check bmake's variable
-HAVE_MEMBER.<type>_<member>.<header>
-(or HAVE_MEMBER.<type>_<member>)
-is set to either 0 or 1 depending on the result.
-.br
-<header>: tr|./|__|g
-.br
-Also -DHAVE_MEMBER_<TYPE>_<MEMBER>_<HEADER>=1
-(or   -DHAVE_MEMBER_<TYPE>_<MEMBER>=1)
-is added to CPPFLAGS if the specified member was found in
-appropriate type
-unless MKC_NOAUTO is set to 1.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.br
-<TYPE>:   tr|a-z./|A-Z__|g
-.br
-<MEMBER>: tr|a-z./|A-Z__|g
-.VS
-   Ex:  MKC_CHECK_VARS += struct-ifreq.ifr_ifrn.ifrn_name:net/if.h
-        MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
-   Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
-        HAVE_MEMBER.struct_tm_tm_isdst.time_h=1
-        CFLAGS += -DHAVE_MEMBER_STRUCT_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
-        CFLAGS += -DHAVE_MEMBER_STRUCT_TM_TM_ISDST_TIME_H=1
-.VE
-.IP MKC_REQUIRE_MEMBERS
-The same as MKC_CHECK_MEMBERS, but absense of the member is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_FUNCS<N>
-List of <func>:<header> to check. <header> part is optional.
-Here <N> means the number of arguments.
-As a result of the check bmake's variable
-HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
-is set to either 0 or 1.
-.br
-<header>: tr|./|__|g
-.br
-Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
-(or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1))
-is added to CPPFLAGS if the specified function was detected
-unless MKC_NOAUTO is set to 1. If
-MKC_FUNC_OR_DEFINE.<func>
-is "yes", equivalent define leads to the same results.
-.br
-<HEADER>: tr|a-z./|A-Z__|g
-.VS
- Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
-      MKC_CHECK_FUNCS6 += pselect:sys/select.h
-      MKC_CHECK_FUNCS1 += htobe32:sys/endian.h
-      MKC_FUNC_OR_DEFINE.htobe32 += yes
- Res: HAVE_FUNC2.fgetln.stdio_h = 1
-      HAVE_FUNC6.pselect.sys.select_h = 1
-      HAVE_FUNC1.htobe32.sys_endian_h=1
-      CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
-             += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
-	     += -DHAVE_FUNC1_HTOBE32_SYS_ENDIAN_H
-.VE
-.IP MKC_REQUIRE_FUNCS<N>
-The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_CUSTOM
-A list of custom checks (list of names).
-MKC_CUSTOM_FN.<custom_check_name> is a
-"C" or "C++" source filename or an executable program
-for your custom check,
-e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
-filename.cpp or subdir/executable_script.
-.B mk-configure
-tries to compile or run the specified file and sets
-CUSTOM.<custom_check_name> variable to 1, 0 or other value.
-If MKC_CUSTOM_FN.<custom_check_name> is unset, it
-defaults to custom_check_name.c.
-Also -DCUSTOM_<CUSTOM_CHECK_NAME>=1
-is added to CPPFLAGS if the specified check succeeded
-unless MKC_NOAUTO is set to 1 and MKC_CUSTOM_NOAUTO.<custom_check_name> is set to "yes".
-Here <CUSTOM_CHECK_NAME> is uppercase for <custom_check_name>.
-If MKC_CUSTOM_LINK.<custom_check_name> is "yes", then
-C or C++ source file is compiled and linked into executable.
-Also, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, LDADD,
-MKC_CUSTOM_CPPFLAGS.<custom_check_name>, MKC_CUSTOM_CFLAGS.<custom_check_name>,
-MKC_CUSTOM_CXXFLAGS.<custom_check_name>,
-MKC_CUSTOM_LDFLAGS.<custom_check_name> and MKC_CUSTOM_LDADD.<custom_check_name>
-flags are passed to the compiler. Normally cache file name contains <custom_check_name>
-unless MKC_CUSTOM_CACHE.<custom_check_name> is set to something else.
-.VS
- Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
-      MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
-      MKC_CUSTOM_FN.script_check=      checks/script_check
- Res. CUSTOM.nested_funcs=        1
-      CUSTOM.script_check=        0
-      CFLAGS+= -DCUSTOM_NESTED_FUNCS=1
-.VE
-Note that script for the check should be an executable file.
-.IP MKC_REQUIRE_CUSTOM
-The same as MKC_CHECK_CUSTOM, but failure is
-treated as a fatal error (See
-.B configure
-target). 0 and empty value of CUSTOM.xxx means failure.
-.IP MKC_CUSTOM_DIR
-Directory with custom checks source files.
-See MKC_CHECK_CUSTOM. It defaults to ${.CURDIR}.
+.IP MKC_CACHEDIR
+Directory where intermediate and cache files are created.
+It defaults to ${.OBJDIR}.
+By default MKC_CACHEDIR variable is exported for subprojects.
+As a result cache files
+for subprojects are created in the top-level directory.
+If cache directory doesn't exist, it is created automatically.
 .IP MKC_CHECK_BUILTINS
 .B mk-configure
 provides a number of built-in custom checks, that is, source files
@@ -1539,11 +1249,211 @@ BUILTIN.endianness variable is set to either
 .IR little ", " big " or " unknown
 depending on a hardware.
 .RE
-.IP MKC_REQUIRE_BUILTINS
-The same as MKC_CHECK_BUILTINS, but failure is
-treated as a fatal error (See
-.B configure
-target).
+.IP MKC_CHECK_CC_OPTS
+A list of C compiler options to check.
+If ${CC} -c support the specified option, variable
+HAVE_CC_OPT.<option:S/=/_/g> is set to 1 and 0 otherwise.
+Double underline in the option is considered as a single space character.
+.VS
+Ex.
+  MKC_CHECK_CC_OPTS = -Wall -errwarn=%all --param__ssp-buffer-size=1
+Res.
+ HAVE_CC_OPT.-Wall=1
+ HAVE_CC_OPT.-errwarn_%all=0
+ HAVE_CC_OPT.--param__ssp-buffer-size_1=1
+.VE
+.IP MKC_CHECK_CCLD_OPTS
+Same as MKC_CHECK_CC_OPTS except that option "-c" is not passed to the compiler,
+so, executable is created.
+As a result HAVE_CCLD_OPT.<option:S/=/_/g> is set to 1 or 0.
+.IP MKC_CHECK_CUSTOM
+A list of custom checks (list of names).
+MKC_CUSTOM_FN.<custom_check_name> is a
+"C" or "C++" source filename or an executable program
+for your custom check,
+e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
+filename.cpp or subdir/executable_script.
+.B mk-configure
+tries to compile or run the specified file and sets
+CUSTOM.<custom_check_name> variable to 1, 0 or other value.
+If MKC_CUSTOM_FN.<custom_check_name> is unset, it
+defaults to custom_check_name.c.
+Also -DCUSTOM_<CUSTOM_CHECK_NAME>=1
+is added to CPPFLAGS if the specified check succeeded
+unless MKC_NOAUTO is set to 1 and MKC_CUSTOM_NOAUTO.<custom_check_name> is set to "yes".
+Here <CUSTOM_CHECK_NAME> is uppercase for <custom_check_name>.
+If MKC_CUSTOM_LINK.<custom_check_name> is "yes", then
+C or C++ source file is compiled and linked into executable.
+Also, CPPFLAGS, CFLAGS, CXXFLAGS, LDFLAGS, LDADD,
+MKC_CUSTOM_CPPFLAGS.<custom_check_name>, MKC_CUSTOM_CFLAGS.<custom_check_name>,
+MKC_CUSTOM_CXXFLAGS.<custom_check_name>,
+MKC_CUSTOM_LDFLAGS.<custom_check_name> and MKC_CUSTOM_LDADD.<custom_check_name>
+flags are passed to the compiler. Normally cache file name contains <custom_check_name>
+unless MKC_CUSTOM_CACHE.<custom_check_name> is set to something else.
+.VS
+ Ex.  MKC_CHECK_CUSTOM+=               nested_funcs
+      MKC_CUSTOM_FN.nested_funcs=      nested_funcs.c
+      MKC_CUSTOM_FN.script_check=      checks/script_check
+ Res. CUSTOM.nested_funcs=        1
+      CUSTOM.script_check=        0
+      CFLAGS+= -DCUSTOM_NESTED_FUNCS=1
+.VE
+Note that script for the check should be an executable file.
+.IP MKC_CHECK_CXX_OPTS
+Same as MKC_CHECK_CC_OPTS but for C++ compiler.
+As a result HAVE_CXX_OPT.<option:S/=/_/g> is set to 1 or 0.
+.IP MKC_CHECK_CXXLD_OPTS
+Same as MKC_CHECK_CCLD_OPTS but for C++ compiler.
+As a result HAVE_CXXLD_OPT.<option:S/=/_/g> is set to 1 or 0.
+.IP MKC_CHECK_DEFINES
+List of define:header to check. <header> part is optional.
+
+As a result of the check bmake's variable
+HAVE_DEFINE.<define>.<header> (or HAVE_DEFINE.<define>)
+is set to either 0 or 1.
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_DEFINE_<DEFINE>_<HEADER>=1
+or   -DHAVE_DEFINE_<DEFINE>=1
+is added to CPPFLAGS if the specified define was detected
+unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.br
+<DEFINE>: tr|a-z|A-Z|g
+.VS
+ Ex:  MKC_CHECK_DEFINES += RTLD_LAZY:dlfcn.h __GNUC__ _MSC_VER_
+ Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
+      HAVE_DEFINE.__GNUC__          = 1
+      HAVE_DEFINE._MSC_VER_         = 0
+      CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \\
+                -DHAVE_DEFINE___GNUC__=1
+.VE
+.IP MKC_CHECK_FUNCLIBS
+List of <function>:<library> pairs to check,
+<library> part is optional. If <library> is present,
+presense of <function> in libc is also checked automatically.
+
+As a result of the check bmake's variable
+HAVE_FUNCLIB.<function>.<library> (or HAVE_FUNCLIB.<function>)
+is set to either 0 or 1.
+
+If <function> is found in <library> but not in libc
+or <function> is "main" and is found in <library>,
+"-l<library>" is automatically added to LDADD unless
+<function>:<library> is listed in MKC_NOAUTO_FUNCLIBS or
+MKC_NOAUTO_FUNCLIBS is equal to 1 or
+MKC_NOAUTO is set to 1
+.VS
+ Ex:  MKC_CHECK_FUNCLIBS  += strlcat fgetln getline getopt_long
+      MKC_CHECK_FUNCLIBS  += crypt:crypt dlopen:dl nanosleep:rt
+      MKC_CHECK_FUNCLIBS  += ftime:compat gettimeofday
+      MKC_NOAUTO_FUNCLIBS += ftime:compat
+ Res: HAVE_FUNCLIB.strlcat      = 1
+      HAVE_FUNCLIB.fgetln       = 1
+      HAVE_FUNCLIB.getline      = 0
+      HAVE_FUNCLIB.getopt_long  = 1
+      HAVE_FUNCLIB.crypt        = 0
+      HAVE_FUNCLIB.crypt.crypt  = 1
+      HAVE_FUNCLIB.dlopen       = 1
+      HAVE_FUNCLIB.dlopen.dl    = 0
+      HAVE_FUNCLIB.nanosleep    = 1
+      HAVE_FUNCLIB.nanosleep.rt = 1
+      HAVE_FUNCLIB.ftime        = 0
+      HAVE_FUNCLIB.ftime.compat = 1
+      HAVE_FUNCLIB.gettimeofday = 1
+      LDADD += -lcrypt
+.VE
+.IP MKC_CHECK_FUNCS<N>
+List of <func>:<header> to check. <header> part is optional.
+Here <N> means the number of arguments.
+As a result of the check bmake's variable
+HAVE_FUNC<N>.<func>.<header> (or HAVE_FUNC<N>.<func>)
+is set to either 0 or 1.
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_FUNC<N>_<FUNC>_<HEADER>=(0 or 1)
+(or   -DHAVE_FUNC<N>_<FUNC>=(0 or 1))
+is added to CPPFLAGS if the specified function was detected
+unless MKC_NOAUTO is set to 1. If
+MKC_FUNC_OR_DEFINE.<func>
+is "yes", equivalent define leads to the same results.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.VS
+ Ex:  MKC_CHECK_FUNCS2 += fgetln:stdio.h
+      MKC_CHECK_FUNCS6 += pselect:sys/select.h
+      MKC_CHECK_FUNCS1 += htobe32:sys/endian.h
+      MKC_FUNC_OR_DEFINE.htobe32 += yes
+ Res: HAVE_FUNC2.fgetln.stdio_h = 1
+      HAVE_FUNC6.pselect.sys.select_h = 1
+      HAVE_FUNC1.htobe32.sys_endian_h=1
+      CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
+             += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
+	     += -DHAVE_FUNC1_HTOBE32_SYS_ENDIAN_H
+.VE
+.IP MKC_CHECK_HEADER_FILES
+Same as
+.B MKC_CHECK_HEADERS
+but
+.I $CC -E
+is used for checking instead of
+.IR "$CC -c" .
+Also, HAVE_HEADER_FILE.<header> variables
+and HAVE_HEADER_FILE<HEADER> defines are set.
+.IP MKC_CHECK_HEADERS
+List of headers to check with the help of
+.IR "$CC -c" .
+As a result of the check bmake's variable
+.B HAVE_HEADER.<header>
+is set to
+either 0 or 1.
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_HEADER_<HEADER>=(0 or 1)
+is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.VS
+ Ex:  MKC_CHECK_HEADERS += sys/time.h fcntl.h execinfo.h
+ Res: HAVE_HEADER.sys_time_h = 1
+      HAVE_HEADER.fcntl_h    = 1
+      HAVE_HEADER.execinfo_h = 1
+      CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 -DHAVE_HEADER_FCNTL=1
+.VE
+.IP MKC_CHECK_MEMBERS
+List of <type>.<member>:<header> to check.
+<header> part is optional.
+
+As a result of the check bmake's variable
+HAVE_MEMBER.<type>_<member>.<header>
+(or HAVE_MEMBER.<type>_<member>)
+is set to either 0 or 1 depending on the result.
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_MEMBER_<TYPE>_<MEMBER>_<HEADER>=1
+(or   -DHAVE_MEMBER_<TYPE>_<MEMBER>=1)
+is added to CPPFLAGS if the specified member was found in
+appropriate type
+unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.br
+<TYPE>:   tr|a-z./|A-Z__|g
+.br
+<MEMBER>: tr|a-z./|A-Z__|g
+.VS
+   Ex:  MKC_CHECK_VARS += struct-ifreq.ifr_ifrn.ifrn_name:net/if.h
+        MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
+   Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
+        HAVE_MEMBER.struct_tm_tm_isdst.time_h=1
+        CFLAGS += -DHAVE_MEMBER_STRUCT_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
+        CFLAGS += -DHAVE_MEMBER_STRUCT_TM_TM_ISDST_TIME_H=1
+.VE
 .IP MKC_CHECK_PROGS
 List of <progname>s to check.
 As a result of the check bmake's variable
@@ -1563,11 +1473,28 @@ or to an empty string.
 If MKC_PROG.id.<progname> is set to, e.g, <prog_id>,
 then HAVE_PROG.<prog_id> and PROG.<prog_id> are set.
 MKC_PROG.id.<progname> also changes cache file names.
-.IP MKC_REQUIRE_PROGS
-The same as MKC_CHECK_PROGS, but absense of program is
-treated as a fatal error (See
-.B configure
-target).
+.IP MKC_CHECK_PROTOTYPES
+A list of checks (list of names) for C function prototypes.
+MKC_PROTOTYPE_FUNC.<name> is a C function prototype.
+MKC_PROTOTYPE_HEADERS.<name> is a list of headers separated by space or comma.
+mk-configure verifies that the specified prototype is correct and if
+so, HAVE_PROTOTYPE.<name> bmake variable is set to 1 and
+-DHAVE_PROTOTYPE_<NAME>=1 is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
+Otherwise, HAVE_PROTOTYPE.<name> variable is set to 0.
+.VS
+Ex.
+  MKC_CHECK_PROTOTYPES = posix_iconv const_iconv
+  MKC_PROTOTYPE_FUNC.posix_iconv = \ 
+    size_t iconv(iconv_t,char**,size_t*,char**,size_t*)
+  MKC_PROTOTYPE_FUNC.const_iconv = \ 
+    size_t iconv(iconv_t,const char**,size_t*,char**,size_t*)
+  MKC_PROTOTYPE_HEADERS.posix_iconv = iconv.h
+  MKC_PROTOTYPE_HEADERS.const_iconv = iconv.h
+Res.
+ HAVE_PROTOTYPE.posix_iconv=0
+ HAVE_PROTOTYPE.const_iconv=1
+ CFLAGS += -DHAVE_PROTOTYPE_CONST_ICONV=1
+.VE
 .IP MKC_CHECK_SIZEOF
 List of <type>:<header> to check. <header> part is optional.
 
@@ -1599,67 +1526,46 @@ unless MKC_NOAUTO is set to 1
                 -DSIZEOF_LONG_LONG=4 \\
                 -DSIZEOF_OFF_T_SYS_TYPES_H=8
 .VE
-.IP MKC_CHECK_PROTOTYPES
-A list of checks (list of names) for C function prototypes.
-MKC_PROTOTYPE_FUNC.<name> is a C function prototype.
-MKC_PROTOTYPE_HEADERS.<name> is a list of headers separated by space or comma.
-mk-configure verifies that the specified prototype is correct and if
-so, HAVE_PROTOTYPE.<name> bmake variable is set to 1 and
--DHAVE_PROTOTYPE_<NAME>=1 is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
-Otherwise, HAVE_PROTOTYPE.<name> variable is set to 0.
+.IP MKC_CHECK_TYPES
+List of type:header to check. <header> part is optional.
+
+As a result of the check bmake's variable
+HAVE_TYPE.<type>.<header> (or HAVE_TYPE.<type>)
+is set to either 0 or 1.
+.br
+<header>: tr|./|__|g
+
+Also -DHAVE_TYPE_<TYPE>_<HEADER>=1 (or   -DHAVE_TYPE_<TYPE>=1)
+is added to CPPFLAGS if the specified type was detected
+unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
+.br
+<TYPE>:   tr|a-z|A-Z|g
 .VS
-Ex.
-  MKC_CHECK_PROTOTYPES = posix_iconv const_iconv
-  MKC_PROTOTYPE_FUNC.posix_iconv = \ 
-    size_t iconv(iconv_t,char**,size_t*,char**,size_t*)
-  MKC_PROTOTYPE_FUNC.const_iconv = \ 
-    size_t iconv(iconv_t,const char**,size_t*,char**,size_t*)
-  MKC_PROTOTYPE_HEADERS.posix_iconv = iconv.h
-  MKC_PROTOTYPE_HEADERS.const_iconv = iconv.h
-Res.
- HAVE_PROTOTYPE.posix_iconv=0
- HAVE_PROTOTYPE.const_iconv=1
- CFLAGS += -DHAVE_PROTOTYPE_CONST_ICONV=1
+ Ex:  MKC_CHECK_TYPES += size_t:string.h
+ Res: HAVE_TYPE.size_t.string_h = 1
+      CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
 .VE
-.IP MKC_REQUIRE_PROTOTYPES
-The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
-treated as a fatal error (See
-.B configure
-target).
-.IP MKC_CHECK_CC_OPTS
-A list of C compiler options to check.
-If ${CC} -c support the specified option, variable
-HAVE_CC_OPT.<option:S/=/_/g> is set to 1 and 0 otherwise.
-Double underline in the option is considered as a single space character.
+.IP MKC_CHECK_VARS
+List of variable:header to check. <header> part is optional.
+       
+As a result of the check bmake's variable
+HAVE_DEFINE.<variable>.<header> (or HAVE_DEFINE.<variable>)
+is set to either 0 or 1
+.br
+<header>: tr|./|__|g
+.br
+Also -DHAVE_DEFINE_<VARIABLE>_<HEADER>=1
+(or -DHAVE_DEFINE_<VARIABLE>=1)
+is added to CPPFLAGS if the specified variable was detected
+unless MKC_NOAUTO is set to 1.
+.br
+<HEADER>: tr|a-z./|A-Z__|g
 .VS
-Ex.
-  MKC_CHECK_CC_OPTS = -Wall -errwarn=%all --param__ssp-buffer-size=1
-Res.
- HAVE_CC_OPT.-Wall=1
- HAVE_CC_OPT.-errwarn_%all=0
- HAVE_CC_OPT.--param__ssp-buffer-size_1=1
-.VE
-.IP MKC_CHECK_CXX_OPTS
-Same as MKC_CHECK_CC_OPTS but for C++ compiler.
-As a result HAVE_CXX_OPT.<option:S/=/_/g> is set to 1 or 0.
-.IP MKC_CHECK_CCLD_OPTS
-Same as MKC_CHECK_CC_OPTS except that option "-c" is not passed to the compiler,
-so, executable is created.
-As a result HAVE_CCLD_OPT.<option:S/=/_/g> is set to 1 or 0.
-.IP MKC_CHECK_CXXLD_OPTS
-Same as MKC_CHECK_CCLD_OPTS but for C++ compiler.
-As a result HAVE_CXXLD_OPT.<option:S/=/_/g> is set to 1 or 0.
-.IP MKC_NOAUTO_FUNCLIBS
-See MKC_CHECK_FUNCLIBS
-.IP MKC_NOAUTO
-See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
-.IP MKC_COMMON_HEADERS
-List of header files always #include'd to the test .c file
-in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
-The default value is an empty list.
-.VS
-  Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
-      MKC_CHECK_SIZEOF   += offs_t size_t ssize_t
+ Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
+ Res: HAVE_VAR.sys_errlist.errno_h = 1
+      CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
 .VE
 .IP MKC_COMMON_DEFINES
 List of defines always passed to compiler
@@ -1674,24 +1580,19 @@ The same as MKC_COMMON_DEFINES but only for OPSYS (uname -s).
    Ex: MKC_COMMON_DEFINES.Linux   += -D_GNU_SOURCE -D_FILE_OFFSET_BITS=64
        MKC_COMMON_DEFINES.Interix += -D_ALL_SOURCE
 .VE
-.IP MKC_CACHEDIR
-Directory where intermediate and cache files are created.
-It defaults to ${.OBJDIR}.
-By default MKC_CACHEDIR variable is exported for subprojects.
-As a result cache files
-for subprojects are created in the top-level directory.
-If cache directory doesn't exist, it is created automatically.
-.IP MKC_SHOW_CACHED
-Setting it to 0 will hide
+.IP MKC_COMMON_HEADERS
+List of header files always #include'd to the test .c file
+in MKC_CHECK_{DEFINES,VARS,FUNCS<N>,SIZEOF} checks.
+The default value is an empty list.
 .VS
-   Checking ... (cached) ...
+  Ex: MKC_COMMON_HEADERS += unistd.h stdlib stdio.h string.h
+      MKC_CHECK_SIZEOF   += offs_t size_t ssize_t
 .VE
-messages, that is, messages about fetching results from cache files.
+.IP MKC_CUSTOM_DIR
+Directory with custom checks source files.
+See MKC_CHECK_CUSTOM. It defaults to ${.CURDIR}.
 .IP MKC_DELETE_TMPFILES
 If set to 1, temporary files are removed.
-.IP MKC_NOCACHE
-All results are cached unless MKC_NOCACHE variable is set
-non-empty value
 .IP MKC_FEATURES
 This is a list of "features" required by project. In general, a feature
 is something that has problems with portability. This may be a
@@ -1821,6 +1722,97 @@ This features provides strsep(3) and stresep(3) functions.
 .B warn
 This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.
 .RE
+.IP MKC_NOAUTO
+See MKC_CHECK_{HEADERS,FUNCLIBS,FUNCS,VARS,DEFINES,SIZEOF}.
+.IP MKC_NOAUTO_FUNCLIBS
+See MKC_CHECK_FUNCLIBS
+.IP MKC_NOCACHE
+All results are cached unless MKC_NOCACHE variable is set
+non-empty value
+.IP MKC_REQUIRE_BUILTINS
+The same as MKC_CHECK_BUILTINS, but failure is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_CUSTOM
+The same as MKC_CHECK_CUSTOM, but failure is
+treated as a fatal error (See
+.B configure
+target). 0 and empty value of CUSTOM.xxx means failure.
+.IP MKC_REQUIRE_DEFINES
+The same as MKC_CHECK_DEFINES, but absense of the define is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_FUNCLIBS
+The same as MKC_CHECK_FUNCLIBS, but absense of funclib is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_FUNCS<N>
+The same as MKC_CHECK_FUNCS<N>, but absense of the function declaration is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_HEADER_FILES
+The same as MKC_CHECK_HEADER_FILES, but absense of header is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_HEADERS
+The same as MKC_CHECK_HEADERS, but absense of header is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_MEMBERS
+The same as MKC_CHECK_MEMBERS, but absense of the member is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_PROGS
+The same as MKC_CHECK_PROGS, but absense of program is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_PROTOTYPES
+The same as MKC_CHECK_PROTOTYPES, but incorrect prototype is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_TYPES
+The same as MKC_CHECK_TYPES, but absense of the type declaration is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_REQUIRE_VARS
+The same as MKC_CHECK_VARS, but absense of the variable declaration is
+treated as a fatal error (See
+.B configure
+target).
+.IP MKC_SHOW_CACHED
+Setting it to 0 will hide
+.VS
+   Checking ... (cached) ...
+.VE
+messages, that is, messages about fetching results from cache files.
+.IP "MKC_SOURCE_DIR, MKC_SOURCE_DIR.<source>"
+Directory with sources for MKC_SOURCE_FUNCLIBS. If MKC_SOURCE_DIR.<source> is unset,
+MKC_SOURCE_DIR is used that defaults to ${.CURDIR}.
+.VS
+ Ex:  MKC_SOURCE_FUNCLIBS += getline
+      MKC_SOURCE_DIR.getline.c = ${.CURDIR}/../missing
+ Res: SRCS+= ${.CURDIR}/../missing/getline.c
+      HAVE_FUNCLIB.getline= 0
+.VE
+.IP MKC_SOURCE_FUNCLIBS
+The same as MKC_CHECK_FUNCLIBS, but if <function> is absent
+both in the specified <library> and in libc, function.c is
+added to SRCS unless MKC_NOAUTO=1.
+.VS
+ Ex:  MKC_SOURCE_FUNCLIBS+= getline
+ Res: SRCS+= getline.c
+      HAVE_FUNCLIB.getline= 0
+.VE
 .SS mkc.conf.mk
 The same as
 .BR mkc.configure.mk " but " mkc.init.mk
@@ -1835,7 +1827,7 @@ changes and will be applied later. One can use this module for implementing your
 "features" similar to
 .BR MKC_FEATURES .
 .SS mkc_imp.scripts.mk
-is internal include file which is included from
+It is internal include file which is included from
 .BR mkc.prog.mk ", " mkc.lib.mk " and " mkc.files.mk .
 Do not use it directly!
 It provides installing and uninstalling the scripts.
@@ -1844,14 +1836,6 @@ The following variables are provided:
 A list of interpreter scripts (written in shell, awk, lua etc).
 These are installed like programs.
 .RI < "M" >
-.IP SCRIPTSNAME
-The name that the above program will be installed as, if
-different from ${SCRIPTS}.
-.RI < "Mu" >
-.IP SCRIPTSNAME_<script>
-Optional name to install <script> as. If <script> has a form
-<subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
-.RI < "Mu" >
 .IP SCRIPTSDIR
 Target directory for scripts.
 .RI < "Iu" >
@@ -1860,10 +1844,6 @@ Target directory for scripts.
 Optional directory to install <script> to. If <script> has a form
 <subdir>/<filename>, SCRIPTSDIR_<subdir>_<filename> is used.
 .RI < "Mu" >
-.IP SCRIPTSOWN
-Script files owner.
-.RI < "Iu" >
-.RI [ ${BINOWN} ]
 .IP SCRIPTSGRP
 Script file group.
 .RI < "Iu" >
@@ -1872,6 +1852,18 @@ Script file group.
 Script file mode.
 .RI < "Iu" >
 .RI [ ${BINMODE} ]
+.IP SCRIPTSNAME
+The name that the above program will be installed as, if
+different from ${SCRIPTS}.
+.RI < "Mu" >
+.IP SCRIPTSNAME_<script>
+Optional name to install <script> as. If <script> has a form
+<subdir>/<filename>, SCRIPTSNAME_<subdir>_<filename> is used.
+.RI < "Mu" >
+.IP SCRIPTSOWN
+Script files owner.
+.RI < "Iu" >
+.RI [ ${BINOWN} ]
 .SS "mkc_imp.lua.mk"
 .B mkc_imp.lua.mk
 is internal include file which is included from
@@ -1880,23 +1872,12 @@ Do not use it directly.
 It provides support for Lua programming language, i.e. building and installing
 Lua- and/or C-based modules.
 The following variables are provided:
-.IP LUA_MODULES
-List of Lua modules to build and install.
-Dot in the module name separates a dirname from basename. That is,
-actual .lua file names are made of LUA_MODULES with dots replaced with undeline symbol.
-At installation time dots are replaced with slash. For example, if
-LUA_MODULES=socket.foo, then socket_foo.lua will be installed to
-${LUA_LMODDIR}/socket/foo.lua
-.RI < "M" >
-.\" .IP LUA_SRCS.<mod>
-.\" Sources for each module
-.\" .RI [ ${mod:S/./_/g}.lua ]
-.\" .RI < M >
-.IP LUA_LMODULES
-Deprecated. Filenames of Lua modules. Use
-.I LUA_MODULES
-instead.
-.RI < "M" >
+.IP LUA_CMODDIR
+Directory for compiled Lua modules written in, e.g., C or C++.
+It is assigned with the help of
+.I "pkg-config --variable=INSTALL_CMOD lua"
+command and can be overriden by user.
+.RI < "Iu" >
 .IP LUA_CMODULE
 Compiled Lua module written in, e.g., C or C++.
 Dot in the module name separates a dirname from basename. That is,
@@ -1905,23 +1886,30 @@ At installation time dots are replaced with slash. For example, if
 LUA_CMODULES=socket.foo, then socket_foo.c will be used for compiling a module and
 will be installed to ${LUA_CMODDIR}/socket/foo.so.
 .RI < "M" >
-.IP SRCS
-List of source files to build the LUA_CMODULE. 
-SRCS defaults to 
-.IR ${LUA_CMODULE:S|.|_|g}.c .
-.RI < "M" >
 .IP LUA_LMODDIR
 Directory for Lua modules written in Lua. It is assigned
 with the help of
 .I "pkg-config --variable=INSTALL_LMOD lua"
 command and can be overriden by user.
 .RI < "Iu" >
-.IP LUA_CMODDIR
-Directory for compiled Lua modules written in, e.g., C or C++.
-It is assigned with the help of
-.I "pkg-config --variable=INSTALL_CMOD lua"
-command and can be overriden by user.
-.RI < "Iu" >
+.IP LUA_LMODULES
+Deprecated. Filenames of Lua modules. Use
+.I LUA_MODULES
+instead.
+.RI < "M" >
+.IP LUA_MODULES
+List of Lua modules to build and install.
+Dot in the module name separates a dirname from basename. That is,
+actual .lua file names are made of LUA_MODULES with dots replaced with undeline symbol.
+At installation time dots are replaced with slash. For example, if
+LUA_MODULES=socket.foo, then socket_foo.lua will be installed to
+${LUA_LMODDIR}/socket/foo.lua
+.RI < "M" >
+.IP SRCS
+List of source files to build the LUA_CMODULE. 
+SRCS defaults to 
+.IR ${LUA_CMODULE:S|.|_|g}.c .
+.RI < "M" >
 .SS "mkc_imp.intexts.mk"
 .B mkc_imp.intexts.mk
 is internal include file which is included from
@@ -1929,22 +1917,6 @@ is internal include file which is included from
 Do not use it directly.
 It provides conversion of <fn>.in files to <fn> by
 expanding the following @@ patterns:
-.\" .TS
-.\" tab(:), center, box;
-.\" c | c
-.\" l | l.
-.\" Pattern:Result
-.\" _
-.\" @prefix@:${PREFIX}
-.\" @bindir@:${BINDIR}
-.\" @mandir@:${MANDIR}
-.\" @sbindir@:${SBINDIR}
-.\" @libdir@:${LIBDIR}
-.\" @libexecdir@:${LIBEXECDIR}
-.\" @datadir@:${DATADIR}
-.\" @sysconfdir@:${SYSCONFDIR}
-.\" @incsdir@:${INCSDIR}
-.\" .TE
 .ne 11
 .VS
  Pattern       Result
@@ -1990,6 +1962,9 @@ is internal include file which is included from
 Do not use it directly!
 This module provides creation of .info files from .txi, .texi and .texinfo sources
 and provides the following variables:
+.IP INFOFLAGS
+Flags to pass to makeinfo. []
+.RI < "Iu" >
 .IP MKINFO
 If "no", don't build or install Info documentation from
 Texinfo source files.
@@ -1999,9 +1974,6 @@ Texinfo source files.
 List of Texinfo source files.  Info documentation will
 consist of single files with the extension replaced by .info.
 .RI < "M" >
-.IP INFOFLAGS
-Flags to pass to makeinfo. []
-.RI < "Iu" >
 .SS "mkc_imp.man.mk"
 .B mkc_imp.man.mk
 is internal include file which is included from
@@ -2009,28 +1981,21 @@ is internal include file which is included from
 Do not use it directly!
 This module provides installation of manual pages and creation of catpages
 and HTML pages and provides the following variables:
+.IP HTMLDIR
+Target directory for html pages generated from man pages.
+.RI < "Iu" >
+.RI [ ${MANDIR} ]
+.IP MAN
+Manual pages (usually end in .1 - .9).
+.RI < "M" >
 .IP MANDIR
 Target directory for man pages.
 .RI < "Iu" >
 .RI [ ${PREFIX}/man ]
-.IP USETBL
-If not "no", preprocess man pages using
-.B tbl(1)
-while generating cat pages.
-.RI < "IM" >
-.RI [ no ]
 .IP MANZ
 If not "no", compress manual pages at installation time.
 .RI < "Iu" >
 .RI [ no ]
-.IP MAN
-Manual pages (usually end in .1 - .9).
-.RI < "M" >
-.IP MKMAN
-If "no", don't build or install the man pages,
-and also acts as "MKCATPAGES=no MKHTML=no".
-.RI < "Iu" >
-.RI [ yes ]
 .IP MKCATPAGES
 If "no", don't build or install the catman pages.
 .RI < "Iu" >
@@ -2039,15 +2004,22 @@ If "no", don't build or install the catman pages.
 If "no", don't build or install the HTML man pages.
 .RI < "Iu" >
 .RI [ no ]
-.IP HTMLDIR
-Target directory for html pages generated from man pages.
+.IP MKMAN
+If "no", don't build or install the man pages,
+and also acts as "MKCATPAGES=no MKHTML=no".
 .RI < "Iu" >
-.RI [ ${MANDIR} ]
+.RI [ yes ]
 .IP MLINKS
 List of manual page links (using a .1 - .9 suffix).  The
 linked-to file must come first, the linked file second,
 and there may be multiple pairs.  The files are hard-linked.
 .RI < "M" >
+.IP USETBL
+If not "no", preprocess man pages using
+.B tbl(1)
+while generating cat pages.
+.RI < "IM" >
+.RI [ no ]
 .SS "mkc_imp.links.mk"
 .B mkc_imp.links.mk
 is internal include file which is included from
@@ -2075,12 +2047,12 @@ is internal include file which is included from
 Do not use it directly!
 This module provides installation of header files and provides
 the following variables:
-.IP INCSDIR
-See 
-.BR mkc.init.mk .
 .IP INCS
 The list of include files.
 .RI < "M" >
+.IP INCSDIR
+See
+.BR mkc.init.mk .
 .IP INCSNAME
 Target name of the include file, if only one; same as
 FILESNAME, but for include files.
@@ -2099,16 +2071,20 @@ CPPFLAGS (-I${INCSSRCDIR} is added) and on an installation of include files
 .B mkc.minitest.mk
 is an auxiliary include file that implement simple framework for unit
 tests.  Idea: application provides the target test_output and
-expect.out file that contains ideal output. "bmake test" runs "bmake
-test_output" and compare generated output with expect.out.
-.IP TEST_PREREQS
-Prerequisites for target "test".
-.RI < "Iu" >
-.RI [ all ]
+expect.out file that contains ideal output.
+.B mkcmake test
+runs
+.B mkcmake test_output
+and compare generated output with
+.IR expect.out .
 .IP MKC_DIFF
 diff(1) command for comparing expected and actual results.
 .RI < "Iu" >
 .RI [ diff ]
+.IP TEST_PREREQS
+Prerequisites for target "test".
+.RI < "Iu" >
+.RI [ all ]
 .SS "mkc_imp.pkg-config.mk"
 .B mkc_imp.pkg-config.mk
 is internal include file which is included from
@@ -2132,17 +2108,6 @@ The same as MKC_REQUIRE_PKGCONFIG, but absense of library is
 treated as a fatal error (See
 .B configure
 target).
-.IP PKG_CONFIG.exists.<lib>
-If "1", <lib> exists, "0" otherwise.
-Inside <lib> <=, >=, =, < and > and replaced with
-_le_, _ge_, _eq_, _lt_ and _gt_ respectively.
-.RI < "Iu" >
-.IP PKG_CONFIG_VARS.<lib>
-List of variables to check for library <lib>.
-.RI < "M" >
-.IP PKG_CONFIG.var.<lib>.<var>
-Variable value (pkg-config --variable=<var> <lib>).
-.RI < "Iu" >
 .IP PCNAME.<lib>
 On some systems several versions of the same library may be installed
 to differet directories (for example liblua for Lua 5.1 and 5.2).
@@ -2151,6 +2116,17 @@ In order to avoid conflicts between them pc name is changed
 This variable is a map from library name to pc name.
 .RI < "Iu" >
 .RI [ ${lib} ]
+.IP PKG_CONFIG.exists.<lib>
+If "1", <lib> exists, "0" otherwise.
+Inside <lib> <=, >=, =, < and > and replaced with
+_le_, _ge_, _eq_, _lt_ and _gt_ respectively.
+.RI < "Iu" >
+.IP PKG_CONFIG.var.<lib>.<var>
+Variable value (pkg-config --variable=<var> <lib>).
+.RI < "Iu" >
+.IP PKG_CONFIG_VARS.<lib>
+List of variables to check for library <lib>.
+.RI < "M" >
 .SS "mkc_imp.pod.mk"
 .B mkc_imp.pod.mk
 is internal include file which is included from
@@ -2161,14 +2137,6 @@ i.e. convertion of POD documents to MAN pages
 (suffix rules: .pod.1, ... , .pod.9) and HTMLs
 (.pod.html).
 The following variables are provided:
-.IP POD2MAN
-Path to POD to MAN conversion utility
-.RI < "Iu" >
-.RI [ pod2man ].
-.IP POD2MAN_FLAGS
-Flags passed to ${POD2MAN}
-.RI < "Iu" >
-.RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
 .IP POD2HTML
 Path to POD to HTML conversion utility
 .RI < "Iu" >
@@ -2177,6 +2145,14 @@ Path to POD to HTML conversion utility
 Flags passed to ${POD2HTML}
 .RI < "Iu" >
 .RI [ "" ].
+.IP POD2MAN
+Path to POD to MAN conversion utility
+.RI < "Iu" >
+.RI [ pod2man ].
+.IP POD2MAN_FLAGS
+Flags passed to ${POD2MAN}
+.RI < "Iu" >
+.RI [ "-r '' -n '${.TARGET:T:R}' -c ''" ].
 .SS "mkc_imp.dep.mk"
 .B mkc_imp.dep.mk
 is internal include file which is included from
@@ -2187,11 +2163,6 @@ in SRCS and DPSRCS that are C, C++, or Objective C source files, and
 builds .depend_${PROJECTNAME} from the .d files.  All other files in SRCS and all of
 DPSRCS will be used as dependencies for the .d files.
 The following variables are provided:
-.IP SRCS
-The same as in
-.B mkc.prog.mk
-and
-.BR mkc.lib.mk .
 .IP DPSRCS
 List of source files which are needed for generating
 dependencies, but are not needed in ${SRCS}.
@@ -2199,6 +2170,11 @@ dependencies, but are not needed in ${SRCS}.
 Compiler passed to mkdep(1).
 .RI < "Iu" >
 .RI [ "${CC}" ].
+.IP SRCS
+The same as in
+.B mkc.prog.mk
+and
+.BR mkc.lib.mk .
 .SS "mkc_imp.foreign_autotools.mk"
 This module is activated if variable FOREIGN is set to "autotools" and provides
 support for building external projects using autotools.
@@ -2207,18 +2183,11 @@ It also provides a recursive target
 for generating "configure" script, "Makefile.in" file etc. using
 .BR autoreconf(1) " utility."
 The following variables are provided:
-.IP FSRCDIR
-Relative (to ${.CURDIR}) or absolute directory to autotools-based sources.
-.IP AT_MAKE
-Make(1)-like utility for the project.
-.RI < "Imu" >
-.RI [ "${MAKE}" ].
-.IP AT_USE_AUTOMAKE
-If "yes",
-.B automake(1)
-is used.
-.RI < "M" >
-.RI [ yes ].
+.IP AT_AUTORECONF_ARGS
+Arguments passed to
+.BR autoreconf(1) .
+.RI < "U" >
+.RI [ "-sif" ].
 .IP AT_CONFIGURE_ARGS
 Extra arguments passed to "configure" script set in addition to
 standard ones (--prefix, --bindir etc.).
@@ -2229,11 +2198,18 @@ Environment variables for "configure" script set in addition to
 standard ones (CC, CFLAGS etc.).
 .RI < "Mu" >
 .RI [ "" ].
-.IP AT_AUTORECONF_ARGS
-Arguments passed to
-.BR autoreconf(1) .
-.RI < "U" >
-.RI [ "-sif" ].
+.IP AT_MAKE
+Make(1)-like utility for the project.
+.RI < "Imu" >
+.RI [ "${MAKE}" ].
+.IP AT_USE_AUTOMAKE
+If "yes",
+.B automake(1)
+is used.
+.RI < "M" >
+.RI [ yes ].
+.IP FSRCDIR
+Relative (to ${.CURDIR}) or absolute directory to autotools-based sources.
 .SS "mkc_imp.help.mk"
 This mk file implements targets
 .BR help ", " help_subprj " and " help_use.
@@ -2291,10 +2267,12 @@ See SYSROOT.
 .RI [ "${MACHINE_GNU_PLATFORM}-" ].
 .SH "ENVIRONMENT VARIABLES"
 .IP MAKECONF
-Path to mk.conf file .include-ed by mkc.*.mk files
+Path to mk.conf file included by mkc.*.mk files
 .SH "FILES"
+.IP @sysconfdir@/mkcmake.conf
+included by mkc.init.mk if exists
 .IP @sysconfdir@/mk.conf
- .include-ed by mkc.init.mk if exists
+included by mkc.init.mk if exists
 .SH "BUGS"
 Target
 .IR configure " (" configure ")"

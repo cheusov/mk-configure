@@ -64,13 +64,17 @@ _LIBS   +=	${SHLIBFN}
 .NOPATH: ${_LIBS}
 
 realdo_all: ${SRCS} ${_LIBS}
+realdo_all: ${.CURDIR:T}.done
+${.CURDIR:T}.done: ${_LIBS}
+
+${_LIBS}: ${_LIBDEPSDONEFILES}
 
 _SRCS_ALL = ${SRCS}
 
 __archivebuild: .USE
 	@${RM} -f ${.TARGET}
 	${MESSAGE.ar}
-	${_V} ${AR} cq ${.TARGET} ${.ALLSRC}; \
+	${_V} ${AR} cq ${.TARGET} ${.ALLSRC:M*.o} ${.ALLSRC:M*.os} ${.ALLSRC:M*.op}; \
 	${RANLIB} ${.TARGET}
 
 __archiveinstall: .USE
@@ -83,13 +87,13 @@ CLEANFILES +=	${DPSRCS}
 CLEANFILES +=	${SRCS:M*.y:.y=.h}
 .endif
 
-lib${LIB}.a:: ${OBJS} __archivebuild
+lib${LIB}.a: ${OBJS} __archivebuild
 	@${_MESSAGE_V} "building standard ${LIB} library"
 
-lib${LIB}_p.a:: ${POBJS} __archivebuild
+lib${LIB}_p.a: ${POBJS} __archivebuild
 	@${_MESSAGE_V} "building profiled ${LIB} library"
 
-lib${LIB}_pic.a:: ${SOBJS} __archivebuild
+lib${LIB}_pic.a: ${SOBJS} __archivebuild
 	@${_MESSAGE_V} "building shared object ${LIB} library"
 
 ${SHLIBFN}: ${SOBJS} ${DPADD}
@@ -105,17 +109,17 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 .endif # ELF
 .endif # !commands(...)
 
-CLEANFILES += *.o *.os *.op
+CLEANFILES += *.o *.os *.op *.done
 
 .if !target(libinstall)
 # Make sure it gets defined
-libinstall::
+libinstall:
 
 CLEANFILES   +=	lib${LIB}.a lib${LIB}_pic.a lib${LIB}_p.a
 
    # MKSTATICLIB
 .if ${MKSTATICLIB:tl} != "no"
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}.a
+libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}.a
@@ -125,7 +129,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
 
    # MKPROFILELIB
 .if ${MKPROFILELIB:tl} != "no"
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
+libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
@@ -135,7 +139,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
 
    # MKPICLIB
 .if ${MKPICLIB:tl} != "no"
-libinstall:: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
+libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
@@ -145,7 +149,7 @@ ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
 
    # MKSHLIB
 .if ${MKSHLIB:tl} != "no"
-libinstall:: ${DESTDIR}${LIBDIR}/${SHLIBFN}
+libinstall: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PHONY: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/${SHLIBFN}

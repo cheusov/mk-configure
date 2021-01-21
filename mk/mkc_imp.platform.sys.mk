@@ -106,13 +106,18 @@ ${c:tu}_VERSION    :=	${_full_type:[2]}
 _mkfile=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .       if exists(${HOME}/.mk-c/${_mkfile})
 .warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
-.           include <${HOME}/.mk-c/${_mkfile}>
+.           include "${HOME}/.mk-c/${_mkfile}"
 .       elif exists(${HOME}/.mkcmake/${_mkfile})
-.           include <${HOME}/.mkcmake/${_mkfile}>
+.           include "${HOME}/.mkcmake/${_mkfile}"
 .       elif exists(${_MKFILESDIR}/${_mkfile})
-.           include <${_MKFILESDIR}/${_mkfile}>
+.           include "${_MKFILESDIR}/${_mkfile}"
 .       elif !defined(MK_C_PROJECT) && empty(compiler_settings)
-.           error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, run "mkc_compiler_settings" utility'
+.           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes"
+_ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
+.               include "${HOME}/.mkcmake/${_mkfile}"
+.           else
+.               error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, run "mkc_compiler_settings" utility'
+.           endif
 .       endif # exists(...)
 .       undef _mkfile
 .   endfor # .for c in ${src_type}
@@ -136,11 +141,11 @@ WARNERR     ?=		${WARNS:U0:S/4/yes/}
 CFLAGS.warnerr   =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr.${CC_TYPE}}:}
 CXXFLAGS.warnerr =	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr.${CXX_TYPE}}:}
 
-CFLAGS.warns   =	${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
-CXXFLAGS.warns =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
+CFLAGS.warns     =	${CFLAGS.warns.${CC_TYPE}.${WARNS}}    ${CFLAGS.warnerr}
+CXXFLAGS.warns   =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 
-CFLAGS.pic   ?=	${CFLAGS.pic.${CC_TYPE}:U}
-CXXFLAGS.pic ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
+CFLAGS.pic      ?=	${CFLAGS.pic.${CC_TYPE}:U}
+CXXFLAGS.pic    ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
 
 ####################
 RANLIB.IRIX64 =		true

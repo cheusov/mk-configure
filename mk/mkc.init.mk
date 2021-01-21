@@ -21,7 +21,7 @@ SHORTPRJNAME   ?=	yes
 .ifndef __initialized__
 __initialized__ := 1
 
-.include <mkc_imp.preinit.mk>
+.include "mkc_imp.preinit.mk"
 
 .MAIN:		all
 
@@ -187,7 +187,7 @@ MKSHLIB  ?=	yes
 MKSHLIB  ?=	no
 .endif # SHLIB_MAJOR
 
-.include <mkc_imp.platform.sys.mk>
+.include "mkc_imp.platform.sys.mk"
 
 MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 
@@ -308,6 +308,9 @@ LDFLAGS.prog +=	${LDFLAGS.relro}
 CPPFLAGS +=	-D_FORTIFY_SOURCE=2
 CFLAGS   +=	-O
 .endif
+
+CFLAGS     +=	${CFLAGS.std.${CCSTD}.${CC_TYPE}}
+CXXFLAGS   +=	${CXXFLAGS.std.${CXXSTD}.${CXX_TYPE}}
 
 SHRTOUT    ?=	no
 

@@ -41,7 +41,7 @@ LIBDIR     =		${LUA_CMODDIR}/${LUA_CMODULE:S|.|/|g:H}
 .endif # defined(LUA_CMODULES)
 
 ######################
-.include <mkc_imp.pkg-config.mk>
+.include "mkc_imp.pkg-config.mk"
 
 .if defined(LUA_MODULES) && empty(LUA_LMODDIR)
 MKC_ERR_MSG  +=	"ERROR: pkg-config --variable=INSTALL_LMOD lua failed"

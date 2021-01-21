@@ -25,6 +25,7 @@ hello world 3!
 /objdir/cxxapp/cxxapp.o
 /objdir/cxxlib.test.out.tmp
 /objdir/cxxlib/Makefile
+/objdir/cxxlib/cxxlib.done
 /objdir/cxxlib/dummy.c
 /objdir/cxxlib/dummy.o
 /objdir/cxxlib/dummy.os
@@ -41,6 +42,7 @@ hello world 3!
 /objdir/cxxlib/libcxxlib.so.1.0.5
 /objdir/cxxlib/linkme.mk
 /objdir/cxxlib2/Makefile
+/objdir/cxxlib2/cxxlib2.done
 /objdir/cxxlib2/hello_msg3.cxx
 /objdir/cxxlib2/hello_msg3.o
 /objdir/cxxlib2/hello_msg3.os

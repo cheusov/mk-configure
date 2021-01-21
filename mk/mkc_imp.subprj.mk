@@ -23,8 +23,8 @@ NODEPS +=	*-${dir}:* *:*-${dir}   *-*/${dir}:* *:*-*/${dir}
 .endfor
 .for dir in ${INTERNALLIBS}
 NODEPS +=	install-${dir}:*     install-*/${dir}:* \
-         	uninstall-${dir}:*   uninstall-*/${dir}:* \
-        	installdirs-${dir}:* installdirs-*/${dir}:*
+		uninstall-${dir}:*   uninstall-*/${dir}:* \
+		installdirs-${dir}:* installdirs-*/${dir}:*
 .endfor
 
 .ifndef SUBDIR
@@ -140,6 +140,6 @@ SUBPRJSRCTOP =	${.CURDIR}
 .export SUBPRJSRCTOP
 ###########
 
-.include <mkc_imp.objdir.mk>
+.include "mkc_imp.objdir.mk"
 
 .endif # _MKC_IMP_SUBPRJ_MK

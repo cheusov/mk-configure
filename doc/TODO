@@ -2,12 +2,11 @@ MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
 
 ============================================================
-SHRTOUT -- set -x and redirect everything to temporary
-log file and print it only if the target fails?
+Add recursive lint and ctags (by David Young) targets
 
 ============================================================
-Make sure ${MAKECONF} and ${SYSCONFDIR}/mkcmake.conf are
-included after PROJECTNAME is set.
+SHRTOUT -- set -x and redirect everything to temporary
+log file and print it only if the target fails?
 
 ============================================================
 Tests for MCOMPRESS?
@@ -19,9 +18,6 @@ and mkc_compiler_settings(1)
 ============================================================
 OBJDIR_* and SRCDIR_* variable should be available
 after mkc.init.mk and initialized again in mkc.mk
-
-============================================================
-install target: introduce dependencies for target files
 
 ============================================================
 Generate .d files at the same time as compilation and load

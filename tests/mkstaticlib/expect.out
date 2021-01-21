@@ -14,6 +14,7 @@
 /objdir/hello_msg1.os
 /objdir/hello_msg2.os
 /objdir/libcxxlib.so.1.0.5
+/objdir/mkstaticlib.done
 /objdir/mkstaticlib.test.out.tmp
 ========= install ==========
 /objdir/prefix
@@ -41,6 +42,7 @@
 /objdir/expect.out
 /objdir/mkstaticlib.test.out.tmp
 ======= CLEANFILES ==========
+*.done
 *.o
 *.op
 *.os

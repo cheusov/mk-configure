@@ -74,6 +74,7 @@ symbol fake3
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -84,12 +85,14 @@ symbol fake3
 /objdir/libdz/dz.os
 /objdir/libdz/export.sym
 /objdir/libdz/libdz.a
+/objdir/libdz/libdz.done
 /objdir/libdz/libdz.so
 /objdir/libdz/libdz.so.1
 /objdir/libdz/libdz.so.1.0
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -191,6 +194,7 @@ uninstall ===> dictfmt
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -201,12 +205,14 @@ uninstall ===> dictfmt
 /objdir/libdz/dz.os
 /objdir/libdz/export.sym
 /objdir/libdz/libdz.a
+/objdir/libdz/libdz.done
 /objdir/libdz/libdz.so
 /objdir/libdz/libdz.so.1
 /objdir/libdz/libdz.so.1.0
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -459,6 +465,7 @@ obj1 does not exist
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -469,6 +476,7 @@ obj1 does not exist
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -513,6 +521,7 @@ obj1 does not exist
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -523,6 +532,7 @@ obj1 does not exist
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -684,6 +694,7 @@ obj1 does not exist
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -694,6 +705,7 @@ obj1 does not exist
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -756,6 +768,7 @@ obj1 does not exist
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -766,12 +779,14 @@ obj1 does not exist
 /objdir/libdz/dz.os
 /objdir/libdz/export.sym
 /objdir/libdz/libdz.a
+/objdir/libdz/libdz.done
 /objdir/libdz/libdz.so
 /objdir/libdz/libdz.so.1
 /objdir/libdz/libdz.so.1.0
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa.so
 /objdir/libmaa/libmaa.so.1
 /objdir/libmaa/libmaa.so.1.2.0
@@ -834,6 +849,7 @@ obj1 does not exist
 /objdir/libcommon/iswalnum.o
 /objdir/libcommon/iswalnum.os
 /objdir/libcommon/libcommon.a
+/objdir/libcommon/libcommon.done
 /objdir/libcommon/libcommon_pic.a
 /objdir/libcommon/str.c
 /objdir/libcommon/str.o
@@ -844,10 +860,12 @@ obj1 does not exist
 /objdir/libdz/dz.os
 /objdir/libdz/export.sym
 /objdir/libdz/libdz.a
+/objdir/libdz/libdz.done
 /objdir/libdz/libdz_pic.a
 /objdir/libmaa/Makefile
 /objdir/libmaa/export.sym
 /objdir/libmaa/libmaa.a
+/objdir/libmaa/libmaa.done
 /objdir/libmaa/libmaa_pic.a
 /objdir/libmaa/log.c
 /objdir/libmaa/log.o

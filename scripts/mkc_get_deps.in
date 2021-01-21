@@ -1,4 +1,5 @@
 #!@AWK@ -f
+# -*- mode: awk; -*-
 
 # Usage: mkc_get_deps
 # $1 -- project name

@@ -22,10 +22,12 @@ Plugin2 sucessfully activated
 /objdir/expect.out
 /objdir/plugin1/Makefile
 /objdir/plugin1/plugin1.c
+/objdir/plugin1/plugin1.done
 /objdir/plugin1/plugin1.os
 /objdir/plugin1/plugin1.so
 /objdir/plugin2/Makefile
 /objdir/plugin2/plugin2.c
+/objdir/plugin2/plugin2.done
 /objdir/plugin2/plugin2.os
 /objdir/plugin2/plugin2.so
 /objdir/plugins2.test.out.tmp

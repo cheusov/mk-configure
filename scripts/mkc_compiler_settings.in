@@ -1,9 +1,10 @@
 #!@SH@
+# -*- mode: sh; -*-
 
 set -e
 
 export compiler_settings=1
-export MAKEOBJDIR=$HOME/.mk-c
+export MAKEOBJDIR=$HOME/.mkcmake
 export MKC_CACHEDIR="$MAKEOBJDIR"
 export MKC_NOCACHE=1
 export COMPILER_SETTINGS_MK='-f @mkfilesdir@/mkc.compiler_settings.mk'

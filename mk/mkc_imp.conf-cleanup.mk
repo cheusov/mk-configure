@@ -3,8 +3,8 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-.info "Deprecated since 30 Mar 2019"
+.warning "Deprecated since 30 Mar 2019"
 
-.include <mkc.conf.mk>
+.include "mkc.conf.mk"
 
 .undef MKC_NOAUTO
