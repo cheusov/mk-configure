@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Jan 05, 2021" "" ""
+.TH MK-CONFIGURE 7 "Jan 21, 2021" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -1620,7 +1620,7 @@ functions available in *BSD.
 .B dprintf
 This feature provides dprintf(3).
 .TP
-.B efunc
+.B efun
 This feature provides esetfunc(3), efopen(3), ecalloc(3),
 emalloc(3), erealloc(3), estrdup(3), estrndup(3), estrlcpy(3),
 estrlcat(3), easprintf(3), and evasprintf(3) functions from NetBSD.

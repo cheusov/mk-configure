@@ -1,3 +1,6 @@
+MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
+when this check fails.
+
 ============================================================
 Allow empty lines in EXPORT_SYMBOLS file.
 
