@@ -1388,7 +1388,7 @@ is "yes", equivalent define leads to the same results.
       MKC_CHECK_FUNCS1 += htobe32:sys/endian.h
       MKC_FUNC_OR_DEFINE.htobe32 += yes
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
-      HAVE_FUNC6.pselect.sys.select_h = 1
+      HAVE_FUNC6.pselect.sys_select_h = 1
       HAVE_FUNC1.htobe32.sys_endian_h=1
       CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
              += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
