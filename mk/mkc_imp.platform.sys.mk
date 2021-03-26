@@ -103,12 +103,22 @@ _full_type         !=	env ${mkc.cc_type.environ} mkc_check_compiler ${"${c}" == 
 ${c:tu}_TYPE       :=	${_full_type:[1]}
 ${c:tu}_VERSION    :=	${_full_type:[2]}
 .       undef _full_type
-_mkfile=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+_mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .       if exists(${HOME}/.mk-c/${_mkfile})
-.warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
-.           include "${HOME}/.mk-c/${_mkfile}"
+.         warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
+          _full_mkfile:=${HOME}/.mk-c/${_mkfile}
 .       elif exists(${HOME}/.mkcmake/${_mkfile})
-.           include "${HOME}/.mkcmake/${_mkfile}"
+          _full_mkfile:=${HOME}/.mkcmake/${_mkfile}
+.       endif
+.       if defined(_full_mkfile)
+          _ != test ${_full_mkfile} -ot ${.PARSEDIR}/${.PARSEFILE}; echo $$?
+.         if ${_} == 0 && !defined(MK_C_PROJECT) && !defined(compiler_settings)
+.           error '${_full_mkfile} is older than ${.PARSEDIR}/${.PARSEFILE}, please update it using "mkc_compiler_settings" utility'
+.         endif
+.         undef _
+.         if !defined(MK_C_PROJECT) && !defined(compiler_settings)
+.           include "${_full_mkfile}"
+.         endif
 .       elif exists(${_MKFILESDIR}/${_mkfile})
 .           include "${_MKFILESDIR}/${_mkfile}"
 .       elif !defined(MK_C_PROJECT) && empty(compiler_settings)
@@ -119,6 +129,8 @@ _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 .               error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, run "mkc_compiler_settings" utility'
 .           endif
 .       endif # exists(...)
+
+.       undef _full_mkfile
 .       undef _mkfile
 .   endfor # .for c in ${src_type}
 .endif # cleandir|distclean|...
