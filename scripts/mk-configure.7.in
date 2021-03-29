@@ -1728,6 +1728,13 @@ This feature provides strndup(3) from POSIX.
 .B strsep
 This features provides strsep(3) and stresep(3) functions.
 .TP
+.B vis
+This feature provides vis(3), nvis(3), svis(3), snvis(3), strvis(3),
+strnvis(3), strsvis(3), strsnvis(3), strvisx(3), strnvisx(3),
+strenvisx(3), strsvisx(3), strsnvisx(3), strsenvisx(3),
+strunvis(3), strnunvis(3), strunvisx(3), strnunvisx(3) and
+unvis(3) from NetBSD.
+.TP
 .B warn
 This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.
 .RE
