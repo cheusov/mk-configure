@@ -1634,6 +1634,9 @@ This feature provides errc(3) and verrc(3) BSD-isms.
 .B fgetln
 This feature provides fgetln(3) BSD-ism.
 .TP
+.B fparseln
+This feature provides fparseln(3) BSD-ism.
+.TP
 .B fts
 This feature provides fts_open(3), fts_read(3) etc. functions
 available on BSDs and Linux. If it is absent on your system,
