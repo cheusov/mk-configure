@@ -24,6 +24,7 @@
 #include "mkc_strsep.h"
 #include "mkc_posix_getopt.h"
 #include "mkc_raise_default_signal.h"
+#include "mkc_reallocarr.h"
 #include "mkc_reallocarray.h"
 #include "mkc_fparseln.h"
 #include "mkc_vis.h"
@@ -65,6 +66,7 @@ int main(int argc, char** argv)
 	free(ptr);
 	getopt(0, NULL, NULL);
 	raise_default_signal(15);
+	reallocarr(NULL, 0, 0);
 	reallocarray(NULL, 0, 0);
 	fparseln(NULL, NULL, NULL, "\\\\#", 0);
 	vis(NULL, 0, 0, 0);
