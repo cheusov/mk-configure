@@ -1695,6 +1695,9 @@ version of sys/tree.h provided by mk-configure is included.
 .B reallocarr
 This feature provides reallocarr(3) function from NetBSD.
 .TP
+.B reallocarray
+This feature provides reallocarray(3) function from OpenBSD.
+.TP
 .B shquote
 This feature provides shquote(3) function from NetBSD.
 .TP
