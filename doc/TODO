@@ -1,3 +1,10 @@
+============================================================
+features: strtou
+
+============================================================
+feature efun: estrtoi, strtou
+
+============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
 
