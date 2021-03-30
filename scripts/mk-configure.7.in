@@ -1621,8 +1621,8 @@ functions available in *BSD.
 This feature provides dprintf(3).
 .TP
 .B efun
-This feature provides esetfunc(3), efopen(3), ecalloc(3),
-emalloc(3), erealloc(3), estrdup(3), estrndup(3), estrlcpy(3),
+This feature provides esetfunc(3), efopen(3), ecalloc(3), emalloc(3),
+erealloc(3), ereallocarr(3), estrdup(3), estrndup(3), estrlcpy(3),
 estrlcat(3), easprintf(3), and evasprintf(3) functions from NetBSD.
 .TP
 .B err

@@ -63,7 +63,7 @@ void * emalloc(size_t n);
 
 void * erealloc(void *p, size_t n);
 
-//void ereallocarr(void *, size_t, size_t);
+void ereallocarr(void *, size_t, size_t);
 
 char * estrdup(const char *s);
 
