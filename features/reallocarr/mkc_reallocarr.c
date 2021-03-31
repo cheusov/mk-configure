@@ -34,7 +34,6 @@
 #include "nbtool_config.h"
 #endif
 
-#include <sys/cdefs.h>
 /* __RCSID("$NetBSD: reallocarr.c,v 1.5 2015/08/20 22:27:49 kamil Exp $"); */
 
 #include <errno.h>
