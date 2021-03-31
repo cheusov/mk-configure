@@ -1,8 +1,10 @@
 FILES                      +=	mkc_imp.f_libl.mk
 FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
 
-FILES                     +=	mkc_externc.h
-FILESDIR_mkc_externc.h     =	${FEATURESDIR}
+.for f in mkc_externc.h mkc_macro.h
+FILES            +=	${f}
+FILESDIR_${f}     =	${FEATURESDIR}
+.endfor
 
 .for f in dprintf efun err errc fgetln fparseln getdelim getline \
     humanize_number posix_getopt progname pwdgrp raise_default_signal \
