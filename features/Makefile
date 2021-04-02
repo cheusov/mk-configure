@@ -18,7 +18,7 @@ FILESDIR_${f}/mkc_${f}.c   =	${FEATURESDIR}/${f}
 FILES +=	errc/mkc_verrc.c
 FILESDIR_errc/mkc_verrc.c  =	${FEATURESDIR}/errc
 
-.for f in noreturn pure
+.for f in noreturn pure const
 FILES +=	macro/mkc_attribute_${f}.c
 FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
 .endfor

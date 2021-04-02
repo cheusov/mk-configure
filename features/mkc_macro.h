@@ -23,6 +23,12 @@
 # define __pure __attribute__((pure))
 #endif
 
+#ifdef HAVE_NO_ATTR_CONST
+# define __constfunc
+#else
+# define __constfunc __attribute__((const))
+#endif
+
 #ifdef HAVE_NO_ATTR_PRINTFLIKE
 # define __printflike
 #else

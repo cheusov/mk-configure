@@ -1676,17 +1676,22 @@ not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 .B macro
 This feature provides the following NetBSD-style macro.
 .br
-.RI "Macro " __dead
+.RI "Macro " "__constfunc"
+expanded to
+.I "__attribute__((const))"
+if this construction is supported by compiler.
+.br
+.RI "Macro " "__dead"
 expanded to
 .I "__attribute__((noreturn))"
 if this construction is supported by compiler.
 .br
-.RI "Macro " __pure
+.RI "Macro " "__pure"
 expanded to
 .I "__attribute__((pure))"
 if this construction is supported by compiler.
 .br
-.RI "Macro " __printflike(n,m)
+.RI "Macro " "__printflike(n,m)"
 expanded to
 .I "__attribute__((format (printf, n, m)))"
 if this construction is supported by compiler.

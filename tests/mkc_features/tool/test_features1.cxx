@@ -35,6 +35,7 @@
 #include "mkc_macro.h"
 
 extern int myprintf(void *my_object, const char *my_format, ...) __printflike(2, 3);
+extern int square(int v) __pure __const;
 
 int main(int argc, char** argv)
 {

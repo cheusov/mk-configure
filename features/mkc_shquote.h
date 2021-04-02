@@ -20,7 +20,7 @@ __MKC_BEGIN_DECLS
 
 #include "mkc_macro.h"
 
-size_t shquote (const char *arg, char *buf, size_t bufsize) __pure;
+size_t shquote (const char *arg, char *buf, size_t bufsize) __constfunc;
 
 __MKC_END_DECLS
 #endif
