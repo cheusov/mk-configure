@@ -51,7 +51,7 @@ markdown to html rules
 ============================================================
 Add new feature for NetBSD-style defines
 __unused,
-__used, __packed, __aligned, __section, __restrict,
+__used, __packed, __section, __restrict,
 __sysloglike, __scanflike, __format_arg,
 __arraycount, __MIN, __MAX
 

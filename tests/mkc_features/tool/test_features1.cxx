@@ -41,6 +41,8 @@ __always_inline static int cube(int v)
 	return v * v * v;
 }
 
+int aligned_array[16] __aligned(64);
+
 int main(int argc, char** argv)
 {
 	char buffer[100];
@@ -107,6 +109,7 @@ int main(int argc, char** argv)
 	uid_from_user(NULL, NULL);
 	gid_from_group(NULL, NULL);
 	printf("cube(2)=%d\n", cube(2));
+	printf("aligned_array: %p\n", &aligned_array);
 
 	return 0;
 }

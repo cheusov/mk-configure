@@ -11,6 +11,14 @@
 # error "Missing MKC_FEATURES += macro"
 #endif
 
+#ifndef __aligned
+#  ifdef HAVE_NO_ATTR_ALIGNED
+#    define __aligned(x)
+#  else
+#    define __aligned(x) __attribute__((aligned(x)))
+#  endif
+#endif
+
 #ifndef __always_inline
 #  ifdef HAVE_NO_ATTR_ALWAYS_INLINE
 #    define __always_inline
