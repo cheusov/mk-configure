@@ -12,6 +12,7 @@ MKC_CHECK_FUNCLIBS +=	humanize_number #dehumanize_number
 .include <mkc.conf.mk>
 
 . if ${HAVE_FUNCLIB.humanize_number:U} != 1 #|| ${HAVE_FUNCLIB.dehumanize_number:U} != 1
+.   include "mkc_imp.f_macro.mk"
 MKC_SRCS +=	${FEATURESDIR}/humanize_number/mkc_humanize_number.c
 . endif
 
