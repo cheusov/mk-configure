@@ -66,6 +66,8 @@ int main(int argc, char** argv)
 	stresep(NULL, " \t", '\0');;
 	printf("%p\n", __UNCONST(ptr));
 	free(ptr);
+	ptr = NULL;
+	ereallocarr(&ptr, 10, 32);
 	getopt(0, NULL, NULL);
 	raise_default_signal(15);
 	reallocarr(NULL, 0, 0);
