@@ -111,6 +111,7 @@ int main(int argc, char** argv)
 	printf("cube(2)=%d\n", cube(2));
 	printf("aligned_array: %p\n", &aligned_array);
 	printf("MIN(1,2), MIN(1,2): %d, %d\n", MIN(1,2), MAX(1,2));
+	printf("arraycount(aligned_array)=%d\n", __arraycount(aligned_array));
 
 	return 0;
 }

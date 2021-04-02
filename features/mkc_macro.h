@@ -79,4 +79,8 @@
 #  define __UNCONST(p) ((void *) ((char *)0 + ((const char *)(p) - (const char *)0)))
 #endif
 
+#ifndef __arraycount
+#  define __arraycount(__a) (sizeof(__a)/sizeof(__a[0]))
+#endif
+
 #endif /* _MKC_MACRO_H_ */

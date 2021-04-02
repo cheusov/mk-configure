@@ -1683,6 +1683,9 @@ if supported by compiler,
 defined as
 .I "__attribute__((always_inline))"
 if supported by compiler,
+.I __arraycount(a)
+defined as
+.I "(sizeof(__a)/sizeof(__a[0]))",
 .I __constfunc
 defined as
 .I "__attribute__((const))"

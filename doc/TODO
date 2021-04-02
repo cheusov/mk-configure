@@ -51,8 +51,7 @@ markdown to html rules
 ============================================================
 Add new feature for NetBSD-style defines
 __packed, __section, __restrict,
-__sysloglike, __scanflike, __format_arg,
-__arraycount
+__sysloglike, __scanflike, __format_arg
 
 and glibc-style defines like __wur, __deprecated, __nonnull
 
