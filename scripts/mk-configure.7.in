@@ -1696,6 +1696,8 @@ expanded to
 .I "__attribute__((noreturn))"
 if this construction is supported by compiler.
 .br
+.RI "Macro " "MIN(a,b)" " and " "MAX(a,b)."
+.br
 .RI "Macro " "__pure"
 expanded to
 .I "__attribute__((pure))"

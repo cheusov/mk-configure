@@ -11,6 +11,9 @@
 # error "Missing MKC_FEATURES += macro"
 #endif
 
+#include <sys/types.h>
+#include <sys/param.h>
+
 #ifndef __aligned
 #  ifdef HAVE_NO_ATTR_ALIGNED
 #    define __aligned(x)
@@ -58,6 +61,14 @@
 #    define __printflike(fmtarg, firstvararg) \
 	__attribute__((format (printf, fmtarg, firstvararg)))
 #  endif
+#endif
+
+#ifndef MIN
+# define MIN(a,b)      (((a)<(b))?(a):(b))
+#endif
+
+#ifndef MAX
+# define MAX(b,a)      (((a)<(b))?(a):(b))
 #endif
 
 #ifndef _DIAGASSERT
