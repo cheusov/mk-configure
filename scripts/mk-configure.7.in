@@ -1674,39 +1674,32 @@ not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 -lm is added to LDADD.
 .TP
 .B macro
-This feature provides the following NetBSD-style macro.
-.br
-.RI "Macro " "__aligned(x)"
-expanded to
+This feature provides the following macro stolen from NetBSD.
+.I __aligned(x)
+defined as
 .I "__attribute__((aligned(x)))"
-if this construction is supported by compiler.
-.br
-.RI "Macro " "__always_inline"
-expanded to
+if supported by compiler,
+.I __always_inline
+defined as
 .I "__attribute__((always_inline))"
-if this construction is supported by compiler.
-.br
-.RI "Macro " "__constfunc"
-expanded to
+if supported by compiler,
+.I __constfunc
+defined as
 .I "__attribute__((const))"
-if this construction is supported by compiler.
-.br
-.RI "Macro " "__dead"
-expanded to
+if supported by compiler,
+.I __dead
+defined as
 .I "__attribute__((noreturn))"
-if this construction is supported by compiler.
-.br
-.RI "Macro " "MIN(a,b)" " and " "MAX(a,b)."
-.br
-.RI "Macro " "__pure"
-expanded to
+if supported by compiler,
+.IR "MIN(a,b)" " and " "MAX(a,b),"
+.I __pure
+defined as
 .I "__attribute__((pure))"
-if this construction is supported by compiler.
-.br
-.RI "Macro " "__printflike(n,m)"
-expanded to
+if supported by compiler,
+.I "__printflike(n,m)"
+defined as
 .I "__attribute__((format (printf, n, m)))"
-if this construction is supported by compiler.
+if supported by compiler.
 .TP
 .B posix_getopt
 It is well-known that glibc getopt(3) does not conform to POSIX by default.
