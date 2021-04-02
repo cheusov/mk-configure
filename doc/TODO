@@ -49,7 +49,7 @@ LDFLAGS.check
 markdown to html rules
 
 ============================================================
-Add new feature for NetBSD-style defines like __dead,
+Add new feature for NetBSD-style defines
 __pure, __printflike, __UNCONST, __constfunc, __noinline,
 __always_inline, __returns_twice, __noclone, __unused,
 __used, __packed, __aligned, __section, __restrict,

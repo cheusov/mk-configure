@@ -39,7 +39,7 @@ __RCSID("$NetBSD: errc.c,v 1.3 2014/06/06 11:38:41 joerg Exp $");
 
 #include "mkc_errc.h"
 
-/*__dead*/ void
+void
 errc(int eval, int code, const char *fmt, ...)
 {
 	va_list ap;

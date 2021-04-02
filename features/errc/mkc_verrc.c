@@ -43,11 +43,12 @@ __RCSID("$NetBSD: verrc.c,v 1.3 2014/06/06 11:38:41 joerg Exp $");
 
 #include "mkc_errc.h"
 #include "mkc_progname.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-/*__dead*/ void
+void
 verrc(int eval, int code, const char *fmt, va_list ap)
 {
 	(void)fprintf(stderr, "%s: ", getprogname());

@@ -27,17 +27,19 @@
 
 __MKC_BEGIN_DECLS
 
+#include "mkc_macro.h"
+
 #if !HAVE_FUNC3_ERR_ERR_H
-void err (int, const char *, ...);
+void err (int, const char *, ...) __dead;
 #endif
 #if !HAVE_FUNC3_ERRX_ERR_H
-void errx (int, const char *, ...);
+void errx (int, const char *, ...) __dead;
 #endif
 #if !HAVE_FUNC3_VERR_ERR_H
-void verr (int, const char *, va_list);
+void verr (int, const char *, va_list) __dead;
 #endif
 #if !HAVE_FUNC3_VERRX_ERR_H
-void verrx (int, const char *, va_list);
+void verrx (int, const char *, va_list) __dead;
 #endif
 
 __MKC_END_DECLS

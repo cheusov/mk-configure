@@ -1673,6 +1673,13 @@ LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
 not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 -lm is added to LDADD.
 .TP
+.B macro
+This feature provides the following NetBSD-style macro.
+.RI "Macro " __dead
+expanded to
+.I "__attribute__((noreturn))"
+if this construction is supported by compiler.
+.TP
 .B posix_getopt
 It is well-known that glibc getopt(3) does not conform to POSIX by default.
 This feature provides POSIX-ly correct getopt.
