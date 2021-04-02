@@ -32,6 +32,7 @@
 #include "mkc_humanize_number.h"
 #include "mkc_shquote.h"
 #include "mkc_pwdgrp.h"
+#include "mkc_macro.h"
 
 int main(int argc, char** argv)
 {
@@ -63,6 +64,7 @@ int main(int argc, char** argv)
 	easprintf(&ptr, "%s", "papa");
 	strsep(NULL, "\0");
 	stresep(NULL, " \t", '\0');;
+	printf("%p\n", __UNCONST(ptr));
 	free(ptr);
 	getopt(0, NULL, NULL);
 	raise_default_signal(15);

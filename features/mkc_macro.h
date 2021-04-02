@@ -27,4 +27,8 @@
 #define _DIAGASSERT(c) assert(c)
 #endif
 
+#ifndef __UNCONST
+#define __UNCONST(p) ((void *) ((char *)0 + ((const char *)(p) - (const char *)0)))
+#endif
+
 #endif /* _MKC_MACRO_H_ */
