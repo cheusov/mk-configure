@@ -1679,6 +1679,10 @@ This feature provides the following NetBSD-style macro.
 expanded to
 .I "__attribute__((noreturn))"
 if this construction is supported by compiler.
+.RI "Macro " __pure
+expanded to
+.I "__attribute__((pure))"
+if this construction is supported by compiler.
 .TP
 .B posix_getopt
 It is well-known that glibc getopt(3) does not conform to POSIX by default.

@@ -5,15 +5,19 @@
 .ifndef _MKC_IMP_F_MACRO_MK
 _MKC_IMP_F_MACRO_MK := 1
 
-MKC_CHECK_CUSTOM                 +=	attribute_noreturn
-MKC_CUSTOM_FN.attribute_noreturn  =	${FEATURESDIR}/macro/mkc_attribute_noreturn.c
+.for f in noreturn pure
+MKC_CHECK_CUSTOM             +=	attribute_${f}
+MKC_CUSTOM_FN.attribute_${f}  =	${FEATURESDIR}/macro/mkc_attribute_${f}.c
+.endfor
 
 .include <mkc.conf.mk>
 
 CPPFLAGS +=	-D_MKC_CHECK_MACRO
 
-.if ${CUSTOM.attribute_noreturn:U} != 1
-MKC_CPPFLAGS +=	-DHAVE_NO_ATTR_NORETURN
-.endif
+.for f in noreturn pure
+.  if ${CUSTOM.attribute_${f}:U} != 1
+MKC_CPPFLAGS +=	-DHAVE_NO_ATTR_${f:tu}
+.  endif
+.endfor
 
-.endif #_MKC_IMP_F_MACRO_MK
+.endif # _MKC_IMP_F_MACRO_MK

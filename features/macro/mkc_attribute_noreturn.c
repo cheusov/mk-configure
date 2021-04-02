@@ -1,8 +1,8 @@
 #include <stdlib.h>
 
-void test_func() __attribute__ ((noreturn));
+void err_exit() __attribute__ ((noreturn));
 
-void test_func(int status)
+void err_exit(int status)
 {
 	exit(status);
 }

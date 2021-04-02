@@ -17,8 +17,14 @@
 # define __dead __attribute__((noreturn))
 #endif
 
+#ifdef HAVE_NO_ATTR_PURE
+# define __pure
+#else
+# define __pure __attribute__((pure))
+#endif
+
 #ifndef _DIAGASSERT
 #define _DIAGASSERT(c) assert(c)
 #endif
 
-#endif
+#endif /* _MKC_MACRO_H_ */

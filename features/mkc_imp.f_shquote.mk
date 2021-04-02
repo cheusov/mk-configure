@@ -5,6 +5,8 @@
 .ifndef _MKC_IMP_F_SHQUOTE_MK
 _MKC_IMP_F_SHQUOTE_MK := 1
 
+.include "mkc_imp.f_macro.mk"
+
 MKC_CHECK_FUNCLIBS      +=	shquote
 MKC_CHECK_FUNCS3        +=	shquote:stdlib.h
 

@@ -18,8 +18,10 @@ FILESDIR_${f}/mkc_${f}.c   =	${FEATURESDIR}/${f}
 FILES +=	errc/mkc_verrc.c
 FILESDIR_errc/mkc_verrc.c  =	${FEATURESDIR}/errc
 
-FILES +=	macro/mkc_attribute_noreturn.c
-FILESDIR_macro/mkc_attribute_noreturn.c  =	${FEATURESDIR}/macro
+.for f in noreturn pure
+FILES +=	macro/mkc_attribute_${f}.c
+FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
+.endfor
 
 FILES +=	vis/mkc_unvis.c
 FILESDIR_vis/mkc_unvis.c   =	${FEATURESDIR}/vis
