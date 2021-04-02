@@ -11,6 +11,20 @@
 # error "Missing MKC_FEATURES += macro"
 #endif
 
+#ifndef __always_inline
+#  ifdef HAVE_NO_ATTR_ALWAYS_INLINE
+#    define __always_inline
+#  else
+#    define __always_inline __attribute__((always_inline))
+#  endif
+#endif
+
+#ifdef HAVE_NO_ATTR_CONST
+# define __constfunc
+#else
+# define __constfunc __attribute__((const))
+#endif
+
 #ifdef HAVE_NO_ATTR_NORETURN
 # define __dead
 #else
@@ -21,12 +35,6 @@
 # define __pure
 #else
 # define __pure __attribute__((pure))
-#endif
-
-#ifdef HAVE_NO_ATTR_CONST
-# define __constfunc
-#else
-# define __constfunc __attribute__((const))
 #endif
 
 #ifdef HAVE_NO_ATTR_PRINTFLIKE

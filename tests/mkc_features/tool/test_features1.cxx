@@ -35,7 +35,11 @@
 #include "mkc_macro.h"
 
 extern int myprintf(void *my_object, const char *my_format, ...) __printflike(2, 3);
-extern int square(int v) __pure __const;
+extern int square(int v) __constfunc;
+__always_inline static int cube(int v)
+{
+	return v * v * v;
+}
 
 int main(int argc, char** argv)
 {
@@ -102,6 +106,7 @@ int main(int argc, char** argv)
 	group_from_gid(0, 0);
 	uid_from_user(NULL, NULL);
 	gid_from_group(NULL, NULL);
+	printf("cube(2)=%d\n", cube(2));
 
 	return 0;
 }

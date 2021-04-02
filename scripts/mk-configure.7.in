@@ -1676,6 +1676,11 @@ not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 .B macro
 This feature provides the following NetBSD-style macro.
 .br
+.RI "Macro " "__always_inline"
+expanded to
+.I "__attribute__((always_inline))"
+if this construction is supported by compiler.
+.br
 .RI "Macro " "__constfunc"
 expanded to
 .I "__attribute__((const))"
