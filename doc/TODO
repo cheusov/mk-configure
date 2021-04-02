@@ -2,7 +2,7 @@
 features: strtou
 
 ============================================================
-feature efun: estrtoi, strtou
+feature efun: estrtoi, estrtou
 
 ============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
