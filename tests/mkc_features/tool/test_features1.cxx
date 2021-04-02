@@ -34,6 +34,8 @@
 #include "mkc_pwdgrp.h"
 #include "mkc_macro.h"
 
+extern int myprintf(void *my_object, const char *my_format, ...) __printflike(2, 3);
+
 int main(int argc, char** argv)
 {
 	char buffer[100];

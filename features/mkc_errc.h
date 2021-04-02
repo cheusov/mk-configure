@@ -24,11 +24,11 @@ __MKC_BEGIN_DECLS
 #include "mkc_macro.h"
 
 #if !HAVE_FUNC4_ERRC_ERR_H
-void errc(int status, int code, const char *fmt, ...) __dead;
+void errc(int status, int code, const char *fmt, ...) __printflike(3, 4) __dead;
 #endif
 
 #if !HAVE_PROTOTYPE_VERRC
-void verrc(int status, int code, const char *fmt, va_list args) __dead;
+void verrc(int status, int code, const char *fmt, va_list args) __printflike(3, 0) __dead;
 #endif
 
 __MKC_END_DECLS

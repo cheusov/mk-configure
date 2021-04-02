@@ -50,7 +50,7 @@ markdown to html rules
 
 ============================================================
 Add new feature for NetBSD-style defines
-__printflike, __UNCONST, __constfunc, __noinline,
+__constfunc, __noinline,
 __always_inline, __returns_twice, __noclone, __unused,
 __used, __packed, __aligned, __section, __restrict,
 __printflike, __sysloglike, __scanflike, __format_arg,

@@ -23,6 +23,13 @@
 # define __pure __attribute__((pure))
 #endif
 
+#ifdef HAVE_NO_ATTR_PRINTFLIKE
+# define __printflike
+#else
+# define __printflike(fmtarg, firstvararg) \
+	__attribute__((format (printf, fmtarg, firstvararg)))
+#endif
+
 #ifndef _DIAGASSERT
 #define _DIAGASSERT(c) assert(c)
 #endif
