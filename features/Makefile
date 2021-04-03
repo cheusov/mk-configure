@@ -1,7 +1,9 @@
-FILES                      +=	mkc_imp.f_libl.mk
-FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
+.for f in libl strtoi
+FILES                      +=	mkc_imp.f_${f}.mk
+FILESDIR_mkc_imp.f_${f}.mk  =	${MKFILESDIR}
+.endfor
 
-.for f in mkc_externc.h mkc_macro.h
+.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h
 FILES            +=	${f}
 FILESDIR_${f}     =	${FEATURESDIR}
 .endfor
@@ -15,16 +17,16 @@ FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
 FILESDIR_${f}/mkc_${f}.c   =	${FEATURESDIR}/${f}
 .endfor
 
-FILES +=	errc/mkc_verrc.c
-FILESDIR_errc/mkc_verrc.c  =	${FEATURESDIR}/errc
-
 .for f in noreturn pure const always_inline aligned
 FILES +=	macro/mkc_attribute_${f}.c
 FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
 .endfor
 
-FILES +=	vis/mkc_unvis.c
-FILESDIR_vis/mkc_unvis.c   =	${FEATURESDIR}/vis
+.for f in strto/mkc_strtoi.c strto/mkc__strtoi.h vis/mkc_unvis.c \
+  errc/mkc_verrc.c
+FILES          +=	${f}
+FILESDIR_${f}   =	${FEATURESDIR}/${f:H}
+.endfor
 
 .for f in libm libdl SLIST RB bswap fts arc4random
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk

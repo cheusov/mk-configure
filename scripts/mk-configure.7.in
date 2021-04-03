@@ -1759,6 +1759,10 @@ This feature provides strndup(3) from POSIX.
 .B strsep
 This features provides strsep(3) and stresep(3) functions.
 .TP
+.B strtoi
+This feature provides strtoi(3) function
+introduced in NetBSD.
+.TP
 .B vis
 This feature provides vis(3), nvis(3), svis(3), snvis(3), strvis(3),
 strnvis(3), strsvis(3), strsnvis(3), strvisx(3), strnvisx(3),

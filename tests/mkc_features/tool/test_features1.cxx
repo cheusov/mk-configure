@@ -33,6 +33,7 @@
 #include "mkc_shquote.h"
 #include "mkc_pwdgrp.h"
 #include "mkc_macro.h"
+#include "mkc_strtoi.h"
 
 extern int myprintf(void *my_object, const char *my_format, ...) __printflike(2, 3);
 extern int square(int v) __constfunc;
@@ -112,6 +113,7 @@ int main(int argc, char** argv)
 	printf("aligned_array: %p\n", &aligned_array);
 	printf("MIN(1,2), MIN(1,2): %d, %d\n", MIN(1,2), MAX(1,2));
 	printf("arraycount(aligned_array)=%d\n", __arraycount(aligned_array));
+	strtoi("5", NULL, 10, 0, 9, NULL);
 
 	return 0;
 }
