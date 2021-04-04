@@ -46,5 +46,5 @@ errc(int eval, int code, const char *fmt, ...)
 
 	va_start(ap, fmt);
 	verrc(eval, code, fmt, ap);
-	va_end(ap);
+	/* va_end(ap); NOT REACHED */
 }
