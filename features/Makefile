@@ -1,23 +1,32 @@
-FILES                      +=	mkc_imp.f_libl.mk
-FILESDIR_mkc_imp.f_libl.mk  =	${MKFILESDIR}
+.for f in libl strtoi macro
+FILES                      +=	mkc_imp.f_${f}.mk
+FILESDIR_mkc_imp.f_${f}.mk  =	${MKFILESDIR}
+.endfor
 
-FILES                     +=	mkc_externc.h
-FILESDIR_mkc_externc.h     =	${FEATURESDIR}
+.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h
+FILES            +=	${f}
+FILESDIR_${f}     =	${FEATURESDIR}
+.endfor
 
 .for f in dprintf efun err errc fgetln fparseln getdelim getline \
     humanize_number posix_getopt progname pwdgrp raise_default_signal \
-    reallocarray strlcat strlcpy strndup strsep vis warn shquote
+    reallocarr reallocarray strlcat strlcpy strndup strsep vis warn shquote
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk ${f}/mkc_${f}.c
 FILESDIR_mkc_imp.f_${f}.mk =	${MKFILESDIR}
 FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
 FILESDIR_${f}/mkc_${f}.c   =	${FEATURESDIR}/${f}
 .endfor
 
-FILES +=	errc/mkc_verrc.c
-FILESDIR_errc/mkc_verrc.c  =	${FEATURESDIR}/errc
+.for f in aligned always_inline const noreturn printflike pure
+FILES +=	macro/mkc_attribute_${f}.c
+FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
+.endfor
 
-FILES +=	vis/mkc_unvis.c
-FILESDIR_vis/mkc_unvis.c   =	${FEATURESDIR}/vis
+.for f in strto/mkc_strtoi.c strto/mkc__strtoi.h vis/mkc_unvis.c \
+  errc/mkc_verrc.c
+FILES          +=	${f}
+FILESDIR_${f}   =	${FEATURESDIR}/${f:H}
+.endfor
 
 .for f in libm libdl SLIST RB bswap fts arc4random
 FILES +=	mkc_${f}.h mkc_imp.f_${f}.mk

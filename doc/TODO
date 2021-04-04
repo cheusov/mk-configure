@@ -1,3 +1,10 @@
+============================================================
+features: strtou
+
+============================================================
+feature efun: estrtoi, estrtou
+
+============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
 
@@ -42,12 +49,9 @@ LDFLAGS.check
 markdown to html rules
 
 ============================================================
-Add new feature for NetBSD-style defines like __dead,
-__pure, __printflike, __UNCONST, __constfunc, __noinline,
-__always_inline, __returns_twice, __noclone, __unused,
-__used, __packed, __aligned, __section, __restrict,
-__printflike, __sysloglike, __scanflike, __format_arg,
-__arraycount, __MIN, __MAX
+Add new feature for NetBSD-style defines
+__packed, __section, __restrict,
+__sysloglike, __scanflike, __format_arg
 
 and glibc-style defines like __wur, __deprecated, __nonnull
 

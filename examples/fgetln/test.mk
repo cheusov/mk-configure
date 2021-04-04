@@ -1,4 +1,4 @@
-FUNCS_RE=(fgetln|getline|err|progname|strndup)[.]o
+FUNCS_RE=(fgetln|getline|err|progname|strndup)[.]o|custom_attribute
 
 .PHONY : test_output
 test_output:
@@ -7,7 +7,7 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== all ============; \
-	find ${.OBJDIR} -type f | grep -Ev '${FUNCS_RE}' | \
+	find ${.OBJDIR} -type f | grep -Ev ${FUNCS_RE:Q} | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======= CLEANFILES ==========; \

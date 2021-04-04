@@ -27,17 +27,19 @@
 
 __MKC_BEGIN_DECLS
 
+#include "mkc_macro.h"
+
 #if !HAVE_FUNC2_WARN_ERR_H
-void warn (const char *, ...);
+void warn (const char *, ...) __printflike(1, 2);
 #endif
 #if !HAVE_FUNC2_WARNX_ERR_H
-void warnx (const char *, ...);
+void warnx (const char *, ...) __printflike(1, 2);
 #endif
 #if !HAVE_FUNC2_VWARN_ERR_H
-void vwarn (const char *, va_list);
+void vwarn (const char *, va_list) __printflike(1, 0);
 #endif
 #if !HAVE_FUNC2_VWARNX_ERR_H
-void vwarnx (const char *, va_list);
+void vwarnx (const char *, va_list) __printflike(1, 0);
 #endif
 
 __MKC_END_DECLS

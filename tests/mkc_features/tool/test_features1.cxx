@@ -24,6 +24,7 @@
 #include "mkc_strsep.h"
 #include "mkc_posix_getopt.h"
 #include "mkc_raise_default_signal.h"
+#include "mkc_reallocarr.h"
 #include "mkc_reallocarray.h"
 #include "mkc_fparseln.h"
 #include "mkc_vis.h"
@@ -31,6 +32,17 @@
 #include "mkc_humanize_number.h"
 #include "mkc_shquote.h"
 #include "mkc_pwdgrp.h"
+#include "mkc_macro.h"
+#include "mkc_strtoi.h"
+
+extern int myprintf(void *my_object, const char *my_format, ...) __printflike(2, 3);
+extern int square(int v) __constfunc;
+__always_inline static int cube(int v)
+{
+	return v * v * v;
+}
+
+int aligned_array[16] __aligned(64);
 
 int main(int argc, char** argv)
 {
@@ -62,9 +74,13 @@ int main(int argc, char** argv)
 	easprintf(&ptr, "%s", "papa");
 	strsep(NULL, "\0");
 	stresep(NULL, " \t", '\0');;
+	printf("%p\n", __UNCONST(ptr));
 	free(ptr);
+	ptr = NULL;
+	ereallocarr(&ptr, 10, 32);
 	getopt(0, NULL, NULL);
 	raise_default_signal(15);
+	reallocarr(NULL, 0, 0);
 	reallocarray(NULL, 0, 0);
 	fparseln(NULL, NULL, NULL, "\\\\#", 0);
 	vis(NULL, 0, 0, 0);
@@ -93,6 +109,11 @@ int main(int argc, char** argv)
 	group_from_gid(0, 0);
 	uid_from_user(NULL, NULL);
 	gid_from_group(NULL, NULL);
+	printf("cube(2)=%d\n", cube(2));
+	printf("aligned_array: %p\n", &aligned_array);
+	printf("MIN(1,2), MIN(1,2): %d, %d\n", MIN(1,2), MAX(1,2));
+	printf("arraycount(aligned_array)=%d\n", __arraycount(aligned_array));
+	strtoi("5", NULL, 10, 0, 9, NULL);
 
 	return 0;
 }

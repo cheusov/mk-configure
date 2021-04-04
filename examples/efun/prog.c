@@ -32,6 +32,13 @@ int main (int argc, char **argv)
 	estrlcpy(copy, buffer, 200);
 	puts(copy);
 	free(copy);
+	copy = NULL;
+
+	ereallocarr(&copy, 200, 1);
+	estrlcpy(copy, buffer, 200);
+	puts(copy);
+	free(copy);
+	copy = NULL;
 
 	fd = efopen("/dev/null", "r");
 	fclose(fd);
