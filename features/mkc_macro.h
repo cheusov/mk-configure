@@ -56,7 +56,7 @@
 
 #ifndef __printflike
 #  ifdef HAVE_NO_ATTR_PRINTFLIKE
-#    define __printflike
+#    define __printflike(fmtarg, firstvararg)
 #  else
 #    define __printflike(fmtarg, firstvararg) \
 	__attribute__((format (printf, fmtarg, firstvararg)))
