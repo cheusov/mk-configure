@@ -17,7 +17,7 @@ FILESDIR_mkc_${f}.h        =	${FEATURESDIR}
 FILESDIR_${f}/mkc_${f}.c   =	${FEATURESDIR}/${f}
 .endfor
 
-.for f in noreturn pure const always_inline aligned
+.for f in aligned always_inline const noreturn printflike pure
 FILES +=	macro/mkc_attribute_${f}.c
 FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
 .endfor
