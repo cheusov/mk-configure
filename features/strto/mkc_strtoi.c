@@ -35,8 +35,10 @@
 #include "nbtool_config.h"
 #endif
 
+/*
 #include <sys/cdefs.h>
-/* __RCSID("$NetBSD: strtoi.c,v 1.2 2015/05/01 14:17:56 christos Exp $"); */
+__RCSID("$NetBSD: strtoi.c,v 1.2 2015/05/01 14:17:56 christos Exp $");
+*/
 
 #ifdef _LIBC
 #include "namespace.h"
