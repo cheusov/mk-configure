@@ -1,4 +1,4 @@
-static int square(int v) __attribute__ ((inline));
+static int square(int v) __attribute__ ((always_inline));
 
 static int square(int v)
 {
