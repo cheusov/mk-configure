@@ -34,6 +34,8 @@
 #include "mkc_strlcpy.h"
 #include "mkc_strndup.h"
 #include "mkc_reallocarr.h"
+#include "mkc_strtoi.h"
+#include "mkc_strtou.h"
 
 #if HAVE_NBTOOL_CONFIG_H
 #include "nbtool_config.h"
@@ -170,7 +172,6 @@ evasprintf(char ** /*__restrict*/ ret, const char * /*__restrict*/ format, va_li
 	return rv;
 }
 
-/*
 intmax_t
 estrtoi(const char * nptr, int base, intmax_t lo, intmax_t hi)
 {
@@ -198,4 +199,3 @@ estrtou(const char * nptr, int base, uintmax_t lo, uintmax_t hi)
 	}
 	return rv;
 }
-*/

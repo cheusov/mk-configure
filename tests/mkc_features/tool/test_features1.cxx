@@ -116,6 +116,8 @@ int main(int argc, char** argv)
 	printf("arraycount(aligned_array)=%d\n", __arraycount(aligned_array));
 	strtoi("5", NULL, 10, 0, 9, NULL);
 	strtou("5", NULL, 10, 0, 9, NULL);
+	estrtoi("5", NULL, 10, 0, 9);
+	estrtou("5", NULL, 10, 0, 9);
 
 	return 0;
 }
