@@ -876,7 +876,8 @@ See LIBDEPS in section
 .BR mk.subprj.mk .
 .IP EXPORT_SYMBOLS
 Only symbols listed in a specified file (one symbol per line) are
-exported. This variable has no effect on some platforms.  By default
+exported. Empty lines and comments started with # symbol
+are ignored. This variable has no effect on some platforms.  By default
 all symbols are exported.
 .RI < "M" >
 []

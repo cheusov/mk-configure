@@ -323,7 +323,7 @@ CLEANFILES +=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	awk 'BEGIN {print "{ global:"} \
-	     {print $$0 ";"} \
+	     {sub(/#.*/, ""); if (NF>0) { $$1=$$1; print $$0 ";"} } \
 	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}
 .elif ${LD_TYPE} == "darwinld"
 CLEANFILES +=	${EXPORT_SYMBOLS}.tmp

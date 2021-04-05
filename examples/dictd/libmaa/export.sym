@@ -1,3 +1,6 @@
+# functions of category A
 fake4
-fake5
+fake5 # one-line comment is allowed
+
+# functions of category B
 fake6
