@@ -1,3 +1,6 @@
+############################################################
+PLAN 0.37.0:
+
 ============================================================
 features: strtou
 
@@ -10,6 +13,16 @@ when this check fails.
 
 ============================================================
 Allow empty lines in EXPORT_SYMBOLS file.
+
+============================================================
+Add new feature for glibc-style defines
+__wur and __deprecated
+
+############################################################
+PLAN REST:
+
+============================================================
+More efun features: e{read,write,setenv} from FreeBSD
 
 ============================================================
 Add recursive lint and ctags (by David Young) targets
@@ -35,9 +48,6 @@ in the very beginning by default if appropriate variable
 is set.
 
 ============================================================
-More efun features: e{read,write,setenv} from FreeBSD
-
-============================================================
 MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
 
 New rules for .by (bison without -y option)
@@ -53,7 +63,7 @@ Add new feature for NetBSD-style defines
 __packed, __section, __restrict,
 __sysloglike, __scanflike, __format_arg
 
-and glibc-style defines like __wur, __deprecated, __nonnull
+and glibc-style define __nonnull
 
 ============================================================
 Add feature "alloca"
@@ -97,8 +107,6 @@ Plan 0.28.0
 - Special marker for checks that cannot be possible in cross-compiling
 
 - regression tests without garbage, make it look like paexec
-
-- MKC_FEATURES: inttypes
 
 Some thoughts inspired by talks with Michael Crogan
 
