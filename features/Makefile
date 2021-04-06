@@ -1,4 +1,4 @@
-.for f in libl strtoi macro
+.for f in libl strtoi strtou macro
 FILES                      +=	mkc_imp.f_${f}.mk
 FILESDIR_mkc_imp.f_${f}.mk  =	${MKFILESDIR}
 .endfor
