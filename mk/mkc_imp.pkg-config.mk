@@ -3,10 +3,13 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-MKC_CHECK_PKGCONFIG +=	${MKC_REQUIRE_PKGCONFIG:U}
+.if !empty(MKC_REQUIRE_PKGCONFIG)
+MKC_CHECK_PKGCONFIG +=		${MKC_REQUIRE_PKGCONFIG}
+.endif
 
 .if ${MKCHECKS} == "yes" && !empty(MKC_CHECK_PKGCONFIG)
 
+MKC_CHECK_PKGCONFIG +=	${MKC_REQUIRE_PKGCONFIG:U}
 MKC_REQUIRE_PROGS   +=	pkg-config
 
 .include "mkc.conf.mk"
