@@ -6,6 +6,7 @@
     !empty(MKC_CHECK_CXX_OPTS:U) || !empty(MKC_CHECK_CXXLD_OPTS:U)
 src_type   +=	cxx
 LDREAL     ?=	${CXX}
+LDFLAGS    +=	${CXXFLAGS.std.${CXXSTD}.${CXX_TYPE}}
 .endif
 .endif
 
