@@ -2,17 +2,8 @@
 PLAN 0.37.0:
 
 ============================================================
-features: strtou
-
-============================================================
-feature efun: estrtoi, estrtou
-
-============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
-
-============================================================
-Allow empty lines in EXPORT_SYMBOLS file.
 
 ============================================================
 Add new feature for glibc-style defines
