@@ -3,7 +3,7 @@ FILES                      +=	mkc_imp.f_${f}.mk
 FILESDIR_mkc_imp.f_${f}.mk  =	${MKFILESDIR}
 .endfor
 
-.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h
+.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h mkc_strtou.h
 FILES            +=	${f}
 FILESDIR_${f}     =	${FEATURESDIR}
 .endfor
