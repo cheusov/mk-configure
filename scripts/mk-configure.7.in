@@ -222,7 +222,8 @@ mipspro   MIPSpro C compiler
 C compiler version.
 .RI < "I" >
 .IP CCSTD
-C language standard required by program. Supported options:
+Add C language standard command line option to the compiler.
+Supported options:
 .IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
 " (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
 c17 ", " gnu17 " (C17 with GNU extensions)."
@@ -353,7 +354,8 @@ Additional flags to the compiler when creating C++ objects.
 Similar to CXXOPTS but for project ${PROJECTNAME}.
 .RI < "U" >
 .IP CXXSTD
-C++ language standard required by program. Supported options:
+Add C++ language standard command line option to the compiler and linker.
+Supported options:
 .IR c++98 ", " gnu++98 " (C++98 with GNU extensions), "
 .IR c++11 ", " gnu++11 " (C++11 with GNU extensions), "
 .IR c++14 ", " gnu++14 " (C++14 with GNU extensions), "
