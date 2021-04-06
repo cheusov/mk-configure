@@ -876,7 +876,8 @@ See LIBDEPS in section
 .BR mk.subprj.mk .
 .IP EXPORT_SYMBOLS
 Only symbols listed in a specified file (one symbol per line) are
-exported. This variable has no effect on some platforms.  By default
+exported. Empty lines and comments started with # symbol
+are ignored. This variable has no effect on some platforms.  By default
 all symbols are exported.
 .RI < "M" >
 []
@@ -1623,7 +1624,8 @@ This feature provides dprintf(3).
 .B efun
 This feature provides esetfunc(3), efopen(3), ecalloc(3), emalloc(3),
 erealloc(3), ereallocarr(3), estrdup(3), estrndup(3), estrlcpy(3),
-estrlcat(3), easprintf(3), and evasprintf(3) functions from NetBSD.
+estrlcat(3), easprintf(3), estrtoi(3), estrtou(3)
+and evasprintf(3) functions from NetBSD.
 .TP
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
@@ -1760,6 +1762,10 @@ This feature provides strndup(3) from POSIX.
 This features provides strsep(3) and stresep(3) functions.
 .TP
 .B strtoi
+This feature provides strtoi(3) function
+introduced in NetBSD.
+.TP
+.B strtou
 This feature provides strtoi(3) function
 introduced in NetBSD.
 .TP

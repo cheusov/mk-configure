@@ -75,6 +75,10 @@ size_t estrlcpy(char *dst, const char *src, size_t len);
 
 int evasprintf(char ** /*__restrict*/ str, const char * /*__restrict*/ fmt, va_list ap);
 
+intmax_t estrtoi(const char * nptr, int base, intmax_t lo, intmax_t hi);
+
+uintmax_t estrtou(const char * nptr, int base, uintmax_t lo, uintmax_t hi);
+
 __MKC_END_DECLS
 
 #  endif

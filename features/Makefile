@@ -1,9 +1,9 @@
-.for f in libl strtoi macro
+.for f in libl strtoi strtou macro
 FILES                      +=	mkc_imp.f_${f}.mk
 FILESDIR_mkc_imp.f_${f}.mk  =	${MKFILESDIR}
 .endfor
 
-.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h
+.for f in mkc_externc.h mkc_macro.h mkc_strtoi.h mkc_strtou.h
 FILES            +=	${f}
 FILESDIR_${f}     =	${FEATURESDIR}
 .endfor
@@ -22,7 +22,7 @@ FILES +=	macro/mkc_attribute_${f}.c
 FILESDIR_macro/mkc_attribute_${f}.c  =	${FEATURESDIR}/macro
 .endfor
 
-.for f in strto/mkc_strtoi.c strto/mkc__strtoi.h vis/mkc_unvis.c \
+.for f in strto/mkc_strtoi.c strto/mkc_strtou.c strto/mkc__strtoi.h vis/mkc_unvis.c \
   errc/mkc_verrc.c
 FILES          +=	${f}
 FILESDIR_${f}   =	${FEATURESDIR}/${f:H}
