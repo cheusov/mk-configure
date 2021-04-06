@@ -354,10 +354,11 @@ Similar to CXXOPTS but for project ${PROJECTNAME}.
 .RI < "U" >
 .IP CXXSTD
 C++ language standard required by program. Supported options:
-.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
-" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
-c17 ", " gnu17 " (C17 with GNU extensions)."
-If compiler is not known for mk-configure developer or does not
+.IR c++98 ", " gnu++98 " (C++98 with GNU extensions), "
+.IR c++11 ", " gnu++11 " (C++11 with GNU extensions), "
+.IR c++14 ", " gnu++14 " (C++14 with GNU extensions), "
+.IR c++17 ", " gnu++17 " (C++17 with GNU extensions)"
+If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >
 .RI [ "" ]
