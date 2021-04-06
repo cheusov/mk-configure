@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
 	char *buf = NULL;
 	char *old_buf = NULL;
-	size_t size;
+	size_t size = 0;
 	size_t len;
 
 	char *shquoted_buf = NULL;
