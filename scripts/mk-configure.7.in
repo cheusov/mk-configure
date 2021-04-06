@@ -226,7 +226,7 @@ C language standard required by program. Supported options:
 .IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
 " (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
 c17 ", " gnu17 " (C17 with GNU extensions)."
-If compiler is not known for mk-configure developer or does not
+If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >
 .RI [ "" ]
