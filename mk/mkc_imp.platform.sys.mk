@@ -329,7 +329,7 @@ ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 CLEANFILES +=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
-	awk '{print "_" $$0}' ${.ALLSRC} > ${.TARGET}
+	awk '{sub(/#.*/, ""); if (NF>0) { $$1=$$1; print "_" $$0}}' ${.ALLSRC} > ${.TARGET}
 .endif # sunld or darwinld
 
 LDFLAGS.expsym.gnuld    =	--version-script ${EXPORT_SYMBOLS}.tmp
