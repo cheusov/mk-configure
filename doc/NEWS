@@ -1,4 +1,44 @@
 ======================================================================
+Version 0.37.0, by Aleksey Cheusov, Thu,  8 Apr 2021 09:07:48 +0300
+
+  Features:
+    * new feature "strtoi" for NetBSD function with the same name
+    * new feature "strtou" for NetBSD function with the same name
+    * new feature "reallocarr" for NetBSD function with the same name
+    * new feature "macro". It provides NetBSD-style macro __dead, __pure,
+      __UNCONST, __printflike, __constfunc, __always_inline, __aligned,
+      __arraycount, MAX and MIN
+    * "efun": add support for ereallocarr(3), estrtoi(3) and estrtou(3)
+
+  Fixes:
+    * imp.foreign_autotools.mk: add MAKE=${AT_MAKE} to environment
+      This fixes ./configure when "make" executable is not available
+    * CXXSTD: appropriate option is passed to the linker.  This fixes
+      failures with Sun C++ compiler.
+    * examples/shquote/prog.c: fix segfault seen on Solaris-10
+      (incorrect use of getline(3))
+
+  mk-configure.7:
+    * add missing documentation for features "reallocarray", "fparseln"
+      and "vis"
+    * minor fixes
+    * CXXSTD: fix incorrect description
+
+  Exit with error if generated config under ~/.mkcmake is older than
+  system mk files.  This situation potentially means that generated
+  configs do not contain all required information about compiler.
+
+  System-wide mk file for compiler settings has higher priority
+  than files under ~/.mkcmake
+
+  EXPORT_SYMBOLS: empty lines and comments started with '#' are ignored
+
+  mkc_install: do not remove "$dst" before renaming "$dsttmp" to
+  "$dst", it is just useless.
+
+  Simplify the target "installdirs".
+
+======================================================================
 Version 0.36.0, by Aleksey Cheusov, Tue,  5 Jan 2021 19:29:08 +0300
 
   Introduce new variables:
