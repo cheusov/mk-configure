@@ -2,6 +2,15 @@
 PLAN 0.38.0:
 
 ============================================================
+Fix parallel "install" target (LINKS vs. real files)
+
+============================================================
+Checks for attributes ===> mkc_imp.{cc,cxx}_xxx.mk
+
+============================================================
+Feature "macro" -- macro restrict/__restrict?
+
+============================================================
 Generate .d files at the same time as compilation and load
 in the very beginning by default if appropriate variable
 is set.
