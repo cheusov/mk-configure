@@ -122,7 +122,7 @@ check_itself (){
 	    *.c)
 		compiler="$CC"
 		flags="-o $tmpo $CFLAGS $CPPFLAGS $src_or_exe";;
-	    *.cc|*.C|*.cxx|*.cpp)
+	    *.cc|*.C|*.cxx|*.cpp|*.c++)
 		compiler="$CXX"
 		flags="-o $tmpo $CXXFLAGS $CPPFLAGS $src_or_exe";;
 	    *)

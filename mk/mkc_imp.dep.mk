@@ -21,8 +21,8 @@ MKDEP_CC       ?=	${CC}
 # some of the rules involve .h sources, so remove them from mkdep line
 
 .if defined(_SRCS_ALL)
-__DPSRCS.all  =	${_SRCS_ALL:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/} \
-		${DPSRCS:T:C/\.(c|m|s|S|C|cc|cpp|cxx)$/.d/}
+__DPSRCS.all  =	${_SRCS_ALL:T:C/\.(c|m|s|S|C|cc|cpp|cxx|c\+\+)$/.d/} \
+		${DPSRCS:T:C/\.(c|m|s|S|C|cc|cpp|cxx|c\+\+)$/.d/}
 __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
@@ -68,7 +68,7 @@ ${.MAKE.DEPENDFILE}: ${__DPSRCS.d}
 	@sed 's/^\([^ ]*\)[.]o\(.*\)$$/${MKDEP_SUFFIXES:C,^,\\\\1,}\2/' ${__DPSRCS.d} > ${.TARGET}
 .endif
 
-.SUFFIXES: .d .s .S .c .C .cc .cpp .cxx
+.SUFFIXES: .d .s .S .c .C .c++ .cc .cpp .cxx
 
 .c.d:
 	${MESSAGE.dep}
@@ -78,7 +78,7 @@ ${.MAKE.DEPENDFILE}: ${__DPSRCS.d}
 	${MESSAGE.dep}
 	@env CC=${MKDEP_CC:Q} ${MKDEP.s} ${.IMPSRC}
 
-.C.d .cc.d .cpp.d .cxx.d:
+.C.d .c++.d .cc.d .cpp.d .cxx.d:
 	${MESSAGE.dep}
 	@env CC=${MKDEP_CC:Q} ${MKDEP.cc} ${.IMPSRC}
 

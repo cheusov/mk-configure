@@ -13,7 +13,7 @@ MKC_REQUIRE_PROGS  +=			${CC:[1]}
 MKC_PROG.id.${CC:[1]:S|+|x|g}    =	cc
 .endif
 
-.if !empty(_srcsall:U:M*.cc) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) && !empty(CXX)
+.if !empty(_srcsall:U:M*.cc) || !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || !empty(_srcsall:U:M*.c\+\+) && !empty(CXX)
 MKC_REQUIRE_PROGS  +=			${CXX:[1]}
 MKC_PROG.id.${CXX:[1]:S/+/x/g}   =	cxx
 .endif
