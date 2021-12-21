@@ -2,7 +2,7 @@
 #
 # See LICENSE file in the distribution.
 ############################################################
-.SUFFIXES: .a .o .op .os .s .S .c .cc .cpp .cxx .C .y .l .cl .p .h
+.SUFFIXES: .a .o .op .os .s .S .c .c++ .cc .cpp .cxx .C .y .l .cl .p .h
 
 .LIBS:		.a
 
@@ -19,13 +19,13 @@
 	${COMPILE.c} ${CFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 
 # C++
-.cc.o .cpp.o .cxx.o .C.o:
+.c++.o .cc.o .cpp.o .cxx.o .C.o:
 	${MESSAGE.cc}
 	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
-.cc.op .cpp.op .cxx.op .C.op:
+.c++.op .cc.op .cpp.op .cxx.op .C.op:
 	${MESSAGE.cc}
 	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} -pg ${.IMPSRC}
-.cc.os .cpp.os .cxx.os .C.os:
+.c++.os .cc.os .cpp.os .cxx.os .C.os:
 	${MESSAGE.cc}
 	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 

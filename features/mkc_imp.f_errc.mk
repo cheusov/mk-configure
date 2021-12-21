@@ -5,7 +5,8 @@
 .ifndef _MKC_IMP_F_ERRC_MK
 _MKC_IMP_F_ERRC_MK := 1
 
-.include <mkc_imp.f_progname.mk>
+.include "mkc_imp.f_progname.mk"
+.include "mkc_imp.f_macro.mk"
 
 .include <mkc.conf.mk>
 

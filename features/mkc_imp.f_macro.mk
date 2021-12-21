@@ -5,9 +5,19 @@
 .ifndef _MKC_IMP_F_MACRO_MK
 _MKC_IMP_F_MACRO_MK := 1
 
-#MKC_CHECK_TYPES         +=	u_quad_t:sys/types.h
-#MKC_CHECK_HEADER_FILES  +=	sys/sysmacros.h sys/cdefs.h paths.h
+.for f in noreturn pure printflike const always_inline aligned
+MKC_CHECK_CUSTOM             +=	attribute_${f}
+MKC_CUSTOM_FN.attribute_${f}  =	${FEATURESDIR}/macro/mkc_attribute_${f}.c
+.endfor
 
-#CPPFLAGS +=	-D_MKC_CHECK_MACRO
+.include <mkc.conf.mk>
 
-.endif #_MKC_IMP_F_MACRO_MK
+CPPFLAGS +=	-D_MKC_CHECK_MACRO
+
+.for f in noreturn pure printflike const always_inline aligned
+.  if ${CUSTOM.attribute_${f}:U} != 1
+MKC_CPPFLAGS +=	-DHAVE_NO_ATTR_${f:tu}
+.  endif
+.endfor
+
+.endif # _MKC_IMP_F_MACRO_MK

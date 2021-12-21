@@ -9,8 +9,9 @@ _MKC_IMP_EFUN_MK := 1
 .include "mkc_imp.f_strlcpy.mk"
 .include "mkc_imp.f_strlcat.mk"
 .include "mkc_imp.f_strndup.mk"
-
-MKC_FEATURES +=	strlcpy strlcat fgetln err
+.include "mkc_imp.f_reallocarr.mk"
+.include "mkc_imp.f_strtoi.mk"
+.include "mkc_imp.f_strtou.mk"
 
 MKC_CHECK_FUNCS2   +=	ecalloc:util.h
 MKC_CHECK_FUNCLIBS +=	ecalloc:util

@@ -1,0 +1,16 @@
+strtoi: ECANCELED
+strtou: ECANCELED
+strtoi: 12
+strtou: 12
+strtoi: 0
+strtou: 0
+strtoi: 99
+strtou: 99
+strtoi: ERANGE
+strtou: ERANGE
+strtoi: ECANCELED
+strtou: ECANCELED
+strtoi: ERANGE
+strtou: ERANGE
+strtoi: -17
+strtou: ERANGE

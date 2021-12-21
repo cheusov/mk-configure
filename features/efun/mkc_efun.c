@@ -33,6 +33,9 @@
 #include "mkc_strlcat.h"
 #include "mkc_strlcpy.h"
 #include "mkc_strndup.h"
+#include "mkc_reallocarr.h"
+#include "mkc_strtoi.h"
+#include "mkc_strtou.h"
 
 #if HAVE_NBTOOL_CONFIG_H
 #include "nbtool_config.h"
@@ -129,7 +132,6 @@ erealloc(void *p, size_t n)
 	return q;
 }
 
-/*
 void
 ereallocarr(void *p, size_t n, size_t s)
 {
@@ -139,7 +141,6 @@ ereallocarr(void *p, size_t n, size_t s)
 		(*efunc)(1, "Cannot re-allocate %zu * %zu bytes", n, s);
 	}
 }
-*/
 
 FILE *
 efopen(const char *p, const char *m)
@@ -171,7 +172,6 @@ evasprintf(char ** /*__restrict*/ ret, const char * /*__restrict*/ format, va_li
 	return rv;
 }
 
-/*
 intmax_t
 estrtoi(const char * nptr, int base, intmax_t lo, intmax_t hi)
 {
@@ -199,4 +199,3 @@ estrtou(const char * nptr, int base, uintmax_t lo, uintmax_t hi)
 	}
 	return rv;
 }
-*/

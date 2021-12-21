@@ -222,11 +222,12 @@ mipspro   MIPSpro C compiler
 C compiler version.
 .RI < "I" >
 .IP CCSTD
-C language standard required by program. Supported options:
+Add C language standard command line option to the compiler.
+Supported options:
 .IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
 " (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
 c17 ", " gnu17 " (C17 with GNU extensions)."
-If compiler is not known for mk-configure developer or does not
+If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >
 .RI [ "" ]
@@ -353,11 +354,13 @@ Additional flags to the compiler when creating C++ objects.
 Similar to CXXOPTS but for project ${PROJECTNAME}.
 .RI < "U" >
 .IP CXXSTD
-C++ language standard required by program. Supported options:
-.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
-" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
-c17 ", " gnu17 " (C17 with GNU extensions)."
-If compiler is not known for mk-configure developer or does not
+Add C++ language standard command line option to the compiler and linker.
+Supported options:
+.IR c++98 ", " gnu++98 " (C++98 with GNU extensions), "
+.IR c++11 ", " gnu++11 " (C++11 with GNU extensions), "
+.IR c++14 ", " gnu++14 " (C++14 with GNU extensions), "
+.IR c++17 ", " gnu++17 " (C++17 with GNU extensions)"
+If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >
 .RI [ "" ]
@@ -876,7 +879,8 @@ See LIBDEPS in section
 .BR mk.subprj.mk .
 .IP EXPORT_SYMBOLS
 Only symbols listed in a specified file (one symbol per line) are
-exported. This variable has no effect on some platforms.  By default
+exported. Empty lines and comments started with # symbol
+are ignored. This variable has no effect on some platforms.  By default
 all symbols are exported.
 .RI < "M" >
 []
@@ -1272,7 +1276,7 @@ MKC_CUSTOM_FN.<custom_check_name> is a
 "C" or "C++" source filename or an executable program
 for your custom check,
 e.g., filename.c, filename.cc, subdir/filename.cxx, filename.C,
-filename.cpp or subdir/executable_script.
+filename.cpp, filename.c++ or subdir/executable_script.
 .B mk-configure
 tries to compile or run the specified file and sets
 CUSTOM.<custom_check_name> variable to 1, 0 or other value.
@@ -1388,7 +1392,7 @@ is "yes", equivalent define leads to the same results.
       MKC_CHECK_FUNCS1 += htobe32:sys/endian.h
       MKC_FUNC_OR_DEFINE.htobe32 += yes
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
-      HAVE_FUNC6.pselect.sys.select_h = 1
+      HAVE_FUNC6.pselect.sys_select_h = 1
       HAVE_FUNC1.htobe32.sys_endian_h=1
       CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
              += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
@@ -1621,9 +1625,10 @@ functions available in *BSD.
 This feature provides dprintf(3).
 .TP
 .B efun
-This feature provides esetfunc(3), efopen(3), ecalloc(3),
-emalloc(3), erealloc(3), estrdup(3), estrndup(3), estrlcpy(3),
-estrlcat(3), easprintf(3), and evasprintf(3) functions from NetBSD.
+This feature provides esetfunc(3), efopen(3), ecalloc(3), emalloc(3),
+erealloc(3), ereallocarr(3), estrdup(3), estrndup(3), estrlcpy(3),
+estrlcat(3), easprintf(3), estrtoi(3), estrtou(3)
+and evasprintf(3) functions from NetBSD.
 .TP
 .B err
 This feature provides err(3), errx(3), verr(3) and verrx(3) BSD-isms.
@@ -1633,6 +1638,9 @@ This feature provides errc(3) and verrc(3) BSD-isms.
 .TP
 .B fgetln
 This feature provides fgetln(3) BSD-ism.
+.TP
+.B fparseln
+This feature provides fparseln(3) BSD-ism.
 .TP
 .B fts
 This feature provides fts_open(3), fts_read(3) etc. functions
@@ -1670,6 +1678,37 @@ LDADD.  Most UNIX-like systems have libm but Haiku, for example, does
 not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 -lm is added to LDADD.
 .TP
+.B macro
+This feature provides the following macro stolen from NetBSD.
+.I __aligned(x)
+defined as
+.I "__attribute__((aligned(x)))"
+if supported by compiler,
+.I __always_inline
+defined as
+.I "__attribute__((always_inline))"
+if supported by compiler,
+.I __arraycount(a)
+defined as
+.I "(sizeof(__a)/sizeof(__a[0]))",
+.I __constfunc
+defined as
+.I "__attribute__((const))"
+if supported by compiler,
+.I __dead
+defined as
+.I "__attribute__((noreturn))"
+if supported by compiler,
+.IR "MIN(a,b)" " and " "MAX(a,b),"
+.I __pure
+defined as
+.I "__attribute__((pure))"
+if supported by compiler,
+.I "__printflike(n,m)"
+defined as
+.I "__attribute__((format (printf, n, m)))"
+if supported by compiler.
+.TP
 .B posix_getopt
 It is well-known that glibc getopt(3) does not conform to POSIX by default.
 This feature provides POSIX-ly correct getopt.
@@ -1691,6 +1730,12 @@ are defined for red-black tree and splay. These features check whether
 sys/tree.h and appropriate macroses are available. If yes, mkc_RB.h
 and mkc_SPLAY.h include system-wide sys/tree.h, otherwise NetBSD
 version of sys/tree.h provided by mk-configure is included.
+.TP
+.B reallocarr
+This feature provides reallocarr(3) function from NetBSD.
+.TP
+.B reallocarray
+This feature provides reallocarray(3) function from OpenBSD.
 .TP
 .B shquote
 This feature provides shquote(3) function from NetBSD.
@@ -1718,6 +1763,21 @@ This feature provides strndup(3) from POSIX.
 .TP
 .B strsep
 This features provides strsep(3) and stresep(3) functions.
+.TP
+.B strtoi
+This feature provides strtoi(3) function
+introduced in NetBSD.
+.TP
+.B strtou
+This feature provides strtoi(3) function
+introduced in NetBSD.
+.TP
+.B vis
+This feature provides vis(3), nvis(3), svis(3), snvis(3), strvis(3),
+strnvis(3), strsvis(3), strsnvis(3), strvisx(3), strnvisx(3),
+strenvisx(3), strsvisx(3), strsnvisx(3), strsenvisx(3),
+strunvis(3), strnunvis(3), strunvisx(3), strnunvisx(3) and
+unvis(3) from NetBSD.
 .TP
 .B warn
 This feature provides warn(3), warnx(3), vwarn(3) and vwarnx(3) BSD-isms.

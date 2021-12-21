@@ -3,9 +3,11 @@
 .if empty(src_type:Mcxx)
 .if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || \
     !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc) || \
+    !empty(_srcsall:U:M*.c\+\+) || \
     !empty(MKC_CHECK_CXX_OPTS:U) || !empty(MKC_CHECK_CXXLD_OPTS:U)
 src_type   +=	cxx
 LDREAL     ?=	${CXX}
+LDFLAGS    +=	${CXXFLAGS.std.${CXXSTD}.${CXX_TYPE}}
 .endif
 .endif
 
@@ -43,7 +45,8 @@ src_type  +=	cc
 .if empty(src_type:Mcxx)
 .  for c in ${MKC_CHECK_CUSTOM:U} ${MKC_REQUIRE_CUSTOM:U}
 .    if !empty(MKC_CUSTOM_FN.${c}:U:M*.cxx) || !empty(MKC_CUSTOM_FN.${c}:U:M*.cpp) || \
-    !empty(MKC_CUSTOM_FN.${c}:U:M*.C) || !empty(MKC_CUSTOM_FN.${c}:U:M*.cc)
+    !empty(MKC_CUSTOM_FN.${c}:U:M*.C) || !empty(MKC_CUSTOM_FN.${c}:U:M*.cc) || \
+    !empty(MKC_CUSTOM_FN.${c}:U:M*.c\+\+)
 src_type  +=	cxx
 .    endif
 .  endfor

@@ -17,7 +17,11 @@
 
 #ifndef HAVE_FUNC3_SHQUOTE_STDLIB_H
 __MKC_BEGIN_DECLS
-size_t shquote (const char *arg, char *buf, size_t bufsize);
+
+#include "mkc_macro.h"
+
+size_t shquote (const char *arg, char *buf, size_t bufsize) __constfunc;
+
 __MKC_END_DECLS
 #endif
 

@@ -1,4 +1,4 @@
-FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|err|getdelim|strndup|_mkcfake)[.][do]
+FUNCS_RE=(fgetln|progname|strlcat|strlcpy|getline|err|getdelim|strndup|_mkcfake)[.][do]|custom_attribute
 
 .PHONY : test_output
 test_output :
@@ -16,11 +16,11 @@ test_output :
 	echo =========== depend ============; \
 	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
 	find ${.OBJDIR} -type f | LC_ALL=C sort | \
-	grep '[.]d$$' | grep -Ev '${FUNCS_RE}' | \
+	grep '[.]d$$' | grep -Ev ${FUNCS_RE:Q} | \
 	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo =========== clean ============; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
-	find ${.OBJDIR} -type f | grep -v _mkc | grep -Ev '${FUNCS_RE}' | \
+	find ${.OBJDIR} -type f | grep -v _mkc | grep -Ev ${FUNCS_RE:Q} | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	echo =========== cleandir ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
@@ -29,7 +29,7 @@ test_output :
 	echo ======= depend to OBJDIR ==========; \
 	mkdir obj; MAKEOBJDIR=${.OBJDIR}/obj; export MAKEOBJDIR; \
 	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
-	find ${.OBJDIR}/obj -type f | grep -vE '${FUNCS_RE}' | \
+	find ${.OBJDIR}/obj -type f | grep -vE ${FUNCS_RE:Q} | \
 	grep -v _mkc | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	rm -rf obj; unset MAKEOBJDIR; \
