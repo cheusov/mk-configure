@@ -1,3 +1,13 @@
+============================================================
+New feature reallocarr from nbase800
+
+============================================================
+feature efun: new function ereallocarr
+
+============================================================
+progname feature: should provide __progname extern variable
+
+============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
 
