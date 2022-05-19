@@ -1,4 +1,17 @@
 ============================================================
+export.sym:
+ * cpp-preprocessing
+ * allow empty lines and extra spaces
+
+============================================================
+If MKC_REQUIRE_* fails, remove only .res file and keep
+.c and .err in order to allow debugging!
+
+============================================================
+It seems that MKC_REQUIRE_PKGCONFIG does not remove _mkc.*.res
+and therefore requires to remove them manually
+
+============================================================
 New feature reallocarr from nbase800
 
 ============================================================
