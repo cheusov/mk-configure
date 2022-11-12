@@ -28,7 +28,7 @@ test_output:
 		echo permissions 0750 lib bad; \
 	fi; \
 	echo =====; \
-	uid=`${ID} -u`; gid=`${ID} -g`; \
+	uid=`${ID} -un`; gid=`${ID} -gn`; \
 	mkc_install -d; \
 	mkc_install -d -m 0755 -o "$$uid" -g "$$gid" \
 		${.CURDIR}/opt/vendor/share; \
