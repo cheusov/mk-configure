@@ -1,4 +1,10 @@
 ============================================================
+Linker options like -rdynamic, -Wl,-E --version-script etc.
+should be checked as a part of mk-configure compilation time.
+tcc, for example, does not have --version-script on gnuld
+systems.
+
+============================================================
 export.sym:
  * cpp-preprocessing
  * allow empty lines and extra spaces
