@@ -31,13 +31,9 @@ codingstylechk ===> hello_TARGETS/hello2
 Coding style check for hello2
 FAILED
 *** Error code 1
-
 Stop.
-bmake: stopped in /objdir/hello2
 *** Error code 1
-
 Stop.
-bmake: stopped in /objdir
 cschk ex=1
 ============= files ===============
 /objdir/Makefile

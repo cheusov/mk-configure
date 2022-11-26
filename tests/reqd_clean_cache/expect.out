@@ -18,9 +18,7 @@ ERROR: cannot find program trtrtr
 ERROR: cannot find program brbrbr
 ERROR: prototype test bad999 failed
 *** Error code 1
-
 Stop.
-bmake: stopped in /objdir
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res

@@ -21,8 +21,7 @@ else
 	SORT_CMD=cat
 fi
 
-grep -v CVS |
-grep -v '~$' |
+awk '!/CVS/ && !/~$/ && !/bmake: stopped in / && NF > 0' |
 sed -e "s,$objdir,/objdir,g" \
     -e "s,$prefix,/prefix,g" \
     -e "s,/usr/local,/prefix," \
