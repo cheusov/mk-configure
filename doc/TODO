@@ -7,7 +7,6 @@ systems.
 ============================================================
 export.sym:
  * cpp-preprocessing
- * allow empty lines and extra spaces
 
 ============================================================
 If MKC_REQUIRE_* fails, remove only .res file and keep
