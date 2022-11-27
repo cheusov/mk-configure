@@ -29,6 +29,7 @@ test_output :
 	esac; \
 	\
 	echo =========== all ============; \
+	${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -108,6 +109,7 @@ test_output :
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	\
 	echo ======= all-dict ==========; \
+	${MAKE} ${MAKEFLAGS} configure-dict > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all-dict > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -168,6 +170,7 @@ test_output :
 	echo =========== all with NOSUBDIR ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	NOSUBDIR='dictfmt dictzip'; export NOSUBDIR; \
+	${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -175,12 +178,14 @@ test_output :
 	\
 	echo =========== all with MKPIE=yes ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} ${MAKEFLAGS} configure MKPIE=yes > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all MKPIE=yes > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== all with STATICLIBS=everything... ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	env STATICLIBS='libmaa libdz' ${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	env STATICLIBS='libmaa libdz' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

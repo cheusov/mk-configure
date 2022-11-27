@@ -10,12 +10,14 @@ test_output:
 	echo CLEANDIRFILES=${CLEANDIRFILES:Q} | \
 	mkc_test_helper_paths; \
 	echo =========== all ============; \
+	${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ======== all+html ==========; \
 	MKHTML=yes; export MKHTML; \
+	${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -43,7 +45,9 @@ test_output:
 	\
 	echo ==== install MKINSTALL=no ====; \
 	MKINSTALL=no; export MKINSTALL; \
-	${MAKE} ${MAKEFLAGS} -j4 all installdirs install -j3 DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} \
+		> /dev/null; \
+	${MAKE} ${MAKEFLAGS} -j4 all installdirs install DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

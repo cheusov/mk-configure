@@ -53,6 +53,7 @@ test_output:
 	\
 	echo ==== install MKINSTALL=no ====; \
 	MKINSTALL=no; export MKINSTALL; \
+	${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} all installdirs install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \

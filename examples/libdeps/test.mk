@@ -49,6 +49,7 @@ test_output:
 	\
 	echo =========== all with STATICLIBS=... ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \

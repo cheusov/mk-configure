@@ -41,6 +41,8 @@ test_output:
 	env PREFIX=/home/cheusov/local \
 	    LUA_LMODDIR=/home/cheusov/local/share/lua/5.1 \
 	    LUA_CMODDIR=/home/cheusov/local/lib/lua/5.1 \
+	    ${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} \
+		> /dev/null; \
 	    ${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \

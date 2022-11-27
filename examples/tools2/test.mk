@@ -72,6 +72,7 @@ test_output :
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= all-tools/prog1 ==========; \
+	${MAKE} ${MAKEFLAGS} configure-tools/prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog1 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -85,6 +86,7 @@ test_output :
 	\
 	echo ========= all-tools/prog2 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} configure-tools/prog2 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog2 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
@@ -98,12 +100,15 @@ test_output :
 	\
 	echo ========= all-tools/prog3 ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} ${MAKEFLAGS} configure-tools/prog3 DESTDIR=${.OBJDIR} > /dev/null; \
 	${MAKE} ${MAKEFLAGS} -j4 all-tools/prog3 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= -C tools/prog4 all ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} \
+		configure-tools/prog4 DESTDIR=${.OBJDIR} > /dev/null; \
 	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} \
 		-j4 all-tools/prog4 DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
@@ -113,6 +118,8 @@ test_output :
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	MKRELOBJDIR=yes; export MKRELOBJDIR; \
 	mkdir obj; \
+	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} \
+		configure > /dev/null; \
 	env init_make_level=${next_level} ${MAKE} ${MAKEFLAGS} \
 		-j4 all > /dev/null; \
 	find obj -type f -o -type l | sort; \
