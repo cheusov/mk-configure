@@ -29,7 +29,6 @@ clean ===> tests/predopost_targets/lua
 fake target pre_clean
 fake target do_clean
 fake target post_clean
-rm -rf /objdir/prefix /objdir/prefix
 ==================================================
 cleandir ===> tests/predopost_targets/lib
 fake target pre_cleandir
@@ -45,7 +44,6 @@ cleandir ===> tests/predopost_targets/lua
 fake target pre_cleandir
 fake target do_cleandir
 fake target post_cleandir
-rm -rf  /objdir/prefix /objdir/prefix
 ==================================================
 install ===> tests/predopost_targets/lib
 fake target pre_installdirs
