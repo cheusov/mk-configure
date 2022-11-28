@@ -77,10 +77,6 @@ foobarbaz
 /objdir/_mkc_header_lua_h.res
 /objdir/_mkc_pkgconfig_lua.err
 /objdir/_mkc_pkgconfig_lua.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_CMOD.res
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.err
-/objdir/_mkc_pkgconfig_lua_INSTALL_LMOD.res
 /objdir/_mkc_pkgconfig_lua_cflags.err
 /objdir/_mkc_pkgconfig_lua_cflags.res
 /objdir/_mkc_pkgconfig_lua_libs.err
@@ -99,6 +95,8 @@ foobarbaz
 /objdir/foobar.in
 /objdir/hello_lua.done
 /objdir/hello_lua.test.out.tmp
+/objdir/opt
+/objdir/opt/vendor
 /objdir/prefix
 /objdir/prefix/bin
 /objdir/prefix/bin/foobar

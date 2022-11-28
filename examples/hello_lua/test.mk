@@ -38,15 +38,16 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo ========= install2 ==========; \
-	env PREFIX=/home/cheusov/local \
-	    LUA_LMODDIR=/home/cheusov/local/share/lua/5.1 \
-	    LUA_CMODDIR=/home/cheusov/local/lib/lua/5.1 \
-	    ${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} \
+	PREFIX=/opt/vendor/name; \
+	LUA_LMODDIR=/opt/vendor/name/share/lua/5.1; \
+	LUA_CMODDIR=/opt/vendor/name/lib/lua/5.1; \
+	export PREFIX LUA_LMODDIR LUA_CMODDIR; \
+	${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} \
 		> /dev/null; \
-	    ${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
+	${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
+	mkc_test_helper $$PREFIX "${.OBJDIR}" | uniq; \
 	rm -rf ${.OBJDIR}/home; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
