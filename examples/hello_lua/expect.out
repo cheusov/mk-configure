@@ -106,7 +106,6 @@ foobarbaz
 /objdir/prefix/lib/lua
 /objdir/prefix/lib/lua/X.Y
 /objdir/prefix/lib/lua/X.Y/baz.so
-/objdir/prefix/lib/x86_64-linux-gnu
 /objdir/prefix/share
 /objdir/prefix/share/lua
 /objdir/prefix/share/lua/X.Y
