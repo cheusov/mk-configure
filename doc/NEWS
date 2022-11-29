@@ -1,4 +1,9 @@
 ======================================================================
+Version 0.38.2, by Aleksey Cheusov, Tue, 29 Nov 2022 22:04:54 +0400
+
+  Fixes in tests
+
+======================================================================
 Version 0.38.1, by Aleksey Cheusov, Sun, 27 Nov 2022 23:49:17 +0400
 
   Add support for .c++ extension for C++ sources
