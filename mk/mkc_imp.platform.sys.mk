@@ -65,8 +65,8 @@ CC.UnixWare  =	gcc
 CXX.UnixWare =	g++
 CPP.UnixWare =	${CC} -E
 
-CC.OSF1  =	gcc 
-CXX.OSF1 =	g++	
+CC.OSF1  =	gcc
+CXX.OSF1 =	g++
 CPP.OSF1 =	${CC} -E
 
 CC.Interix  =	gcc
@@ -106,27 +106,27 @@ ${c:tu}_VERSION    :=	${_full_type:[2]}
 _mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .       if ${MKCOMPILERSETTINGS:Uno:tl} == "force"
 .       elif exists(${_MKFILESDIR}/${_mkfile})
-          _full_mkfile:=${_MKFILESDIR}/${_mkfile}
+            _full_mkfile:=${_MKFILESDIR}/${_mkfile}
 .       elif exists(${HOME}/.mk-c/${_mkfile})
-.         warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
-          _full_mkfile:=${HOME}/.mk-c/${_mkfile}
+.           warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
+            _full_mkfile:=${HOME}/.mk-c/${_mkfile}
 .       elif exists(${HOME}/.mkcmake/${_mkfile})
-          _full_mkfile:=${HOME}/.mkcmake/${_mkfile}
+            _full_mkfile:=${HOME}/.mkcmake/${_mkfile}
 .       endif
 .       if defined(_full_mkfile)
-          _ != test ${_full_mkfile} -ot ${.PARSEDIR}/${.PARSEFILE}; echo $$?
-.         if ${_} == 0 && !defined(MK_C_PROJECT) && !defined(compiler_settings)
-.           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes"
+            _ != test ${_full_mkfile} -ot ${.PARSEDIR}/${.PARSEFILE}; echo $$?
+.           if ${_} == 0 && !defined(MK_C_PROJECT) && !defined(compiler_settings)
+.               if ${MKCOMPILERSETTINGS:Uno:tl} == "yes"
 _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
-.             include "${HOME}/.mkcmake/${_mkfile}"
-.           else
-.             error '${_full_mkfile} is older than ${.PARSEDIR}/${.PARSEFILE}, please update it using "mkc_compiler_settings" utility'
+.                   include "${HOME}/.mkcmake/${_mkfile}"
+.               else
+.                   error '${_full_mkfile} is older than ${.PARSEDIR}/${.PARSEFILE}, please update it using "mkc_compiler_settings" utility'
+.               endif
 .           endif
-.         endif
-.         undef _
-.         if !defined(compiler_settings)
-.           include "${_full_mkfile}"
-.         endif
+.           undef _
+.           if !defined(compiler_settings)
+.               include "${_full_mkfile}"
+.           endif
 .       elif !defined(MK_C_PROJECT) && empty(compiler_settings)
 .           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes" || ${MKCOMPILERSETTINGS:Uno:tl} == "force"
 _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
@@ -208,16 +208,16 @@ LDFLAGS.soname.hpld =		+h lib${LIB}.sl.${SHLIB_MAJOR}
 LDFLAGS.shared.aixld =		-G
 LDFLAGS.soname.aixld =		#
 
-LDFLAGS.shared.irixld =		-shared
+LDFLAGS.shared.irixld =	-shared
 LDFLAGS.soname.irixld =		#
 
-LDFLAGS.shared.osf1ld =		-shared -msym -expect_unresolved '*'
-LDFLAGS.soname.osf1ld =		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
+LDFLAGS.shared.osf1ld =	-shared -msym -expect_unresolved '*'
+LDFLAGS.soname.osf1ld =	-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
 				-set_version ${SHLIB_MAJOR}.${SHLIB_MINOR} \
 				-update_registry ${.OBJDIR}/${LIB}_so_locations
 
-LDFLAGS.shared.irixld =		-shared
-LDFLAGS.soname.irixld =		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
+LDFLAGS.shared.irixld =	-shared
+LDFLAGS.soname.irixld =	-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 
 LDFLAGS.shared.interixld =	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.soname.interixld =	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
