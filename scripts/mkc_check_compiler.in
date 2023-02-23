@@ -1,7 +1,7 @@
 #!/bin/sh
 
 ############################################################
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2023 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -19,8 +19,6 @@ export LC_ALL
 
 tmpfile="$TMPDIR/mk-c.$$.c"
 trap 'rm -f "$tmpfile"' 0
-
-##################################################
 
 ##################################################
 
@@ -87,7 +85,8 @@ END {
 	    ret=(compiler " " $0)
 	    exit
 	}
-	END { print ret }' 
+	END { printf("%s ", ret) }'
+    $CC -dumpmachine 2>/dev/null || true
 }
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh

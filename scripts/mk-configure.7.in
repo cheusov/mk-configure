@@ -488,10 +488,10 @@ so you can use it to initialize mk-c variables in mk.conf. For example:
 .IP MKCOMPILERSETTINGS
 At build time mk-configure detects some compilers capabilities and saves them
 to system-wide
-.I mkc_imp.cc_${CC_TYPE}-${CC_VERSION}.mk
+.I mkc_imp.cc_${CC_TYPE}-${CC_VERSION}-${CC_TRIPLET}.mk
 (for C compiler)
 and
-.I mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
+.I mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}-${CXX_TRIPLET}.mk
 (for C++ compiler) files. At run time mk-configure loads these files
 when necessary. If they are absent, that is, if you use compilers
 unknown to mk-configure, it exits with error. In order to fix this,
@@ -510,6 +510,8 @@ If
 is
 .IR force ,
 compiler configuration file is always regenerated.
+Triplet component of the compiler configuration file name may absent
+for some compilers.
 .RI < Iu >
 .RI [ no ]
 .IP MKDEP

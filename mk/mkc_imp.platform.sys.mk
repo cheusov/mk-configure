@@ -102,8 +102,12 @@ mkc.cc_type.environ = CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${CPPFLAGS:Q} CFLAGS=${CF
 _full_type         !=	env ${mkc.cc_type.environ} mkc_check_compiler ${"${c}" == "cxx":?-x:}
 ${c:tu}_TYPE       :=	${_full_type:[1]}
 ${c:tu}_VERSION    :=	${_full_type:[2]}
+${c:tu}_TRIPLET    :=	${_full_type:[3]}
+.if !empty(${c:tu}_TRIPLET)
+${c:tu}_TRIPLET    :=	-${${c:tu}_TRIPLET}
+.endif
 .       undef _full_type
-_mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+_mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
 .       if ${MKCOMPILERSETTINGS:Uno:tl} == "force"
 .       elif exists(${_MKFILESDIR}/${_mkfile})
             _full_mkfile:=${_MKFILESDIR}/${_mkfile}
@@ -132,7 +136,7 @@ _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 .               include "${HOME}/.mkcmake/${_mkfile}"
 .           else
-.               error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION} is not available, run "mkc_compiler_settings" utility'
+.               error 'Settings for ${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET} is not available, run "mkc_compiler_settings" utility'
 .           endif
 .       endif # exists(...)
 

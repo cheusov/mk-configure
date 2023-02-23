@@ -145,7 +145,7 @@ _cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
 
 #################################################
 .for c in cc cxx
-cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
+cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
 .if !empty(${c:tu})
 .   for v in ${_${c}_vars}
 MKC_CHECK_${c:tu}_OPTS +=	${${v}}
