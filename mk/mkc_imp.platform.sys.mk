@@ -115,7 +115,12 @@ _mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
 .       if defined(_full_mkfile)
           _ != test ${_full_mkfile} -ot ${.PARSEDIR}/${.PARSEFILE}; echo $$?
 .         if ${_} == 0 && !defined(MK_C_PROJECT) && !defined(compiler_settings)
-.           error '${_full_mkfile} is older than ${.PARSEDIR}/${.PARSEFILE}, please update it using "mkc_compiler_settings" utility'
+.           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes"
+_ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
+.             include "${HOME}/.mkcmake/${_mkfile}"
+.           else
+.             error '${_full_mkfile} is older than ${.PARSEDIR}/${.PARSEFILE}, please update it using "mkc_compiler_settings" utility'
+.           endif
 .         endif
 .         undef _
 .         if !defined(compiler_settings)
