@@ -493,8 +493,8 @@ to system-wide
 and
 .I mkc_imp.cxx_${CXX_TYPE}-${CXX_VERSION}.mk
 (for C++ compiler) files. At run time mk-configure loads these files
-if necessary. If they are absent, that is, if you use compilers
-unknown to mk-configure, it exits with error. If order to fix this,
+when necessary. If they are absent, that is, if you use compilers
+unknown to mk-configure, it exits with error. In order to fix this,
 you have to run
 .B mkc_compiler_setting(1)
 utility manually. This utility generates similar files in
