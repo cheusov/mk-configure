@@ -104,7 +104,8 @@ ${c:tu}_TYPE       :=	${_full_type:[1]}
 ${c:tu}_VERSION    :=	${_full_type:[2]}
 .       undef _full_type
 _mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}.mk
-.       if exists(${_MKFILESDIR}/${_mkfile})
+.       if ${MKCOMPILERSETTINGS:Uno:tl} == "force"
+.       elif exists(${_MKFILESDIR}/${_mkfile})
           _full_mkfile:=${_MKFILESDIR}/${_mkfile}
 .       elif exists(${HOME}/.mk-c/${_mkfile})
 .         warning "Directory ~/.mk-c is deprecated since 2020-12-11, please rename it to ~/.mkcmake"
@@ -127,7 +128,7 @@ _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 .           include "${_full_mkfile}"
 .         endif
 .       elif !defined(MK_C_PROJECT) && empty(compiler_settings)
-.           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes"
+.           if ${MKCOMPILERSETTINGS:Uno:tl} == "yes" || ${MKCOMPILERSETTINGS:Uno:tl} == "force"
 _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 .               include "${HOME}/.mkcmake/${_mkfile}"
 .           else

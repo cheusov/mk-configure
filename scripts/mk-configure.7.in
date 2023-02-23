@@ -505,6 +505,11 @@ variable is set to
 .IR yes ,
 .B mkc_compiler_setting(1)
 is run automaticlly and mk-configure loads the generated files.
+If
+.B MKCOMPILERSETTINGS
+is
+.IR force ,
+compiler configuration file is always regenerated.
 .RI < Iu >
 .RI [ no ]
 .IP MKDEP
