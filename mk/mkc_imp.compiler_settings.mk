@@ -79,14 +79,16 @@ _cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
 .undef _CSTD_LIST
 .undef _CXXSTD_LIST
 
-LDFLAGS.pie.gcc   =		-fPIE__-DPIC__-pie
-LDFLAGS.pie.clang =		-fPIE__-DPIC__-pie
+LDFLAGS.pie.gcc   =	-fPIE__-DPIC__-pie
+LDFLAGS.pie.clang =	-fPIE__-DPIC__-pie
 
-_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro
+LDFLAGS.expdyn  =	-rdynamic
+
+_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro LDFLAGS.expdyn
 
 ### C++ variables
-CXXFLAGS.dflt.clang   =		${CFLAGS.dflt.clang}
-CXXFLAGS.dflt.icc     =		${CFLAGS.dflt.icc}
+CXXFLAGS.dflt.clang   =	${CFLAGS.dflt.clang}
+CXXFLAGS.dflt.icc     =	${CFLAGS.dflt.icc}
 
 CXXFLAGS.warnerr.gcc =		${CFLAGS.warnerr.gcc}
 CXXFLAGS.warnerr.clang =	${CXXFLAGS.warnerr.gcc}
@@ -141,7 +143,7 @@ _cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
     CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
 
-_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro
+_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro LDFLAGS.expdyn
 
 #################################################
 .for c in cc cxx
