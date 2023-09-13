@@ -1,4 +1,18 @@
 ============================================================
+Recheck the order of dependencies in LIBDEPS.
+The order does matter and influences on -l options.
+
+============================================================
+Опция -std=c++17 должна следовать ПЕРЕД getline.o при линковке
+all ===> basic
+checking C++ compiler type... gcc 10.3.1
+checking for program c++... /usr/bin/c++
+c++             -std=c++17   -c -o getline.o   getline.cc
+c++ -o getline getline.o     -std=c++17   
+c++             -std=c++17   -c -o init.o   init.cc
+c++ -o init init.o     -std=c++17   
+
+============================================================
 Linker options like -Wl,-E --version-script etc.
 should be checked as a part of mk-configure compilation time.
 tcc, for example, does not have --version-script on gnuld
