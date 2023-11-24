@@ -87,7 +87,7 @@ int main(int argc, char **argv)
 EOF
 
     # test itself
-    if $CC -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr"; then
+    if $CC -o "$tmpexe" "$tmpc" $LDFLAGS $LDADD 2>"$tmperr" 1>&2; then
 	echo 1
     else
 	# SunPro may leave object files in current directory.
