@@ -169,11 +169,16 @@ HAVE_FUNCLIB.sqrt=	ok
 .endif
 
 all:
-.for i in ${vars}
-	@printf '%s=%s\n' ${i:Q} ${${i}:Q} | \
+.for var in ${vars}
+	@printf '%s:\n' ${var:Q}
+.  for value in ${${var}}
+	@value=${value:Q}; \
+	if echo ${var:Q} | grep -q SIZEOF; then value=$$(printf "%s" ${value:Q} | sed 's/[12348]/n/'); fi; \
+	printf '%s\n' "$$value" | \
 	sed -e 's|\([^ ]*SIZEOF[^ =]*\)=[0-9][0-9]*|\1=n|g' \
-	    -e 's|\([^ ]*PROG[^ =]*\)=[^ =]*bin/|\1=/somewhere/bin/|g' \
+	    -e 's|^/.*/|/somewhere/|g' \
 	    -e '/^MKC_AUTO_SRCS=/ s|/[^ ]*/||g'
+.  endfor
 .endfor
 	@echo ''
 	@printf "%s\n" "${CPPFLAGS}" | \
