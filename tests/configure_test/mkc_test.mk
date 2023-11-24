@@ -170,7 +170,7 @@ HAVE_FUNCLIB.sqrt=	ok
 
 all:
 .for i in ${vars}
-	@echo ${i}=${${i}} | \
+	@printf '%s=%s\n' ${i:Q} ${${i}:Q} | \
 	sed -e 's|\([^ ]*SIZEOF[^ =]*\)=[0-9][0-9]*|\1=n|g' \
 	    -e 's|\([^ ]*PROG[^ =]*\)=[^ =]*bin/|\1=/somewhere/bin/|g' \
 	    -e '/^MKC_AUTO_SRCS=/ s|/[^ ]*/||g'
