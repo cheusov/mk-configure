@@ -1,4 +1,11 @@
 ============================================================
+Include headers only if it is necessary. Thus, improve mkcmake
+performance.
+
+============================================================
+Use flock/shlock/etc for parallalizing mkcmake configure
+
+============================================================
 Recheck the order of dependencies in LIBDEPS.
 The order does matter and influences on -l options.
 
