@@ -17,7 +17,7 @@
 /objdir/hello_customtests2.o
 /objdir/test.mk
 =========== run ============
-alloca(3) succeeded
+alloca(3) succeeded 0xC001BEAF
 ========= install ==========
 /objdir/prefix
 /objdir/prefix/bin

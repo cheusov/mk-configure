@@ -8,10 +8,11 @@
 
 int main (int argc, char** argv)
 {
-	if (alloca (100))
-		puts ("alloca(3) succeeded");
+	void *p=alloca(100);
+	if (p)
+		printf("alloca(3) succeeded %p\n", p);
 	else
-		puts ("alloca(3) failed");
+		puts("alloca(3) failed");
 
 	return 0;
 }

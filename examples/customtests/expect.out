@@ -30,7 +30,7 @@
 /objdir/hello_customtests.o
 /objdir/test.mk
 =========== run ============
-alloca(3) succeeded
+alloca(3) succeeded 0xC001BEAF
 We have C++ compiler with working templates: YES
 We have a working 'true' in bourne shell: YES
 shtest is good: NO
