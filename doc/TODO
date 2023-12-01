@@ -1,4 +1,22 @@
 ============================================================
+top-level mkc.subprj.mk projects should take in account obj
+subdirectory. Examples: libnnt, dictd.
+
+============================================================
+#define __UNCONST(p) ((void *)((p) - (void *)0))
+
+============================================================
+MKC_CHECK_FUNCLIBS: chewck in libc and if found,
+skip foreign library.
+
+============================================================
+Проект dictd:
+Не смотря на то, что LIBDEPS+=libdictd:dictd
+при перелинковке libdictd dictd не перелинковывается.
+
+Это бага!
+
+============================================================
 Include headers only if it is necessary. Thus, improve mkcmake
 performance.
 
