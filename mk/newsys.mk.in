@@ -51,7 +51,7 @@ SHELL     ?=	sh
 
 SIZE      ?=	size
 
-TSORT     ?= 	tsort -q
+TSORT     ?=	tsort -q
 
 TAR       ?=	tar
 GZIP      ?=	gzip

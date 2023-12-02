@@ -135,8 +135,6 @@ CXXFLAGS.warns   =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 CFLAGS.pic      ?=	${CFLAGS.pic.${CC_TYPE}:U}
 CXXFLAGS.pic    ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
 
-RANLIB ?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
-
 NROFF_MAN2CAT ?=		${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
 
 LD_TYPE  ?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
