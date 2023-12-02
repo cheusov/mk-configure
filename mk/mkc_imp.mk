@@ -107,7 +107,7 @@ check_mkc_err_msg:
 		    awk '{print "ERROR: " $$0}' "$$fn"; ex=1; \
 		elif test -n "$$msg"; then printf '%s\n' "$$msg"; ex=1; \
 		fi; \
-	    done; \
+	    done 1>&2; \
 	    exit $$ex; \
 	fi
 

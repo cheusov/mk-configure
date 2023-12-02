@@ -1,4 +1,25 @@
 =========== all ============
+checking /bad/include/other_header.h using cc -E... no
+checking trtrtr.h using cc -c... no
+checking sys/brbrbr.h using cc -c... no
+checking for function implementation trtrtr... no
+checking for function implementation brbrbr ( -ldl )... no
+checking for function implementation brbrbr... no
+checking for define TRTRTR... no
+checking for define BRBRBR ( sys/time.h )... no
+checking for type trtrtr_t... no
+checking for type brbrbr_t ( sys/time.h )... no
+checking for variable v_trtrtr... no
+checking for variable v_brbrbr ( sys/time.h )... no
+checking for member trtr.trtr_t ( string.h )... no
+checking for member brbr.brbr_t ( sys/time.h )... no
+checking for func trtrtr ( sys/time.h )... no
+checking for func brbrbr... no
+checking custom test custom_test1... 0
+checking for program trtrtr... NOT FOUND
+checking for program brbrbr... NOT FOUND
+checking for prototype void badfunc999(void) ( bad_include.h )... no
+ERROR: header /bad/include/other_header.h does not exist
 ERROR: header trtrtr.h does not exist or is not compilable
 ERROR: header sys/brbrbr.h does not exist or is not compilable
 ERROR: cannot find function trtrtr
