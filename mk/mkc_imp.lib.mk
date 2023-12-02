@@ -29,7 +29,7 @@ UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 # CPPICFLAGS:		flags for ${CPP} to preprocess .[sS] files for ${AS}
 # CFLAGS.pic:		flags for ${CC} to compile .[cC] files to .os objects.
 # CAFLAGS.pic		flags for {$CC} to compiling .[Ss] files
-#		 	(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
+#			(usually just ${CPPFLAGS.pic} ${CFLAGS.pic})
 # AFLAGS.pic:		flags for ${AS} to assemble .[sS] to .os objects.
 
 OBJS  +=	${SRCS:N*.h:N*.sh:T:R:S/$/.o/g}
