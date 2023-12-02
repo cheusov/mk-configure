@@ -1,3 +1,24 @@
+.if ${USE_CC:Uauto} == "auto"
+PROG.cc =		cc
+.else
+PROG.cc = ${USE_CC}
+.endif
+CC      =	${PROG.cc}
+
+.if ${USE_CXX:Uauto} == "auto"
+PROG.c++ =		c++
+.else
+PROG.c++ = ${USE_CXX}
+.endif
+CXX      =	${PROG.c++}
+
+.if ${USE_CPP:Uauto} == "auto"
+PROG.cpp =		cpp
+.else
+PROG.cpp = ${USE_CPP}
+.endif
+CPP      =	${PROG.cpp}
+
 FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc.mk mkc.init.mk mkc_imp.intexts.mk mkc_imp.mk \
 	mkc.minitest.mk mkc_imp.pkg-config.mk mkc_imp.dpvars.mk \
@@ -108,6 +129,9 @@ INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
 INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	NM             ${PROG.nm}
 INTEXTS_REPLS +=	ID             ${PROG.id}
+INTEXTS_REPLS +=	CC             ${PROG.cc}
+INTEXTS_REPLS +=	CXX            ${PROG.c++}
+INTEXTS_REPLS +=	CPP            ${PROG.cpp}
 INTEXTS_REPLS +=	install        ${install}
 
 #################################################

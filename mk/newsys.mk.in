@@ -80,15 +80,10 @@ ARFLAGS    ?=	rl
 RANLIB     ?=	ranlib
 
 AS        ?=	as
-AFLAGS    ?=
 
-CC        ?=	cc
-CFLAGS    ?=
-
-CXX        ?=	c++
-
-CPP        ?=	cpp
-CPPFLAGS   ?=	
+CC         ?=	@CC@
+CXX        ?=	@CXX@
+CPP        ?=	@CPP@
 
 CLEANFILES_CMD ?=	${RM} -f
 CLEANDIRS_CMD ?=	${RM} -rf

@@ -25,11 +25,26 @@ USE_SH.0 = 'unset or "auto":  path to shell interpreter is detected automaticall
 USE_SH.1 = "path: the specified path to shell interpreter is used"
 
 USE_VARIABLES += USE_CC_COMPILERS
-USE_CC_COMPILERS.descr = "A list of C compilers for which initial settings are generated"
-USE_CC_COMPILERS.0 = "unset:  initial settings are generated for default C compiler"
-USE_CC_COMPILERS.1 = "list: example -- gcc-4.8 gcc-6 clang"
+USE_CC_COMPILERS.descr = 'A list of C compilers for which initial settings are generated'
+USE_CC_COMPILERS.0 = 'unset: default C compiler only'
+USE_CC_COMPILERS.1 = 'list: example -- gcc-4.8 gcc-6 clang'
 
 USE_VARIABLES += USE_CXX_COMPILERS
-USE_CXX_COMPILERS.descr = "A list of C++ compilers for which initial settings are generated"
-USE_CXX_COMPILERS.0 = "unset:  initial settings are generated for default C++ compiler"
-USE_CXX_COMPILERS.1 = "list: example -- g++-4.8 g++-6 clang++"
+USE_CXX_COMPILERS.descr = 'A list of C++ compilers for which initial settings are generated'
+USE_CXX_COMPILERS.0 = 'unset: default C++ compiler only'
+USE_CXX_COMPILERS.1 = 'list: example -- g++-4.8 g++-6 clang++'
+
+USE_VARIABLES += USE_CC
+USE_CC.descr = 'Default C compiler'
+USE_CC.0 = 'unset or "auto":  "cc"'
+USE_CC.1 = 'path: path or name of the C compiler'
+
+USE_VARIABLES += USE_CXX
+USE_CXX.descr = 'Default C++ compiler'
+USE_CXX.0 = 'unset or "auto":  "c++"'
+USE_CXX.1 = 'path: path or name of the C++ compiler'
+
+USE_VARIABLES += USE_CPP
+USE_CPP.descr = 'Default C++ compiler'
+USE_CPP.0 = 'unset or "auto":  "cpp"'
+USE_CPP.1 = 'path: path or name of the C preprocessor'
