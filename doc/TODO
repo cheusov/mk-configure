@@ -3,9 +3,6 @@ top-level mkc.subprj.mk projects should take in account obj
 subdirectory. Examples: libnnt, dictd.
 
 ============================================================
-#define __UNCONST(p) ((void *)((p) - (void *)0))
-
-============================================================
 MKC_CHECK_FUNCLIBS: chewck in libc and if found,
 skip foreign library.
 

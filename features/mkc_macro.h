@@ -76,7 +76,7 @@
 #endif
 
 #ifndef __UNCONST
-#  define __UNCONST(p) ((void *) ((char *)0 + ((const char *)(p) - (const char *)0)))
+#  define __UNCONST(p) ((void *) ((const char *)(p) - (const char *)0))
 #endif
 
 #ifndef __arraycount
