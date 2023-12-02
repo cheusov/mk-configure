@@ -24,7 +24,8 @@ Usage: mkc_check_funclib [OPTIONS] function [libraries...]
 
 OPTIONS:
    -h             display this help
-   -d             delete cache files
+   -d             delete cache files and temporary files
+   -D             delete cache files
 
 Examples:
    mkc_check_funclib dlopen dl
@@ -43,7 +44,11 @@ if test "_$1" = '_-h'; then
     exit 0
 fi
 if test "_$1" = '_-d'; then
-    delcache=1
+    delcache=all
+    shift
+fi
+if test "_$1" = '_-D'; then
+    delcache=result
     shift
 fi
 

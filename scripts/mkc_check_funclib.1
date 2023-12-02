@@ -14,7 +14,7 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_FUNCLIB 1 "Mar 15, 2009" "" ""
+.TH MKC_CHECK_FUNCLIB 1 "Dec 2, 2023" "" ""
 .SH NAME
 mkc_check_funclib \- detects presense of function in a library.
 .SH SYNOPSIS
@@ -29,7 +29,13 @@ As a result it prints either 1 (true) or 0 (false) to stdout.
 .SH OPTIONS
 .TP
 .B "-h"
-display help message
+Display help message.
+.TP
+.BI -d
+Delete cache and temporary files.
+.TP
+.BI -D
+Delete cache files.
 .SH ENVIRONMENT
 .TP
 .B CC
