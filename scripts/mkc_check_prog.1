@@ -1,6 +1,6 @@
 .\"	$NetBSD$
 .\"
-.\" Copyright (c) 2009-2010 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -14,11 +14,11 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_PROG 1 "Aug 29, 2009" "" ""
+.TH MKC_CHECK_PROG 1 "Dec 2, 2023" "" ""
 .SH NAME
 mkc_check_prog \- detects presense of header file.
 .SH SYNOPSIS
-.BI mkc_check_prog " <progname>"
+.BI mkc_check_prog " [OPTIONS] <progname>"
 .br
 .BI mkc_check_prog " -h"
 .SH DESCRIPTION
@@ -36,7 +36,13 @@ Display help message.
 .TP
 .BI -i " progid"
 .I progid
-will be used as a part of _mkc_* cache file name.
+Will be used as a part of _mkc_* cache file name.
+.TP
+.BI -d
+Delete cache and temporary files.
+.TP
+.BI -D
+Delete cache files.
 .SH ENVIRONMENT
 .TP
 .B PATH

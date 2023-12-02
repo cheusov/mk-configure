@@ -24,7 +24,8 @@ Usage: mkc_check_prog [OPTION] progname
 OPTIONS:
    -h                   display this screen
    -i <progid>          program id, a part of _mkc_* cache file
-   -d                   delete cache files
+   -d                   delete cache files and temporary files
+   -D                   delete cache files
 Examples:
    mkc_check_prog -h
    mkc_check_prog lua
@@ -42,7 +43,9 @@ while test $# -ne 0; do
 	    pathpart=prog_$2
 	    shift;;
 	-d)
-	    delcache=1;;
+	    delcache=result;;
+	-D)
+	    delcache=all;;
 	--)
 	    shift
 	    break;;
