@@ -86,11 +86,11 @@ END {
 	    exit
 	}
 	END { printf("%s ", ret) }'
-    triplet=`$CC -dumpmachine 2>/dev/null || true`
+    triplet=`$CC -dumpmachine 2>/dev/null || true` # double "$CC -dumpmachine" die to POSIX shell /-)
     if $CC -dumpmachine > /dev/null 2>&1; then
 	:
     else
-	triplet="$(uname -m)-unknown-$(uname -s)"
+	triplet="$(uname -m)-unknown-$(uname -s)" # "uname -m" because "uname -p" is not POSIX
     fi
     printf '%s\n' "$triplet"
 }
