@@ -101,7 +101,7 @@ get_includes (){
     done
 }
 
-if test -n "$delcache"; then
-    cleanup_all
-    exit 0
-fi
+case "$delcache" in
+    all) cleanup_all; exit 0;;
+    result) rm -f "$cache" "$tmpexe" "$tmpo"; exit 0;;
+esac

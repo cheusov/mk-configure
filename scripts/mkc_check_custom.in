@@ -34,7 +34,8 @@ OPTIONS:
    -r          build application and run it
    -m text     A part of verbose message, defaults to -n args
    -s          exit status of executable will be check
-   -d          delete cache files
+   -d          delete cache files and temporary files
+   -D          delete cache files
    -e          print 0 if compiler/cmd print something to stderr
    -b          print yes/no instead of 1/0
 Examples:
@@ -43,7 +44,7 @@ Examples:
 EOF
 }
 
-while getopts bdehlm:rst: f; do
+while getopts bdDehlm:rst: f; do
     case "$f" in
 	h)
 	    usage
@@ -60,7 +61,9 @@ while getopts bdehlm:rst: f; do
 	s)
 	    check_status=1;;
 	d)
-	    delcache=1;;
+	    delcache=all;;
+	D)
+	    delcache=result;;
 	e)
 	    empty_stderr=1;;
 	b)
