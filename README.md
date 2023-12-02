@@ -9,7 +9,7 @@ file for build and installation instructions.
 What is mk-configure?
 ---------------------
 
-**mk-configure** is a lightweight replacement for *GNU autotools*,
+**mk-configure** is a build system,
 written in and for bmake (portable version of **NetBSD** make) and
 **UNIX** tools (_shell_, _awk_ etc.).  **FreeBSD** and **OpenBSD** make
 are not good. They are incompatible with _NetBSD bmake_. _GNU
