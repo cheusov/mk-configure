@@ -39,9 +39,8 @@ SRC_PATHADD +=	${SRCS:N*.h:N*.sh:M*/*:H}
 ${p}: ${LIBCRT0} ${DPSRCS.${p}} ${OBJS.${p}} ${LIBC} ${LIBCRTBEGIN} ${LIBCRTEND} ${DPADD}
 .if !commands(${p})
 	${MESSAGE.ld}
-	${_V}${LDREAL} -o ${.TARGET} ${OBJS.${p}} \
-	    ${LDFLAGS0} ${LDADD0} \
-	    ${LDFLAGS} ${LDFLAGS.prog} ${LDADD}
+	${_V}${LDREAL} -o ${.TARGET} ${LDFLAGS0} ${LDFLAGS} ${LDFLAGS.prog} \
+	    ${OBJS.${p}} ${LDADD0} ${LDADD}
 .endif # !commands(...)
 
 .endif	# defined(OBJS.${p}) && !empty(OBJS.${p})
