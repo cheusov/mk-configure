@@ -24,7 +24,8 @@ Usage: mkc_check_header [OPTIONS] <headers>
 
 OPTIONS:
    -h        display this screen
-   -d        delete cache file
+   -d        delete cache file and temporary files
+   -D        delete cache file
    -e        check for existance of header file (cc -E vs. cc -c)
 Examples:
    mkc_check_header stdint.h
@@ -39,7 +40,8 @@ msg_addon="using ${CC} -c"
 while test $# -ne 0; do
     case "$1" in
 	-h) usage; exit 0;;
-	-d) delcache=1;;
+	-d) delcache=all;;
+	-D) delcache=result;;
 	-e) partpath=hdr; CC_OPTS='-E'; msg_addon="using ${CC} -E";;
 	*) break;;
     esac

@@ -1,6 +1,6 @@
 .\"	$NetBSD$
 .\"
-.\" Copyright (c) 2009-2018 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -14,7 +14,7 @@
 .fi
 ..
 .\" ------------------------------------------------------------------
-.TH MKC_CHECK_HEADER 1 "Mar 30, 2019" "" ""
+.TH MKC_CHECK_HEADER 1 "Dec 2, 2023" "" ""
 .SH NAME
 mkc_check_header \- detects presense of header file.
 .SH SYNOPSIS
@@ -51,7 +51,10 @@ for checking instead of
 .IR "$CC -c" .
 .TP
 .B "-d"
-Delete cache file.
+Delete cache and temporary files.
+.TP
+.B "-D"
+Delete cache files.
 .SH ENVIRONMENT
 .TP
 .B CC
