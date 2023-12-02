@@ -3,7 +3,7 @@ top-level mkc.subprj.mk projects should take in account obj
 subdirectory. Examples: libnnt, dictd.
 
 ============================================================
-MKC_CHECK_FUNCLIBS: chewck in libc and if found,
+MKC_CHECK_FUNCLIBS: check in libc and if found,
 skip foreign library.
 
 ============================================================
