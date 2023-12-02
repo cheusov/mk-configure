@@ -1,4 +1,26 @@
 ======================================================================
+Version 0.38.3, by Aleksey Cheusov, Sat,  2 Dec 2023 13:27:55 +0400
+
+  Fix #27 by adding a compiler triplet to config file name
+
+  Introduce special value "force" for MKCOMPILERSETTINGS variable. If
+  it is set, compiler configuration file is always regenarated.
+
+  Regenerate compiler configuration file (~/.mkcmake) when
+  MKCOMPILERSETTINGS=yes and
+  mkc_imp.cxx/cc_${CC_TYPE}-${CC_VERSION}.mk is older than system-wide
+  one. Do the same for C++ compiler.
+
+  mkc_compiler_settings: detect whether linker supports -rdynamic
+
+  Update mk-configure.7 man page
+
+  mkc_check_funclib: ignore stdout of linker and redirect it to stderr
+
+  Fixes in examples/ (Solaris-11 and latest versions of NetBSD and
+  OpenBSD)
+
+======================================================================
 Version 0.38.2, by Aleksey Cheusov, Tue, 29 Nov 2022 22:04:54 +0400
 
   Fixes in tests
