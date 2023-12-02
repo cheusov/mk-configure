@@ -46,50 +46,16 @@ STRIP     =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}strip
 .endif
 
 ####################
-SHLIB_EXT.Darwin =	.dylib
-SHLIB_EXT.HP-UX  =	.sl
+.sinclude "mkc_imp.platform.${OPSYS}.mk"
+
+####################
 
 SHLIB_EXT       ?=	${SHLIB_EXT.${TARGET_OPSYS}:U.so}
-
-DLL_EXT.Darwin  =	.bundle
 DLL_EXT        ?=	${DLL_EXT.${TARGET_OPSYS}:U${SHLIB_EXT}}
-
-####################
-####################
-CC.SunOS  =	cc
-CXX.SunOS =	CC
-
-CPP.SunOS    =	${CC} -E
-
-CC.UnixWare  =	gcc
-CXX.UnixWare =	g++
-CPP.UnixWare =	${CC} -E
-
-CC.OSF1  =	gcc
-CXX.OSF1 =	g++
-CPP.OSF1 =	${CC} -E
-
-CC.Interix  =	gcc
-CXX.Interix =	g++
-CPP.Interix =	cpp
-
-CC.IRIX64  =	cc
-CXX.IRIX64 =	CC
-CPP.IRIX64 =	${CC} -E
-
-CC.QNX  =	gcc
-CXX.QNX =	g++
-CPP.QNX =	${CC} -E
-
-CPP.AIX =	${CC} -E
 
 CC  ?=		${CC.${TARGET_OPSYS}:Ucc}
 CXX ?=		${CXX.${TARGET_OPSYS}:Uc++}
-CPP ?=		${CPP.${TARGET_OPSYS}:Ucpp}
-
-####################
-CPPFLAGS.Interix  =	-D_ALL_SOURCE
-CPPFLAGS.UnixWare =	-DUNIXWARE
+CPP ?=		${CPP.${TARGET_OPSYS}:U${CC} -E}
 
 CPPFLAGS +=	${CPPFLAGS.${TARGET_OPSYS}:U}
 
@@ -169,27 +135,9 @@ CXXFLAGS.warns   =	${CXXFLAGS.warns.${CXX_TYPE}.${WARNS}} ${CXXFLAGS.warnerr}
 CFLAGS.pic      ?=	${CFLAGS.pic.${CC_TYPE}:U}
 CXXFLAGS.pic    ?=	${CXXFLAGS.pic.${CXX_TYPE}:U}
 
-####################
-RANLIB.IRIX64 =		true
-
 RANLIB ?=		${RANLIB.${TARGET_OPSYS}:Uranlib}
 
-####################
-NROFF_MAN2CAT.SunOS ?=		-man
-NROFF_MAN2CAT.HP-UX ?=		-man
-NROFF_MAN2CAT.OSF1  ?=		-man
-
 NROFF_MAN2CAT ?=		${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
-
-####################
-LD_TYPE.UnixWare =		scold
-LD_TYPE.AIX      =		aixld
-LD_TYPE.HP-UX    =		hpld
-LD_TYPE.SunOS    =		sunld
-LD_TYPE.Darwin   =		darwinld
-LD_TYPE.Interix  =		interixld
-LD_TYPE.OSF1     =		osf1ld
-LD_TYPE.IRIX64   =		irixld
 
 LD_TYPE  ?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 
@@ -209,24 +157,6 @@ LDFLAGS.soname.gnuld =		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
 LDFLAGS.shared.hpld =		-b +b ${LIBDIR}
 LDFLAGS.soname.hpld =		+h lib${LIB}.sl.${SHLIB_MAJOR}
 
-LDFLAGS.shared.aixld =		-G
-LDFLAGS.soname.aixld =		#
-
-LDFLAGS.shared.irixld =	-shared
-LDFLAGS.soname.irixld =		#
-
-LDFLAGS.shared.osf1ld =	-shared -msym -expect_unresolved '*'
-LDFLAGS.soname.osf1ld =	-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR} \
-				-set_version ${SHLIB_MAJOR}.${SHLIB_MINOR} \
-				-update_registry ${.OBJDIR}/${LIB}_so_locations
-
-LDFLAGS.shared.irixld =	-shared
-LDFLAGS.soname.irixld =	-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
-
-LDFLAGS.shared.interixld =	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
-LDFLAGS.soname.interixld =	-h lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
-
-LDFLAGS.shared.gcc.Interix =	-shared --image-base,`expr $${RANDOM-$$$$} % 4096 / 2 \* 262144 + 1342177280`
 LDFLAGS.shared.gcc   =		-shared
 LDFLAGS.shared.clang =		-shared
 LDFLAGS.shared.pcc   =		-shared
@@ -239,23 +169,8 @@ LDFLAGS.shared.decc    =	-shared
 
 LDFLAGS.soname.sunpro  =	${LDFLAGS.soname.sunld}
 
-.if ${TARGET_OPSYS:Unone} == "Darwin"
-.if ${MKDLL:U} == "no"
-LDFLAGS.shared.gcc.Darwin  =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-LDFLAGS.shared.clang.Darwin  =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
-SHLIB_MAJORp1 !=		expr 1 + ${SHLIB_MAJOR:U0}
-LDFLAGS.soname.gcc =		-current_version ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}}
-LDFLAGS.soname.gcc +=		-compatibility_version ${SHLIB_MAJORp1}
-.else
-LDFLAGS.shared.gcc.Darwin =	-flat_namespace -bundle -undefined suppress
-LDFLAGS.shared.clang.Darwin =	-flat_namespace -bundle -undefined suppress
-.endif
-.elif ${TARGET_OPSYS:Unone} == "OSF1" && defined(LIB)
-CLEANFILES +=			${.OBJDIR}/${LIB}_so_locations
-.endif
-
-CFLAGS.cctold   ?=		${CFLAGS.cctold.${CC_TYPE}:U-Wl,}
-CXXFLAGS.cctold ?=		${CFLAGS.cctold.${CXX_TYPE}:U-Wl,}
+CFLAGS.cctold   ?=		-Wl,
+CXXFLAGS.cctold ?=		-Wl,
 
 LDFLAGS.soname.ld =		${LDFLAGS.soname.${LD_TYPE}:U}
 
@@ -266,39 +181,6 @@ LDFLAGS.soname ?=		${LDFLAGS.soname.${CC_TYPE}:U${LDFLAGS.soname.ld:@v@${CFLAGS.
 LDFLAGS.shared ?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}:U-shared}}
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
-
-############################################################
-############################################################
-.if ${TARGET_OPSYS:Unone} == "Darwin"
-
-COMPILE.s  ?=	${AS} ${AFLAGS}
-COMPILE.S  ?=	${CC} ${AFLAGS} ${_CPPFLAGS} -c
-
-.if ${MKDLL:U} != "no"
-
-SHLIB_EXTFULL  ?=	.bundle
-
-.else # MKDLL
-
-.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
-SHLIB_EXT1 ?=	.${SHLIB_MAJOR}.dylib
-.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
-SHLIB_EXT2 ?=	.${SHLIB_MAJOR}.${SHLIB_MINOR}.dylib
-.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
-SHLIB_EXT3 ?=	.${SHLIB_FULLVERSION}.dylib
-SHLIB_FULLVERSION = ${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
-.else
-SHLIB_FULLVERSION = ${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif # SHLIB_TEENY
-.else
-SHLIB_FULLVERSION = ${SHLIB_MAJOR}
-.endif # SHLIB_MINOR
-.endif # SHLIB_MAJOR
-
-SHLIB_EXTFULL ?=	.${SHLIB_FULLVERSION}.dylib
-.endif
-
-.endif # Darwin!
 
 ############################################################
 ############################################################
