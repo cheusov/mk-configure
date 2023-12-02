@@ -13,6 +13,8 @@ MKC_CUSTOM_FN.test1  =	test1.c
 MKC_REQUIRE_PROTOTYPES       =		bad999
 MKC_PROTOTYPE_HEADERS.bad999 =		bad_include.h
 MKC_PROTOTYPE_FUNC.bad999    =		void badfunc999(void)
+MKC_PROTOTYPE_FUNC.bad999    =		void badfunc999(void)
+MKC_REQUIRE_PKGCONFIG        =		bad_library
 
 .include "test.mk"
 .include <mkc.mk>
