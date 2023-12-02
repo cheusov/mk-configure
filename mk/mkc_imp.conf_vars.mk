@@ -13,7 +13,7 @@ MKC_CPPFLAGS  +=	-DHAVE_VAR_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .ifdef MKC_REQUIRE_VARS
 .  for d in ${MKC_REQUIRE_VARS}
 .    if !${HAVE_VAR.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
-_fake   !=   env ${mkc.environ} mkc_check_decl -d variable ${d:S/:/ /g} && echo
+_fake   !=   env ${mkc.environ} mkc_check_decl -D variable ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of variable ${d}"
 .    endif
 .  endfor

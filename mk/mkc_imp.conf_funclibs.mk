@@ -23,8 +23,8 @@ MKC_SRCS +=	${MKC_SOURCE_DIR.${f:C/:.*//}.c:U${MKC_SOURCE_DIR}}/${f:C/:.*//}.c
 .ifdef MKC_REQUIRE_FUNCLIBS
 .  for f in ${MKC_REQUIRE_FUNCLIBS}
 .    if !${HAVE_FUNCLIB.${f:S/:/./g}} && !${HAVE_FUNCLIB.${f:C/:.*//}}
-_fake   !=   env ${mkc.environ} mkc_check_funclib -d ${f:C/:.*//} && echo
-_fake   !=   env ${mkc.environ} mkc_check_funclib -d ${f:S/:/ /g} && echo
+_fake   !=   env ${mkc.environ} mkc_check_funclib -D ${f:C/:.*//} && echo
+_fake   !=   env ${mkc.environ} mkc_check_funclib -D ${f:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find function ${f}"
 .    endif
 .  endfor # f

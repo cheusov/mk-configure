@@ -15,7 +15,7 @@ MKC_CPPFLAGS  +=	-DHAVE_HEADER_${h:tu:C/.*,//:S|.|_|g:S|/|_|g}=${HAVE_HEADER.${h
 .for h in ${MKC_REQUIRE_HEADERS}
 var_suffix := ${h:C/.*,//:S|.|_|g:S|/|_|g}
 .  if !${HAVE_HEADER.${var_suffix}}
-_fake   !=   env ${mkc.environ} mkc_check_header -d ${h} && echo
+_fake   !=   env ${mkc.environ} mkc_check_header -D ${h} && echo
 MKC_ERR_MSG +=	"ERROR: header ${h} does not exist or is not compilable"
 .  endif
 .endfor

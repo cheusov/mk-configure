@@ -13,7 +13,7 @@ MKC_CPPFLAGS  +=	-DHAVE_TYPE_${t:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .ifdef MKC_REQUIRE_TYPES
 .  for t in ${MKC_REQUIRE_TYPES}
 .    if !${HAVE_TYPE.${t:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
-_fake   !=   env ${mkc.environ} mkc_check_decl -d type ${t:S/:/ /g} && echo
+_fake   !=   env ${mkc.environ} mkc_check_decl -D type ${t:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of type ${t}"
 .    endif
 .  endfor

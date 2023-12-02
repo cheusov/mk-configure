@@ -13,7 +13,7 @@ MKC_CPPFLAGS  +=	-DHAVE_DEFINE_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .ifdef MKC_REQUIRE_DEFINES
 .  for d in ${MKC_REQUIRE_DEFINES}
 .    if !${HAVE_DEFINE.${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}}
-_fake   !=   env ${mkc.environ} mkc_check_decl -d define ${d:S/:/ /g} && echo
+_fake   !=   env ${mkc.environ} mkc_check_decl -D define ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of define ${d}"
 .    endif
 .  endfor

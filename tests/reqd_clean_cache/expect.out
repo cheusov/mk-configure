@@ -38,11 +38,46 @@ ERROR: custom test test1 failed
 ERROR: cannot find program trtrtr
 ERROR: cannot find program brbrbr
 ERROR: prototype test bad999 failed
-*** Error code 1
-Stop.
 /objdir/Makefile
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
+/objdir/_mkc_custom_test1.err
+/objdir/_mkc_define_BRBRBR_sys_time_h.c
+/objdir/_mkc_define_BRBRBR_sys_time_h.err
+/objdir/_mkc_define_TRTRTR.c
+/objdir/_mkc_define_TRTRTR.err
+/objdir/_mkc_func2_trtrtr_sys_time_h.c
+/objdir/_mkc_func2_trtrtr_sys_time_h.err
+/objdir/_mkc_func3_brbrbr.c
+/objdir/_mkc_func3_brbrbr.err
+/objdir/_mkc_funclib_brbrbr.c
+/objdir/_mkc_funclib_brbrbr.err
+/objdir/_mkc_funclib_brbrbr_dl.c
+/objdir/_mkc_funclib_brbrbr_dl.err
+/objdir/_mkc_funclib_trtrtr.c
+/objdir/_mkc_funclib_trtrtr.err
+/objdir/_mkc_hdr__bad_include_other_header_h.c
+/objdir/_mkc_hdr__bad_include_other_header_h.err
+/objdir/_mkc_header_sys_brbrbr_h.c
+/objdir/_mkc_header_sys_brbrbr_h.err
+/objdir/_mkc_header_trtrtr_h.c
+/objdir/_mkc_header_trtrtr_h.err
+/objdir/_mkc_member_brbr_brbr_t_sys_time_h.c
+/objdir/_mkc_member_brbr_brbr_t_sys_time_h.err
+/objdir/_mkc_member_trtr_trtr_t_string_h.c
+/objdir/_mkc_member_trtr_trtr_t_string_h.err
+/objdir/_mkc_prog_brbrbr.err
+/objdir/_mkc_prog_trtrtr.err
+/objdir/_mkc_prototype_void~badfunc999_void__bad_include_h.c
+/objdir/_mkc_prototype_void~badfunc999_void__bad_include_h.err
+/objdir/_mkc_type_brbrbr_t_sys_time_h.c
+/objdir/_mkc_type_brbrbr_t_sys_time_h.err
+/objdir/_mkc_type_trtrtr_t_.c
+/objdir/_mkc_type_trtrtr_t_.err
+/objdir/_mkc_variable_v_brbrbr_sys_time_h.c
+/objdir/_mkc_variable_v_brbrbr_sys_time_h.err
+/objdir/_mkc_variable_v_trtrtr.c
+/objdir/_mkc_variable_v_trtrtr.err
 /objdir/expect.out
 /objdir/reqd_clean_cache.test.out.tmp
 /objdir/test.mk

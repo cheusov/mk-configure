@@ -33,7 +33,7 @@ MKC_CPPFLAGS  +=		-DCUSTOM_${c:tu}=${CUSTOM.${c}}
 
 .for c in ${MKC_REQUIRE_CUSTOM}
 .  if empty(CUSTOM.${c}) || ${CUSTOM.${c}} == 0
-_fake   !=   env ${mkc.environ} mkc_check_custom -t custom_${c:Q} -d ${MKC_CUSTOM_FN.${c}} && echo
+_fake   !=   env ${mkc.environ} mkc_check_custom -t custom_${c:Q} -D ${MKC_CUSTOM_FN.${c}} && echo
 MKC_ERR_MSG +=		"ERROR: custom test ${c} failed"
 .  endif
 .endfor

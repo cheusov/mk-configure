@@ -18,7 +18,7 @@ MKC_CPPFLAGS  +=	-DHAVE_FUNC${n}_${d:C/:.*,/:/:tu:S/:/_/g:S/./_/g:S|/|_|g}=1
 .for d in ${MKC_REQUIRE_FUNCS${n}:U}
 var_suffix := ${d:C/:.*,/:/:S/./_/g:S/:/./g:S|/|_|g}
 .  if !${HAVE_FUNC${n}.${var_suffix}}
-_fake   !=   env ${mkc.environ} mkc_check_decl -d func${n} ${d:S/:/ /g} && echo
+_fake   !=   env ${mkc.environ} mkc_check_decl -D func${n} ${d:S/:/ /g} && echo
 MKC_ERR_MSG +=	"ERROR: cannot find declaration of function ${d}"
 .  endif
 .endfor # d

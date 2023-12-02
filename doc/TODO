@@ -28,10 +28,6 @@ export.sym:
  * cpp-preprocessing
 
 ============================================================
-If MKC_REQUIRE_* fails, remove only .res file and keep
-.c and .err in order to allow debugging!
-
-============================================================
 It seems that MKC_REQUIRE_PKGCONFIG does not remove _mkc.*.res
 and therefore requires to remove them manually
 
