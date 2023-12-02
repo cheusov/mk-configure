@@ -354,28 +354,6 @@ LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 ############################################################
 ############################################################
 
-.if ${EXPORT_DYNAMIC:U:tl} == "yes"
-LDFLAGS.expdyn.gnuld     ?=	-Wl,-E
-LDFLAGS.expdyn.hpld      ?=	-Wl,-E
-LDFLAGS.expdyn.interixld ?=	-Wl,-E
-LDFLAGS.expdyn.darwinld  ?=
-LDFLAGS.expdyn.irixld    ?=
-LDFLAGS.expdyn.gcc       ?=	-rdynamic
-LDFLAGS.expdyn.clang     ?=	-rdynamic
-.ifndef LDFLAGS.expdyn
-.if defined(LDFLAGS.expdyn.${LD_TYPE})
-LDFLAGS.expdyn =	${LDFLAGS.expdyn.${LD_TYPE}}
-.elif defined(LDFLAGS.expdyn.${CC_TYPE}) && ${LDREAL:U0} == ${CC:U0}
-LDFLAGS.expdyn =	${LDFLAGS.expdyn.${CC_TYPE}}
-.elif defined(LDFLAGS.expdyn.${CXX_TYPE}) && ${LDREAL:U0} == ${CXX:U0}
-LDFLAGS.expdyn =	${LDFLAGS.expdyn.${CXX_TYPE}}
-.endif # LDFLAGS.expdyn.xxx
-.endif # LDFLAGS.expdyn
-.endif # EXPORT_DYNAMIC
-
-############################################################
-############################################################
-
 LDFLAGS.shlib =	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
 LDFLAGS.prog  =	${LDFLAGS.expdyn}
 ############################################################

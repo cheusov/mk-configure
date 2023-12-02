@@ -11,7 +11,8 @@ test_output:
 	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
 	echo =========== run ============; \
-	${.OBJDIR}/hello_customtests | sed 's/0x[^ ]*/0xC001BEAF/'; \
+	${.OBJDIR}/hello_customtests | \
+	sed 's/alloca(3) succeeded.*$$/alloca(3) succeeded 0xC001BEAF/'; \
 	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} \

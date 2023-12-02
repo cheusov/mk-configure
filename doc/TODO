@@ -1,5 +1,44 @@
 ============================================================
-Linker options like -rdynamic, -Wl,-E --version-script etc.
+top-level mkc.subprj.mk projects should take in account obj
+subdirectory. Examples: libnnt, dictd.
+
+============================================================
+#define __UNCONST(p) ((void *)((p) - (void *)0))
+
+============================================================
+MKC_CHECK_FUNCLIBS: chewck in libc and if found,
+skip foreign library.
+
+============================================================
+Проект dictd:
+Не смотря на то, что LIBDEPS+=libdictd:dictd
+при перелинковке libdictd dictd не перелинковывается.
+
+Это бага!
+
+============================================================
+Include headers only if it is necessary. Thus, improve mkcmake
+performance.
+
+============================================================
+Use flock/shlock/etc for parallalizing mkcmake configure
+
+============================================================
+Recheck the order of dependencies in LIBDEPS.
+The order does matter and influences on -l options.
+
+============================================================
+Опция -std=c++17 должна следовать ПЕРЕД getline.o при линковке
+all ===> basic
+checking C++ compiler type... gcc 10.3.1
+checking for program c++... /usr/bin/c++
+c++             -std=c++17   -c -o getline.o   getline.cc
+c++ -o getline getline.o     -std=c++17   
+c++             -std=c++17   -c -o init.o   init.cc
+c++ -o init init.o     -std=c++17   
+
+============================================================
+Linker options like -Wl,-E --version-script etc.
 should be checked as a part of mk-configure compilation time.
 tcc, for example, does not have --version-script on gnuld
 systems.
