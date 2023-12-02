@@ -154,9 +154,7 @@ manpages:
 .      include "mkc_imp.intexts.mk"
 .    endif
 
-.    info "I am here MKC_REQUIRE_PKGCONFIG=${MKC_REQUIRE_PKGCONFIG:U} MKC_CHECK_PKGCONFIG=${MKC_CHECK_PKGCONFIG:U}"
 .    if !empty(MKC_REQUIRE_PKGCONFIG) || !empty(MKC_CHECK_PKGCONFIG)
-.      info "I am inside!"
 .      include "mkc_imp.pkg-config.mk"
 .    endif
 

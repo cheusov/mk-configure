@@ -55,6 +55,7 @@ MKC_CPPFLAGS :=	${MKC_CPPFLAGS} -DHAVE_PKGCONFIG_${_id:S/-/_/g:S/+/P/g:S/./_/g}=
 
 .elif !empty(MKC_REQUIRE_PKGCONFIG:M${l})
 MKC_ERR_MSG := ${MKC_ERR_MSG} "%%%: ${MKC_CACHEDIR}/_mkc_pkgconfig_${_ln}.err"
+_fake != mkc_check_custom -D -t pkgconfig_${_ln:Q} true
 .endif # PKG-CONFIG.exists
 
 .endfor # .for l in MKC_CHECK_PKGCONFIG
