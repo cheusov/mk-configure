@@ -86,7 +86,10 @@ END {
 	    exit
 	}
 	END { printf("%s ", ret) }'
-    $CC -dumpmachine 2>/dev/null || true
+    triplet=`$CC -dumpmachine 2>/dev/null`
+    if test $# -ne 0; then
+	triplet="$(uname -m)--$(uname -s)"
+    fi
 }
 
 . ${CHECK_COMMON_SH_DIR}/mkc_check_common.sh
