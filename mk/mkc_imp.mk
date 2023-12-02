@@ -5,7 +5,7 @@
 .include "mkc_imp.preinit.mk"
 
 .if make(distclean)
-.warning "Target 'distclean' is deprecated, please use 'cleandir'"
+.  warning "Target 'distclean' is deprecated, please use 'cleandir'"
 .endif
 
 .ifdef SUBDIR
@@ -13,28 +13,28 @@
 .endif
 
 .if !empty(LUA_LMODULES) || !empty(LUA_CMODULES) || !empty(LUA_MODULES)
-.  include "mkc_imp.lua.mk"
+. include "mkc_imp.lua.mk"
 .endif
 
 .include "mkc_imp.pod.mk"
 .include "mkc.init.mk"
 
 .if ${MKCHECKS:tl} == "yes"
-.ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
+. ifdef AXCIENT_LIBDEPS # This feature was proposed by axcient.com developers
 CHECK_COMMON_SH_DIR ?=	${MKC_LIBEXECDIR}
 all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
-.  for p in ${all_deps}
-     _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
-.    if exists(${_mkfile})
-.      include "${_mkfile}"
-.    endif
-     DPLDADD   ?=	${p:T:S/^lib//}
-     DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
-     DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
-     _LIBDEPSDONEFILES :=	${_LIBDEPSDONEFILES} ${DPLIBDIRS}/${p:T}.done
-.    include "mkc_imp.dpvars.mk"
-.  endfor
-.endif
+.   for p in ${all_deps}
+      _mkfile =	${SUBPRJSRCTOP}/${p}/linkme.mk
+.     if exists(${_mkfile})
+.       include "${_mkfile}"
+.     endif
+      DPLDADD   ?=	${p:T:S/^lib//}
+      DPLIBDIRS ?=	${OBJDIR_${p:S,/,_,g}}
+      DPINCDIRS ?=	${SRCDIR_${p:S,/,_,g}} ${OBJDIR_${p:S,/,_,g}}
+      _LIBDEPSDONEFILES :=	${_LIBDEPSDONEFILES} ${DPLIBDIRS}/${p:T}.done
+.     include "mkc_imp.dpvars.mk"
+.   endfor
+. endif
 .endif
 
 .if defined(LIBDEPS)
@@ -48,7 +48,7 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .endif
 
 .ifdef FOREIGN
-.  include "mkc_imp.foreign_${FOREIGN}.mk"
+. include "mkc_imp.foreign_${FOREIGN}.mk"
 .endif
 .include "mkc_imp.rules.mk"
 .include "mkc_imp.obj.mk"
@@ -126,7 +126,6 @@ realdo_configure: check_mkc_err_msg
 CPPFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 
 .if !defined(MKC_ERR_MSG) || ${MKCHECKS} == "no"
-
 .  if defined(LIB)
 .    include "mkc_imp.lib.mk"
 .  elif defined(_use_prog)
@@ -134,44 +133,46 @@ CPPFLAGS +=	${MKC_FEATURES:D-I${FEATURESDIR}}
 .  endif
 
 .  if defined(_use_prog) || defined(LIB)
-.if !empty(MAN)
-.    include "mkc_imp.man.mk"
-.else
+.    if !empty(MAN)
+.      include "mkc_imp.man.mk"
+.    else
 # for backward compatibility with my own tools (2020-12-10)
 # and should be depeted.
 .PHONY: manpages
 manpages:
-.endif
+.    endif
 
-.if !empty(TEXINFO)
-.    include "mkc_imp.info.mk"
-.endif
+.    if !empty(TEXINFO)
+.      include "mkc_imp.info.mk"
+.    endif
 
-.if !empty(INCS)
-.    include "mkc_imp.inc.mk"
-.endif
+.    if !empty(INCS)
+.      include "mkc_imp.inc.mk"
+.    endif
 
-.if !empty(INFILES) || !empty(INSCRIPTS)
-.    include "mkc_imp.intexts.mk"
-.endif
+.    if !empty(INFILES) || !empty(INSCRIPTS)
+.      include "mkc_imp.intexts.mk"
+.    endif
 
-.if !empty(MKC_REQUIRE_PKGCONFIG) || !empty(MKC_CHECK_PKGCONFIG)
-.    include "mkc_imp.pkg-config.mk"
-.endif
+.    info "I am here MKC_REQUIRE_PKGCONFIG=${MKC_REQUIRE_PKGCONFIG:U} MKC_CHECK_PKGCONFIG=${MKC_CHECK_PKGCONFIG:U}"
+.    if !empty(MKC_REQUIRE_PKGCONFIG) || !empty(MKC_CHECK_PKGCONFIG)
+.      info "I am inside!"
+.      include "mkc_imp.pkg-config.mk"
+.    endif
 
 .    include "mkc_imp.dep.mk"
 
-.if !empty(FILES)
-.    include "mkc_imp.files.mk"
-.endif
+.    if !empty(FILES)
+.      include "mkc_imp.files.mk"
+.    endif
 
-.if !empty(SCRIPTS)
-.    include "mkc_imp.scripts.mk"
-.endif
+.    if !empty(SCRIPTS)
+.      include "mkc_imp.scripts.mk"
+.    endif
 
-.if !empty(LINKS) || !empty(SYMLINKS)
-.    include "mkc_imp.links.mk"
-.endif
+.    if !empty(LINKS) || !empty(SYMLINKS)
+.      include "mkc_imp.links.mk"
+.    endif
 .  endif # _use_prog || LIB
 
    ########################################
