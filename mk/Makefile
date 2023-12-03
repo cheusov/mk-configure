@@ -36,7 +36,11 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.conf_funclibs.mk mkc_imp.conf_sizeof.mk \
 	mkc_imp.conf_defines.mk mkc_imp.conf_types.mk mkc_imp.conf_vars.mk \
 	mkc_imp.conf_members.mk mkc_imp.conf_funcs.mk mkc_imp.conf_custom.mk \
-	mkc_imp.conf_progs.mk mkc_imp.conf_prototypes.mk mkc_imp.conf_opts.mk
+	mkc_imp.conf_progs.mk mkc_imp.conf_prototypes.mk mkc_imp.conf_opts.mk \
+	mkc_imp.platform.AIX.mk mkc_imp.platform.Darwin.mk \
+	mkc_imp.platform.HP-UX.mk mkc_imp.platform.Interix.mk \
+	mkc_imp.platform.IRIX64.mk mkc_imp.platform.OSF1.mk \
+	mkc_imp.platform.SunOS.mk mkc_imp.platform.UnixWare.mk
 
 FILESDIR =	${MKFILESDIR}
 
