@@ -5,8 +5,9 @@ test_output :
 	@set -e; LC_ALL=C; export LC_ALL; \
 	\
 	echo =========== all ============; \
-	{ ${MAKE} ${MAKEFLAGS} all 2>&1 >/dev/null || true; \
-	find ${.OBJDIR} -type f -o -type l | sort; } | \
+	{ ${MAKE} ${MAKEFLAGS} all 2>&1 >/dev/null | \
+	  sed 's,using [^ ][^ ]*,using cc,'; \
+	  find ${.OBJDIR} -type f -o -type l | sort; } | \
 	sed 's,n*b*make\[[0-9]*\],bmake,' | \
 	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
 	\
