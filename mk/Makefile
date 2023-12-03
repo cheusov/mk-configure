@@ -1,23 +1,23 @@
 .if ${USE_CC:Uauto} == "auto"
-PROG.cc =		cc
+PROG.cc  :=	${CC:Ucc:C/^$/cc/}
 .else
-PROG.cc = ${USE_CC}
+PROG.cc  :=	${USE_CC}
 .endif
-CC      =	${PROG.cc}
+CC       :=	${PROG.cc}
 
 .if ${USE_CXX:Uauto} == "auto"
-PROG.c++ =		c++
+PROG.c++ :=	${CXX:Uc++:C/^$/c++/}
 .else
-PROG.c++ = ${USE_CXX}
+PROG.c++ :=	${USE_CXX}
 .endif
-CXX      =	${PROG.c++}
+CXX      :=	${PROG.c++}
 
 .if ${USE_CPP:Uauto} == "auto"
-PROG.cpp =		cpp
+PROG.cpp :=	${CPP:Ucpp:C/^$/cpp/}
 .else
-PROG.cpp = ${USE_CPP}
+PROG.cpp :=	${USE_CPP}
 .endif
-CPP      =	${PROG.cpp}
+CPP      :=	${PROG.cpp}
 
 FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc.mk mkc.init.mk mkc_imp.intexts.mk mkc_imp.mk \
@@ -91,7 +91,7 @@ MKC_ERR_MSG +=		"mkdep(1) cannot be found"
 .  if exists(/usr/xpg4/bin/nm)
 PROG.nm ?=		/usr/xpg4/bin/nm
 .  else
-MKC_REQUIRE_PROGS +=	nm
+PROG.nm  =		nm
 .  endif
 .else
 PROG.nm  =		${USE_NM}
@@ -99,9 +99,9 @@ PROG.nm  =		${USE_NM}
 
 .if empty(USE_ID) || ${USE_ID} == "auto"
 .  if exists(/usr/xpg4/bin/id)
-PROG.id ?=              /usr/xpg4/bin/id
+PROG.id ?=		/usr/xpg4/bin/id
 .  else
-MKC_REQUIRE_PROGS +=    id
+PROG.id  =		id
 .  endif
 .else
 PROG.id  =		${USE_ID}
