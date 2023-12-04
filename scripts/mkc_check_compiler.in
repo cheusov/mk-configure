@@ -90,7 +90,9 @@ END {
     if $CC -dumpmachine > /dev/null 2>&1; then
 	:
     else
-	triplet="$(uname -m)-unknown-$(uname -s)" # "uname -m" because "uname -p" is not POSIX
+    	machine=`uname -m` # "uname -m" because "uname -p" is not POSIX
+    	system=`uname -s`
+	triplet="$machine-unknown-$system"
     fi
     printf '%s\n' "$triplet"
 }
