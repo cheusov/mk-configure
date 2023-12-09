@@ -46,9 +46,6 @@ STRIP     =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}strip
 .endif
 
 ####################
-.sinclude "mkc_imp.platform.${OPSYS}.mk"
-
-####################
 
 SHLIB_EXT       ?=	${SHLIB_EXT.${TARGET_OPSYS}:U.so}
 DLL_EXT        ?=	${DLL_EXT.${TARGET_OPSYS}:U${SHLIB_EXT}}
@@ -111,6 +108,10 @@ _ != env CC= CXX= ${c:tu}=${${c:tu}} mkc_compiler_settings
 .   endfor # .for c in ${src_type}
 .endif # cleandir|distclean|...
 
+####################
+.sinclude "mkc_imp.platform.${OPSYS}.mk"
+
+####################
 CC_TYPE  ?=	unknown
 CXX_TYPE ?=	unknown
 
@@ -143,28 +144,11 @@ LD_TYPE  ?=			${LD_TYPE.${TARGET_OPSYS}:Ugnuld}
 OBJECT_FMT ?=			ELF
 
 ####################
-LDFLAGS.shared.sunld =		-G
 LDFLAGS.soname.sunld =		-h lib${LIB}.so.${SHLIB_MAJOR}
 
-LDFLAGS.shared.darwinld =	-dylib
 LDFLAGS.soname.darwinld =	#
-
-LDFLAGS.shared.gnuld =		-shared
 LDFLAGS.soname.gnuld =		-soname lib${LIB}${SHLIB_EXT}.${SHLIB_MAJOR}
-
-LDFLAGS.shared.hpld =		-b +b ${LIBDIR}
 LDFLAGS.soname.hpld =		+h lib${LIB}.sl.${SHLIB_MAJOR}
-
-LDFLAGS.shared.gcc   =		-shared
-LDFLAGS.shared.clang =		-shared
-LDFLAGS.shared.pcc   =		-shared
-LDFLAGS.shared.icc   =		-shared
-LDFLAGS.shared.hpc   =		-b
-LDFLAGS.shared.imbc  =		-qmkshrobj
-LDFLAGS.shared.mipspro =	-shared
-LDFLAGS.shared.sunpro  =	-G
-LDFLAGS.shared.decc    =	-shared
-
 LDFLAGS.soname.sunpro  =	${LDFLAGS.soname.sunld}
 
 CFLAGS.cctold   ?=		-Wl,
@@ -173,10 +157,8 @@ CXXFLAGS.cctold ?=		-Wl,
 LDFLAGS.soname.ld =		${LDFLAGS.soname.${LD_TYPE}:U}
 
 .if ${LDREAL:U0} == ${CC:U0}
-LDFLAGS.shared ?=		${LDFLAGS.shared.${CC_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CC_TYPE}:U-shared}}
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CC_TYPE}:U${LDFLAGS.soname.ld:@v@${CFLAGS.cctold}${v}@}}
 .elif ${LDREAL:U0} == ${CXX:U0}
-LDFLAGS.shared ?=		${LDFLAGS.shared.${CXX_TYPE}.${TARGET_OPSYS}:U${LDFLAGS.shared.${CXX_TYPE}:U-shared}}
 LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLAGS.cctold}${v}@}}
 .endif
 

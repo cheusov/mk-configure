@@ -82,9 +82,25 @@ _cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
 LDFLAGS.pie.gcc   =	-fPIE__-DPIC__-pie
 LDFLAGS.pie.clang =	-fPIE__-DPIC__-pie
 
+LDFLAGS.shared.sunld =		-G
+LDFLAGS.shared.darwinld =	
+LDFLAGS.shared.gnuld =		-shared
+LDFLAGS.shared.hpld =		-b +b ${LIBDIR}
+LDFLAGS.shared.gcc   =		-shared
+LDFLAGS.shared.clang =		-shared
+LDFLAGS.shared.pcc   =		-shared
+LDFLAGS.shared.icc   =		-shared
+LDFLAGS.shared.hpc   =		-b
+LDFLAGS.shared.imbc  =		-qmkshrobj
+LDFLAGS.shared.mipspro =	-shared
+LDFLAGS.shared.sunpro  =	-G
+LDFLAGS.shared.decc    =	-shared
+LDFLAGS.shared         =	${LDFLAGS.shared.${LD_TYPE}:U-shared}
+
 LDFLAGS.expdyn  =	-rdynamic
 
-_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro LDFLAGS.expdyn
+_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro LDFLAGS.expdyn \
+    LDFLAGS.shared
 
 ### C++ variables
 CXXFLAGS.dflt.clang   =	${CFLAGS.dflt.clang}
@@ -143,7 +159,8 @@ _cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
     CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
 
-_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro LDFLAGS.expdyn
+_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro LDFLAGS.expdyn \
+    LDFLAGS.shared
 
 #################################################
 .for c in cc cxx
