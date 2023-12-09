@@ -50,8 +50,8 @@ CC_VERSION  ?=	0
 CXX_VERSION ?=	0
 
 # C/C++ default flags
-CFLAGS      +=		${CFLAGS.dflt.${CC_TYPE}}
-CXXFLAGS    +=		${CXXFLAGS.dflt.${CXX_TYPE}}
+CFLAGS      +=		${CFLAGS.dflt}
+CXXFLAGS    +=		${CXXFLAGS.dflt}
 
 ####################
 # Warnings as error

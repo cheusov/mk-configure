@@ -3,6 +3,7 @@
 CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaration
 CFLAGS.dflt.icc       =		-we147 -we10006 # 147 is required for MKC_CHECK_PROTOTYPES
 CFLAGS.dflt.sunpro    =		-errtags -errwarn=E_ATTRIBUTE_UNKNOWN
+CFLAGS.dflt           =		${CFLAGS.dflt.${CC_TYPE}}
 
 CFLAGS.warnerr.gcc    =		-Werror
 CFLAGS.warnerr.clang  =		-Werror
@@ -74,8 +75,7 @@ CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_T
 
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
-_cc_vars += CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr \
-    CFLAGS.ssp CFLAGS.pic CFLAGS.pie
+_cc_vars += CFLAGS.dflt CFLAGS.warnerr CFLAGS.ssp CFLAGS.pic CFLAGS.pie
 
 .for std in ${_CSTD_LIST}
 _cc_vars +=	CFLAGS.std.${std}.${CC_TYPE}
@@ -114,6 +114,7 @@ _ccld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
 ### C++ variables
 CXXFLAGS.dflt.clang   =	${CFLAGS.dflt.clang}
 CXXFLAGS.dflt.icc     =	${CFLAGS.dflt.icc}
+CXXFLAGS.dflt         =	${CXXFLAGS.dflt.${CXX_TYPE}}
 
 CXXFLAGS.warnerr.gcc   =	${CFLAGS.warnerr.gcc}
 CXXFLAGS.warnerr.clang =	${CFLAGS.warnerr.gcc}
@@ -172,8 +173,7 @@ CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
 CXXFLAGS.pie         =		${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pie.${CXX_TYPE}:U}}
 
-_cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr \
-    CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie
+_cxx_vars += CXXFLAGS.dflt CXXFLAGS.warnerr CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie
 
 _cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
     LDFLAGS.shared

@@ -244,9 +244,9 @@ Same as CFLAGS but every option is checked whether it is a valid one for C compi
 Double underline in the flag is considered as a single space character.
 .RI < M >
 .RI [ unset ]
-.IP "CFLAGS.dflt.<cctype>, CXXFLAGS.dflt.<cxxtype>"
+.IP "CFLAGS.dflt, CXXFLAGS.dflt"
 Additional flags passed to
-C or C++ compilers according to their types (CC_TYPE and CXX_TYPE).
+C or C++ compilers.
 .RI < "Iu" >
 .IP "CFLAGS.pic, CXXFLAGS.pic"
 Options for C and C++ compilers for generating position independent
