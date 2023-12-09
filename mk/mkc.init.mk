@@ -194,15 +194,15 @@ MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 COMPILE.s ?=	${_V} ${CC_PREFIX} ${CC} ${AFLAGS} -c
 MESSAGE.s ?=	@${_MESSAGE} "AS: ${.IMPSRC}"
 
-COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CFLAGS.ssp} ${CFLAGS.pie} ${CFLAGS.warns} ${_CFLAGS} ${CFLAGS_${_PN}} ${CFLAGS_${<:T}} -c
+COMPILE.c ?=	${_V} ${CC_PREFIX} ${CC} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CFLAGS.warns} ${_CFLAGS} ${CFLAGS_${_PN}} ${CFLAGS_${<:T}} -c
 MESSAGE.c ?=	@${_MESSAGE} "CC: ${.IMPSRC}"
 
-COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CXXFLAGS.ssp} ${CXXFLAGS.pie} ${CXXFLAGS.warns} ${_CXXFLAGS} ${CXXFLAGS_${_PN}} ${CXXFLAGS_${<:T}} -c
+COMPILE.cc ?=	${_V} ${CXX_PREFIX} ${CXX} ${_CPPFLAGS} ${CPPFLAGS_${_PN}} ${CPPFLAGS_${<:T}} ${CXXFLAGS.warns} ${_CXXFLAGS} ${CXXFLAGS_${_PN}} ${CXXFLAGS_${<:T}} -c
 MESSAGE.cc ?=	@${_MESSAGE} "CXX: ${.IMPSRC}"
 
 _CPPFLAGS   =	${CPPFLAGS0} ${CPPFLAGS}
-_CFLAGS     =	${CFLAGS0} ${CFLAGS}
-_CXXFLAGS   =	${CXXFLAGS0} ${CXXFLAGS}
+_CFLAGS     =	${CFLAGS0} ${_CFLAGS1} ${CFLAGS}
+_CXXFLAGS   =	${CXXFLAGS0} ${_CXXFLAGS1} ${CXXFLAGS}
 
 MESSAGE.ld ?=	@${_MESSAGE} "LD: ${.TARGET}"
 
@@ -289,15 +289,9 @@ USE_RELRO ?=	no
 USE_FORT  ?=	no
 
 ######
-.if ${MKPIE:U:tl} == "yes"
-LDFLAGS.prog +=	${LDFLAGS.pie}
-CFLAGS.pie   ?=	${CFLAGS.pie.${CC_TYPE}:U${CFLAGS.pic}}
-CXXFLAGS.pie ?=	${CXXFLAGS.pie.${CXX_TYPE}:U${CXXFLAGS.pic}}
-.endif
-
 .if ${USE_SSP:U:tl} == "yes"
-CFLAGS.ssp   ?=	${CFLAGS.ssp.${CC_TYPE}:U}
-CXXFLAGS.ssp ?=	${CXXFLAGS.ssp.${CXX_TYPE}:U}
+_CFLAGS1     +=	${CFLAGS.ssp}
+_CXXFLAGS1   +=	${CXXFLAGS.ssp}
 .endif
 
 .if ${USE_RELRO:U:tl} == "yes"

@@ -10,6 +10,12 @@
 .if !defined(_MKC_IMP_PROG_MK)
 _MKC_IMP_PROG_MK := 1
 
+.if ${MKPIE:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.pie}
+_CFLAGS1     +=	${CFLAGS.pie}
+_CXXFLAGS1   +=	${CXXFLAGS.pie}
+.endif
+
 proginstall:	.PHONY # ensure existence
 
 __proginstall: .USE

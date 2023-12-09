@@ -44,30 +44,34 @@ ${c}FLAGS.std.${std}.${t} :=		-std=${std}
 . endfor
 .endfor
 
-CFLAGS.ssp.gcc =		-fstack-protector -Wstack-protector --param__ssp-buffer-size=1
-CFLAGS.ssp.clang =		${CFLAGS.ssp.gcc}
-CFLAGS.ssp.icc =		-fstack-security-check
-CFLAGS.ssp.ibmc =		-qstackprotect
+CFLAGS.ssp.gcc     =		-fstack-protector -Wstack-protector --param__ssp-buffer-size=1
+CFLAGS.ssp.clang   =		${CFLAGS.ssp.gcc}
+CFLAGS.ssp.icc     =		-fstack-security-check
+CFLAGS.ssp.ibmc    =		-qstackprotect
+CFLAGS.ssp        ?=		${CFLAGS.ssp.${CC_TYPE}:U}
 
-CFLAGS.pic.gcc =		-fPIC__-DPIC
-CFLAGS.pic.clang =		-fPIC__-DPIC
-CFLAGS.pic.icc =		-fPIC__-DPIC
-CFLAGS.pic.pcc =		-k -DPIC
+CFLAGS.pic.gcc     =		-fPIC__-DPIC
+CFLAGS.pic.clang   =		-fPIC__-DPIC
+CFLAGS.pic.icc     =		-fPIC__-DPIC
+CFLAGS.pic.pcc     =		-k -DPIC
 CFLAGS.pic.mipspro =		-KPIC
-CFLAGS.pic.sunpro =		-xcode=pic32 # -KPIC
-CFLAGS.pic.hpc =		+Z # +z
-CFLAGS.pic.ibmc =		-qpic=large # -qpic=small
-CFLAGS.pic.decc =		# ?
+CFLAGS.pic.sunpro  =		-xcode=pic32 # -KPIC
+CFLAGS.pic.hpc     =		+Z # +z
+CFLAGS.pic.ibmc    =		-qpic=large # -qpic=small
+CFLAGS.pic.decc    =		# ?
+CFLAGS.pic        ?=		${CFLAGS.pic.${CC_TYPE}:U}
 
-CFLAGS.pie.gcc =		-fPIE__-DPIC
+
+CFLAGS.pie.gcc   =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
-CFLAGS.pie.icc =		-fPIE__-DPIC
+CFLAGS.pie.icc   =		-fPIE__-DPIC
+CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}:U}
 
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
 _cc_vars += CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
     CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
-    CFLAGS.ssp.${CC_TYPE} CFLAGS.pic.${CC_TYPE} CFLAGS.pie.${CC_TYPE}
+    CFLAGS.ssp CFLAGS.pic CFLAGS.pie
 
 .for std in ${_CSTD_LIST}
 _cc_vars +=	CFLAGS.std.${std}.${CC_TYPE}
@@ -79,27 +83,26 @@ _cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
 .undef _CSTD_LIST
 .undef _CXXSTD_LIST
 
-LDFLAGS.pie.gcc   =	-fPIE__-DPIC__-pie
-LDFLAGS.pie.clang =	-fPIE__-DPIC__-pie
+LDFLAGS.pie             =	-fPIE__-pie
 
-LDFLAGS.shared.sunld =		-G
-LDFLAGS.shared.darwinld =	
-LDFLAGS.shared.gnuld =		-shared
-LDFLAGS.shared.hpld =		-b +b ${LIBDIR}
-LDFLAGS.shared.gcc   =		-shared
-LDFLAGS.shared.clang =		-shared
-LDFLAGS.shared.pcc   =		-shared
-LDFLAGS.shared.icc   =		-shared
-LDFLAGS.shared.hpc   =		-b
-LDFLAGS.shared.imbc  =		-qmkshrobj
+LDFLAGS.shared.sunld    =	-G
+LDFLAGS.shared.darwinld =
+LDFLAGS.shared.gnuld   =	-shared
+LDFLAGS.shared.hpld    =	-b +b ${LIBDIR}
+LDFLAGS.shared.gcc     =	-shared
+LDFLAGS.shared.clang   =	-shared
+LDFLAGS.shared.pcc     =	-shared
+LDFLAGS.shared.icc     =	-shared
+LDFLAGS.shared.hpc     =	-b
+LDFLAGS.shared.imbc    =	-qmkshrobj
 LDFLAGS.shared.mipspro =	-shared
 LDFLAGS.shared.sunpro  =	-G
 LDFLAGS.shared.decc    =	-shared
 LDFLAGS.shared         =	${LDFLAGS.shared.${LD_TYPE}:U-shared}
 
-LDFLAGS.expdyn  =	-rdynamic
+LDFLAGS.expdyn         =	-rdynamic
 
-_ccld_vars = LDFLAGS.pie.${CC_TYPE} LDFLAGS.relro LDFLAGS.expdyn \
+_ccld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
     LDFLAGS.shared
 
 ### C++ variables
@@ -139,6 +142,7 @@ CXXFLAGS.ssp.gcc     =		${CFLAGS.ssp.gcc}
 CXXFLAGS.ssp.clang   =		${CFLAGS.ssp.clang}
 CXXFLAGS.ssp.icc     =		${CFLAGS.ssp.icc}
 CXXFLAGS.ssp.ibmc    =		${CFLAGS.ssp.ibmc}
+CXXFLAGS.ssp         =		${CXXFLAGS.ssp.${CXX_TYPE}:U}
 
 CXXFLAGS.pic.gcc     =		${CFLAGS.pic.gcc}
 CXXFLAGS.pic.clang   =		${CFLAGS.pic.clang}
@@ -149,17 +153,19 @@ CXXFLAGS.pic.sunpro  =		${CFLAGS.pic.sunpro}
 CXXFLAGS.pic.hpc     =		${CFLAGS.pic.hpc}
 CXXFLAGS.pic.ibmc    =		${CFLAGS.pic.ibmc}
 CXXFLAGS.pic.decc    =		${CFLAGS.pic.decc}
+CXXFLAGS.pic        ?=		${CXXFLAGS.pic.${CXX_TYPE}:U}
 
 CXXFLAGS.pie.gcc     =		${CFLAGS.pie.gcc}
 CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
+CXXFLAGS.pie        ?=		${CXXFLAGS.pie.${CXX_TYPE}:U}
 
 _cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.1 CXXFLAGS.warns.${CXX_TYPE}.2 \
     CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
-    CXXFLAGS.ssp.${CXX_TYPE} CXXFLAGS.pic.${CXX_TYPE} CXXFLAGS.pie.${CXX_TYPE}
+    CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie
 
-_cxxld_vars = LDFLAGS.pie.${CXX_TYPE} LDFLAGS.relro LDFLAGS.expdyn \
+_cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
     LDFLAGS.shared
 
 #################################################
