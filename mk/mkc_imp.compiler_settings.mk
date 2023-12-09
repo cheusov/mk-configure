@@ -61,11 +61,10 @@ CFLAGS.pic.ibmc    =		-qpic=large # -qpic=small
 CFLAGS.pic.decc    =		# ?
 CFLAGS.pic        ?=		${CFLAGS.pic.${CC_TYPE}:U}
 
-
 CFLAGS.pie.gcc   =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
 CFLAGS.pie.icc   =		-fPIE__-DPIC
-CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}:U}
+CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}:U}}
 
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
@@ -83,7 +82,9 @@ _cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
 .undef _CSTD_LIST
 .undef _CXXSTD_LIST
 
+.if ${TARGET_OPSYS} != "Darwin"
 LDFLAGS.pie             =	-fPIE__-pie
+.endif
 
 LDFLAGS.shared.sunld    =	-G
 LDFLAGS.shared.darwinld =
@@ -158,7 +159,7 @@ CXXFLAGS.pic        ?=		${CXXFLAGS.pic.${CXX_TYPE}:U}
 CXXFLAGS.pie.gcc     =		${CFLAGS.pie.gcc}
 CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
-CXXFLAGS.pie        ?=		${CXXFLAGS.pie.${CXX_TYPE}:U}
+CXXFLAGS.pie         =		${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pie.${CXX_TYPE}:U}}
 
 _cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
     CXXFLAGS.warns.${CXX_TYPE}.1 CXXFLAGS.warns.${CXX_TYPE}.2 \
