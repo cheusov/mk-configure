@@ -40,7 +40,8 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.platform.AIX.mk mkc_imp.platform.Darwin.mk \
 	mkc_imp.platform.HP-UX.mk mkc_imp.platform.Interix.mk \
 	mkc_imp.platform.IRIX64.mk mkc_imp.platform.OSF1.mk \
-	mkc_imp.platform.SunOS.mk mkc_imp.platform.UnixWare.mk
+	mkc_imp.platform.SunOS.mk mkc_imp.platform.UnixWare.mk \
+	mkc_imp.compiler_config.mk
 
 FILESDIR =	${MKFILESDIR}
 
