@@ -19,30 +19,7 @@ _MKFILESDIR         =	${MKFILESDIR}
 ####################
 # cross tools
 .ifdef SYSROOT
-CFLAGS.sysroot  ?=	--sysroot=${SYSROOT}
-LDFLAGS.sysroot ?=	--sysroot=${SYSROOT}
-CFLAGS   +=	${CFLAGS.sysroot}
-LDFLAGS0 +=	${LDFLAGS.sysroot}
-
-TOOLCHAIN_PREFIX ?=	${MACHINE_GNU_PLATFORM}-
-TOOLCHAIN_DIR    ?=	${TOOLDIR}/bin
-
-NM        =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}nm
-#ADDR2LINE =    ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}addr2line
-AR        =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}ar
-AS        =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}as
-CXX       =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}g++
-CPP       =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}cpp
-CC        =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}gcc
-INSTALL   =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}install
-LD        =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}ld
-OBJCOPY   =    ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}objcopy
-OBJDUMP   =    ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}objdump
-RANLIB    =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}ranlib
-#READELF   =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}readelf
-SIZE      =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}size
-#STRINGS   =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}strings
-STRIP     =	${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}strip
+.include "mkc_imp.cross_compiling.mk"
 .endif
 
 ####################
