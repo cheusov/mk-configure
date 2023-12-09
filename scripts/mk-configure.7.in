@@ -266,10 +266,9 @@ See MKPIE variable for more information.
 Options for C and C++ compilers for generating stack protection code.
 See USE_SSP variable for more information.
 .RI < "Iu" >
-.IP "CFLAGS.warns.<cctype>.<warn-level>, CXXFLAGS.warns.<cxxtype>.<warn-level>"
-These variables are set by mk-configure and enable warning messages
-for C or C++ compilers according to their types (CC_TYPE and CXX_TYPE)
-and warning level (WARNS).
+.IP "CFLAGS.warns.<warn-level>, CXXFLAGS.warns.<warn-level>"
+These variables are set by mk-configure and enable warnings
+for C or C++ compilers according to warning level (WARNS).
 .RI < "Iu" >
 .IP CFLAGS_<project>
 Similar to CFLAGS but for project ${PROJECTNAME}.
