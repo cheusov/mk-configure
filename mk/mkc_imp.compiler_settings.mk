@@ -78,10 +78,12 @@ LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 _cc_vars += CFLAGS.dflt CFLAGS.warnerr CFLAGS.ssp CFLAGS.pic CFLAGS.pie
 
 .for std in ${_CSTD_LIST}
-_cc_vars +=	CFLAGS.std.${std}.${CC_TYPE}
+CFLAGS.std.${std} =	${CFLAGS.std.${std}.${CC_TYPE}}
+_cc_vars +=	CFLAGS.std.${std}
 .endfor
 .for std in ${_CXXSTD_LIST}
-_cxx_vars +=	CXXFLAGS.std.${std}.${CXX_TYPE}
+CXXFLAGS.std.${std} =	${CXXFLAGS.std.${std}.${CXX_TYPE}}
+_cxx_vars +=	CXXFLAGS.std.${std}
 .endfor
 
 .undef _CSTD_LIST

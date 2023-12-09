@@ -303,8 +303,8 @@ CPPFLAGS +=	-D_FORTIFY_SOURCE=2
 CFLAGS   +=	-O
 .endif
 
-CFLAGS     +=	${CFLAGS.std.${CCSTD}.${CC_TYPE}}
-CXXFLAGS   +=	${CXXFLAGS.std.${CXXSTD}.${CXX_TYPE}}
+CFLAGS     +=	${CFLAGS.std.${CCSTD}:U}
+CXXFLAGS   +=	${CXXFLAGS.std.${CXXSTD}:U}
 
 SHRTOUT    ?=	no
 
