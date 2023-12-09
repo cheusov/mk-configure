@@ -70,7 +70,7 @@ check_itself (){
 int __fake_variable;
 EOF
 
-    if $CC $CC_OPTS -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}"
+    if $CC $CC_OPTS -o "${tmpo}" $CPPFLAGS $CFLAGS "${tmpc}" 2>"${tmperr}" 1>&2
     then
 	echo 1
     else
