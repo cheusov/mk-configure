@@ -9,6 +9,7 @@ CFLAGS.warnerr.clang  =		-Werror
 CFLAGS.warnerr.icc    =		-Werror
 CFLAGS.warnerr.sunpro =		-errwarn=%all
 CFLAGS.warnerr.armcc  =		--diag_error=warning
+CFLAGS.warnerr        =		${CFLAGS.warnerr.${CC_TYPE}}
 
 CFLAGS.warns.gcc.1 =		-Wall -Wstrict-prototypes -Wmissing-prototypes \
 				-Wpointer-arith -Wreturn-type
@@ -32,6 +33,11 @@ CFLAGS.warns.hpc.1 =		-w2
 CFLAGS.warns.hpc.2 =		-w2
 CFLAGS.warns.hpc.3 =		-w2
 CFLAGS.warns.hpc.4 =		-w2
+
+.for _warn_number in 1 2 3 4
+CFLAGS.warns.${_warn_number}       =	${CFLAGS.warns.${CC_TYPE}.${_warn_number}}
+_cc_vars                          +=	CFLAGS.warns.${_warn_number}
+.endfor
 
 _CSTD_LIST := c89 gnu89 c99 gnu99 c11 gnu11 c17 gnu17
 _CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17
@@ -68,8 +74,7 @@ CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_T
 
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
-_cc_vars += CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr.${CC_TYPE} CFLAGS.warns.${CC_TYPE}.1 \
-    CFLAGS.warns.${CC_TYPE}.2 CFLAGS.warns.${CC_TYPE}.3 CFLAGS.warns.${CC_TYPE}.4 \
+_cc_vars += CFLAGS.dflt.${CC_TYPE} CFLAGS.warnerr \
     CFLAGS.ssp CFLAGS.pic CFLAGS.pie
 
 .for std in ${_CSTD_LIST}
@@ -110,8 +115,9 @@ _ccld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
 CXXFLAGS.dflt.clang   =	${CFLAGS.dflt.clang}
 CXXFLAGS.dflt.icc     =	${CFLAGS.dflt.icc}
 
-CXXFLAGS.warnerr.gcc =		${CFLAGS.warnerr.gcc}
-CXXFLAGS.warnerr.clang =	${CXXFLAGS.warnerr.gcc}
+CXXFLAGS.warnerr.gcc   =	${CFLAGS.warnerr.gcc}
+CXXFLAGS.warnerr.clang =	${CFLAGS.warnerr.gcc}
+CXXFLAGS.warnerr       =	${CXXFLAGS.warnerr.${CXX_TYPE}}
 
 CXXFLAGS.warns.gcc.1 =		-Wold-style-cast -Wctor-dtor-privacy -Wreturn-type \
 				-Wnon-virtual-dtor -Wreorder -Wno-deprecated \
@@ -139,6 +145,11 @@ CXXFLAGS.warns.icc.2 =		${CFLAGS.warns.icc.2}
 CXXFLAGS.warns.icc.3 =		${CFLAGS.warns.icc.3}
 CXXFLAGS.warns.icc.4 =		${CFLAGS.warns.icc.4}
 
+.for _warn_number in 1 2 3 4
+CXXFLAGS.warns.${_warn_number}  =	${CXXFLAGS.warns.${CXX_TYPE}.${_warn_number}}
+_cxx_vars                      +=	CXXFLAGS.warns.${_warn_number}
+.endfor
+
 CXXFLAGS.ssp.gcc     =		${CFLAGS.ssp.gcc}
 CXXFLAGS.ssp.clang   =		${CFLAGS.ssp.clang}
 CXXFLAGS.ssp.icc     =		${CFLAGS.ssp.icc}
@@ -161,9 +172,7 @@ CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
 CXXFLAGS.pie         =		${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pie.${CXX_TYPE}:U}}
 
-_cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr.${CXX_TYPE} \
-    CXXFLAGS.warns.${CXX_TYPE}.1 CXXFLAGS.warns.${CXX_TYPE}.2 \
-    CXXFLAGS.warns.${CXX_TYPE}.3 CXXFLAGS.warns.${CXX_TYPE}.4 \
+_cxx_vars += CXXFLAGS.dflt.${CXX_TYPE} CXXFLAGS.warnerr \
     CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie
 
 _cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
