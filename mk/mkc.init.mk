@@ -187,7 +187,7 @@ MKSHLIB  ?=	yes
 MKSHLIB  ?=	no
 .endif # SHLIB_MAJOR
 
-.include "mkc_imp.platform.sys.mk"
+.include "mkc_imp.platform.mk"
 
 MESSAGE.ar ?=	@${_MESSAGE} "AR: ${.TARGET}"
 

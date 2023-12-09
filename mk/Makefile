@@ -26,7 +26,7 @@ FILES =	mkc.configure.mk mkc.conf.mk mkc_imp.conf-cleanup.mk \
 	mkc_imp.links.mk mkc_imp.man.mk mkc_imp.prog.mk \
 	mkc_imp.subprj.mk mkc_imp.conf-final.mk mkc_imp.rules.mk \
 	mkc_imp.final.mk mkc_imp.scripts.mk mkc_imp.checkprogs.mk \
-	mkc_imp.platform.sys.mk mkc_imp.dep.mk mkc_imp.lua.mk \
+	mkc_imp.platform.mk mkc_imp.dep.mk mkc_imp.lua.mk \
 	mkc_imp.arch.mk mkc_imp.pod.mk mkc_imp.preinit.mk \
 	mkc.prog.mk mkc.files.mk mkc.lib.mk mkc.subdir.mk mkc.subprj.mk \
 	mkc_imp.objdir.mk mkc_imp.obj.mk mkc_imp.help.mk \
