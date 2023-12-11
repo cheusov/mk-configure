@@ -8,7 +8,7 @@ MKC_REQD =	0.26.0
 
 .include <mkc.init.mk>
 
-CFLAGS.warns.sunpro.${WARNS} +=	-erroff=E_EMPTY_DECLARATION
+CFLAGS.check	+=	-erroff=E_EMPTY_DECLARATION
 
 .include "test.mk"
 .include <mkc.prog.mk>
