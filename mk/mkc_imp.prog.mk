@@ -23,7 +23,7 @@ __proginstall: .USE
 	    -o ${BINOWN:Q} -g ${BINGRP:Q} -m ${BINMODE} ${.ALLSRC} ${.TARGET}
 
 .for p in ${PROGS}
-do_install1:	proginstall
+realdo_install:	proginstall
 
 _SRCS_ALL += ${SRCS.${p}}
 

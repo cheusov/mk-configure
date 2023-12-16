@@ -54,16 +54,14 @@ all_deps != ${CHECK_COMMON_SH_DIR}/mkc_get_deps ${.CURDIR:S,^${SUBPRJSRCTOP}/,,}
 .include "mkc_imp.obj.mk"
 
 # Make sure all of the standard targets are defined, even if they do nothing.
-do_install1 do_install2: .PHONY
-
 distclean:	.PHONY cleandir
 
 .if ${MKINSTALLDIRS:tl} == "yes"
 install: pre_installdirs .WAIT do_installdirs .WAIT post_installdirs .WAIT \
          pre_install .WAIT do_install .WAIT post_install
+.else
+install: pre_install .WAIT do_install .WAIT post_install
 .endif
-
-realdo_install: do_install1 .WAIT do_install2
 
 # skip uninstalling files and creating destination dirs for mkc.subprj.mk
 .if !defined(SUBPRJ)

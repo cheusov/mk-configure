@@ -1,21 +1,25 @@
-# Copyright (c) 2009-2013 by Aleksey Cheusov
+# Copyright (c) 2009-2023 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
 
 linksinstall:	.PHONY # ensure existence
 
-do_install2:	linksinstall
+realdo_install:	linksinstall
 
 .if ${MKINSTALL:tl} == "yes"
 
-linksinstall:
-.for l r in ${LINKS}
+. for l r in ${LINKS}
+linksinstall: ${DESTDIR}${r}
+${DESTDIR}${r}: ${DESTDIR}${l}
 	${RM} -f ${DESTDIR}${r}; ${LN} ${DESTDIR}${l} ${DESTDIR}${r}
-.endfor
-.for l r in ${SYMLINKS}
+. endfor
+
+. for l r in ${SYMLINKS}
+linksinstall: ${DESTDIR}${r}
+${DESTDIR}${r}:
 	${RM} -f ${DESTDIR}${r}; ${LN_S} ${l} ${DESTDIR}${r}
-.endfor
+. endfor
 
 .for l r in ${LINKS}
 UNINSTALLFILES +=	${DESTDIR}${r}

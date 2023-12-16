@@ -9,7 +9,7 @@
 
 filesinstall: .PHONY # ensure existence
 
-do_install1:	.PHONY filesinstall
+realdo_install:	.PHONY filesinstall
 
 realdo_all: ${FILES}
 

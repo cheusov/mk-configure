@@ -12,7 +12,7 @@ _MKC_IMP_LIB_MK := 1
 
 .PHONY:		libinstall
 .if ${MKINSTALL:tl} == "yes"
-do_install1:	libinstall
+realdo_install:	libinstall
 INSTALLDIRS    +=	${DESTDIR}${LIBDIR}
 UNINSTALLFILES +=	${UNINSTALLFILES.lib}
 .endif # MKINSTALL

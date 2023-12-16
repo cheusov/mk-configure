@@ -47,7 +47,7 @@ __infoinstall: .USE
 	${INSTALL_INFO} --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 
 .if ${MKINSTALL:tl} == "yes"
-do_install1: infoinstall
+realdo_install: infoinstall
 .for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
 .endfor # F

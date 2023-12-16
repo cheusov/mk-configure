@@ -37,9 +37,6 @@ feature efun: new function ereallocarr
 progname feature: should provide __progname extern variable
 
 ============================================================
-Fix parallel "install" target (LINKS vs. real files)
-
-============================================================
 Checks for attributes ===> mkc_imp.{cc,cxx}_xxx.mk
 
 ============================================================

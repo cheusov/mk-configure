@@ -31,7 +31,7 @@ MKCATPAGES =	no
 .PHONY:		catinstall maninstall catpages manpages catlinks \
 		manlinks html installhtml
 .if ${MKMAN:tl} != "no"
-do_install1:	${MANINSTALL}
+realdo_install:	${MANINSTALL}
 .endif
 
 MANTARGET ?=	cat
@@ -162,7 +162,7 @@ manlinks: manpages
 html: ${HTMLPAGES}
 
 .if defined(HTMLPAGES) && !empty(HTMLPAGES)
-.for P in ${HTMLPAGES:O:u} 
+.for P in ${HTMLPAGES:O:u}
 ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
 .endfor
@@ -175,7 +175,7 @@ installhtml:            ${destination_htmls}
 CLEANFILES +=		${HTMLPAGES}
 
 .if ${MKHTML:tl} == "yes"
-do_install1: installhtml
+realdo_install: installhtml
 realdo_all: ${HTMLPAGES}
 UNINSTALLFILES +=	${destination_htmls}
 INSTALLDIRS    +=	${destination_htmls:H}

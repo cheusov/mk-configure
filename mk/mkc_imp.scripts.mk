@@ -8,7 +8,7 @@
 ############################################################
 
 scriptsinstall:	.PHONY # ensure existence
-do_install1:	scriptsinstall
+realdo_install:	scriptsinstall
 
 realdo_all: ${SCRIPTS}
 

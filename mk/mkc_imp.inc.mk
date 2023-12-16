@@ -7,7 +7,7 @@
 # See LICENSE file in the distribution.
 ############################################################
 
-do_install1:	incinstall
+realdo_install:	incinstall
 incinstall:	.PHONY # ensure existence
 
 .if defined(INCS)
