@@ -21,11 +21,11 @@ MKCATPAGES =	no
 .endif
 
 .if defined(USETBL) && ${USETBL:U:tl} == "no"
-.undef USETBL
+. undef USETBL
 .endif
 
 .if defined(MANZ) && ${MANZ:U:tl} == "no"
-.undef MANZ
+. undef MANZ
 .endif
 
 .PHONY:		catinstall maninstall catpages manpages catlinks \
@@ -51,7 +51,7 @@ TBL       ?=	tbl
 .else
 	${_V} ${TBL} ${.IMPSRC} | ${NROFF} ${NROFF_MAN2CAT} > ${.TARGET} || \
 	 (${RM} -f ${.TARGET}; false)
-.endif
+.endif # !defined(USETBL)
 
 .9.html9 .8.html8 .7.html7 .6.html6 .5.html5 .4.html4 .3.html3 .2.html2 .1.html1:
 .if !defined(USETBL)
@@ -62,7 +62,7 @@ TBL       ?=	tbl
 	@echo "${TBL} ${.IMPSRC} | ${GROFF} -mdoc2html -P-b -P-u -P-o > ${.TARGET}"
 	@cat ${.IMPSRC} | ${GROFF} -mdoc2html -P-b -P-u -P-o > ${.TARGET} || \
 	 (${RM} -f ${.TARGET}; false)
-.endif
+.endif # !defined(USETBL)
 
 .if defined(MAN) && !empty(MAN)
 realdo_all: ${MAN}
@@ -101,19 +101,19 @@ __installpage: .USE
 .if defined(CATPAGES) && !empty(CATPAGES) && ${MKCATPAGES:tl} != "no"
 realdo_all: ${CATPAGES}
 
-.if ${MKINSTALL:tl} == "yes"
+. if ${MKINSTALL:tl} == "yes"
 destination_capages = ${CATPAGES:@P@${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}@}
 UNINSTALLFILES  +=	${destination_capages}
 INSTALLDIRS     +=	${destination_capages:H}
-.endif # MKINSTALL
+. endif # MKINSTALL
 
 catpages:: ${destination_capages}
-.PRECIOUS: ${destination_capages}
-.PHONY:    ${destination_capages}
+. PRECIOUS: ${destination_capages}
+. PHONY:    ${destination_capages}
 
-.for P in ${CATPAGES:O:u}
+. for P in ${CATPAGES:O:u}
 ${DESTDIR}${MANDIR}/${P:T:E}${MANSUBDIR}/${P:T:R}.0${MCOMPRESSSUFFIX}: ${P} __installpage
-.endfor
+. endfor
 
 .else
 catpages::
@@ -122,30 +122,30 @@ catpages::
 # Rules for source page installation
 .if defined(MANPAGES) && !empty(MANPAGES)
 
-.if ${MKINSTALL:tl} == "yes"
+. if ${MKINSTALL:tl} == "yes"
 destination_manpages = ${MANPAGES:@P@${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}@}
 UNINSTALLFILES  +=	${destination_manpages}
 INSTALLDIRS     +=	${destination_manpages:H}
-.endif # MKINSTALL
+. endif # MKINSTALL
 
 manpages:: ${destination_manpages}
-.PRECIOUS: ${destination_manpages}
-.PHONY:    ${destination_manpages}
+. PRECIOUS: ${destination_manpages}
+. PHONY:    ${destination_manpages}
 
-.for P in ${MANPAGES:O:u}
+. for P in ${MANPAGES:O:u}
 ${DESTDIR}${MANDIR}/man${P:T:E}${MANSUBDIR}/${P}${MCOMPRESSSUFFIX}: ${P} __installpage
-.endfor
+. endfor # P
 
 .else
 manpages::
-.endif # MANPAGES
+.endif # defined(MANPAGES)
 
 .if ${MKCATPAGES:tl} != "no"
-.for s d in ${MLINKS}
+. for s d in ${MLINKS}
 LINKS          +=	${MANDIR}/cat${s:T:E}${MANSUBDIR}/${s:R}.0${MCOMPRESSSUFFIX} \
 			${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
 UNINSTALLFILES +=	${DESTDIR}${MANDIR}/cat${d:T:E}${MANSUBDIR}/${d:R}.0${MCOMPRESSSUFFIX}
-.endfor
+. endfor
 catlinks: catpages
 .endif
 catlinks:
@@ -162,22 +162,22 @@ manlinks: manpages
 html: ${HTMLPAGES}
 
 .if defined(HTMLPAGES) && !empty(HTMLPAGES)
-.for P in ${HTMLPAGES:O:u}
+. for P in ${HTMLPAGES:O:u}
 ${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html: ${P}
 	${MINSTALL} ${.ALLSRC} ${.TARGET}
-.endfor
+. endfor
 
-.if ${MKINSTALL:tl} == "yes"
+. if ${MKINSTALL:tl} == "yes"
 destination_htmls = ${HTMLPAGES:@P@${DESTDIR}${HTMLDIR}/${P:T:E}/${P:T:R}.html@}
-.endif
+. endif
 
 installhtml:            ${destination_htmls}
 CLEANFILES +=		${HTMLPAGES}
 
-.if ${MKHTML:tl} == "yes"
+. if ${MKHTML:tl} == "yes"
 realdo_install: installhtml
 realdo_all: ${HTMLPAGES}
 UNINSTALLFILES +=	${destination_htmls}
 INSTALLDIRS    +=	${destination_htmls:H}
-.endif # MKHTML
+. endif # MKHTML
 .endif # HTMLPAGES

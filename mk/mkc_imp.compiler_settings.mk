@@ -190,7 +190,7 @@ _cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
 #################################################
 .for c in cc cxx
 cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
-.if !empty(${c:tu})
+. if !empty(${c:tu})
 .   for v in ${_${c}_vars}
 MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   endfor
@@ -200,25 +200,25 @@ MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
 .   include "mkc.conf.mk"
 
 .   for v in ${_${c}_vars}
-.       for _opt in ${${v}}
-.           if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
+.     for _opt in ${${v}}
+.       if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
 ${v}.new +=	${_opt:S/__/ /g}
-.           endif
-.       endfor
+.       endif
+.     endfor
 .   endfor
 .   for v in ${_${c}ld_vars}
-.       for _opt in ${${v}}
-.           if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
+.     for _opt in ${${v}}
+.       if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
 ${v}.new +=	${_opt:S/__/ /g}
-.           endif
-.       endfor
+.       endif
+.     endfor
 .   endfor
 
 LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
 LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 ######
-.ifdef RECURS
+.   ifdef RECURS
 all: post_all
 post_all: ${cc_cxx_capabilities_filename}
 ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
@@ -232,8 +232,8 @@ ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 .   endfor
 	@mv $@.tmp $@
 
-.endif # RECURS
-.endif # !empty(${c:tu}
+.   endif # RECURS
+. endif # !empty(${c:tu}
 .endfor # .for c in cc cxx
 
 #################################################
@@ -242,12 +242,12 @@ USE_CXX_COMPILERS ?=	${CXX}
 
 .ifndef RECURS
 post_all:
-.for CC in ${USE_CC_COMPILERS:U}
+. for CC in ${USE_CC_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CXX_COMPILERS= \
 	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
-.endfor # CC
-.for CXX in ${USE_CXX_COMPILERS:U}
+. endfor # CC
+. for CXX in ${USE_CXX_COMPILERS:U}
 	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CC_COMPILERS= \
 	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
-.endfor # CXX
+. endfor # CXX
 .endif # RECURS

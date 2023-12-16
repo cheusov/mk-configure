@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2010 by Aleksey Cheusov
+# Copyright (c) 2009-2023 by Aleksey Cheusov
 # Copyright (c) 1994-2009 The NetBSD Foundation, Inc.
 # Copyright (c) 1988, 1989, 1993 The Regents of the University of California
 # Copyright (c) 1988, 1989 by Adam de Boor
@@ -10,7 +10,7 @@
 infoinstall: .PHONY
 
 MAKEINFO     ?=	makeinfo
-INFOFLAGS    ?=	
+INFOFLAGS    ?=
 INSTALL_INFO ?=	install-info
 
 .SUFFIXES: .txi .texi .texinfo .info
@@ -34,8 +34,8 @@ CLEANFILES +=	${INFOFILES}
 destination_infos = ${INFOFILES:@F@${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}@}
 
 infoinstall: ${destination_infos}
-.PRECIOUS: ${destination_infos}
-.PHONY: ${destination_infos}
+. PRECIOUS: ${destination_infos}
+. PHONY: ${destination_infos}
 
 __infoinstall: .USE
 	${INSTALL}  ${INSTALL_FLAGS} \
@@ -46,13 +46,13 @@ __infoinstall: .USE
 	@${INSTALL_INFO} --remove --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 	${INSTALL_INFO} --info-dir=${DESTDIR}${INFODIR} ${.TARGET}
 
-.if ${MKINSTALL:tl} == "yes"
+. if ${MKINSTALL:tl} == "yes"
 realdo_install: infoinstall
-.for F in ${INFOFILES:O:u}
+.   for F in ${INFOFILES:O:u}
 ${DESTDIR}${INFODIR_${F}:U${INFODIR}}/${INFONAME_${F}:U${INFONAME:U${F:T}}}: ${F} __infoinstall
-.endfor # F
+.   endfor # F
 
 UNINSTALLFILES  +=	${destination_infos}
 INSTALLDIRS     +=	${destination_infos:H}
-.endif # MKINSTALL
+. endif # MKINSTALL
 .endif # MKINFO

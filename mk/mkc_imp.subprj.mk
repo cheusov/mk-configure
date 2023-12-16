@@ -13,14 +13,15 @@ _MKC_IMP_SUBPRJ_MK := 1
 EXPORT_VARNAMES +=	STATICLIBS COMPATLIB SRCTOP OBJTOP
 
 .for dir in ${SUBPRJ:S/:/ /g}
-.if empty(NOSUBDIR:U:M${dir})
+. if empty(NOSUBDIR:U:M${dir})
 __REALSUBPRJ += ${dir}
-.endif
+. endif
 .endfor
 
 .for dir in ${NOSUBDIR}
 NODEPS +=	*-${dir}:* *:*-${dir}   *-*/${dir}:* *:*-*/${dir}
 .endfor
+
 .for dir in ${INTERNALLIBS}
 NODEPS +=	install-${dir}:*     install-*/${dir}:* \
 		uninstall-${dir}:*   uninstall-*/${dir}:* \
@@ -32,62 +33,64 @@ __REALSUBPRJ := ${__REALSUBPRJ:O:u}
 .endif
 
 .if !empty(__REALSUBPRJ:M*-*)
-.error "Dash symbol is not allowed inside subdir (${__REALSUBPRJ:M*-*})"
+. error "Dash symbol is not allowed inside subdir (${__REALSUBPRJ:M*-*})"
 .endif
 
 SUBPRJ_DFLT ?=	${__REALSUBPRJ}
 
 .for targ in ${TARGETS}
-.for dir in ${__REALSUBPRJ:N.WAIT}
+. for dir in ${__REALSUBPRJ:N.WAIT}
 _ALLTARGDEPS3 +=	${targ}-${dir}
-.PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir}
+.   PHONY: nodeps-${targ}-${dir}   subdir-${targ}-${dir}   ${targ}-${dir}
 nodeps-${targ}-${dir}: .MAKE __recurse
        ${targ}-${dir}: .MAKE __recurse
 subdir-${targ}-${dir}: .MAKE __recurse
-.if ${SHORTPRJNAME:tl} == "yes" && ${dir} != ${dir:T}
+.   if ${SHORTPRJNAME:tl} == "yes" && ${dir} != ${dir:T}
 _ALLTARGDEPS3 +=	${targ}-${dir:T}
-.PHONY: nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
+.     PHONY: nodeps-${targ}-${dir:T} subdir-${targ}-${dir:T} ${targ}-${dir:T}
 nodeps-${targ}-${dir:T}: nodeps-${targ}-${dir}
        ${targ}-${dir:T}:        ${targ}-${dir}
 subdir-${targ}-${dir:T}: subdir-${targ}-${dir}
 _ALLTARGDEPS3 +=	${targ}-${dir}:${targ}-${dir:T}
-.endif
-.endfor # dir
-
-.if !commands(${targ})
-. for dir in ${SUBPRJ_DFLT}
-dir_ = ${dir}
-.  if ${dir_} == ".WAIT"
-_SUBDIR_${targ} += .WAIT
-.  else
-_SUBDIR_${targ} += ${targ}-${dir}:${targ}
-.  endif # .WAIT
+.   endif
 . endfor # dir
-.for excl in ${NODEPS}
+
+. if !commands(${targ})
+.   for dir in ${SUBPRJ_DFLT}
+dir_ = ${dir}
+.     if ${dir_} == ".WAIT"
+_SUBDIR_${targ} += .WAIT
+.     else
+_SUBDIR_${targ} += ${targ}-${dir}:${targ}
+.     endif # .WAIT
+.   endfor # dir
+
+.   for excl in ${NODEPS}
 _SUBDIR_${targ} :=	${_SUBDIR_${targ}:N${excl}}
-.endfor # excl
+.   endfor # excl
+
 _ALLTARGDEPS2 += ${_SUBDIR_${targ}}
 ${targ}: ${_SUBDIR_${targ}:S/:${targ}$//}
-.endif #!command(${targ})
+. endif #!command(${targ})
 
-.for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
+. for dep prj in ${SUBPRJ:M*\:*:S/:/ /}
 _ALLTARGDEPS += ${targ}-${dep}:${targ}-${prj}
-.endfor # dep prj
+. endfor # dep prj
 
 .endfor # targ
 
 .for dir in ${__REALSUBPRJ}
-.if ${SHORTPRJNAME:tl} == "yes" && ${dir:T} != ${dir}
+. if ${SHORTPRJNAME:tl} == "yes" && ${dir:T} != ${dir}
 SRCDIR_${dir:T}  =	${.CURDIR}/${dir}
 EXPORT_VARNAMES +=	SRCDIR_${dir:T}
 _ALLTARGDEPS    +=	all-${dir}:${dir:T}
 _ALLTARGDEPS3   +=	${dir:T}
-.endif # .if ${SHORTPRJNAME:tl} == "yes" ...
+. endif # .if ${SHORTPRJNAME:tl} == "yes" ...
 j:=${dir:S,/,_,g}
-.if empty(j:M*[.]*)
+. if empty(j:M*[.]*)
 SRCDIR_${j} = ${.CURDIR}/${dir}
 EXPORT_VARNAMES += SRCDIR_${dir:S,/,_,g}
-.endif # .if dir contains .
+. endif # .if dir contains .
 _ALLTARGDEPS += all-${dir}:${dir}
 .endfor # dir
 

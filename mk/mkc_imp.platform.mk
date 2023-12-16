@@ -10,6 +10,7 @@
 .ifndef _MKC_PLATFORM_MK
 _MKC_PLATFORM_MK := 1
 
+
 .ifdef MK_C_PROJECT
 _MKFILESDIR         =	${MK_C_PROJECT}/mk
 .else
@@ -95,20 +96,20 @@ LDFLAGS.soname ?=		${LDFLAGS.soname.${CXX_TYPE}:U${LDFLAGS.soname.ld:@v@${CXXFLA
 
 .if ${SHLIB_EXT:U} == ".so" || ${SHLIB_EXT:U} == ".sl"
 
-.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+. if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1 =	${SHLIB_EXT}.${SHLIB_MAJOR}
-.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+.   if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
 SHLIB_EXT2 =	${SHLIB_EXT}.${SHLIB_MAJOR}.${SHLIB_MINOR}
-.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
+.     if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
 SHLIB_FULLVERSION=${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
 SHLIB_EXT3 =	${SHLIB_EXT}.${SHLIB_FULLVERSION}
-.else
+.     else
 SHLIB_FULLVERSION = ${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif # SHLIB_TEENY
-.else
+.     endif # SHLIB_TEENY
+.   else
 SHLIB_FULLVERSION = ${SHLIB_MAJOR}
-.endif # SHLIB_MINOR
-.endif # SHLIB_MAJOR
+.   endif # SHLIB_MINOR
+. endif # SHLIB_MAJOR
 
 SHLIB_EXTFULL =	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 
@@ -118,19 +119,19 @@ SHLIB_EXTFULL =	${SHLIB_EXT}.${SHLIB_FULLVERSION}
 ############################################################
 
 .ifdef EXPORT_SYMBOLS
-.if ${LD_TYPE} == "sunld" || ${LD_TYPE} == "gnuld"
+. if ${LD_TYPE} == "sunld" || ${LD_TYPE} == "gnuld"
 CLEANFILES +=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	awk 'BEGIN {print "{ global:"} \
 	     {sub(/#.*/, ""); if (NF>0) { $$1=$$1; print $$0 ";"} } \
 	     END {print "local: *; };"}' ${.ALLSRC} > ${.TARGET}
-.elif ${LD_TYPE} == "darwinld"
+. elif ${LD_TYPE} == "darwinld"
 CLEANFILES +=	${EXPORT_SYMBOLS}.tmp
 lib${LIB}${SHLIB_EXTFULL}: ${EXPORT_SYMBOLS}.tmp
 ${EXPORT_SYMBOLS}.tmp:	${EXPORT_SYMBOLS}
 	awk '{sub(/#.*/, ""); if (NF>0) { $$1=$$1; print "_" $$0}}' ${.ALLSRC} > ${.TARGET}
-.endif # sunld or darwinld
+. endif # sunld or darwinld
 
 LDFLAGS.expsym.gnuld    =	--version-script ${EXPORT_SYMBOLS}.tmp
 LDFLAGS.expsym.sunld    =	-M ${EXPORT_SYMBOLS}.tmp
@@ -148,5 +149,6 @@ LDFLAGS.shlib =	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
 LDFLAGS.prog  =	${LDFLAGS.expdyn}
 ############################################################
 ############################################################
+
 
 .endif #_MKC_PLATFORM_MK

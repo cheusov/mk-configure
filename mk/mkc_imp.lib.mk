@@ -53,11 +53,11 @@ _LIBS +=	lib${LIB}_pic.a
 .endif # MKPICLIB
 
 .if ${MKSHLIB:tl} != "no"
-.if ${MKDLL:tl} == "no"
+. if ${MKDLL:tl} == "no"
 SHLIBFN  =	lib${LIB}${SHLIB_EXTFULL}
-.else
+. else
 SHLIBFN  =	${LIB}${DLL_EXT}
-.endif
+. endif
 _LIBS   +=	${SHLIBFN}
 .endif
 
@@ -103,10 +103,10 @@ ${SHLIBFN}: ${SOBJS} ${DPADD}
 	@${_MESSAGE} "LD: ${.TARGET}"
 	${_V} $(LDREAL) ${LDFLAGS.shlib} -o ${.TARGET} \
 	    ${LDFLAGS0} ${LDFLAGS} ${SOBJS} ${LDADD0} ${LDADD}
-.if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
+. if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
 	@${LN_S} -f ${SHLIBFN} lib${LIB}${SHLIB_EXT}
 	@${LN_S} -f ${SHLIBFN} lib${LIB}${SHLIB_EXT1}
-.endif # ELF
+. endif # ELF
 .endif # !commands(...)
 
 CLEANFILES += *.o *.os *.op *.done
@@ -118,64 +118,65 @@ libinstall:
 CLEANFILES   +=	lib${LIB}.a lib${LIB}_pic.a lib${LIB}_p.a
 
    # MKSTATICLIB
-.if ${MKSTATICLIB:tl} != "no"
+. if ${MKSTATICLIB:tl} != "no"
 libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}.a: lib${LIB}.a __archiveinstall
-.endif
+. endif
 
    # MKPROFILELIB
-.if ${MKPROFILELIB:tl} != "no"
+. if ${MKPROFILELIB:tl} != "no"
 libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_p.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_p.a: lib${LIB}_p.a __archiveinstall
-.endif
+. endif
 
    # MKPICLIB
-.if ${MKPICLIB:tl} != "no"
+. if ${MKPICLIB:tl} != "no"
 libinstall: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PRECIOUS: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 .PHONY: ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}_pic.a
 
 ${DESTDIR}${LIBDIR}/lib${LIB}_pic.a: lib${LIB}_pic.a __archiveinstall
-.endif
+. endif
 
    # MKSHLIB
-.if ${MKSHLIB:tl} != "no"
+. if ${MKSHLIB:tl} != "no"
 libinstall: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PRECIOUS: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 .PHONY: ${DESTDIR}${LIBDIR}/${SHLIBFN}
 UNINSTALLFILES.lib += ${DESTDIR}${LIBDIR}/${SHLIBFN}
-.if ${MKDLL:tl} == "no"
+.   if ${MKDLL:tl} == "no"
 UNINSTALLFILES.lib +=	${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT} \
 			${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 CLEANFILES += \
 	lib${LIB}${SHLIB_EXT} lib${LIB}${SHLIB_EXT1} \
 	lib${LIB}${SHLIB_EXT2} ${SHLIB_EXT3:Dlib${LIB}${SHLIB_EXT3}}
-.else
+.   else
 CLEANFILES += ${SHLIBFN}
-.endif
+.   endif
 
 ${DESTDIR}${LIBDIR}/${SHLIBFN}: ${SHLIBFN}
 	${INSTALL}  ${INSTALL_FLAGS} -o ${LIBOWN:Q} \
 	    -g ${LIBGRP:Q} -m ${SHLIBMODE} ${.ALLSRC} ${.TARGET}
-.if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR) && ${MKDLL:tl} == "no"
+.   if ${OBJECT_FMT} == "a.out" && !defined(DESTDIR) && ${MKDLL:tl} == "no"
 	/sbin/ldconfig -m ${LIBDIR}
-.endif
-.if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
+.   endif
+
+.   if ${OBJECT_FMT} == "ELF" && ${MKDLL:tl} == "no"
 	${LN_S} -f ${SHLIBFN} \
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT1}
 	${LN_S} -f ${SHLIBFN} \
 	    ${DESTDIR}${LIBDIR}/lib${LIB}${SHLIB_EXT}
-.endif
-.endif
+.   endif
+. endif
 .endif
 
 .endif #_MKC_IMP_LIB_MK

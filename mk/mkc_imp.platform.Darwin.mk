@@ -10,7 +10,7 @@ LDFLAGS.soname      =		-current_version \
 	-compatibility_version ${SHLIB_MAJORp1}
 .else
 LDFLAGS.shared      =	-flat_namespace -bundle -undefined suppress
-.endif
+.endif # MKDLL
 
 .if ${MKDLL:U} != "no"
 
@@ -18,20 +18,20 @@ SHLIB_EXTFULL  ?=	.bundle
 
 .else # MKDLL
 
-.if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
+. if defined(SHLIB_MAJOR) && !empty(SHLIB_MAJOR)
 SHLIB_EXT1 ?=	.${SHLIB_MAJOR}.dylib
-.if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
+.   if defined(SHLIB_MINOR) && !empty(SHLIB_MINOR)
 SHLIB_EXT2 ?=	.${SHLIB_MAJOR}.${SHLIB_MINOR}.dylib
-.if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
+.     if defined(SHLIB_TEENY) && !empty(SHLIB_TEENY)
 SHLIB_EXT3 ?=	.${SHLIB_FULLVERSION}.dylib
 SHLIB_FULLVERSION = ${SHLIB_MAJOR}.${SHLIB_MINOR}.${SHLIB_TEENY}
-.else
+.     else
 SHLIB_FULLVERSION = ${SHLIB_MAJOR}.${SHLIB_MINOR}
-.endif # SHLIB_TEENY
-.else
+.     endif # SHLIB_TEENY
+.   else
 SHLIB_FULLVERSION = ${SHLIB_MAJOR}
-.endif # SHLIB_MINOR
-.endif # SHLIB_MAJOR
+.   endif # SHLIB_MINOR
+. endif # SHLIB_MAJOR
 
 SHLIB_EXTFULL ?=	.${SHLIB_FULLVERSION}.dylib
 .endif

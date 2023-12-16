@@ -1,18 +1,18 @@
 # Copyright (c) 2020 by Aleksey Cheusov
 
 .if empty(src_type:Mcxx)
-.if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || \
+. if !empty(_srcsall:U:M*.cxx) || !empty(_srcsall:U:M*.cpp) || \
     !empty(_srcsall:U:M*.C) || !empty(_srcsall:U:M*.cc) || \
     !empty(_srcsall:U:M*.c\+\+) || \
     !empty(MKC_CHECK_CXX_OPTS:U) || !empty(MKC_CHECK_CXXLD_OPTS:U)
 src_type   +=	cxx
 LDREAL     ?=	${CXX}
 LDFLAGS    +=	${CXXFLAGS.std.${CXXSTD}}
-.endif
+. endif
 .endif
 
 .if empty(src_type:Mcc)
-.if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || \
+. if !empty(_srcsall:U:M*.c) || !empty(_srcsall:U:M*.l) || \
     !empty(_srcsall:U:M*.y) || \
     !empty(MKC_CHECK_HEADERS:U) || !empty(MKC_REQUIRE_HEADERS:U) || \
     !empty(MKC_CHECK_HEADER_FILES:U) || !empty(MKC_REQUIRE_HEADER_FILES:U) || \
@@ -31,7 +31,7 @@ LDFLAGS    +=	${CXXFLAGS.std.${CXXSTD}}
     !empty(MKC_CHECK_FUNCS7:U) || !empty(MKC_CHECK_FUNCS8:U) || \
     !empty(MKC_CHECK_FUNCS9:U)
 src_type  +=	cc
-.endif
+. endif
 .endif
 
 .if empty(src_type:Mcc)

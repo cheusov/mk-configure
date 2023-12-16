@@ -15,19 +15,19 @@ AT_USE_AUTOMAKE ?=	yes
 AT_MAKE         ?=	${MAKE}
 AT_AUTORECONF_ARGS ?=	-is -f
 
-.if empty(FSRCDIR)
+. if empty(FSRCDIR)
 MKC_ERR_MSG +=	"FSRCDIR should not be empty"
-.elif empty(FSRCDIR:M/*)
+. elif empty(FSRCDIR:M/*)
 _FSRCDIR = ${.CURDIR}/${FSRCDIR}
-.else
+. else
 _FSRCDIR = ${FSRCDIR}
-.endif
+. endif # FSRCDIR
 
-.if defined(MAKEOBJDIR) || defined(MAKEOBJDIRPREFIX)
+. if defined(MAKEOBJDIR) || defined(MAKEOBJDIRPREFIX)
 _FOBJDIR =	${.OBJDIR}
-.else
+. else
 _FOBJDIR =	${_FSRCDIR}
-.endif
+. endif # MAKEOBJDIR || MAKEOBJDIRPREFIX
 
 _CONFIGURE_ARGS = --prefix ${PREFIX:Q} --bindir=${BINDIR:Q} \
    --sbindir=${SBINDIR:Q} --libexecdir=${LIBEXECDIR} \
@@ -55,7 +55,7 @@ at_do_configure: .PHONY
 	${MESSAGE.atconf}
 	${_V} cd ${_FOBJDIR}; env ${_CONFIGURE_ENV} ${_FSRCDIR}/configure ${_CONFIGURE_ARGS}
 
-.for i in all clean cleandir install uninstall
+. for i in all clean cleandir install uninstall
 realdo_${i}: at_do_${i}
 at_do_${i}: .PHONY
 	${MESSAGE.autotools}
@@ -65,7 +65,7 @@ at_do_${i}: .PHONY
 	    env ${_AT_MAKE_ENV} ${AT_MAKE:S/^$$/false/} ${AT_MAKEFLAGS} \
 		MAKE=${AT_MAKE} ${.TARGET:S/^at_do_//:S/cleandir/distclean/}; \
 	fi
-.endfor
+. endfor # i
 
 CLEANDIRDIRS  +=	${_FSRCDIR}/autom4te.cache
 CLEANDIRFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
@@ -73,9 +73,9 @@ CLEANDIRFILES +=	${_FSRCDIR}/aclocal.m4 ${_FOBJDIR}/config.log \
    ${_FSRCDIR}/INSTALL ${_FSRCDIR}/install-sh ${_FOBJDIR}/Makefile \
    ${_FSRCDIR}/missing ${_FSRCDIR}/compile ${_FOBJDIR}/stamp-h1
 
-.if ${AT_USE_AUTOMAKE:tl:U} == yes
+. if ${AT_USE_AUTOMAKE:tl:U} == yes
 CLEANDIRFILES    +=	${_FSRCDIR}/Makefile.in
 MKC_REQUIRE_PROGS +=	automake
-.endif
+. endif
 
 .endif # _MKC_IMP_FOREIGN_AUTOTOOLS_MK

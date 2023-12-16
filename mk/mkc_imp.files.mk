@@ -17,8 +17,8 @@ realdo_all: ${FILES}
 destination_files = ${FILES:@F@${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}@}
 
 filesinstall: ${destination_files}
-.PRECIOUS: ${destination_files}
-.PHONY: ${destination_files}
+. PRECIOUS: ${destination_files}
+. PHONY: ${destination_files}
 
 __fileinstall: .USE
 	${INSTALL}  ${INSTALL_FLAGS} \
@@ -27,9 +27,9 @@ __fileinstall: .USE
 	    -m ${FILESMODE_${.ALLSRC:T}:U${FILESMODE}} \
 	    ${.ALLSRC} ${.TARGET}
 
-.for F in ${FILES:O:u}
+. for F in ${FILES:O:u}
 ${DESTDIR}${FILESDIR_${F}:U${FILESDIR}}/${FILESNAME_${F}:U${FILESNAME:U${F:T}}}: ${F} __fileinstall
-.endfor
+. endfor
 
 UNINSTALLFILES  +=	${destination_files}
 INSTALLDIRS     +=	${destination_files:H}
