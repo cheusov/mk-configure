@@ -26,6 +26,13 @@ __DPSRCS.all  =	${_SRCS_ALL:T:C/\.(c|m|s|S|C|cc|cpp|cxx|c\+\+)$/.d/} \
 __DPSRCS.d    =	${__DPSRCS.all:O:u:M*.d}
 __DPSRCS.notd =	${__DPSRCS.all:O:u:N*.d}
 
+.PATH: ${.OBJDIR}
+.if ${MKDEPEND:U:tl} == yes
+.  for d in ${__DPSRCS.d}
+.    sinclude "${d}"
+.  endfor
+.endif
+
 do_depend1: ${DPSRCS}
 do_depend2: ${.MAKE.DEPENDFILE}
 

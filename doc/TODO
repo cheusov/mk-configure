@@ -35,8 +35,6 @@ feature efun: new function ereallocarr
 
 ============================================================
 progname feature: should provide __progname extern variable
-############################################################
-PLAN 0.38.0:
 
 ============================================================
 Fix parallel "install" target (LINKS vs. real files)
@@ -161,8 +159,6 @@ Some thoughts inspired by talks with Michael Crogan
 
 - "configure" tests should be run in parallel. Something
   like shlock(1) or flock(1) is needed for this.
-- Alternative .depend generation, e.g. like it is described in GNU
-  make info files
 - Additional examples/ is needed for
   triggering rebuild of subproject if "something" was rebuild in
   another subproject (build script for example).

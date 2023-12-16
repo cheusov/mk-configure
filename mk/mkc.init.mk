@@ -294,6 +294,11 @@ _CFLAGS1     +=	${CFLAGS.ssp}
 _CXXFLAGS1   +=	${CXXFLAGS.ssp}
 .endif
 
+.if ${MKDEPEND:U:tl} == "yes"
+_CFLAGS1     +=	${CFLAGS.mmd:U${CFLAGS.md}}
+_CXXFLAGS1   +=	${CXXFLAGS.mmd:U${CXXFLAGS.mmd}}
+.endif
+
 .if ${USE_RELRO:U:tl} == "yes"
 LDFLAGS.prog +=	${LDFLAGS.relro}
 .endif

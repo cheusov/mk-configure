@@ -2,7 +2,7 @@
 .\"
 .\" This file contains parts of NetBSD's bsd.README file
 .\"
-.\" Copyright (c) 2009-2020 by Aleksey Cheusov (vle@gmx.net)
+.\" Copyright (c) 2009-2023 by Aleksey Cheusov (vle@gmx.net)
 .\" Absolutely no warranty.
 .\"
 .\" ------------------------------------------------------------------
@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Jan 21, 2021" "" ""
+.TH MK-CONFIGURE 7 "Dec 16, 2023" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -516,6 +516,18 @@ for some compilers.
 .IP MKDEP
 mkdep(1) tool.
 .RI < Iu >
+.IP MKDEPEND
+If this variable is set to
+.I yes
+and compiler supports -MMD or -MD options, these option are applied
+and .d dependency files are generated. These .d files are
+automatically loaded by
+.BR mkcmake .
+Thus, continuous development is possible without explicit call of
+.B depend
+target.
+.RI < U >
+.RI []
 .IP MKDIR
 mkdir(1) tool.
 .RI < Iu >

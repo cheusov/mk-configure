@@ -108,6 +108,23 @@ fooquxfoobar_fooqux_ok=1
 /objdir/prefix/lib/libfooqux.so.0.0
 symbol foo
 symbol fooqux
+======= all with MKDEPEND=yes ==========
+/objdir/libs/libbar/bar.d
+/objdir/libs/libbar/bar.o
+/objdir/libs/libbaz/baz.d
+/objdir/libs/libbaz/baz.o
+/objdir/libs/libfoo/foo.d
+/objdir/libs/libfoo/foo.o
+/objdir/libs/libfooqux/fooqux.d
+/objdir/libs/libfooqux/fooqux.o
+/objdir/progs/foobaz/foobaz.d
+/objdir/progs/foobaz/foobaz.o
+/objdir/progs/fooquxfoobar/fooquxfoobar.d
+/objdir/progs/fooquxfoobar/fooquxfoobar.o
+======= rebuild using dependencies MKDEPEND=yes ==========
+TRUE2
+TRUE3
+TRUE4
 ======= cleandir ==========
 /objdir/Makefile
 /objdir/expect.out

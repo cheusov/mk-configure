@@ -1,5 +1,7 @@
 run_nm := env NM=${NM:Q} OPSYS=${OPSYS:Q} mkc_test_nm
 
+COMPILER_SUPPORTS_MD ?= yes
+
 .PHONY : test_output
 test_output:
 	@set -e; LC_ALL=C; export LC_ALL; \
@@ -66,6 +68,39 @@ test_output:
 	esac; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	\
+	echo ======= all with MKDEPEND=yes ==========; \
+	if test ${COMPILER_SUPPORTS_MD:tl} == yes; then \
+	    ${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	    MKDEPEND=yes; export MKDEPEND; \
+	    ${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	    find ${.OBJDIR} -type f -name '*.o' -o -name '*.d' | \
+	    mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	    \
+	    echo ======= rebuild using dependencies MKDEPEND=yes ==========; \
+	    sleep 1; touch ${SRCDIR_libs_libfoo}/foo.h; sleep 1; \
+	    ${MAKE} ${MAKEFLAGS} all 2>/tmp/1.out 1>&2; \
+	    if test ${OBJDIR_libs_libfooqux}/libfooqux.a -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE2; else echo FALSE2; fi; \
+	    if test ${OBJDIR_progs_foobaz}/foobaz -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE3; else echo FALSE3; fi; \
+	    if test ${OBJDIR_progs_fooquxfoobar}/fooquxfoobar -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE4; else echo FALSE4; fi; \
+	else \
+	    echo /objdir/libs/libbar/bar.d; \
+	    echo /objdir/libs/libbar/bar.o; \
+	    echo /objdir/libs/libbaz/baz.d; \
+	    echo /objdir/libs/libbaz/baz.o; \
+	    echo /objdir/libs/libfoo/foo.d; \
+	    echo /objdir/libs/libfoo/foo.o; \
+	    echo /objdir/libs/libfooqux/fooqux.d; \
+	    echo /objdir/libs/libfooqux/fooqux.o; \
+	    echo /objdir/progs/foobaz/foobaz.d; \
+	    echo /objdir/progs/foobaz/foobaz.o; \
+	    echo /objdir/progs/fooquxfoobar/fooquxfoobar.d; \
+	    echo /objdir/progs/fooquxfoobar/fooquxfoobar.o; \
+	    echo ======= rebuild using dependencies MKDEPEND=yes ==========; \
+	    echo TRUE2; \
+	    echo TRUE3; \
+	    echo TRUE4; \
+	    :; \
+	fi; \
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
