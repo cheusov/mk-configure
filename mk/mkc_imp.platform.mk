@@ -146,7 +146,7 @@ LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 ############################################################
 
 LDFLAGS.shlib =	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
-LDFLAGS.prog  =	${LDFLAGS.expdyn}
+
 ############################################################
 ############################################################
 

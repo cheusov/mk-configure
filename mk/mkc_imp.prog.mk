@@ -14,7 +14,11 @@ _MKC_IMP_PROG_MK := 1
 LDFLAGS.prog +=	${LDFLAGS.pie}
 _CFLAGS1     +=	${CFLAGS.pie}
 _CXXFLAGS1   +=	${CXXFLAGS.pie}
-.endif
+.endif # MKPIE
+
+.if ${EXPORT_DYNAMIC:U:tl} == "yes"
+LDFLAGS.prog +=	${LDFLAGS.expdyn}
+.endif # EXPORT_DYNAMIC
 
 proginstall:	.PHONY # ensure existence
 
