@@ -58,11 +58,11 @@ CXXFLAGS    +=		${CXXFLAGS.dflt}
 
 WARNERR     ?=		${WARNS:U0:S/4/yes/}
 
-CFLAGS.warnerr   :=	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr}:}
-CXXFLAGS.warnerr :=	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr}:}
+_CFLAGS.warnerr   :=	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr}:}
+_CXXFLAGS.warnerr :=	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr}:}
 
-CFLAGS.warns     =	${CFLAGS.warns.${WARNS}}    ${CFLAGS.warnerr}
-CXXFLAGS.warns   =	${CXXFLAGS.warns.${WARNS}} ${CXXFLAGS.warnerr}
+CFLAGS.warns     =	${CFLAGS.warns.${WARNS}}    ${_CFLAGS.warnerr}
+CXXFLAGS.warns   =	${CXXFLAGS.warns.${WARNS}} ${_CXXFLAGS.warnerr}
 
 NROFF_MAN2CAT ?=		${NROFF_MAN2CAT.${OPSYS}:U-mandoc -Tascii}
 
