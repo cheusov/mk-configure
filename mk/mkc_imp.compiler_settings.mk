@@ -73,9 +73,12 @@ CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
 CFLAGS.pie.icc   =		-fPIE__-DPIC
 CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}:U}}
 
+CFLAGS.md          =		-MD
+CFLAGS.mmd         =		-MMD
+
 LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
 
-_cc_vars += CFLAGS.dflt CFLAGS.warnerr CFLAGS.ssp CFLAGS.pic CFLAGS.pie
+_cc_vars += CFLAGS.dflt CFLAGS.warnerr CFLAGS.ssp CFLAGS.pic CFLAGS.pie CFLAGS.md CFLAGS.mmd
 
 .for std in ${_CSTD_LIST}
 CFLAGS.std.${std} =	${CFLAGS.std.${std}.${CC_TYPE}}
@@ -175,7 +178,11 @@ CXXFLAGS.pie.clang   =		${CFLAGS.pie.clang}
 CXXFLAGS.pie.icc     =		${CFLAGS.pie.icc}
 CXXFLAGS.pie         =		${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.pie.${CXX_TYPE}:U}}
 
-_cxx_vars += CXXFLAGS.dflt CXXFLAGS.warnerr CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie
+CXXFLAGS.md          =		-MD
+CXXFLAGS.mmd         =		-MMD
+
+_cxx_vars += CXXFLAGS.dflt CXXFLAGS.warnerr CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie \
+    CXXFLAGS.md CXXFLAGS.mmd
 
 _cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
     LDFLAGS.shared
