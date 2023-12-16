@@ -43,11 +43,6 @@ Checks for attributes ===> mkc_imp.{cc,cxx}_xxx.mk
 Feature "macro" -- macro restrict/__restrict?
 
 ============================================================
-Generate .d files at the same time as compilation and load
-in the very beginning by default if appropriate variable
-is set.
-
-============================================================
 MKC_REQUIRE_PKGCONFIG - make sure _mkc_ files are deleted
 when this check fails.
 
