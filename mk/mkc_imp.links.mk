@@ -21,14 +21,14 @@ ${DESTDIR}${r}:
 	${RM} -f ${DESTDIR}${r}; ${LN_S} ${l} ${DESTDIR}${r}
 . endfor
 
-.for l r in ${LINKS}
+. for l r in ${LINKS}
 UNINSTALLFILES +=	${DESTDIR}${r}
 INSTALLDIRS    +=	${DESTDIR}${r:H}
-.endfor
+. endfor
 
-.for l r in ${SYMLINKS}
+. for l r in ${SYMLINKS}
 UNINSTALLFILES +=	${DESTDIR}${r}
 INSTALLDIRS    +=	${DESTDIR}${r:H}
-.endfor
+. endfor
 
 .endif # MKINSTALL=yes
