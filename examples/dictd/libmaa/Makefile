@@ -3,7 +3,7 @@
 LIB  =		maa
 SRCS =		set.c prime.c log.c # etc.
 
-EXPORT_SYMBOLS =	export.sym
+EXPORT_SYMBOLS =	maa_export.sym
 
 SHLIB_MAJOR =	1
 SHLIB_MINOR =	2
