@@ -79,6 +79,10 @@ check_itself (){
     fname="$funcname"
 
     cat > "$tmpc" <<EOF
+#if defined __GNUC__ && __GNUC__ >= 14
+#pragma GCC diagnostic ignored "-Wincompatible-pointer-types"
+#endif
+
 void yylex ();
 void yylex () {}
 
