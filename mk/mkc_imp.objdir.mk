@@ -15,6 +15,7 @@ _MKC_IMP_OBJDIR_MK := 1
 j:=${i:S,/,_,g}
 . if empty(j:U:M*[.]*)
 EXPORT_VARNAMES += OBJDIR_${i:S,/,_,g}
+
 .   if ${MKRELOBJDIR:tl} == "yes"
 OBJDIR_${j} := ${.OBJDIR}/${i}
 .   elif defined(MAKEOBJDIRPREFIX)
@@ -22,16 +23,22 @@ OBJDIR_${j} := ${MAKEOBJDIRPREFIX}${.CURDIR}/${i}
 .   elif defined(MAKEOBJDIR)
 OBJDIR_${j} := ${MAKEOBJDIR}
 .   elif defined(_OBJ_MACHINE_DIR)
-OBJDIR_${j} := ${.CURDIR}/obj.${MACHINE}
+MAKEOBJDIR  := ${.CURDIR}/obj.${MACHINE}
+OBJDIR_${j} := ${MAKEOBJDIR}
+.export MAKEOBJDIR
 .   elif defined(_OBJ_DIR)
-OBJDIR_${j} := ${.CURDIR}/obj
+MAKEOBJDIR  := ${.CURDIR}/obj
+OBJDIR_${j} := ${MAKEOBJDIR}
+.export MAKEOBJDIR
 .   else
 OBJDIR_${j} := ${.CURDIR}/${i}
 .   endif # MAKEOBJDIRPREFIX...
+
 .   if ${SHORTPRJNAME:tl} == "yes" && ${i} != ${j}
 OBJDIR_${i:T} := ${OBJDIR_${j}}
 EXPORT_VARNAMES += OBJDIR_${i:T}
 .   endif
+
 . endif # empty(j:U:M*[.]*)
 
 .endfor # i
