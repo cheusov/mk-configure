@@ -10,4 +10,4 @@ examples    =	hello_world files files2 sizeof lexer \
    arc4random bswap dprintf efun strsep errc posix_getopt \
    raise_default_signal reallocarray fparseln vis \
    fts humanize_number shquote tiny_id c99 reallocarr \
-   strtoi
+   strtoi multilibs
