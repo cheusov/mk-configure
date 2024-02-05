@@ -254,6 +254,8 @@ Binary packages for **mk-configure** are available in the following systems (thi
  
  * OpenSuSE Linux
 
+ * Fedora Linux (beginning with Fedora 40)
+
 Feedback
 --------
 

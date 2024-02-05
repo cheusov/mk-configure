@@ -12,7 +12,7 @@ case ${OPSYS}/${ARCH} in
 	;;
     SunOS/*)
 	${NM} -P "$@" |
-	grep -Ev 'fini|init|_ftext' |
+	grep -Ev 'fini|init|_ftext|_start' |
 	awk 'NF==4 && $2=="T" {print "symbol " $1}'
 	;;
     Linux/ppc64)
