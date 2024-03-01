@@ -1,16 +1,2 @@
 25
 325
-========== depend ==========
-/objdir/app
-/objdir/app.o
-/objdir/empty
-/objdir/libmultiplier.a
-/objdir/libmultiplier.done
-/objdir/libmultiplier.so.1.1
-/objdir/libsummator.a
-/objdir/libsummator.done
-/objdir/libsummator.so.1.0
-/objdir/multiplier.o
-/objdir/multiplier.os
-/objdir/summator.o
-/objdir/summator.os
