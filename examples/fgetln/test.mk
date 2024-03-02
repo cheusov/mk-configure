@@ -8,7 +8,7 @@ test_output:
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | grep -Ev ${FUNCS_RE:Q} | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= CLEANFILES ==========; \
 	${MAKE} ${MAKEFLAGS} print_values VARS='CLEANFILES' MKCHECKS=no | \

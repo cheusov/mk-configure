@@ -13,7 +13,7 @@ test_output:
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
@@ -29,12 +29,12 @@ test_output:
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install2 ==========; \
 	env PREFIX=/home/cheusov/local \
@@ -42,7 +42,7 @@ test_output:
 	    ${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}" | uniq; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q} | uniq; \
 	rm -rf ${.OBJDIR}/home; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 

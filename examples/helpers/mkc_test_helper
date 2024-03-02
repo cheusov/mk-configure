@@ -7,10 +7,11 @@
 ############################################################
 
 set -e
-test $# -eq 2
+test $# -eq 3
 
 prefix="$1"
 objdir="$2"
+srcdir="$3"
 
 LC_ALL=C
 export LC_ALL
@@ -23,6 +24,7 @@ fi
 
 awk '!/CVS/ && !/~$/ && !/bmake: stopped in / && NF > 0' |
 sed -e "s,$objdir,/objdir,g" \
+    -e "s,$srcdir,/srcdir,g" \
     -e "s,$prefix,/prefix,g" \
     -e "s,/usr/local,/prefix," \
     -e "s,/usr/pkg,/prefix," \

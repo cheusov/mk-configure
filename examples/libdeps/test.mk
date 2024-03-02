@@ -41,12 +41,12 @@ test_output:
 		print "fooquxfoobar_foo_ok=" fooquxfoobar_foo_ok;        \
 		print "fooquxfoobar_fooqux_ok=" fooquxfoobar_fooqux_ok;  \
 	    }' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= install ==========; \
 	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	\
 	echo =========== all with STATICLIBS=... ============; \
@@ -54,12 +54,12 @@ test_output:
 	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} configure > /dev/null; \
 	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install with STATICLIBS=... ==========; \
 	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	case ${OPSYS} in \
 	*BSD|DragonFly|SunOS|Linux) \
 	    ${run_nm} ${OBJDIR_libfooqux}/libfooqux.so;; \
@@ -74,7 +74,7 @@ test_output:
 	    MKDEPEND=yes; export MKDEPEND; \
 	    ${MAKE} ${MAKEFLAGS} all > /dev/null; \
 	    find ${.OBJDIR} -type f -name '*.o' -o -name '*.d' | \
-	    mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	    mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	    \
 	    echo ======= rebuild using dependencies MKDEPEND=yes ==========; \
 	    sleep 1; touch ${SRCDIR_libs_libfoo}/foo.h; sleep 1; \
@@ -104,6 +104,6 @@ test_output:
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}
 
 .include <mkc.minitest.mk>

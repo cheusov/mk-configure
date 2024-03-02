@@ -14,7 +14,7 @@ test_output:
 	\
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
@@ -30,12 +30,12 @@ test_output:
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= cleandir ==========; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install2 ==========; \
 	PREFIX=/opt/vendor/name; \
