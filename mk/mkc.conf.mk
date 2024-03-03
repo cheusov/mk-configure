@@ -31,7 +31,6 @@
 # user defined variables
 MKC_SHOW_CACHED     ?= 0          # set it to `1' to show "...(cached)..." lines
 MKC_DELETE_TMPFILES ?= 0          # set it to `1' to delete temporary files
-MKC_CACHEDIR        ?= ${.OBJDIR} # directory for cache and intermediate files
 MKC_COMMON_HEADERS  ?=            # list of headers always #included
 MKC_NOCACHE         ?=            # 1 or yes for disabling cache
 MKC_CUSTOM_DIR      ?=${.CURDIR}  # directory with custom tests.c

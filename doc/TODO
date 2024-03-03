@@ -50,9 +50,6 @@ Add new feature for glibc-style defines
 __wur and __deprecated
 
 ============================================================
-MKC_CACHEDIR ?= ${OBJTOP:U${SRCTOP}}
-
-============================================================
 Add new feature for define restrict (C99 etc.)
 
 

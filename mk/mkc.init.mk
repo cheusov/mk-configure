@@ -52,7 +52,7 @@ src_type  ?=
 
 LDREAL  ?=	${CC}
 
-MKC_CACHEDIR ?=	${.OBJDIR} # directory for cache and intermediate files
+MKC_CACHEDIR ?=	${MAKEOBJDIR} # directory for cache and intermediate files
 
 ###########
 
