@@ -102,7 +102,7 @@ ROOT_GROUP.Interix   =	+Administrators
 ROOR_GROUP.Haiku     =	root
 
 ROOT_USER.HP-UX   =	bin
-ROOT_USER.OSF1    = 	bin
+ROOT_USER.OSF1    =	bin
 ROOT_USER.Interix =	Administrator
 ROOT_USER.Haiku   =	user
 
