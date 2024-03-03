@@ -7,7 +7,7 @@ test_output :
 	echo =========== all ============; \
 	${MAKE} ${MAKEFLAGS} all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ===== all SHRTOUT=yes ======; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
@@ -18,28 +18,28 @@ test_output :
 	env MKINSTALL=no ${MAKE} ${MAKEFLAGS} installdirs \
 		DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l -o -type d | grep '${PREFIX}' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo ========= install MKINSTALL=no ==========; \
 	env MKINSTALL=no ${MAKE} ${MAKEFLAGS} install \
 		DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l -o -type d | grep '${PREFIX}' | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo ========= installdirs ==========; \
 	${MAKE} ${MAKEFLAGS} installdirs \
 		DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo ========= install ==========; \
 	${MAKE} ${MAKEFLAGS} install \
 		DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
-	mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null

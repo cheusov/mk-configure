@@ -3,7 +3,7 @@ test_output :
 	@set -e; \
 	echo =========== all ============; \
 	find ${.OBJDIR} -type f | grep '/tool/.*[.]o$$' | sort | \
-	    mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}; \
+	    mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	: =========== cleandir ============; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 

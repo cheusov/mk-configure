@@ -9,7 +9,7 @@ test_output :
 	   done; \
 	   env MKINSTALLDIRS=no ${MAKE} ${MAKEFLAGS} -j1 install; \
 	} | grep -Ev 'checking|rm -rf ' | \
-	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	env NOSORT=1 mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo '=========== {pre,do,post}_nonrec ============'; \
 	for t in bin_tar bin_targz bin_tarbz2 bin_zip bin_deb; do \

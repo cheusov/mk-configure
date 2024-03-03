@@ -15,7 +15,7 @@ test:
 	  sed -e 's/^.*"bmake/"bmake/' -e 's/^.* line[^"]*"//' -e 's/".*//'; \
 	  echo =========== all ============; \
 	  find ${.OBJDIR} -type f -o -type l | \
-	  mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	  mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	} > $$tmp_out; \
 	diff ${.CURDIR}/expect.out $$tmp_out && \
 	echo '      succeeded' 1>&2 || \

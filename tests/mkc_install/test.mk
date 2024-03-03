@@ -4,11 +4,11 @@ test_output:
 	\
 	mkc_install -d ${.CURDIR}/opt/vendor/bin; \
 	find ${.CURDIR}/opt -type f -o -type d | \
-		mkc_test_helper "fake" "${.OBJDIR}"; \
+		mkc_test_helper "fake" ${.OBJDIR:Q} ${.CURDIR}; \
 	echo =====; \
 	mkc_install empty_file.txt ${.CURDIR}/opt/vendor/bin; \
 	find ${.CURDIR}/opt -type f -o -type d | \
-		mkc_test_helper "fake" "${.OBJDIR}"; \
+		mkc_test_helper "fake" ${.OBJDIR:Q} ${.CURDIR}; \
 	echo =====; \
 	mkc_install -m 0700 empty_file.txt ${.CURDIR}/opt/vendor/bin/empty2; \
 	if ls -l ${.CURDIR}/opt/vendor/bin/empty2 | grep -q -- -rwx------; then \
@@ -37,9 +37,9 @@ test_output:
 	env STRIP=mkc_fake_strip \
 		mkc_install -s -c -m 0644 -o "$$uid" -g "$$gid" \
 		empty_file.txt expect.out ${.CURDIR}/opt/vendor/share | \
-		mkc_test_helper "fake" "${.OBJDIR}" | sed 's/[0-9][0-9]*/<NUM>/'; \
+		mkc_test_helper "fake" ${.OBJDIR:Q} ${.CURDIR} | sed 's/[0-9][0-9]*/<NUM>/'; \
 	find ${.CURDIR}/opt -type f -o -type d | \
-		mkc_test_helper "fake" "${.OBJDIR}"; \
+		mkc_test_helper "fake" ${.OBJDIR:Q} ${.CURDIR}; \
 	echo =====; \
 	mkc_install 2>/dev/null || echo failed0;\
 	mkc_install qqq 2>/dev/null || echo failed1;\

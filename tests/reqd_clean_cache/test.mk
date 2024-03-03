@@ -10,7 +10,7 @@ test_output :
 	      -e 's,using .*-c,using cc -c,'; \
 	  find ${.OBJDIR} -type f -o -type l | sort; } | \
 	sed 's,n*b*make\[[0-9]*\],bmake,' | \
-	env NOSORT=1 mkc_test_helper "${PREFIX}" "${.OBJDIR}"; \
+	env NOSORT=1 mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
