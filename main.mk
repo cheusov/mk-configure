@@ -22,6 +22,7 @@ SUBPRJ +=	examples/${t}:examples
 .endfor
 
 NODEPS +=	install-examples/helpers:install
+NODEPS +=	test-examples/multilibs:test test-examples/multilibs:test-examples
 
 ##################################################
 # The following is necessary for target "test-examples"
