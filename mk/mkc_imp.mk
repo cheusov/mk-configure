@@ -156,7 +156,9 @@ manpages:
 .      include "mkc_imp.pkg-config.mk"
 .    endif
 
+.    if !empty(_SRCS_ALL)
 .    include "mkc_imp.dep.mk"
+.    endif
 
 .    if !empty(FILES)
 .      include "mkc_imp.files.mk"
