@@ -52,8 +52,6 @@ src_type  ?=
 
 LDREAL  ?=	${CC}
 
-MKC_CACHEDIR ?=	${MAKEOBJDIR} # directory for cache and intermediate files
-
 ###########
 
 PROJECTNAME  ?=	${!empty(PROG):?${PROG}:${!empty(LIB):?${LIB}:${.CURDIR:T}}}
@@ -324,6 +322,8 @@ _V         ?=
 .endif
 
 ###########
+
+MKC_CACHEDIR        ?=	${MAKEOBJDIR:U${.OBJDIR}}
 
 ###########
 
