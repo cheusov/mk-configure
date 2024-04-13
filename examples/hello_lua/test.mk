@@ -20,12 +20,12 @@ test_output:
 	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
 	find ${install_dirs} -type f | \
-	mkc_test_helper /usr/local "${.OBJDIR}" | uniq; \
+	mkc_test_helper /usr/local ${.OBJDIR:Q} ${.CURDIR:Q} | uniq; \
 	\
 	echo ======== uninstall =========; \
 	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
 	find ${.OBJDIR}/usr -type f | \
-	mkc_test_helper /usr/local "${.OBJDIR}"; \
+	mkc_test_helper /usr/local ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========== clean ===========; \
 	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
@@ -47,7 +47,7 @@ test_output:
 	${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
-	mkc_test_helper $$PREFIX "${.OBJDIR}" | uniq; \
+	mkc_test_helper $$PREFIX ${.OBJDIR:Q} ${.CURDIR:Q} | uniq; \
 	rm -rf ${.OBJDIR}/home; \
 	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
 
