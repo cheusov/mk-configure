@@ -1698,34 +1698,50 @@ not. mkc_imp.f_libm.mk checks whether libm library is available and if yes,
 .TP
 .B macro
 This feature provides the following macro stolen from NetBSD.
-.I __aligned(x)
+.RS
+.TP
+.B __aligned(x)
 defined as
 .I "__attribute__((aligned(x)))"
 if supported by compiler,
-.I __always_inline
+.br
+.TP
+.B __always_inline
 defined as
 .I "__attribute__((always_inline))"
 if supported by compiler,
-.I __arraycount(a)
+.br
+.TP
+.B __arraycount(a)
 defined as
 .I "(sizeof(__a)/sizeof(__a[0]))",
-.I __constfunc
+.br
+.TP
+.B __constfunc
 defined as
 .I "__attribute__((const))"
 if supported by compiler,
-.I __dead
+.TP
+.B __dead
 defined as
 .I "__attribute__((noreturn))"
 if supported by compiler,
-.IR "MIN(a,b)" " and " "MAX(a,b),"
+.TP
+.BR "MIN(a,b)" " and " "MAX(a,b),"
 .I __pure
 defined as
 .I "__attribute__((pure))"
 if supported by compiler,
-.I "__printflike(n,m)"
+.TP
+.B "__printflike(n,m)"
 defined as
 .I "__attribute__((format (printf, n, m)))"
 if supported by compiler.
+.TP
+.B "__UNCONST(a)"
+defined as
+.I "((void *) ((const char *)(p) - (const char *)0))"
+.RE
 .TP
 .B posix_getopt
 It is well-known that glibc getopt(3) does not conform to POSIX by default.
