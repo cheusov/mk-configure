@@ -2,4 +2,4 @@
 
 BMAKE=${MKC_BMAKE-@BMAKE@}
 
-$BMAKE -m @mkfilesdir@ "$@"
+$BMAKE -D MKCMAKE -m @mkfilesdir@ "$@"

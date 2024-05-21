@@ -95,6 +95,11 @@ means "Usually set by user",
 means "May be set or changed in project's Makefile" and
 .I Mu
 means "May be set in project's Makefile but may be initialized or overriden by user".
+.P
+Variable
+.I MKCMAKE
+is always 1 in
+.BR mkcmake .
 .SS "Targets"
 Mk-configure provides the following targets:
 .IP all
