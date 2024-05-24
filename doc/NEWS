@@ -1,4 +1,11 @@
 ======================================================================
+Version 0.39.1, by Aleksey Cheusov, Fri, 24 May 2024 18:16:47 +0400
+
+ Fix support for WARNERR=yes mode where -Werror option should be
+ passed to compiler.  The problem happens when WARNS is set to 4 in
+ Makefile.{common,inc}.
+
+======================================================================
 Version 0.39.0, by Aleksey Cheusov, Tue, 21 May 2024 21:13:26 +0400
 
   Invent new MKDEPEND variable for automatically generate dependency
