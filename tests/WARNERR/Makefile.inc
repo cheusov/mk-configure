@@ -1,0 +1,4 @@
+WARNS   =	${USER_WARNS:U3}
+.if !empty(USER_WARNERR)
+WARNERR =	${USER_WARNERR}
+.endif
