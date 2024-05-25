@@ -1,10 +1,9 @@
 ============================================================
-MKC_CHECK_FUNCLIBS: check in libc and if found,
-skip foreign library.
+move feature signalname from nbase to mk-configure
 
 ============================================================
-Include headers only if it is necessary. Thus, improve mkcmake
-performance.
+MKC_CHECK_FUNCLIBS: check in libc and if found,
+skip foreign library.
 
 ============================================================
 Use flock/shlock/etc for parallalizing mkcmake configure
