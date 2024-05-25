@@ -26,6 +26,8 @@ tmperr=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.err
 tmpexe=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.exe
 cache=$MKC_CACHEDIR/_mkc_${pathpart}${MKC_NOCACHE}.res
 
+unset MAKEFLAGS || true
+
 printme (){
     if test "$MKC_VERBOSE" != 1; then
 	return
