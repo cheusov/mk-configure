@@ -1,4 +1,9 @@
 ======================================================================
+Version 0.39.2, by Aleksey Cheusov, Sat, 25 May 2024 12:33:10 +0400
+
+ Fix "bad condition" in mkc_imp.platform.mk. Affected versions: 0.39.1
+
+======================================================================
 Version 0.39.1, by Aleksey Cheusov, Fri, 24 May 2024 18:16:47 +0400
 
  Fix support for WARNERR=yes mode where -Werror option should be
