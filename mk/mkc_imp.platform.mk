@@ -59,8 +59,8 @@ CXXFLAGS    +=		${CXXFLAGS.dflt}
 
 WARNERR     ?=		${${WARNS:U0} == 4:?yes:}
 
-_CFLAGS.warnerr  =	${${WARNERR:tl} == "yes":?${CFLAGS.warnerr}:}
-_CXXFLAGS.warnerr=	${${WARNERR:tl} == "yes":?${CXXFLAGS.warnerr}:}
+_CFLAGS.warnerr  =	${"${WARNERR:tl}" == "yes":?${CFLAGS.warnerr}:}
+_CXXFLAGS.warnerr=	${"${WARNERR:tl}" == "yes":?${CXXFLAGS.warnerr}:}
 
 CFLAGS.warns     =	${CFLAGS.warns.${WARNS}}    ${_CFLAGS.warnerr}
 CXXFLAGS.warns   =	${CXXFLAGS.warns.${WARNS}} ${_CXXFLAGS.warnerr}
