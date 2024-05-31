@@ -75,6 +75,11 @@ END {
    printf "se\ncompiler unknown 0\n#endif\n"
 }' >"$tmpfile"
 
+    if ! mkc_which "${CC%% *}" > /dev/null; then
+	printf '\n'
+	exit 0
+    fi
+
     $CC -E "$tmpfile" |
     @AWK@ 'BEGIN { ret="unknown"}
 	$1 == "compiler" {

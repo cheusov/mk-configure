@@ -1,8 +1,11 @@
-# Copyright (c) 2009-2023 by Aleksey Cheusov
+# Copyright (c) 2009-2024 by Aleksey Cheusov
 
 mkc.cc_type.environ = CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${CPPFLAGS:Q} CFLAGS=${CFLAGS:Q} LDFLAGS=${LDFLAGS:Q} LDADD=${LDADD:Q} MKC_CACHEDIR=${MKC_CACHEDIR:Q} MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES:Q} MKC_SHOW_CACHED=${MKC_SHOW_CACHED:Q} MKC_NOCACHE=${MKC_NOCACHE:Q} MKC_VERBOSE=1
 .for c in ${src_type}
   _full_type         !=	env ${mkc.cc_type.environ} mkc_check_compiler ${"${c}" == "cxx":?-x:}
+.   if empty(_full_type)
+.     error "Compiler is not found"
+.   endif
   ${c:tu}_TYPE       :=	${_full_type:[1]}
   ${c:tu}_VERSION    :=	${_full_type:[2]}
   ${c:tu}_TRIPLET    :=	${_full_type:[3]}
