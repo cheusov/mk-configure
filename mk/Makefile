@@ -69,28 +69,30 @@ post_install:
 	done
 
 #################################################
-.for i in prog_mkdep prog_nbmkdep
+.if !empty(CC)
+. for i in prog_mkdep prog_nbmkdep
 MKC_CHECK_CUSTOM   +=	${i}
 MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../builtins/${i}
-.endfor
+. endfor
 
 MKC_CHECK_PROGS    +=	makedepend
 
-.include <mkc.configure.mk>
+. include <mkc.configure.mk>
 
-.if !empty(CUSTOM.prog_nbmkdep)
+. if !empty(CUSTOM.prog_nbmkdep)
 mkdep_cmd  =		${CUSTOM.prog_nbmkdep}
 mkdep_type =		nbmkdep
-.elif !empty(CUSTOM.prog_mkdep)
+. elif !empty(CUSTOM.prog_mkdep)
 mkdep_cmd  =		${CUSTOM.prog_mkdep}
 mkdep_type =		mkdep
-.elif ${HAVE_PROG.makedepend:U0}
+. elif ${HAVE_PROG.makedepend:U0}
 makedepend_cmd =	${PROG.makedepend}
 mkdep_cmd  =		mkdep
 mkdep_type =		makedepend
-.else
+. else
 MKC_ERR_MSG +=		"mkdep(1) cannot be found"
-.endif
+. endif
+.endif # !empty(CC)
 
 .if empty(USE_NM) || ${USE_NM} == "auto"
 .  if exists(/usr/xpg4/bin/nm)
@@ -128,13 +130,15 @@ install           =	${USE_INSTALL}
 
 makedepend_cmd ?=	makedepend
 
+.if !empty(CC)
 INTEXTS_REPLS +=	mkdep_cmd      ${mkdep_cmd:Q}
-INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd:Q}
 INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
+INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd:Q}
+INTEXTS_REPLS +=	CC             ${PROG.cc:Q}
+.endif # !empty(CC)
 INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	NM             ${PROG.nm:Q}
 INTEXTS_REPLS +=	ID             ${PROG.id:Q}
-INTEXTS_REPLS +=	CC             ${PROG.cc:Q}
 INTEXTS_REPLS +=	CXX            ${PROG.c++:Q}
 INTEXTS_REPLS +=	CPP            ${PROG.cpp:Q}
 INTEXTS_REPLS +=	install        ${install:Q}
