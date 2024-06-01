@@ -96,10 +96,11 @@ _cxx_vars +=	CXXFLAGS.std.${std}
 LDFLAGS.pie             =	-fPIE__-pie
 .endif
 
-LDFLAGS.shared.sunld    =	-G
+LDFLAGS.shared.sunld    =	-Wl,-G
 LDFLAGS.shared.darwinld =
-LDFLAGS.shared.gnuld   =	-shared
-LDFLAGS.shared.hpld    =	-b +b ${LIBDIR}
+LDFLAGS.shared.gnuld   =	-Wl,-shared
+LDFLAGS.shared.hpld    =	-Wl,-b__-Wl,+b__-Wl,${LIBDIR}
+
 LDFLAGS.shared.gcc     =	-shared
 LDFLAGS.shared.clang   =	-shared
 LDFLAGS.shared.pcc     =	-shared
@@ -109,7 +110,16 @@ LDFLAGS.shared.imbc    =	-qmkshrobj
 LDFLAGS.shared.mipspro =	-shared
 LDFLAGS.shared.sunpro  =	-G
 LDFLAGS.shared.decc    =	-shared
-LDFLAGS.shared         =	${LDFLAGS.shared.${LD_TYPE}:U-shared}
+
+.if !empty(CC)
+COMPILER_TYPE          =	${CC_TYPE}
+.elif !empty(CXX)
+COMPILER_TYPE          =	${CXX_TYPE}
+.else
+.error "No compiler found"
+.endif
+
+LDFLAGS.shared         =	${LDFLAGS.shared.${COMPILER_TYPE}:U${LDFLAGS.shared.${LD_TYPE}:U-shared}}
 
 LDFLAGS.expdyn         =	-rdynamic
 
