@@ -219,8 +219,7 @@ LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 ######
 .   ifdef RECURS
-all: post_all
-post_all: ${cc_cxx_capabilities_filename}
+all: ${cc_cxx_capabilities_filename}
 ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 	@printf '' > $@.tmp;
 .   for v in ${_${c}_vars}

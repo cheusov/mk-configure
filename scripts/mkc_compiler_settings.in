@@ -4,11 +4,12 @@
 set -e
 
 export compiler_settings=1
-export MAKEOBJDIR=$HOME/.mkcmake
+: ${MAKEOBJDIR:=$HOME/.mkcmake}
 export MKC_CACHEDIR="$MAKEOBJDIR"
 export MKC_NOCACHE=1
-export COMPILER_SETTINGS_MK='-f @mkfilesdir@/mkc.compiler_settings.mk'
+: ${MK_FILES_DIR:=@mkfilesdir@}
+export COMPILER_SETTINGS_MK="-f $MK_FILES_DIR/mkc.compiler_settings.mk"
 export SRCTOP=/baddir
 
 BMAKE=${MKC_BMAKE-@BMAKE@}
-$BMAKE -m @mkfilesdir@ ${COMPILER_SETTINGS_MK} post_all
+env MKCHECKS=no $BMAKE -m "$MK_FILES_DIR" $COMPILER_SETTINGS_MK post_all

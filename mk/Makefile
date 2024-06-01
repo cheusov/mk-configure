@@ -57,9 +57,10 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 
 .include <mkc.init.mk>
 
-MKC_NOCACHE=1
-
-.include "mkc_imp.compiler_settings.mk"
+post_all:
+	MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
+	MK_FILES_DIR=${.CURDIR}; export MK_FILES_DIR; \
+	${OBJDIR_scripts}/mkc_compiler_settings
 
 post_install:
 	for f in ${.OBJDIR}/mkc_imp.cc_*.mk ${.OBJDIR}/mkc_imp.cxx_*.mk; do \
