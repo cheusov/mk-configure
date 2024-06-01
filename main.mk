@@ -8,7 +8,8 @@
 ##################################################
 SUBPRJ_DFLT =   builtins examples/helpers mk scripts features doc
 SUBPRJ      =	scripts:examples scripts:presentation ${SUBPRJ_DFLT} \
-		scripts:builtins scripts:examples/helpers scripts:mk scripts:features scripts:doc
+		scripts:builtins scripts:examples/helpers scripts:mk \
+		builtins:mk scripts:features scripts:doc
 
 .include "tests.mk"
 
