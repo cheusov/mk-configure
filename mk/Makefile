@@ -71,21 +71,23 @@ post_install:
 
 #################################################
 .if !empty(CC)
-. for i in prog_mkdep prog_nbmkdep
-MKC_CHECK_CUSTOM   +=	${i}
-MKC_CUSTOM_FN.${i}  =	${.CURDIR}/../builtins/${i}
-. endfor
-
-MKC_CHECK_PROGS    +=	makedepend
+MKC_CHECK_PROGS    +=	nbmkdep bmkdep makedepend mkdep
 
 . include <mkc.configure.mk>
 
-. if !empty(CUSTOM.prog_nbmkdep)
-mkdep_cmd  =		${CUSTOM.prog_nbmkdep}
+. if ${HAVE_PROG.nbmkdep:U0}
+mkdep_cmd  =		${PROG.nbmkdep}
 mkdep_type =		nbmkdep
-. elif !empty(CUSTOM.prog_mkdep)
-mkdep_cmd  =		${CUSTOM.prog_mkdep}
+. elif ${HAVE_PROG.bmkdep:U0}
+mkdep_cmd  =		${PROG.bmkdep}
+mkdep_type =		nbmkdep
+. elif ${PROG.mkdep:U0}
+mkdep_cmd  =		${PROG.mkdep}
+.   if ${OPSYS} == NetBSD
+mkdep_type =		nbmkdep
+.   else
 mkdep_type =		mkdep
+.   endif
 . elif ${HAVE_PROG.makedepend:U0}
 makedepend_cmd =	${PROG.makedepend}
 mkdep_cmd  =		mkdep
