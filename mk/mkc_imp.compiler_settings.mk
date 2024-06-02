@@ -246,8 +246,8 @@ ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 .endfor # .for c in cc cxx
 
 #################################################
-USE_CC_COMPILERS  ?=	${CC}
-USE_CXX_COMPILERS ?=	${CXX}
+USE_CC_COMPILERS  ?=	${CC:Q}
+USE_CXX_COMPILERS ?=	${CXX:Q}
 
 .ifndef RECURS
 post_all:
