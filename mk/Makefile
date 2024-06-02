@@ -58,7 +58,7 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 .include <mkc.init.mk>
 
 post_all:
-	MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
+	@MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
 	MK_FILES_DIR=${.CURDIR}; export MK_FILES_DIR; \
 	${OBJDIR_scripts}/mkc_compiler_settings
 
