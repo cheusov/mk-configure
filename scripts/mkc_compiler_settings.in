@@ -5,6 +5,7 @@ set -e
 
 export compiler_settings=1
 : ${MAKEOBJDIR:=$HOME/.mkcmake}
+export MAKEOBJDIR
 export MKC_CACHEDIR="$MAKEOBJDIR"
 export MKC_NOCACHE=1
 : ${MK_FILES_DIR:=@mkfilesdir@}
