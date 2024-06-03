@@ -25,13 +25,15 @@ trap 'rm -f "$tmpfile"' 0
 pathpart=cc_type
 langname='C'
 
-while getopts x f; do
+while getopts Dx f; do
     case "$f" in
 	x)
 	    pathpart=cxx_type
 	    langname='C++'
 	    CC="$CXX"
 	    export CC;;
+	D)
+	    delcache=result;;
 	*)
 	    exit 2;;
     esac
