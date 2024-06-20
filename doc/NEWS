@@ -1,4 +1,10 @@
 ======================================================================
+Version 0.39.4, by Aleksey Cheusov, Thu, 20 Jun 2024 10:56:33 +0400
+
+  Fix bashism in examples/libdeps/test.mk. Thanks to wiz@NetBSD.org
+  for problem report.
+
+======================================================================
 Version 0.39.3, by Aleksey Cheusov, Sun, 26 May 2024 15:04:39 +0400
 
   mkc_check_common.sh: do not hide stderr in function "find_n_match"

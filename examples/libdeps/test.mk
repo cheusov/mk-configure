@@ -69,7 +69,7 @@ test_output:
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	\
 	echo ======= all with MKDEPEND=yes ==========; \
-	if test ${COMPILER_SUPPORTS_MD:tl} == yes; then \
+	if test ${COMPILER_SUPPORTS_MD:tl} = yes; then \
 	    ${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
 	    MKDEPEND=yes; export MKDEPEND; \
 	    ${MAKE} ${MAKEFLAGS} all > /dev/null; \
