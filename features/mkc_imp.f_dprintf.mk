@@ -12,6 +12,7 @@ MKC_PROTOTYPE_FUNC.vdprintf =	int vdprintf(int, const char *, va_list);
 MKC_PROTOTYPE_HEADERS.vdprintf +=	stdio.h stdarg.h
 
 .include <mkc.conf.mk>
+.include "mkc_imp.f_macro.mk"
 
 .if ${HAVE_FUNCLIB.dprintf:U} != 1 || ${HAVE_PROTOTYPE.vdprintf:U} != 1
 MKC_SRCS +=	${FEATURESDIR}/dprintf/mkc_dprintf.c
