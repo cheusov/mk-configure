@@ -227,6 +227,15 @@ ${v}.new +=	${_opt:S/__/ /g}
 LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
 LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
+.for attr in aligned always_inline const noreturn pure printflike
+_cc_vars += CUSTOM.attribute_${attr}
+#_cxx_vars += CUSTOM.attribute_${attr}
+CUSTOM.attribute_${attr}.new = ${CUSTOM.attribute_${attr}}
+.endfor
+
+MKC_FEATURES +=	macro
+.include <mkc.conf.mk>
+
 ######
 .   ifdef RECURS
 all: ${cc_cxx_capabilities_filename}
