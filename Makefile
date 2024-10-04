@@ -12,4 +12,4 @@ PROJECTNAME =		mk-configure
 .MAIN: all
 .DEFAULT:
 	@MK_C_PROJECT=`pwd`; export MK_C_PROJECT; LC_ALL=C; export LC_ALL; \
-	unset ROOT_GROUP; ${MAKE} ${MAKEFLAGS} -m ${.CURDIR}/mk -m ${.CURDIR}/features -f main.mk ${.TARGET}
+	unset ROOT_GROUP; ${MAKE} -m ${.CURDIR}/mk -m ${.CURDIR}/features -f main.mk ${.TARGET}

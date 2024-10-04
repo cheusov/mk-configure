@@ -4,5 +4,5 @@ test: do_all
 	id2=`id | awk '{print $$1, $$2}'`; \
 	test _"$$id1" = _"$$id2"; ex=$$?; \
 	true _______ cleandir _______; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
 	exit $$ex

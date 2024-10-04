@@ -1,3 +1,3 @@
 test:
 	@set -e; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null

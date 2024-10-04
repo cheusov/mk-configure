@@ -38,7 +38,7 @@ PATH        :=		${.CURDIR}/examples/helpers:${.CURDIR}/scripts:${PATH}
 pdf: all-presentation
 pdf:
 	@set -e; cd presentation; \
-	${MAKE} ${MAKEFLAGS} clean-garbage; \
+	${MAKE} clean-garbage; \
 	rm -f myprojects.* _mkc_*
 
 ##################################################

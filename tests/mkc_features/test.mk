@@ -5,6 +5,6 @@ test_output :
 	find ${.OBJDIR} -type f | grep '/tool/.*[.]o$$' | sort | \
 	    mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

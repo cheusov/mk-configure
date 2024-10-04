@@ -5,6 +5,6 @@ test_output:
 	@set -e; rm -rf dir; mkdir dir; mkdir dir/subdir; \
 	${.OBJDIR}/prog . | grep -Ev '${SKIP_REGEXP}'; \
 	rm -rf dir; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

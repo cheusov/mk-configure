@@ -29,7 +29,7 @@ VARIABLES_TO_CHECK=	HAVE_HEADER.vis_h HAVE_HEADER.fts_h HAVE_HEADER_FILE.fts_h \
 test:
 	@echo '      skipped'; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 .endif
 
 .include <mkc.mk>

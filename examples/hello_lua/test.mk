@@ -17,23 +17,23 @@ test_output:
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
+	${MAKE} install -j3 DESTDIR=${.OBJDIR} PREFIX=/usr/local \
 		> /dev/null; \
 	find ${install_dirs} -type f | \
 	mkc_test_helper /usr/local ${.OBJDIR:Q} ${.CURDIR:Q} | uniq; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} -j4 uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
+	${MAKE} -j4 uninstall DESTDIR=${.OBJDIR} PREFIX=/usr/local > /dev/null; \
 	find ${.OBJDIR}/usr -type f | \
 	mkc_test_helper /usr/local ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	${MAKE} clean > /dev/null; \
 	find ${.OBJDIR} -type f | grep -Ev 'INSTALL|_mkc_prog_lua' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= cleandir ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
@@ -42,13 +42,13 @@ test_output:
 	LUA_LMODDIR=/opt/vendor/name/share/lua/5.1; \
 	LUA_CMODDIR=/opt/vendor/name/lib/lua/5.1; \
 	export PREFIX LUA_LMODDIR LUA_CMODDIR; \
-	${MAKE} ${MAKEFLAGS} configure DESTDIR=${.OBJDIR} \
+	${MAKE} configure DESTDIR=${.OBJDIR} \
 		> /dev/null; \
-	${MAKE} ${MAKEFLAGS} all install -j3 DESTDIR=${.OBJDIR} \
+	${MAKE} all install -j3 DESTDIR=${.OBJDIR} \
 		> /dev/null; \
 	find ${.OBJDIR} -type f -o -type d | grep -Ev '_mkc_prog_lua' | \
 	mkc_test_helper $$PREFIX ${.OBJDIR:Q} ${.CURDIR:Q} | uniq; \
 	rm -rf ${.OBJDIR}/home; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

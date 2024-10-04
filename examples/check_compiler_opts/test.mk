@@ -9,6 +9,6 @@ test_output:
 	@echo ========== lalala ==========; \
 	${cmd}; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

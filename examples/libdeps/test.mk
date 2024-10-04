@@ -16,7 +16,7 @@ test_output:
 	rm -rf ${.OBJDIR}${PREFIX}; \
 	\
 	echo =========== depends ============; \
-	${MAKE} ${MAKEFLAGS} -j4 depend > /dev/null; \
+	${MAKE} -j4 depend > /dev/null; \
 	mkc_long_lines `find ${.CURDIR} -type f -name '.depend_*'` | \
 	awk '!/^#/ {for (i=1; i <= NF; ++i) if ($$i ~ /^\// && $$i !~ /mk-configure/) $$i = ""; print $$0; }' | \
 	awk '{$$1 = $$1; gsub(/[.]o[ps]/, ".o"); print $$0}' | sort | \
@@ -44,20 +44,20 @@ test_output:
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= install ==========; \
-	${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} install DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	\
 	echo =========== all with STATICLIBS=... ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
-	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} configure > /dev/null; \
-	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} -j4 all > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
+	env STATICLIBS='libfoo libbar' ${MAKE} configure > /dev/null; \
+	env STATICLIBS='libfoo libbar' ${MAKE} -j4 all > /dev/null; \
 	find ${.OBJDIR} -type f -o -type l | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= install with STATICLIBS=... ==========; \
-	env STATICLIBS='libfoo libbar' ${MAKE} ${MAKEFLAGS} install DESTDIR=${.OBJDIR} > /dev/null; \
+	env STATICLIBS='libfoo libbar' ${MAKE} install DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR}${PREFIX} -type f -o -type l -o -type d | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	case ${OPSYS} in \
@@ -70,15 +70,15 @@ test_output:
 	\
 	echo ======= all with MKDEPEND=yes ==========; \
 	if test ${COMPILER_SUPPORTS_MD:tl} = yes; then \
-	    ${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	    ${MAKE} cleandir > /dev/null; \
 	    MKDEPEND=yes; export MKDEPEND; \
-	    ${MAKE} ${MAKEFLAGS} all > /dev/null; \
+	    ${MAKE} all > /dev/null; \
 	    find ${.OBJDIR} -type f -name '*.o' -o -name '*.d' | \
 	    mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	    \
 	    echo ======= rebuild using dependencies MKDEPEND=yes ==========; \
 	    sleep 1; touch ${SRCDIR_libs_libfoo}/foo.h; sleep 1; \
-	    ${MAKE} ${MAKEFLAGS} all 2>/tmp/1.out 1>&2; \
+	    ${MAKE} all 2>/tmp/1.out 1>&2; \
 	    if test ${OBJDIR_libs_libfooqux}/libfooqux.a -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE2; else echo FALSE2; fi; \
 	    if test ${OBJDIR_progs_foobaz}/foobaz -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE3; else echo FALSE3; fi; \
 	    if test ${OBJDIR_progs_fooquxfoobar}/fooquxfoobar -nt ${SRCDIR_libs_libfoo}/foo.h; then echo TRUE4; else echo FALSE4; fi; \
@@ -102,7 +102,7 @@ test_output:
 	    :; \
 	fi; \
 	echo ======= cleandir ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}
 

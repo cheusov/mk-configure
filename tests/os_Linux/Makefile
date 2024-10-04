@@ -12,7 +12,7 @@ VARIABLES_TO_CHECK=	HAVE_HEADER.sys_stat_h SIZEOF.int.sys_types_h
 test:
 	@echo '      skipped'; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 .endif
 
 .include <mkc.mk>

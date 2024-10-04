@@ -13,8 +13,8 @@ test_output :
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ========= codingstylechk ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir 2>/dev/null 1>&2; \
-	{ ${MAKE} ${MAKEFLAGS} codingstylechk 2>&1; echo cschk ex=$$?; } | \
+	${MAKE} cleandir 2>/dev/null 1>&2; \
+	{ ${MAKE} codingstylechk 2>&1; echo cschk ex=$$?; } | \
 	env NOSORT=1 mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ============= files ===============; \
@@ -22,11 +22,11 @@ test_output :
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo =========== manpages ============; \
-	env MKCATPAGES=no ${MAKE} ${MAKEFLAGS} cleandir 2>/dev/null 1>&2; \
-	${MAKE} ${MAKEFLAGS} manpages 2>/dev/null 1>&2; \
+	env MKCATPAGES=no ${MAKE} cleandir 2>/dev/null 1>&2; \
+	${MAKE} manpages 2>/dev/null 1>&2; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}
 	\
-	${MAKE} ${MAKEFLAGS} cleandir 2>/dev/null 1>&2
+	${MAKE} cleandir 2>/dev/null 1>&2
 
 .include <mkc.minitest.mk>

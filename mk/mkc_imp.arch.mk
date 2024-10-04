@@ -12,7 +12,7 @@ basefile  =	${.CURDIR}/${PROJECTNAME}
 
 bin_cleanup: .PHONY
 	@set -e; ${RM} -rf ${destdir}; ${MKDIR} -m 0700 ${destdir}; \
-	${MAKE} ${MAKEFLAGS} all install DESTDIR=${destdir}
+	${MAKE} all install DESTDIR=${destdir}
 
 realdo_bin_tar: bin_cleanup
 	@set -e; ${RM} -f ${basefile}.tar; cd ${destdir}; \

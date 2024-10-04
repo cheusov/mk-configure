@@ -14,26 +14,26 @@ test_output :
 	env NOSORT=1 mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo =========== depend ============; \
-	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	${MAKE} depend > /dev/null; \
 	find ${.OBJDIR} -type f | LC_ALL=C sort | \
 	grep '[.]d$$' | grep -Ev ${FUNCS_RE:Q} | \
 	env NOSORT=1 mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	echo =========== clean ============; \
-	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	${MAKE} clean > /dev/null; \
 	find ${.OBJDIR} -type f | grep -v _mkc | grep -Ev ${FUNCS_RE:Q} | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	echo =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
 	find ${.OBJDIR} -type f | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	echo ======= depend to OBJDIR ==========; \
 	mkdir obj; MAKEOBJDIR=${.OBJDIR}/obj; export MAKEOBJDIR; \
-	${MAKE} ${MAKEFLAGS} depend > /dev/null; \
+	${MAKE} depend > /dev/null; \
 	find ${.OBJDIR}/obj -type f | grep -vE ${FUNCS_RE:Q} | \
 	grep -v _mkc | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf obj; unset MAKEOBJDIR; \
 	true _______ cleandir _______; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

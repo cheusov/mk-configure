@@ -11,28 +11,28 @@ test_output:
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}/proj ${.CURDIR:Q}; \
 	\
 	echo ========= install ==========; \
-	${MAKE} ${MAKEFLAGS} install -j3 \
+	${MAKE} install -j3 \
 		DESTDIR=${.OBJDIR}/proj > /dev/null; \
 	find ${.OBJDIR}/proj${PREFIX} -type f -o -type d | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}/proj ${.CURDIR:Q}; \
 	\
 	echo ======== uninstall =========; \
-	${MAKE} ${MAKEFLAGS} -j4 uninstall \
+	${MAKE} -j4 uninstall \
 		DESTDIR=${.OBJDIR}/proj > /dev/null; \
 	find ${.OBJDIR}/proj${PREFIX} -type f -o -type d | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}/proj ${.CURDIR:Q}; \
 	\
 	echo ========== clean ===========; \
-	${MAKE} ${MAKEFLAGS} clean > /dev/null; \
+	${MAKE} clean > /dev/null; \
 	find ${.OBJDIR}/proj -type f | grep -vE '${EXCL_RE}' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}/proj ${.CURDIR:Q}; \
 	\
 	echo ========== all SHRTOUT=yes ===========; \
-	${MAKE} ${MAKEFLAGS} all SHRTOUT=yes | grep -v 'loading site script' | \
+	${MAKE} all SHRTOUT=yes | grep -v 'loading site script' | \
 	grep -E '^[[:alpha:]]+:'; \
 	\
 	echo ======= cleandir ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null; \
+	${MAKE} cleandir > /dev/null; \
 	find ${.OBJDIR}/proj -type f | grep -vE '${EXCL_RE}' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q}/proj ${.CURDIR:Q}
 

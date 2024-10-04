@@ -14,6 +14,6 @@ test_output:
 	find ${.CURDIR} -type f | grep -Ev '${FUNCS_RE}' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
-	${MAKE} -C${.CURDIR} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} -C${.CURDIR} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

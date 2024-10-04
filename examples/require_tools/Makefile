@@ -9,6 +9,6 @@ test: errorcheck
 	echo flex: ${CUSTOM.prog_flex}; \
 	echo bison: ${CUSTOM.prog_bison}; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.prog.mk>

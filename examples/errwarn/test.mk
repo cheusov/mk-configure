@@ -14,6 +14,6 @@ test_output:
 	echo '${CLEANFILES}' | \
 	awk '{for(i=1; i<=NF; ++i) if ($$i ~ /[.]o.?$$/) print $$i}'; \
 	echo ======= cleandir ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

@@ -13,7 +13,7 @@ test: ${TEST_PREREQS}
 	@echo 'Testing ${.CURDIR}... ' 1>&2; \
 	set -e; cd ${.CURDIR}; \
 	${RM} -f ${_tmp_out}; \
-	${MAKE} ${MAKEFLAGS} test_output > ${_tmp_out}.tmp; \
+	${MAKE} test_output > ${_tmp_out}.tmp; \
 	mv ${_tmp_out}.tmp ${_tmp_out}; \
 	if test -f ${.CURDIR}/expect.${OPSYS}.out; then \
 		expect=${.CURDIR}/expect.${OPSYS}.out; \

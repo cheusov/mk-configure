@@ -46,6 +46,6 @@ test_output:
 	ls -1 _mkc_* | sort; \
 	echo =======================================; \
 	: =========== cleandir ============; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

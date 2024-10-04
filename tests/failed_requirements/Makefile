@@ -17,7 +17,7 @@ command += printf "MKC_PROTOTYPE_FUNC.proto=void proto(void)\n" > ${.OBJDIR}/tes
 command += printf "MKC_PROTOTYPE_HEADERS.proto=err.h\n" >> ${.OBJDIR}/test.mk;
 command += printf "${t}\n" >> ${.OBJDIR}/test.mk;
 command += printf ".include <mkc.mk>\n" >> ${.OBJDIR}/test.mk;
-command += ${MAKE} -f ${.OBJDIR}/test.mk ${MAKEFLAGS} all 2>&1 || true;
+command += ${MAKE} -f ${.OBJDIR}/test.mk all 2>&1 || true;
 .endfor
 
 .PHONY : test_output
@@ -26,7 +26,7 @@ test_output:
 	echo =========== all ============; \
 	{ ${command} } | grep ERROR:; \
 	true _______ cleandir _______ %%; \
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>
 .include <mkc.mk>

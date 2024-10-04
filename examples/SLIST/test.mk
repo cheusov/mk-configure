@@ -3,6 +3,6 @@ test_output:
 	@set -e; \
 	${.OBJDIR}/hello_SLIST < ${.CURDIR}/input.in; \
 	\
-	${MAKE} ${MAKEFLAGS} cleandir > /dev/null
+	${MAKE} cleandir > /dev/null
 
 .include <mkc.minitest.mk>

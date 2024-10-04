@@ -12,7 +12,7 @@ _MKC_MK := 1
 MKC_CACHEDIR ?=	${SRCTOP}
 .MAIN: all
 .DEFAULT:
-	@set -e; cd ${SRCTOP}; ${MAKE} ${MAKEFLAGS} ${.TARGET}-${.CURDIR:S,${SRCTOP}/,,}
+	@set -e; cd ${SRCTOP}; ${MAKE} ${.TARGET}-${.CURDIR:S,${SRCTOP}/,,}
 .else
 .include "mkc_imp.mk"
 .endif #SRCTOP

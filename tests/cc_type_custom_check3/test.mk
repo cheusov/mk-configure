@@ -6,7 +6,7 @@ test_output:
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	\
 	echo ======= cleandir ==========; \
-	${MAKE} ${MAKEFLAGS} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
+	${MAKE} cleandir DESTDIR=${.OBJDIR} > /dev/null; \
 	find ${.OBJDIR} -type f | grep -v '[.]tmp$$' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}
 
