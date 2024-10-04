@@ -20,7 +20,7 @@ LINKS  =	${BINDIR}/xxzip ${BINDIR}/xxunzip
 LINKS +=	${BINDIR}/xxzip ${BINDIR}/xxzcat
 
 FILES    =	tutorial.html
-FILESDIR =	${DOCDIR}
+FILESDIR_tutorial.html =	${DOCDIR}
 
 WARNS    =	4
 
