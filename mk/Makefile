@@ -60,6 +60,7 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 post_all:
 	@MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
 	MK_FILES_DIR=${.CURDIR}; export MK_FILES_DIR; \
+	unset MAKEFLAGS || true; \
 	${OBJDIR_scripts}/mkc_compiler_settings
 
 post_install:
