@@ -12,6 +12,7 @@ INTEXTS_REPLS +=	AWK            ${USE_AWK:U}
 INTEXTS_REPLS +=	SH             ${USE_SH:U}
 INTEXTS_REPLS +=	BMAKE          ${BMAKE}
 INTEXTS_REPLS +=	mkfilesdir     ${MKFILESDIR}
+INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	syscustomdir   ${BUILTINSDIR}
 INTEXTS_REPLS +=	mkc_libexecdir ${LIBEXECDIR}/mk-configure
 

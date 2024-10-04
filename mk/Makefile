@@ -60,6 +60,7 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 post_all:
 	@MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
 	MK_FILES_DIR=${.CURDIR}; export MK_FILES_DIR; \
+	FEATURES_DIR=${.CURDIR}/../features; export FEATURES_DIR; \
 	unset MAKEFLAGS || true; \
 	${OBJDIR_scripts}/mkc_compiler_settings
 
@@ -140,7 +141,6 @@ INTEXTS_REPLS +=	mkdep_type     ${mkdep_type}
 INTEXTS_REPLS +=	makedepend_cmd ${makedepend_cmd:Q}
 INTEXTS_REPLS +=	CC             ${PROG.cc:Q}
 .endif # !empty(CC)
-INTEXTS_REPLS +=	featuresdir    ${FEATURESDIR}
 INTEXTS_REPLS +=	NM             ${PROG.nm:Q}
 INTEXTS_REPLS +=	ID             ${PROG.id:Q}
 INTEXTS_REPLS +=	CXX            ${PROG.c++:Q}
