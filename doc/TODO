@@ -1,3 +1,51 @@
+Rename SCRIPTSNAME to SCRIPTNAME
+
+feature posix_getopt: use bsd_getopt from libbsd
+
+__filesinstall target vs. .ALLSRC =>
+
+/bin/install -c -d -m 755 /opt/pkgsrc4unix/bin /opt/pkgsrc4unix/libexec/distbb /opt/pkgsrc4unix/share/distbb /opt/pkgsrc4unix/share/doc/distbb /opt/pkgsrc4unix/share/examples/distbb /opt/pkgsrc4unix/share/runawk
+/bin/install  -c  -o root  -g root  -m 644  TUTORIAL.html /opt/pkgsrc4unix/share/doc/distbb/TUTORIAL.pod /opt/pkgsrc4unix/share/doc/distbb/TUTORIAL.html
+/bin/install: target '/opt/pkgsrc4unix/share/doc/distbb/TUTORIAL.html' is not a directory
+
+============================================================
+USE_LEX and USE_LEXLIB -- default LEX and LEXLIB
+
+============================================================
+If checking for compiler fails, remove .res files
+
+   cheusov@illumos 
+   1 dictd>git status --ignored
+   On branch master
+   Your branch is up to date with 'origin/master'.
+
+   Ignored files:
+     (use "git add -f <file>..." to include in what will be committed)
+        _mkc_cc_type.err
+        _mkc_cc_type.res
+
+   nothing to commit, working tree clean
+
+   cheusov@illumos 
+   0 dictd>cat _mkc_cc_type.res
+   unknown i86pc-unknown-SunOS
+
+   cheusov@illumos 
+   0 dictd>cat _mkc_cc_type.err 
+   /opt/local/bin/mkc_check_compiler: line 78: cc: not found
+
+   cheusov@illumos 
+   0 dictd>
+
+============================================================
+SUBPRJ_DFLT vs. LIB, see libmaa,
+try to set environment SUBPRJ_DFLT
+
+============================================================
+It seems virtual targets do not work
+if they not a part of SUBPRJ_DFLT.
+See libmaa target test
+
 ============================================================
 move feature signalname from nbase to mk-configure
 
