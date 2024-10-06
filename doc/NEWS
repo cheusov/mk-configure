@@ -1,4 +1,23 @@
 ======================================================================
+Version 0.40.0, by Aleksey Cheusov, Sun,  6 Oct 2024 12:31:47 +0400
+
+  Fix build failure with bmake-20240909
+
+  Fix tests/test_subprj_dash and derivatives failed with
+  bmake-20240909
+
+  feature dprintf: add __printflike(2,3) to dprintf(3)
+
+  mkc_compiler_settings:
+     * add CUSTOM.attribute_{aligned,always_inline,const,noreturn,pure,printflike}
+       to compiler settings
+     * add path to features to bmake
+
+  Do not pass ${MAKEFLAGS} to recursive make invocation
+
+  Fix examples/xxzip/Makefile
+
+======================================================================
 Version 0.39.4, by Aleksey Cheusov, Thu, 20 Jun 2024 10:56:33 +0400
 
   Fix bashism in examples/libdeps/test.mk. Thanks to wiz@NetBSD.org
