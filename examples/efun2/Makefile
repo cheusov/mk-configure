@@ -1,5 +1,5 @@
-PROGS     =		prog
-SRCS.prog =		prog.c
+PROGS        =		cprog cxxprog
+SRCS.cxxprog =		cxxprog.cc
 
 WARNS     =		4
 

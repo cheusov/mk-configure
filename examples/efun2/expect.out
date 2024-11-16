@@ -1,1 +1,2 @@
-ecalloc succeded
+cprog: ecalloc succeded
+cxxprog: ecalloc succeded

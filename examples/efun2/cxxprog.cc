@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <iostream>
 
 #include <mkc_efun.h>
 
@@ -7,8 +6,8 @@
 
 int main (int argc, char **argv)
 {
-	char *buffer = ecalloc(BUF_SIZE, 1);
-	printf("ecalloc succeded\n");
+	void *buffer = ecalloc(BUF_SIZE, 1);
+	std::cout << "cxxprog: ecalloc succeded\n";
 	free(buffer);
 
 	return 0;
