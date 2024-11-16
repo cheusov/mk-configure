@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 		   flags, tfnd, nsecs, optind);
 
 	if (argc > 0)
-		printf("name argument = %s\n", argv[0]);
+		printf("free argument = %s\n", argv[0]);
 
 	exit(EXIT_SUCCESS);
 }
