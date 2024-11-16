@@ -26,6 +26,7 @@
 #include <mkc_efun.h>
 
 #include <string.h>
+#include <stdlib.h>
 
 #ifdef getopt
 #undef getopt
@@ -43,6 +44,8 @@ int posix_getopt(int argc, char * const argv[], const char *optstring)
 	ret = getopt(argc, argv, new_optstr);
 	if (ret != '?')
 		optopt = ret;
+
+	free(new_optstr);
 
 	return ret;
 }
