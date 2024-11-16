@@ -1,6 +1,8 @@
 # of lines = 2, # of chars = 26
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_cc_option_-Wno-unused-function.err
+/objdir/_mkc_cc_option_-Wno-unused-function.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
@@ -28,6 +30,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_cc_option_-Wno-unused-function.err
+/objdir/_mkc_cc_option_-Wno-unused-function.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
@@ -48,6 +52,8 @@
 ========== depend ===========
 /objdir/.depend_lexer
 /objdir/Makefile
+/objdir/_mkc_cc_option_-Wno-unused-function.err
+/objdir/_mkc_cc_option_-Wno-unused-function.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
@@ -77,6 +83,8 @@ CC: lexer.c
 LD: lexer
 /objdir/.depend_lexer
 /objdir/Makefile
+/objdir/_mkc_cc_option_-Wno-unused-function.err
+/objdir/_mkc_cc_option_-Wno-unused-function.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_funclib_yywrap.c
