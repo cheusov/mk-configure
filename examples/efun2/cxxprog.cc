@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 
 #include <mkc_efun.h>
 
