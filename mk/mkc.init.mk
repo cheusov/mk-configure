@@ -302,7 +302,7 @@ LDFLAGS.prog +=	${LDFLAGS.relro}
 .endif
 
 .if ${USE_FORT:U:tl} == "yes"
-CPPFLAGS +=	-D_FORTIFY_SOURCE=2
+CPPFLAGS +=	-U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 CFLAGS   +=	-O
 .endif
 
