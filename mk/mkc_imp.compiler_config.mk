@@ -4,6 +4,7 @@ mkc.cc_type.environ = CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${CPPFLAGS:Q} CFLAGS=${CF
 .for c in ${src_type}
   _full_type         !=	env ${mkc.cc_type.environ} mkc_check_compiler ${"${c}" == "cxx":?-x:}
 .   if empty(_full_type)
+      _ != env ${mkc.cc_type.environ} mkc_check_compiler -D ${"${c}" == "cxx":?-x:}
 .     error "Compiler is not found"
 .   endif
   ${c:tu}_TYPE       :=	${_full_type:[1]}

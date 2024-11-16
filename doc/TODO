@@ -13,32 +13,6 @@ __filesinstall target vs. .ALLSRC =>
 USE_LEX and USE_LEXLIB -- default LEX and LEXLIB
 
 ============================================================
-If checking for compiler fails, remove .res files
-
-   cheusov@illumos 
-   1 dictd>git status --ignored
-   On branch master
-   Your branch is up to date with 'origin/master'.
-
-   Ignored files:
-     (use "git add -f <file>..." to include in what will be committed)
-        _mkc_cc_type.err
-        _mkc_cc_type.res
-
-   nothing to commit, working tree clean
-
-   cheusov@illumos 
-   0 dictd>cat _mkc_cc_type.res
-   unknown i86pc-unknown-SunOS
-
-   cheusov@illumos 
-   0 dictd>cat _mkc_cc_type.err 
-   /opt/local/bin/mkc_check_compiler: line 78: cc: not found
-
-   cheusov@illumos 
-   0 dictd>
-
-============================================================
 SUBPRJ_DFLT vs. LIB, see libmaa,
 try to set environment SUBPRJ_DFLT
 
