@@ -26,18 +26,18 @@ __initialized__ := 1
 .MAIN:		all
 
 ###########
-
-.for p in ${PROGS}
-SRCS.${p} ?=	${p}.c
-SRCS.${p} +=	${SRCS} # SRCS may be changed by mkc.conf.mk
-_srcsall +=	${SRCS.${p}}
-.endfor
-
 .if defined(PROG)
 PROGS         ?=	${PROG}
 SRCS          ?=	${PROG}.c
-SRCS.${PROG}  ?=	${SRCS}
-_srcsall +=	${SRCS}
+SRCS.${PROG}   =	${SRCS}
+_srcsall      +=	${SRCS.${PROG}}
+.elif PROGS
+. for p in ${PROGS}
+SRCS.${p}     ?=	${p}.c
+SRCS.${p}     +=	${SRCS} # SRCS may be changed by mkc.conf.mk
+_srcsall      +=	${SRCS.${p}}
+. endfor
+#_srcsall +=	${SRCS}
 .elif ${.CURDIR:T} == ${COMPATLIB:U}
 SRCS     ?=	${FEATURESDIR}/_mkcfake.c
 _srcsall +=	${SRCS}

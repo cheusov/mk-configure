@@ -1,3 +1,4 @@
+============================================================
 Rename SCRIPTSNAME to SCRIPTNAME
 
 feature posix_getopt: use bsd_getopt from libbsd
