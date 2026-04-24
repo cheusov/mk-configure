@@ -86,9 +86,9 @@ HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h:
 1
 HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h:
 1
-HAVE_PROTOTYPE.strstr_ok:
+HAVE_PROTOTYPE.execve_ok:
 1
-HAVE_PROTOTYPE.strstr_bad:
+HAVE_PROTOTYPE.execve_bad:
 0
 HAVE_PROTOTYPE.function_absent:
 0
@@ -159,7 +159,7 @@ MKC_AUTO_CPPFLAGS:
 -DHAVE_FUNC5_MKC_TEST_FUNC_INCLUDE_MKC_TEST_H=1
 -DCUSTOM_CUSTOM_CHECK1=1
 -DCUSTOM_CUSTOM_CHECK5=1
--DHAVE_PROTOTYPE_STRSTR_OK=1
+-DHAVE_PROTOTYPE_EXECVE_OK=1
 MKC_AUTO_SRCS:
 /somewhere/superfunc1.c
 /somewhere/superfunc2.c
@@ -274,9 +274,9 @@ HAVE_MEMBER.struct_mkc_test_t_a.include_mkc_test_h:
 1
 HAVE_MEMBER.struct_mkc_test_t_b_c.include_mkc_test_h:
 1
-HAVE_PROTOTYPE.strstr_ok:
+HAVE_PROTOTYPE.execve_ok:
 0
-HAVE_PROTOTYPE.strstr_bad:
+HAVE_PROTOTYPE.execve_bad:
 1
 HAVE_PROTOTYPE.function_absent:
 0
@@ -351,7 +351,7 @@ MKC_AUTO_CPPFLAGS:
 -DCUSTOM_CUSTOM_CHECK2=2
 -DCUSTOM_CUSTOM_CHECK2_LINK=3
 -DCUSTOM_CUSTOM_CHECK5=1
--DHAVE_PROTOTYPE_STRSTR_BAD=1
+-DHAVE_PROTOTYPE_EXECVE_BAD=1
 MKC_AUTO_SRCS:
 /somewhere/superfunc1.c
 /somewhere/superfunc2.c
