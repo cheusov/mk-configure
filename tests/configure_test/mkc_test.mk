@@ -185,6 +185,6 @@ all:
 		sed "s/^.*-DSYSTEM_.*$$/KNOWN_SYSTEM/"
 	@printf "%s\n" "${CPPFLAGS}" | \
 		sed 's/^.*\(MKC_COMMON_DEFINES_WORKS_FINE\).*$$/\1/'
-	@ls -1 _mkc_* | grep -E 'cache2|cc_opt|cxx_opt|ccld_opt|cxxld_opt' | sort
+	@ls -1 _mkc_* | grep -v '[.]dSYM' | grep -E 'cache2|cc_opt|cxx_opt|ccld_opt|cxxld_opt' | sort
 
 .include <mkc.mk>
