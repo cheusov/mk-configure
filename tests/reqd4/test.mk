@@ -9,11 +9,11 @@ test:
 	  ${MAKE} -j3 all MKC_REQD=999.0.0 2>&1 | \
 	  grep ERROR: | \
 	  sed -e 's/ [0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*/ N.N.N/' \
-	      -e 's/^[^"]*"//' -e 's/".*$$//'; \
+	      -e 's/^.*"\(.*\)".*/\1/'; \
 	  ${MAKE} -j3 all MAKE_VERSION=00000000 2>&1 | \
 	  grep ERROR: | \
 	  sed -e 's/^.*"bmake/"bmake/' \
-	      -e 's/^[^"]*"//' -e 's/".*$$//'; \
+	      -e 's/^.*"\(.*\)".*/\1/'; \
 	  echo =========== all ============; \
 	  find ${.OBJDIR} -type f -o -type l | \
 	  mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \

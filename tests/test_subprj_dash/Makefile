@@ -6,7 +6,7 @@ test:
 	tmp_out=${.OBJDIR}/${.CURDIR:T}.test.out; \
 	rm -f $$tmp_out; \
 	${MAKE} -f ${.CURDIR}/test.mk all 2>&1 | head -1 | \
-	sed -e 's,n*b*make\[[0-9]*\],bmake,' -e 's/^[^"]*"//' -e 's/".*$$//' | \
+	sed -e 's,n*b*make\[[0-9]*\],bmake,' -e 's/^.*"\(.*\)".*/\1/' | \
 	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q} > $$tmp_out; \
 	if diff ${.CURDIR}/expect.out $$tmp_out; then \
 		echo '      succeeded' 1>&2; \
