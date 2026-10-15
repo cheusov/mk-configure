@@ -1,4 +1,6 @@
-=========== all ============
+=========== all def ============
 built
+=========== all USER_WARNS=4 ============
 failed
+=========== all USER_WARNERR=yes ============
 failed
