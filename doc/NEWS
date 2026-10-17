@@ -1,4 +1,9 @@
 ======================================================================
+Version 0.40.2, by Aleksey Cheusov, Sun, 18 Oct 2026 01:46:41 +0400
+
+  More fixes in tests for recent versions of bmake
+
+======================================================================
 Version 0.40.1, by Aleksey Cheusov, Thu, 15 Oct 2026 00:41:49 +0400
 
   Remove .res file if checking for compiler failed. This allows to
