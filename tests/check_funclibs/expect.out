@@ -1,0 +1,15 @@
+HAVE_FUNCLIB.strcpy=1
+HAVE_FUNCLIB.sqrt.m=1
+HAVE_FUNCLIB.bad_func.bad_lib=0
+HAVE_FUNCLIB.bad_func=0
+v1=superfunc1.c
+v2=superfunc2.c
+v3=
+==========
+HAVE_FUNCLIB.strcpy=0
+HAVE_FUNCLIB.sqrt.m=0
+HAVE_FUNCLIB.bad_func.bad_lib=1
+HAVE_FUNCLIB.bad_func=1
+v1=superfunc1.c
+v2=superfunc2.c
+v3=
