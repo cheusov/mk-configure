@@ -1,0 +1,13 @@
+HAVE_TYPE.size_t.string_h=1
+HAVE_TYPE.bad_type=0
+HAVE_TYPE.bad-type.bad_header_h=0
+HAVE_TYPE.time_t.time_h=1
+-DHAVE_TYPE_SIZE_T_STRING_H=1
+-DHAVE_TYPE_TIME_T_TIME_H=1
+==========
+HAVE_TYPE.size_t.string_h=0
+HAVE_TYPE.bad_type=1
+HAVE_TYPE.bad-type.bad_header_h=1
+HAVE_TYPE.time_t.time_h=0
+-DHAVE_TYPE_BAD_TYPE=1
+-DHAVE_TYPE_BAD-TYPE_BAD_HEADER_H=1
