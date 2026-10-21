@@ -1,0 +1,9 @@
+HAVE_FUNCLIB.strcpy=1
+HAVE_FUNCLIB.sqrt.m=1
+HAVE_FUNCLIB.bad_func.bad_lib=0
+HAVE_FUNCLIB.bad_func=0
+==========
+HAVE_FUNCLIB.strcpy=0
+HAVE_FUNCLIB.sqrt.m=0
+HAVE_FUNCLIB.bad_func.bad_lib=1
+HAVE_FUNCLIB.bad_func=1

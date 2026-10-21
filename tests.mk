@@ -7,4 +7,8 @@ tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
    os_NetBSD os_OpenBSD os_Linux dltest mkc_install mkc_check_custom \
    cccxx_type cc_type_custom_check1 cc_type_custom_check2 \
    cc_type_custom_check3 cxx_type_custom_check failed_requirements \
-   reqd_clean_cache reqd_clean_cache2 WARNERR
+   reqd_clean_cache reqd_clean_cache2 WARNERR \
+   \
+   check_headers check_header_files check_funclibs check_types check_members \
+   check_prototypes check_defines check_funcs check_vars check_sizeof \
+   check_progs

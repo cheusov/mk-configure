@@ -1,0 +1,13 @@
+HAVE_PROG.awk=1
+HAVE_PROG.sh=1
+HAVE_PROG.bad-prog=0
+PROG.awk=/path/to/awk
+PROG.sh=/path/to/sh
+PROG.bad-prog=
+==========
+HAVE_PROG.awk=0
+HAVE_PROG.sh=0
+HAVE_PROG.bad-prog=1
+PROG.awk=/path/to/awk
+PROG.sh=/path/to/sh
+PROG.bad-prog=
