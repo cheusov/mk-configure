@@ -1,5 +1,5 @@
 MKC_CHECK_FUNCLIBS  +=	strcpy sqrt:m
-MKC_CHECK_FUNCLIBS  +=	bad_func.bad_lib bad_func
+MKC_CHECK_FUNCLIBS  +=	bad_func:bad_lib bad_func
 
 MKC_SOURCE_FUNCLIBS +=	superfunc1
 MKC_SOURCE_FUNCLIBS +=	superfunc2:superlib2
