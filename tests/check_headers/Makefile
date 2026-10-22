@@ -1,4 +1,4 @@
-MKC_CHECK_HEADERS +=	sys/time.h string.h stdlib.h,unistd.h
+MKC_CHECK_HEADERS +=	sys/time.h string.h stdlib.h,unistd.h stdio.h
 MKC_CHECK_HEADERS +=	bad_dir/bad_header.h bad_header.h
 MKC_CHECK_HEADERS +=	include/mkc_test.h
 

@@ -1,0 +1,13 @@
+HAVE_VAR.errno.errno_h=1
+HAVE_VAR.bad_var.bar_header=0
+HAVE_VAR.mkc_test_var.include_mkc_test_h=1
+HAVE_VAR.mkc_test_var2.include_mkc_test_h=1
+-DHAVE_VAR_ERRNO_ERRNO_H=1
+-DHAVE_VAR_MKC_TEST_VAR_INCLUDE_MKC_TEST_H=1
+-DHAVE_VAR_MKC_TEST_VAR2_INCLUDE_MKC_TEST_H=1
+==========
+HAVE_VAR.errno.errno_h=0
+HAVE_VAR.bad_var.bar_header=1
+HAVE_VAR.mkc_test_var.include_mkc_test_h=0
+HAVE_VAR.mkc_test_var2.include_mkc_test_h=0
+-DHAVE_VAR_BAD_VAR_BAR_HEADER=1

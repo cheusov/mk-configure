@@ -1,6 +1,6 @@
 MKC_CHECK_TYPES+=	size_t:string.h
 MKC_CHECK_TYPES+=	bad_type bad-type:bad_header.h
-MKC_CHECK_TYPES+=	time_t:stddef.h,time.h
+MKC_CHECK_TYPES+=	time_t:stddef.h,time.h size_t:stdlib.h
 
 vars              :=	${MKC_CHECK_TYPES:C/:.*,/:/:S,/,_,g:S/.h/_h/g:S/:/./g:S/^/HAVE_TYPE./g}
 

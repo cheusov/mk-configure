@@ -1,0 +1,13 @@
+SIZEOF.int=n
+SIZEOF.long_long=n
+SIZEOF.voidP=n
+SIZEOF.size_t.string_h=n
+SIZEOF.bad_type=failed
+SIZEOF.bad_type.bad_header_h=failed
+==========
+SIZEOF.int=n
+SIZEOF.long_long=n
+SIZEOF.voidP=n
+SIZEOF.size_t.string_h=n
+SIZEOF.bad_type=failed
+SIZEOF.bad_type.bad_header_h=failed

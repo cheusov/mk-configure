@@ -4,6 +4,7 @@ MKC_CHECK_MEMBERS+=	bad.member
 MKC_CHECK_MEMBERS+=	bad.member:string.h
 MKC_CHECK_MEMBERS+=	struct-mkc_test_t.a:include/mkc_test.h
 MKC_CHECK_MEMBERS+=	struct-mkc_test_t.b.c:include/mkc_test.h
+MKC_CHECK_MEMBERS+=	struct-mkc_test_t.d:include/mkc_test.h
 
 CPPFLAGS      +=	-I..
 

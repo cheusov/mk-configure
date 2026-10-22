@@ -7,7 +7,7 @@ preset =	${vars_with_vals:S/=1/=2/g:S/=0/=1/g:S/=2/=0/g}
 
 output_vars:
 .for v in ${vars}
-	@echo ${v}=${${v}}
+	@echo ${v}=${${v}} | awk '/SIZEOF/ {sub(/=[123456789]/, "=n")} /^PROG[.]/ {sub(/=.*\//, "=/path/to/")} {print}'
 .endfor
 .for v in ${CPPFLAGS}
 #. if !empty(v:M-DHAVE_*)
@@ -18,4 +18,4 @@ output_vars:
 test_output:
 	@${MAKE} output_vars
 	@echo ==========
-	@env ${preset} ${MAKE} output_vars
+	@env ${MAKE} ${preset} output_vars

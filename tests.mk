@@ -1,4 +1,8 @@
-tests       =	configure_test mkinstall mkshlib mkstaticlib mkpiclib \
+tests       =	   check_headers check_header_files check_funclibs check_types check_members \
+   check_prototypes check_defines check_funcs check_vars check_sizeof \
+   check_progs check_custom \
+   \
+   mkinstall mkshlib mkstaticlib mkpiclib \
    mkprofilelib mkdll pkg_config_0 pkg_config_1 pkg_config_1_1 pkg_config_2 \
    lua_dirs rec_makefiles reqd reqd2 reqd3 reqd4 \
    intexts_cleantrg require_prototype test_subprj_dash test_mkc_vs_PROG \

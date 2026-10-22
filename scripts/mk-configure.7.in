@@ -1323,7 +1323,7 @@ unless MKC_CUSTOM_CACHE.<custom_check_name> is set to something else.
       MKC_CUSTOM_FN.script_check=      checks/script_check
  Res. CUSTOM.nested_funcs=        1
       CUSTOM.script_check=        0
-      CFLAGS+= -DCUSTOM_NESTED_FUNCS=1
+      CPPFLAGS+= -DCUSTOM_NESTED_FUNCS=1
 .VE
 Note that script for the check should be an executable file.
 .IP MKC_CHECK_CXX_OPTS
@@ -1354,8 +1354,8 @@ unless MKC_NOAUTO is set to 1.
  Res: HAVE_DEFINE.RTLD_LAZY.dlfcn_h = 1
       HAVE_DEFINE.__GNUC__          = 1
       HAVE_DEFINE._MSC_VER_         = 0
-      CFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \\
-                -DHAVE_DEFINE___GNUC__=1
+      CPPFLAGS += -DHAVE_DEFINE_RTLD_LAZY_DLFCN_H=1 \\
+                  -DHAVE_DEFINE___GNUC__=1
 .VE
 .IP MKC_CHECK_FUNCLIBS
 List of <function>:<library> pairs to check,
@@ -1417,9 +1417,9 @@ is "yes", equivalent define leads to the same results.
  Res: HAVE_FUNC2.fgetln.stdio_h = 1
       HAVE_FUNC6.pselect.sys_select_h = 1
       HAVE_FUNC1.htobe32.sys_endian_h=1
-      CFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
-             += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
-	     += -DHAVE_FUNC1_HTOBE32_SYS_ENDIAN_H
+      CPPFLAGS += -DHAVE_FUNC2_FGETLN_STDIO_H=1 \\
+               += -DHAVE_FUNC6_PSELECT_SYS_SELECT_H=1 \\
+	       += -DHAVE_FUNC1_HTOBE32_SYS_ENDIAN_H
 .VE
 .IP MKC_CHECK_HEADER_FILES
 Same as
@@ -1449,7 +1449,7 @@ is added to CPPFLAGS unless MKC_NOAUTO is set to 1.
  Res: HAVE_HEADER.sys_time_h = 1
       HAVE_HEADER.fcntl_h    = 1
       HAVE_HEADER.execinfo_h = 1
-      CFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 -DHAVE_HEADER_FCNTL=1
+      CPPFLAGS += -DHAVE_HEADER_SYS_TIME_H=1 -DHAVE_HEADER_FCNTL=1
 .VE
 .IP MKC_CHECK_MEMBERS
 List of <type>.<member>:<header> to check.
@@ -1478,8 +1478,8 @@ unless MKC_NOAUTO is set to 1.
         MKC_CHECK_VARS += struct-tm.tm_isdst:time.h
    Res: HAVE_MEMBER.struct_ifreq_ifr_ifrn_ifrn_name.net_if_h=1
         HAVE_MEMBER.struct_tm_tm_isdst.time_h=1
-        CFLAGS += -DHAVE_MEMBER_STRUCT_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
-        CFLAGS += -DHAVE_MEMBER_STRUCT_TM_TM_ISDST_TIME_H=1
+        CPPFLAGS += -DHAVE_MEMBER_STRUCT_IFREQ_IFR_IFRN_IFRN_NAME_NET_IF_H=1
+        CPPFLAGS += -DHAVE_MEMBER_STRUCT_TM_TM_ISDST_TIME_H=1
 .VE
 .IP MKC_CHECK_PROGS
 List of <progname>s to check.
@@ -1520,7 +1520,7 @@ Ex.
 Res.
  HAVE_PROTOTYPE.posix_iconv=0
  HAVE_PROTOTYPE.const_iconv=1
- CFLAGS += -DHAVE_PROTOTYPE_CONST_ICONV=1
+ CPPFLAGS += -DHAVE_PROTOTYPE_CONST_ICONV=1
 .VE
 .IP MKC_CHECK_SIZEOF
 List of <type>:<header> to check. <header> part is optional.
@@ -1549,9 +1549,9 @@ unless MKC_NOAUTO is set to 1
  Res: SIZEOF.voidP             = 4
       SIZEOF.long_long         = 4
       SIZEOF.off_t.sys_types_h = 8
-      CFLAGS += -DSIZEOF_VOIDP=4 \\
-                -DSIZEOF_LONG_LONG=4 \\
-                -DSIZEOF_OFF_T_SYS_TYPES_H=8
+      CPPFLAGS += -DSIZEOF_VOIDP=4 \\
+                  -DSIZEOF_LONG_LONG=4 \\
+                  -DSIZEOF_OFF_T_SYS_TYPES_H=8
 .VE
 .IP MKC_CHECK_TYPES
 List of type:header to check. <header> part is optional.
@@ -1572,7 +1572,7 @@ unless MKC_NOAUTO is set to 1.
 .VS
  Ex:  MKC_CHECK_TYPES += size_t:string.h
  Res: HAVE_TYPE.size_t.string_h = 1
-      CFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
+      CPPFLAGS += -DHAVE_TYPE_SIZE_T_STRING_H=1
 .VE
 .IP MKC_CHECK_VARS
 List of variable:header to check. <header> part is optional.
@@ -1592,7 +1592,7 @@ unless MKC_NOAUTO is set to 1.
 .VS
  Ex:  MKC_CHECK_VARS += sys_errlist:errno.h
  Res: HAVE_VAR.sys_errlist.errno_h = 1
-      CFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
+      CPPFLAGS += -DHAVE_VAR_SYS_ERRLIST_ERRNO_H
 .VE
 .IP MKC_COMMON_DEFINES
 List of defines always passed to compiler

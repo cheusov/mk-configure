@@ -1,0 +1,15 @@
+CUSTOM.custom_check1=1
+CUSTOM.custom_check2=0
+CUSTOM.custom_check2_link=0
+CUSTOM.custom_check5=1
+CUSTOM.custom_check5_link=0
+CUSTOM.custom_check5_noauto=1
+CUSTOM.custom_check3=1
+==========
+CUSTOM.custom_check1=0
+CUSTOM.custom_check2=1
+CUSTOM.custom_check2_link=1
+CUSTOM.custom_check5=0
+CUSTOM.custom_check5_link=1
+CUSTOM.custom_check5_noauto=0
+CUSTOM.custom_check3=0
