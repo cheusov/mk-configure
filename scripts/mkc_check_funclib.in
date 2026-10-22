@@ -91,7 +91,7 @@ int $fname (int, char **);
 int main(int argc, char **argv)
 {
    if (argc && argv) return 0;
-   return $fname(0, (char*)0);
+   return $fname(0, (char**)0);
 }
 EOF
 
