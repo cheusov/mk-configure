@@ -1,4 +1,17 @@
 ======================================================================
+Version 0.40.3, by Aleksey Cheusov, Fri, 23 Oct 2026 17:18:12 +0400
+
+  Fix support for clang-22 and probably other versions in
+  mkc_check_funclibs (and therefore MKC_CHECK_FUNCLIBS). Also pragma
+  was removed for gcc>=14, it is not needed any longer.
+
+  Overcomplicated tests/configure_test was replaced with much simplier
+  tests tests/check_{custom,defines,funclibs,funcs,header,headers,members,
+  progs,prototypes,sizeof,types,vars}
+
+  mk-configure.7: fixes in example sections (MKC_CHECK_<XXX> variables)
+
+======================================================================
 Version 0.40.2, by Aleksey Cheusov, Sun, 18 Oct 2026 01:46:41 +0400
 
   More fixes in tests for recent versions of bmake
