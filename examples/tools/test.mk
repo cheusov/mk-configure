@@ -41,7 +41,8 @@ test_output :
 	\
 	echo ===== all SHRTOUT=yes ======; \
 	${MAKE} clean > /dev/null; \
-	env SHRTOUT=YES ${MAKE} all 2>&1; \
+	env SHRTOUT=YES ${MAKE} all 2>&1 | \
+	mkc_test_helper2; \
 	\
 	echo ========= installdirs ==========; \
 	${MAKE} installdirs DESTDIR=${.OBJDIR} \

@@ -65,7 +65,8 @@ test_output:
 	    ${run_nm} ${OBJDIR_libfooqux}/libfooqux.so;; \
 	*) \
 	    printf 'symbol foo\nsymbol fooqux\n';; \
-	esac; \
+	esac | \
+	mkc_test_helper ${PREFIX:Q} ${.OBJDIR:Q} ${.CURDIR:Q}; \
 	rm -rf ${.OBJDIR}/`echo ${PREFIX} | cut -d/ -f2`; \
 	\
 	echo ======= all with MKDEPEND=yes ==========; \

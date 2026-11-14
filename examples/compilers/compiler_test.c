@@ -23,7 +23,12 @@
 #endif
 
 #ifndef HAVE_DEFINE___PCC__
-#define HAVE_DEFINE___PCC__ 0
+# define HAVE_DEFINE___PCC__ 0
+#else
+# ifdef HAVE_DEFINE___GNUC__
+#  undef HAVE_DEFINE___GNUC__
+#  define HAVE_DEFINE___GNUC__ 0
+# endif
 #endif
 
 #ifndef HAVE_DEFINE___SUNPRO_C
