@@ -15,6 +15,7 @@ sed \
     -e '/checking C\([+]\)* compiler type/ s|[.][.][.] .*|... mmm nnn|' \
     -e '/was built for newer/ d' \
     -e '/warning: unsupported attribute/ d' \
+    -e '/warning: cannot inline but always_inline/ d' \
     "$@" |
 grep -Ev 'ld: warning:.*was built for newer macOS version'
 

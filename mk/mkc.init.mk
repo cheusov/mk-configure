@@ -298,7 +298,7 @@ _CXXFLAGS1   +=	${CXXFLAGS.mmd:U${CXXFLAGS.mmd}}
 .endif
 
 .if ${USE_RELRO:U:tl} == "yes"
-LDFLAGS.prog +=	${LDFLAGS.relro}
+LDFLAGS.prog +=	${${ld_type:tu}LDFLAGS.relro}
 .endif
 
 .if ${USE_FORT:U:tl} == "yes"

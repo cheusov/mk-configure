@@ -58,10 +58,12 @@ CLEANFILES +=	mkc_imp.cc_*.mk mkc_imp.cxx_*.mk
 .include <mkc.init.mk>
 
 post_all:
-	@MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
+	@set -e; \
+	MAKEOBJDIR=${.OBJDIR}; export MAKEOBJDIR; \
 	MK_FILES_DIR=${.CURDIR}; export MK_FILES_DIR; \
-	FEATURES_DIR=${.CURDIR}/../features; export FEATURES_DIR; \
+	FEATURESDIR=${.CURDIR}/../features; export FEATURESDIR; \
 	unset MAKEFLAGS || true; \
+	export CC CXX; \
 	${OBJDIR_scripts}/mkc_compiler_settings
 
 post_install:

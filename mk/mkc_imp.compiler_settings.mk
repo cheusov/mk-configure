@@ -1,3 +1,14 @@
+.include <mkc_imp.compiler_config.mk> # CC/CXX is set, detect compiler type
+
+#. info "%%% CC=${CC}"
+#. info "%%% CXX=${CXX}"
+#. info "%%% CC_TYPE=${CC_TYPE}"
+#. info "%%% CXX_TYPE=${CXX_TYPE}"
+
+.if !empty(CC) && !empty(CXX)
+. error "Either CC or CXX might be set"
+.endif
+
 #################################################
 ### C variables
 CFLAGS.dflt.clang     =		-Qunused-arguments -Werror=implicit-function-declaration
@@ -55,12 +66,13 @@ CFLAGS.ssp.gcc     =		-fstack-protector -Wstack-protector --param__ssp-buffer-si
 CFLAGS.ssp.clang   =		${CFLAGS.ssp.gcc}
 CFLAGS.ssp.icc     =		-fstack-security-check
 CFLAGS.ssp.ibmc    =		-qstackprotect
+CFLAGS.ssp.pcc     =		-fstack-protector
 CFLAGS.ssp        ?=		${CFLAGS.ssp.${CC_TYPE}:U}
 
 CFLAGS.pic.gcc     =		-fPIC__-DPIC
 CFLAGS.pic.clang   =		-fPIC__-DPIC
 CFLAGS.pic.icc     =		-fPIC__-DPIC
-CFLAGS.pic.pcc     =		-k -DPIC
+CFLAGS.pic.pcc     =		-k__-DPIC
 CFLAGS.pic.mipspro =		-KPIC
 CFLAGS.pic.sunpro  =		-xcode=pic32 # -KPIC
 CFLAGS.pic.hpc     =		+Z # +z
@@ -71,12 +83,14 @@ CFLAGS.pic        ?=		${CFLAGS.pic.${CC_TYPE}:U}
 CFLAGS.pie.gcc   =		-fPIE__-DPIC
 CFLAGS.pie.clang =		${CFLAGS.pie.gcc}
 CFLAGS.pie.icc   =		-fPIE__-DPIC
+CFLAGS.pie.pcc   =
 CFLAGS.pie       =		${CFLAGS.pie.${CC_TYPE}.${TARGET_OPSYS}:U${CFLAGS.pie.${CC_TYPE}:U}}
 
 CFLAGS.md          =		-MD
 CFLAGS.mmd         =		-MMD
 
-LDFLAGS.relro  =		-Wl,-zrelro__-Wl,-znow
+CLDFLAGS.relro     =		-Wl,-zrelro__-Wl,-znow
+CXXLDFLAGS.relro   =		${CLDFLAGS.relro}
 
 _cc_vars += CFLAGS.dflt CFLAGS.warnerr CFLAGS.ssp CFLAGS.pic CFLAGS.pie CFLAGS.md CFLAGS.mmd
 
@@ -93,23 +107,39 @@ _cxx_vars +=	CXXFLAGS.std.${std}
 .undef _CXXSTD_LIST
 
 .if ${TARGET_OPSYS} != "Darwin"
-LDFLAGS.pie             =	-fPIE__-pie
+CLDFLAGS.pie             =	-fPIE__-pie
+CXXLDFLAGS.pie           =	${CLDFLAGS.pie}
 .endif
 
-LDFLAGS.shared.sunld    =	-Wl,-G
-LDFLAGS.shared.darwinld =
-LDFLAGS.shared.gnuld   =	-Wl,-shared
-LDFLAGS.shared.hpld    =	-Wl,-b__-Wl,+b__-Wl,${LIBDIR}
+CLDFLAGS.shared.sunld    =	-Wl,-G
+CLDFLAGS.shared.darwinld =
+CLDFLAGS.shared.gnuld   =	-Wl,-shared
+CLDFLAGS.shared.hpld    =	-Wl,-b__-Wl,+b__-Wl,${LIBDIR}
 
-LDFLAGS.shared.gcc     =	-shared
-LDFLAGS.shared.clang   =	-shared
-LDFLAGS.shared.pcc     =	-shared
-LDFLAGS.shared.icc     =	-shared
-LDFLAGS.shared.hpc     =	-b
-LDFLAGS.shared.imbc    =	-qmkshrobj
-LDFLAGS.shared.mipspro =	-shared
-LDFLAGS.shared.sunpro  =	-G
-LDFLAGS.shared.decc    =	-shared
+CLDFLAGS.shared.gcc     =	-shared
+CLDFLAGS.shared.clang   =	-shared
+CLDFLAGS.shared.pcc     =	-shared
+CLDFLAGS.shared.icc     =	-shared
+CLDFLAGS.shared.hpc     =	-b
+CLDFLAGS.shared.imbc    =	-qmkshrobj
+CLDFLAGS.shared.mipspro =	-shared
+CLDFLAGS.shared.sunpro  =	-G
+CLDFLAGS.shared.decc    =	-shared
+
+CXXLDFLAGS.shared.sunld    =	${CLDFLAGS.shared.sunld}
+CXXLDFLAGS.shared.darwinld =	${CLDFLAGS.shared.darwinld}
+CXXLDFLAGS.shared.gnuld   =	${CLDFLAGS.shared.gnuld}
+CXXLDFLAGS.shared.hpld    =	${CLDFLAGS.shared.hpld}
+
+CXXLDFLAGS.shared.gcc     =	${CLDFLAGS.shared.gcc}
+CXXLDFLAGS.shared.clang   =	${CLDFLAGS.shared.clang}
+CXXLDFLAGS.shared.pcc     =	${CLDFLAGS.shared.pcc}
+CXXLDFLAGS.shared.icc     =	${CLDFLAGS.shared.icc}
+CXXLDFLAGS.shared.hpc     =	${CLDFLAGS.shared.hpc}
+CXXLDFLAGS.shared.imbc    =	${CLDFLAGS.shared.ibmc}
+CXXLDFLAGS.shared.mipspro =	${CLDFLAGS.shared.mipspro}
+CXXLDFLAGS.shared.sunpro  =	${CLDFLAGS.shared.sunpro}
+CXXLDFLAGS.shared.decc    =	${CLDFLAGS.shared.decc}
 
 .if !empty(CC)
 COMPILER_TYPE          =	${CC_TYPE}
@@ -119,12 +149,10 @@ COMPILER_TYPE          =	${CXX_TYPE}
 .error "No compiler found"
 .endif
 
-LDFLAGS.shared         =	${LDFLAGS.shared.${COMPILER_TYPE}:U${LDFLAGS.shared.${LD_TYPE}:U-shared}}
+CLDFLAGS.expdyn         =	-rdynamic
+CXXLDFLAGS.expdyn       =	${CLDFLAGS.expdyn}
 
-LDFLAGS.expdyn         =	-rdynamic
-
-_ccld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
-    LDFLAGS.shared
+_ccld_vars = CLDFLAGS.pie CLDFLAGS.relro CLDFLAGS.expdyn CLDFLAGS.shared
 
 ### C++ variables
 CXXFLAGS.dflt.clang   =	${CFLAGS.dflt.clang}
@@ -191,41 +219,14 @@ CXXFLAGS.pie         =		${CXXFLAGS.pie.${CXX_TYPE}.${TARGET_OPSYS}:U${CXXFLAGS.p
 CXXFLAGS.md          =		-MD
 CXXFLAGS.mmd         =		-MMD
 
-_cxx_vars += CXXFLAGS.dflt CXXFLAGS.warnerr CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie \
-    CXXFLAGS.md CXXFLAGS.mmd
+CLDFLAGS.shared      =		${CFLAGS.pic}__${CLDFLAGS.shared.${COMPILER_TYPE}:U${CLDFLAGS.shared.${LD_TYPE}:U-shared}}
+CXXLDFLAGS.shared    =		${CXXFLAGS.pic}__${CXXLDFLAGS.shared.${COMPILER_TYPE}:U${CXXLDFLAGS.shared.${LD_TYPE}:U-shared}}
 
-_cxxld_vars = LDFLAGS.pie LDFLAGS.relro LDFLAGS.expdyn \
-    LDFLAGS.shared
+_cxx_vars += CXXFLAGS.dflt CXXFLAGS.warnerr CXXFLAGS.ssp CXXFLAGS.pic CXXFLAGS.pie CXXFLAGS.md CXXFLAGS.mmd
+
+_cxxld_vars = CXXLDFLAGS.pie CXXLDFLAGS.relro CXXLDFLAGS.expdyn CXXLDFLAGS.shared
 
 #################################################
-.for c in cc cxx
-cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
-. if !empty(${c:tu})
-.   for v in ${_${c}_vars}
-MKC_CHECK_${c:tu}_OPTS +=	${${v}}
-.   endfor
-.   for v in ${_${c}ld_vars}
-MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
-.   endfor
-.   include "mkc.conf.mk"
-
-.   for v in ${_${c}_vars}
-.     for _opt in ${${v}}
-.       if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
-${v}.new +=	${_opt:S/__/ /g}
-.       endif
-.     endfor
-.   endfor
-.   for v in ${_${c}ld_vars}
-.     for _opt in ${${v}}
-.       if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
-${v}.new +=	${_opt:S/__/ /g}
-.       endif
-.     endfor
-.   endfor
-
-LDFLAGS.pie.gcc.new   :=	${LDFLAGS.pie.gcc.new:U:tW:S/-fPIE -DPIC //}
-LDFLAGS.pie.clang.new :=	${LDFLAGS.pie.clang.new:U:tW:S/-fPIE -DPIC //}
 
 .for attr in aligned always_inline const noreturn pure printflike
 _cc_vars += CUSTOM.attribute_${attr}
@@ -237,7 +238,48 @@ MKC_FEATURES +=	macro
 .include <mkc.conf.mk>
 
 ######
-.   ifdef RECURS
+all: .PHONY
+.for c in cc cxx
+cc_cxx_capabilities_filename := mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
+. if !empty(${c:tu})
+.   for v in ${_${c}_vars}
+MKC_CHECK_${c:tu}_OPTS +=	${${v}}
+.   endfor
+.   for v in ${_${c}ld_vars}
+MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
+#.info "MKC_CHECK_${c:tu}LD_OPTS += ${${v}}"
+.   endfor
+#.   info "bbb MKC_CHECK_${c:tu}LD_OPTS=${MKC_CHECK_${c:tu}LD_OPTS}"
+.   include <mkc.conf.mk>
+
+.   for v in ${_${c}_vars}
+.     for _opt in ${${v}}
+.       if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
+${v}.new +=	${_opt:S/__/ /g}
+#.info "!!! ${v}.new = ${${v}.new}"
+.       endif
+.     endfor
+.   endfor
+.   for v in ${_${c}ld_vars}
+.     for _opt in ${${v}}
+.       if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
+${v}.new +=	${_opt:S/__/ /g}
+#.info "!!!! ${v}.new = ${${v}.new}"
+.       endif
+.     endfor
+.   endfor
+
+#.info "111 ${CFLAGS.pic}"
+CLDFLAGS.pie.gcc.new   :=	${CLDFLAGS.pie.gcc.new:U:tW:S/${CFLAGS.pie:S/__/ /g} //}
+CLDFLAGS.pie.clang.new :=	${CLDFLAGS.pie.clang.new:U:tW:S/${CFLAGS.pie:S/__/ /g} //}
+CLDFLAGS.shared.new    :=	${CLDFLAGS.shared.new:U:tW:S/${CFLAGS.pic:S/__/ /g} //}
+
+#.info "222 ${CXXFLAGS.pic}"
+CXXLDFLAGS.pie.gcc.new   :=	${CXXLDFLAGS.pie.gcc.new:U:tW:S/${CXXFLAGS.pie:S/__/ /g} //}
+CXXLDFLAGS.pie.clang.new :=	${CXXLDFLAGS.pie.clang.new:U:tW:S/${CXXFLAGS.pie:S/__/ /g} //}
+CXXLDFLAGS.shared.new    :=	${CXXLDFLAGS.shared.new:U:tW:S/${CXXFLAGS.pic:S/__/ /g} //}
+
+#.info "zzz: all: ${cc_cxx_capabilities_filename}"
 all: ${cc_cxx_capabilities_filename}
 ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 	@printf '' > $@.tmp;
@@ -249,23 +291,5 @@ ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 	@echo ${v} = ${${v}.new} >> $@.tmp;
 .   endfor
 	@mv $@.tmp $@
-
-.   endif # RECURS
 . endif # !empty(${c:tu}
 .endfor # .for c in cc cxx
-
-#################################################
-USE_CC_COMPILERS  ?=	${CC:Q}
-USE_CXX_COMPILERS ?=	${CXX:Q}
-
-.ifndef RECURS
-post_all:
-. for CC in ${USE_CC_COMPILERS:U}
-	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CXX_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC=${CC} CXX= src_type=cc
-. endfor # CC
-. for CXX in ${USE_CXX_COMPILERS:U}
-	@env ${MAKE} ${MAKE_FLAGS} ${COMPILER_SETTINGS_MK:U} all USE_CC_COMPILERS= \
-	    MKCHECKS=yes MKC_NOCACHE=1 RECURS=1 CC= CXX=${CXX} src_type=cxx
-. endfor # CXX
-.endif # RECURS

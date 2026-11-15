@@ -145,7 +145,7 @@ LDFLAGS.expsym ?=		${LDFLAGS.expsym.${LD_TYPE}:S/^/-Wl,/}
 ############################################################
 ############################################################
 
-LDFLAGS.shlib =	${LDFLAGS.shared} ${LDFLAGS.soname} ${LDFLAGS.expsym}
+LDFLAGS.shlib =	${${ld_type:tu}LDFLAGS.shared} ${${ld_type:tu}LDFLAGS.soname} ${${ld_type:tu}LDFLAGS.expsym}
 
 ############################################################
 ############################################################

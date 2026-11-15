@@ -9,9 +9,24 @@ export MAKEOBJDIR
 export MKC_CACHEDIR="$MAKEOBJDIR"
 export MKC_NOCACHE=1
 : ${MK_FILES_DIR:=@mkfilesdir@}
-: ${FEATURES_DIR:=@featuresdir@}
+: ${FEATURESDIR:=@featuresdir@}
 export COMPILER_SETTINGS_MK="-f $MK_FILES_DIR/mkc.compiler_settings.mk"
 export SRCTOP=/baddir
 
 BMAKE=${MKC_BMAKE-@BMAKE@}
-env MKCHECKS=no $BMAKE -m "$MK_FILES_DIR" -m "$FEATURES_DIR" $COMPILER_SETTINGS_MK post_all
+
+: ${CC:=cc}
+: ${CXX:=c++}
+
+: ${USE_CC_COMPILERS:=${CC}}
+: ${USE_CXX_COMPILERS:=${CXX}}
+
+unset CC
+unset CXX
+
+for CC in ${USE_CC_COMPILERS}; do
+    env CC="$CC" CXX= src_type=cc $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK RECURS=1 all
+done
+for CXX in ${USE_CXX_COMPILERS}; do
+    env CXX="$CXX" CC= src_type=cxx $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK RECURS=1 all
+done
