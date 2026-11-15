@@ -3,9 +3,9 @@ VERSION   =		0.40.3
 BIRTHDATE =		2009-02-21
 
 MKFILESDIR     =	${PREFIX}/share/mk-configure/mk       # = overrides newsys.mk.in
-DOCDIR        ?=	${PREFIX}/share/doc/mk-configure
-BUILTINSDIR   ?=	${PREFIX}/share/mk-configure/builtins # = overrides newsys.mk.in
-FEATURESDIR   ?=	${PREFIX}/share/mk-configure/features # = overrides newsys.mk.in
+DOCDIR         =	${PREFIX}/share/doc/mk-configure
+BUILTINSDIR    =	${PREFIX}/share/mk-configure/builtins # = overrides newsys.mk.in
+FEATURESDIR    =	${PREFIX}/share/mk-configure/features # = overrides newsys.mk.in
 
 INTEXTS_REPLS +=	version        ${VERSION}
 INTEXTS_REPLS +=	AWK            ${USE_AWK:U}

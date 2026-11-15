@@ -25,8 +25,8 @@ unset CC
 unset CXX
 
 for CC in ${USE_CC_COMPILERS}; do
-    env CC="$CC" CXX= src_type=cc $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK RECURS=1 all
+    env CC="$CC" CXX= src_type=cc $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK FEATURESDIR="$FEATURESDIR" all
 done
 for CXX in ${USE_CXX_COMPILERS}; do
-    env CXX="$CXX" CC= src_type=cxx $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK RECURS=1 all
+    env CXX="$CXX" CC= src_type=cxx $BMAKE -m "$MK_FILES_DIR" -m "$FEATURESDIR" $COMPILER_SETTINGS_MK FEATURESDIR="$FEATURESDIR" all
 done
