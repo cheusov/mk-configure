@@ -47,7 +47,6 @@ symbol fake3
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd
 /objdir/dictd/dictd.8
@@ -105,6 +104,7 @@ symbol fake3
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ========= INTERNALLIBS ==========
 installdirs ===> libmaa
@@ -173,7 +173,6 @@ uninstall ===> dictfmt
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd
 /objdir/dictd/dictd.8
@@ -225,6 +224,7 @@ uninstall ===> dictfmt
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ========== clean ===========
 /objdir/Makefile
@@ -232,7 +232,6 @@ uninstall ===> dictfmt
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -256,6 +255,7 @@ uninstall ===> dictfmt
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ======= cleandir ==========
 /objdir/Makefile
@@ -263,7 +263,6 @@ uninstall ===> dictfmt
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -287,6 +286,7 @@ uninstall ===> dictfmt
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 =========== MKOBJDIRS=auto ============
 /objdir
@@ -297,7 +297,6 @@ uninstall ===> dictfmt
 /objdir/dict/dict.1
 /objdir/dict/dict.c
 /objdir/dictd
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -327,6 +326,7 @@ uninstall ===> dictfmt
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ===
 /objdir/obj1/objdir
@@ -348,7 +348,6 @@ obj1 does not exist
 /objdir/dict/dict.1
 /objdir/dict/dict.c
 /objdir/dictd
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -378,6 +377,7 @@ obj1 does not exist
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ===
 /objdir/obj2/objdir
@@ -409,7 +409,6 @@ obj1 does not exist
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -433,6 +432,7 @@ obj1 does not exist
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ======= all-dict ==========
 /objdir/Makefile
@@ -447,7 +447,6 @@ obj1 does not exist
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -489,6 +488,7 @@ obj1 does not exist
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ======= -C dict all ==========
 /objdir/Makefile
@@ -503,7 +503,6 @@ obj1 does not exist
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -545,6 +544,7 @@ obj1 does not exist
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ========= installdirs-dict ==========
 /objdir/prefix
@@ -592,7 +592,6 @@ obj1 does not exist
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -616,6 +615,7 @@ obj1 does not exist
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ======= cleandir-dict ==========
 /objdir/Makefile
@@ -623,7 +623,6 @@ obj1 does not exist
 /objdir/dict/Makefile
 /objdir/dict/dict.1
 /objdir/dict/dict.c
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd.8
 /objdir/dictd/dictd.c
@@ -647,6 +646,7 @@ obj1 does not exist
 /objdir/libmaa/maa_export.sym
 /objdir/libmaa/prime.c
 /objdir/libmaa/set.c
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 ========= installdirs-doc ==========
 /objdir/prefix
@@ -673,7 +673,6 @@ obj1 does not exist
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd
 /objdir/dictd/dictd.8
@@ -718,6 +717,7 @@ obj1 does not exist
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 =========== all with MKPIE=yes ============
 /objdir/Makefile
@@ -741,7 +741,6 @@ obj1 does not exist
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd
 /objdir/dictd/dictd.8
@@ -799,6 +798,7 @@ obj1 does not exist
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 =========== all with STATICLIBS=everything... ============
 /objdir/Makefile
@@ -822,7 +822,6 @@ obj1 does not exist
 /objdir/dict/dict.c
 /objdir/dict/dict.cat1
 /objdir/dict/dict.o
-/objdir/dictd.test.out.tmp
 /objdir/dictd/Makefile
 /objdir/dictd/dictd
 /objdir/dictd/dictd.8
@@ -876,6 +875,7 @@ obj1 does not exist
 /objdir/libmaa/set.c
 /objdir/libmaa/set.o
 /objdir/libmaa/set.os
+/objdir/nedo_dictd.test.out.tmp
 /objdir/test.mk
 =========== print_deps ============
 all-libcommon all-dict
