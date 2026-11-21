@@ -1,4 +1,5 @@
 ============================================================
+Add MKC_CHECK_FUNCLIBS analog for symbols like sys_errlist
 Add COPTS.check and CXXOPTS.check
 Add BINDIR_<progname>
 One-line documentation for all configuration variables
