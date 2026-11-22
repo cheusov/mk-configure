@@ -1,10 +1,5 @@
 .include <mkc_imp.compiler_config.mk> # CC/CXX is set, detect compiler type
 
-#. info "%%% CC=${CC}"
-#. info "%%% CXX=${CXX}"
-#. info "%%% CC_TYPE=${CC_TYPE}"
-#. info "%%% CXX_TYPE=${CXX_TYPE}"
-
 .if !empty(CC) && !empty(CXX)
 . error "Either CC or CXX might be set"
 .endif
@@ -247,16 +242,13 @@ MKC_CHECK_${c:tu}_OPTS +=	${${v}}
 .   endfor
 .   for v in ${_${c}ld_vars}
 MKC_CHECK_${c:tu}LD_OPTS +=	${${v}}
-#.info "MKC_CHECK_${c:tu}LD_OPTS += ${${v}}"
 .   endfor
-#.   info "bbb MKC_CHECK_${c:tu}LD_OPTS=${MKC_CHECK_${c:tu}LD_OPTS}"
 .   include <mkc.conf.mk>
 
 .   for v in ${_${c}_vars}
 .     for _opt in ${${v}}
 .       if ${HAVE_${c:tu}_OPT.${_opt:S/=/_/}:U} == 1
 ${v}.new +=	${_opt:S/__/ /g}
-#.info "!!! ${v}.new = ${${v}.new}"
 .       endif
 .     endfor
 .   endfor
@@ -264,22 +256,18 @@ ${v}.new +=	${_opt:S/__/ /g}
 .     for _opt in ${${v}}
 .       if ${HAVE_${c:tu}LD_OPT.${_opt:S/=/_/}:U} == 1
 ${v}.new +=	${_opt:S/__/ /g}
-#.info "!!!! ${v}.new = ${${v}.new}"
 .       endif
 .     endfor
 .   endfor
 
-#.info "111 ${CFLAGS.pic}"
 CLDFLAGS.pie.gcc.new   :=	${CLDFLAGS.pie.gcc.new:U:tW:S/${CFLAGS.pie:S/__/ /g} //}
 CLDFLAGS.pie.clang.new :=	${CLDFLAGS.pie.clang.new:U:tW:S/${CFLAGS.pie:S/__/ /g} //}
 CLDFLAGS.shared.new    :=	${CLDFLAGS.shared.new:U:tW:S/${CFLAGS.pic:S/__/ /g} //}
 
-#.info "222 ${CXXFLAGS.pic}"
 CXXLDFLAGS.pie.gcc.new   :=	${CXXLDFLAGS.pie.gcc.new:U:tW:S/${CXXFLAGS.pie:S/__/ /g} //}
 CXXLDFLAGS.pie.clang.new :=	${CXXLDFLAGS.pie.clang.new:U:tW:S/${CXXFLAGS.pie:S/__/ /g} //}
 CXXLDFLAGS.shared.new    :=	${CXXLDFLAGS.shared.new:U:tW:S/${CXXFLAGS.pic:S/__/ /g} //}
 
-#.info "zzz: all: ${cc_cxx_capabilities_filename}"
 all: ${cc_cxx_capabilities_filename}
 ${cc_cxx_capabilities_filename}: .PHONY # always regenerate!
 	@printf '' > $@.tmp;
