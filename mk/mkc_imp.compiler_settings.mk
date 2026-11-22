@@ -47,10 +47,13 @@ CFLAGS.warns.tcc.2 =		${CFLAGS.warns.tcc.1}
 CFLAGS.warns.tcc.3 =		${CFLAGS.warns.tcc.2}
 CFLAGS.warns.tcc.4 =		${CFLAGS.warns.tcc.3} -Wall
 
+CFLAGS.pg          =		-pg
+
 .for _warn_number in 1 2 3 4
 CFLAGS.warns.${_warn_number}       =	${CFLAGS.warns.${CC_TYPE}.${_warn_number}}
 _cc_vars                          +=	CFLAGS.warns.${_warn_number}
 .endfor
+_cc_vars                          +=	CFLAGS.pg
 
 _CSTD_LIST := c89 gnu89 c99 gnu99 c11 gnu11 c17 gnu17
 _CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17
@@ -191,10 +194,13 @@ CXXFLAGS.warns.icc.2 =		${CFLAGS.warns.icc.2}
 CXXFLAGS.warns.icc.3 =		${CFLAGS.warns.icc.3}
 CXXFLAGS.warns.icc.4 =		${CFLAGS.warns.icc.4}
 
+CXXFLAGS.pg          =		-pg
+
 .for _warn_number in 1 2 3 4
 CXXFLAGS.warns.${_warn_number}  =	${CXXFLAGS.warns.${CXX_TYPE}.${_warn_number}}
 _cxx_vars                      +=	CXXFLAGS.warns.${_warn_number}
 .endfor
+_cxx_vars                      +=	CXXFLAGS.pg
 
 CXXFLAGS.ssp.gcc     =		${CFLAGS.ssp.gcc}
 CXXFLAGS.ssp.clang   =		${CFLAGS.ssp.clang}

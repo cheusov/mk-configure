@@ -13,7 +13,7 @@
 	${COMPILE.c} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 .c.op:
 	${MESSAGE.c}
-	${COMPILE.c} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} -pg ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${CFLAGS.pg} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 .c.os:
 	${MESSAGE.c}
 	${COMPILE.c} ${CFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
@@ -24,7 +24,7 @@
 	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 .c++.op .cc.op .cpp.op .cxx.op .C.op:
 	${MESSAGE.cc}
-	${COMPILE.cc} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} -pg ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${CXXFLAGS.pg} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 .c++.os .cc.os .cpp.os .cxx.os .C.os:
 	${MESSAGE.cc}
 	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
