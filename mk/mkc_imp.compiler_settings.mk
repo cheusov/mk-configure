@@ -16,6 +16,7 @@ CFLAGS.warnerr.clang  =		-Werror
 CFLAGS.warnerr.icc    =		-Werror
 CFLAGS.warnerr.sunpro =		-errwarn=%all
 CFLAGS.warnerr.armcc  =		--diag_error=warning
+CFLAGS.warnerr.tcc    =		-Werror
 CFLAGS.warnerr        =		${CFLAGS.warnerr.${CC_TYPE}}
 
 CFLAGS.warns.gcc.1 =		-Wall -Wstrict-prototypes -Wmissing-prototypes \
@@ -40,6 +41,11 @@ CFLAGS.warns.hpc.1 =		-w2
 CFLAGS.warns.hpc.2 =		-w2
 CFLAGS.warns.hpc.3 =		-w2
 CFLAGS.warns.hpc.4 =		-w2
+
+CFLAGS.warns.tcc.1 =		-Wimplicit-function-declaration
+CFLAGS.warns.tcc.2 =		-Wimplicit-function-declaration
+CFLAGS.warns.tcc.3 =		-Wimplicit-function-declaration
+CFLAGS.warns.tcc.4 =		-Wimplicit-function-declaration -Wall
 
 .for _warn_number in 1 2 3 4
 CFLAGS.warns.${_warn_number}       =	${CFLAGS.warns.${CC_TYPE}.${_warn_number}}
@@ -115,6 +121,7 @@ CLDFLAGS.shared.gcc     =	-shared
 CLDFLAGS.shared.clang   =	-shared
 CLDFLAGS.shared.pcc     =	-shared
 CLDFLAGS.shared.icc     =	-shared
+CLDFLAGS.shared.tcc     =	-shared
 CLDFLAGS.shared.hpc     =	-b
 CLDFLAGS.shared.imbc    =	-qmkshrobj
 CLDFLAGS.shared.mipspro =	-shared
