@@ -1,4 +1,7 @@
-# Copyright (c) 2009-2024 by Aleksey Cheusov
+# Copyright (c) 2009-2026 by Aleksey Cheusov
+
+.ifndef MKC_IMP_COMPILER_CONFIG_MK
+MKC_IMP_COMPILER_CONFIG_MK := 1
 
 mkc.cc_type.environ = CC=${CC:Q} CXX=${CXX:Q} CPPFLAGS=${CPPFLAGS:Q} CFLAGS=${CFLAGS:Q} LDFLAGS=${LDFLAGS:Q} LDADD=${LDADD:Q} MKC_CACHEDIR=${MKC_CACHEDIR:Q} MKC_DELETE_TMPFILES=${MKC_DELETE_TMPFILES:Q} MKC_SHOW_CACHED=${MKC_SHOW_CACHED:Q} MKC_NOCACHE=${MKC_NOCACHE:Q} MKC_VERBOSE=1
 .for c in ${src_type}
@@ -51,3 +54,5 @@ _mkfile:=mkc_imp.${c}_${${c:tu}_TYPE}-${${c:tu}_VERSION}${${c:tu}_TRIPLET}.mk
 . undef _full_mkfile
 . undef _mkfile
 .endfor # .for c in ${src_type}
+
+.endif # MKC_IMP_COMPILER_CONFIG_MK
