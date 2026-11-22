@@ -24,6 +24,9 @@
 /objdir/_mkc_define___SUNPRO_C.c
 /objdir/_mkc_define___SUNPRO_C.err
 /objdir/_mkc_define___SUNPRO_C.res
+/objdir/_mkc_define___TINYC__.c
+/objdir/_mkc_define___TINYC__.err
+/objdir/_mkc_define___TINYC__.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/compiler_test
@@ -62,6 +65,9 @@
 /objdir/_mkc_define___SUNPRO_C.c
 /objdir/_mkc_define___SUNPRO_C.err
 /objdir/_mkc_define___SUNPRO_C.res
+/objdir/_mkc_define___TINYC__.c
+/objdir/_mkc_define___TINYC__.err
+/objdir/_mkc_define___TINYC__.res
 /objdir/_mkc_prog_cc.err
 /objdir/_mkc_prog_cc.res
 /objdir/compiler_test.c

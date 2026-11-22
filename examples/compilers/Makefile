@@ -1,5 +1,5 @@
 MKC_CHECK_DEFINES +=	__INTEL_COMPILER __GNUC__ _MSC_VER __PCC__ __SUNPRO_C
-MKC_CHECK_DEFINES +=	__DECC _COMPILER_VERSION
+MKC_CHECK_DEFINES +=	__DECC _COMPILER_VERSION __TINYC__
 
 PROG =			compiler_test
 
@@ -15,6 +15,8 @@ msg =	Microsoft C Compiler
 msg =	Intel C Compiler
 .elif ${HAVE_DEFINE.__PCC__:U0}
 msg =	Portable C Compiler
+.elif ${HAVE_DEFINE.__TINYC__:U0}
+msg =	Tiny C Compiler
 .elif ${HAVE_DEFINE.__GNUC__:U1}
 msg =	GNU C Compiler
 .elif ${HAVE_DEFINE.__SUNPRO_C:U1}

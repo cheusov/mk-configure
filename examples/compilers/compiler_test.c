@@ -35,6 +35,10 @@
 #define HAVE_DEFINE___SUNPRO_C 0
 #endif
 
+#ifndef HAVE_DEFINE___TINYC__
+#define HAVE_DEFINE___TINYC__ 0
+#endif
+
 #ifndef HAVE_DEFINE___DECC
 #define HAVE_DEFINE___DECC 0
 #endif
@@ -49,7 +53,7 @@ int main (int argc, char **argv)
 {
 	printf ("%d\n", (strlen (MSG) > 0) +
 			HAVE_DEFINE__MSC_VER + HAVE_DEFINE___INTEL_COMPILER +
-			HAVE_DEFINE___PCC__ + HAVE_DEFINE___GNUC__ +
+			HAVE_DEFINE___PCC__ + HAVE_DEFINE___TINYC__ + HAVE_DEFINE___GNUC__ +
 			HAVE_DEFINE___SUNPRO_C + HAVE_DEFINE___DECC +
 			HAVE_DEFINE__COMPILER_VERSION);
 

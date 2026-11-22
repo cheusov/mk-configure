@@ -43,9 +43,9 @@ CFLAGS.warns.hpc.3 =		-w2
 CFLAGS.warns.hpc.4 =		-w2
 
 CFLAGS.warns.tcc.1 =		-Wimplicit-function-declaration
-CFLAGS.warns.tcc.2 =		-Wimplicit-function-declaration
-CFLAGS.warns.tcc.3 =		-Wimplicit-function-declaration
-CFLAGS.warns.tcc.4 =		-Wimplicit-function-declaration -Wall
+CFLAGS.warns.tcc.2 =		${CFLAGS.warns.tcc.1}
+CFLAGS.warns.tcc.3 =		${CFLAGS.warns.tcc.2}
+CFLAGS.warns.tcc.4 =		${CFLAGS.warns.tcc.3} -Wall
 
 .for _warn_number in 1 2 3 4
 CFLAGS.warns.${_warn_number}       =	${CFLAGS.warns.${CC_TYPE}.${_warn_number}}
