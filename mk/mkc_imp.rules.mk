@@ -1,4 +1,4 @@
-# Copyright (c) 2014 by Aleksey Cheusov
+# Copyright (c) 2014-2026 by Aleksey Cheusov
 #
 # See LICENSE file in the distribution.
 ############################################################
@@ -16,7 +16,7 @@
 	${COMPILE.c} -o ${.TARGET} ${CFLAGS.pg} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 .c.os:
 	${MESSAGE.c}
-	${COMPILE.c} ${CFLAGS.pic} -o ${.TARGET} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
+	${COMPILE.c} -o ${.TARGET} ${CFLAGS.pic} ${COPTS} ${COPTS_${_PN}} ${.IMPSRC}
 
 # C++
 .c++.o .cc.o .cpp.o .cxx.o .C.o:
@@ -27,7 +27,7 @@
 	${COMPILE.cc} -o ${.TARGET} ${CXXFLAGS.pg} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 .c++.os .cc.os .cpp.os .cxx.os .C.os:
 	${MESSAGE.cc}
-	${COMPILE.cc} ${CXXFLAGS.pic} -o ${.TARGET} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
+	${COMPILE.cc} -o ${.TARGET} ${CXXFLAGS.pic} ${CXXOPTS} ${CXXOPTS_${_PN}} ${.IMPSRC}
 
 # Assembly
 .S.o .s.o:
@@ -38,7 +38,7 @@
 	${COMPILE.s} -o ${.TARGET} -pg ${.IMPSRC}
 .S.os .s.os:
 	${MESSAGE.s}
-	${COMPILE.s} ${CAFLAGS.pic} -o ${.TARGET} ${.IMPSRC}
+	${COMPILE.s} -o ${.TARGET} ${CAFLAGS.pic} ${.IMPSRC}
 
 # Lex
 .l.c:
