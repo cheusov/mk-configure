@@ -18,7 +18,7 @@
 .sp
 ..
 .\" ------------------------------------------------------------------
-.TH MK-CONFIGURE 7 "Nov 22, 2026" "" ""
+.TH MK-CONFIGURE 7 "Nov 24, 2026" "" ""
 .SH NAME
 mk-configure \- lightweight replacement for GNU autotools
 .SH DESCRIPTION
@@ -229,9 +229,10 @@ C compiler version.
 .IP CCSTD
 Add C language standard command line option to the compiler.
 Supported options:
-.IR c89 ", " gnu89 " (C89 with GNU extensions), " c99 ", " gnu99 \
-" (C99 with GNU extensions), " c11 ", " gnu11 " (C89 with GNU extensions), " \
-c17 ", " gnu17 " (C17 with GNU extensions)."
+.IR c89 ", " gnu89 " (C89 with GNU extensions), "
+.IR c99 ", " gnu99 ", "
+.IR c11 ", " gnu11 ", "
+.IR c17 ", " gnu17 "."
 If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >
@@ -364,9 +365,11 @@ Similar to CXXOPTS but for project ${PROJECTNAME}.
 Add C++ language standard command line option to the compiler and linker.
 Supported options:
 .IR c++98 ", " gnu++98 " (C++98 with GNU extensions), "
-.IR c++11 ", " gnu++11 " (C++11 with GNU extensions), "
-.IR c++14 ", " gnu++14 " (C++14 with GNU extensions), "
-.IR c++17 ", " gnu++17 " (C++17 with GNU extensions)"
+.IR c++11 ", " gnu++11 ", "
+.IR c++14 ", " gnu++14 ", "
+.IR c++17 ", " gnu++17 ", "
+.IR c++20 ", " gnu++20 ", "
+.IR c++23 ", " gnu++23 ", "
 If compiler is not known for mk-configure or does not
 support appropriate option, no additional options are applied.
 .RI < M >

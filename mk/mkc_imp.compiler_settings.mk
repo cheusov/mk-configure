@@ -56,7 +56,7 @@ _cc_vars                          +=	CFLAGS.warns.${_warn_number}
 _cc_vars                          +=	CFLAGS.pg
 
 _CSTD_LIST := c89 gnu89 c99 gnu99 c11 gnu11 c17 gnu17
-_CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17
+_CXXSTD_LIST := c++98 gnu++98 c++11 gnu++11 c++14 gnu++14 c++17 gnu++17 c++20 gnu++20 c++23 gnu++23
 
 .for c in C CXX
 . for std in ${_${c}STD_LIST}
