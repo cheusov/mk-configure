@@ -1,10 +1,10 @@
 ######################################################
 # <begin CFLAGS.check and CXXFLAGS.check>
-.for c in ${CFLAGS.check}
+.for c in ${CFLAGS.check} ${COPTS.check}
 MKC_CHECK_CC_OPTS +=	${c}
 .endfor
 
-.for c in ${CXXFLAGS.check}
+.for c in ${CXXFLAGS.check} ${CXXOPTS.check}
 MKC_CHECK_CXX_OPTS +=	${c}
 .endfor
 
@@ -71,3 +71,20 @@ MKC_CXXFLAGS +=	${c:S/__/ /g}
 .endfor
 
 .undef CXXFLAGS.check
+######################################################
+# <end COPTS.check and CXXOPTS.check>
+.for c in ${COPTS.check}
+.   if ${HAVE_CC_OPT.${c:S/=/_/g}:U0} == 1
+MKC_COPTS +=	${c:S/__/ /g}
+.   endif
+.endfor
+
+.undef COPTS.check
+
+.for c in ${CXXOPTS.check}
+.   if ${HAVE_CXX_OPT.${c:S/=/_/g}:U0} == 1
+MKC_CXXOPTS +=	${c:S/__/ /g}
+.   endif
+.endfor
+
+.undef CXXOPTS.check

@@ -297,6 +297,11 @@ Command for removing files used by targets "clean" and "cleandir".
 .IP COPTS
 Additional flags to the compiler when creating C objects.
 .RI < "U" >
+.IP COPTS.check
+Same as COPTS but every option is checked whether it is a valid one for C compiler.
+Double underline is considered as a single space character.
+.RI < M >
+.RI [ unset ]
 .IP COPTS_<project>
 Similar to COPTS but for project ${PROJECTNAME}.
 .RI < "U" >
@@ -346,6 +351,7 @@ be set from environment by user.
 .RI < "M" >
 .IP CXXFLAGS.check
 Same as CXXFLAGS but every option is checked whether it is a valid one for C++ compiler.
+Double underline is considered as a single space character.
 .RI < M >
 .RI [ unset ]
 .IP CXXFLAGS_<project>
@@ -358,6 +364,11 @@ Basename of the source file is used.
 .IP CXXOPTS
 Additional flags to the compiler when creating C++ objects.
 .RI < "U" >
+.IP CXXOPTS.check
+Same as CXXOPTS but every option is checked whether it is a valid one for C++ compiler.
+Double underline is considered as a single space character.
+.RI < M >
+.RI [ unset ]
 .IP CXXOPTS_<project>
 Similar to CXXOPTS but for project ${PROJECTNAME}.
 .RI < "U" >

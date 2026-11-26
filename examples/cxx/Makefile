@@ -10,5 +10,7 @@ MKC_REQD =	0.35.90
 
 CXXSTD   =	c++11
 
+CXXOPTS.check =	-mcpu=native -mtune=native
+
 .include "test.mk"
 .include <mkc.prog.mk>

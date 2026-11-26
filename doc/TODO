@@ -1,7 +1,6 @@
 ============================================================
 Analog for CUSTOM.attribute_??? for C++ compiler
 Add MKC_CHECK_FUNCLIBS analog for symbols like sys_errlist
-Add COPTS.check and CXXOPTS.check
 Add BINDIR_<progname>
 One-line documentation for all configuration variables
 mkc_macro.h: __compactcall __dso_hidden __dso_protected __dso_public __noasan __noclone __nocsan __noinline __noprofile __noubsan __null_sentinel __packed __returns_twice __section(x) __unused __used

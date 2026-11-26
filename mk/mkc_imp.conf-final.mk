@@ -42,6 +42,18 @@ CFLAGS +=	${i}
 .   endif
 . endfor
 
+. for i in ${MKC_COPTS}
+.   if empty(COPTS:M${i})
+COPTS +=	${i}
+.   endif
+. endfor
+
+. for i in ${MKC_CXXOPTS}
+.   if empty(CXXOPTS:M${i})
+CXXOPTS +=	${i}
+.   endif
+. endfor
+
 . for i in ${MKC_LDADD}
 .   if empty(LDADD:M${i})
 LDADD +=	${i}
@@ -60,5 +72,7 @@ SRCS +=		${i}
 
 .undef MKC_CPPFLAGS
 .undef MKC_CFLAGS
+.undef MKC_COPTS
+.undef MKC_CXXOPTS
 .undef MKC_LDADD
 .undef MKC_SRCS

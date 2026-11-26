@@ -152,6 +152,7 @@ MKC_REQUIRE_CUSTOM +=	${MKC_REQUIRE_BUILTINS:M${i}}
 .endif
 
 .if defined(CFLAGS.check) || defined(CXXFLAGS.check) || \
+    defined(COPTS.check) || defined(CXXOPTS.check) || \
     defined(MKC_CHECK_CC_OPTS) || defined(MKC_CHECK_CXX_OPTS) || \
     defined(MKC_CHECK_CCLD_OPTS) || defined(MKC_CHECK_CXXLD_OPTS)
 .include "mkc_imp.conf_opts.mk"

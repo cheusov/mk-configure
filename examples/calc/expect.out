@@ -4,6 +4,8 @@
 45
 =========== all ============
 /objdir/Makefile
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.err
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
@@ -25,6 +27,8 @@
 ======== uninstall =========
 ========== clean ===========
 /objdir/Makefile
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.err
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
@@ -39,6 +43,8 @@
 ========== depend ===========
 /objdir/.depend_calc
 /objdir/Makefile
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.err
+/objdir/_mkc_cc_option_-foptimize-sibling-calls.res
 /objdir/_mkc_cc_type.err
 /objdir/_mkc_cc_type.res
 /objdir/_mkc_prog_cc.err
