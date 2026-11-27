@@ -3,13 +3,15 @@ DLL_EXT.Darwin   =	.bundle
 LD_TYPE.Darwin   =	darwinld
 
 .if ${MKDLL:U} == "no"
-LDFLAGS.shared      =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+CLDFLAGS.shared      =	-dynamiclib -install_name ${LIBDIR}/lib${LIB}${SHLIB_EXTFULL}
+CXXLDFLAGS.shared    =	${CLDFLAGS.shared}
 SHLIB_MAJORp1      !=		expr 1 + ${SHLIB_MAJOR:U0}
 LDFLAGS.soname      =		-current_version \
     ${SHLIB_MAJORp1}${SHLIB_MINOR:D.${SHLIB_MINOR}}${SHLIB_TEENY:D.${SHLIB_TEENY}} \
 	-compatibility_version ${SHLIB_MAJORp1}
 .else
-LDFLAGS.shared      =	-flat_namespace -bundle -undefined suppress
+CLDFLAGS.shared      =	-flat_namespace -bundle -undefined suppress
+CXXLDFLAGS.shared    =	${CLDFLAGS.shared}
 .endif # MKDLL
 
 .if ${MKDLL:U} != "no"

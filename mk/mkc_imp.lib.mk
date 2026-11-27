@@ -96,7 +96,6 @@ lib${LIB}_p.a: ${POBJS} __archivebuild
 lib${LIB}_pic.a: ${SOBJS} __archivebuild
 	@${_MESSAGE_V} "building shared object ${LIB} library"
 
-#.info "zzz ${ld_type:tu}"
 ${SHLIBFN}: ${SOBJS} ${DPADD}
 .if !commands(${SHLIBFN})
 	@set -e; if test -z "${${ld_type:tu}LDFLAGS.shared}"; then \
